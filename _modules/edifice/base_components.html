@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components &#8212; Edifice 0.0.10 documentation</title>
+    <title>edifice.base_components &#8212; Edifice 0.1.0 documentation</title>
   
   
   
@@ -43,6 +43,7 @@
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components';</script>
+    <link rel="shortcut icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -115,14 +116,19 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
-    <p class="title logo__title">Edifice 0.0.10 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="nav bd-sidenav">
+	<div class="bd-toc-item navbar-nav active">
+			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -144,6 +150,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Image.html">edifice.Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Button.html">edifice.Button</a></li>
@@ -157,6 +164,12 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -171,7 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../future.html">Roadmap</a></li>
 </ul>
 
-    </div>
+	</div>
 </nav></div>
     </div>
   
@@ -294,15 +307,15 @@ document.write(`
 
 <span class="sd">    # you can now access edifice.Button, View, etc.</span>
 
-<span class="sd">All components in this module inherit from :doc:`QtWidgetComponent&lt;edifice.base_components.QtWidgetComponent&gt;`</span>
-<span class="sd">and its props, such as `style` and `on_click`.</span>
+<span class="sd">All components in this module inherit from :class:`QtWidgetComponent&lt;edifice.QtWidgetComponent&gt;`</span>
+<span class="sd">and its props, such as :code:`style` and :code:`on_click`.</span>
 <span class="sd">This means that all widgets could potentially respond to clicks and are stylable using css-like stylesheets.</span>
 
 <span class="sd">The components here can roughly be divided into layout components and content components.</span>
 
 <span class="sd">Layout components take a list of children and function as a container for its children;</span>
-<span class="sd">it is most analogous to the `&lt;div&gt;` html tag.</span>
-<span class="sd">The two basic layout components are :doc:`View&lt;edifice.base_components.View&gt;` and :doc:`ScrollView&lt;edifice.base_components.ScrollView&gt;`,</span>
+<span class="sd">it is most analogous to the :code:`&lt;div&gt;` html tag.</span>
+<span class="sd">The two basic layout components are :class:`View&lt;edifice.View&gt;` and :class:`ScrollView&lt;edifice.ScrollView&gt;`.</span>
 <span class="sd">They take a layout prop, which controls whether children are laid out in a row,</span>
 <span class="sd">a column, or without any preset layout.</span>
 <span class="sd">A layout component without children will appear as an empty spot in the window;</span>
@@ -311,12 +324,12 @@ document.write(`
 <span class="sd">or drawing an empty rectangle.</span>
 
 <span class="sd">Content components display some information or control on the window.</span>
-<span class="sd">The basic component for displaying text is :doc:`Label&lt;edifice.base_components.Label&gt;`,</span>
+<span class="sd">The basic component for displaying text is :class:`Label&lt;edifice.Label&gt;`,</span>
 <span class="sd">which simply displays the given text (or any Python object).</span>
 <span class="sd">The font can be controlled using the style prop.</span>
-<span class="sd">The :doc:`Icon&lt;edifice.base_components.Icon&gt;` component is another handy component, displaying an icon from the</span>
+<span class="sd">The :class:`Icon&lt;edifice.Icon&gt;` component is another handy component, displaying an icon from the</span>
 <span class="sd">Font Awesome icon set.</span>
-<span class="sd">Finally, the :doc:`Button&lt;edifice.base_components.Button&gt;` and :doc:`TextInput&lt;stubs.edifice.base_components.TextInput&gt;`</span>
+<span class="sd">Finally, the :class:`Button&lt;edifice.Button&gt;` and :class:`TextInput&lt;edifice.TextInput&gt;`</span>
 <span class="sd">components allow you to collect input from the user.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -518,7 +531,7 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="QtWidgetComponent.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.QtWidgetComponent.__init__.html#edifice.QtWidgetComponent.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="n">StyleType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">tool_tip</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">cursor</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -561,7 +574,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">cursor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_CURSORS</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unrecognized cursor </span><span class="si">%s</span><span class="s2">. Cursor must be one of </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">_CURSORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unrecognized cursor </span><span class="si">%s</span><span class="s2">. Cursor must be one of </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">_CURSORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span></div>
 
     <span class="k">def</span> <span class="nf">_destroy_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
@@ -911,7 +924,7 @@ document.write(`
 <span class="sd">            event handler for when this window is closed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="Window.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Window.__init__.html#edifice.Window.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;Edifice Application&quot;</span><span class="p">,</span>
                  <span class="n">icon</span><span class="p">:</span><span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">menu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -921,7 +934,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Window.will_unmount"><a class="viewcode-back" href="../../stubs/stubs/edifice.Window.will_unmount.html#edifice.Window.will_unmount">[docs]</a>    <span class="k">def</span> <span class="nf">will_unmount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="p">:</span>
@@ -1037,12 +1050,12 @@ document.write(`
 <span class="sd">            an angle (in degrees) for the icon rotation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="Icon.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Icon.__init__.html#edifice.Icon.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">collection</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;font-awesome&quot;</span><span class="p">,</span>
                  <span class="n">sub_collection</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;solid&quot;</span><span class="p">,</span>
                  <span class="n">color</span><span class="p">:</span> <span class="n">RGBAType</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -1085,11 +1098,11 @@ document.write(`
 <span class="sd">            the styling of the button</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="Button.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Button.__init__.html#edifice.Button.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Button</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span>  <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
@@ -1139,10 +1152,10 @@ document.write(`
 <span class="sd">        rotation: an angle (in degrees) for the icon rotation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="IconButton.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.IconButton.__init__.html#edifice.IconButton.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;font-awesome&quot;</span><span class="p">,</span> <span class="n">sub_collection</span><span class="o">=</span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
                  <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">)</span>
@@ -1175,16 +1188,16 @@ document.write(`
 <span class="sd">    Args:</span>
 <span class="sd">        text: the text to display. Can be any Python type; the text prop is converted to a string using str before being displayed</span>
 <span class="sd">        word_wrap: enable/disable word wrapping.</span>
-<span class="sd">        link_open: whether hyperlinks will open to the operating system. Defaults to False.</span>
+<span class="sd">        link_open: whether hyperlinks will open to the operating system. Defaults to False. `PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks&gt;`_</span>
 <span class="sd">        selectable: whether the content of the label can be selected. Defaults to False.</span>
 <span class="sd">        editable: whether the content of the label can be edited. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="Label.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Label.__init__.html#edifice.Label.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">selectable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">editable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">word_wrap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">link_open</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
@@ -1233,10 +1246,10 @@ document.write(`
 <span class="sd">        scale_to_fit: if True, the image will be scaled to fit inside the container.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="Image.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Image.__init__.html#edifice.Image.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">scale_to_fit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">()</span>
@@ -1253,16 +1266,16 @@ document.write(`
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">,</span> <span class="n">_image_descriptor_to_pixmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">src</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
-<span class="k">class</span> <span class="nc">ImageSvg</span><span class="p">(</span><span class="n">QtWidgetComponent</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSvg"><a class="viewcode-back" href="../../stubs/edifice.ImageSvg.html#edifice.ImageSvg">[docs]</a><span class="k">class</span> <span class="nc">ImageSvg</span><span class="p">(</span><span class="n">QtWidgetComponent</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An SVG Image container.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        src: the path to the SVG image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="ImageSvg.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.ImageSvg.__init__.html#edifice.ImageSvg.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtSvgWidgets</span><span class="o">.</span><span class="n">QSvgWidget</span><span class="p">()</span>
@@ -1276,7 +1289,7 @@ document.write(`
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;src&quot;</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">load</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">src</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">commands</span>
+        <span class="k">return</span> <span class="n">commands</span></div>
 
 <span class="k">class</span> <span class="nc">Completer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
@@ -1310,14 +1323,14 @@ document.write(`
 <span class="sd">            value of the text</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="TextInput.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.TextInput.__init__.html#edifice.TextInput.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>
                  <span class="n">on_edit_finish</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>
                  <span class="n">completer</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Completer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_editing_finished_connected</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLineEdit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
@@ -1470,12 +1483,12 @@ document.write(`
 <span class="sd">            The callback receives the new state of the check box as an argument.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="RadioButton.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.RadioButton.__init__.html#edifice.RadioButton.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
                  <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">checked</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QRadioButton</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
@@ -1525,12 +1538,12 @@ document.write(`
 <span class="sd">        on_change: callback for when the check box state changes. The callback receives the new state of the check box as an argument.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="CheckBox.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.CheckBox.__init__.html#edifice.CheckBox.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
                  <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">checked</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCheckBox</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
@@ -1590,7 +1603,7 @@ document.write(`
 <span class="sd">            The callback receives the new value of the slider as an argument.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="Slider.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Slider.__init__.html#edifice.Slider.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">NumericType</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
                  <span class="n">min_value</span><span class="p">:</span> <span class="n">NumericType</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
                  <span class="n">max_value</span><span class="p">:</span> <span class="n">NumericType</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -1620,7 +1633,7 @@ document.write(`
         <span class="k">elif</span> <span class="n">orientation</span> <span class="o">==</span> <span class="s2">&quot;vertical&quot;</span> <span class="ow">or</span> <span class="n">orientation</span> <span class="o">==</span> <span class="s2">&quot;column&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Orientation</span><span class="o">.</span><span class="n">Vertical</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Orientation must be horizontal or vertical, got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">orientation</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Orientation must be horizontal or vertical, got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">orientation</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSlider</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orientation</span><span class="p">)</span>
@@ -1710,7 +1723,7 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic layout widget for grouping children together</span>
 
 <span class="sd">    Content that does not fit into the View layout will be clipped.</span>
-<span class="sd">    To allow scrolling in case of overflow, use :doc:`ScrollView&lt;edifice.base_components.ScrollView&gt;`.</span>
+<span class="sd">    To allow scrolling in case of overflow, use :class:`ScrollView&lt;edifice.ScrollView&gt;`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        layout: one of column, row, or none.</span>
@@ -1721,10 +1734,10 @@ document.write(`
 <span class="sd">            to position themselves relevative to their parent.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="View.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.View.__init__.html#edifice.View.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1788,7 +1801,7 @@ document.write(`
 
 <span class="sd">       A ScrollView containing a Label.</span>
 
-<span class="sd">    Unlike :doc:`View&lt;edifice.base_components.View&gt;`, overflows in both the x and y direction</span>
+<span class="sd">    Unlike :class:`View&lt;edifice.View&gt;`, overflows in both the x and y direction</span>
 <span class="sd">    will cause a scrollbar to show.</span>
 
 <span class="sd">    Args:</span>
@@ -1798,11 +1811,11 @@ document.write(`
 <span class="sd">            The position of their children is not adjustable.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="ScrollView.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.ScrollView.__init__.html#edifice.ScrollView.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">):</span>
         <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -1882,7 +1895,7 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Grid layout widget for rendering children on a 2D rectangular grid.</span>
 
 <span class="sd">    Grid views allow you to precisely control 2D positioning of widgets.</span>
-<span class="sd">    While you can also layout widgets using nested :doc:`Views&lt;edifice.base_components.View&gt;`,</span>
+<span class="sd">    While you can also layout widgets using nested :class:`View&lt;edifice.View&gt;`,</span>
 <span class="sd">    specifying the exact location of children relative to each other (with proper alignment)</span>
 <span class="sd">    requires extensive fine tuning of style attributes.</span>
 <span class="sd">    The GridView allows you to lay out widgets at specified grid indices and size.</span>
@@ -1928,11 +1941,11 @@ document.write(`
 <span class="sd">        key_to_code: mapping from key to a single character representing that child in the layout string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="GridView.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.GridView.__init__.html#edifice.GridView.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">key_to_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_previously_rendered</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_previously_rendered</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
@@ -1977,10 +1990,10 @@ document.write(`
 <span class="sd">        labels: The labels for the tabs. The number of labels must match the number of children.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
+<div class="viewcode-block" id="TabView.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.TabView.__init__.html#edifice.TabView.__init__">[docs]</a>    <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">removeTab</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -2037,9 +2050,9 @@ document.write(`
 <span class="sd">    for an example of how to use this class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomWidget.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.CustomWidget.__init__.html#edifice.CustomWidget.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="CustomWidget.create_widget"><a class="viewcode-back" href="../../stubs/stubs/edifice.CustomWidget.create_widget.html#edifice.CustomWidget.create_widget">[docs]</a>    <span class="k">def</span> <span class="nf">create_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
@@ -2156,20 +2169,13 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By David Ding
+By David Ding © 2021
 </p>
 
   </div>
   
   <div class="footer-item">
     
-  <p class="copyright">
-    
-      © Copyright 1980, David Ding.
-      <br/>
-    
-  </p>
-
   </div>
   
   <div class="footer-item">

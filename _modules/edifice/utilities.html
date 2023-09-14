@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.utilities &#8212; Edifice 0.0.10 documentation</title>
+    <title>edifice.utilities &#8212; Edifice 0.1.0 documentation</title>
   
   
   
@@ -43,6 +43,7 @@
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/utilities';</script>
+    <link rel="shortcut icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -115,14 +116,19 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
-    <p class="title logo__title">Edifice 0.0.10 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="nav bd-sidenav">
+	<div class="bd-toc-item navbar-nav active">
+			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -144,6 +150,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Image.html">edifice.Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Button.html">edifice.Button</a></li>
@@ -157,6 +164,12 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -171,7 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../future.html">Roadmap</a></li>
 </ul>
 
-    </div>
+	</div>
 </nav></div>
     </div>
   
@@ -300,17 +313,17 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A Timer for calling a function periodically.</span>
 
 <span class="sd">    The function passed in the constructor will be called</span>
-<span class="sd">    every time_in_ms milliseconds after the Timer is started,</span>
+<span class="sd">    every :code:`time_in_ms` milliseconds after the Timer is started,</span>
 <span class="sd">    until the Timer is stopped.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        function: the function that will be called periodically</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
+<div class="viewcode-block" id="Timer.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Timer.__init__.html#edifice.Timer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="Timer.start"><a class="viewcode-back" href="../../utilities.html#edifice.Timer.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_in_ms</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts the timer.</span>
@@ -364,10 +377,12 @@ document.write(`
 <span class="sd">    Args:</span>
 <span class="sd">        caption: the file dialog&#39;s caption</span>
 <span class="sd">        directory: starting directory for the file dialog</span>
-<span class="sd">        file_filter: Sequence of allowed file extensions</span>
-<span class="sd">            For example:</span>
+<span class="sd">        file_filter:</span>
+<span class="sd">            Sequence of allowed file extensions. For example::</span>
+
 <span class="sd">                &quot;*.cpp *.cc *.C *.c++&quot;</span>
 <span class="sd">                &quot;C++ files (*.cpp *.cc *.C *.c++)&quot;</span>
+
 <span class="sd">            are both valid ways of specifying a file filter.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        Path of chosen file</span>
@@ -429,20 +444,13 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By David Ding
+By David Ding © 2021
 </p>
 
   </div>
   
   <div class="footer-item">
     
-  <p class="copyright">
-    
-      © Copyright 1980, David Ding.
-      <br/>
-    
-  </p>
-
   </div>
   
   <div class="footer-item">

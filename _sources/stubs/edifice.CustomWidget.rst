@@ -7,12 +7,11 @@ edifice.CustomWidget
 .. currentmodule:: edifice
 
 .. autoclass:: CustomWidget
-   :members:                                    <-- add at least this line
-   :show-inheritance:                           <-- plus I want to show inheritance...
+   :members:
+   :show-inheritance:
 
 
    
-   .. automethod:: __init__
 
    
    .. rubric:: Methods

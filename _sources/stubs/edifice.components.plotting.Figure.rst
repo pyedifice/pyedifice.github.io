@@ -7,12 +7,11 @@ edifice.components.plotting.Figure
 .. currentmodule:: edifice.components.plotting
 
 .. autoclass:: Figure
-   :members:                                    <-- add at least this line
-   :show-inheritance:                           <-- plus I want to show inheritance...
+   :members:
+   :show-inheritance:
 
 
    
-   .. automethod:: __init__
 
    
    .. rubric:: Methods

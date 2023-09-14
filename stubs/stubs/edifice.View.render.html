@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>edifice.View.render &#8212; Edifice 0.0.10 documentation</title>
+    <title>edifice.View.render &#8212; Edifice 0.1.0 documentation</title>
   
   
   
@@ -44,6 +44,7 @@
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.View.render';</script>
+    <link rel="shortcut icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="edifice.View.render_changes" href="edifice.View.render_changes.html" />
@@ -118,361 +119,65 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
-    <p class="title logo__title">Edifice 0.0.10 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current nav bd-sidenav">
+	<div class="bd-toc-item navbar-nav active">
+			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Component.html">edifice.Component</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.__init__.html">edifice.Component.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.did_mount.html">edifice.Component.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.did_render.html">edifice.Component.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.did_update.html">edifice.Component.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.register_props.html">edifice.Component.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.register_ref.html">edifice.Component.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.render.html">edifice.Component.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.render_changes.html">edifice.Component.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.set_key.html">edifice.Component.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.set_state.html">edifice.Component.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.should_update.html">edifice.Component.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Component.will_unmount.html">edifice.Component.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.PropsDict.html">edifice.PropsDict</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.PropsDict.__init__.html">edifice.PropsDict.__init__</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Component.html">edifice.Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.PropsDict.html">edifice.PropsDict</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.register_props.html">edifice.register_props</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.make_component.html">edifice.make_component</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Reference.html">edifice.Reference</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Reference.__init__.html">edifice.Reference.__init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.App.html">edifice.App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Timer.html">edifice.Timer</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.App.html">edifice.App</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.App.__init__.html">edifice.App.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.App.export_widgets.html">edifice.App.export_widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.App.set_stylesheet.html">edifice.App.set_stylesheet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.App.start.html">edifice.App.start</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../base_components.html">Base Components</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2 current active"><a class="reference internal" href="../edifice.View.html">edifice.View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.ScrollView.html">edifice.ScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Label.html">edifice.Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Image.html">edifice.Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Icon.html">edifice.Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.IconButton.html">edifice.IconButton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.CheckBox.html">edifice.CheckBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.RadioButton.html">edifice.RadioButton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Timer.html">edifice.Timer</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Timer.__init__.html">edifice.Timer.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Timer.start.html">edifice.Timer.start</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Timer.stop.html">edifice.Timer.stop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../base_components.html">Base Components</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.__init__.html">edifice.QtWidgetComponent.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.did_mount.html">edifice.QtWidgetComponent.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.did_render.html">edifice.QtWidgetComponent.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.did_update.html">edifice.QtWidgetComponent.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.register_props.html">edifice.QtWidgetComponent.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.register_ref.html">edifice.QtWidgetComponent.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.render.html">edifice.QtWidgetComponent.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.render_changes.html">edifice.QtWidgetComponent.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.set_key.html">edifice.QtWidgetComponent.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.set_state.html">edifice.QtWidgetComponent.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.should_update.html">edifice.QtWidgetComponent.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.QtWidgetComponent.will_unmount.html">edifice.QtWidgetComponent.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Window.html">edifice.Window</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.__init__.html">edifice.Window.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.did_mount.html">edifice.Window.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.did_render.html">edifice.Window.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.did_update.html">edifice.Window.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.register_props.html">edifice.Window.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.register_ref.html">edifice.Window.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.render.html">edifice.Window.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.render_changes.html">edifice.Window.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.set_key.html">edifice.Window.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.set_state.html">edifice.Window.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.should_update.html">edifice.Window.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Window.will_unmount.html">edifice.Window.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../edifice.View.html">edifice.View</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.__init__.html">edifice.View.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.did_mount.html">edifice.View.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.did_render.html">edifice.View.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.did_update.html">edifice.View.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.register_props.html">edifice.View.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.register_ref.html">edifice.View.register_ref</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">edifice.View.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.render_changes.html">edifice.View.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.set_key.html">edifice.View.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.set_state.html">edifice.View.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.should_update.html">edifice.View.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.View.will_unmount.html">edifice.View.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.ScrollView.html">edifice.ScrollView</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.__init__.html">edifice.ScrollView.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.did_mount.html">edifice.ScrollView.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.did_render.html">edifice.ScrollView.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.did_update.html">edifice.ScrollView.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.register_props.html">edifice.ScrollView.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.register_ref.html">edifice.ScrollView.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.render.html">edifice.ScrollView.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.render_changes.html">edifice.ScrollView.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.set_key.html">edifice.ScrollView.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.set_state.html">edifice.ScrollView.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.should_update.html">edifice.ScrollView.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.ScrollView.will_unmount.html">edifice.ScrollView.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.__init__.html">edifice.TabView.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.did_mount.html">edifice.TabView.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.did_render.html">edifice.TabView.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.did_update.html">edifice.TabView.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.register_props.html">edifice.TabView.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.register_ref.html">edifice.TabView.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.render.html">edifice.TabView.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.render_changes.html">edifice.TabView.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.set_key.html">edifice.TabView.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.set_state.html">edifice.TabView.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.should_update.html">edifice.TabView.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TabView.will_unmount.html">edifice.TabView.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.__init__.html">edifice.GridView.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.did_mount.html">edifice.GridView.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.did_render.html">edifice.GridView.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.did_update.html">edifice.GridView.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.register_props.html">edifice.GridView.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.register_ref.html">edifice.GridView.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.render.html">edifice.GridView.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.render_changes.html">edifice.GridView.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.set_key.html">edifice.GridView.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.set_state.html">edifice.GridView.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.should_update.html">edifice.GridView.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.GridView.will_unmount.html">edifice.GridView.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Label.html">edifice.Label</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.__init__.html">edifice.Label.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.did_mount.html">edifice.Label.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.did_render.html">edifice.Label.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.did_update.html">edifice.Label.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.register_props.html">edifice.Label.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.register_ref.html">edifice.Label.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.render.html">edifice.Label.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.render_changes.html">edifice.Label.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.set_key.html">edifice.Label.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.set_state.html">edifice.Label.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.should_update.html">edifice.Label.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Label.will_unmount.html">edifice.Label.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Image.html">edifice.Image</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.__init__.html">edifice.Image.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.did_mount.html">edifice.Image.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.did_render.html">edifice.Image.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.did_update.html">edifice.Image.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.register_props.html">edifice.Image.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.register_ref.html">edifice.Image.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.render.html">edifice.Image.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.render_changes.html">edifice.Image.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.set_key.html">edifice.Image.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.set_state.html">edifice.Image.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.should_update.html">edifice.Image.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Image.will_unmount.html">edifice.Image.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Icon.html">edifice.Icon</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.__init__.html">edifice.Icon.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.did_mount.html">edifice.Icon.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.did_render.html">edifice.Icon.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.did_update.html">edifice.Icon.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.register_props.html">edifice.Icon.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.register_ref.html">edifice.Icon.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.render.html">edifice.Icon.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.render_changes.html">edifice.Icon.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.set_key.html">edifice.Icon.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.set_state.html">edifice.Icon.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.should_update.html">edifice.Icon.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Icon.will_unmount.html">edifice.Icon.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.IconButton.html">edifice.IconButton</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.__init__.html">edifice.IconButton.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.did_mount.html">edifice.IconButton.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.did_render.html">edifice.IconButton.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.did_update.html">edifice.IconButton.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.register_props.html">edifice.IconButton.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.register_ref.html">edifice.IconButton.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.render.html">edifice.IconButton.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.render_changes.html">edifice.IconButton.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.set_key.html">edifice.IconButton.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.set_state.html">edifice.IconButton.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.should_update.html">edifice.IconButton.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.IconButton.will_unmount.html">edifice.IconButton.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Button.html">edifice.Button</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.__init__.html">edifice.Button.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.did_mount.html">edifice.Button.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.did_render.html">edifice.Button.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.did_update.html">edifice.Button.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.register_props.html">edifice.Button.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.register_ref.html">edifice.Button.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.render.html">edifice.Button.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.render_changes.html">edifice.Button.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.set_key.html">edifice.Button.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.set_state.html">edifice.Button.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.should_update.html">edifice.Button.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Button.will_unmount.html">edifice.Button.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.TextInput.html">edifice.TextInput</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.__init__.html">edifice.TextInput.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.did_mount.html">edifice.TextInput.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.did_render.html">edifice.TextInput.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.did_update.html">edifice.TextInput.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.register_props.html">edifice.TextInput.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.register_ref.html">edifice.TextInput.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.render.html">edifice.TextInput.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.render_changes.html">edifice.TextInput.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.set_completer.html">edifice.TextInput.set_completer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.set_key.html">edifice.TextInput.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.set_on_change.html">edifice.TextInput.set_on_change</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.set_on_edit_finish.html">edifice.TextInput.set_on_edit_finish</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.set_state.html">edifice.TextInput.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.should_update.html">edifice.TextInput.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.TextInput.will_unmount.html">edifice.TextInput.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.CheckBox.html">edifice.CheckBox</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.__init__.html">edifice.CheckBox.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.did_mount.html">edifice.CheckBox.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.did_render.html">edifice.CheckBox.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.did_update.html">edifice.CheckBox.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.register_props.html">edifice.CheckBox.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.register_ref.html">edifice.CheckBox.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.render.html">edifice.CheckBox.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.render_changes.html">edifice.CheckBox.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.set_key.html">edifice.CheckBox.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.set_on_change.html">edifice.CheckBox.set_on_change</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.set_state.html">edifice.CheckBox.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.should_update.html">edifice.CheckBox.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CheckBox.will_unmount.html">edifice.CheckBox.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.RadioButton.html">edifice.RadioButton</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.__init__.html">edifice.RadioButton.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.did_mount.html">edifice.RadioButton.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.did_render.html">edifice.RadioButton.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.did_update.html">edifice.RadioButton.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.register_props.html">edifice.RadioButton.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.register_ref.html">edifice.RadioButton.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.render.html">edifice.RadioButton.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.render_changes.html">edifice.RadioButton.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.set_key.html">edifice.RadioButton.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.set_on_change.html">edifice.RadioButton.set_on_change</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.set_state.html">edifice.RadioButton.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.should_update.html">edifice.RadioButton.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.RadioButton.will_unmount.html">edifice.RadioButton.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.Slider.html">edifice.Slider</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.__init__.html">edifice.Slider.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.did_mount.html">edifice.Slider.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.did_render.html">edifice.Slider.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.did_update.html">edifice.Slider.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.register_props.html">edifice.Slider.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.register_ref.html">edifice.Slider.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.render.html">edifice.Slider.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.render_changes.html">edifice.Slider.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.set_key.html">edifice.Slider.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.set_on_change.html">edifice.Slider.set_on_change</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.set_state.html">edifice.Slider.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.should_update.html">edifice.Slider.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.Slider.will_unmount.html">edifice.Slider.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.CustomWidget.html">edifice.CustomWidget</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.__init__.html">edifice.CustomWidget.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.create_widget.html">edifice.CustomWidget.create_widget</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.did_mount.html">edifice.CustomWidget.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.did_render.html">edifice.CustomWidget.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.did_update.html">edifice.CustomWidget.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.paint.html">edifice.CustomWidget.paint</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.register_props.html">edifice.CustomWidget.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.register_ref.html">edifice.CustomWidget.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.render.html">edifice.CustomWidget.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.render_changes.html">edifice.CustomWidget.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.set_key.html">edifice.CustomWidget.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.set_state.html">edifice.CustomWidget.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.should_update.html">edifice.CustomWidget.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.CustomWidget.will_unmount.html">edifice.CustomWidget.will_unmount</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.__init__.html">edifice.components.plotting.Figure.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.create_widget.html">edifice.components.plotting.Figure.create_widget</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.did_mount.html">edifice.components.plotting.Figure.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.did_render.html">edifice.components.plotting.Figure.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.did_update.html">edifice.components.plotting.Figure.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.paint.html">edifice.components.plotting.Figure.paint</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.plot.html">edifice.components.plotting.Figure.plot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.register_props.html">edifice.components.plotting.Figure.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.register_ref.html">edifice.components.plotting.Figure.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.render.html">edifice.components.plotting.Figure.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.render_changes.html">edifice.components.plotting.Figure.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.set_key.html">edifice.components.plotting.Figure.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.set_state.html">edifice.components.plotting.Figure.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.should_update.html">edifice.components.plotting.Figure.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.plotting.Figure.will_unmount.html">edifice.components.plotting.Figure.will_unmount</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.components.forms.Form.html">edifice.components.forms.Form</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.__init__.html">edifice.components.forms.Form.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.did_mount.html">edifice.components.forms.Form.did_mount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.did_render.html">edifice.components.forms.Form.did_render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.did_update.html">edifice.components.forms.Form.did_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.register_props.html">edifice.components.forms.Form.register_props</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.register_ref.html">edifice.components.forms.Form.register_ref</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.render.html">edifice.components.forms.Form.render</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.render_changes.html">edifice.components.forms.Form.render_changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.set_key.html">edifice.components.forms.Form.set_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.set_state.html">edifice.components.forms.Form.set_state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.should_update.html">edifice.components.forms.Form.should_update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.components.forms.Form.will_unmount.html">edifice.components.forms.Form.will_unmount</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.StateValue.html">edifice.StateValue</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateValue.__init__.html">edifice.StateValue.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateValue.set.html">edifice.StateValue.set</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateValue.subscribe.html">edifice.StateValue.subscribe</a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../edifice.StateManager.html">edifice.StateManager</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateManager.__init__.html">edifice.StateManager.__init__</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateManager.as_dict.html">edifice.StateManager.as_dict</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateManager.copy.html">edifice.StateManager.copy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateManager.keys.html">edifice.StateManager.keys</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateManager.set.html">edifice.StateManager.set</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateManager.subscribe.html">edifice.StateManager.subscribe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edifice.StateManager.update.html">edifice.StateManager.update</a></li>
-</ul>
-</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.StateValue.html">edifice.StateValue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.StateManager.html">edifice.StateManager</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utility functions</a></li>
@@ -482,7 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../future.html">Roadmap</a></li>
 </ul>
 
-    </div>
+	</div>
 </nav></div>
     </div>
   
@@ -713,7 +418,7 @@ state should not depend on whether or not the render function is called.</p>
   <div class="footer-item">
     
 <p class="component-author">
-By David Ding
+By David Ding © 2021
 </p>
 
   </div>

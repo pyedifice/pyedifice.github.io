@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edifice.components.table_grid_view &#8212; Edifice 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/components/table_grid_view';</script>
+    <link rel="shortcut icon" href="../../../_static/EdificePyramid.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+	<div class="bd-toc-item navbar-nav active">
+			<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Component.html">edifice.Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.PropsDict.html">edifice.PropsDict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.register_props.html">edifice.register_props</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.make_component.html">edifice.make_component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.App.html">edifice.App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Timer.html">edifice.Timer</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../base_components.html">Base Components</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.View.html">edifice.View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.TabView.html">edifice.TabView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Label.html">edifice.Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Image.html">edifice.Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Icon.html">edifice.Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.IconButton.html">edifice.IconButton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.StateValue.html">edifice.StateValue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.StateManager.html">edifice.StateManager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utility functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../styling.html">Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_tools.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../future.html">Roadmap</a></li>
+</ul>
+
+	</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/pyedifice/pyedifice" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for edifice.components.table_grid_view</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+<span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">PyQt6.QtWidgets</span> <span class="kn">import</span> <span class="n">QGridLayout</span><span class="p">,</span> <span class="n">QWidget</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QGridLayout</span><span class="p">,</span> <span class="n">QWidget</span>
+
+<span class="kn">from</span> <span class="nn">.._component</span> <span class="kn">import</span> <span class="n">Component</span>
+<span class="kn">from</span> <span class="nn">..base_components</span> <span class="kn">import</span> <span class="n">QtWidgetComponent</span><span class="p">,</span> <span class="n">register_props</span>
+
+<div class="viewcode-block" id="TableChildren"><a class="viewcode-back" href="../../../stubs/edifice.components.table_grid_view.TableChildren.html#edifice.components.table_grid_view.TableChildren">[docs]</a><span class="k">def</span> <span class="nf">TableChildren</span><span class="p">(</span><span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Component</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Component</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a column list of row lists of :code:`Component` into the</span>
+<span class="sd">    children list for a :class:`TableGridView`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">children_</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">childrow</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">childrow</span><span class="p">):</span>
+            <span class="c1"># TODO _tablerowcolumn is terrible and we need a better solution.</span>
+            <span class="n">child</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">))</span>
+            <span class="n">children_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">children_</span></div>
+
+<span class="k">def</span> <span class="nf">_get_tablerowcolumn</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Component</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sometimes it’s on the QtWidgetComponent, sometimes on the Component’s _edifice_internal_parent.</span>
+
+<span class="sd">    We need it, so crash if we don&#39;t find it.</span>
+<span class="sd">    We can proceed without a _key but not without a _tablerowcolumn</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">_edifice_internal_parent</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_get_key</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Component</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sometimes it’s on the QtWidgetComponent, sometimes on the Component’s _edifice_internal_parent.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">):</span>
+        <span class="c1"># We can proceed without a _key but not without a _tablerowcolumn</span>
+        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_key&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">_edifice_internal_parent</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">_edifice_internal_parent</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_key&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">default</span>
+
+<span class="k">def</span> <span class="nf">_childdict</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Produce a dictionary of child components keyed by tuple (row,column,_key).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+        <span class="n">row</span><span class="p">,</span><span class="n">column</span> <span class="o">=</span> <span class="n">_get_tablerowcolumn</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">_get_key</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+        <span class="n">d</span><span class="p">[(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">key</span><span class="p">)]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+<div class="viewcode-block" id="TableGridView"><a class="viewcode-back" href="../../../stubs/edifice.components.table_grid_view.TableGridView.html#edifice.components.table_grid_view.TableGridView">[docs]</a><span class="k">class</span> <span class="nc">TableGridView</span><span class="p">(</span><span class="n">QtWidgetComponent</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Table-style GridLayout widget. Displays its children as aligned rows of columns.</span>
+
+<span class="sd">    This component has similar behavior to an `HTML</span>
+<span class="sd">    table &lt;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table&gt;`_.</span>
+<span class="sd">    Each column will be the width of its widest child. Each row will be the</span>
+<span class="sd">    height of its tallest child.</span>
+
+<span class="sd">    The children must be passed with the :func:`TableChildren` function as</span>
+<span class="sd">    a column list of row lists containing children.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        TableGridView()(*TableChildren([</span>
+<span class="sd">            [Label(text=&quot;row 0 column 0&quot;).set_key(&quot;k1&quot;), Label(text=&quot;row 0 column 1&quot;).set_key(&quot;k2&quot;)],</span>
+<span class="sd">            [Label(text=&quot;row 1 column 0&quot;).set_key(&quot;k3&quot;), Label(text=&quot;row 1 column 1&quot;).set_key(&quot;k4&quot;)],</span>
+<span class="sd">        ]))</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        row_stretch: See `setRowStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setRowStretch&gt;`_</span>
+<span class="sd">        column_stretch: See `setColumnStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setColumnStretch&gt;`_</span>
+<span class="sd">        row_minheight: See `setRowMinimumHeight &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setRowMinimumHeight&gt;`_</span>
+<span class="sd">        column_minwidth: See `setColumnMinimumWidth &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setColumnMinimumWidth&gt;`_</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TableGridView.__init__"><a class="viewcode-back" href="../../../stubs/stubs/edifice.components.table_grid_view.TableGridView.__init__.html#edifice.components.table_grid_view.TableGridView.__init__">[docs]</a>    <span class="nd">@register_props</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">row_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
+            <span class="n">column_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
+            <span class="n">row_minheight</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
+            <span class="n">column_minwidth</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span> <span class="o">=</span> <span class="n">row_stretch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_column_stretch</span> <span class="o">=</span> <span class="n">column_stretch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_row_minheight</span> <span class="o">=</span> <span class="n">row_minheight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span> <span class="o">=</span> <span class="n">column_minwidth</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="o">=</span> <span class="n">QGridLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">child_component</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">row</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setRowStretch</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span><span class="p">[</span><span class="n">row</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_column_stretch</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">column</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setColumnStretch</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_column_stretch</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_row_minheight</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">row</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setRowMinimumHeight</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row_minheight</span><span class="p">[</span><span class="n">row</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">column</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setColumnMinimumWidth</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+        <span class="n">layoutitem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">itemAtPosition</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
+        <span class="n">layoutitem</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">removeItem</span><span class="p">(</span><span class="n">layoutitem</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+
+        <span class="n">newchildren</span> <span class="o">=</span> <span class="n">_childdict</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
+
+        <span class="n">old_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">new_keys</span> <span class="o">=</span> <span class="n">newchildren</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+        <span class="n">old_deletions</span> <span class="o">=</span> <span class="n">old_keys</span> <span class="o">-</span> <span class="n">new_keys</span>
+        <span class="n">new_additions</span> <span class="o">=</span> <span class="n">new_keys</span> <span class="o">-</span> <span class="n">old_keys</span>
+
+        <span class="n">commands</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span> <span class="ow">in</span> <span class="n">old_deletions</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span><span class="p">[(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span><span class="p">)],</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
+            <span class="c1"># Is this del doing anything?</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span><span class="p">[(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span><span class="p">)]</span>
+
+        <span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span> <span class="ow">in</span> <span class="n">new_additions</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_add_child</span><span class="p">,</span> <span class="n">newchildren</span><span class="p">[(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span><span class="p">)],</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span> <span class="o">=</span> <span class="n">newchildren</span>
+
+        <span class="c1"># Pass the self.underlying_layout if we want it to be styled with the style props?</span>
+        <span class="c1"># Like this:</span>
+        <span class="c1"># # commands.extend(super()._qt_update_commands</span>
+        <span class="c1"># # (children, newprops, newstate, self.underlying, self.underlying_layout))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;row_stretch&quot;</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_row_stretch</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;column_stretch&quot;</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_stretch</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;row_minheight&quot;</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_row_minheight</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;column_minwidth&quot;</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_minwidth</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">commands</span>
+
+    <span class="k">def</span> <span class="nf">_set_row_stretch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_stretch</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span> <span class="o">=</span> <span class="n">row_stretch</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">stretch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row_stretch</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setRowStretch</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">stretch</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_column_stretch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_stretch</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_column_stretch</span> <span class="o">=</span> <span class="n">column_stretch</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">stretch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">column_stretch</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setColumnStretch</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">stretch</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_row_minheight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_minheight</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_row_minheight</span> <span class="o">=</span> <span class="n">row_minheight</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">minheight</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row_minheight</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setRowMinimumHeight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">minheight</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_column_minwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_minwidth</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span> <span class="o">=</span> <span class="n">column_minwidth</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">minwidth</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">column_minwidth</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setColumnMinimumWidth</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">minwidth</span><span class="p">)</span></div>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By David Ding © 2021
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
