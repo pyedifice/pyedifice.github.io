@@ -370,22 +370,23 @@ which will trigger the render method call for all its descendents.
 This is potentially wasteful,
 since many of the intermediate Components are mere “message-passers”
 that only pass the state to their children and does not use it directly.</p>
-<p>StateValue and StateManager provide an alternative model of state storage,
+<p><a class="reference internal" href="stubs/edifice.StateValue.html#edifice.StateValue" title="edifice.StateValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.StateValue</span></code></a> and <a class="reference internal" href="stubs/edifice.StateManager.html#edifice.StateManager" title="edifice.StateManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.StateManager</span></code></a> provide an
+alternative model of state storage,
 with the principal advantages that</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>There is no need to pass both a “getter” and a “setter” for every state
-down the Component Tree. Indeed, if you choose to create a global StateValue
-or a global StateManager object, there is no need to pass any state down
+down the Component Tree. Indeed, if you choose to create a global
+<a class="reference internal" href="stubs/edifice.StateValue.html#edifice.StateValue" title="edifice.StateValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.StateValue</span></code></a>
+or a global <a class="reference internal" href="stubs/edifice.StateManager.html#edifice.StateManager" title="edifice.StateManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.StateManager</span></code></a> object, there is no need to
+pass any state down
 the Component Tree.</p></li>
 <li><p>Changes to the value will trigger automatic re-render, just like calling
-set_state. However, only the nodes that actually use the state will be
+<code class="code docutils literal notranslate"><span class="pre">set_state</span></code>. However, only the nodes that actually use the state will be
 re-rendered.</p></li>
 </ul>
-</div></blockquote>
-<p>A StateValue is a value (any Python object) that Edifice will keep track of.
-The principal methods of a StateValue are set and subscribe.
-Subscribe is the method you use to get the underlying value of the state value.
+<p>A <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code> is a value (any Python object) that Edifice will keep track of.
+The principal methods of a <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code> are <code class="code docutils literal notranslate"><span class="pre">set</span></code> and <code class="code docutils literal notranslate"><span class="pre">subscribe</span></code>.
+<code class="code docutils literal notranslate"><span class="pre">subscribe</span></code> is the method you use to get the underlying value of the state value.
 It should be called only in the render function or after the component mounts.
 The method returns the underlying value, and also subscribes the component
 to all updates of the underlying value, so that changes to the value
@@ -399,23 +400,25 @@ will cause the component to re-render. For example:</p>
 </pre></div>
 </div>
 <p>This component will rerender whenever user or balance changes.</p>
-<p>Set is the method you use to set the value of a StateValue.
+<p><code class="code docutils literal notranslate"><span class="pre">set</span></code> is the method you use to set the value of a <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code>.
 It will trigger re-renders of all subscribed components:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">USER</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text_input_value</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Like all Edifice render triggers (the render_changes context, set_state),
-the StateValue set method is robust to exceptions.
+the <code class="code docutils literal notranslate"><span class="pre">StateValue.set</span></code> method is robust to exceptions.
 If any exception is thrown while re-rendering,
-all changes are unwound, including the StateValue,
+all changes are unwound, including the <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code>,
 allowing you to properly handle the exception with guarantees of consistency.</p>
-<p>A StateManager is very similar in concept to a StateValue;
+<p>A <code class="code docutils literal notranslate"><span class="pre">StateManager</span></code> is very similar in concept to a <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code>;
 you can think of it as a key-value store for multiple values.
-StateManagers allow you to store related state together and update them in batch.
-Components subscribe to individual keys in the StateManager, and a StateValue
+<code class="code docutils literal notranslate"><span class="pre">StateManager</span></code> allows you to store related state together and update them in batch.
+Components subscribe to individual keys in the <code class="code docutils literal notranslate"><span class="pre">StateManager</span></code>,
+and a <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code>
 tied to that key is returned. This can be used by the Component directly,
-or passed to children, who would not need to know about the underlying StateManager.</p>
+or passed to children, who would not need to know about the underlying
+<code class="code docutils literal notranslate"><span class="pre">StateManager</span></code>.</p>
 <section id="class-overview">
 <h2>Class overview<a class="headerlink" href="#class-overview" title="Permalink to this heading">#</a></h2>
 <table class="autosummary longtable table autosummary">

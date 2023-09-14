@@ -478,7 +478,8 @@ For such cases, you can use an asyncio <a class="reference external" href="https
 <p>When the Fetch button is clicked, the event handler will call a lengthy <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function,
 blocking the application from further progress.
 In the mean time, if the user clicks the increment button, nothing will happen until the fetch is complete.</p>
-<p>To allow the rest of the application to run while the fetch is happening, you can define the on_click handler as a coroutine:</p>
+<p>To allow the rest of the application to run while the fetch is happening, you can define
+the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> handler as a coroutine:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Component</span><span class="p">(</span><span class="n">edifice</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -502,7 +503,7 @@ In the mean time, if the user clicks the increment button, nothing will happen u
         <span class="p">)</span>
 </pre></div>
 </div>
-<p>While the fetch_from_network function is running, control is returned to the event loop,
+<p>While the <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function is running, control is returned to the event loop,
 allowing the application to continue handling button clicks.</p>
 <p>See docs for <a class="reference internal" href="stubs/edifice.QtWidgetComponent.html#edifice.QtWidgetComponent" title="edifice.QtWidgetComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetComponent</span></code></a> for a list of supported events.</p>
 </section>

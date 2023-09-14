@@ -372,12 +372,14 @@ document.write(`
 <p>Declarative UI for Python</p>
 <a class="reference internal image-reference" href="_images/example_calculator.png"><img alt="_images/example_calculator.png" src="_images/example_calculator.png" style="width: 200px;" /></a>
 <a class="reference internal image-reference" href="_images/example_harmonic_oscillator.gif"><img alt="_images/example_harmonic_oscillator.gif" src="_images/example_harmonic_oscillator.gif" style="width: 250px;" /></a>
-<p>Installation:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Installation</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pyedifice
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><em>Hello World</em> in Edifice</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><em>Hello World</em> in Edifice</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edifice</span>
 <span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">Label</span>
 
@@ -439,8 +441,8 @@ The example below shows how you can collect information from the user in a Dialo
 <p>A component can maintain internal state, stored as attributes of the component.
 When this state is changed using the <code class="code docutils literal notranslate"><span class="pre">set_state</span></code> method,
 the component will be re-rendered using the provided <code class="code docutils literal notranslate"><span class="pre">render</span></code> function.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Timer component</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Timer component</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edifice</span>
 
 <span class="k">class</span> <span class="nc">Timer</span><span class="p">(</span><span class="n">edifice</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
@@ -464,8 +466,8 @@ the component will be re-rendered using the provided <code class="code docutils 
 <h3>An Application<a class="headerlink" href="#an-application" title="Permalink to this heading">#</a></h3>
 <p>Components can be composed to create composite components.
 By making components modular, you can reuse them in your application and across applications.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Todo App</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Todo App</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">edifice</span>
 <span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">TextInput</span><span class="p">,</span> <span class="n">ScrollView</span><span class="p">,</span> <span class="n">View</span>

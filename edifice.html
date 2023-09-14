@@ -385,12 +385,13 @@ A PropsDict allows iteration, get item (<code class="code docutils literal notra
 (<code class="code docutils literal notranslate"><span class="pre">self.props.value</span></code>), but not set item or set attribute.</p>
 <p>The internal state, henceforth referred to as the <strong>state</strong>, belong to the Component.
 These are attributes of the Component object, for instance self.my_state.
-You can initialize the state as usual in the constructor (e.g. self.my_state = {“a”: 1}),
+You can initialize the state as usual in the constructor
+(e.g. <code class="code docutils literal notranslate"><span class="pre">self.my_state</span> <span class="pre">=</span> <span class="pre">{&quot;a&quot;:</span> <span class="pre">1}</span></code>),
 and the state persists so long as the Component is still mounted.</p>
 <p>Changes in state and props will automatically trigger a re-render
-(unless you override this behavior by modifying <cite>should_update</cite>).
-State should be changed using either the <cite>component.set_state</cite> function
-or the <cite>component.render_changes()</cite> context manager.
+(unless you override this behavior by modifying <code class="code docutils literal notranslate"><span class="pre">should_update</span></code>).
+State should be changed using either the <code class="code docutils literal notranslate"><span class="pre">component.set_state</span></code> function
+or the <code class="code docutils literal notranslate"><span class="pre">component.render_changes()</span></code> context manager.
 See documentation for Component for more details.</p>
 <p>The main method of Component is render, which should describe the rendered UI
 given the current Component state.
@@ -482,18 +483,16 @@ and thus maintained (preserving the old state).
 For lists of Components, a more complex procedure (the same as in ReactJS)
 will resolve which Components to maintain and which to replace;
 see documentation of Component class for details.</p>
-<dl class="simple">
-<dt>Some useful utilities are also provided:</dt><dd><ul class="simple">
-<li><p>register_props: A decorator for the __init__ function that records
+<p>Some useful utilities are also provided:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="stubs/edifice.register_props.html#edifice.register_props" title="edifice.register_props"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_props()</span></code></a> : A decorator for the <code class="code docutils literal notranslate"><span class="pre">init</span></code> function that records
 all arguments as props</p></li>
-<li><p>make_component: A decorator to turn a render function into a
+<li><p><a class="reference internal" href="stubs/edifice.make_component.html#edifice.make_component" title="edifice.make_component"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_component()</span></code></a>: A decorator to turn a render function into a
 Component. This is useful if your Component has no internal state.</p></li>
-<li><p>set_trace: An analogue of pdb.set_trace that works with Qt
-(pdb.set_trace interrupts the Qt event flow, causing an unpleasant
-debugging experience). Use this set_trace if you want to set breakpoings.</p></li>
+<li><p><a class="reference internal" href="utilities.html#edifice.utilities.set_trace" title="edifice.utilities.set_trace"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.utilities.set_trace()</span></code></a>: An analogue of <code class="code docutils literal notranslate"><span class="pre">pdb.set_trace</span></code> that works with Qt
+(<code class="code docutils literal notranslate"><span class="pre">pdb.set_trace</span></code> interrupts the Qt event flow, causing an unpleasant
+debugging experience). Use this <code class="code docutils literal notranslate"><span class="pre">set_trace</span></code> if you want to set breakpoings.</p></li>
 </ul>
-</dd>
-</dl>
 <span class="target" id="module-edifice._component"></span><section id="class-overview">
 <h2>Class overview<a class="headerlink" href="#class-overview" title="Permalink to this heading">#</a></h2>
 <table class="autosummary longtable table autosummary">
