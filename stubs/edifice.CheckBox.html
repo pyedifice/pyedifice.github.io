@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>edifice.CheckBox &#8212; Edifice 0.1.0 documentation</title>
+    <title>edifice.CheckBox &#8212; Edifice 0.1.1 documentation</title>
   
   
   
@@ -161,6 +161,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.RadioButton.html">edifice.RadioButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.Dropdown.html">edifice.Dropdown</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
@@ -363,14 +364,15 @@ document.write(`
 </figure>
 <p>A checkbox allows the user to specify some boolean state.</p>
 <p>The checked prop determines the initial check-state of the widget.
-When the user toggles the check state, the on_change callback is called
+When the user toggles the check state, the <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> callback is called
 with the new check state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>checked</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether or not the checkbox is checked initially</p></li>
 <li><p><strong>text</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – text for the label of the checkbox</p></li>
-<li><p><strong>on_change</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – callback for when the check box state changes. The callback receives the new state of the check box as an argument.</p></li>
+<li><p><strong>on_change</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – callback for when the check box state changes.</p></li>
+<li><p><strong>argument.</strong> (<em>The callback receives the new state</em><em> of </em><em>the check box as an</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -404,16 +406,13 @@ with the new check state.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.set_key.html#edifice.CheckBox.set_key" title="edifice.CheckBox.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
 <td><p>Sets the key of the component.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.set_on_change.html#edifice.CheckBox.set_on_change" title="edifice.CheckBox.set_on_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_on_change</span></code></a>(on_change)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.set_state.html#edifice.CheckBox.set_state" title="edifice.CheckBox.set_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_state</span></code></a>(**kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.set_state.html#edifice.CheckBox.set_state" title="edifice.CheckBox.set_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_state</span></code></a>(**kwargs)</p></td>
 <td><p>Set state and render changes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.should_update.html#edifice.CheckBox.should_update" title="edifice.CheckBox.should_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">should_update</span></code></a>(newprops, newstate)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.should_update.html#edifice.CheckBox.should_update" title="edifice.CheckBox.should_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">should_update</span></code></a>(newprops, newstate)</p></td>
 <td><p>Determines if the component should rerender upon receiving new props and state.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.will_unmount.html#edifice.CheckBox.will_unmount" title="edifice.CheckBox.will_unmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">will_unmount</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.will_unmount.html#edifice.CheckBox.will_unmount" title="edifice.CheckBox.will_unmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">will_unmount</span></code></a>()</p></td>
 <td><p>Callback function that is called when the component will unmount.</p></td>
 </tr>
 </tbody>

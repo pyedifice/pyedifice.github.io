@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components &#8212; Edifice 0.1.0 documentation</title>
+    <title>edifice.base_components &#8212; Edifice 0.1.1 documentation</title>
   
   
   
@@ -158,6 +158,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Dropdown.html">edifice.Dropdown</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
@@ -1291,9 +1292,25 @@ document.write(`
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">load</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">src</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
+<span class="c1"># TODO</span>
+<span class="c1"># It seems to me that the type for Completer should be</span>
+<span class="c1">#</span>
+<span class="c1">#     Callable[[str], str]</span>
+<span class="c1">#</span>
+<span class="c1"># But Qt doesn’t like higher-order functions and they’ve done something</span>
+<span class="c1"># much weirder and more complicated.</span>
+<span class="c1"># https://doc.qt.io/qtforpython-5/PySide2/QtWidgets/QCompleter.html</span>
+<span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html</span>
 <span class="k">class</span> <span class="nc">Completer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;popup&quot;</span><span class="p">):</span>
+    <span class="c1"># &quot;&quot;&quot;</span>
+    <span class="c1"># Parameters for a `QCompleter &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html&gt;`_.</span>
+    <span class="c1"># &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">options</span><span class="p">,</span>
+        <span class="c1"># TODO In PySide6, there is no longer an options, instead its a model.</span>
+        <span class="n">mode</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;popup&quot;</span>
+        <span class="c1"># TODO Should mode be this type instead? https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html#PySide6.QtWidgets.PySide6.QtWidgets.QCompleter.CompletionMode</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;popup&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="o">.</span><span class="n">CompletionMode</span><span class="o">.</span><span class="n">PopupCompletion</span>
@@ -1310,23 +1327,35 @@ document.write(`
 
 
 <div class="viewcode-block" id="TextInput"><a class="viewcode-back" href="../../stubs/edifice.TextInput.html#edifice.TextInput">[docs]</a><span class="k">class</span> <span class="nc">TextInput</span><span class="p">(</span><span class="n">QtWidgetComponent</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a one line text input</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a one line text input.</span>
 
 <span class="sd">    .. figure:: /image/textinput_button.png</span>
 <span class="sd">       :width: 300</span>
 
-<span class="sd">       TextInput on the left. Note that you can set an optional Completer, giving the dropdown for completion.</span>
+<span class="sd">       TextInput on the left.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        text: Initial text of the text input</span>
-<span class="sd">        on_change: callback for the value of the text input changes. The callback is passed the changed</span>
-<span class="sd">            value of the text</span>
+<span class="sd">        on_change:</span>
+<span class="sd">            Callback for when the value of the text input changes.</span>
+<span class="sd">            The callback is passed the changed</span>
+<span class="sd">            value of the text.</span>
+<span class="sd">        on_edit_finish:</span>
+<span class="sd">            Callback for the</span>
+<span class="sd">            `editingFinished &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html#PySide6.QtWidgets.PySide6.QtWidgets.QLineEdit.editingFinished&gt;`_</span>
+<span class="sd">            event, when the Return or Enter key is pressed, or if the line edit</span>
+<span class="sd">            loses focus and its contents have changed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#TODO Note that you can set an optional Completer, giving the dropdown for completion.</span>
 
 <div class="viewcode-block" id="TextInput.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.TextInput.__init__.html#edifice.TextInput.__init__">[docs]</a>    <span class="nd">@register_props</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>
-                 <span class="n">on_edit_finish</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>
-                 <span class="n">completer</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Completer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">on_edit_finish</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="c1"># completer: tp.Optional[Completer] = None,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_editing_finished_connected</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1338,30 +1367,30 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="TextInput.set_on_change"><a class="viewcode-back" href="../../stubs/stubs/edifice.TextInput.set_on_change.html#edifice.TextInput.set_on_change">[docs]</a>    <span class="k">def</span> <span class="nf">set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">on_change_fun</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">text</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_change</span><span class="p">)(</span><span class="n">text</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">textChanged</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">textChanged</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_change_fun</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span> <span class="o">=</span> <span class="kc">True</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span> <span class="o">=</span> <span class="kc">True</span>
 
-<div class="viewcode-block" id="TextInput.set_on_edit_finish"><a class="viewcode-back" href="../../stubs/stubs/edifice.TextInput.set_on_edit_finish.html#edifice.TextInput.set_on_edit_finish">[docs]</a>    <span class="k">def</span> <span class="nf">set_on_edit_finish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_edit_finish</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_edit_finish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_edit_finish</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">on_edit_finish_fun</span><span class="p">():</span>
             <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_edit_finish</span><span class="p">)()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_editing_finished_connected</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_edit_finish_fun</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_editing_finished_connected</span> <span class="o">=</span> <span class="kc">True</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_editing_finished_connected</span> <span class="o">=</span> <span class="kc">True</span>
 
-<div class="viewcode-block" id="TextInput.set_completer"><a class="viewcode-back" href="../../stubs/stubs/edifice.TextInput.set_completer.html#edifice.TextInput.set_completer">[docs]</a>    <span class="k">def</span> <span class="nf">set_completer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">completer</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">completer</span><span class="p">:</span>
-            <span class="n">qt_completer</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="p">(</span><span class="n">completer</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
-            <span class="n">qt_completer</span><span class="o">.</span><span class="n">setCompletionMode</span><span class="p">(</span><span class="n">completer</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="n">qt_completer</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span></div>
+    <span class="c1"># def _set_completer(self, completer):</span>
+    <span class="c1">#     if completer:</span>
+    <span class="c1">#         qt_completer = QtWidgets.QCompleter(completer.options)</span>
+    <span class="c1">#         qt_completer.setCompletionMode(completer.mode)</span>
+    <span class="c1">#         self.underlying.setCompleter(qt_completer)</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         self.underlying.setCompleter(None)</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1373,15 +1402,15 @@ document.write(`
                          <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">cursorPosition</span><span class="p">()))</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_change&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_edit_finish&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_on_edit_finish</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;completer&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_completer</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_edit_finish</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+    <span class="c1">#         elif prop == &quot;completer&quot;:</span>
+    <span class="c1">#             commands.append((self._set_completer, newprops[prop]))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
-<span class="k">class</span> <span class="nc">Dropdown</span><span class="p">(</span><span class="n">QtWidgetComponent</span><span class="p">):</span>
+<div class="viewcode-block" id="Dropdown"><a class="viewcode-back" href="../../stubs/edifice.Dropdown.html#edifice.Dropdown">[docs]</a><span class="k">class</span> <span class="nc">Dropdown</span><span class="p">(</span><span class="n">QtWidgetComponent</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a dropdown menu.</span>
 
 <span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
@@ -1390,39 +1419,51 @@ document.write(`
 <span class="sd">       Dropdown on the right.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        text: Initial text of the text input</span>
-<span class="sd">        on_change: callback for the value of the text input changes. The callback is passed the changed</span>
-<span class="sd">            value of the text</span>
+<span class="sd">    	selection: Current selection text of the text input.</span>
+<span class="sd">        text: Initial text of the text input.</span>
+<span class="sd">        options: Options to select from.</span>
+<span class="sd">        editable: True if the text input should be editable.</span>
+<span class="sd">        on_change:</span>
+<span class="sd">            Callback for the value of the text input changes. The callback is passed the changed</span>
+<span class="sd">            value of the text.</span>
+<span class="sd">        on_select:</span>
+<span class="sd">            Callback for when the selection changes.</span>
+<span class="sd">            The callback is passed the new value of the text.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@register_props</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selection</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-                 <span class="n">options</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">editable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">completer</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Completer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">on_select</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Dropdown.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.Dropdown.__init__.html#edifice.Dropdown.__init__">[docs]</a>    <span class="nd">@register_props</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">selection</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">options</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">editable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="c1"># TODO</span>
+        <span class="c1"># completer: tp.Optional[Completer] = None,</span>
+        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_select</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_select_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">editable</span> <span class="ow">and</span> <span class="n">on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">on_select</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Uneditable dropdowns do not emit change events. Use the on_select event handler.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Uneditable dropdowns do not emit change events. Use the on_select event handler.&quot;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">set_completer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">completer</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">completer</span><span class="p">:</span>
-            <span class="n">qt_completer</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="p">(</span><span class="n">completer</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
-            <span class="n">qt_completer</span><span class="o">.</span><span class="n">setCompletionMode</span><span class="p">(</span><span class="n">completer</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="n">qt_completer</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+	<span class="c1"># TODO</span>
+    <span class="c1"># def _set_completer(self, completer):</span>
+    <span class="c1">#     if completer:</span>
+    <span class="c1">#         qt_completer = QtWidgets.QCompleter(completer.options)</span>
+    <span class="c1">#         qt_completer.setCompletionMode(completer.mode)</span>
+    <span class="c1">#         self.underlying.setCompleter(qt_completer)</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         self.underlying.setCompleter(None)</span>
 
-    <span class="k">def</span> <span class="nf">set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">on_change_fun</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_change</span><span class="p">)(</span><span class="n">text</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span><span class="p">:</span>
@@ -1431,7 +1472,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">editTextChanged</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_change_fun</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_change_connected</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">set_on_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_select</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_select</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">on_select_fun</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_select</span><span class="p">)(</span><span class="n">text</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_select_connected</span><span class="p">:</span>
@@ -1452,16 +1493,16 @@ document.write(`
                             <span class="p">])</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_change&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_select&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_on_select</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_select</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setEditText</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;selection&quot;</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCurrentText</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;completer&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_completer</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
-        <span class="k">return</span> <span class="n">commands</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_completer</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">commands</span></div>
 
 
 <div class="viewcode-block" id="RadioButton"><a class="viewcode-back" href="../../stubs/edifice.RadioButton.html#edifice.RadioButton">[docs]</a><span class="k">class</span> <span class="nc">RadioButton</span><span class="p">(</span><span class="n">QtWidgetComponent</span><span class="p">):</span>
@@ -1496,13 +1537,13 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="RadioButton.set_on_change"><a class="viewcode-back" href="../../stubs/stubs/edifice.RadioButton.set_on_change.html#edifice.RadioButton.set_on_change">[docs]</a>    <span class="k">def</span> <span class="nf">set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">on_change_fun</span><span class="p">(</span><span class="n">checked</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_change</span><span class="p">)(</span><span class="n">checked</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">toggled</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">toggled</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_change_fun</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1512,7 +1553,7 @@ document.write(`
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setChecked</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_change&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">])))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
@@ -1529,13 +1570,14 @@ document.write(`
 <span class="sd">    A checkbox allows the user to specify some boolean state.</span>
 
 <span class="sd">    The checked prop determines the initial check-state of the widget.</span>
-<span class="sd">    When the user toggles the check state, the on_change callback is called</span>
+<span class="sd">    When the user toggles the check state, the :code:`on_change` callback is called</span>
 <span class="sd">    with the new check state.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        checked: whether or not the checkbox is checked initially</span>
 <span class="sd">        text: text for the label of the checkbox</span>
-<span class="sd">        on_change: callback for when the check box state changes. The callback receives the new state of the check box as an argument.</span>
+<span class="sd">        on_change: callback for when the check box state changes.</span>
+<span class="sd">        The callback receives the new state of the check box as an argument.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CheckBox.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.CheckBox.__init__.html#edifice.CheckBox.__init__">[docs]</a>    <span class="nd">@register_props</span>
@@ -1551,13 +1593,13 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="CheckBox.set_on_change"><a class="viewcode-back" href="../../stubs/stubs/edifice.CheckBox.set_on_change.html#edifice.CheckBox.set_on_change">[docs]</a>    <span class="k">def</span> <span class="nf">set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">on_change_fun</span><span class="p">(</span><span class="n">checked</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_change</span><span class="p">)(</span><span class="n">checked</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">stateChanged</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">stateChanged</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_change_fun</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1568,7 +1610,7 @@ document.write(`
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCheckState</span><span class="p">,</span> <span class="n">check_state</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_change&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">])))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
@@ -1644,7 +1686,7 @@ document.write(`
         <span class="c1">#     self._set_size(size * len(self.props.text), size)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="Slider.set_on_change"><a class="viewcode-back" href="../../stubs/stubs/edifice.Slider.set_on_change.html#edifice.Slider.set_on_change">[docs]</a>    <span class="k">def</span> <span class="nf">set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">on_change_fun</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">float</span><span class="p">:</span>
                 <span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">min_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">max_value</span>
@@ -1653,7 +1695,7 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">valueChanged</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">valueChanged</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_change_fun</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1676,7 +1718,7 @@ document.write(`
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setValue</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_change&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 

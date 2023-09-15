@@ -28,7 +28,6 @@ edifice.CheckBox
       ~CheckBox.render
       ~CheckBox.render_changes
       ~CheckBox.set_key
-      ~CheckBox.set_on_change
       ~CheckBox.set_state
       ~CheckBox.should_update
       ~CheckBox.will_unmount

@@ -28,7 +28,6 @@ edifice.Slider
       ~Slider.render
       ~Slider.render_changes
       ~Slider.set_key
-      ~Slider.set_on_change
       ~Slider.set_state
       ~Slider.should_update
       ~Slider.will_unmount

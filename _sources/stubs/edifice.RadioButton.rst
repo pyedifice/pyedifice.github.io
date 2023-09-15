@@ -28,7 +28,6 @@ edifice.RadioButton
       ~RadioButton.render
       ~RadioButton.render_changes
       ~RadioButton.set_key
-      ~RadioButton.set_on_change
       ~RadioButton.set_state
       ~RadioButton.should_update
       ~RadioButton.will_unmount

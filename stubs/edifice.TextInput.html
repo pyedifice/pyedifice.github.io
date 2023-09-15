@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>edifice.TextInput &#8212; Edifice 0.1.0 documentation</title>
+    <title>edifice.TextInput &#8212; Edifice 0.1.1 documentation</title>
   
   
   
@@ -161,6 +161,7 @@
 <li class="toctree-l2"><a class="reference internal" href="edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.RadioButton.html">edifice.RadioButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.Dropdown.html">edifice.Dropdown</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
@@ -352,28 +353,33 @@ document.write(`
 <h1>edifice.TextInput<a class="headerlink" href="#edifice-textinput" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.TextInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">TextInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text=''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_change=&lt;function</span> <span class="pre">TextInput.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_edit_finish=&lt;function</span> <span class="pre">TextInput.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components.html#TextInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.TextInput" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">TextInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text=''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_change=&lt;function</span> <span class="pre">TextInput.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_edit_finish=&lt;function</span> <span class="pre">TextInput.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components.html#TextInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.TextInput" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetComponent.html#edifice.QtWidgetComponent" title="edifice.base_components.QtWidgetComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetComponent</span></code></a></p>
-<p>Basic widget for a one line text input</p>
+<p>Basic widget for a one line text input.</p>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/textinput_button.png"><img alt="../_images/textinput_button.png" src="../_images/textinput_button.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">TextInput on the left. Note that you can set an optional Completer, giving the dropdown for completion.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">TextInput on the left.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>text</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – Initial text of the text input</p></li>
-<li><p><strong>on_change</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – callback for the value of the text input changes. The callback is passed the changed
-value of the text</p></li>
+<li><p><strong>on_change</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – Callback for when the value of the text input changes.
+The callback is passed the changed
+value of the text.</p></li>
+<li><p><strong>on_edit_finish</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – Callback for the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html#PySide6.QtWidgets.PySide6.QtWidgets.QLineEdit.editingFinished">editingFinished</a>
+event, when the Return or Enter key is pressed, or if the line edit
+loses focus and its contents have changed</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.__init__.html#edifice.TextInput.__init__" title="edifice.TextInput.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([text, on_change, on_edit_finish, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.__init__.html#edifice.TextInput.__init__" title="edifice.TextInput.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([text, on_change, on_edit_finish])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInput.did_mount.html#edifice.TextInput.did_mount" title="edifice.TextInput.did_mount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">did_mount</span></code></a>()</p></td>
@@ -397,25 +403,16 @@ value of the text</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInput.render_changes.html#edifice.TextInput.render_changes" title="edifice.TextInput.render_changes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">render_changes</span></code></a>([ignored_variables])</p></td>
 <td><p>Context manager for managing changes to state.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.set_completer.html#edifice.TextInput.set_completer" title="edifice.TextInput.set_completer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_completer</span></code></a>(completer)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInput.set_key.html#edifice.TextInput.set_key" title="edifice.TextInput.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.set_key.html#edifice.TextInput.set_key" title="edifice.TextInput.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
 <td><p>Sets the key of the component.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.set_on_change.html#edifice.TextInput.set_on_change" title="edifice.TextInput.set_on_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_on_change</span></code></a>(on_change)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInput.set_on_edit_finish.html#edifice.TextInput.set_on_edit_finish" title="edifice.TextInput.set_on_edit_finish"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_on_edit_finish</span></code></a>(on_edit_finish)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.set_state.html#edifice.TextInput.set_state" title="edifice.TextInput.set_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_state</span></code></a>(**kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInput.set_state.html#edifice.TextInput.set_state" title="edifice.TextInput.set_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_state</span></code></a>(**kwargs)</p></td>
 <td><p>Set state and render changes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInput.should_update.html#edifice.TextInput.should_update" title="edifice.TextInput.should_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">should_update</span></code></a>(newprops, newstate)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.should_update.html#edifice.TextInput.should_update" title="edifice.TextInput.should_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">should_update</span></code></a>(newprops, newstate)</p></td>
 <td><p>Determines if the component should rerender upon receiving new props and state.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.will_unmount.html#edifice.TextInput.will_unmount" title="edifice.TextInput.will_unmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">will_unmount</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInput.will_unmount.html#edifice.TextInput.will_unmount" title="edifice.TextInput.will_unmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">will_unmount</span></code></a>()</p></td>
 <td><p>Callback function that is called when the component will unmount.</p></td>
 </tr>
 </tbody>

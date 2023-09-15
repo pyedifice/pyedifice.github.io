@@ -27,10 +27,7 @@ edifice.TextInput
       ~TextInput.register_ref
       ~TextInput.render
       ~TextInput.render_changes
-      ~TextInput.set_completer
       ~TextInput.set_key
-      ~TextInput.set_on_change
-      ~TextInput.set_on_edit_finish
       ~TextInput.set_state
       ~TextInput.should_update
       ~TextInput.will_unmount

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Edifice Core Concepts &#8212; Edifice 0.1.0 documentation</title>
+    <title>Edifice Core Concepts &#8212; Edifice 0.1.1 documentation</title>
   
   
   
@@ -384,7 +384,7 @@ They may be accessed via the field props (<code class="code docutils literal not
 A PropsDict allows iteration, get item (<code class="code docutils literal notranslate"><span class="pre">self.props[&quot;value&quot;]</span></code>), and get attribute
 (<code class="code docutils literal notranslate"><span class="pre">self.props.value</span></code>), but not set item or set attribute.</p>
 <p>The internal state, henceforth referred to as the <strong>state</strong>, belong to the Component.
-These are attributes of the Component object, for instance self.my_state.
+These are attributes of the Component object, for instance <code class="code docutils literal notranslate"><span class="pre">self.my_state</span></code>.
 You can initialize the state as usual in the constructor
 (e.g. <code class="code docutils literal notranslate"><span class="pre">self.my_state</span> <span class="pre">=</span> <span class="pre">{&quot;a&quot;:</span> <span class="pre">1}</span></code>),
 and the state persists so long as the Component is still mounted.</p>
@@ -485,8 +485,8 @@ will resolve which Components to maintain and which to replace;
 see documentation of Component class for details.</p>
 <p>Some useful utilities are also provided:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="stubs/edifice.register_props.html#edifice.register_props" title="edifice.register_props"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_props()</span></code></a> : A decorator for the <code class="code docutils literal notranslate"><span class="pre">init</span></code> function that records
-all arguments as props</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.register_props.html#edifice.register_props" title="edifice.register_props"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_props()</span></code></a> : A decorator for the <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> function that records
+all arguments as props.</p></li>
 <li><p><a class="reference internal" href="stubs/edifice.make_component.html#edifice.make_component" title="edifice.make_component"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_component()</span></code></a>: A decorator to turn a render function into a
 Component. This is useful if your Component has no internal state.</p></li>
 <li><p><a class="reference internal" href="utilities.html#edifice.utilities.set_trace" title="edifice.utilities.set_trace"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.utilities.set_trace()</span></code></a>: An analogue of <code class="code docutils literal notranslate"><span class="pre">pdb.set_trace</span></code> that works with Qt
