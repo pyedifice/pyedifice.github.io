@@ -370,7 +370,7 @@ document.write(`
                   
   <section id="edifice">
 <h1>Edifice<a class="headerlink" href="#edifice" title="Permalink to this heading">#</a></h1>
-<p>Declarative UI for Python</p>
+<p>Declarative GUI framework for Python and Qt</p>
 <a class="reference internal image-reference" href="_images/example_calculator.png"><img alt="_images/example_calculator.png" src="_images/example_calculator.png" style="width: 200px;" /></a>
 <a class="reference internal image-reference" href="_images/example_harmonic_oscillator.gif"><img alt="_images/example_harmonic_oscillator.gif" src="_images/example_harmonic_oscillator.gif" style="width: 250px;" /></a>
 <div class="literal-block-wrapper docutils container" id="id1">
@@ -382,18 +382,18 @@ document.write(`
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text"><em>Hello World</em> in Edifice</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edifice</span>
-<span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">Label</span>
+<span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">App</span><span class="p">,</span> <span class="n">Label</span>
 
-<span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">App</span><span class="p">(</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <p>Edifice is a Python library for building declarative application user interfaces.</p>
 <ul class="simple">
-<li><p>Modern declarative UI paradigm from web development.</p></li>
-<li><p>100% Python application development, no language inter-op.</p></li>
-<li><p>A native desktop app instead of a bundled web browser.</p></li>
-<li><p>Fast iteration via hot reloading.</p></li>
+<li><p>Modern <strong>declarative</strong> UI paradigm from web development.</p></li>
+<li><p><strong>100% Python</strong> application development, no language inter-op.</p></li>
+<li><p>A <strong>native</strong> desktop app instead of a bundled web browser.</p></li>
+<li><p>Fast iteration via <strong>hot reloading</strong>.</p></li>
 </ul>
 <p>This modern declarative UI paradigm is also known as
 “<a class="reference external" href="https://thomasbandt.com/model-view-update">Model-View-Update</a>,”
@@ -402,7 +402,8 @@ or “<a class="reference external" href="https://guide.elm-lang.org/architectur
 or <a class="reference external" href="https://www.riverbankcomputing.com/static/Docs/PyQt6/introduction.html">PyQt6</a>
 as a backend. So Edifice is like
 <a class="reference external" href="https://react.dev/">React</a>, but with
-Python instead of JavaScript, and Qt instead of the HTML DOM.
+Python instead of JavaScript, and <a class="reference external" href="https://doc.qt.io/qt-6/qtwidgets-index.html">Qt Widgets</a>
+instead of the HTML DOM.
 If you have experience with React,
 you will find Edifice very easy to pick up.</p>
 <section id="getting-started">
@@ -417,6 +418,8 @@ see <a class="reference internal" href="edifice.html"><span class="doc">Edifice 
 Data in a dictionary are mapped to form elements according to the data type:
 strings to TextInput, bools to Checkbox, etc.
 The example below shows how you can collect information from the user in a Dialog.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Form Dialog</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">edifice</span>
 <span class="kn">from</span> <span class="nn">edifice.components.forms</span> <span class="kn">import</span> <span class="n">FormDialog</span>
@@ -436,14 +439,15 @@ The example below shows how you can collect information from the user in a Dialo
 <span class="nb">print</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
 </section>
 <section id="a-stateful-component">
 <h3>A Stateful Component<a class="headerlink" href="#a-stateful-component" title="Permalink to this heading">#</a></h3>
 <p>A component can maintain internal state, stored as attributes of the component.
 When this state is changed using the <code class="code docutils literal notranslate"><span class="pre">set_state</span></code> method,
 the component will be re-rendered using the provided <code class="code docutils literal notranslate"><span class="pre">render</span></code> function.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Timer component</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Timer component</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edifice</span>
 
 <span class="k">class</span> <span class="nc">Timer</span><span class="p">(</span><span class="n">edifice</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
@@ -467,8 +471,8 @@ the component will be re-rendered using the provided <code class="code docutils 
 <h3>An Application<a class="headerlink" href="#an-application" title="Permalink to this heading">#</a></h3>
 <p>Components can be composed to create composite components.
 By making components modular, you can reuse them in your application and across applications.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">Todo App</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Todo App</span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">edifice</span>
 <span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">TextInput</span><span class="p">,</span> <span class="n">ScrollView</span><span class="p">,</span> <span class="n">View</span>
@@ -651,12 +655,17 @@ or <a class="reference internal" href="stubs/stubs/edifice.App.export_widgets.ht
 </section>
 <section id="license-and-code-availability">
 <h2>License and Code Availability<a class="headerlink" href="#license-and-code-availability" title="Permalink to this heading">#</a></h2>
-<p>Edifice is released under the <a class="reference external" href="https://en.wikipedia.org/wiki/MIT_License">MIT License</a>.
-The source code is avaliable <a class="reference external" href="https://github.com/pyedifice/pyedifice">on GitHub</a>.</p>
+<p>Edifice is released under the <a class="reference external" href="https://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
+<p>Edifice uses Qt under the hood, and both PyQt6 and PySide6 are supported.
+Note that PyQt6 is distributed with the <em>GPL</em> license while PySide6 is distributed
+under the more flexible <em>LGPL</em> license.
+See <cite>PyQt vs PySide Licensing &lt;https://www.pythonguis.com/faq/pyqt-vs-pyside/&gt;</cite>.</p>
+<p>The source code is avaliable <a class="reference external" href="https://github.com/pyedifice/pyedifice">on GitHub</a>.</p>
 </section>
 <section id="support">
 <h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">#</a></h2>
-<p>File all bug reports or feature requests using <a class="reference external" href="https://github.com/pyedifice/pyedifice/issues">Github issues</a>.</p>
+<p>Submit questions, bug reports or feature requests using
+<a class="reference external" href="https://github.com/pyedifice/pyedifice/issues">Github issues</a>.</p>
 </section>
 <section id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">#</a></h2>
