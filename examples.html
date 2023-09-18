@@ -161,6 +161,7 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Dropdown.html">edifice.Dropdown</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
@@ -370,6 +371,18 @@ In this example, we imitate the standard look of the Mac OS Calculator app
 in 100 lines of code (most of which is implementing the intricacies of the calculator state machine).</p>
 <p>The code is available at <a class="reference external" href="https://github.com/pyedifice/pyedifice/tree/master/examples/calculator.py">calculator.py</a>.</p>
 <a class="reference internal image-reference" href="_images/example_calculator.png"><img alt="_images/example_calculator.png" src="_images/example_calculator.png" style="width: 300px;" /></a>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Run in Python environment</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>edifice<span class="w"> </span>examples/calculator.py<span class="w"> </span>Calculator
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Run with <a class="reference external" href="https://determinate.systems/posts/nix-run">Nix</a></span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nix<span class="w"> </span>run<span class="w"> </span>github:pyedifice/pyedifice#example-calculator
+</pre></div>
+</div>
+</div>
 </section>
 <section id="financial-charting">
 <h2>Financial Charting<a class="headerlink" href="#financial-charting" title="Permalink to this heading">#</a></h2>
@@ -393,6 +406,18 @@ Users can interact with the textual display and thereby update the plot descript
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/example_financial_charting2.png"><img alt="_images/example_financial_charting2.png" src="_images/example_financial_charting2.png" style="width: 600px;" /></a>
 </figure>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Run in Python environment</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>edifice<span class="w"> </span>examples/financial_charts.py<span class="w"> </span>App
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Run with <a class="reference external" href="https://determinate.systems/posts/nix-run">Nix</a></span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nix<span class="w"> </span>run<span class="w"> </span>github:pyedifice/pyedifice#example-financial-charting
+</pre></div>
+</div>
+</div>
 </section>
 <section id="forms">
 <h2>Forms<a class="headerlink" href="#forms" title="Permalink to this heading">#</a></h2>
@@ -409,6 +434,18 @@ so <a class="reference external" href="https://github.com/pyedifice/pyedifice/bl
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/example_form.png"><img alt="_images/example_form.png" src="_images/example_form.png" style="width: 300px;" /></a>
 </figure>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Run in Python environment</span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>.<span class="w"> </span>python<span class="w"> </span>examples/form.py
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Run with <a class="reference external" href="https://determinate.systems/posts/nix-run">Nix</a></span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nix<span class="w"> </span>run<span class="w"> </span>github:pyedifice/pyedifice#example-forms
+</pre></div>
+</div>
+</div>
 </section>
 <section id="harmonic-oscillator">
 <h2>Harmonic Oscillator<a class="headerlink" href="#harmonic-oscillator" title="Permalink to this heading">#</a></h2>
@@ -420,6 +457,18 @@ Python of course has great numeric libraries, so we can work with complex number
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/example_harmonic_oscillator.gif"><img alt="_images/example_harmonic_oscillator.gif" src="_images/example_harmonic_oscillator.gif" style="width: 500px;" /></a>
 </figure>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Run in Python environment</span><a class="headerlink" href="#id7" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>edifice<span class="w"> </span>examples/harmonic_oscillator.py<span class="w"> </span>Oscillator
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Run with <a class="reference external" href="https://determinate.systems/posts/nix-run">Nix</a></span><a class="headerlink" href="#id8" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nix<span class="w"> </span>run<span class="w"> </span>github:pyedifice/pyedifice#example-harmonic-oscillator
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 
