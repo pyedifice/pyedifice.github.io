@@ -355,9 +355,9 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.make_component">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">make_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/_component.html#make_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.make_component" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases:</p>
-<p>Decorator turning a render function into a Component.</p>
+<p>Decorator turning a render function into a <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>.</p>
 <p>Some components do not have internal state, and these components are often little more than
-a render function. Creating a Component class results in a lot of boiler plate code:</p>
+a <code class="code docutils literal notranslate"><span class="pre">render</span></code> function. Creating a <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> class results in a lot of boiler plate code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySimpleComp</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
     <span class="nd">@register_props</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
@@ -367,7 +367,8 @@ a render function. Creating a Component class results in a lot of boiler plate c
         <span class="c1"># Only here is there actual logic.</span>
 </pre></div>
 </div>
-<p>To cut down on the amount of boilerplate, you can use the make_component decorator:</p>
+<p>To cut down on the amount of boilerplate, you can use the
+<a class="reference internal" href="#"><span class="doc">make_component</span></a> decorator:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@make_component</span>
 <span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">,</span> <span class="n">children</span><span class="p">):</span>
     <span class="c1"># Here you put what you&#39;d normally put in the render logic</span>
@@ -381,7 +382,7 @@ a render function. Creating a Component class results in a lot of boiler plate c
     <span class="k">return</span> <span class="n">View</span><span class="p">()(</span><span class="n">Label</span><span class="p">(</span><span class="n">prop1</span><span class="p">),</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prop2</span><span class="p">),</span> <span class="n">Label</span><span class="p">(</span><span class="n">prop3</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>instead. The difference is, with the decorator, an actual Component object is created,
+<p>instead. The difference is, with the decorator, an actual <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> object is created,
 which can be viewed, for example, in the inspector.
 If this component uses <a class="reference internal" href="../state.html"><span class="doc">State Values or State Managers</span></a>,
 only this component and (possibly) its children will be re-rendered.

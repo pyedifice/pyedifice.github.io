@@ -309,10 +309,15 @@ document.write(`
 <div class="viewcode-block" id="PropsDict"><a class="viewcode-back" href="../../stubs/edifice.PropsDict.html#edifice.PropsDict">[docs]</a><span class="k">class</span> <span class="nc">PropsDict</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An immutable dictionary for storing props.</span>
 
-<span class="sd">    Props may be accessed either by indexing (props[&quot;myprop&quot;]) or by</span>
-<span class="sd">    attribute (props.myprop).</span>
+<span class="sd">    Props may be accessed either by indexing</span>
 
-<span class="sd">    By convention, all PropsDict methods will start with _ to</span>
+<span class="sd">        props[&quot;myprop&quot;]</span>
+
+<span class="sd">    or by attribute</span>
+
+<span class="sd">        props.myprop</span>
+
+<span class="sd">    By convention, all PropsDict methods will start with :code:`_` to</span>
 <span class="sd">    not conflict with keys.</span>
 
 <span class="sd">    .. document private functions</span>
@@ -379,14 +384,14 @@ document.write(`
 
 
 <div class="viewcode-block" id="Reference"><a class="viewcode-back" href="../../stubs/edifice.Reference.html#edifice.Reference">[docs]</a><span class="k">class</span> <span class="nc">Reference</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reference to a Component to allow imperative modifications.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reference to a :class:`Component` to allow imperative modifications.</span>
 
 <span class="sd">    While Edifice is a declarative library and tries to abstract away the need to issue</span>
 <span class="sd">    imperative commands to widgets,</span>
 <span class="sd">    this is not always possible, either due to limitations with the underlying backened,</span>
 <span class="sd">    or because some feature implemented by the backend is not yet supported by the declarative layer.</span>
 <span class="sd">    In these cases, you might need to issue imperative commands to the underlying widgets and components,</span>
-<span class="sd">    and References gives you a handle to the currently rendered Component.</span>
+<span class="sd">    and :class:`Reference` gives you a handle to the currently rendered :class:`Component`.</span>
 
 <span class="sd">    Consider the following code::</span>
 
@@ -415,15 +420,20 @@ document.write(`
 <span class="sd">            def render(self):</span>
 <span class="sd">                return AnotherComponent(on_click=self.issue_command).register_ref(self.ref)</span>
 
-<span class="sd">    Under the hood, register_ref registers the Reference object to the component returned by the render function.</span>
-<span class="sd">    While rendering, Edifice will examine all requested references and attaches them to the correct Component.</span>
+<span class="sd">    Under the hood, :code:`register_ref` registers the :class:`Reference` object</span>
+<span class="sd">    to the component returned by the :code:`render` function.</span>
+<span class="sd">    While rendering, Edifice will examine all requested references and attaches</span>
+<span class="sd">    them to the correct :class:`Component`.</span>
 
-<span class="sd">    Initially, a Reference object will point to None. After the first render, they will point to the rendered Component.</span>
-<span class="sd">    When the rendered component dismounts, the reference will once again point to None.</span>
-<span class="sd">    You may assume that References are valid whenever they are not None.</span>
-<span class="sd">    References evaluate false if the underlying value is None.</span>
+<span class="sd">    Initially, a :class:`Reference` object will point to :code:`None`.</span>
+<span class="sd">    After the first render, they will point to the rendered :class:`Component`.</span>
+<span class="sd">    When the rendered component dismounts, the reference will once again</span>
+<span class="sd">    point to :code:`None`.</span>
+<span class="sd">    You may assume that :class:`Reference` is valid whenever it is</span>
+<span class="sd">    not :code:`None`.</span>
+<span class="sd">    :class:`Reference` will evaluate false if the underlying value is :code:`None`.</span>
 
-<span class="sd">    References can be dereferenced by calling them. An idiomatic way of using references is::</span>
+<span class="sd">    :class:`Reference` can be dereferenced by calling it. An idiomatic way of using references is::</span>
 
 <span class="sd">        if ref:</span>
 <span class="sd">            ref().do_something()</span>
@@ -459,24 +469,25 @@ document.write(`
 <div class="viewcode-block" id="Component"><a class="viewcode-back" href="../../stubs/edifice.Component.html#edifice.Component">[docs]</a><span class="k">class</span> <span class="nc">Component</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The base class for Edifice Components.</span>
 
-<span class="sd">    A Component is a stateful container wrapping a stateless render function.</span>
+<span class="sd">    A :class:`Component` is a stateful container wrapping a stateless :code:`render` function.</span>
 <span class="sd">    Components have both internal and external properties.</span>
 
-<span class="sd">    The external properties, **props**, are passed into the Component by another</span>
-<span class="sd">    Component&#39;s render function through the constructor. These values are owned</span>
-<span class="sd">    by the external caller and should not be modified by this Component.</span>
-<span class="sd">    They may be accessed via the field props (self.props), which is a PropsDict.</span>
-<span class="sd">    A PropsDict allows iteration, get item (self.props[&quot;value&quot;]), and get attribute</span>
-<span class="sd">    (self.props.value), but not set item or set attribute. This limitation</span>
+<span class="sd">    The external properties, **props**, are passed into the :class:`Component` by another</span>
+<span class="sd">    :class:`Component`’s render function through the constructor. These values are owned</span>
+<span class="sd">    by the external caller and should not be modified by this :class:`Component`.</span>
+<span class="sd">    They may be accessed via the field props :code:`self.props`, which is a :class:`PropsDict`.</span>
+<span class="sd">    A :class:`PropsDict` allows iteration, get item ( :code:`self.props[&quot;value&quot;]` ), and get attribute</span>
+<span class="sd">    ( :code:`self.props.value` ), but not set item or set attribute. This limitation</span>
 <span class="sd">    is set to protect the user from accidentally modifying props, which may cause</span>
 <span class="sd">    bugs. (Note though that a mutable prop, e.g. a list, can still be modified;</span>
 <span class="sd">    be careful not to do so)</span>
 
 <span class="sd">    The internal properties, the **state**, belong to this Component, and may be</span>
 <span class="sd">    used to keep track of internal state. You may set the state as</span>
-<span class="sd">    attributes of the Component object, for instance self.my_state.</span>
-<span class="sd">    You can initialize the state as usual in the constructor (e.g. self.my_state = {&quot;a&quot;: 1}),</span>
-<span class="sd">    and the state persists so long as the Component is still mounted.</span>
+<span class="sd">    attributes of the :class:`Component` object, for instance :code:`self.my_state`.</span>
+<span class="sd">    You can initialize the state as usual in the constructor</span>
+<span class="sd">    (e.g. :code:`self.my_state = {&quot;a&quot;: 1}` ),</span>
+<span class="sd">    and the state persists so long as the :class:`Component` is still mounted.</span>
 
 <span class="sd">    In most cases, changes in state would ideally trigger a rerender.</span>
 <span class="sd">    There are two ways to ensure this.</span>
@@ -491,24 +502,26 @@ document.write(`
 <span class="sd">            self.myotherstate = 2</span>
 
 <span class="sd">    When the context manager exits, a state change will be triggered.</span>
-<span class="sd">    The render_changes() context manager also ensures that all state changes</span>
+<span class="sd">    The :code:`render_changes()` context manager also ensures that all state changes</span>
 <span class="sd">    happen atomically: if an exception occurs inside the context manager,</span>
 <span class="sd">    all changes will be unwound. This helps ensure consistency in the</span>
-<span class="sd">    Component&#39;s state.</span>
+<span class="sd">    :class:`Component`’s state.</span>
 
-<span class="sd">    Note if you set self.mystate = 1 outside the render_changes() context manager,</span>
+<span class="sd">    Note if you set :class:`self.mystate = 1` outside</span>
+<span class="sd">    the :code:`render_changes()` context manager,</span>
 <span class="sd">    this change will not trigger a re-render. This might be occasionally useful</span>
 <span class="sd">    but usually is unintended.</span>
 
-<span class="sd">    The main function of Component is render, which should return the subcomponents</span>
+<span class="sd">    The main function of :class:`Component` is :code:`render`, which should return the subcomponents</span>
 <span class="sd">    of this component. These may be your own higher-level components as well as</span>
-<span class="sd">    the core Components, such as Label, Button, and View.</span>
-<span class="sd">    Components may be composed in a tree like fashion:</span>
+<span class="sd">    the core :class:`Component` s, such as</span>
+<span class="sd">    :class:`Label`, :class:`Button`, and :class:`View`.</span>
+<span class="sd">    :class:`Component` s may be composed in a tree like fashion:</span>
 <span class="sd">    one special prop is children, which will always be defined (defaults to an</span>
 <span class="sd">    empty list).</span>
-<span class="sd">    To better enable the visualization of the tree-structure of a Component</span>
+<span class="sd">    To better enable the visualization of the tree-structure of a :class:`Component`</span>
 <span class="sd">    in the code,</span>
-<span class="sd">    the call method of a Component has been overriden to set the arguments</span>
+<span class="sd">    the :code:`call` method of a :class:`Component` has been overriden to set the arguments</span>
 <span class="sd">    of the call as children of the component.</span>
 <span class="sd">    This allows you to write tree-like code remniscent of HTML::</span>
 
@@ -523,25 +536,28 @@ document.write(`
 <span class="sd">            ),</span>
 <span class="sd">        )</span>
 
-<span class="sd">    The render function is called when self.should_update(newprops, newstate)</span>
-<span class="sd">    returns True. This function is called when the props change (as set by the</span>
+<span class="sd">    The :code:`render` function is called when</span>
+<span class="sd">    :code:`self.should_update(newprops, newstate)`</span>
+<span class="sd">    returns :code:`True`. This function is called when the props change (as set by the</span>
 <span class="sd">    render function of this component) or when the state changes (when</span>
-<span class="sd">    using set_state or render_changes()). By default, all changes in newprops</span>
-<span class="sd">    and newstate will trigger a re-render.</span>
+<span class="sd">    using :code:`set_state` or :code:`render_changes()`). By default, all changes</span>
+<span class="sd">    in :code:`newprops`</span>
+<span class="sd">    and :code:`newstate` will trigger a re-render.</span>
 
 <span class="sd">    When the component is rendered,</span>
-<span class="sd">    the render function is called. This output is then compared against the output</span>
+<span class="sd">    the :code:`render` function is called. This output is then compared against the output</span>
 <span class="sd">    of the previous render (if that exists). The two renders are diffed,</span>
-<span class="sd">    and on certain conditions, the Component objects from the previous render</span>
+<span class="sd">    and on certain conditions, the :class:`Component` objects from the previous render</span>
 <span class="sd">    are maintained and updated with new props.</span>
 
-<span class="sd">    Two Components belonging to different classes will always be re-rendered,</span>
-<span class="sd">    and Components belonging to the same class are assumed to be the same</span>
+<span class="sd">    Two :class:`Component` s belonging to different classes will always be re-rendered,</span>
+<span class="sd">    and :class:`Component` s belonging to the same class are assumed to be the same</span>
 <span class="sd">    and thus maintained (preserving the old state).</span>
 
-<span class="sd">    When comparing a list of Components, the Component&#39;s **_key** attribute will</span>
-<span class="sd">    be compared. Components with the same _key and same class are assumed to be</span>
-<span class="sd">    the same. You can set the key using the set_key method, which returns the component</span>
+<span class="sd">    When comparing a list of :class:`Component` s, the :class:`Component`’s</span>
+<span class="sd">    :code:`_key` attribute will</span>
+<span class="sd">    be compared. :class:`Component` s with the same :code:`_key` and same class are assumed to be</span>
+<span class="sd">    the same. You can set the key using the :code:`set_key` method, which returns the component</span>
 <span class="sd">    to allow for chaining::</span>
 
 <span class="sd">        View(layout=&quot;row&quot;)(</span>
@@ -549,9 +565,9 @@ document.write(`
 <span class="sd">            MyComponent(&quot;World&quot;).set_key(&quot;world&quot;),</span>
 <span class="sd">        )</span>
 
-<span class="sd">    If the _key is not provided, the diff algorithm will assign automatic keys</span>
+<span class="sd">    If the :code:`_key` is not provided, the diff algorithm will assign automatic keys</span>
 <span class="sd">    based on index, which could result in subpar performance due to unnecessary rerenders.</span>
-<span class="sd">    To ensure control over the rerender process, it is recommended to set_keys</span>
+<span class="sd">    To ensure control over the rerender process, it is recommended to :code:`set_key`</span>
 <span class="sd">    whenever you have a list of children.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -571,7 +587,8 @@ document.write(`
 <div class="viewcode-block" id="Component.register_props"><a class="viewcode-back" href="../../stubs/stubs/edifice.Component.register_props.html#edifice.Component.register_props">[docs]</a>    <span class="k">def</span> <span class="nf">register_props</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">props</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register props.</span>
 
-<span class="sd">        Call this function if you do not use the register_props decorator and you have</span>
+<span class="sd">        Call this function if you do not use the</span>
+<span class="sd">        :func:`register_props &lt;edifice.register_props&gt;` decorator and you have</span>
 <span class="sd">        props to register.</span>
 
 <span class="sd">        Args:</span>
@@ -711,12 +728,13 @@ document.write(`
 <div class="viewcode-block" id="Component.should_update"><a class="viewcode-back" href="../../stubs/stubs/edifice.Component.should_update.html#edifice.Component.should_update">[docs]</a>    <span class="k">def</span> <span class="nf">should_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span> <span class="n">newstate</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines if the component should rerender upon receiving new props and state.</span>
 
-<span class="sd">        The arguments, newprops and newstate, reflect the props and state that change: they</span>
+<span class="sd">        The arguments, :code:`newprops` and :code:`newstate`, reflect the</span>
+<span class="sd">        props and state that change: they</span>
 <span class="sd">        may be a subset of the props and the state. When this function is called,</span>
 <span class="sd">        all props and state of this Component are the old values, so you can compare</span>
-<span class="sd">        `component.props` and `newprops` to determine changes.</span>
+<span class="sd">        :code:`component.props` and :code:`newprops` to determine changes.</span>
 
-<span class="sd">        By default, this function returns true, even if props and state are unchanged.</span>
+<span class="sd">        By default, this function returns :code:`True`, even if props and state are unchanged.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            newprops: the new set of props</span>
@@ -800,10 +818,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="make_component"><a class="viewcode-back" href="../../stubs/edifice.make_component.html#edifice.make_component">[docs]</a><span class="k">def</span> <span class="nf">make_component</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator turning a render function into a Component.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator turning a render function into a :class:`Component`.</span>
 
 <span class="sd">    Some components do not have internal state, and these components are often little more than</span>
-<span class="sd">    a render function. Creating a Component class results in a lot of boiler plate code::</span>
+<span class="sd">    a :code:`render` function. Creating a :class:`Component` class results in a lot of boiler plate code::</span>
 
 <span class="sd">        class MySimpleComp(Component):</span>
 <span class="sd">            @register_props</span>
@@ -813,7 +831,8 @@ document.write(`
 <span class="sd">            def render(self):</span>
 <span class="sd">                # Only here is there actual logic.</span>
 
-<span class="sd">    To cut down on the amount of boilerplate, you can use the make_component decorator::</span>
+<span class="sd">    To cut down on the amount of boilerplate, you can use the</span>
+<span class="sd">    :doc:`make_component &lt;edifice.make_component&gt;` decorator::</span>
 
 <span class="sd">        @make_component</span>
 <span class="sd">        def MySimpleComp(self, prop1, prop2, prop3, children):</span>
@@ -827,7 +846,7 @@ document.write(`
 <span class="sd">        def MySimpleComp(prop1, prop2, prop3):</span>
 <span class="sd">            return View()(Label(prop1), Label(self.prop2), Label(prop3))</span>
 
-<span class="sd">    instead. The difference is, with the decorator, an actual Component object is created,</span>
+<span class="sd">    instead. The difference is, with the decorator, an actual :class:`Component` object is created,</span>
 <span class="sd">    which can be viewed, for example, in the inspector.</span>
 <span class="sd">    If this component uses :doc:`State Values or State Managers&lt;/state&gt;`,</span>
 <span class="sd">    only this component and (possibly) its children will be re-rendered.</span>
@@ -864,12 +883,14 @@ document.write(`
 
 
 <div class="viewcode-block" id="register_props"><a class="viewcode-back" href="../../stubs/edifice.register_props.html#edifice.register_props">[docs]</a><span class="k">def</span> <span class="nf">register_props</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator for Component __init__ method to record props.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator for :class:`Component` :code:`__init__` method to record props.</span>
 
 <span class="sd">    This decorator will record all arguments (both vector and keyword arguments)</span>
-<span class="sd">    of the __init__ function as belonging to the props of the component.</span>
-<span class="sd">    It will call Component.register_props to store these arguments in the</span>
-<span class="sd">    props field of the Component.</span>
+<span class="sd">    of the :code:`__init__` function as belonging to the props of the component.</span>
+<span class="sd">    It will call</span>
+<span class="sd">    :func:`Component.register_props &lt;edifice.Component.register_props&gt;` to</span>
+<span class="sd">    store these arguments in the</span>
+<span class="sd">    props field of the :class:`Component`.</span>
 
 <span class="sd">    Arguments that begin with an underscore will be ignored.</span>
 
@@ -888,11 +909,12 @@ document.write(`
 <span class="sd">                    Label(self.props.c),</span>
 <span class="sd">                )</span>
 
-<span class="sd">    MyComponent(5, c=&quot;w&quot;) will then have props.a=5, props.b=2, and props.c=&quot;w&quot;.</span>
-<span class="sd">    props._d is undefined</span>
+<span class="sd">    :code:`MyComponent(5, c=&quot;w&quot;)` will then have</span>
+<span class="sd">    :code:`props.a=5`, :code:`props.b=2`, and :code:`props.c=&quot;w&quot;`.</span>
+<span class="sd">    :code:`props._d` is undefined.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        f: the __init__ function of a Component subclass</span>
+<span class="sd">        f: the :code:`__init__` function of a :class:`Component` subclass</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        decorated function</span>
 

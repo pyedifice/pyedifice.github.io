@@ -355,11 +355,12 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.Label.should_update">
 <span class="sig-prename descclassname"><span class="pre">Label.</span></span><span class="sig-name descname"><span class="pre">should_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newprops</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newstate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#edifice.Label.should_update" title="Permalink to this definition">#</a></dt>
 <dd><p>Determines if the component should rerender upon receiving new props and state.</p>
-<p>The arguments, newprops and newstate, reflect the props and state that change: they
+<p>The arguments, <code class="code docutils literal notranslate"><span class="pre">newprops</span></code> and <code class="code docutils literal notranslate"><span class="pre">newstate</span></code>, reflect the
+props and state that change: they
 may be a subset of the props and the state. When this function is called,
 all props and state of this Component are the old values, so you can compare
-<cite>component.props</cite> and <cite>newprops</cite> to determine changes.</p>
-<p>By default, this function returns true, even if props and state are unchanged.</p>
+<code class="code docutils literal notranslate"><span class="pre">component.props</span></code> and <code class="code docutils literal notranslate"><span class="pre">newprops</span></code> to determine changes.</p>
+<p>By default, this function returns <code class="code docutils literal notranslate"><span class="pre">True</span></code>, even if props and state are unchanged.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

@@ -355,13 +355,13 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.Reference">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">Reference</span></span><a class="reference internal" href="../_modules/edifice/_component.html#Reference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Reference" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Reference to a Component to allow imperative modifications.</p>
+<p>Reference to a <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> to allow imperative modifications.</p>
 <p>While Edifice is a declarative library and tries to abstract away the need to issue
 imperative commands to widgets,
 this is not always possible, either due to limitations with the underlying backened,
 or because some feature implemented by the backend is not yet supported by the declarative layer.
 In these cases, you might need to issue imperative commands to the underlying widgets and components,
-and References gives you a handle to the currently rendered Component.</p>
+and <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> gives you a handle to the currently rendered <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>.</p>
 <p>Consider the following code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyComp</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -389,13 +389,18 @@ The right way of solving the problem is via references:</p>
         <span class="k">return</span> <span class="n">AnotherComponent</span><span class="p">(</span><span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">issue_command</span><span class="p">)</span><span class="o">.</span><span class="n">register_ref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ref</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Under the hood, register_ref registers the Reference object to the component returned by the render function.
-While rendering, Edifice will examine all requested references and attaches them to the correct Component.</p>
-<p>Initially, a Reference object will point to None. After the first render, they will point to the rendered Component.
-When the rendered component dismounts, the reference will once again point to None.
-You may assume that References are valid whenever they are not None.
-References evaluate false if the underlying value is None.</p>
-<p>References can be dereferenced by calling them. An idiomatic way of using references is:</p>
+<p>Under the hood, <code class="code docutils literal notranslate"><span class="pre">register_ref</span></code> registers the <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> object
+to the component returned by the <code class="code docutils literal notranslate"><span class="pre">render</span></code> function.
+While rendering, Edifice will examine all requested references and attaches
+them to the correct <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>.</p>
+<p>Initially, a <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> object will point to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
+After the first render, they will point to the rendered <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>.
+When the rendered component dismounts, the reference will once again
+point to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
+You may assume that <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> is valid whenever it is
+not <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
+<a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> will evaluate false if the underlying value is <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p><a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> can be dereferenced by calling it. An idiomatic way of using references is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">ref</span><span class="p">:</span>
     <span class="n">ref</span><span class="p">()</span><span class="o">.</span><span class="n">do_something</span><span class="p">()</span>
 </pre></div>

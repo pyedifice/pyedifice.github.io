@@ -355,11 +355,13 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.register_props">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">register_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/_component.html#register_props"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.register_props" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases:</p>
-<p>Decorator for Component __init__ method to record props.</p>
+<p>Decorator for <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> method to record props.</p>
 <p>This decorator will record all arguments (both vector and keyword arguments)
-of the __init__ function as belonging to the props of the component.
-It will call Component.register_props to store these arguments in the
-props field of the Component.</p>
+of the <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> function as belonging to the props of the component.
+It will call
+<a class="reference internal" href="stubs/edifice.Component.register_props.html#edifice.Component.register_props" title="edifice.Component.register_props"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.register_props</span></code></a> to
+store these arguments in the
+props field of the <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>.</p>
 <p>Arguments that begin with an underscore will be ignored.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyComponent</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
@@ -376,11 +378,12 @@ props field of the Component.</p>
         <span class="p">)</span>
 </pre></div>
 </div>
-<p>MyComponent(5, c=”w”) will then have props.a=5, props.b=2, and props.c=”w”.
-props._d is undefined</p>
+<p><code class="code docutils literal notranslate"><span class="pre">MyComponent(5,</span> <span class="pre">c=&quot;w&quot;)</span></code> will then have
+<code class="code docutils literal notranslate"><span class="pre">props.a=5</span></code>, <code class="code docutils literal notranslate"><span class="pre">props.b=2</span></code>, and <code class="code docutils literal notranslate"><span class="pre">props.c=&quot;w&quot;</span></code>.
+<code class="code docutils literal notranslate"><span class="pre">props._d</span></code> is undefined.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>f</strong> – the __init__ function of a Component subclass</p>
+<dd class="field-odd"><p><strong>f</strong> – the <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> function of a <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> subclass</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>decorated function</p>

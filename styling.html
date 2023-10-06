@@ -355,12 +355,12 @@ document.write(`
 should be separated from the <em>structure of the content</em>.
 In web development, HTML would represent the content structure,
 while CSS represents the formatting of the presentation.</p>
-<p>Edfice supports Qt widget styling (<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">see reference for Qt stylesheets</a>).
-The <strong>style prop</strong> of Edifice base components allow you to set the style for that component.
+<p>Edfice supports <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt widget styling</a>.
+The <strong>style prop</strong> of Edifice base <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> allows you to set the style for that component.
 It is either a dictionary or a list of dictionaries, in which case the dictionaries are merged from left to right.
 The keys of the dictionary are the supported style name, and the values are the value of that style name.</p>
-<p>For example, if you want to make a label with 10px margins, with red text
-in a 16pt font on a beige semi-transparent background:</p>
+<p>For example, if you want to make a label with <em>10px</em> margins, with <em>red</em> text
+in a <em>16pt</em> font on a <em>beige</em> <em>semi-transparent</em> background:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Red text&quot;</span><span class="p">,</span>
       <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
              <span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
@@ -368,7 +368,7 @@ in a 16pt font on a beige semi-transparent background:</p>
              <span class="p">})</span>
 </pre></div>
 </div>
-<p>If you want to make all Labels be red but have labels of different
+<p>If you want to make all <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Labels</span></code></a> be <em>red</em> but have labels of different
 font sizes, you can create a common style object encoding shared styles:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LABEL_STYLE</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span>
@@ -398,9 +398,8 @@ font sizes, you can create a common style object encoding shared styles:</p>
 <li><p><strong>align</strong>: one of “left, “right”, “top”, “bottom”, “center”, “justify”</p></li>
 <li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): pixel offset from a View with layout=None.</p></li>
 </ul>
-<p>All style attributes supported by Qt will also work with Edifice.
-<a class="reference external" href="https://doc.qt.io/qt-5/stylesheet-reference.html#list-of-properties">Click here</a>
-to see a list of Qt-supported styling properties.
+<p>All style properties supported by Qt will also work with Edifice.
+See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.
 Note that sometimes Qt styling behaves very differently from CSS styling
 (despite similar syntax and naming)
 and are not necessarily supported by all widgets.</p>
