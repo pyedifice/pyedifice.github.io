@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Edifice Core Concepts &#8212; Edifice 0.1.1 documentation</title>
+    <title>Edifice Core Concepts &#8212; Edifice 0.1.2 documentation</title>
   
   
   
@@ -130,6 +130,7 @@
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -361,14 +362,16 @@ document.write(`
                   
   <section id="module-edifice">
 <span id="edifice-core-concepts"></span><h1>Edifice Core Concepts<a class="headerlink" href="#module-edifice" title="Permalink to this heading">#</a></h1>
-<p>An edifice application is created by rendering a Component with an App.
+<p>An edifice application is created by rendering a <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> with an
+<a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.
 Let’s examine what these objects are to understand what this statement means.</p>
 <p>Components are the basic building blocks of your GUI.
 A Component object is a stateful container wrapping a stateless render function,
 which describes what to render given the current Component state.
 Components can be composed of other components,
-both native components (View, Button, Text) and other composite
-components created by you or others.</p>
+both native components
+(<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a>, <a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-class docutils literal notranslate"><span class="pre">Button</span></code></a>, <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a>)
+and other composite Components created by you or others.</p>
 <p>Components have both internal state and external properties.
 The external properties, <strong>props</strong>, are passed into the Component by another
 Component:</p>
@@ -381,29 +384,31 @@ Component:</p>
 </pre></div>
 </div>
 <p>These values are owned by the external caller and should not be modified by this Component.
-They may be accessed via the field props (<code class="code docutils literal notranslate"><span class="pre">self.props</span></code>), which is a PropsDict.
-A PropsDict allows iteration, get item (<code class="code docutils literal notranslate"><span class="pre">self.props[&quot;value&quot;]</span></code>), and get attribute
-(<code class="code docutils literal notranslate"><span class="pre">self.props.value</span></code>), but not set item or set attribute.</p>
+They may be accessed via the field props <code class="code docutils literal notranslate"><span class="pre">self.props</span></code>, which is a
+<a class="reference internal" href="stubs/edifice.PropsDict.html#edifice.PropsDict" title="edifice.PropsDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropsDict</span></code></a>.
+A <a class="reference internal" href="stubs/edifice.PropsDict.html#edifice.PropsDict" title="edifice.PropsDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropsDict</span></code></a> allows iteration, “get item” <code class="code docutils literal notranslate"><span class="pre">self.props[&quot;value&quot;]</span></code>,
+and “get attribute” <code class="code docutils literal notranslate"><span class="pre">self.props.value</span></code>, but not “set item” or “set attribute”.</p>
 <p>The internal state, henceforth referred to as the <strong>state</strong>, belong to the Component.
 These are attributes of the Component object, for instance <code class="code docutils literal notranslate"><span class="pre">self.my_state</span></code>.
 You can initialize the state as usual in the constructor
 (e.g. <code class="code docutils literal notranslate"><span class="pre">self.my_state</span> <span class="pre">=</span> <span class="pre">{&quot;a&quot;:</span> <span class="pre">1}</span></code>),
 and the state persists so long as the Component is still mounted.</p>
 <p>Changes in state and props will automatically trigger a re-render
-(unless you override this behavior by modifying <code class="code docutils literal notranslate"><span class="pre">should_update</span></code>).
-State should be changed using either the <code class="code docutils literal notranslate"><span class="pre">component.set_state</span></code> function
-or the <code class="code docutils literal notranslate"><span class="pre">component.render_changes()</span></code> context manager.
-See documentation for Component for more details.</p>
-<p>The main method of Component is render, which should describe the rendered UI
+(unless you override this behavior by modifying <a class="reference internal" href="stubs/stubs/edifice.Component.should_update.html#edifice.Component.should_update" title="edifice.Component.should_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.should_update()</span></code></a>).
+State should be changed using either the <a class="reference internal" href="stubs/stubs/edifice.Component.set_state.html#edifice.Component.set_state" title="edifice.Component.set_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.set_state()</span></code></a> function
+or the <a class="reference internal" href="stubs/stubs/edifice.Component.render_changes.html#edifice.Component.render_changes" title="edifice.Component.render_changes"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.render_changes()</span></code></a> context manager.
+See documentation for <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> for more details.</p>
+<p>The main method of Component is <a class="reference internal" href="stubs/stubs/edifice.Component.render.html#edifice.Component.render" title="edifice.Component.render"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.render()</span></code></a>, which should describe the rendered UI
 given the current Component state.
 The render result is composed of your own higher-level components as well as
-the core Components, such as Label, Button, and View.
+the core Components, such as
+<a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a>, <a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-class docutils literal notranslate"><span class="pre">Button</span></code></a>, and <a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a>.
 Components may be composed in a tree like fashion:
-one special prop is children, which will always be defined (defaults to an
+one special prop is <code class="code docutils literal notranslate"><span class="pre">children</span></code>, which will always be defined (defaults to an
 empty list).
 To better enable the visualization of the tree-structure of a Component
 in the code,
-the call method of a Component has been overriden to set the arguments
+the <code class="code docutils literal notranslate"><span class="pre">call()</span></code> method of Component has been overriden to set the arguments
 of the call as children of the component.
 This allows you to write tree-like code remniscent of HTML:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -465,25 +470,25 @@ to be shared across many different components with the same reactive guarantee:
 all state changes will be reflected in the UI.</p>
 <p>An App object encapsulates the rendering engine that’s responsible
 for issuing the commands necessary to render the each of the declared Components.
-The App object is created by passing in the root Component,
+The <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> object is created by passing in the root <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>,
 and it tracks all state changes in the Component tree with the given root.
-Calling the start method on the App object will run your application
+Calling the <a class="reference internal" href="stubs/stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method on the App object will run your application
 and display the GUI you created:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">App</span><span class="p">(</span><span class="n">MyApp</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>When components are rendered, the render function is called.
+<p>When components are rendered, the <a class="reference internal" href="stubs/stubs/edifice.Component.render.html#edifice.Component.render" title="edifice.Component.render"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.render()</span></code></a> function is called.
 This output is then compared against the output
 of the previous render (if that exists). The two renders are diffed,
 and on certain conditions, the Component objects from the previous render
 are maintained and updated with new props.
 Two Components belonging to different classes will always be re-rendered,
 and Components belonging to the same class are assumed to be the same
-and thus maintained (preserving the old state).
-For lists of Components, a more complex procedure (the same as in ReactJS)
-will resolve which Components to maintain and which to replace;
-see documentation of Component class for details.</p>
+and thus maintained (preserving the old state).</p>
+<p>For lists of Components, a more complex procedure (the same as in ReactJS)
+will determine which Components to maintain and which to replace;
+see documentation of <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> class for details.</p>
 <p>Some useful utilities are also provided:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.register_props.html#edifice.register_props" title="edifice.register_props"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_props()</span></code></a> : A decorator for the <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> function that records

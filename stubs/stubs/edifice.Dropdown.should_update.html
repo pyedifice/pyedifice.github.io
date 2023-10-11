@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>edifice.Dropdown.should_update &#8212; Edifice 0.1.1 documentation</title>
+    <title>edifice.Dropdown.should_update &#8212; Edifice 0.1.2 documentation</title>
   
   
   
@@ -130,6 +130,7 @@
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -359,7 +360,8 @@ document.write(`
 props and state that change: they
 may be a subset of the props and the state. When this function is called,
 all props and state of this Component are the old values, so you can compare
-<code class="code docutils literal notranslate"><span class="pre">component.props</span></code> and <code class="code docutils literal notranslate"><span class="pre">newprops</span></code> to determine changes.</p>
+<code class="code docutils literal notranslate"><span class="pre">self.props</span></code> to <code class="code docutils literal notranslate"><span class="pre">newprops</span></code> and :code`self` to <code class="code docutils literal notranslate"><span class="pre">newstate</span></code>
+to determine changes.</p>
 <p>By default, this function returns <code class="code docutils literal notranslate"><span class="pre">True</span></code>, even if props and state are unchanged.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

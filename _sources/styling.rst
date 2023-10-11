@@ -50,7 +50,8 @@ Currently, the following CSS styles are tested to be supported:
 - **height**, **width**: height/width in pixels
 - **min-height**, **max-height**, etc.: min/max height/width in pixels
 - **align**: one of "left, "right", "top", "bottom", "center", "justify"
-- **top**, **left** (but not bottom, right): pixel offset from a View with layout=None.
+- **top**, **left** (but not bottom, right): pixel offset from a
+  :class:`View <edifice.View>` with :code:`layout=None`.
 
 All style properties supported by Qt will also work with Edifice.
 See `Qt Stylesheet Reference List of Properties <https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html#list-of-properties>`_.

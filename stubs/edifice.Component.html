@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>edifice.Component &#8212; Edifice 0.1.1 documentation</title>
+    <title>edifice.Component &#8212; Edifice 0.1.2 documentation</title>
   
   
   
@@ -130,6 +130,7 @@
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -588,10 +589,12 @@ state should not depend on whether or not the render function is called.</p>
 <dt class="sig sig-object py" id="edifice.Component.render_changes">
 <span class="sig-name descname"><span class="pre">render_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignored_variables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/_component.html#Component.render_changes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Component.render_changes" title="Permalink to this definition">#</a></dt>
 <dd><p>Context manager for managing changes to state.</p>
-<p>This context manager provides two functions:
-- Make a group of assignments to state atomically: if an exception occurs,
-all changes will be rolled back.
-- Renders changes to the state upon successful completion.</p>
+<p>This context manager does two things:</p>
+<ul class="simple">
+<li><p>Make a group of assignments to state atomically: if an exception occurs,
+all changes will be rolled back.</p></li>
+<li><p>Renders changes to the state upon successful completion.</p></li>
+</ul>
 <p>Note that this context manager will not keep track of changes to mutable objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -634,8 +637,8 @@ however, providing the key may provide more accurate results, leading to efficie
 <span class="sig-name descname"><span class="pre">set_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/_component.html#Component.set_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Component.set_state" title="Permalink to this definition">#</a></dt>
 <dd><p>Set state and render changes.</p>
 <p>The keywords are the names of the state attributes of the class, e.g.
-for the state self.mystate, you call set_state with set_state(mystate=2).
-At the end of this call, all changes will be rendered.
+for the state <code class="code docutils literal notranslate"><span class="pre">self.mystate</span></code>, you call <code class="code docutils literal notranslate"><span class="pre">set_state(mystate=2)</span></code>.</p>
+<p>At the end of this call, all changes will be rendered.
 All changes are guaranteed to appear atomically: upon exception,
 no changes to state will occur.</p>
 </dd></dl>
@@ -648,7 +651,8 @@ no changes to state will occur.</p>
 props and state that change: they
 may be a subset of the props and the state. When this function is called,
 all props and state of this Component are the old values, so you can compare
-<code class="code docutils literal notranslate"><span class="pre">component.props</span></code> and <code class="code docutils literal notranslate"><span class="pre">newprops</span></code> to determine changes.</p>
+<code class="code docutils literal notranslate"><span class="pre">self.props</span></code> to <code class="code docutils literal notranslate"><span class="pre">newprops</span></code> and :code`self` to <code class="code docutils literal notranslate"><span class="pre">newstate</span></code>
+to determine changes.</p>
 <p>By default, this function returns <code class="code docutils literal notranslate"><span class="pre">True</span></code>, even if props and state are unchanged.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

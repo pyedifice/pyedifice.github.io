@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>edifice.IconButton.render_changes &#8212; Edifice 0.1.1 documentation</title>
+    <title>edifice.IconButton.render_changes &#8212; Edifice 0.1.2 documentation</title>
   
   
   
@@ -130,6 +130,7 @@
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -355,10 +356,12 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.IconButton.render_changes">
 <span class="sig-prename descclassname"><span class="pre">IconButton.</span></span><span class="sig-name descname"><span class="pre">render_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignored_variables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#edifice.IconButton.render_changes" title="Permalink to this definition">#</a></dt>
 <dd><p>Context manager for managing changes to state.</p>
-<p>This context manager provides two functions:
-- Make a group of assignments to state atomically: if an exception occurs,
-all changes will be rolled back.
-- Renders changes to the state upon successful completion.</p>
+<p>This context manager does two things:</p>
+<ul class="simple">
+<li><p>Make a group of assignments to state atomically: if an exception occurs,
+all changes will be rolled back.</p></li>
+<li><p>Renders changes to the state upon successful completion.</p></li>
+</ul>
 <p>Note that this context manager will not keep track of changes to mutable objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

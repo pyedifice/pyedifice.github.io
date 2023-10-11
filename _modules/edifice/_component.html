@@ -653,9 +653,10 @@ document.write(`
     <span class="k">def</span> <span class="nf">render_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignored_variables</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Context manager for managing changes to state.</span>
 
-<span class="sd">        This context manager provides two functions:</span>
+<span class="sd">        This context manager does two things:</span>
+
 <span class="sd">        - Make a group of assignments to state atomically: if an exception occurs,</span>
-<span class="sd">        all changes will be rolled back.</span>
+<span class="sd">          all changes will be rolled back.</span>
 <span class="sd">        - Renders changes to the state upon successful completion.</span>
 
 <span class="sd">        Note that this context manager will not keep track of changes to mutable objects.</span>
@@ -704,7 +705,8 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set state and render changes.</span>
 
 <span class="sd">        The keywords are the names of the state attributes of the class, e.g.</span>
-<span class="sd">        for the state self.mystate, you call set_state with set_state(mystate=2).</span>
+<span class="sd">        for the state :code:`self.mystate`, you call :code:`set_state(mystate=2)`.</span>
+
 <span class="sd">        At the end of this call, all changes will be rendered.</span>
 <span class="sd">        All changes are guaranteed to appear atomically: upon exception,</span>
 <span class="sd">        no changes to state will occur.</span>
@@ -732,7 +734,8 @@ document.write(`
 <span class="sd">        props and state that change: they</span>
 <span class="sd">        may be a subset of the props and the state. When this function is called,</span>
 <span class="sd">        all props and state of this Component are the old values, so you can compare</span>
-<span class="sd">        :code:`component.props` and :code:`newprops` to determine changes.</span>
+<span class="sd">        :code:`self.props` to :code:`newprops` and :code`self` to :code:`newstate`</span>
+<span class="sd">        to determine changes.</span>
 
 <span class="sd">        By default, this function returns :code:`True`, even if props and state are unchanged.</span>
 
