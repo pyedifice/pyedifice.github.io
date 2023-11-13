@@ -1,4 +1,4 @@
-Higher-level Components
+Higher-level Elements
 =======================
 
 Edifice also provides a few higher level components that provide useful but non-core convenience features.
@@ -20,8 +20,3 @@ User contributions are of course welcome!
    ~plotting.Figure
    ~forms.Form
    ~forms.FormDialog
-   ~button_view.ButtonView
-   ~flow_view.FlowView
-   ~table_grid_view.TableGridView
-   ~table_grid_view.TableChildren
-   ~image_aspect.ImageAspect

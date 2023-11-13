@@ -20,17 +20,8 @@ edifice.Window
       :toctree: stubs
    
       ~Window.__init__
-      ~Window.did_mount
-      ~Window.did_render
-      ~Window.did_update
-      ~Window.register_props
       ~Window.register_ref
-      ~Window.render
-      ~Window.render_changes
       ~Window.set_key
-      ~Window.set_state
-      ~Window.should_update
-      ~Window.will_unmount
    
    
 

@@ -23,6 +23,7 @@ edifice.App
       ~App.export_widgets
       ~App.set_stylesheet
       ~App.start
+      ~App.start_loop
    
    
 

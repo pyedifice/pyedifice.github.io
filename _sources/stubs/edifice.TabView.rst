@@ -20,17 +20,8 @@ edifice.TabView
       :toctree: stubs
    
       ~TabView.__init__
-      ~TabView.did_mount
-      ~TabView.did_render
-      ~TabView.did_update
-      ~TabView.register_props
       ~TabView.register_ref
-      ~TabView.render
-      ~TabView.render_changes
       ~TabView.set_key
-      ~TabView.set_state
-      ~TabView.should_update
-      ~TabView.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.TabView
    
       ~TabView.children
       ~TabView.props
+      ~TabView.underlying
    
    

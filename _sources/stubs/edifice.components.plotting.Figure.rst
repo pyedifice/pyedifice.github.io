@@ -21,19 +21,10 @@ edifice.components.plotting.Figure
    
       ~Figure.__init__
       ~Figure.create_widget
-      ~Figure.did_mount
-      ~Figure.did_render
-      ~Figure.did_update
       ~Figure.paint
       ~Figure.plot
-      ~Figure.register_props
       ~Figure.register_ref
-      ~Figure.render
-      ~Figure.render_changes
       ~Figure.set_key
-      ~Figure.set_state
-      ~Figure.should_update
-      ~Figure.will_unmount
    
    
 
@@ -45,5 +36,6 @@ edifice.components.plotting.Figure
    
       ~Figure.children
       ~Figure.props
+      ~Figure.underlying
    
    

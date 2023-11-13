@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edifice.hooks &#8212; Edifice 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/hooks';</script>
+    <link rel="shortcut icon" href="../../_static/EdificePyramid.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
+	<div class="bd-toc-item navbar-nav active">
+			<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.component.html">edifice.component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.App.html">edifice.App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Element.html">edifice.Element</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.View.html">edifice.View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TabView.html">edifice.TabView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.FlowView.html">edifice.FlowView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Label.html">edifice.Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Image.html">edifice.Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ImageAspect.html">edifice.ImageAspect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Icon.html">edifice.Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.IconButton.html">edifice.IconButton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Dropdown.html">edifice.Dropdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utility functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../styling.html">Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_tools.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../versions.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Roadmap</a></li>
+</ul>
+
+	</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/pyedifice/pyedifice" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for edifice.hooks</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span>
+<span class="kn">from</span> <span class="nn">edifice._component</span> <span class="kn">import</span> <span class="n">get_render_context_maybe</span><span class="p">,</span> <span class="n">_T_use_state</span><span class="p">,</span> <span class="n">Reference</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<div class="viewcode-block" id="use_state"><a class="viewcode-back" href="../../stubs/edifice.use_state.html#edifice.use_state">[docs]</a><span class="k">def</span> <span class="nf">use_state</span><span class="p">(</span><span class="n">initial_state</span><span class="p">:</span><span class="n">_T_use_state</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+    <span class="n">_T_use_state</span><span class="p">,</span> <span class="c1"># current value</span>
+    <span class="n">Callable</span><span class="p">[</span> <span class="c1"># updater</span>
+        <span class="p">[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span><span class="n">_T_use_state</span><span class="p">]],</span>
+        <span class="kc">None</span>
+    <span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Persistent mutable state Hook inside a :func:`edifice.component` function.</span>
+
+<span class="sd">    Behaves like `React useState &lt;https://react.dev/reference/react/useState&gt;`_.</span>
+
+<span class="sd">    When :func:`use_state` is called, it returns a **state value** and a</span>
+<span class="sd">    **setter function**.</span>
+
+<span class="sd">    The **state value** will be the value of the state at the beginning of</span>
+<span class="sd">    the render for this component.</span>
+
+<span class="sd">    The **setter function** will, when called, set the **state value** before</span>
+<span class="sd">    the next render.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Stateful(self):</span>
+<span class="sd">            x, x_setter = use_state(0)</span>
+
+<span class="sd">            if x &lt; 1:</span>
+<span class="sd">                x_setter(1)</span>
+
+<span class="sd">            Label(text=str(x))</span>
+
+<span class="sd">    If an **updater function** is passed to the **setter function**, then at the end of</span>
+<span class="sd">    the render the state will be modified by calling all of the</span>
+<span class="sd">    **updater functions** in this order in which they were passed.</span>
+<span class="sd">    An **updater function** is a function from the previous state to the new state.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Stateful(self):</span>
+<span class="sd">            x, x_setter = use_state(0)</span>
+
+<span class="sd">            def updater(y):</span>
+<span class="sd">                return y + 1</span>
+
+<span class="sd">            if x &lt; 1:</span>
+<span class="sd">                x_setter(updater)</span>
+
+<span class="sd">            Label(text=str(x))</span>
+
+<span class="sd">    If any of the **updater functions** raises an exception, then all state</span>
+<span class="sd">    updates will be cancelled and the state value will be unchanged for the</span>
+<span class="sd">    next render.</span>
+
+<span class="sd">    Do not mutate the state variable. The old state variable must be left</span>
+<span class="sd">    unmodified so that it can be compared to the new state variable during</span>
+<span class="sd">    the next render. If your state variable is a collection, then create</span>
+<span class="sd">    a shallow copy of it to pass to the **setter function**::</span>
+
+<span class="sd">        def Stateful(self):</span>
+<span class="sd">            x, x_setter = use_state([])</span>
+
+<span class="sd">            def add_one():</span>
+<span class="sd">                x_new = x.copy()</span>
+<span class="sd">                x_new.append(&quot;Label Text&quot;)</span>
+<span class="sd">                x_setter(x_new)</span>
+
+<span class="sd">            with View():</span>
+<span class="sd">                Button(</span>
+<span class="sd">                    title=&quot;Add One&quot;,</span>
+<span class="sd">                    on_click = lambda _event: add_one</span>
+<span class="sd">                )</span>
+<span class="sd">                for i = range(x):</span>
+<span class="sd">                    Label(text=i)</span>
+
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        You can&#39;t store a :code:`callable` value in :code:`use_state`,</span>
+<span class="sd">        because it will be mistaken for an **updater function**. If you</span>
+<span class="sd">        want to store a :code:`callable` value, like a function, then wrap</span>
+<span class="sd">        it in a :code:`tuple` or some other non-:code:`callable` data structure.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        initial_state: The initial state value.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing</span>
+
+<span class="sd">        1. The current state value.</span>
+<span class="sd">        2. A **setter function** for setting or updating the state value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_state used outside component&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="use_effect"><a class="viewcode-back" href="../../stubs/edifice.use_effect.html#edifice.use_effect">[docs]</a><span class="k">def</span> <span class="nf">use_effect</span><span class="p">(</span>
+    <span class="n">setup</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]],</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Side-effect Hook inside a :func:`edifice.component` function.</span>
+
+<span class="sd">    Behaves like `React useEffect &lt;https://react.dev/reference/react/useEffect&gt;`_.</span>
+
+<span class="sd">    The **setup function** will be called after render and after the underlying</span>
+<span class="sd">    Qt Widgets are updated.</span>
+
+<span class="sd">    The **cleanup function** will be called by Edifice exactly once for</span>
+<span class="sd">    each call to the **setup function**.</span>
+<span class="sd">    The **cleanup function**</span>
+<span class="sd">    is called after render and before the component is deleted.</span>
+
+<span class="sd">    If the dependencies change, then the old **cleanup function** is called and</span>
+<span class="sd">    then the new **setup function** is called.</span>
+
+<span class="sd">    If the **setup function** raises an Exception then the</span>
+<span class="sd">    **cleanup function** will not be called.</span>
+<span class="sd">    Exceptions raised from the **setup function** and **cleanup function**</span>
+<span class="sd">    will be suppressed.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Effective(self, handler):</span>
+
+<span class="sd">            def setup_handler():</span>
+<span class="sd">                token = attach_event_handler(handler)</span>
+<span class="sd">                def cleanup_handler():</span>
+<span class="sd">                    remove_event_handler(token)</span>
+<span class="sd">                return cleanup_handler</span>
+
+<span class="sd">            use_effect(setup_handler, handler)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        setup: An effect **setup function** which returns a **cleanup function**.</span>
+<span class="sd">        dependencies: The effect **setup function** will be called when the</span>
+<span class="sd">            dependencies are not :code:`__eq__` to the old dependencies.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_effect used outside component&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">use_effect</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="use_async"><a class="viewcode-back" href="../../stubs/edifice.use_async.html#edifice.use_async">[docs]</a><span class="k">def</span> <span class="nf">use_async</span><span class="p">(</span>
+    <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Asynchronous side-effect Hook inside a :func:`edifice.component` function.</span>
+
+<span class="sd">    Will create a new</span>
+<span class="sd">    `Task &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task&gt;`_</span>
+<span class="sd">    with the :code:`fn_coroutine` coroutine.</span>
+
+<span class="sd">    The :code:`fn_coroutine` will be called every time the :code:`dependencies` change.</span>
+
+<span class="sd">    If the Component is unmounted before the :code:`fn_coroutine` Task completes, then</span>
+<span class="sd">    the :code:`fn_coroutine` Task will be cancelled by calling</span>
+<span class="sd">    `cancel() &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.cancel&gt;`_</span>
+<span class="sd">    on the Task.</span>
+<span class="sd">    See also</span>
+<span class="sd">    `Task Cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_.</span>
+
+<span class="sd">    If the :code:`dependencies` change before the :code:`fn_coroutine` Task completes, then</span>
+<span class="sd">    the :code:`fn_coroutine` Task will be cancelled and then the new</span>
+<span class="sd">    :code:`fn_coroutine` Task will</span>
+<span class="sd">    be started after the old :code:`fn_coroutine` Task completes.</span>
+
+<span class="sd">    Write your :code:`fn_coroutine` function in such a way that it</span>
+<span class="sd">    cleans itself up after exceptions.</span>
+<span class="sd">    Make sure that the :code:`fn_coroutine` function</span>
+<span class="sd">    does not try to do anything with this Component after an</span>
+<span class="sd">    :code:`asyncio.CancelledError`</span>
+<span class="sd">    is raised, because this Component may at that time</span>
+<span class="sd">    already have been unmounted.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Asynchronous(self):</span>
+<span class="sd">            myword, myword_set = use_state(&quot;&quot;)</span>
+
+<span class="sd">            async def fetcher():</span>
+<span class="sd">                x = await fetch_word_from_the_internet()</span>
+<span class="sd">                myword_set(x)</span>
+
+<span class="sd">            use_async(fetcher, 0)</span>
+<span class="sd">            Label(text=myword)</span>
+
+<span class="sd">    Timers</span>
+<span class="sd">    ======</span>
+
+<span class="sd">    The :code:`use_async` Hook is also useful for timers and animation.</span>
+
+<span class="sd">    Here is an example which shows how to run a timer in a component. The</span>
+<span class="sd">    Harmonic Oscillator in :doc:`../examples` uses this technique::</span>
+
+<span class="sd">        is_playing, is_playing_set = use_state(False)</span>
+<span class="sd">        play_trigger, play_trigger_set = use_state(False)</span>
+
+<span class="sd">        async def play_tick():</span>
+<span class="sd">            if is_playing:</span>
+<span class="sd">                # Do the timer effect here</span>
+<span class="sd">                # (timer effect code)</span>
+
+<span class="sd">                # Then wait for 0.05 seconds and trigger another play_tick.</span>
+<span class="sd">                await asyncio.sleep(0.05)</span>
+<span class="sd">                play_trigger_set(lambda p: not p)</span>
+
+<span class="sd">        use_async(play_tick, (is_playing, play_trigger))</span>
+
+<span class="sd">        Button(</span>
+<span class="sd">            text=&quot;pause&quot; if is_playing else &quot;play&quot;,</span>
+<span class="sd">            on_click=lambda e: is_playing_set(lambda p: not p),</span>
+<span class="sd">        )</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_coroutine: Async Coroutine function to be run as a Task.</span>
+<span class="sd">        dependencies: The :code:`fn_coroutine` Task will be started when the</span>
+<span class="sd">            :code:`dependencies` are not :code:`__eq__` to the old :code:`dependencies`.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_async used outside component&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="use_ref"><a class="viewcode-back" href="../../stubs/edifice.use_ref.html#edifice.use_ref">[docs]</a><span class="k">def</span> <span class="nf">use_ref</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Reference</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hook for creating a :class:`Reference` inside a :func:`edifice.component`</span>
+<span class="sd">    function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">Reference</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">r</span></div>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By David Ding © 2021
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

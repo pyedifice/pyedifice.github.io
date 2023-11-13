@@ -20,17 +20,8 @@ edifice.Button
       :toctree: stubs
    
       ~Button.__init__
-      ~Button.did_mount
-      ~Button.did_render
-      ~Button.did_update
-      ~Button.register_props
       ~Button.register_ref
-      ~Button.render
-      ~Button.render_changes
       ~Button.set_key
-      ~Button.set_state
-      ~Button.should_update
-      ~Button.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.Button
    
       ~Button.children
       ~Button.props
+      ~Button.underlying
    
    

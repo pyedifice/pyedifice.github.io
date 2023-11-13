@@ -20,17 +20,8 @@ edifice.TextInput
       :toctree: stubs
    
       ~TextInput.__init__
-      ~TextInput.did_mount
-      ~TextInput.did_render
-      ~TextInput.did_update
-      ~TextInput.register_props
       ~TextInput.register_ref
-      ~TextInput.render
-      ~TextInput.render_changes
       ~TextInput.set_key
-      ~TextInput.set_state
-      ~TextInput.should_update
-      ~TextInput.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.TextInput
    
       ~TextInput.children
       ~TextInput.props
+      ~TextInput.underlying
    
    

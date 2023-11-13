@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.components.forms.FormDialog &#8212; Edifice 0.1.2 documentation</title>
+    <title>edifice.components.forms.FormDialog &#8212; Edifice 0.2.0 documentation</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -33,8 +33,9 @@
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -47,8 +48,6 @@
     <link rel="shortcut icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.components.forms.FormDialog.__init__" href="stubs/edifice.components.forms.FormDialog.__init__.html" />
-    <link rel="prev" title="edifice.components.forms.Form.will_unmount" href="stubs/edifice.components.forms.Form.will_unmount.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -59,6 +58,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -119,45 +127,47 @@
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
-			<ul class="current nav bd-sidenav">
+			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="edifice.Component.html">edifice.Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.PropsDict.html">edifice.PropsDict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.register_props.html">edifice.register_props</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.make_component.html">edifice.make_component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="edifice.component.html">edifice.component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.App.html">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.Timer.html">edifice.Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../base_components.html">Base Components</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Image.html">edifice.Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.ImageAspect.html">edifice.ImageAspect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.TextInput.html">edifice.TextInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -166,20 +176,11 @@
 <li class="toctree-l2"><a class="reference internal" href="edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../compound_components.html">Higher-level Components</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">edifice.components.forms.FormDialog</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="edifice.StateValue.html">edifice.StateValue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.StateManager.html">edifice.StateManager</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_state.html">edifice.use_state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utilities.html">Utility functions</a></li>
@@ -310,10 +311,10 @@
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -321,7 +322,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -355,7 +356,7 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.components.forms.FormDialog">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.components.forms.</span></span><span class="sig-name descname"><span class="pre">FormDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Form'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_submit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">submit_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Submit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/components/forms.html#FormDialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.components.forms.FormDialog" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice._component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice._component.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></p>
 <p>A convenience component that renders a Form in a dialog window.</p>
 <p>After submit is clicked, the window is closed.
 See documentation of Form for detailed documentation.</p>
@@ -370,41 +371,14 @@ See documentation of Form for detailed documentation.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.__init__.html#edifice.components.forms.FormDialog.__init__" title="edifice.components.forms.FormDialog.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(data[, title, config, label_map, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.did_mount.html#edifice.components.forms.FormDialog.did_mount" title="edifice.components.forms.FormDialog.did_mount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">did_mount</span></code></a>()</p></td>
-<td><p>Callback function that is called when the component mounts for the first time.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.did_render.html#edifice.components.forms.FormDialog.did_render" title="edifice.components.forms.FormDialog.did_render"><code class="xref py py-obj docutils literal notranslate"><span class="pre">did_render</span></code></a>()</p></td>
-<td><p>Callback function that is called whenever the component renders.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.did_update.html#edifice.components.forms.FormDialog.did_update" title="edifice.components.forms.FormDialog.did_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">did_update</span></code></a>()</p></td>
-<td><p>Callback function that is called whenever the component updates.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.on_submit.html#edifice.components.forms.FormDialog.on_submit" title="edifice.components.forms.FormDialog.on_submit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_submit</span></code></a>(data)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.on_submit.html#edifice.components.forms.FormDialog.on_submit" title="edifice.components.forms.FormDialog.on_submit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_submit</span></code></a>(data)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.register_props.html#edifice.components.forms.FormDialog.register_props" title="edifice.components.forms.FormDialog.register_props"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_props</span></code></a>(props)</p></td>
-<td><p>Register props.</p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.register_ref.html#edifice.components.forms.FormDialog.register_ref" title="edifice.components.forms.FormDialog.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
-<td><p>Registers provided reference to this component.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.render.html#edifice.components.forms.FormDialog.render" title="edifice.components.forms.FormDialog.render"><code class="xref py py-obj docutils literal notranslate"><span class="pre">render</span></code></a>()</p></td>
-<td><p>Logic for rendering, must be overridden.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.render_changes.html#edifice.components.forms.FormDialog.render_changes" title="edifice.components.forms.FormDialog.render_changes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">render_changes</span></code></a>([ignored_variables])</p></td>
-<td><p>Context manager for managing changes to state.</p></td>
+<td><p>Registers provided <code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code> to this Element.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.set_key.html#edifice.components.forms.FormDialog.set_key" title="edifice.components.forms.FormDialog.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
-<td><p>Sets the key of the component.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.set_state.html#edifice.components.forms.FormDialog.set_state" title="edifice.components.forms.FormDialog.set_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_state</span></code></a>(**kwargs)</p></td>
-<td><p>Set state and render changes.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.should_update.html#edifice.components.forms.FormDialog.should_update" title="edifice.components.forms.FormDialog.should_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">should_update</span></code></a>(newprops, newstate)</p></td>
-<td><p>Determines if the component should rerender upon receiving new props and state.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.will_unmount.html#edifice.components.forms.FormDialog.will_unmount" title="edifice.components.forms.FormDialog.will_unmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">will_unmount</span></code></a>()</p></td>
-<td><p>Callback function that is called when the component will unmount.</p></td>
+<td><p>Sets the key of the Element.</p></td>
 </tr>
 </tbody>
 </table>
@@ -412,30 +386,13 @@ See documentation of Form for detailed documentation.</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></p></td>
-<td><p>The children of this component.</p></td>
+<td><p>The children of this Element.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></p></td>
-<td><p>The props of this component.</p></td>
+<td><p>The props of this Element.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="edifice.components.forms.FormDialog.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/components/forms.html#FormDialog.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.components.forms.FormDialog.render" title="Permalink to this definition">#</a></dt>
-<dd><p>Logic for rendering, must be overridden.</p>
-<p>The render logic for this component, not implemented for this abstract class.
-The render function itself should be purely stateless, because the application
-state should not depend on whether or not the render function is called.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>None</strong> – </p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A Component object.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -446,34 +403,12 @@ state should not depend on whether or not the render function is called.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="stubs/edifice.components.forms.Form.will_unmount.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.components.forms.Form.will_unmount</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="stubs/edifice.components.forms.FormDialog.__init__.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.components.forms.FormDialog.__init__</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -515,8 +450,8 @@ By David Ding © 2021
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

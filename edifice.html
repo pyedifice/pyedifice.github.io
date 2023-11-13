@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice Core Concepts &#8212; Edifice 0.1.2 documentation</title>
+    <title>Edifice Core &#8212; Edifice 0.2.0 documentation</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -33,8 +33,9 @@
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -47,7 +48,7 @@
     <link rel="shortcut icon" href="_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="edifice.Component" href="stubs/edifice.Component.html" />
+    <link rel="next" title="edifice.component" href="stubs/edifice.component.html" />
     <link rel="prev" title="Examples" href="examples.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -59,6 +60,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -119,45 +129,47 @@
   
   
   
+  
     
     
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Edifice Core Concepts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Component.html">edifice.Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.PropsDict.html">edifice.PropsDict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.register_props.html">edifice.register_props</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.make_component.html">edifice.make_component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Edifice Core</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.component.html">edifice.component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.App.html">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Timer.html">edifice.Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="base_components.html">Base Components</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Image.html">edifice.Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ImageAspect.html">edifice.ImageAspect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TextInput.html">edifice.TextInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -166,20 +178,11 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.StateValue.html">edifice.StateValue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.StateManager.html">edifice.StateManager</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_state.html">edifice.use_state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Utility functions</a></li>
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -321,7 +324,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -338,7 +341,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Edifice Core Concepts</h1>
+    <h1>Edifice Core</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -348,6 +351,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-element-trees">Declaring Element Trees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-view-update">Model-View-Update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a></li>
 </ul>
             </nav>
@@ -361,67 +367,46 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="module-edifice">
-<span id="edifice-core-concepts"></span><h1>Edifice Core Concepts<a class="headerlink" href="#module-edifice" title="Permalink to this heading">#</a></h1>
-<p>An edifice application is created by rendering a <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> with an
+<span id="edifice-core"></span><h1>Edifice Core<a class="headerlink" href="#module-edifice" title="Permalink to this heading">#</a></h1>
+<section id="declaring-element-trees">
+<h2>Declaring Element Trees<a class="headerlink" href="#declaring-element-trees" title="Permalink to this heading">#</a></h2>
+<p>An edifice application is created by rendering a <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> with an
 <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.
 Let’s examine what these objects are to understand what this statement means.</p>
-<p>Components are the basic building blocks of your GUI.
-A Component object is a stateful container wrapping a stateless render function,
-which describes what to render given the current Component state.
-Components can be composed of other components,
-both native components
-(<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a>, <a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-class docutils literal notranslate"><span class="pre">Button</span></code></a>, <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a>)
-and other composite Components created by you or others.</p>
-<p>Components have both internal state and external properties.
-The external properties, <strong>props</strong>, are passed into the Component by another
-Component:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
-    <span class="nd">@edifice</span><span class="o">.</span><span class="n">register_props</span>  <span class="c1"># don&#39;t worry about this for now</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>  <span class="c1"># a, b, c are the props</span>
-        <span class="k">pass</span>
+<p>The rendering for an Edifice application is done by declaring a tree of Elements
+starting with a single root Element, and then declaring its children.</p>
+<p>An Element may be either a
+<a class="reference internal" href="base_components.html"><span class="doc">Base Element</span></a>
+or a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element.</p>
+<p>A <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element is a function which renders an
+<a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree.</p>
+<p>Elements have both internal state and external properties.
+The external properties, <strong>props</strong>, are passed into the Element:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Foo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="c1"># a, b, c are the props</span>
 
-<span class="n">Foo</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Create a Foo with props a=1, b=2, c=3.</span>
+<span class="n">Foo</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Render a Foo with props a=1, b=2, c=3.</span>
 </pre></div>
 </div>
-<p>These values are owned by the external caller and should not be modified by this Component.
-They may be accessed via the field props <code class="code docutils literal notranslate"><span class="pre">self.props</span></code>, which is a
-<a class="reference internal" href="stubs/edifice.PropsDict.html#edifice.PropsDict" title="edifice.PropsDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropsDict</span></code></a>.
-A <a class="reference internal" href="stubs/edifice.PropsDict.html#edifice.PropsDict" title="edifice.PropsDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropsDict</span></code></a> allows iteration, “get item” <code class="code docutils literal notranslate"><span class="pre">self.props[&quot;value&quot;]</span></code>,
-and “get attribute” <code class="code docutils literal notranslate"><span class="pre">self.props.value</span></code>, but not “set item” or “set attribute”.</p>
-<p>The internal state, henceforth referred to as the <strong>state</strong>, belong to the Component.
-These are attributes of the Component object, for instance <code class="code docutils literal notranslate"><span class="pre">self.my_state</span></code>.
-You can initialize the state as usual in the constructor
-(e.g. <code class="code docutils literal notranslate"><span class="pre">self.my_state</span> <span class="pre">=</span> <span class="pre">{&quot;a&quot;:</span> <span class="pre">1}</span></code>),
-and the state persists so long as the Component is still mounted.</p>
-<p>Changes in state and props will automatically trigger a re-render
-(unless you override this behavior by modifying <a class="reference internal" href="stubs/stubs/edifice.Component.should_update.html#edifice.Component.should_update" title="edifice.Component.should_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.should_update()</span></code></a>).
-State should be changed using either the <a class="reference internal" href="stubs/stubs/edifice.Component.set_state.html#edifice.Component.set_state" title="edifice.Component.set_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.set_state()</span></code></a> function
-or the <a class="reference internal" href="stubs/stubs/edifice.Component.render_changes.html#edifice.Component.render_changes" title="edifice.Component.render_changes"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.render_changes()</span></code></a> context manager.
-See documentation for <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> for more details.</p>
-<p>The main method of Component is <a class="reference internal" href="stubs/stubs/edifice.Component.render.html#edifice.Component.render" title="edifice.Component.render"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.render()</span></code></a>, which should describe the rendered UI
-given the current Component state.
-The render result is composed of your own higher-level components as well as
-the core Components, such as
-<a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a>, <a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-class docutils literal notranslate"><span class="pre">Button</span></code></a>, and <a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a>.
-Components may be composed in a tree like fashion:
-one special prop is <code class="code docutils literal notranslate"><span class="pre">children</span></code>, which will always be defined (defaults to an
-empty list).
-To better enable the visualization of the tree-structure of a Component
-in the code,
-the <code class="code docutils literal notranslate"><span class="pre">call()</span></code> method of Component has been overriden to set the arguments
-of the call as children of the component.
-This allows you to write tree-like code remniscent of HTML:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">)(</span>
-        <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">)(</span>
-            <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Username: &quot;</span><span class="p">),</span>
-            <span class="n">TextInput</span><span class="p">()</span>
-        <span class="p">),</span>
-        <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">)(</span>
-            <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Email: &quot;</span><span class="p">),</span>
-            <span class="n">TextInput</span><span class="p">()</span>
-        <span class="p">),</span>
-    <span class="p">)</span>
+<p>These values are owned by the external caller and should not be modified by this Element.</p>
+<p>The internal state, henceforth referred to as the <strong>state</strong>, belong to the Element.
+In a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element, the internal state is managed by <a class="reference internal" href="hooks.html"><span class="doc">Hooks</span></a>.</p>
+<p>Changes in <strong>state</strong> or <strong>props</strong> will automatically trigger a re-render.</p>
+<p>Declaring an Element tree in a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element render function looks
+like this.
+To declare an Element to be the parent of some other
+child Elements in the tree, use the parent as a
+<a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#context-managers">with statement context manager</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MyApp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>
+        <span class="k">with</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">):</span>
+                <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Username: &quot;</span><span class="p">)</span>
+                <span class="n">TextInput</span><span class="p">()</span>
+            <span class="k">with</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">):</span>
+                <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Email: &quot;</span><span class="p">)</span>
+                <span class="n">TextInput</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>In HTML/XML, this would be written as:</p>
@@ -436,93 +421,87 @@ This allows you to write tree-like code remniscent of HTML:</p>
 <span class="nt">&lt;/View&gt;</span>
 </pre></div>
 </div>
-<p>You can thus describe your entire application as a single root Component,
-which is composed of various sub-components representing different parts of your application.
-Each Component is responsible for managing its own state,
+<p>You can thus describe your entire application as a single root Element,
+which is composed of various sub-Elements representing different parts of your application.
+Each Element is responsible for managing its own state,
 updating it as necessary given user interactions and events.
-Because state is self-contained, you can compose Components arbitarily,
-including across projects.
-Edifice provides a few higher level components that are defined using the
-same API provided to users.</p>
-<p>One central tenet of Edifice is the importance of managing state.
-The most complex part of any application is not fancy widgets or animations,
-but maintaining consistent state, so that what the user sees is accurate
-(this is very important – you don’t want to show Apple stock prices
-when other parts of your UI indicates the user is looking at Microsoft!)
-The Component abstraction ensures that the UI is a pure and side effect free
-function of the state, so that if you serialize the state and play it back,
-you get the same UI.</p>
-<p>Of course, we don’t live in a functional utopia devoid of any mutable state,
-so equally important is managing ownership of the state.
-There should be only one ground truth value for any state variable,
-and any copies of this state should always refer back to the ground truth value.
-In the simplest case, state is managed by a Component,
-and passed down to children through props.
-The child cannot modify the prop directly; doing so would result in two different values of the state.
-In order for a child component to modify state in the parent,
-the parent has to pass a setter function to the child,
-so that any change is done on the ground truth source.
-For cases where some central state is shared across
-a wide swath of UI components, e.g. currently logged in user,
-Edifice provides
-<a class="reference internal" href="state.html"><span class="doc">state values and state managers</span></a> to allow this state
-to be shared across many different components with the same reactive guarantee:
-all state changes will be reflected in the UI.</p>
-<p>An App object encapsulates the rendering engine that’s responsible
-for issuing the commands necessary to render the each of the declared Components.
-The <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> object is created by passing in the root <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>,
-and it tracks all state changes in the Component tree with the given root.
+Because state is self-contained, you can compose Elements arbitarily,
+including across projects.</p>
+</section>
+<section id="model-view-update">
+<h2>Model-View-Update<a class="headerlink" href="#model-view-update" title="Permalink to this heading">#</a></h2>
+<p>Edifice, like React, uses the <a class="reference external" href="https://guide.elm-lang.org/architecture/">Elm Architecture</a>,
+also known as Model-View-Update.
+This means that there is a one-way information flow from Model to View to
+Update and then back to Model.</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>Model</p></td>
+<td><p>The <strong>state</strong> of the application.</p></td>
+</tr>
+<tr class="row-even"><td><p>View</p></td>
+<td><p>The declarative render function.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Update</p></td>
+<td><p>Event handlers which change the <strong>state</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>It is the one-way information flow of Model-View-Update which makes
+this style of GUI programming scale up well to complicated user interfaces.</p>
+</section>
+<section id="rendering">
+<h2>Rendering<a class="headerlink" href="#rendering" title="Permalink to this heading">#</a></h2>
+<p>An <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> encapsulates the rendering engine that’s responsible
+for issuing the commands necessary to render the each of the declared Elements.
+The <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> object is created by passing in the root <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>,
+and it tracks all state changes in the Element tree with the given root.
 Calling the <a class="reference internal" href="stubs/stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method on the App object will run your application
 and display the GUI you created:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">App</span><span class="p">(</span><span class="n">MyApp</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>When components are rendered, the <a class="reference internal" href="stubs/stubs/edifice.Component.render.html#edifice.Component.render" title="edifice.Component.render"><code class="xref py py-func docutils literal notranslate"><span class="pre">Component.render()</span></code></a> function is called.
-This output is then compared against the output
+<p>When Elements are rendered,
+the result is then compared against the result
 of the previous render (if that exists). The two renders are diffed,
-and on certain conditions, the Component objects from the previous render
-are maintained and updated with new props.
-Two Components belonging to different classes will always be re-rendered,
-and Components belonging to the same class are assumed to be the same
+and on certain conditions, the Element objects from the previous render
+are updated with new props.
+Two Elements belonging to different classes will always be re-rendered,
+and Elements belonging to the same class are assumed to be the same
 and thus maintained (preserving the old state).</p>
-<p>For lists of Components, a more complex procedure (the same as in ReactJS)
-will determine which Components to maintain and which to replace;
-see documentation of <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> class for details.</p>
-<p>Some useful utilities are also provided:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="stubs/edifice.register_props.html#edifice.register_props" title="edifice.register_props"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_props()</span></code></a> : A decorator for the <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> function that records
-all arguments as props.</p></li>
-<li><p><a class="reference internal" href="stubs/edifice.make_component.html#edifice.make_component" title="edifice.make_component"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_component()</span></code></a>: A decorator to turn a render function into a
-Component. This is useful if your Component has no internal state.</p></li>
-<li><p><a class="reference internal" href="utilities.html#edifice.utilities.set_trace" title="edifice.utilities.set_trace"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.utilities.set_trace()</span></code></a>: An analogue of <code class="code docutils literal notranslate"><span class="pre">pdb.set_trace</span></code> that works with Qt
-(<code class="code docutils literal notranslate"><span class="pre">pdb.set_trace</span></code> interrupts the Qt event flow, causing an unpleasant
-debugging experience). Use this <code class="code docutils literal notranslate"><span class="pre">set_trace</span></code> if you want to set breakpoings.</p></li>
-</ul>
+<p>When parent Element has many child Elements of the same class,
+a more complex procedure (the same as in ReactJS)
+will determine which Elements to maintain and which to replace.
+When comparing the child Elements, the Element’s
+<code class="code docutils literal notranslate"><span class="pre">_key</span></code> attribute will
+be compared. Elements with the same <code class="code docutils literal notranslate"><span class="pre">_key</span></code> and same class are assumed to be
+the same. You can set the key using the <a class="reference internal" href="stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">):</span>
+    <span class="n">MyElement</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+    <span class="n">MyElement</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the <code class="code docutils literal notranslate"><span class="pre">_key</span></code> is not provided, the diff algorithm will assign automatic keys
+based on index, which could result in subpar performance due to unnecessary rerenders.
+To ensure control over the rerender process, it is recommended to <a class="reference internal" href="stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a>
+whenever you have many children of the same class.</p>
+</section>
 <span class="target" id="module-edifice._component"></span><section id="class-overview">
 <h2>Class overview<a class="headerlink" href="#class-overview" title="Permalink to this heading">#</a></h2>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Component</span></code></a>()</p></td>
-<td><p>The base class for Edifice Components.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component</span></code></a>(f)</p></td>
+<td><p>Decorator turning a render function of <strong>props</strong> into an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.PropsDict.html#edifice.PropsDict" title="edifice.PropsDict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PropsDict</span></code></a>(dictionary)</p></td>
-<td><p>An immutable dictionary for storing props.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.register_props.html#edifice.register_props" title="edifice.register_props"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_props</span></code></a>(f)</p></td>
-<td><p>Decorator for <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> method to record props.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.make_component.html#edifice.make_component" title="edifice.make_component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_component</span></code></a>(f)</p></td>
-<td><p>Decorator turning a render function into a <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reference</span></code></a>()</p></td>
-<td><p>Reference to a <a class="reference internal" href="stubs/edifice.Component.html#edifice.Component" title="edifice.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> to allow imperative modifications.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-obj docutils literal notranslate"><span class="pre">App</span></code></a>(component[, inspector, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-obj docutils literal notranslate"><span class="pre">App</span></code></a>(root_element[, inspector, ...])</p></td>
 <td><p>The main application object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Timer.html#edifice.Timer" title="edifice.Timer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timer</span></code></a>(function)</p></td>
-<td><p>A Timer for calling a function periodically.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reference</span></code></a>()</p></td>
+<td><p>Reference to a <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> to allow imperative modifications.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Element</span></code></a>()</p></td>
+<td><p>The base class for Edifice Elements.</p></td>
 </tr>
 </tbody>
 </table>
@@ -535,11 +514,10 @@ debugging experience). Use this <code class="code docutils literal notranslate">
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="examples.html"
@@ -551,18 +529,15 @@ debugging experience). Use this <code class="code docutils literal notranslate">
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.Component.html"
+       href="stubs/edifice.component.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.Component</p>
+        <p class="prev-next-title">edifice.component</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -577,6 +552,9 @@ debugging experience). Use this <code class="code docutils literal notranslate">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-element-trees">Declaring Element Trees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-view-update">Model-View-Update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a></li>
 </ul>
   </nav></div>
@@ -618,8 +596,8 @@ By David Ding © 2021
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

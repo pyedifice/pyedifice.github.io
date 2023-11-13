@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.App &#8212; Edifice 0.1.2 documentation</title>
+    <title>edifice.App &#8212; Edifice 0.2.0 documentation</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -33,8 +33,9 @@
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -48,7 +49,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="edifice.App.__init__" href="stubs/edifice.App.__init__.html" />
-    <link rel="prev" title="edifice.Reference.__init__" href="stubs/edifice.Reference.__init__.html" />
+    <link rel="prev" title="edifice.component" href="edifice.component.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -59,6 +60,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -119,45 +129,47 @@
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../edifice.html">Edifice Core Concepts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="edifice.Component.html">edifice.Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.PropsDict.html">edifice.PropsDict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.register_props.html">edifice.register_props</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.make_component.html">edifice.make_component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../edifice.html">Edifice Core</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="edifice.component.html">edifice.component</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.Timer.html">edifice.Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../base_components.html">Base Components</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Image.html">edifice.Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.ImageAspect.html">edifice.ImageAspect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.TextInput.html">edifice.TextInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -166,20 +178,11 @@
 <li class="toctree-l2"><a class="reference internal" href="edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="edifice.StateValue.html">edifice.StateValue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.StateManager.html">edifice.StateManager</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_state.html">edifice.use_state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utilities.html">Utility functions</a></li>
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -321,7 +324,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -354,16 +357,19 @@ document.write(`
 <h1>edifice.App<a class="headerlink" href="#edifice-app" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.App">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_application</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qapplication</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mount_into_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_application</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qapplication</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The main application object.</p>
-<p>To start the application, call the start method:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">App</span><span class="p">(</span><span class="n">MyRootComponent</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<p>To start the application, call the <a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">App</span><span class="p">(</span><span class="n">MyRootElement</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>If you want application to be a normal application in an operating
+system window, then the top Element rendered by <code class="code docutils literal notranslate"><span class="pre">MyRootElement</span></code>
+must be a <a class="reference internal" href="edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a>.</p>
 <p>If you just want to create a widget (that you’ll integrate with an existing codebase),
-call the export_widgets method:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">App</span><span class="p">(</span><span class="n">MyRootComponent</span><span class="p">())</span><span class="o">.</span><span class="n">export_widgets</span><span class="p">()</span>
+call the <a class="reference internal" href="stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.export_widgets()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">App</span><span class="p">(</span><span class="n">MyRootElement</span><span class="p">())</span><span class="o">.</span><span class="n">export_widgets</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This widget can then be plugged into the rest of your application, and there’s no need
@@ -372,48 +378,48 @@ without any intervention.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>component</strong> (<a class="reference internal" href="edifice.Component.html#edifice.Component" title="edifice._component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>) – the root component of the application.
-If it is not an instance of Window or RootComponent, a Window
-will be created with the passed in component as a child.</p></li>
-<li><p><strong>inspector</strong> – whether or not to run an instance of the Edifice Inspector
+<li><p><strong>root_element</strong> (<a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice._component.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – the root Element of the application.
+It must render to an instance of <a class="reference internal" href="edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> or
+some other <code class="xref py py-class docutils literal notranslate"><span class="pre">RootElement</span></code></p></li>
+<li><p><strong>inspector</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether or not to run an instance of the Edifice Inspector
 alongside the main app. Defaults to False</p></li>
-<li><p><strong>create_application</strong> – (default True) whether or not to create an instance of QApplication.
+<li><p><strong>create_application</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – (default True) whether or not to create an instance of QApplication.
 Usually you want to use the default setting.
 However, if the QApplication is already created (e.g. in a test suite or if you just want Edifice
 to make a widget to plug into an existing Qt application),
 you can set this to False.</p></li>
-<li><p><strong>application_name</strong> – DEPRECATED the Qt application name to set when creating a new QApplication.
+<li><p><strong>application_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – DEPRECATED the Qt application name to set when creating a new QApplication.
 This option is only relevant if create_application is True.</p></li>
-<li><p><strong>qapplication</strong> – (default None)
+<li><p><strong>qapplication</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QApplication</span></code>]) – (default None)
 The <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html">QtWidgets.QApplication</a>.
 If you do not provide one, it will be created for you.</p></li>
-<li><p><strong>mount_into_window</strong> – (default True) whether or not to mount a window-less component into a window by default.
-If the passed in component is not part of any window, leaving this flag on will put the component in a window.
-Set this to False if you just want the App to output a widget.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.__init__.html#edifice.App.__init__" title="edifice.App.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(component[, inspector, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.__init__.html#edifice.App.__init__" title="edifice.App.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(root_element[, inspector, ...])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_widgets</span></code></a>()</p></td>
-<td><p>Exports the Qt widgets underlying the Edifice Component.</p></td>
+<td><p>Exports the Qt widgets underlying the Edifice Element.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.set_stylesheet.html#edifice.App.set_stylesheet" title="edifice.App.set_stylesheet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_stylesheet</span></code></a>(stylesheet)</p></td>
 <td><p>Adds a global stylesheet for the app.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start</span></code></a>()</p></td>
-<td><p>Start the QEventLoop.</p></td>
+<td><p>Start the application event loop.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.start_loop.html#edifice.App.start_loop" title="edifice.App.start_loop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_loop</span></code></a>()</p></td>
+<td><p>Start the application event loop manually.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.App.export_widgets">
 <span class="sig-name descname"><span class="pre">export_widgets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.export_widgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.export_widgets" title="Permalink to this definition">#</a></dt>
-<dd><p>Exports the Qt widgets underlying the Edifice Component.</p>
+<dd><p>Exports the Qt widgets underlying the Edifice Element.</p>
 <p>Depending on how the root component is defined, either one or multiple
 widgets are returned
 (for example, if your root component returns a list of Views,
@@ -422,7 +428,7 @@ These widgets are still managed by Edifice:
 they will still benefit from full reactivity and state consistency.
 You can mount these widgets to your pre-existing Qt Application this way:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suppose parent_widget is defined in Qt code.</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">MyAwesomeComponent</span><span class="p">())</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">MyAwesomeElement</span><span class="p">())</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">export_widgets</span><span class="p">()</span>
 <span class="n">widget</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">parent_widget</span><span class="p">)</span>
 </pre></div>
@@ -454,7 +460,44 @@ You can mount these widgets to your pre-existing Qt Application this way:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.App.start">
 <span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.start" title="Permalink to this definition">#</a></dt>
-<dd><p>Start the QEventLoop.</p>
+<dd><p>Start the application event loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The result of <code class="code docutils literal notranslate"><span class="pre">loop.run_forever()</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="edifice.App.start_loop">
+<span class="sig-name descname"><span class="pre">start_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.start_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.start_loop" title="Permalink to this definition">#</a></dt>
+<dd><p>Start the application event loop manually.</p>
+<p>A context manager alternative to <a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> which allows
+access to the application’s
+<a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>.</p>
+<p>The <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html">asyncio event loop</a>
+uses the <cite>QEventLoop</cite> as the current event loop. You can also access the
+<strong>asyncio</strong> current event loop in the usual way with
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html?highlight=run_forever#asyncio.get_running_loop">asyncio.get_running_loop()</a>.</p>
+<p>When you use <a class="reference internal" href="stubs/edifice.App.start_loop.html#edifice.App.start_loop" title="edifice.App.start_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_loop()</span></code></a>, you must explicitly run the event loop,
+for example with <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_forever">run_forever()</a>.
+When the user closes the <a class="reference internal" href="#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> it will stop the event loop,
+see <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.PySide6.QtWidgets.QApplication.exec_">QApplication.exit_()</a>.</p>
+<p>In this example, we add a Unix <code class="code docutils literal notranslate"><span class="pre">SIGINT</span></code> handler which will also stop
+the event loop.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">MyAppElement</span><span class="p">())</span>
+<span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">start_loop</span><span class="p">()</span> <span class="k">as</span> <span class="n">loop</span><span class="p">:</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">loop</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -467,19 +510,18 @@ You can mount these widgets to your pre-existing Qt Application this way:</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/edifice.Reference.__init__.html"
+       href="edifice.component.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.Reference.__init__</p>
+        <p class="prev-next-title">edifice.component</p>
       </div>
     </a>
     <a class="right-next"
@@ -491,10 +533,7 @@ You can mount these widgets to your pre-existing Qt Application this way:</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -536,8 +575,8 @@ By David Ding © 2021
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

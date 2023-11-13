@@ -20,17 +20,8 @@ edifice.CheckBox
       :toctree: stubs
    
       ~CheckBox.__init__
-      ~CheckBox.did_mount
-      ~CheckBox.did_render
-      ~CheckBox.did_update
-      ~CheckBox.register_props
       ~CheckBox.register_ref
-      ~CheckBox.render
-      ~CheckBox.render_changes
       ~CheckBox.set_key
-      ~CheckBox.set_state
-      ~CheckBox.should_update
-      ~CheckBox.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.CheckBox
    
       ~CheckBox.children
       ~CheckBox.props
+      ~CheckBox.underlying
    
    

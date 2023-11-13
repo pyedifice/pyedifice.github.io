@@ -1,5 +1,5 @@
-Edifice Core Concepts
-=====================
+Edifice Core
+============
 
 .. automodule:: edifice
 .. automodule:: edifice._component
@@ -14,10 +14,7 @@ Class overview
    :recursive:
    :template: custom-class.rst
 
-   Component
-   PropsDict
-   register_props
-   make_component
-   Reference
+   component
    App
-   Timer
+   Reference
+   Element

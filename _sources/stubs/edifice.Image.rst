@@ -20,17 +20,8 @@ edifice.Image
       :toctree: stubs
    
       ~Image.__init__
-      ~Image.did_mount
-      ~Image.did_render
-      ~Image.did_update
-      ~Image.register_props
       ~Image.register_ref
-      ~Image.render
-      ~Image.render_changes
       ~Image.set_key
-      ~Image.set_state
-      ~Image.should_update
-      ~Image.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.Image
    
       ~Image.children
       ~Image.props
+      ~Image.underlying
    
    

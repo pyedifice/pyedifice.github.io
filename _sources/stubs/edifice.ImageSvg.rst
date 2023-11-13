@@ -20,17 +20,8 @@ edifice.ImageSvg
       :toctree: stubs
    
       ~ImageSvg.__init__
-      ~ImageSvg.did_mount
-      ~ImageSvg.did_render
-      ~ImageSvg.did_update
-      ~ImageSvg.register_props
       ~ImageSvg.register_ref
-      ~ImageSvg.render
-      ~ImageSvg.render_changes
       ~ImageSvg.set_key
-      ~ImageSvg.set_state
-      ~ImageSvg.should_update
-      ~ImageSvg.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.ImageSvg
    
       ~ImageSvg.children
       ~ImageSvg.props
+      ~ImageSvg.underlying
    
    

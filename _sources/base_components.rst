@@ -1,4 +1,4 @@
-Base Components
+Base Elements
 ===============
 
 .. automodule:: edifice.base_components
@@ -9,18 +9,22 @@ Base Components
    :recursive:
    :template: custom-class.rst
 
-   QtWidgetComponent
+   QtWidgetElement
    Window
    View
    ScrollView
    TabView
    GridView
+   TableGridView
+   FlowView
    Label
    Image
    ImageSvg
+   ImageAspect
    Icon
    IconButton
    Button
+   ButtonView
    TextInput
    CheckBox
    RadioButton
@@ -30,10 +34,15 @@ Base Components
 Events
 ------
 
-For every base component, user interactions generate events, and you can specify how to handle the event by passing a callback function (which is either a function or an asyncio coroutine).
-These callbacks can be passed into the base component as props, for example the :code:`on_click` callback that can be passed to every widget,
-or the :code:`on_change` callback for checkboxes, radio buttons, sliders, and text input.
-The callback function is passed an argument describing the event, for example a click object holding click information (location of cursor, etc)
+For every base Element, user interactions generate events, and you can specify
+how to handle the event by passing a callback function (which is either a
+function or an asyncio coroutine).
+These callbacks can be passed into the base Element as props, for example
+the :code:`on_click` callback that can be passed to every widget,
+or the :code:`on_change` callback for checkboxes, radio buttons, sliders,
+and text input.
+The callback function is passed an argument describing the event, for example
+a click object holding click information (location of cursor, etc)
 or the new value of the input.
 
 These callbacks run in the same thread as the main application.
@@ -44,24 +53,21 @@ For such cases, you can use an asyncio `coroutine <https://docs.python.org/3/lib
 
 Consider this code::
 
-    class Component(edifice.Component):
+    @component
+    def MyComponent(self):
 
-        def __init__(self):
-            super().__init__()
-            self.results = ""
-            self.counter = 0
+        results, set_results = use_state("")
+        counter, set_counter = use_state(0)
 
         def on_click(self, e):
-            results = fetch_from_network()
-            self.set_state(results=results)
+            r = fetch_from_network()
+            set_results(r)
 
-        def render(self):
-            return edifice.View()(
-                edifice.Label(self.results),
-                edifice.Label(self.counter),
-                edifice.Button("Fetch", on_click=self.on_click),
-                edifice.Button("Increment", on_click=lambda e: self.set_state(counter=self.counter + 1))
-            )
+        with edifice.View():
+            edifice.Label(self.results)
+            edifice.Label(self.counter)
+            edifice.Button("Fetch", on_click=self.on_click)
+            edifice.Button("Increment", on_click=lambda e: set_counter(counter + 1)
 
 When the Fetch button is clicked, the event handler will call a lengthy :code:`fetch_from_network` function,
 blocking the application from further progress.
@@ -70,32 +76,31 @@ In the mean time, if the user clicks the increment button, nothing will happen u
 To allow the rest of the application to run while the fetch is happening, you can define
 the :code:`on_click` handler as a coroutine::
 
-    class Component(edifice.Component):
+    @component
+    def MyComponent(self):
 
-        def __init__(self):
-            super().__init__()
-            self.results = ""
-            self.counter = 0
-            self.loading = False
+        results, set_results = use_state("")
+        counter, set_counter = use_state(0)
+        loading, set_loading = use_state(False)
 
         async def on_click(self, e):
-            self.set_state(loading=True)
-            results = await asyncio.to_thread(fetch_from_network)
-            self.set_state(loading=False, results=results)
+            set_loading(True)
+            r = await fetch_from_network()
+            set_results(r)
+            set_loading(False)
 
-        def render(self):
-            return edifice.View()(
-                edifice.Label(self.results),
-                self.loading and edifice.Label("Loading"),
-                edifice.Label(self.counter),
-                edifice.Button("Fetch", on_click=self.on_click),
-                edifice.Button("Increment", on_click=lambda e: self.set_state(counter=self.counter + 1))
-            )
+        with edifice.View():
+            edifice.Label(self.results)
+            if loading:
+                edifice.Label("Loading")
+            edifice.Label(self.counter)
+            edifice.Button("Fetch", on_click=self.on_click)
+            edifice.Button("Increment", on_click=lambda e: set_counter(counter + 1)
 
 While the :code:`fetch_from_network` function is running, control is returned to the event loop,
 allowing the application to continue handling button clicks.
 
-See docs for :class:`QtWidgetComponent<edifice.QtWidgetComponent>` for a list of supported events.
+See docs for :class:`QtWidgetElement<edifice.QtWidgetElement>` for a list of supported events.
 
 
 .. _custom_widget:
@@ -104,13 +109,8 @@ Custom Widgets
 --------------
 
 Not all widgets are currently supported by Edifice.
-Edifice provides :code:`CustomWidget` to allow you to bind arbitrary
-QtWidgets to an Edifice component.
-The two methods to override are :code:`create_widget`,
-which should return the Qt widget,
-and :code:`paint`,
-which takes the current widget and new props,
-and should update the widget according to the new props.
+Edifice provides :class:`CustomWidget` to allow you to bind arbitrary
+QtWidgets to an Edifice Element.
 
 .. currentmodule:: edifice
 .. autosummary::

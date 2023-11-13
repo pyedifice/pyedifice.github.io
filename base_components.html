@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Base Components &#8212; Edifice 0.1.2 documentation</title>
+    <title>Base Elements &#8212; Edifice 0.2.0 documentation</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -33,8 +33,9 @@
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -47,8 +48,8 @@
     <link rel="shortcut icon" href="_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="edifice.QtWidgetComponent" href="stubs/edifice.QtWidgetComponent.html" />
-    <link rel="prev" title="edifice.Timer.stop" href="stubs/stubs/edifice.Timer.stop.html" />
+    <link rel="next" title="edifice.QtWidgetElement" href="stubs/edifice.QtWidgetElement.html" />
+    <link rel="prev" title="edifice.Element.set_key" href="stubs/stubs/edifice.Element.set_key.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -59,6 +60,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -119,45 +129,47 @@
   
   
   
+  
     
     
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Component.html">edifice.Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.PropsDict.html">edifice.PropsDict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.register_props.html">edifice.register_props</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.make_component.html">edifice.make_component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.component.html">edifice.component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.App.html">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Timer.html">edifice.Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Base Components</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Base Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Image.html">edifice.Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ImageAspect.html">edifice.ImageAspect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TextInput.html">edifice.TextInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -166,20 +178,11 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.StateValue.html">edifice.StateValue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.StateManager.html">edifice.StateManager</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_state.html">edifice.use_state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Utility functions</a></li>
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -321,7 +324,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -338,7 +341,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Base Components</h1>
+    <h1>Base Elements</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -362,20 +365,22 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="module-edifice.base_components">
-<span id="base-components"></span><h1>Base Components<a class="headerlink" href="#module-edifice.base_components" title="Permalink to this heading">#</a></h1>
-<p>Base Components are the building blocks for your Edifice application.
-These components may all be imported from the edifice namespace:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edifice</span>
-<span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Label</span>
-
-<span class="c1"># you can now access edifice.Button, View, etc.</span>
-</pre></div>
-</div>
-<p>All components in this module inherit from <a class="reference internal" href="stubs/edifice.QtWidgetComponent.html#edifice.QtWidgetComponent" title="edifice.QtWidgetComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetComponent</span></code></a>
+<span id="base-elements"></span><h1>Base Elements<a class="headerlink" href="#module-edifice.base_components" title="Permalink to this heading">#</a></h1>
+<p>Base Elements are the building blocks for an Edifice application.</p>
+<p>Each
+Base Element manages an underlying
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html">QWidget</a>.</p>
+<p>If the Base Element is a layout, then it also manages an underlying
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html">QLayout</a>,
+and it can have children.</p>
+<p>When the base Element renders, it adjusts the properties of the
+underlying QWidget and QLayout.</p>
+<p>All Elements in this module inherit from <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>
 and its props, such as <code class="code docutils literal notranslate"><span class="pre">style</span></code> and <code class="code docutils literal notranslate"><span class="pre">on_click</span></code>.
-This means that all widgets could potentially respond to clicks and are stylable using css-like stylesheets.</p>
-<p>The components here can roughly be divided into layout components and content components.</p>
-<p>Layout components take a list of children and function as a container for its children;
+This means that all Elements can respond to clicks and are stylable using
+<code class="code docutils literal notranslate"><span class="pre">style</span></code> prop and <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html">Qt Style Sheets</a>.</p>
+<p>Base Element can roughly be divided into layout Elements and leaf Elements.</p>
+<p>Layout Elements take a list of children and function as a container for its children;
 it is most analogous to the <code class="code docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code> html tag.
 The two basic layout components are <a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> and <a class="reference internal" href="stubs/edifice.ScrollView.html#edifice.ScrollView" title="edifice.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
 They take a layout prop, which controls whether children are laid out in a row,
@@ -394,14 +399,14 @@ Finally, the <a class="reference internal" href="stubs/edifice.Button.html#edifi
 components allow you to collect input from the user.</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.QtWidgetComponent.html#edifice.QtWidgetComponent" title="edifice.QtWidgetComponent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QtWidgetComponent</span></code></a>([style, tool_tip, cursor, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>([style, tool_tip, cursor, ...])</p></td>
 <td><p>Base Qt Widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Window</span></code></a>([title, icon, menu, on_close])</p></td>
-<td><p>Component that displays its child as a window.</p></td>
+<td><p>Displays its child as an operating system window.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-obj docutils literal notranslate"><span class="pre">View</span></code></a>([layout])</p></td>
-<td><p>Basic layout widget for grouping children together</p></td>
+<td><p>Basic layout widget for grouping children together.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ScrollView.html#edifice.ScrollView" title="edifice.ScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScrollView</span></code></a>([layout])</p></td>
 <td><p>Scrollable layout widget for grouping children together.</p></td>
@@ -412,6 +417,12 @@ components allow you to collect input from the user.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.GridView.html#edifice.GridView" title="edifice.GridView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridView</span></code></a>([layout, key_to_code])</p></td>
 <td><p>Grid layout widget for rendering children on a 2D rectangular grid.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableGridView</span></code></a>([row_stretch, column_stretch, ...])</p></td>
+<td><p>Table-style grid layout widget.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.FlowView.html#edifice.FlowView" title="edifice.FlowView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowView</span></code></a>(**kwargs)</p></td>
+<td><p>Flow-style layout widget.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>([text, selectable, editable, ...])</p></td>
 <td><p>Basic widget for displaying text.</p></td>
 </tr>
@@ -421,16 +432,22 @@ components allow you to collect input from the user.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.ImageSvg.html#edifice.ImageSvg" title="edifice.ImageSvg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSvg</span></code></a>(src, **kwargs)</p></td>
 <td><p>An SVG Image container.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Icon.html#edifice.Icon" title="edifice.Icon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Icon</span></code></a>(name[, size, collection, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ImageAspect.html#edifice.ImageAspect" title="edifice.ImageAspect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageAspect</span></code></a>([src])</p></td>
+<td><p>An image widget which scales the image to fit inside the widget, while keeping the image aspect ratio fixed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Icon.html#edifice.Icon" title="edifice.Icon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Icon</span></code></a>(name[, size, collection, ...])</p></td>
 <td><p>Display an Icon</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.IconButton.html#edifice.IconButton" title="edifice.IconButton"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IconButton</span></code></a>(name[, size, collection, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.IconButton.html#edifice.IconButton" title="edifice.IconButton"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IconButton</span></code></a>(name[, size, collection, ...])</p></td>
 <td><p>Display an Icon Button.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Button</span></code></a>([title])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Button</span></code></a>([title])</p></td>
 <td><p>Basic button widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextInput</span></code></a>([text, on_change, on_edit_finish])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ButtonView.html#edifice.ButtonView" title="edifice.ButtonView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ButtonView</span></code></a>([layout, on_trigger])</p></td>
+<td><p>A Button where the label is the Button’s children rendered in a <a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.View</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextInput</span></code></a>([text, placeholder_text, ...])</p></td>
 <td><p>Basic widget for a one line text input.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.html#edifice.CheckBox" title="edifice.CheckBox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CheckBox</span></code></a>([checked, text, on_change])</p></td>
@@ -449,10 +466,15 @@ components allow you to collect input from the user.</p>
 </table>
 <section id="events">
 <h2>Events<a class="headerlink" href="#events" title="Permalink to this heading">#</a></h2>
-<p>For every base component, user interactions generate events, and you can specify how to handle the event by passing a callback function (which is either a function or an asyncio coroutine).
-These callbacks can be passed into the base component as props, for example the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> callback that can be passed to every widget,
-or the <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> callback for checkboxes, radio buttons, sliders, and text input.
-The callback function is passed an argument describing the event, for example a click object holding click information (location of cursor, etc)
+<p>For every base Element, user interactions generate events, and you can specify
+how to handle the event by passing a callback function (which is either a
+function or an asyncio coroutine).
+These callbacks can be passed into the base Element as props, for example
+the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> callback that can be passed to every widget,
+or the <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> callback for checkboxes, radio buttons, sliders,
+and text input.
+The callback function is passed an argument describing the event, for example
+a click object holding click information (location of cursor, etc)
 or the new value of the input.</p>
 <p>These callbacks run in the same thread as the main application.
 This is handy, as you don’t have to worry about locking and race conditions.
@@ -460,24 +482,21 @@ However, a lengthy operation will block the application from interacting with th
 which is generally a bad user experience.
 For such cases, you can use an asyncio <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html">coroutine</a>.</p>
 <p>Consider this code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Component</span><span class="p">(</span><span class="n">edifice</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MyComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">results</span><span class="p">,</span> <span class="n">set_results</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">counter</span><span class="p">,</span> <span class="n">set_counter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">fetch_from_network</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">fetch_from_network</span><span class="p">()</span>
+        <span class="n">set_results</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">edifice</span><span class="o">.</span><span class="n">View</span><span class="p">()(</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">),</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">),</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Fetch&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">on_click</span><span class="p">),</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Increment&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">counter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="p">)</span>
+    <span class="k">with</span> <span class="n">edifice</span><span class="o">.</span><span class="n">View</span><span class="p">():</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Fetch&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">on_click</span><span class="p">)</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Increment&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">set_counter</span><span class="p">(</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>When the Fetch button is clicked, the event handler will call a lengthy <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function,
@@ -485,43 +504,37 @@ blocking the application from further progress.
 In the mean time, if the user clicks the increment button, nothing will happen until the fetch is complete.</p>
 <p>To allow the rest of the application to run while the fetch is happening, you can define
 the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> handler as a coroutine:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Component</span><span class="p">(</span><span class="n">edifice</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MyComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loading</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">results</span><span class="p">,</span> <span class="n">set_results</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">counter</span><span class="p">,</span> <span class="n">set_counter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">loading</span><span class="p">,</span> <span class="n">set_loading</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">loading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">fetch_from_network</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">loading</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">set_loading</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_from_network</span><span class="p">()</span>
+        <span class="n">set_results</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">set_loading</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">edifice</span><span class="o">.</span><span class="n">View</span><span class="p">()(</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">loading</span> <span class="ow">and</span> <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Loading&quot;</span><span class="p">),</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">),</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Fetch&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">on_click</span><span class="p">),</span>
-            <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Increment&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">counter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="p">)</span>
+    <span class="k">with</span> <span class="n">edifice</span><span class="o">.</span><span class="n">View</span><span class="p">():</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">loading</span><span class="p">:</span>
+            <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Loading&quot;</span><span class="p">)</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Fetch&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">on_click</span><span class="p">)</span>
+        <span class="n">edifice</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Increment&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">set_counter</span><span class="p">(</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>While the <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function is running, control is returned to the event loop,
 allowing the application to continue handling button clicks.</p>
-<p>See docs for <a class="reference internal" href="stubs/edifice.QtWidgetComponent.html#edifice.QtWidgetComponent" title="edifice.QtWidgetComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetComponent</span></code></a> for a list of supported events.</p>
+<p>See docs for <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> for a list of supported events.</p>
 </section>
 <section id="custom-widgets">
 <span id="custom-widget"></span><h2>Custom Widgets<a class="headerlink" href="#custom-widgets" title="Permalink to this heading">#</a></h2>
 <p>Not all widgets are currently supported by Edifice.
-Edifice provides <code class="code docutils literal notranslate"><span class="pre">CustomWidget</span></code> to allow you to bind arbitrary
-QtWidgets to an Edifice component.
-The two methods to override are <code class="code docutils literal notranslate"><span class="pre">create_widget</span></code>,
-which should return the Qt widget,
-and <code class="code docutils literal notranslate"><span class="pre">paint</span></code>,
-which takes the current widget and new props,
-and should update the widget according to the new props.</p>
+Edifice provides <a class="reference internal" href="stubs/edifice.CustomWidget.html#edifice.CustomWidget" title="edifice.CustomWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomWidget</span></code></a> to allow you to bind arbitrary
+QtWidgets to an Edifice Element.</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.html#edifice.CustomWidget" title="edifice.CustomWidget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomWidget</span></code></a>()</p></td>
@@ -538,34 +551,30 @@ and should update the widget according to the new props.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/stubs/edifice.Timer.stop.html"
+       href="stubs/stubs/edifice.Element.set_key.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.Timer.stop</p>
+        <p class="prev-next-title">edifice.Element.set_key</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.QtWidgetComponent.html"
+       href="stubs/edifice.QtWidgetElement.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.QtWidgetComponent</p>
+        <p class="prev-next-title">edifice.QtWidgetElement</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -622,8 +631,8 @@ By David Ding © 2021
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

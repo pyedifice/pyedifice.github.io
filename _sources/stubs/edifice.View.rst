@@ -20,17 +20,8 @@ edifice.View
       :toctree: stubs
    
       ~View.__init__
-      ~View.did_mount
-      ~View.did_render
-      ~View.did_update
-      ~View.register_props
       ~View.register_ref
-      ~View.render
-      ~View.render_changes
       ~View.set_key
-      ~View.set_state
-      ~View.should_update
-      ~View.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.View
    
       ~View.children
       ~View.props
+      ~View.underlying
    
    

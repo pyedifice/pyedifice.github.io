@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 0.1.2 documentation</title>
+    <title>Release Notes &#8212; Edifice 0.2.0 documentation</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -33,8 +33,9 @@
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -59,6 +60,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -119,45 +129,47 @@
   
   
   
+  
     
     
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.1.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Component.html">edifice.Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.PropsDict.html">edifice.PropsDict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.register_props.html">edifice.register_props</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.make_component.html">edifice.make_component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.component.html">edifice.component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.App.html">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Timer.html">edifice.Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="base_components.html">Base Components</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Image.html">edifice.Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ImageAspect.html">edifice.ImageAspect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TextInput.html">edifice.TextInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -166,20 +178,11 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.StateValue.html">edifice.StateValue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.StateManager.html">edifice.StateManager</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_state.html">edifice.use_state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Utility functions</a></li>
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -321,7 +324,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -348,15 +351,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.1.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.1.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.1.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.0.10</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.0.9</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.0.8</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.0.7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.0.6</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.0.5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.2.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.1.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.1.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.1.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.0.10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.0.9</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.0.8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.0.7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.0.6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">0.0.5</a></li>
 </ul>
             </nav>
         </div>
@@ -371,22 +375,61 @@ document.write(`
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this heading">#</a></h1>
 <section id="id1">
-<h2>0.1.2<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>Released:</p>
+<h2>0.2.0<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Released: 2023-11-13</p>
+<p>This version has a lot of breaking changes. We have done essentially the same
+upgrade that React.js did when they upgraded to function components and Hooks
+in version 16.8.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> render function decorator instead of <code class="code docutils literal notranslate"><span class="pre">Component</span></code>
+subclass. Renamed old <code class="code docutils literal notranslate"><span class="pre">Component</span></code> to <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.
+Deprecated the API for users to inherit from <code class="code docutils literal notranslate"><span class="pre">Element</span></code>.
+Privatized most of the <code class="code docutils literal notranslate"><span class="pre">Element</span></code> API.</p></li>
+<li><p><a class="reference internal" href="hooks.html"><span class="doc">Hooks</span></a> instead of <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code> and <code class="code docutils literal notranslate"><span class="pre">StateManager</span></code>,
+which are deprecated.</p></li>
+<li><p>New <code class="code docutils literal notranslate"><span class="pre">with</span></code> context manager syntax for declaring children instead of the
+Element <code class="code docutils literal notranslate"><span class="pre">__call__</span></code> syntax for declaring children.</p></li>
+<li><p>Moved <a class="reference internal" href="stubs/edifice.ButtonView.html#edifice.ButtonView" title="edifice.ButtonView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ButtonView</span></code></a>, <a class="reference internal" href="stubs/edifice.FlowView.html#edifice.FlowView" title="edifice.FlowView"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlowView</span></code></a>, <a class="reference internal" href="stubs/edifice.ImageAspect.html#edifice.ImageAspect" title="edifice.ImageAspect"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageAspect</span></code></a>,
+<a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a> to Base Elements.</p></li>
+<li><p>Deprecated all Higher-level Components.</p></li>
+<li><p>Other miscellaneous improvements.</p></li>
+</ul>
+<p>The old API for writing Elements
+by inheriting from the <code class="code docutils literal notranslate"><span class="pre">Component</span></code> class, overriding the <code class="code docutils literal notranslate"><span class="pre">render()</span></code>
+function, and calling <code class="code docutils literal notranslate"><span class="pre">self.set_state()</span></code> has has been deprecated.</p>
+<p>A new API
+for writing Elements with the <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> decorator and <a class="reference internal" href="hooks.html"><span class="doc">Hooks</span></a> has replaced the
+old API. Most of the old API machinery still exists, but has been hidden
+from the public API. If you want to upgrade
+old code to this version but don’t want to completely re-write for the new
+API, then you can make a few changes and run your old code.</p>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">Component</span></code> has been renamed to <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></li>
+<li><p>The <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> <code class="code docutils literal notranslate"><span class="pre">render()</span></code> function has been renamed to
+<code class="code docutils literal notranslate"><span class="pre">_render_element()</span></code>. Most other methods of <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> have
+also been renamed with a prefix underscore. The method <code class="code docutils literal notranslate"><span class="pre">set_state()</span></code>
+is now <code class="code docutils literal notranslate"><span class="pre">_set_state()</span></code>.</p></li>
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">StateValue</span></code> and <code class="code docutils literal notranslate"><span class="pre">StateManager</span></code> can be imported from module
+<code class="code docutils literal notranslate"><span class="pre">edifice.state</span></code>.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>0.1.2<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Released: 2023-10-06</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">PropsDict</span></code> type annotations.</p></li>
 <li><p>Documentation and metadata improvements.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>0.1.1<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="id3">
+<h2>0.1.1<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>Released: 2023-09-15</p>
 <ul class="simple">
 <li><p>Documentation and metadata improvements.</p></li>
 </ul>
 </section>
-<section id="id3">
-<h2>0.1.0<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<section id="id4">
+<h2>0.1.0<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>Released: 2023-09-14</p>
 <ul class="simple">
 <li><p><strong>Upgrade to PySide6/PyQt6.</strong> Deprecate PySide2/PyQt5.</p></li>
@@ -397,22 +440,22 @@ document.write(`
 <li><p>Component <code class="code docutils literal notranslate"><span class="pre">Image</span></code> props <code class="code docutils literal notranslate"><span class="pre">src</span></code> can be a <code class="code docutils literal notranslate"><span class="pre">QtGui.QImage</span></code>.</p></li>
 <li><p>Deleted <code class="code docutils literal notranslate"><span class="pre">setup.py</span></code>, added Poetry <code class="code docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">App</span></code> new props <code class="code docutils literal notranslate"><span class="pre">qapplication</span></code>.</p></li>
-<li><p>New Higher-level Component: <code class="code docutils literal notranslate"><span class="pre">ImageAspect</span></code>.</p></li>
-<li><p>New Higher-level Component: <code class="code docutils literal notranslate"><span class="pre">ButtonView</span></code>.</p></li>
-<li><p>New Higher-level Component: <code class="code docutils literal notranslate"><span class="pre">FlowView</span></code>.</p></li>
-<li><p>New Higher-level Component: <code class="code docutils literal notranslate"><span class="pre">TableGridView</span></code>.</p></li>
+<li><p>New Higher-level Component: <a class="reference internal" href="stubs/edifice.ImageAspect.html#edifice.ImageAspect" title="edifice.ImageAspect"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageAspect</span></code></a>.</p></li>
+<li><p>New Higher-level Component: <a class="reference internal" href="stubs/edifice.ButtonView.html#edifice.ButtonView" title="edifice.ButtonView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ButtonView</span></code></a>.</p></li>
+<li><p>New Higher-level Component: <a class="reference internal" href="stubs/edifice.FlowView.html#edifice.FlowView" title="edifice.FlowView"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlowView</span></code></a>.</p></li>
+<li><p>New Higher-level Component: <a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a>.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h2>0.0.10<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<section id="id5">
+<h2>0.0.10<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>Released: 2021-07-15</p>
 <ul class="simple">
 <li><p>Fix deletion from View and ScrollView.</p></li>
 <li><p>Add alert and file dialog options.</p></li>
 </ul>
 </section>
-<section id="id5">
-<h2>0.0.9<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<section id="id6">
+<h2>0.0.9<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <p>Released: 2021-06-20</p>
 <ul class="simple">
 <li><p>Add grid view.</p></li>
@@ -425,24 +468,24 @@ document.write(`
 <li><p>Fix on_change event for textinput.</p></li>
 </ul>
 </section>
-<section id="id6">
-<h2>0.0.8<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<section id="id7">
+<h2>0.0.8<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <p>Released: 2021-02-04</p>
 <p>Bug fixes for dynamic loading,
 and clearer error messages for Dropdowns and Sliders.</p>
 </section>
-<section id="id7">
-<h2>0.0.7<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<section id="id8">
+<h2>0.0.7<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
 <p>Released: 2021-02-02</p>
 <p>Bug fixes for checkboxes and forms.</p>
 </section>
-<section id="id8">
-<h2>0.0.6<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<section id="id9">
+<h2>0.0.6<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
 <p>Released: 2021-01-27</p>
 <p>Support for asyncio.</p>
 </section>
-<section id="id9">
-<h2>0.0.5<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<section id="id10">
+<h2>0.0.5<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
 <p>Released: 2021-01-26</p>
 <p>First public release.</p>
 </section>
@@ -454,11 +497,10 @@ and clearer error messages for Dropdowns and Sliders.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="developer_tools.html"
@@ -478,10 +520,7 @@ and clearer error messages for Dropdowns and Sliders.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -496,15 +535,16 @@ and clearer error messages for Dropdowns and Sliders.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.1.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.1.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.1.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.0.10</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.0.9</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.0.8</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.0.7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.0.6</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.0.5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.2.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.1.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.1.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.1.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.0.10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.0.9</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.0.8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.0.7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.0.6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">0.0.5</a></li>
 </ul>
   </nav></div>
 
@@ -545,8 +585,8 @@ By David Ding © 2021
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

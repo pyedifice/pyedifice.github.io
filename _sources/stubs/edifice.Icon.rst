@@ -20,17 +20,8 @@ edifice.Icon
       :toctree: stubs
    
       ~Icon.__init__
-      ~Icon.did_mount
-      ~Icon.did_render
-      ~Icon.did_update
-      ~Icon.register_props
       ~Icon.register_ref
-      ~Icon.render
-      ~Icon.render_changes
       ~Icon.set_key
-      ~Icon.set_state
-      ~Icon.should_update
-      ~Icon.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.Icon
    
       ~Icon.children
       ~Icon.props
+      ~Icon.underlying
    
    

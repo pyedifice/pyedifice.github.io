@@ -21,18 +21,9 @@ edifice.CustomWidget
    
       ~CustomWidget.__init__
       ~CustomWidget.create_widget
-      ~CustomWidget.did_mount
-      ~CustomWidget.did_render
-      ~CustomWidget.did_update
       ~CustomWidget.paint
-      ~CustomWidget.register_props
       ~CustomWidget.register_ref
-      ~CustomWidget.render
-      ~CustomWidget.render_changes
       ~CustomWidget.set_key
-      ~CustomWidget.set_state
-      ~CustomWidget.should_update
-      ~CustomWidget.will_unmount
    
    
 
@@ -44,5 +35,6 @@ edifice.CustomWidget
    
       ~CustomWidget.children
       ~CustomWidget.props
+      ~CustomWidget.underlying
    
    

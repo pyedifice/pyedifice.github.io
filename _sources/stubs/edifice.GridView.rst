@@ -20,17 +20,8 @@ edifice.GridView
       :toctree: stubs
    
       ~GridView.__init__
-      ~GridView.did_mount
-      ~GridView.did_render
-      ~GridView.did_update
-      ~GridView.register_props
       ~GridView.register_ref
-      ~GridView.render
-      ~GridView.render_changes
       ~GridView.set_key
-      ~GridView.set_state
-      ~GridView.should_update
-      ~GridView.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.GridView
    
       ~GridView.children
       ~GridView.props
+      ~GridView.underlying
    
    

@@ -20,17 +20,8 @@ edifice.RadioButton
       :toctree: stubs
    
       ~RadioButton.__init__
-      ~RadioButton.did_mount
-      ~RadioButton.did_render
-      ~RadioButton.did_update
-      ~RadioButton.register_props
       ~RadioButton.register_ref
-      ~RadioButton.render
-      ~RadioButton.render_changes
       ~RadioButton.set_key
-      ~RadioButton.set_state
-      ~RadioButton.should_update
-      ~RadioButton.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.RadioButton
    
       ~RadioButton.children
       ~RadioButton.props
+      ~RadioButton.underlying
    
    

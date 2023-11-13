@@ -20,17 +20,8 @@ edifice.components.forms.Form
       :toctree: stubs
    
       ~Form.__init__
-      ~Form.did_mount
-      ~Form.did_render
-      ~Form.did_update
-      ~Form.register_props
       ~Form.register_ref
-      ~Form.render
-      ~Form.render_changes
       ~Form.set_key
-      ~Form.set_state
-      ~Form.should_update
-      ~Form.will_unmount
    
    
 

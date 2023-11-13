@@ -20,17 +20,8 @@ edifice.Dropdown
       :toctree: stubs
    
       ~Dropdown.__init__
-      ~Dropdown.did_mount
-      ~Dropdown.did_render
-      ~Dropdown.did_update
-      ~Dropdown.register_props
       ~Dropdown.register_ref
-      ~Dropdown.render
-      ~Dropdown.render_changes
       ~Dropdown.set_key
-      ~Dropdown.set_state
-      ~Dropdown.should_update
-      ~Dropdown.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.Dropdown
    
       ~Dropdown.children
       ~Dropdown.props
+      ~Dropdown.underlying
    
    

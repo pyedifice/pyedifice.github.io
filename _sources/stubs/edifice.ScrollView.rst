@@ -20,17 +20,8 @@ edifice.ScrollView
       :toctree: stubs
    
       ~ScrollView.__init__
-      ~ScrollView.did_mount
-      ~ScrollView.did_render
-      ~ScrollView.did_update
-      ~ScrollView.register_props
       ~ScrollView.register_ref
-      ~ScrollView.render
-      ~ScrollView.render_changes
       ~ScrollView.set_key
-      ~ScrollView.set_state
-      ~ScrollView.should_update
-      ~ScrollView.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.ScrollView
    
       ~ScrollView.children
       ~ScrollView.props
+      ~ScrollView.underlying
    
    

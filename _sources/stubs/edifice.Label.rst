@@ -20,17 +20,8 @@ edifice.Label
       :toctree: stubs
    
       ~Label.__init__
-      ~Label.did_mount
-      ~Label.did_render
-      ~Label.did_update
-      ~Label.register_props
       ~Label.register_ref
-      ~Label.render
-      ~Label.render_changes
       ~Label.set_key
-      ~Label.set_state
-      ~Label.should_update
-      ~Label.will_unmount
    
    
 
@@ -42,5 +33,6 @@ edifice.Label
    
       ~Label.children
       ~Label.props
+      ~Label.underlying
    
    

@@ -1,9 +1,57 @@
+
+.. currentmodule:: edifice
+
 Release Notes
 =============
 
+0.2.0
+----------------
+Released: 2023-11-13
+
+This version has a lot of breaking changes. We have done essentially the same
+upgrade that React.js did when they upgraded to function components and Hooks
+in version 16.8.
+
+* :func:`component` render function decorator instead of :code:`Component`
+  subclass. Renamed old :code:`Component` to :class:`Element`.
+  Deprecated the API for users to inherit from :code:`Element`.
+  Privatized most of the :code:`Element` API.
+
+* :doc:`Hooks<hooks>` instead of :code:`StateValue` and :code:`StateManager`,
+  which are deprecated.
+
+* New :code:`with` context manager syntax for declaring children instead of the
+  Element :code:`__call__` syntax for declaring children.
+
+* Moved :class:`ButtonView`, :class:`FlowView`, :class:`ImageAspect`,
+  :class:`TableGridView` to Base Elements.
+
+* Deprecated all Higher-level Components.
+
+* Other miscellaneous improvements.
+
+The old API for writing Elements
+by inheriting from the :code:`Component` class, overriding the :code:`render()`
+function, and calling :code:`self.set_state()` has has been deprecated.
+
+A new API
+for writing Elements with the :func:`component` decorator and :doc:`hooks` has replaced the
+old API. Most of the old API machinery still exists, but has been hidden
+from the public API. If you want to upgrade
+old code to this version but don’t want to completely re-write for the new
+API, then you can make a few changes and run your old code.
+
+1. :code:`Component` has been renamed to :class:`Element`.
+2. The :class:`Element` :code:`render()` function has been renamed to
+   :code:`_render_element()`. Most other methods of :class:`Element` have
+   also been renamed with a prefix underscore. The method :code:`set_state()`
+   is now :code:`_set_state()`.
+3. The :code:`StateValue` and :code:`StateManager` can be imported from module
+   :code:`edifice.state`.
+
 0.1.2
 -----
-Released:
+Released: 2023-10-06
 
 * :code:`PropsDict` type annotations.
 * Documentation and metadata improvements.
@@ -26,10 +74,10 @@ Released: 2023-09-14
 * Component :code:`Image` props :code:`src` can be a :code:`QtGui.QImage`.
 * Deleted :code:`setup.py`, added Poetry :code:`pyproject.toml`.
 * :code:`App` new props :code:`qapplication`.
-* New Higher-level Component: :code:`ImageAspect`.
-* New Higher-level Component: :code:`ButtonView`.
-* New Higher-level Component: :code:`FlowView`.
-* New Higher-level Component: :code:`TableGridView`.
+* New Higher-level Component: :class:`ImageAspect`.
+* New Higher-level Component: :class:`ButtonView`.
+* New Higher-level Component: :class:`FlowView`.
+* New Higher-level Component: :class:`TableGridView`.
 
 0.0.10
 ------

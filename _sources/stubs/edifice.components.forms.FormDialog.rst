@@ -20,18 +20,9 @@ edifice.components.forms.FormDialog
       :toctree: stubs
    
       ~FormDialog.__init__
-      ~FormDialog.did_mount
-      ~FormDialog.did_render
-      ~FormDialog.did_update
       ~FormDialog.on_submit
-      ~FormDialog.register_props
       ~FormDialog.register_ref
-      ~FormDialog.render
-      ~FormDialog.render_changes
       ~FormDialog.set_key
-      ~FormDialog.set_state
-      ~FormDialog.should_update
-      ~FormDialog.will_unmount
    
    
 

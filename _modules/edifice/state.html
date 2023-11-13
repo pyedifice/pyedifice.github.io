@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.state &#8212; Edifice 0.1.1 documentation</title>
+    <title>edifice.state &#8212; Edifice 0.2.0 documentation</title>
   
   
   
@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -32,8 +32,9 @@
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -56,6 +57,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -116,44 +126,47 @@
   
   
   
+  
     
     
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Component.html">edifice.Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.PropsDict.html">edifice.PropsDict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.register_props.html">edifice.register_props</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.make_component.html">edifice.make_component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.component.html">edifice.component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.App.html">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Timer.html">edifice.Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Reference.html">edifice.Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Components</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.QtWidgetComponent.html">edifice.QtWidgetComponent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Image.html">edifice.Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ImageAspect.html">edifice.ImageAspect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Icon.html">edifice.Icon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.IconButton.html">edifice.IconButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TextInput.html">edifice.TextInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -162,20 +175,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../compound_components.html">Higher-level Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.plotting.Figure.html">edifice.components.plotting.Figure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.forms.Form.html">edifice.components.forms.Form</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.forms.FormDialog.html">edifice.components.forms.FormDialog</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.button_view.ButtonView.html">edifice.components.button_view.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.flow_view.FlowView.html">edifice.components.flow_view.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.table_grid_view.TableGridView.html">edifice.components.table_grid_view.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.table_grid_view.TableChildren.html">edifice.components.table_grid_view.TableChildren</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.components.image_aspect.ImageAspect.html">edifice.components.image_aspect.ImageAspect</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../state.html">State Values and State Managers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.StateValue.html">edifice.StateValue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.StateManager.html">edifice.StateManager</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utility functions</a></li>
@@ -258,10 +262,10 @@
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -269,7 +273,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -301,7 +305,7 @@ document.write(`
   <h1>Source code for edifice.state</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Often in an application, certain state is shared across multiple</span>
-<span class="sd">:class:`Component &lt;edifice.Component&gt;` s, and changes</span>
+<span class="sd">:class:`Element &lt;edifice.Element&gt;` s, and changes</span>
 <span class="sd">to the state might be requested at multiple endpoints.</span>
 <span class="sd">In the Edifice data flow, where state flows exclusively from parent to children,</span>
 <span class="sd">this requires setting one parent as the owner of that state,</span>
@@ -309,7 +313,7 @@ document.write(`
 <span class="sd">Changes to this state requires requesting the parent to change its state,</span>
 <span class="sd">which will trigger the render method call for all its descendents.</span>
 <span class="sd">This is potentially wasteful,</span>
-<span class="sd">since many of the intermediate :class:`Component &lt;edifice.Component&gt;` s</span>
+<span class="sd">since many of the intermediate :class:`Element &lt;edifice.Element&gt;` s</span>
 <span class="sd">are mere “message-passers”</span>
 <span class="sd">that only pass the state to their children and does not use it directly.</span>
 
@@ -318,13 +322,13 @@ document.write(`
 <span class="sd">with the principal advantages that</span>
 
 <span class="sd">- There is no need to pass both a &quot;getter&quot; and a &quot;setter&quot; for every state</span>
-<span class="sd">  down the Component Tree. Indeed, if you choose to create a global</span>
+<span class="sd">  down the Element Tree. Indeed, if you choose to create a global</span>
 <span class="sd">  :class:`StateValue`</span>
 <span class="sd">  or a global :class:`StateManager` object, there is no need to</span>
 <span class="sd">  pass any state down</span>
-<span class="sd">  the Component Tree.</span>
+<span class="sd">  the Element Tree.</span>
 <span class="sd">- Changes to the value will trigger automatic re-render, just like calling</span>
-<span class="sd">  :func:`set_state &lt;edifice.Component.set_state&gt;`.</span>
+<span class="sd">  :func:`set_state &lt;edifice.Element.set_state&gt;`.</span>
 <span class="sd">  However, only the nodes that actually use the state will be</span>
 <span class="sd">  re-rendered.</span>
 
@@ -355,7 +359,7 @@ document.write(`
 <span class="sd">        USER.set(self.text_input_value)</span>
 
 <span class="sd">Like all Edifice render triggers (the render_changes context,</span>
-<span class="sd">:func:`set_state &lt;edifice.Component.set_state&gt;`),</span>
+<span class="sd">:func:`set_state &lt;edifice.Element.set_state&gt;`),</span>
 <span class="sd">the :func:`set &lt;edifice.StateValue.set&gt;` method is robust to exceptions.</span>
 <span class="sd">If any exception is thrown while re-rendering,</span>
 <span class="sd">all changes are unwound, including the :class:`StateValue`,</span>
@@ -364,28 +368,27 @@ document.write(`
 <span class="sd">A :class:`StateManager` is very similar in concept to a :class:`StateValue`;</span>
 <span class="sd">you can think of it as a key-value store for multiple values.</span>
 <span class="sd">:class:`StateManager` allows you to store related state together and update them in batch.</span>
-<span class="sd">Components subscribe to individual keys in the :class:`StateManager`,</span>
+<span class="sd">Elements subscribe to individual keys in the :class:`StateManager`,</span>
 <span class="sd">and a :class:`StateValue`</span>
-<span class="sd">tied to that key is returned. This can be used by the :class:`Component &lt;edifice.Component&gt;` directly,</span>
+<span class="sd">tied to that key is returned. This can be used by the :class:`Element &lt;edifice.Element&gt;` directly,</span>
 <span class="sd">or passed to children, who would not need to know about the underlying</span>
 <span class="sd">:class:`StateManager`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">OrderedDict</span>
-<span class="kn">import</span> <span class="nn">functools</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 
 
-<span class="kn">from</span> <span class="nn">._component</span> <span class="kn">import</span> <span class="n">Component</span>
+<span class="kn">from</span> <span class="nn">._component</span> <span class="kn">import</span> <span class="n">Element</span>
 
+<span class="n">ElementSubscriptions</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span>
 
-<span class="k">def</span> <span class="nf">_add_subscription</span><span class="p">(</span><span class="n">previous</span><span class="p">,</span> <span class="n">new_comp</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_add_subscription</span><span class="p">(</span><span class="n">previous</span><span class="p">:</span> <span class="n">ElementSubscriptions</span><span class="p">,</span> <span class="n">new_comp</span><span class="p">:</span> <span class="n">Element</span><span class="p">):</span>
     <span class="c1"># Adds a subscription in topological sort order,</span>
     <span class="c1"># so that ancestors will appear before descendants.</span>
     <span class="k">if</span> <span class="n">new_comp</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">previous</span>
-    <span class="n">new_ancestors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">new_ancestors</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="n">node</span> <span class="o">=</span> <span class="n">new_comp</span>
     <span class="k">while</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">new_ancestors</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
@@ -406,11 +409,11 @@ document.write(`
     <span class="k">return</span> <span class="n">OrderedDict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">previous</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="StateValue"><a class="viewcode-back" href="../../stubs/edifice.StateValue.html#edifice.StateValue">[docs]</a><span class="k">class</span> <span class="nc">StateValue</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="StateValue"><a class="viewcode-back" href="../../stubs/edifice.state.StateValue.html#edifice.state.StateValue">[docs]</a><span class="k">class</span> <span class="nc">StateValue</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Container to store a value and rerender on value change.</span>
 
 <span class="sd">    A StateValue stores an underlying Python object.</span>
-<span class="sd">    Components can subscribe to the StateValue.</span>
+<span class="sd">    Elements can subscribe to the StateValue.</span>
 <span class="sd">    StateValues are modified by the set method, which will trigger re-renders</span>
 <span class="sd">    for all subscribed components.</span>
 
@@ -418,21 +421,22 @@ document.write(`
 <span class="sd">        initial_value: the initial value for the StateValue</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StateValue.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateValue.__init__.html#edifice.StateValue.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">):</span>
+<div class="viewcode-block" id="StateValue.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateValue.__init__.html#edifice.state.StateValue.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">initial_value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_subscriptions</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subscriptions</span><span class="p">:</span> <span class="n">ElementSubscriptions</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">_set_subscriptions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_subscriptions</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_subscriptions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_subscriptions</span><span class="p">:</span> <span class="n">ElementSubscriptions</span><span class="p">):</span>
         <span class="c1"># This helper method is overridden by StateManager</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_subscriptions</span> <span class="o">=</span> <span class="n">new_subscriptions</span>
 
-<div class="viewcode-block" id="StateValue.subscribe"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateValue.subscribe.html#edifice.StateValue.subscribe">[docs]</a>    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Component</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
+<div class="viewcode-block" id="StateValue.subscribe"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateValue.subscribe.html#edifice.state.StateValue.subscribe">[docs]</a>    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribes a component to this value&#39;s updates and returns the current value.</span>
 
-<span class="sd">        Call this method in the Component render method (or after Component mounts).</span>
+<span class="sd">        Call this method in the :func:`Element.render` method</span>
+<span class="sd">        (or :func:`Element.did_mount`).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component: Edifice Component</span>
+<span class="sd">            component: Edifice Element</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Current value.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -445,19 +449,19 @@ document.write(`
 
 <span class="sd">        **This will not subscribe your component to this value. Changes in the value will not cause your component to rerender!!!**</span>
 
-<span class="sd">        Most of the time you probably want to use subscribe.</span>
+<span class="sd">        Most of the time you probably want to use :func:`subscribe`.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Current value.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
 
-<div class="viewcode-block" id="StateValue.set"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateValue.set.html#edifice.StateValue.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the current value and trigger rerender.</span>
+<div class="viewcode-block" id="StateValue.set"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateValue.set.html#edifice.state.StateValue.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the current value and trigger re-render.</span>
 
 <span class="sd">        Re-renders will only be triggered for subscribed components.</span>
 <span class="sd">        If an exception occurs while re-rendering, all changes are unwound</span>
-<span class="sd">        and the StateValue retains the old value.</span>
+<span class="sd">        and the :code:`StateValue` retains the old value.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            value: value to set to.</span>
@@ -478,24 +482,24 @@ document.write(`
             <span class="k">raise</span> <span class="n">e</span></div></div>
 
 
-<div class="viewcode-block" id="StateManager"><a class="viewcode-back" href="../../stubs/edifice.StateManager.html#edifice.StateManager">[docs]</a><span class="k">class</span> <span class="nc">StateManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="StateManager"><a class="viewcode-back" href="../../stubs/edifice.state.StateManager.html#edifice.state.StateManager">[docs]</a><span class="k">class</span> <span class="nc">StateManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A key value store where changes to values will trigger a rerender.</span>
 
-<span class="sd">    Components can subscribe to keys in the store.</span>
+<span class="sd">    Elements can subscribe to keys in the store.</span>
 <span class="sd">    The values are modified by the update method, which will update</span>
 <span class="sd">    all provided keys and trigger re-renders for</span>
 <span class="sd">    for all subscribed components for those keys.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StateManager.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateManager.__init__.html#edifice.StateManager.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_values</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="StateManager.__init__"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateManager.__init__.html#edifice.state.StateManager.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_values</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="n">initial_values</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_subscriptions_for_key</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subscriptions_for_key</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">ElementSubscriptions</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_set_subscriptions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">new_subscriptions</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_subscriptions_for_key</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_subscriptions</span>
 
-<div class="viewcode-block" id="StateManager.subscribe"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateManager.subscribe.html#edifice.StateManager.subscribe">[docs]</a>    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Component</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
+<div class="viewcode-block" id="StateManager.subscribe"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateManager.subscribe.html#edifice.state.StateManager.subscribe">[docs]</a>    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribes a component to the given key.</span>
 
 <span class="sd">        This returns a StateValue, which can be dereferenced (via state_value.value)</span>
@@ -517,7 +521,7 @@ document.write(`
         <span class="n">state_value</span><span class="o">.</span><span class="n">set</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">state_value</span></div>
 
-<div class="viewcode-block" id="StateManager.copy"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateManager.copy.html#edifice.StateManager.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateManager.copy"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateManager.copy.html#edifice.state.StateManager.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a (shallow) copy of this StateManager.</span>
 
 <span class="sd">        The new StateManager is a copy and not a reference of the original,</span>
@@ -525,20 +529,20 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">StateManager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="StateManager.as_dict"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateManager.as_dict.html#edifice.StateManager.as_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateManager.as_dict"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateManager.as_dict.html#edifice.state.StateManager.as_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a (shallow) copy of this StateManager as a dictionary. &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
-<div class="viewcode-block" id="StateManager.set"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateManager.set.html#edifice.StateManager.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="StateManager.set"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateManager.set.html#edifice.state.StateManager.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span></div>
 
-<div class="viewcode-block" id="StateManager.keys"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateManager.keys.html#edifice.StateManager.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateManager.keys"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateManager.keys.html#edifice.state.StateManager.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="StateManager.update"><a class="viewcode-back" href="../../stubs/stubs/edifice.StateManager.update.html#edifice.StateManager.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
+<div class="viewcode-block" id="StateManager.update"><a class="viewcode-back" href="../../stubs/stubs/edifice.state.StateManager.update.html#edifice.state.StateManager.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the key value store.</span>
 
 <span class="sd">        Re-renders will only be triggered for subscribed components.</span>
@@ -576,16 +580,12 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -627,8 +627,8 @@ By David Ding © 2021
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>
