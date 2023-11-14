@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.App.export_widgets &#8212; Edifice 0.2.0 documentation</title>
+    <title>edifice.App.export_widgets &#8212; Edifice 0.2.1 documentation</title>
   
   
   
@@ -135,13 +135,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -156,6 +156,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.ExportList.html">edifice.ExportList</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
@@ -358,26 +359,29 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.App.export_widgets">
 <span class="sig-prename descclassname"><span class="pre">App.</span></span><span class="sig-name descname"><span class="pre">export_widgets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/edifice/app.html#App.export_widgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.export_widgets" title="Permalink to this definition">#</a></dt>
-<dd><p>Exports the Qt widgets underlying the Edifice Element.</p>
-<p>Depending on how the root component is defined, either one or multiple
-widgets are returned
-(for example, if your root component returns a list of Views,
-export_widgets will return a list of widgets).
-These widgets are still managed by Edifice:
+<dd><p>Exports the underlying Qt <code class="code docutils literal notranslate"><span class="pre">QWidgets</span></code> s from the components
+in the <a class="reference internal" href="../edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p>
+<p>Returns a list of <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html">QtWidgets.QWidget</a>.</p>
+<p>These <code class="code docutils literal notranslate"><span class="pre">QWidget</span></code> s are still managed by Edifice,
 they will still benefit from full reactivity and state consistency.
-You can mount these widgets to your pre-existing Qt Application this way:</p>
+You can mount these widgets to your pre-existing Qt application this way:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suppose parent_widget is defined in Qt code.</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">MyAwesomeElement</span><span class="p">())</span>
-<span class="n">widget</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">export_widgets</span><span class="p">()</span>
-<span class="n">widget</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">parent_widget</span><span class="p">)</span>
+
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">export_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">ExportList</span><span class="p">():</span>
+        <span class="n">MyAwesomeComponent</span><span class="p">()</span>
+
+<span class="n">widgets</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">export_components</span><span class="p">)</span><span class="o">.</span><span class="n">export_widgets</span><span class="p">()</span>
+<span class="n">widget</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">parent_widget</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>None</strong> – </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>One or multiple QtWidgets.QWidget objects.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>

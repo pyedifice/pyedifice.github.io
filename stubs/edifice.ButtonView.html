@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.ButtonView &#8212; Edifice 0.2.0 documentation</title>
+    <title>edifice.ButtonView &#8212; Edifice 0.2.1 documentation</title>
   
   
   
@@ -135,13 +135,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.1 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -156,6 +156,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../base_components.html">Base Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.ExportList.html">edifice.ExportList</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.TabView.html">edifice.TabView</a></li>
@@ -360,7 +361,22 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">ButtonView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'row'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_trigger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/button_view.html#ButtonView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.ButtonView" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.View.html#edifice.View" title="edifice.base_components.base_components.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a></p>
 <p>A Button where the label is the Button’s children rendered in a <a class="reference internal" href="edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.View</span></code></a>.</p>
-<p>Inherits all the props from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.QtWidgetElement</span></code></a>.</p>
+<ul class="simple">
+<li><p>Underlying Qt Widget
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html">QPushButton</a></p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ButtonView</span><span class="p">(</span>
+    <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">,</span>
+    <span class="n">on_click</span><span class="o">=</span><span class="n">handle_click</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">Icon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;share&quot;</span><span class="p">)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;i&gt;Share the Content&lt;i&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/button_view.png" src="../_images/button_view.png" />
+</figure>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>on_trigger</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QKeyEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QMouseEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – Event fires when the button is triggered by mouse or

@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 0.2.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 0.2.1 documentation</title>
   
   
   
@@ -132,13 +132,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -153,6 +153,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ExportList.html">edifice.ExportList</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TabView.html">edifice.TabView</a></li>
@@ -364,13 +365,15 @@ document.write(`
 <span class="sd">    Do not mutate the state variable. The old state variable must be left</span>
 <span class="sd">    unmodified so that it can be compared to the new state variable during</span>
 <span class="sd">    the next render. If your state variable is a collection, then create</span>
-<span class="sd">    a shallow copy of it to pass to the **setter function**::</span>
+<span class="sd">    a shallow</span>
+<span class="sd">    `copy &lt;https://docs.python.org/3/library/copy.html&gt;`_</span>
+<span class="sd">    of it to pass to the **setter function**::</span>
 
 <span class="sd">        def Stateful(self):</span>
 <span class="sd">            x, x_setter = use_state([])</span>
 
 <span class="sd">            def add_one():</span>
-<span class="sd">                x_new = x.copy()</span>
+<span class="sd">                x_new = x[:]</span>
 <span class="sd">                x_new.append(&quot;Label Text&quot;)</span>
 <span class="sd">                x_setter(x_new)</span>
 
@@ -382,6 +385,14 @@ document.write(`
 <span class="sd">                for i = range(x):</span>
 <span class="sd">                    Label(text=i)</span>
 
+<span class="sd">    A good technique for declaring immutable state datastructures is to use</span>
+<span class="sd">    `frozen dataclasses &lt;https://docs.python.org/3/library/dataclasses.html#frozen-instances&gt;`_.</span>
+<span class="sd">    Use the</span>
+<span class="sd">    `replace() &lt;https://docs.python.org/3/library/dataclasses.html#dataclasses.replace&gt;`_</span>
+<span class="sd">    function to update the dataclass.</span>
+<span class="sd">    To shallow-copy a :code:`list`,</span>
+<span class="sd">    `slice the entire list &lt;https://docs.python.org/3/library/copy.html&gt;`_</span>
+<span class="sd">    like :code:`list_new = list_old[:]`.</span>
 
 <span class="sd">    .. warning::</span>
 <span class="sd">        You can&#39;t store a :code:`callable` value in :code:`use_state`,</span>

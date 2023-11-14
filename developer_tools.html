@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Developer Tools &#8212; Edifice 0.2.0 documentation</title>
+    <title>Developer Tools &#8212; Edifice 0.2.1 documentation</title>
   
   
   
@@ -135,13 +135,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.1 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -156,6 +156,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ExportList.html">edifice.ExportList</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TabView.html">edifice.TabView</a></li>
@@ -351,7 +352,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-reloading">Dynamic reloading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-hot-reload">Dynamic hot-reload</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-inspector">Element Inspector</a></li>
 </ul>
             </nav>
@@ -367,14 +368,9 @@ document.write(`
   <section id="developer-tools">
 <h1>Developer Tools<a class="headerlink" href="#developer-tools" title="Permalink to this heading">#</a></h1>
 <p>The declarative nature of Edifice makes it easy for development tools
-to introspect application code.
-Edifice comes with two tools to aid in development:</p>
-<ul class="simple">
-<li><p>Dynamic reloading: changes in source file will automatically be reloaded by the App. This is especially for adjusting styling and testing out layouts.</p></li>
-<li><p>Element inspector: say goodbye to (most but not all) print statements. You can look at the state and props of every component to diagnose what went wrong.</p></li>
-</ul>
-<section id="dynamic-reloading">
-<h2>Dynamic reloading<a class="headerlink" href="#dynamic-reloading" title="Permalink to this heading">#</a></h2>
+to introspect application code.</p>
+<section id="dynamic-hot-reload">
+<h2>Dynamic hot-reload<a class="headerlink" href="#dynamic-hot-reload" title="Permalink to this heading">#</a></h2>
 <figure class="align-default">
 <img alt="_images/edifice-workflow.gif" src="_images/edifice-workflow.gif" />
 </figure>
@@ -413,14 +409,14 @@ only a few components would need to be reloaded,
 saving you the time of navigating through your app to get to the changed widget.</p>
 <p>Running your app through Edifice is extremely simple.
 On the command line:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">edifice</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span> <span class="n">RootElement</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">edifice</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span> <span class="n">MyRootElement</span>
 </pre></div>
 </div>
-<p>This will run app.py, mounting the specified Element as the root,
+<p>This will run <code class="code docutils literal notranslate"><span class="pre">app.py</span></code>, mounting the <code class="code docutils literal notranslate"><span class="pre">MyRootElement</span></code> as the root,
 listening to changes to all Python files contained in
 path/to/your (and recursively in all sub directories)
 and dynamically reloading all changes.
-If you want to explicitly specify another path to listen to, use the –dir flag:</p>
+If you want to explicitly specify another path to listen to, use the <code class="code docutils literal notranslate"><span class="pre">--dir</span></code> flag:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">edifice</span> <span class="o">--</span><span class="nb">dir</span> <span class="n">directory</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">watch</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span> <span class="n">RootElement</span>
 </pre></div>
 </div>
@@ -503,7 +499,7 @@ In future iterations, we plan to add the following features to the Element Inspe
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-reloading">Dynamic reloading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-hot-reload">Dynamic hot-reload</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-inspector">Element Inspector</a></li>
 </ul>
   </nav></div>

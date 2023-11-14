@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 0.2.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 0.2.1 documentation</title>
   
   
   
@@ -132,13 +132,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.1 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -153,6 +153,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.ExportList.html">edifice.ExportList</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.TabView.html">edifice.TabView</a></li>
@@ -323,16 +324,11 @@ document.write(`
 <span class="n">ICONS</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">edifice</span><span class="o">.</span><span class="n">icons</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
-    <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtSvg</span><span class="p">,</span> <span class="n">QtGui</span>
-    <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtCore</span>
+    <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtSvg</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtSvgWidgets</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtSvg</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtSvgWidgets</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Edifice&quot;</span><span class="p">)</span>
-
-<span class="n">Key</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Key</span>
-<span class="n">_UnderlyingType</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span>
 
 <span class="k">def</span> <span class="nf">_ensure_future</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
     <span class="c1"># Ensures future if fn is a coroutine, otherwise don&#39;t modify fn</span>
@@ -352,7 +348,6 @@ document.write(`
     <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="ow">or</span> <span class="p">{}</span>
     <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;{</span><span class="si">%s</span><span class="s2">}&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
     <span class="k">return</span> <span class="n">stylesheet</span>
-
 
 <span class="k">def</span> <span class="nf">_array_to_pixmap</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
@@ -529,7 +524,7 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The underlying QWidget, which may not exist if this Element has not rendered.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -652,7 +647,7 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_click</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_click</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="c1"># FIXME: Should this not use `underlying`?</span>
         <span class="k">if</span> <span class="n">on_click</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -666,7 +661,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mouseReleaseEvent</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mouseReleaseEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_release</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_key_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_key_down</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_key_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_key_down</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_down</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_down</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">keyPressEvent</span>
@@ -676,7 +671,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_down</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">keyPressEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_key_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_key_up</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_key_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_key_up</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_up</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">keyReleaseEvent</span>
@@ -686,7 +681,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_up</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">keyReleaseEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_up</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_mouse_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_mouse_down</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_mouse_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_down</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">on_mouse_down</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_down</span><span class="p">)</span>
@@ -696,7 +691,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_press_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mousePressEvent</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mousePressEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_press</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_mouse_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_mouse_up</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_mouse_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_up</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">on_mouse_up</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_up</span><span class="p">)</span>
@@ -706,7 +701,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mouseReleaseEvent</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mouseReleaseEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_release</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_mouse_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_mouse_enter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_mouse_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_enter</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_enter_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_enter_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">enterEvent</span>
@@ -717,7 +712,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_enter</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">enterEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_enter_event</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_mouse_leave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_mouse_leave</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_mouse_leave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_leave</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_leave_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_leave_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">leaveEvent</span>
@@ -728,7 +723,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">leaveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_leave_event</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_leave</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_mouse_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span> <span class="n">on_mouse_move</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_mouse_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_move</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mouseMoveEvent</span>
@@ -740,30 +735,36 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mouseMoveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span>
 
-    <span class="k">def</span> <span class="nf">_gen_styling_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">underlying_layout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_gen_styling_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">children</span><span class="p">,</span>
+        <span class="n">style</span><span class="p">,</span>
+        <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
+        <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">new_margin</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="n">new_margin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="s2">&quot;margin&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span> <span class="o">=</span> <span class="p">[</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin&quot;</span><span class="p">])]</span> <span class="o">*</span> <span class="mi">4</span>
+                <span class="n">new_margin</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin&quot;</span><span class="p">)</span>
                 <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-left&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-left&quot;</span><span class="p">])</span>
+                <span class="n">new_margin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-left&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-left&quot;</span><span class="p">)</span>
                 <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-right&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-right&quot;</span><span class="p">])</span>
+                <span class="n">new_margin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-right&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-right&quot;</span><span class="p">)</span>
                 <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-top&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-top&quot;</span><span class="p">])</span>
+                <span class="n">new_margin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-top&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-top&quot;</span><span class="p">)</span>
                 <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-bottom&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">])</span>
+                <span class="n">new_margin</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">)</span>
                 <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -857,7 +858,7 @@ document.write(`
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">,</span> <span class="n">css_string</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
 
-    <span class="k">def</span> <span class="nf">_set_context_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_context_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span><span class="p">:</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">True</span>
@@ -876,8 +877,8 @@ document.write(`
         <span class="n">children</span><span class="p">,</span>
         <span class="n">newprops</span><span class="p">,</span>
         <span class="n">newstate</span><span class="p">,</span>
-        <span class="n">underlying</span><span class="p">:</span> <span class="n">_UnderlyingType</span><span class="p">,</span>
-        <span class="n">underlying_layout</span><span class="o">=</span><span class="kc">None</span>
+        <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
+        <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
@@ -940,11 +941,9 @@ document.write(`
 
 
 <div class="viewcode-block" id="Window"><a class="viewcode-back" href="../../../stubs/edifice.Window.html#edifice.Window">[docs]</a><span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">RootElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Displays its child as an operating system window.</span>
-
-<span class="sd">	The root element of an :class:`App` must be a Window. (The :class:`App`</span>
-<span class="sd">    will implicitly wrap your root element in a Window if your root element</span>
-<span class="sd">    is not a Window.)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The root element of an :class:`App` which runs in an operating system</span>
+<span class="sd">    window.</span>
 
 <span class="sd">    The Window must have exactly one child, and the child must not change.</span>
 <span class="sd">    Usually the one child of a Window will be a :class:`View`.</span>
@@ -974,6 +973,11 @@ document.write(`
             <span class="s2">&quot;on_close&quot;</span><span class="p">:</span> <span class="n">on_close</span><span class="p">,</span>
         <span class="p">})</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Window.underlying is always None. Instead it uses the</span>
+        <span class="c1"># _previous_rendering.underlying, which is the first child of</span>
+        <span class="c1"># Whatever element it rendered to?</span>
+        <span class="c1"># Why do we even need Window?</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># self._on_click = None</span>
@@ -1039,6 +1043,10 @@ document.write(`
 
 
 <span class="k">class</span> <span class="nc">GroupBox</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Underlying</span>
+<span class="sd">    `QGroupBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGroupBox.html&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
@@ -1065,7 +1073,10 @@ document.write(`
         <span class="k">return</span> <span class="n">commands</span>
 
 <div class="viewcode-block" id="Icon"><a class="viewcode-back" href="../../../stubs/edifice.Icon.html#edifice.Icon">[docs]</a><span class="k">class</span> <span class="nc">Icon</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an Icon</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an Icon.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/icons.png</span>
 <span class="sd">       :width: 300</span>
@@ -1150,6 +1161,9 @@ document.write(`
 <div class="viewcode-block" id="Button"><a class="viewcode-back" href="../../../stubs/edifice.Button.html#edifice.Button">[docs]</a><span class="k">class</span> <span class="nc">Button</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic button widget.</span>
 
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
+
 <span class="sd">    .. figure:: /image/textinput_button.png</span>
 <span class="sd">       :width: 300</span>
 
@@ -1192,6 +1206,9 @@ document.write(`
 
 <div class="viewcode-block" id="IconButton"><a class="viewcode-back" href="../../../stubs/edifice.IconButton.html#edifice.IconButton">[docs]</a><span class="k">class</span> <span class="nc">IconButton</span><span class="p">(</span><span class="n">Button</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an Icon Button.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/icons.png</span>
 <span class="sd">       :width: 300</span>
@@ -1264,10 +1281,14 @@ document.write(`
 <div class="viewcode-block" id="Label"><a class="viewcode-back" href="../../../stubs/edifice.Label.html#edifice.Label">[docs]</a><span class="k">class</span> <span class="nc">Label</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for displaying text.</span>
 
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
+
 <span class="sd">    .. figure:: /image/label.png</span>
 <span class="sd">       :width: 500</span>
 
-<span class="sd">       Three different label objects. You can embed HTML in labels to get rich text formatting.</span>
+<span class="sd">    You can render rich text with the</span>
+<span class="sd">    `Qt supported HTML subset &lt;https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html&gt;`_.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        text: the text to display. Can be any Python type; the text prop is converted to a string using str before being displayed</span>
@@ -1340,6 +1361,9 @@ document.write(`
 <div class="viewcode-block" id="Image"><a class="viewcode-back" href="../../../stubs/edifice.Image.html#edifice.Image">[docs]</a><span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An image container.</span>
 
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        src: either the path to the image, or an RGB np array, or a QtGui.QImage. The np array must be 3 dimensional (height, width, channels)</span>
 <span class="sd">        scale_to_fit: if True, the image will be scaled to fit inside the container.</span>
@@ -1373,6 +1397,9 @@ document.write(`
 
 <div class="viewcode-block" id="ImageSvg"><a class="viewcode-back" href="../../../stubs/edifice.ImageSvg.html#edifice.ImageSvg">[docs]</a><span class="k">class</span> <span class="nc">ImageSvg</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An SVG Image container.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QSvgWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSvgWidget.html&gt;`_</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        src: the path to the SVG image.</span>
@@ -1436,6 +1463,9 @@ document.write(`
 
 <div class="viewcode-block" id="TextInput"><a class="viewcode-back" href="../../../stubs/edifice.TextInput.html#edifice.TextInput">[docs]</a><span class="k">class</span> <span class="nc">TextInput</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a one line text input.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QLineEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/textinput_button.png</span>
 <span class="sd">       :width: 300</span>
@@ -1537,6 +1567,9 @@ document.write(`
 
 <div class="viewcode-block" id="Dropdown"><a class="viewcode-back" href="../../../stubs/edifice.Dropdown.html#edifice.Dropdown">[docs]</a><span class="k">class</span> <span class="nc">Dropdown</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a dropdown menu.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QComboBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QComboBox.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
 <span class="sd">       :width: 300</span>
@@ -1648,6 +1681,9 @@ document.write(`
 <div class="viewcode-block" id="RadioButton"><a class="viewcode-back" href="../../../stubs/edifice.RadioButton.html#edifice.RadioButton">[docs]</a><span class="k">class</span> <span class="nc">RadioButton</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Radio buttons.</span>
 
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QRadioButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html&gt;`_</span>
+
 <span class="sd">    .. figure:: /image/radio_button.png</span>
 <span class="sd">       :width: 300</span>
 
@@ -1714,6 +1750,9 @@ document.write(`
 
 <div class="viewcode-block" id="CheckBox"><a class="viewcode-back" href="../../../stubs/edifice.CheckBox.html#edifice.CheckBox">[docs]</a><span class="k">class</span> <span class="nc">CheckBox</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checkbox widget.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QCheckBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCheckBox.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
 <span class="sd">       :width: 300</span>
@@ -1791,6 +1830,9 @@ document.write(`
 
 <div class="viewcode-block" id="Slider"><a class="viewcode-back" href="../../../stubs/edifice.Slider.html#edifice.Slider">[docs]</a><span class="k">class</span> <span class="nc">Slider</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Slider bar widget.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QSlider &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSlider.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/slider.png</span>
 <span class="sd">       :width: 300</span>
@@ -1957,7 +1999,13 @@ document.write(`
 <div class="viewcode-block" id="View"><a class="viewcode-back" href="../../../stubs/edifice.View.html#edifice.View">[docs]</a><span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic layout widget for grouping children together.</span>
 
-<span class="sd">    Content that does not fit into the `View` layout will be clipped.</span>
+<span class="sd">    * Underlying Qt Layout</span>
+<span class="sd">      `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
+<span class="sd">      or</span>
+<span class="sd">      `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
+<span class="sd">      or :code:`None`</span>
+
+<span class="sd">    Content that does not fit into the View layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`ScrollView&lt;edifice.ScrollView&gt;`.</span>
 
 <span class="sd">    Args:</span>
@@ -1965,8 +2013,8 @@ document.write(`
 
 <span class="sd">            A row layout will lay its children in a row and a column layout will lay its children in a column.</span>
 <span class="sd">            When :code:`layout=&quot;row&quot;` or :code:`layout=&quot;column&quot;` are set, the position of their children is not adjustable.</span>
-<span class="sd">            If layout is :code:`None`, then all children by default will be positioend at the upper left-hand corner</span>
-<span class="sd">            of the `View` (x=0, y=0). Children can set the :code:`top` and :code:`left` attributes of their style</span>
+<span class="sd">            If layout is :code:`None`, then all children by default will be positioned at the upper left-hand corner</span>
+<span class="sd">            of the View at *(x=0, y=0)*. Children can set the :code:`top` and :code:`left` attributes of their style</span>
 <span class="sd">            to position themselves relevative to their parent.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -2034,6 +2082,9 @@ document.write(`
 
 <div class="viewcode-block" id="ScrollView"><a class="viewcode-back" href="../../../stubs/edifice.ScrollView.html#edifice.ScrollView">[docs]</a><span class="k">class</span> <span class="nc">ScrollView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable layout widget for grouping children together.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/scroll_view.png</span>
 <span class="sd">       :width: 500</span>
@@ -2137,6 +2188,9 @@ document.write(`
 <div class="viewcode-block" id="GridView"><a class="viewcode-back" href="../../../stubs/edifice.GridView.html#edifice.GridView">[docs]</a><span class="k">class</span> <span class="nc">GridView</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Grid layout widget for rendering children on a 2D rectangular grid.</span>
 
+<span class="sd">    * Underlying Qt Layout</span>
+<span class="sd">      `QGridLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html&gt;`_</span>
+
 <span class="sd">    Grid views allow you to precisely control 2D positioning of widgets.</span>
 <span class="sd">    While you can also layout widgets using nested :class:`View&lt;edifice.View&gt;`,</span>
 <span class="sd">    specifying the exact location of children relative to each other (with proper alignment)</span>
@@ -2228,6 +2282,9 @@ document.write(`
 
 <div class="viewcode-block" id="TabView"><a class="viewcode-back" href="../../../stubs/edifice.TabView.html#edifice.TabView">[docs]</a><span class="k">class</span> <span class="nc">TabView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Widget with multiple tabs.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QTabWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTabWidget.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/tab_view.png</span>
 <span class="sd">       :width: 300</span>
@@ -2328,13 +2385,16 @@ document.write(`
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
-<span class="k">class</span> <span class="nc">List</span><span class="p">(</span><span class="n">RootElement</span><span class="p">):</span>
+<div class="viewcode-block" id="ExportList"><a class="viewcode-back" href="../../../stubs/edifice.ExportList.html#edifice.ExportList">[docs]</a><span class="k">class</span> <span class="nc">ExportList</span><span class="p">(</span><span class="n">RootElement</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The root element for an App which does :func:`App.export_widgets`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<div class="viewcode-block" id="ExportList.__init__"><a class="viewcode-back" href="../../../stubs/stubs/edifice.ExportList.__init__.html#edifice.ExportList.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
 
 
 

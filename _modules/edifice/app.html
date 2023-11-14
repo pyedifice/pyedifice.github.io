@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 0.2.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 0.2.1 documentation</title>
   
   
   
@@ -132,13 +132,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.2.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.2.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.2.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -153,6 +153,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ExportList.html">edifice.ExportList</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TabView.html">edifice.TabView</a></li>
@@ -325,8 +326,8 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">qasync</span> <span class="kn">import</span> <span class="n">QEventLoop</span>
 
-<span class="kn">from</span> <span class="nn">._component</span> <span class="kn">import</span> <span class="n">Element</span>
-<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">Window</span>
+<span class="kn">from</span> <span class="nn">._component</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">RootElement</span>
+<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">Window</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">ExportList</span>
 <span class="kn">from</span> <span class="nn">.engine</span> <span class="kn">import</span> <span class="n">RenderEngine</span>
 <span class="kn">from</span> <span class="nn">.inspector</span> <span class="kn">import</span> <span class="n">inspector</span>
 
@@ -383,15 +384,12 @@ document.write(`
 
 <span class="sd">        App(MyRootElement()).start()</span>
 
-<span class="sd">    If you want application to be a normal application in an operating</span>
+<span class="sd">    If the application is normal application in an operating</span>
 <span class="sd">    system window, then the top Element rendered by :code:`MyRootElement`</span>
 <span class="sd">    must be a :class:`Window`.</span>
 
-<span class="sd">    If you just want to create a widget (that you&#39;ll integrate with an existing codebase),</span>
-<span class="sd">    call the :func:`App.export_widgets` method::</span>
-
-<span class="sd">        widget = App(MyRootElement()).export_widgets()</span>
-
+<span class="sd">    If you just want to create a widget that you&#39;ll integrate with an existing</span>
+<span class="sd">    Qt application, use the :func:`App.export_widgets` method.</span>
 <span class="sd">    This widget can then be plugged into the rest of your application, and there&#39;s no need</span>
 <span class="sd">    to manage the rendering of the widget -- state changes will trigger automatic re-render</span>
 <span class="sd">    without any intervention.</span>
@@ -432,7 +430,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span> <span class="o">=</span> <span class="n">qapplication</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="o">=</span> <span class="n">root_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="p">:</span> <span class="n">Element</span> <span class="o">=</span> <span class="n">root_element</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span> <span class="o">=</span> <span class="n">RenderEngine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">_RateLimitedLogger</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_render_timing</span> <span class="o">=</span> <span class="n">_TimingAvg</span><span class="p">()</span>
@@ -582,42 +580,40 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">stylesheet</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="App.export_widgets"><a class="viewcode-back" href="../../stubs/stubs/edifice.App.export_widgets.html#edifice.App.export_widgets">[docs]</a>    <span class="k">def</span> <span class="nf">export_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exports the Qt widgets underlying the Edifice Element.</span>
+<div class="viewcode-block" id="App.export_widgets"><a class="viewcode-back" href="../../stubs/stubs/edifice.App.export_widgets.html#edifice.App.export_widgets">[docs]</a>    <span class="k">def</span> <span class="nf">export_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exports the underlying Qt :code:`QWidgets` s from the components</span>
+<span class="sd">        in the :class:`ExportList`.</span>
 
-<span class="sd">        Depending on how the root component is defined, either one or multiple</span>
-<span class="sd">        widgets are returned</span>
-<span class="sd">        (for example, if your root component returns a list of Views,</span>
-<span class="sd">        export_widgets will return a list of widgets).</span>
-<span class="sd">        These widgets are still managed by Edifice:</span>
+<span class="sd">        Returns a list of `QtWidgets.QWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html&gt;`_.</span>
+
+<span class="sd">        These :code:`QWidget` s are still managed by Edifice,</span>
 <span class="sd">        they will still benefit from full reactivity and state consistency.</span>
-<span class="sd">        You can mount these widgets to your pre-existing Qt Application this way::</span>
+<span class="sd">        You can mount these widgets to your pre-existing Qt application this way::</span>
 
 <span class="sd">            # Suppose parent_widget is defined in Qt code.</span>
-<span class="sd">            app = edifice.App(MyAwesomeElement())</span>
-<span class="sd">            widget = app.export_widgets()</span>
-<span class="sd">            widget.setParent(parent_widget)</span>
+
+<span class="sd">            @component</span>
+<span class="sd">            def export_components(self):</span>
+<span class="sd">                with ExportList():</span>
+<span class="sd">                    MyAwesomeComponent()</span>
+
+<span class="sd">            widgets = edifice.App(export_components).export_widgets()</span>
+<span class="sd">            widget[0].setParent(parent_widget)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            None</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            One or multiple QtWidgets.QWidget objects.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">],</span> <span class="p">{})</span>
-        <span class="k">def</span> <span class="nf">_make_widget_helper</span><span class="p">(</span><span class="n">comp</span><span class="p">):</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">underlying</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">underlying</span>
-            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                <span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">if</span> <span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">comps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span><span class="o">.</span><span class="n">children</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">comps</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="p">[</span><span class="n">_make_widget_helper</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">component</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
-                <span class="k">return</span> <span class="n">_make_widget_helper</span><span class="p">(</span><span class="n">comps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
-
-            <span class="k">return</span> <span class="n">underlying</span>
-
-        <span class="k">return</span> <span class="n">_make_widget_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">)</span></div>
+        <span class="n">exportlist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exportlist</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">ExportList</span><span class="p">):</span>
+            <span class="n">widgets</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">exportlist</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
+                    <span class="n">widgets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">widgets</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;The root element of the App for export_widgets() must be an ExportList&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="App.start"><a class="viewcode-back" href="../../stubs/stubs/edifice.App.start.html#edifice.App.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
