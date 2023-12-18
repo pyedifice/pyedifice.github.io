@@ -4,6 +4,26 @@
 Release Notes
 =============
 
+0.3.0
+-----
+Released: 2023-12-19
+
+* New Base Elements:
+    - :class:`SpinInput`
+    - :class:`ProgressBar`
+* :class:`QtWidgetElement` :code:`on_drop` event handler.
+* **Extra Elements**
+    - :class:`extra.MatplotlibFigure`
+    - :class:`extra.PyQtPlot`
+* Removed **numpy** dependency.
+* Bugfixes in child diffing and reconciliation.
+* :func:`use_effect` cleanup function can be :code:`None`.
+* Bugfix :func:`use_async` cancellation of previous task.
+* Base Element :class:`Slider` only allows integer values.
+* Merged Base Elements :class:`Image` and :code:`ImageAspect`
+* Removed deprecated modules :code:`forms`, :code:`plotting`.
+* Hot-reload bugfixes.
+
 0.2.1
 -----
 Released: 2023-11-14
@@ -29,7 +49,7 @@ in version 16.8.
 * New :code:`with` context manager syntax for declaring children instead of the
   Element :code:`__call__` syntax for declaring children.
 
-* Moved :class:`ButtonView`, :class:`FlowView`, :class:`ImageAspect`,
+* Moved :class:`ButtonView`, :class:`FlowView`, :code:`ImageAspect`,
   :class:`TableGridView` to Base Elements.
 
 * Deprecated all Higher-level Components.
@@ -80,7 +100,7 @@ Released: 2023-09-14
 * Component :code:`Image` props :code:`src` can be a :code:`QtGui.QImage`.
 * Deleted :code:`setup.py`, added Poetry :code:`pyproject.toml`.
 * :code:`App` new props :code:`qapplication`.
-* New Higher-level Component: :class:`ImageAspect`.
+* New Higher-level Component: :code:`ImageAspect`.
 * New Higher-level Component: :class:`ButtonView`.
 * New Higher-level Component: :class:`FlowView`.
 * New Higher-level Component: :class:`TableGridView`.
