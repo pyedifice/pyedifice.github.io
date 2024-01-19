@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 0.3.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 0.3.1 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../_static/documentation_options.js?v=83a61292"></script>
+    <script src="../../_static/documentation_options.js?v=385a908f"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -128,13 +128,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -338,10 +338,10 @@ document.write(`
 <span class="sd">        def Stateful(self):</span>
 <span class="sd">            x, x_setter = use_state(0)</span>
 
-<span class="sd">            if x &lt; 1:</span>
-<span class="sd">                x_setter(1)</span>
-
-<span class="sd">            Label(text=str(x))</span>
+<span class="sd">            Button(</span>
+<span class="sd">                title=str(x)</span>
+<span class="sd">                on_click = lambda _event: x_setter(x + 1)</span>
+<span class="sd">            )</span>
 
 <span class="sd">    If an **updater function** is passed to the **setter function**, then at the end of</span>
 <span class="sd">    the render the state will be modified by calling all of the</span>
@@ -354,13 +354,13 @@ document.write(`
 <span class="sd">        def Stateful(self):</span>
 <span class="sd">            x, x_setter = use_state(0)</span>
 
-<span class="sd">            def updater(y):</span>
-<span class="sd">                return y + 1</span>
+<span class="sd">            def updater(x_previous):</span>
+<span class="sd">                return x_previous + 1</span>
 
-<span class="sd">            if x &lt; 1:</span>
-<span class="sd">                x_setter(updater)</span>
-
-<span class="sd">            Label(text=str(x))</span>
+<span class="sd">            Button(</span>
+<span class="sd">                title=str(x)</span>
+<span class="sd">                on_click = lambda _event: x_setter(updater)</span>
+<span class="sd">            )</span>
 
 <span class="sd">    If any of the **updater functions** raises an exception, then all state</span>
 <span class="sd">    updates will be cancelled and the state value will be unchanged for the</span>
@@ -374,20 +374,20 @@ document.write(`
 <span class="sd">    of it to pass to the **setter function**::</span>
 
 <span class="sd">        def Stateful(self):</span>
-<span class="sd">            x, x_setter = use_state([])</span>
+<span class="sd">            x, x_setter = use_state(cast(list[str], []))</span>
 
-<span class="sd">            def add_one():</span>
-<span class="sd">                x_new = x[:]</span>
-<span class="sd">                x_new.append(&quot;Label Text&quot;)</span>
-<span class="sd">                x_setter(x_new)</span>
+<span class="sd">            def updater(x_previous):</span>
+<span class="sd">                x_new = x_previous[:]</span>
+<span class="sd">                x_new.append(&quot;Label Text &quot; + str(len(x_previous)))</span>
+<span class="sd">                return x_new</span>
 
 <span class="sd">            with View():</span>
 <span class="sd">                Button(</span>
 <span class="sd">                    title=&quot;Add One&quot;,</span>
-<span class="sd">                    on_click = lambda _event: add_one</span>
+<span class="sd">                    on_click = lambda _event: x_setter(updater)</span>
 <span class="sd">                )</span>
-<span class="sd">                for i = range(x):</span>
-<span class="sd">                    Label(text=i)</span>
+<span class="sd">                for t in x:</span>
+<span class="sd">                    Label(text=t)</span>
 
 <span class="sd">    A good technique for declaring immutable state datastructures is to use</span>
 <span class="sd">    `frozen dataclasses &lt;https://docs.python.org/3/library/dataclasses.html#frozen-instances&gt;`_.</span>
@@ -606,20 +606,13 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By David Ding © 2021
+By David Ding, James D. Brock, Viktor Kronvall
 </p>
 
   </div>
   
   <div class="footer-item">
     
-  <p class="copyright">
-    
-      © Copyright 1980, David Ding.
-      <br/>
-    
-  </p>
-
   </div>
   
   <div class="footer-item">

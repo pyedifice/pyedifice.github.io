@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 0.3.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 0.3.1 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../../_static/documentation_options.js?v=83a61292"></script>
+    <script src="../../../_static/documentation_options.js?v=385a908f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -128,13 +128,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.1 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -313,8 +313,8 @@ document.write(`
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
-<span class="kn">from</span> <span class="nn">.._component</span> <span class="kn">import</span> <span class="n">WidgetElement</span><span class="p">,</span> <span class="n">RootElement</span><span class="p">,</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">PropsDict</span>
-<span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="n">_WidgetTree</span>
+<span class="kn">from</span> <span class="nn">.._component</span> <span class="kn">import</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">PropsDict</span>
+<span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="n">_WidgetTree</span><span class="p">,</span> <span class="n">WidgetElement</span>
 
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 
@@ -627,7 +627,6 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_press_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1034,7 +1033,7 @@ document.write(`
 
 <div class="viewcode-block" id="Window">
 <a class="viewcode-back" href="../../../stubs/edifice.Window.html#edifice.Window">[docs]</a>
-<span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">RootElement</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">WidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The root element of an :class:`App` which runs in an operating system</span>
 <span class="sd">    window.</span>
@@ -2643,7 +2642,7 @@ document.write(`
 
 <div class="viewcode-block" id="ExportList">
 <a class="viewcode-back" href="../../../stubs/edifice.ExportList.html#edifice.ExportList">[docs]</a>
-<span class="k">class</span> <span class="nc">ExportList</span><span class="p">(</span><span class="n">RootElement</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ExportList</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The root element for an App which does :func:`App.export_widgets`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2838,20 +2837,13 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By David Ding © 2021
+By David Ding, James D. Brock, Viktor Kronvall
 </p>
 
   </div>
   
   <div class="footer-item">
     
-  <p class="copyright">
-    
-      © Copyright 1980, David Ding.
-      <br/>
-    
-  </p>
-
   </div>
   
   <div class="footer-item">

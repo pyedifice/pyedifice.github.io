@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice._component &#8212; Edifice 0.3.0 documentation</title>
+    <title>edifice._component &#8212; Edifice 0.3.1 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../_static/documentation_options.js?v=83a61292"></script>
+    <script src="../../_static/documentation_options.js?v=385a908f"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -128,13 +128,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -598,6 +598,7 @@ document.write(`
     <span class="n">_render_unwind_context</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_ignored_variables</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_edifice_internal_parent</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># TODO Delete _edifice_internal_parent</span>
     <span class="n">_controller</span><span class="p">:</span> <span class="n">ControllerProtocol</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_edifice_internal_references</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Reference</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -811,11 +812,7 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;children&quot;</span><span class="p">:</span>
-            <span class="c1"># We always rerender if the element has children.</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
             <span class="c1"># If the prop is in the old props, then we check if it&#39;s changed.</span>
                 <span class="n">v2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">v2</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
@@ -1037,34 +1034,6 @@ document.write(`
 <span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">Container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">pass</span>
-
-<span class="k">class</span> <span class="nc">BaseElement</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base Element, whose rendering is defined by the backend.&quot;&quot;&quot;</span>
-    <span class="c1"># TODO _qt_update_commands should be a virtual function but _WidgetTree</span>
-    <span class="c1"># isn&#39;t defined here.</span>
-    <span class="c1">#</span>
-    <span class="c1"># def _qt_update_commands(</span>
-    <span class="c1">#     self,</span>
-    <span class="c1">#     children: list[_WidgetTree],</span>
-    <span class="c1">#     newprops : PropsDict,</span>
-    <span class="c1">#     newstate,</span>
-    <span class="c1">#     underlying: QtWidgets.QWidget,</span>
-    <span class="c1">#     underlying_layout: QtWidgets.QLayout | None = None</span>
-    <span class="c1"># ) -&gt; list[_CommandType]:</span>
-    <span class="c1">#     raise NotImplementedError</span>
-
-
-<span class="k">class</span> <span class="nc">WidgetElement</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-
-<span class="k">class</span> <span class="nc">RootElement</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The root Element of an Element tree must be an instance of RootElement.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
-        <span class="k">del</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span>
-        <span class="k">return</span> <span class="p">[]</span>
 </pre></div>
 
                 </article>
@@ -1093,20 +1062,13 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By David Ding © 2021
+By David Ding, James D. Brock, Viktor Kronvall
 </p>
 
   </div>
   
   <div class="footer-item">
     
-  <p class="copyright">
-    
-      © Copyright 1980, David Ding.
-      <br/>
-    
-  </p>
-
   </div>
   
   <div class="footer-item">

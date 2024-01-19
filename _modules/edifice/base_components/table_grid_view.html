@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.table_grid_view &#8212; Edifice 0.3.0 documentation</title>
+    <title>edifice.base_components.table_grid_view &#8212; Edifice 0.3.1 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../../_static/documentation_options.js?v=83a61292"></script>
+    <script src="../../../_static/documentation_options.js?v=385a908f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -128,13 +128,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.1 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -307,11 +307,7 @@ document.write(`
                   
   <h1>Source code for edifice.base_components.table_grid_view</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
-<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Edifice&quot;</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
@@ -319,89 +315,32 @@ document.write(`
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QGridLayout</span><span class="p">,</span> <span class="n">QWidget</span>
 
-<span class="kn">from</span> <span class="nn">.._component</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">BaseElement</span><span class="p">,</span> <span class="n">_CommandType</span>
+<span class="kn">from</span> <span class="nn">.._component</span> <span class="kn">import</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">PropsDict</span><span class="p">,</span> <span class="n">Element</span>
 <span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">QtWidgetElement</span>
-<span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="n">_WidgetTree</span>
+<span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="n">_WidgetTree</span><span class="p">,</span> <span class="n">WidgetElement</span>
 
-<span class="c1"># TODO instead of attaching these attributes to the elements, the</span>
-<span class="c1"># TableGridView could have a dict of dict[Element, tuple[row,column,key]]</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Edifice&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">_get_tablerowcolumn</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Sometimes it’s on the QtWidgetElement, sometimes on the Element’s _edifice_internal_parent.</span>
-
-<span class="sd">    We need it, so crash if we don&#39;t find it.</span>
-<span class="sd">    We can proceed without a _key but not without a _tablerowcolumn</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">_edifice_internal_parent</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">_get_key</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Sometimes it’s on the QtWidgetElement, sometimes on the Element’s _edifice_internal_parent.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">):</span>
-        <span class="c1"># We can proceed without a _key but not without a _tablerowcolumn</span>
-        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_key&quot;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">_edifice_internal_parent</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">_edifice_internal_parent</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">&quot;_key&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">default</span>
-
-<span class="k">def</span> <span class="nf">_childdict</span><span class="p">(</span><span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_WidgetTree</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="nb">str</span><span class="p">],</span> <span class="n">QtWidgetElement</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Produce a dictionary of child components keyed by tuple (row,column,_key).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="nb">str</span><span class="p">],</span> <span class="n">QtWidgetElement</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-        <span class="n">row</span><span class="p">,</span><span class="n">column</span> <span class="o">=</span> <span class="n">_get_tablerowcolumn</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="n">_get_key</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">)</span>
-        <span class="n">d</span><span class="p">[(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">key</span><span class="p">)]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span>
-    <span class="k">return</span> <span class="n">d</span>
-
-<span class="k">class</span> <span class="nc">_TableGridViewRow</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_TableGridViewRow</span><span class="p">(</span><span class="n">WidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Row Element of a :class:`TableGridView`.</span>
 
-<span class="sd">    This Element has no Qt instantiation.</span>
-
-<span class="sd">    Hooks cannot be used in this Element.</span>
+<span class="sd">    Do not create this Element directly. Instead, use the :func:`TableGridView.row` method.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tgv</span><span class="p">:</span> <span class="s2">&quot;TableGridView&quot;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_table_grid_view</span><span class="p">:</span> <span class="s2">&quot;TableGridView&quot;</span> <span class="o">=</span> <span class="n">tgv</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_column_current</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The current column in the context of the TableGridView render&quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_column_current</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;children&quot;</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-            <span class="n">child</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_tablerowcolumn&quot;</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_table_grid_view</span><span class="o">.</span><span class="n">_row_current</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_column_current</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_column_current</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_table_grid_view</span><span class="o">.</span><span class="n">_row_current</span> <span class="o">+=</span> <span class="mi">1</span>
-
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">children</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">newprops</span><span class="p">,</span>
-        <span class="n">newstate</span>
-    <span class="p">):</span>
+        <span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">newprops</span> <span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
+        <span class="n">newstate</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
         <span class="c1"># This element has no Qt underlying so it has nothing to do except store</span>
         <span class="c1"># the children of the row.</span>
         <span class="c1"># The _qt_update_commands for TableGridView will render the children.</span>
         <span class="k">return</span> <span class="p">[]</span>
-
-    <span class="c1"># def render(self):</span>
 
 <div class="viewcode-block" id="TableGridView">
 <a class="viewcode-back" href="../../../stubs/edifice.TableGridView.html#edifice.TableGridView">[docs]</a>
@@ -421,29 +360,31 @@ document.write(`
 <span class="sd">    Element establishes a row in the table, and may have children of</span>
 <span class="sd">    any type of :class:`Element`.</span>
 
-<span class="sd">    Every child Element must have a unique key.</span>
-
 <span class="sd">    Example::</span>
 
 <span class="sd">        with TableGridView() as tgv:</span>
 <span class="sd">            with tgv.row():</span>
-<span class="sd">                Label(text=&quot;row 0 column 0&quot;).set_key(&quot;a&quot;)</span>
-<span class="sd">                Label(text=&quot;row 0 column 1&quot;).set_key(&quot;b&quot;)</span>
+<span class="sd">                Label(text=&quot;row 0 column 0&quot;)</span>
+<span class="sd">                Label(text=&quot;row 0 column 1&quot;)</span>
 <span class="sd">            with tgv.row():</span>
-<span class="sd">                Label(text=&quot;row 1 column 0&quot;).set_key(&quot;c&quot;)</span>
-<span class="sd">                with ButtonView().set_key(&quot;d&quot;):</span>
+<span class="sd">                Label(text=&quot;row 1 column 0&quot;)</span>
+<span class="sd">                with ButtonView():</span>
 <span class="sd">                    Label(text=&quot;row 1 column 1&quot;)</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        row_stretch: Rows stretch size in proportion to the corresponding</span>
-<span class="sd">            int in this list.</span>
+<span class="sd">        row_stretch:</span>
+<span class="sd">            *n*:sup:`th` row stretch size in proportion to the *n*:sup:`th`</span>
+<span class="sd">            :code:`int` in this list.</span>
 <span class="sd">            See `setRowStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setRowStretch&gt;`_</span>
-<span class="sd">        column_stretch: Columns stretch size in proportion to the corresponding</span>
-<span class="sd">            int in this list.</span>
+<span class="sd">        column_stretch:</span>
+<span class="sd">            *n*:sup:`th` column stretch size in proportion to the *n*:sup:`th`</span>
+<span class="sd">            :code:`int` in this list.</span>
 <span class="sd">            See `setColumnStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setColumnStretch&gt;`_</span>
-<span class="sd">        row_minheight: Row minimum height corresponding to the int in this list.</span>
+<span class="sd">        row_minheight:</span>
+<span class="sd">            *n*:sup:`th` row minimum height is the *n*:sup:`th` :code:`int` in this list.</span>
 <span class="sd">            See `setRowMinimumHeight &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setRowMinimumHeight&gt;`_</span>
-<span class="sd">        column_minwidth: Column minimum width corresponding the int in this list.</span>
+<span class="sd">        column_minwidth:</span>
+<span class="sd">            *n*:sup:`th` column minimum width is the *n*:sup:`th` :code:`int` in this list.</span>
 <span class="sd">            See `setColumnMinimumWidth &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setColumnMinimumWidth&gt;`_</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -452,10 +393,10 @@ document.write(`
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.TableGridView.__init__.html#edifice.TableGridView.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">row_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
-            <span class="n">column_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
-            <span class="n">row_minheight</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
-            <span class="n">column_minwidth</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># noqa: B006</span>
+            <span class="n">row_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+            <span class="n">column_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+            <span class="n">row_minheight</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+            <span class="n">column_minwidth</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
@@ -466,30 +407,21 @@ document.write(`
         <span class="p">})</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="nb">str</span><span class="p">],</span> <span class="n">QtWidgetElement</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Like _LinearView._widget_children&quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span> <span class="o">=</span> <span class="n">row_stretch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_column_stretch</span> <span class="o">=</span> <span class="n">column_stretch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_minheight</span> <span class="o">=</span> <span class="n">row_minheight</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span> <span class="o">=</span> <span class="n">column_minwidth</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_row_current</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The current row in the context of the TableGridView render&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TableGridView.row">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.TableGridView.row.html#edifice.TableGridView.row">[docs]</a>
-    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Element</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_TableGridViewRow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-        <span class="c1"># Reset the current row to 0 for the current render.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_row_current</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
@@ -548,52 +480,51 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
-        <span class="c1"># The direct children of this Element are TableGridViewRow_, but</span>
-        <span class="c1"># the TableGridViewRow_ doesn&#39;t have a Qt instantiation so we</span>
-        <span class="c1"># want to treat the TableGridViewRow_ children as the children of</span>
+        <span class="c1"># The following is equivalent to _LinearView._recompute_children().</span>
+        <span class="c1">#</span>
+        <span class="c1"># The direct children of this Element are _TableGridViewRow, but</span>
+        <span class="c1"># the _TableGridViewRow doesn&#39;t have a Qt instantiation so we</span>
+        <span class="c1"># want to treat the _TableGridViewRow children as the children of</span>
         <span class="c1"># the TableGridView.</span>
 
+        <span class="n">new_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">children_of_rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_WidgetTree</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
             <span class="n">children_of_rows</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">col</span><span class="p">,</span><span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">)</span>
+                <span class="n">new_children</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">)</span>
 
-        <span class="n">newchildren</span> <span class="o">=</span> <span class="n">_childdict</span><span class="p">(</span><span class="n">children_of_rows</span><span class="p">)</span>
-
-        <span class="n">newchildren_values</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">newchildren</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
-        <span class="n">old_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-        <span class="n">new_keys</span> <span class="o">=</span> <span class="n">newchildren</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-        <span class="n">old_deletions</span> <span class="o">=</span> <span class="n">old_keys</span> <span class="o">-</span> <span class="n">new_keys</span>
-        <span class="n">new_additions</span> <span class="o">=</span> <span class="n">new_keys</span> <span class="o">-</span> <span class="n">old_keys</span>
+        <span class="n">old_deletions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">-</span> <span class="n">new_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="n">new_additions</span> <span class="o">=</span> <span class="n">new_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span> <span class="ow">in</span> <span class="n">old_deletions</span><span class="p">:</span>
-            <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span><span class="p">[(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span><span class="p">)]</span>
-            <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">newchildren_values</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">w</span><span class="p">,(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">)</span> <span class="ow">in</span> <span class="n">old_deletions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">new_children</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_soft_delete_child</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
 
-        <span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span> <span class="ow">in</span> <span class="n">new_additions</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_add_child</span><span class="p">,</span> <span class="n">newchildren</span><span class="p">[(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">_key</span><span class="p">)],</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">w</span><span class="p">,(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">)</span> <span class="ow">in</span> <span class="n">new_additions</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_add_child</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children_dict</span> <span class="o">=</span> <span class="n">newchildren</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span> <span class="o">=</span> <span class="n">new_children</span>
+
+        <span class="k">if</span> <span class="s2">&quot;row_stretch&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_row_stretch</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;row_stretch&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s2">&quot;column_stretch&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_stretch</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;column_stretch&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s2">&quot;row_minheight&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_row_minheight</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;row_minheight&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s2">&quot;column_minwidth&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_minwidth</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;column_minwidth&quot;</span><span class="p">]))</span>
 
         <span class="c1"># Pass the self.underlying_layout if we want it to be styled with the style props?</span>
         <span class="c1"># Like this:</span>
         <span class="c1"># # commands.extend(super()._qt_update_commands</span>
         <span class="c1"># # (children, newprops, newstate, self.underlying, self.underlying_layout))</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">children_of_rows</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;row_stretch&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_row_stretch</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;column_stretch&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_stretch</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;row_minheight&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_row_minheight</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;column_minwidth&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_minwidth</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]))</span>
 
         <span class="k">return</span> <span class="n">commands</span>
 
@@ -645,20 +576,13 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By David Ding © 2021
+By David Ding, James D. Brock, Viktor Kronvall
 </p>
 
   </div>
   
   <div class="footer-item">
     
-  <p class="copyright">
-    
-      © Copyright 1980, David Ding.
-      <br/>
-    
-  </p>
-
   </div>
   
   <div class="footer-item">

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.TableGridView &#8212; Edifice 0.3.0 documentation</title>
+    <title>edifice.TableGridView &#8212; Edifice 0.3.1 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../_static/documentation_options.js?v=83a61292"></script>
+    <script src="../_static/documentation_options.js?v=385a908f"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.1 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -375,30 +375,29 @@ height of its tallest child.</p>
 the row Element returned by the <a class="reference internal" href="stubs/edifice.TableGridView.row.html#edifice.TableGridView.row" title="edifice.TableGridView.row"><code class="xref py py-func docutils literal notranslate"><span class="pre">row()</span></code></a> method. The <a class="reference internal" href="stubs/edifice.TableGridView.row.html#edifice.TableGridView.row" title="edifice.TableGridView.row"><code class="xref py py-func docutils literal notranslate"><span class="pre">row()</span></code></a>
 Element establishes a row in the table, and may have children of
 any type of <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
-<p>Every child Element must have a unique key.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">()</span> <span class="k">as</span> <span class="n">tgv</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">tgv</span><span class="o">.</span><span class="n">row</span><span class="p">():</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 0&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 0&quot;</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 1&quot;</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">tgv</span><span class="o">.</span><span class="n">row</span><span class="p">():</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 1 column 0&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">ButtonView</span><span class="p">()</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">):</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 1 column 0&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">ButtonView</span><span class="p">():</span>
             <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 1 column 1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>row_stretch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Rows stretch size in proportion to the corresponding
-int in this list.
+<li><p><strong>row_stretch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – <em>n</em><sup>th</sup> row stretch size in proportion to the <em>n</em><sup>th</sup>
+<code class="code docutils literal notranslate"><span class="pre">int</span></code> in this list.
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setRowStretch">setRowStretch</a></p></li>
-<li><p><strong>column_stretch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Columns stretch size in proportion to the corresponding
-int in this list.
+<li><p><strong>column_stretch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – <em>n</em><sup>th</sup> column stretch size in proportion to the <em>n</em><sup>th</sup>
+<code class="code docutils literal notranslate"><span class="pre">int</span></code> in this list.
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setColumnStretch">setColumnStretch</a></p></li>
-<li><p><strong>row_minheight</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Row minimum height corresponding to the int in this list.
+<li><p><strong>row_minheight</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – <em>n</em><sup>th</sup> row minimum height is the <em>n</em><sup>th</sup> <code class="code docutils literal notranslate"><span class="pre">int</span></code> in this list.
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setRowMinimumHeight">setRowMinimumHeight</a></p></li>
-<li><p><strong>column_minwidth</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Column minimum width corresponding the int in this list.
+<li><p><strong>column_minwidth</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – <em>n</em><sup>th</sup> column minimum width is the <em>n</em><sup>th</sup> <code class="code docutils literal notranslate"><span class="pre">int</span></code> in this list.
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.setColumnMinimumWidth">setColumnMinimumWidth</a></p></li>
 </ul>
 </dd>
@@ -413,7 +412,12 @@ See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/
 <td><p>Registers provided <a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TableGridView.row.html#edifice.TableGridView.row" title="edifice.TableGridView.row"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice._component.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TableGridView.set_key.html#edifice.TableGridView.set_key" title="edifice.TableGridView.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
 <td><p>Sets the key of the Element.</p></td>
