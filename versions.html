@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 0.3.3 documentation</title>
+    <title>Release Notes &#8212; Edifice 0.3.4 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="_static/documentation_options.js?v=94d292f4"></script>
+    <script src="_static/documentation_options.js?v=01c71025"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.3 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.3 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.4 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.4 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.3</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.4</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -180,6 +180,7 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_effect.html">edifice.use_effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
@@ -354,21 +355,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.3.3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.3.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.3.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.3.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.2.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.2.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.1.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.1.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.1.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">0.0.10</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">0.0.9</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">0.0.8</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">0.0.7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">0.0.6</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">0.0.5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.3.4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.3.3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.3.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.3.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.2.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.1.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.1.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">0.1.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">0.0.10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">0.0.9</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">0.0.8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">0.0.7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">0.0.6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">0.0.5</a></li>
 </ul>
             </nav>
         </div>
@@ -383,29 +385,36 @@ document.write(`
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
 <section id="id1">
-<h2>0.3.3<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2>0.3.4<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Released: 2024-01-31</p>
+<ul class="simple">
+<li><p>New Hook <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call()</span></code></a></p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>0.3.3<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>Released: 2024-01-25</p>
 <ul class="simple">
 <li><p>Internal improvements and <em>typing-extensions</em> requirement.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>0.3.2<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h2>0.3.2<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>Released: 2024-01-22</p>
 <ul class="simple">
 <li><p>Hooks are preserved during hot-reload.</p></li>
 </ul>
 </section>
-<section id="id3">
-<h2>0.3.1<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h2>0.3.1<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>Released: 2024-01-19</p>
 <ul class="simple">
 <li><p>Hot-reload improvements and bugfixes.</p></li>
 <li><p><a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a> improvements and bugfixes.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h2>0.3.0<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2>0.3.0<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p>Released: 2023-12-19</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -435,15 +444,15 @@ document.write(`
 <li><p>Hot-reload bugfixes.</p></li>
 </ul>
 </section>
-<section id="id5">
-<h2>0.2.1<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h2>0.2.1<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>Released: 2023-11-14</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a> for <a class="reference internal" href="stubs/stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.export_widgets()</span></code></a>.</p></li>
 </ul>
 </section>
-<section id="id6">
-<h2>0.2.0<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2>0.2.0<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>Released: 2023-11-13</p>
 <p>This version has a lot of breaking changes. We have done essentially the same
 upgrade that React.js did when they upgraded to function components and Hooks
@@ -481,23 +490,23 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 <code class="code docutils literal notranslate"><span class="pre">edifice.state</span></code>.</p></li>
 </ol>
 </section>
-<section id="id7">
-<h2>0.1.2<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h2>0.1.2<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>Released: 2023-10-06</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">PropsDict</span></code> type annotations.</p></li>
 <li><p>Documentation and metadata improvements.</p></li>
 </ul>
 </section>
-<section id="id8">
-<h2>0.1.1<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h2>0.1.1<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <p>Released: 2023-09-15</p>
 <ul class="simple">
 <li><p>Documentation and metadata improvements.</p></li>
 </ul>
 </section>
-<section id="id9">
-<h2>0.1.0<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h2>0.1.0<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <p>Released: 2023-09-14</p>
 <ul class="simple">
 <li><p><strong>Upgrade to PySide6/PyQt6.</strong> Deprecate PySide2/PyQt5.</p></li>
@@ -514,16 +523,16 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 <li><p>New Higher-level Component: <a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a>.</p></li>
 </ul>
 </section>
-<section id="id10">
-<h2>0.0.10<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h2>0.0.10<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>Released: 2021-07-15</p>
 <ul class="simple">
 <li><p>Fix deletion from View and ScrollView.</p></li>
 <li><p>Add alert and file dialog options.</p></li>
 </ul>
 </section>
-<section id="id11">
-<h2>0.0.9<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h2>0.0.9<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
 <p>Released: 2021-06-20</p>
 <ul class="simple">
 <li><p>Add grid view.</p></li>
@@ -536,24 +545,24 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 <li><p>Fix on_change event for textinput.</p></li>
 </ul>
 </section>
-<section id="id12">
-<h2>0.0.8<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h2>0.0.8<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
 <p>Released: 2021-02-04</p>
 <p>Bug fixes for dynamic loading,
 and clearer error messages for Dropdowns and Sliders.</p>
 </section>
-<section id="id13">
-<h2>0.0.7<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<section id="id14">
+<h2>0.0.7<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <p>Released: 2021-02-02</p>
 <p>Bug fixes for checkboxes and forms.</p>
 </section>
-<section id="id14">
-<h2>0.0.6<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<section id="id15">
+<h2>0.0.6<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
 <p>Released: 2021-01-27</p>
 <p>Support for asyncio.</p>
 </section>
-<section id="id15">
-<h2>0.0.5<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<section id="id16">
+<h2>0.0.5<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
 <p>Released: 2021-01-26</p>
 <p>First public release.</p>
 </section>
@@ -603,21 +612,22 @@ and clearer error messages for Dropdowns and Sliders.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.3.3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.3.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.3.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.3.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.2.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.2.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.1.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.1.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.1.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">0.0.10</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">0.0.9</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">0.0.8</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">0.0.7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">0.0.6</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">0.0.5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.3.4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.3.3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.3.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">0.3.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">0.2.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">0.1.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">0.1.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">0.1.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">0.0.10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">0.0.9</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">0.0.8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">0.0.7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">0.0.6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">0.0.5</a></li>
 </ul>
   </nav></div>
 

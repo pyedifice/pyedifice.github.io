@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.View &#8212; Edifice 0.3.4 documentation</title>
+    <title>edifice.use_async_call &#8212; Edifice 0.3.4 documentation</title>
   
   
   
@@ -40,12 +40,12 @@
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.View';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_async_call';</script>
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.View.__init__" href="stubs/edifice.View.__init__.html" />
-    <link rel="prev" title="edifice.ExportList.set_key" href="stubs/edifice.ExportList.set_key.html" />
+    <link rel="next" title="edifice.use_ref" href="edifice.use_ref.html" />
+    <link rel="prev" title="edifice.use_async" href="edifice.use_async.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -149,11 +149,11 @@
 <li class="toctree-l2"><a class="reference internal" href="edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../base_components.html">Base Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ExportList.html">edifice.ExportList</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">edifice.View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.View.html">edifice.View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ScrollView.html">edifice.ScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.GridView.html">edifice.GridView</a></li>
@@ -176,11 +176,11 @@
 <li class="toctree-l2"><a class="reference internal" href="edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../hooks.html">Hooks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_effect.html">edifice.use_effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_async.html">edifice.use_async</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.use_async_call.html">edifice.use_async_call</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
@@ -263,7 +263,7 @@
       
       
       
-      <li><a href="../_sources/stubs/edifice.View.rst" target="_blank"
+      <li><a href="../_sources/stubs/edifice.use_async_call.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -343,7 +343,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>edifice.View</h1>
+    <h1>edifice.use_async_call</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -357,61 +357,42 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="edifice-view">
-<h1>edifice.View<a class="headerlink" href="#edifice-view" title="Link to this heading">#</a></h1>
+  <section id="edifice-use-async-call">
+<h1>edifice.use_async_call<a class="headerlink" href="#edifice-use-async-call" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="edifice.View">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">View</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'column'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#View"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.View" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_LinearView</span></code></p>
-<p>Basic layout widget for grouping children together.</p>
-<ul class="simple">
-<li><p>Underlying Qt Layout
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html">QVBoxLayout</a>
-or
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html">QHBoxLayout</a>
-or <code class="code docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code></p></li>
-</ul>
-<p>Content that does not fit into the View layout will be clipped.
-To allow scrolling in case of overflow, use <a class="reference internal" href="edifice.ScrollView.html#edifice.ScrollView" title="edifice.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.</p>
+<dt class="sig sig-object py" id="edifice.use_async_call">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async_call" title="Link to this definition">#</a></dt>
+<dd><p>Bases:</p>
+<p>Hook to call an async function from a non-async context.</p>
+<p>The Hook takes an async function and returns a non-async
+function with the same argument signature as the async function.</p>
+<p>The async function can have any argument signature, but it must
+return <code class="code docutils literal notranslate"><span class="pre">None</span></code>. The return value is discarded.</p>
+<p>The non-async function returned by this Hook can be called to create a new task which runs
+the async function on the main Edifice thread event loop as a <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>
+Hook. The returned non-async function is safe to call from any thread.</p>
+<p>This Hook is similar to
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.create_task">create_task()</a> ,
+but because it uses
+<a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>, it will cancel the task
+when this <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> is unmounted, or when the function is called again.</p>
+<p>This Hook is similar to <code class="code docutils literal notranslate"><span class="pre">useAsyncCallback</span></code> from
+<a class="reference external" href="https://www.npmjs.com/package/react-async-hook">https://www.npmjs.com/package/react-async-hook</a></p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">delay_print_async</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="n">delay_print</span> <span class="o">=</span> <span class="n">use_async_call</span><span class="p">(</span><span class="n">delay_print_async</span><span class="p">)</span>
+
+<span class="n">delay_print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>layout</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>one of <code class="code docutils literal notranslate"><span class="pre">&quot;column&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;row&quot;</span></code>, or <code class="code docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>.</p>
-<p>A row layout will lay its children in a row and a column layout will lay its children in a column.
-When <code class="code docutils literal notranslate"><span class="pre">layout=&quot;row&quot;</span></code> or <code class="code docutils literal notranslate"><span class="pre">layout=&quot;column&quot;</span></code> are set, the position of their children is not adjustable.
-If layout is <code class="code docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>, then all children by default will be positioned at the upper left-hand corner
-of the View at <em>(x=0, y=0)</em>. Children can set the <code class="code docutils literal notranslate"><span class="pre">top</span></code> and <code class="code docutils literal notranslate"><span class="pre">left</span></code> attributes of their style
-to position themselves relevative to their parent.</p>
-</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</p>
 </dd>
 </dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.View.__init__.html#edifice.View.__init__" title="edifice.View.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([layout])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.View.register_ref.html#edifice.View.register_ref" title="edifice.View.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
-<td><p>Registers provided <a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.View.set_key.html#edifice.View.set_key" title="edifice.View.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
-<td><p>Sets the key of the Element.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></p></td>
-<td><p>The children of this Element.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></p></td>
-<td><p>The props of this Element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying</span></code></p></td>
-<td><p>The underlying QWidget, which may not exist if this Element has not rendered.</p></td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </section>
@@ -428,20 +409,20 @@ to position themselves relevative to their parent.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/edifice.ExportList.set_key.html"
+       href="edifice.use_async.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.ExportList.set_key</p>
+        <p class="prev-next-title">edifice.use_async</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.View.__init__.html"
+       href="edifice.use_ref.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.View.__init__</p>
+        <p class="prev-next-title">edifice.use_ref</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 0.3.3 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 0.3.4 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../_static/documentation_options.js?v=94d292f4"></script>
+    <script src="../../_static/documentation_options.js?v=01c71025"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -128,13 +128,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.3 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.3 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.4 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.4 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.3</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.4</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -177,6 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 </li>
@@ -306,9 +307,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for edifice.hooks</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span>
+<span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span>
 <span class="kn">from</span> <span class="nn">edifice._component</span> <span class="kn">import</span> <span class="n">get_render_context_maybe</span><span class="p">,</span> <span class="n">_T_use_state</span><span class="p">,</span> <span class="n">Reference</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">get_event_loop</span>
 
 <div class="viewcode-block" id="use_state">
 <a class="viewcode-back" href="../../stubs/edifice.use_state.html#edifice.use_state">[docs]</a>
@@ -577,6 +579,61 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">Reference</span><span class="p">())</span>
     <span class="k">return</span> <span class="n">r</span></div>
+
+
+<span class="n">_P_async</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P_async&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">_AsyncCommand</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">_P_async</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+
+<div class="viewcode-block" id="use_async_call">
+<a class="viewcode-back" href="../../stubs/edifice.use_async_call.html#edifice.use_async_call">[docs]</a>
+<span class="k">def</span> <span class="nf">use_async_call</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">:</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hook to call an async function from a non-async context.</span>
+
+<span class="sd">    The Hook takes an async function and returns a non-async</span>
+<span class="sd">    function with the same argument signature as the async function.</span>
+
+<span class="sd">    The async function can have any argument signature, but it must</span>
+<span class="sd">    return :code:`None`. The return value is discarded.</span>
+
+<span class="sd">    The non-async function returned by this Hook can be called to create a new task which runs</span>
+<span class="sd">    the async function on the main Edifice thread event loop as a :func:`use_async`</span>
+<span class="sd">    Hook. The returned non-async function is safe to call from any thread.</span>
+
+<span class="sd">    This Hook is similar to</span>
+<span class="sd">    `create_task() &lt;https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.create_task&gt;`_ ,</span>
+<span class="sd">    but because it uses</span>
+<span class="sd">    :func:`use_async`, it will cancel the task</span>
+<span class="sd">    when this :func:`edifice.component` is unmounted, or when the function is called again.</span>
+
+<span class="sd">    This Hook is similar to :code:`useAsyncCallback` from</span>
+<span class="sd">    https://www.npmjs.com/package/react-async-hook</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        async def delay_print_async(message:str):</span>
+<span class="sd">            await asyncio.sleep(1)</span>
+<span class="sd">            print(message)</span>
+
+<span class="sd">        delay_print = use_async_call(delay_print_async)</span>
+
+<span class="sd">        delay_print(&quot;Hello World&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">triggered</span><span class="p">,</span> <span class="n">triggered_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">_AsyncCommand</span><span class="p">[</span><span class="n">_P_async</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">loop</span><span class="o">.</span><span class="n">call_soon_threadsafe</span><span class="p">(</span><span class="n">triggered_set</span><span class="p">,</span> <span class="n">_AsyncCommand</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">triggered</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">fn_coroutine</span><span class="p">(</span><span class="o">*</span><span class="n">triggered</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">triggered</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">use_async</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">triggered</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">callback</span></div>
 
 </pre></div>
 
