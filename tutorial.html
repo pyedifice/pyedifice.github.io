@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial &#8212; Edifice 0.3.4 documentation</title>
+    <title>Tutorial &#8212; Edifice 0.3.5 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="_static/documentation_options.js?v=01c71025"></script>
+    <script src="_static/documentation_options.js?v=ba3b9238"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.4 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.4 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.5 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.5 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.5</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial</a></li>
@@ -376,6 +376,7 @@ Edifice prefers the PySide6 library but both are supported.</p>
 <p>If you would prefer to use the PyQt6 library and do not wish to
 install PySide6, you can run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">qasync</span>  <span class="c1"># A dependency required for asyncio integration</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">typing</span><span class="o">-</span><span class="n">extensions</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">dependencies</span> <span class="n">pyedifice</span>
 </pre></div>
 </div>
@@ -502,10 +503,10 @@ box and in the label are in sync:</p>
 so we have to use the <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.use_state()</span></code></a> hook.
 <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.use_state()</span></code></a> returns a tuple with the current value
 of <code class="code docutils literal notranslate"><span class="pre">meters</span></code>, and also a function which we can use to set
-a new value for <code class="code docutils literal notranslate"><span class="pre">meters</span></code>
-we expect all changes to meters to be reflected in the UI.
+a new value for <code class="code docutils literal notranslate"><span class="pre">meters</span></code>.
+We expect all changes to <code class="code docutils literal notranslate"><span class="pre">meters</span></code> to be reflected in the UI.
 Think of the component function as a map from the state,
-meters, to UI Elements.</p>
+<code class="code docutils literal notranslate"><span class="pre">meters</span></code>, to UI Elements.</p>
 <p>In the component function, we read the value of meters and convert it to feet,
 and we populate the text input and label with the meters and feet respectively.
 For the text input, we add an <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> callback.
