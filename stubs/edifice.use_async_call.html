@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async_call &#8212; Edifice 0.3.6 documentation</title>
+    <title>edifice.use_async_call &#8212; Edifice 0.3.7 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../_static/documentation_options.js?v=ad4f125e"></script>
+    <script src="../_static/documentation_options.js?v=16b39043"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.6 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.6 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.7 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.7 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.6</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.7</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -364,25 +364,30 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async_call" title="Link to this definition">#</a></dt>
 <dd><p>Bases:</p>
 <p>Hook to call an async function from a non-async context.</p>
-<p>The Hook takes an async function and returns a non-async
-function with the same argument signature as the async function.</p>
-<p>The async function can have any argument signature, but it must
-return <code class="code docutils literal notranslate"><span class="pre">None</span></code>. The return value is discarded.</p>
-<p>The non-async function returned by this Hook can be called to create a new task which runs
-the async function on the main Edifice thread event loop as a <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>
-Hook. The returned non-async function is safe to call from any thread.</p>
-<p>The returned non-async function, when called, returns a cancellation
-function to cancel the Task manually.</p>
+<p>The async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function can have any argument
+signature, but it must return <code class="code docutils literal notranslate"><span class="pre">None</span></code>. The return value is discarded.</p>
+<p>The Hook takes an async function <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> and returns a pair
+of non-async functions.</p>
+<ol class="arabic simple">
+<li><p>A non-async function with the same argument signature as the
+<code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code>. When called, this non-async function will start a
+new Task an the main Edifice thread event loop as a <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>
+Hook which calls <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code>. This non-async function is
+safe to call from any thread.</p></li>
+<li><p>A non-async cancellation function which can be called to cancel
+the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. This cancellation function is
+safe to call from any thread.</p></li>
+</ol>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">delay_print_async</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-<span class="n">delay_print</span> <span class="o">=</span> <span class="n">use_async_call</span><span class="p">(</span><span class="n">delay_print_async</span><span class="p">)</span>
+<span class="n">delay_print</span><span class="p">,</span> <span class="n">cancel_print</span> <span class="o">=</span> <span class="n">use_async_call</span><span class="p">(</span><span class="n">delay_print_async</span><span class="p">)</span>
 
-<span class="n">cancel_print</span> <span class="o">=</span> <span class="n">delay_print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<span class="n">delay_print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 
-<span class="c1"># some time later, if we want to cancel the delayed print:</span>
+<span class="c1"># some time later, if we want to manually cancel the delayed print:</span>
 <span class="n">cancel_print</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -400,8 +405,11 @@ which has an
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep">await asyncio.sleep()</a>
 delay at the beginning of it.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fn_coroutine</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]) – Async Coroutine function to be run as a Task.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</p>
 </dd>
 </dl>
 </dd></dl>
