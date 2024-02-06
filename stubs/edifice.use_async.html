@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 0.3.5 documentation</title>
+    <title>edifice.use_async &#8212; Edifice 0.3.6 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../_static/documentation_options.js?v=ba3b9238"></script>
+    <script src="../_static/documentation_options.js?v=ad4f125e"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.5 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.5 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.6 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.6 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.5</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.6</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -368,7 +368,22 @@ document.write(`
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task">Task</a>
 with the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> coroutine.</p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be called every time the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change.</p>
-<p>If the Component is unmounted before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Asynchronous</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">myword</span><span class="p">,</span> <span class="n">myword_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">fetcher</span><span class="p">():</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_word_from_the_internet</span><span class="p">()</span>
+        <span class="n">myword_set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">_cancel_fetcher</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">myword</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="cancellation">
+<h2>Cancellation<a class="headerlink" href="#cancellation" title="Link to this heading">#</a></h2>
+<p>If the component is unmounted before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
 the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled by calling
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.cancel">cancel()</a>
 on the Task.
@@ -381,23 +396,14 @@ be started after the old <code class="code docutils literal notranslate"><span c
 <p>Write your <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function in such a way that it
 cleans itself up after exceptions.
 Make sure that the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function
-does not try to do anything with this Component after an
+does not try to do anything with this component after an
 <code class="code docutils literal notranslate"><span class="pre">asyncio.CancelledError</span></code>
-is raised, because this Component may at that time
+is raised, because this component may at that time
 already have been unmounted.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Asynchronous</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">myword</span><span class="p">,</span> <span class="n">myword_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">fetcher</span><span class="p">():</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_word_from_the_internet</span><span class="p">()</span>
-        <span class="n">myword_set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">myword</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook returns a function which can be called to
+cancel the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. In the example above,
+the <code class="code docutils literal notranslate"><span class="pre">_cancel_fetcher()</span></code> function can be called to cancel the fetcher.</p>
+</section>
 <section id="timers">
 <h2>Timers<a class="headerlink" href="#timers" title="Link to this heading">#</a></h2>
 <p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook is also useful for timers and animation.</p>
@@ -438,7 +444,7 @@ Harmonic Oscillator in <a class="reference internal" href="../examples.html"><sp
 <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the old <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>.</p>
 </dd>
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</p>
 </dd>
 <dt class="field-even">returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
