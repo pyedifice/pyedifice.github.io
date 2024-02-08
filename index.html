@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice &#8212; Edifice 0.3.7 documentation</title>
+    <title>Edifice &#8212; Edifice 0.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="_static/documentation_options.js?v=16b39043"></script>
+    <script src="_static/documentation_options.js?v=183391d5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -130,13 +130,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.7 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.7 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.7</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -357,6 +357,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-edifice">Why Edifice?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poetry-build-system">Poetry Build System</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-and-code-availability">License and Code Availability</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
@@ -377,8 +378,9 @@ document.write(`
 <a class="reference internal image-reference" href="_images/example_calculator.png"><img alt="_images/example_calculator.png" src="_images/example_calculator.png" style="width: 200px;" /></a>
 <a class="reference internal image-reference" href="_images/example_harmonic_oscillator.gif"><img alt="_images/example_harmonic_oscillator.gif" src="_images/example_harmonic_oscillator.gif" style="width: 250px;" /></a>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">Installation</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pyedifice
+<div class="code-block-caption"><span class="caption-text">Installation from <a class="reference external" href="https://pypi.org/project/pyedifice/">pypi.org/project/pyedifice</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>PySide6
+pip<span class="w"> </span>install<span class="w"> </span>pyedifice
 </pre></div>
 </div>
 </div>
@@ -539,29 +541,42 @@ or <a class="reference internal" href="stubs/stubs/edifice.App.export_widgets.ht
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="versions.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id1">0.3.7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id2">0.3.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id3">0.3.5</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id4">0.3.4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id5">0.3.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id6">0.3.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id7">0.3.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id8">0.3.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id9">0.2.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id10">0.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id11">0.1.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id12">0.1.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id13">0.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id14">0.0.10</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id15">0.0.9</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id16">0.0.8</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id17">0.0.7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id18">0.0.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versions.html#id19">0.0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id1">0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id2">0.3.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id3">0.3.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id4">0.3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id5">0.3.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id6">0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id7">0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id8">0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id9">0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id10">0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id11">0.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id12">0.1.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id13">0.1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id14">0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id15">0.0.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id16">0.0.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id17">0.0.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id18">0.0.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id19">0.0.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#id20">0.0.5</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="future.html">Roadmap</a></li>
 </ul>
+</div>
+</section>
+<section id="poetry-build-system">
+<h2>Poetry Build System<a class="headerlink" href="#poetry-build-system" title="Link to this heading">#</a></h2>
+<p>The Poetry <code class="code docutils literal notranslate"><span class="pre">pyproject.toml</span></code> specifies the package dependecies.</p>
+<p>Because Edifice supports PySide6 and PyQt6 at the same time, neither
+are required by <code class="code docutils literal notranslate"><span class="pre">[tool.poetry.dependencies]</span></code>. Instead they are both
+optional <code class="code docutils literal notranslate"><span class="pre">[tool.poetry.group.dev.dependencies]</span></code>. A project which depends
+on Edifice should also depend on either PySide6 or PyQt6.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">requirements.txt</span></code> is generated by</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span><span class="nb">export</span><span class="w"> </span>-f<span class="w"> </span>requirements.txt<span class="w"> </span>--output<span class="w"> </span>requirements.txt
+</pre></div>
 </div>
 </section>
 <section id="license-and-code-availability">
@@ -628,6 +643,7 @@ See <a class="reference external" href="https://www.pythonguis.com/faq/pyqt-vs-p
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-edifice">Why Edifice?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poetry-build-system">Poetry Build System</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-and-code-availability">License and Code Availability</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>

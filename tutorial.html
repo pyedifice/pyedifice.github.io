@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial &#8212; Edifice 0.3.7 documentation</title>
+    <title>Tutorial &#8212; Edifice 0.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="_static/documentation_options.js?v=16b39043"></script>
+    <script src="_static/documentation_options.js?v=183391d5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.7 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.7 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.7</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial</a></li>
@@ -364,8 +364,9 @@ document.write(`
 </figure>
 <p>This tutorial will help you create your first Edifice app.
 We will create an app that converts measurements in different units.</p>
-<p>First, install Edifice:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyedifice</span>
+<p>First, install Qt and Edifice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">PySide6</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pyedifice</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -375,14 +376,12 @@ for Qt bindings (both are covered in the automated unit tests).
 Edifice prefers the PySide6 library but both are supported.</p>
 <p>If you would prefer to use the PyQt6 library and do not wish to
 install PySide6, you can run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">qasync</span>  <span class="c1"># A dependency required for asyncio integration</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">typing</span><span class="o">-</span><span class="n">extensions</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">dependencies</span> <span class="n">pyedifice</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">PyQt6</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pyedifice</span>
 </pre></div>
 </div>
 <p>You can switch to using PyQt6 by setting the <code class="code docutils literal notranslate"><span class="pre">EDIFICE_QT_VERSION</span></code> environment variable to <code class="code docutils literal notranslate"><span class="pre">PyQt6</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add to your bashrc</span>
-<span class="n">export</span> <span class="n">EDIFICE_QT_VERSION</span><span class="o">=</span><span class="n">PyQt6</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">EDIFICE_QT_VERSION</span><span class="o">=</span><span class="n">PyQt6</span>
 </pre></div>
 </div>
 </div>
@@ -393,7 +392,7 @@ Copy this code into a new file, for example tutorial.py:</p>
 <span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MyApp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">Window</span><span class="p">():</span> <span class="c1"># Top of every App must be a Window</span>
-        <span class="k">with</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">):</span> <span class="c1"># Top Window must have one static child</span>
+        <span class="k">with</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">):</span>
             <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Measurement in meters:&quot;</span><span class="p">)</span>
             <span class="n">TextInput</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Measurement in feet:&quot;</span><span class="p">)</span>
@@ -550,10 +549,9 @@ it for each measurement pair, we can factor out the conversion logic into its ow
 
 <span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MyApp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>
-        <span class="k">with</span> <span class="n">View</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{}):</span>
-            <span class="n">ConversionWidget</span><span class="p">(</span><span class="s2">&quot;meters&quot;</span><span class="p">,</span> <span class="s2">&quot;feet&quot;</span><span class="p">,</span> <span class="n">METERS_TO_FEET</span><span class="p">)</span>
-            <span class="n">ConversionWidget</span><span class="p">(</span><span class="s2">&quot;feet&quot;</span><span class="p">,</span> <span class="s2">&quot;meters&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">METERS_TO_FEET</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Measurement Conversion&quot;</span><span class="p">):</span>
+        <span class="n">ConversionWidget</span><span class="p">(</span><span class="s2">&quot;meters&quot;</span><span class="p">,</span> <span class="s2">&quot;feet&quot;</span><span class="p">,</span> <span class="n">METERS_TO_FEET</span><span class="p">)</span>
+        <span class="n">ConversionWidget</span><span class="p">(</span><span class="s2">&quot;feet&quot;</span><span class="p">,</span> <span class="s2">&quot;meters&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">METERS_TO_FEET</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">App</span><span class="p">(</span><span class="n">MyApp</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>

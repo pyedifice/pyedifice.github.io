@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 0.3.5 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 0.4.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../../_static/documentation_options.js?v=ba3b9238"></script>
+    <script src="../../../_static/documentation_options.js?v=183391d5"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -128,13 +128,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.5 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.5 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.5</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -1028,114 +1028,6 @@ document.write(`
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_context_menu</span><span class="p">,</span> <span class="n">underlying</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">DefaultContextMenu</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">commands</span></div>
-
-
-
-<div class="viewcode-block" id="Window">
-<a class="viewcode-back" href="../../../stubs/edifice.Window.html#edifice.Window">[docs]</a>
-<span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">WidgetElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The root element of an :class:`App` which runs in an operating system</span>
-<span class="sd">    window.</span>
-
-<span class="sd">    The Window must have exactly one child, and the child must not change.</span>
-<span class="sd">    Usually the one child of a Window will be a :class:`View`.</span>
-<span class="sd">    (The reason for this is</span>
-<span class="sd">    that the Window cannot diff its children.)</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        title:</span>
-<span class="sd">            The window title.</span>
-<span class="sd">        icon:</span>
-<span class="sd">            The window icon.</span>
-<span class="sd">        menu:</span>
-<span class="sd">            The window&#39;s menu bar. In some GUI settings, for example Mac OS,</span>
-<span class="sd">            this menu will appear seperately from the window.</span>
-<span class="sd">        on_close:</span>
-<span class="sd">            Event handler for when this window is closed.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="Window.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.Window.__init__.html#edifice.Window.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;Edifice Application&quot;</span><span class="p">,</span>
-                 <span class="n">icon</span><span class="p">:</span><span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">menu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
-            <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
-            <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="n">menu</span><span class="p">,</span>
-            <span class="s2">&quot;on_close&quot;</span><span class="p">:</span> <span class="n">on_close</span><span class="p">,</span>
-        <span class="p">})</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-        <span class="c1"># Window.underlying is always None. Instead it uses the</span>
-        <span class="c1"># _previous_rendering.underlying, which is the first child of</span>
-        <span class="c1"># Whatever element it rendered to?</span>
-        <span class="c1"># Why do we even need Window?</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="c1"># self._on_click = None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span></div>
-
-
-    <span class="k">def</span> <span class="nf">_will_unmount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_set_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">on_close</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span> <span class="o">=</span> <span class="n">on_close</span>
-        <span class="k">if</span> <span class="n">on_close</span><span class="p">:</span>
-            <span class="n">underlying</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">underlying</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">_attach_menubar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">menu_bar</span><span class="p">,</span> <span class="n">menus</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">menu_bar</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">menu_title</span><span class="p">,</span> <span class="n">menu</span> <span class="ow">in</span> <span class="n">menus</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Menu must be a dict of dicts (each of which describes a submenu)&quot;</span><span class="p">)</span>
-            <span class="n">menu_bar</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="n">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="n">menu_title</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Window can only have 1 child&quot;</span><span class="p">)</span>
-
-        <span class="n">child</span> <span class="o">=</span> <span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">component</span>
-        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="p">:</span>
-            <span class="n">old_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">child</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">close</span><span class="p">,))</span>
-                <span class="k">if</span> <span class="n">old_position</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">old_position</span><span class="p">))</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">,))</span>
-                <span class="n">newprops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">,))</span>
-            <span class="n">newprops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span> <span class="o">=</span> <span class="n">child</span>
-
-        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_close&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_close</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_close</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;icon&quot;</span> <span class="ow">and</span> <span class="n">newprops</span><span class="o">.</span><span class="n">icon</span><span class="p">:</span>
-                <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_image_descriptor_to_pixmap</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">icon</span><span class="p">)</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_previous_rendering</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;menu&quot;</span> <span class="ow">and</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenuBar</span><span class="p">()</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attach_menubar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -2272,6 +2164,97 @@ document.write(`
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">commands</span></div>
+
+
+<div class="viewcode-block" id="Window">
+<a class="viewcode-back" href="../../../stubs/edifice.Window.html#edifice.Window">[docs]</a>
+<span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The root :class:`View` element of an :class:`App` which runs in an</span>
+<span class="sd">    operating system window.</span>
+
+<span class="sd">    The children of this :class:`Window` are the visible Elements of the</span>
+<span class="sd">    :class:`App`. When this :class:`Window` closes, all of the children</span>
+<span class="sd">    are unmounted and then the :class:`App` stops.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        title:</span>
+<span class="sd">            The window title.</span>
+<span class="sd">        icon:</span>
+<span class="sd">            The window icon image.</span>
+<span class="sd">        menu:</span>
+<span class="sd">            The window’s menu bar. In some GUI settings, for example Mac OS,</span>
+<span class="sd">            this menu will appear seperately from the window.</span>
+<span class="sd">        on_close:</span>
+<span class="sd">            Event handler for when this window is closing. This event handler</span>
+<span class="sd">            will fire before the children are unmounted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Window.__init__">
+<a class="viewcode-back" href="../../../stubs/stubs/edifice.Window.__init__.html#edifice.Window.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Edifice Application&quot;</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span><span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+            <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+            <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="n">menu</span><span class="p">,</span>
+            <span class="s2">&quot;on_close&quot;</span><span class="p">:</span> <span class="n">on_close</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_set_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_close</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span> <span class="o">=</span> <span class="n">on_close</span>
+
+    <span class="k">def</span> <span class="nf">_handle_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">):</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span> <span class="c1"># Don&#39;t kill the app yet, instead stop the app after the children are unmounted.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span>
+            <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">)(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_controller</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_controller</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_attach_menubar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">menu_bar</span><span class="p">,</span> <span class="n">menus</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">menu_bar</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">menu_title</span><span class="p">,</span> <span class="n">menu</span> <span class="ow">in</span> <span class="n">menus</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Menu must be a dict of dicts (each of which describes a submenu)&quot;</span><span class="p">)</span>
+            <span class="n">menu_bar</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="n">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="n">menu_title</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;on_close&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_close</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_close</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;icon&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">and</span> <span class="n">newprops</span><span class="o">.</span><span class="n">icon</span><span class="p">:</span>
+            <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_image_descriptor_to_pixmap</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">icon</span><span class="p">)</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="s2">&quot;menu&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">and</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenuBar</span><span class="p">()</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attach_menubar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">commands</span></div>
+
 
 
 

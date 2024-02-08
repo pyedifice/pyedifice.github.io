@@ -24,6 +24,7 @@ edifice.App
       ~App.set_stylesheet
       ~App.start
       ~App.start_loop
+      ~App.stop
    
    
 

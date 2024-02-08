@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.App &#8212; Edifice 0.3.7 documentation</title>
+    <title>edifice.App &#8212; Edifice 0.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../_static/documentation_options.js?v=16b39043"></script>
+    <script src="../_static/documentation_options.js?v=183391d5"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.7 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.7 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.7</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -364,18 +364,47 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_application</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qapplication</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The main application object.</p>
+<section id="start">
+<h2>Start<a class="headerlink" href="#start" title="Link to this heading">#</a></h2>
 <p>To start the application, call the <a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">App</span><span class="p">(</span><span class="n">MyRootElement</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>If the application is normal application in an operating
-system window, then the top Element rendered by <code class="code docutils literal notranslate"><span class="pre">MyRootElement</span></code>
+system window, then the root Element rendered by <code class="code docutils literal notranslate"><span class="pre">MyRootElement</span></code>
 must be a <a class="reference internal" href="edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a>.</p>
-<p>If you just want to create a widget that you’ll integrate with an existing
-Qt application, use the <a class="reference internal" href="stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.export_widgets()</span></code></a> method.
-This widget can then be plugged into the rest of your application, and there’s no need
-to manage the rendering of the widget – state changes will trigger automatic re-render
+<ol class="arabic simple">
+<li><p>Create the application event loop
+<a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>.</p></li>
+<li><p>Start the application event loop.</p></li>
+<li><p>Render the root Element.</p></li>
+</ol>
+</section>
+<section id="stop">
+<h2>Stop<a class="headerlink" href="#stop" title="Link to this heading">#</a></h2>
+<p>When the user closes the <a class="reference internal" href="edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> or when <a class="reference internal" href="stubs/edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.stop()</span></code></a> is called,
+the application will stop.</p>
+<p>Stopping the application will:</p>
+<ol class="arabic simple">
+<li><p>Unmount all Elements.</p></li>
+<li><p>Cancel all <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.use_async()</span></code></a> tasks.</p></li>
+<li><p>Wait for the <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.use_async()</span></code></a> tasks to cancel.</p></li>
+<li><p>Stop the application event loop.</p></li>
+<li><p>Close the application event loop.</p></li>
+<li><p>Exit.</p></li>
+</ol>
+</section>
+<section id="export-widgets">
+<h2>Export Widgets<a class="headerlink" href="#export-widgets" title="Link to this heading">#</a></h2>
+<p>If you just want to create widgets that you’ll integrate with an existing
+Qt application, use the <a class="reference internal" href="stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.export_widgets()</span></code></a> method instead of
+<a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a>.
+These widgets can then be plugged into the rest of your Qt application, and there’s no need
+to manage the rendering of the widgets — state changes will trigger automatic re-render
 without any intervention.</p>
+<p>Caveat: Your Qt application must use a
+<a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>.</p>
+</section>
 <section id="logging">
 <h2>Logging<a class="headerlink" href="#logging" title="Link to this heading">#</a></h2>
 <p>To enable Edifice logging set the logging level. Example:</p>
@@ -384,6 +413,12 @@ without any intervention.</p>
 <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="app-construction">
+<h2>App Construction<a class="headerlink" href="#app-construction" title="Link to this heading">#</a></h2>
+<p>By default, <a class="reference internal" href="#edifice.App" title="edifice.App"><code class="xref py py-func docutils literal notranslate"><span class="pre">App()</span></code></a> creates a new
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html">QtWidgets.QApplication</a>
+instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">type root_element<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice._component.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></p>
@@ -391,7 +426,7 @@ without any intervention.</p>
 <dt class="field-even">param root_element<span class="colon">:</span></dt>
 <dd class="field-even"><p>the root Element of the application.
 It must render to an instance of <a class="reference internal" href="edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> or
-some other <code class="xref py py-class docutils literal notranslate"><span class="pre">RootElement</span></code></p>
+<a class="reference internal" href="edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p>
 </dd>
 <dt class="field-odd">type inspector<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
@@ -433,7 +468,7 @@ If you do not provide one, it will be created for you.</p>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_widgets</span></code></a>()</p></td>
-<td><p>Exports the underlying Qt <code class="code docutils literal notranslate"><span class="pre">QWidgets</span></code> s from the components in the <a class="reference internal" href="edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p></td>
+<td><p>Exports the underlying Qt <code class="code docutils literal notranslate"><span class="pre">QWidgets</span></code> s from the Edifice Elements in the <a class="reference internal" href="edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.set_stylesheet.html#edifice.App.set_stylesheet" title="edifice.App.set_stylesheet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_stylesheet</span></code></a>(stylesheet)</p></td>
 <td><p>Adds a global stylesheet for the app.</p></td>
@@ -442,15 +477,18 @@ If you do not provide one, it will be created for you.</p>
 <td><p>Start the application event loop.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.start_loop.html#edifice.App.start_loop" title="edifice.App.start_loop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_loop</span></code></a>()</p></td>
-<td><p>Start the application event loop manually.</p></td>
+<td><p>Start the application event loop.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>()</p></td>
+<td><p>Stop the application.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.App.export_widgets">
 <span class="sig-name descname"><span class="pre">export_widgets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.export_widgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.export_widgets" title="Link to this definition">#</a></dt>
-<dd><p>Exports the underlying Qt <code class="code docutils literal notranslate"><span class="pre">QWidgets</span></code> s from the components
-in the <a class="reference internal" href="edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p>
+<dd><p>Exports the underlying Qt <code class="code docutils literal notranslate"><span class="pre">QWidgets</span></code> s from the Edifice
+Elements in the <a class="reference internal" href="edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p>
 <p>Returns a list of <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html">QtWidgets.QWidget</a>.</p>
 <p>These <code class="code docutils literal notranslate"><span class="pre">QWidget</span></code> s are still managed by Edifice,
 they will still benefit from full reactivity and state consistency.
@@ -458,20 +496,24 @@ You can mount these widgets to your pre-existing Qt application this way:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suppose parent_widget is defined in Qt code.</span>
 
 <span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">export_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">export_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">ExportList</span><span class="p">():</span>
         <span class="n">MyAwesomeComponent</span><span class="p">()</span>
+        <span class="n">AnotherComponent</span><span class="p">()</span>
 
-<span class="n">widgets</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">export_components</span><span class="p">)</span><span class="o">.</span><span class="n">export_widgets</span><span class="p">()</span>
-<span class="n">widget</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">parent_widget</span><span class="p">)</span>
+<span class="n">edifice_app</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">export_elements</span><span class="p">(),</span> <span class="n">create_application</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">edifice_widgets</span> <span class="o">=</span> <span class="n">edifice_app</span><span class="o">.</span><span class="n">export_widgets</span><span class="p">()</span>
+
+<span class="n">edifice_widgets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">parent_widget</span><span class="p">)</span>
+<span class="n">parent_widget</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">edifice_widgets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">edifice_widgets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">parent_widget</span><span class="p">)</span>
+<span class="n">parent_widget</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">edifice_widgets</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>None</strong> – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>]</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -480,12 +522,17 @@ You can mount these widgets to your pre-existing Qt application this way:</p>
 <dt class="sig sig-object py" id="edifice.App.set_stylesheet">
 <span class="sig-name descname"><span class="pre">set_stylesheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stylesheet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.set_stylesheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.set_stylesheet" title="Link to this definition">#</a></dt>
 <dd><p>Adds a global stylesheet for the app.</p>
+<p>See
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet.html-style-sheets">Qt Style Sheets</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stylesheet</strong> – String containing the contents of the stylesheet</p>
+<dd class="field-odd"><p><strong>stylesheet</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – String containing the contents of the stylesheet</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>self</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#edifice.App" title="edifice.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>self</p>
 </dd>
 </dl>
 </dd></dl>
@@ -495,14 +542,8 @@ You can mount these widgets to your pre-existing Qt application this way:</p>
 <span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.start" title="Link to this definition">#</a></dt>
 <dd><p>Start the application event loop.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>None</strong> – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The result of <code class="code docutils literal notranslate"><span class="pre">loop.run_forever()</span></code>.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -510,27 +551,39 @@ You can mount these widgets to your pre-existing Qt application this way:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.App.start_loop">
 <span class="sig-name descname"><span class="pre">start_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.start_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.start_loop" title="Link to this definition">#</a></dt>
-<dd><p>Start the application event loop manually.</p>
+<dd><p>Start the application event loop.</p>
 <p>A context manager alternative to <a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> which allows
 access to the application’s
-<a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>.</p>
-<p>The <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html">asyncio event loop</a>
-uses the <cite>QEventLoop</cite> as the current event loop. You can also access the
+<a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>
+after the application starts, and before the first render.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">QEventLoop</span></code> is the
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html">asyncio current event loop</a>.
+You can also access the
 <strong>asyncio</strong> current event loop in the usual way with
-<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html?highlight=run_forever#asyncio.get_running_loop">asyncio.get_running_loop()</a>.</p>
-<p>When you use <a class="reference internal" href="stubs/edifice.App.start_loop.html#edifice.App.start_loop" title="edifice.App.start_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_loop()</span></code></a>, you must explicitly run the event loop,
-for example with <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_forever">run_forever()</a>.
-When the user closes the <a class="reference internal" href="#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> it will stop the event loop,
-see <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.PySide6.QtWidgets.QApplication.exec_">QApplication.exit_()</a>.</p>
-<p>In this example, we add a Unix <code class="code docutils literal notranslate"><span class="pre">SIGINT</span></code> handler which will also stop
-the event loop.</p>
-<p>Example:</p>
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.get_running_loop">asyncio.get_running_loop()</a>.</p>
+<p>In this example, we add a Unix <code class="code docutils literal notranslate"><span class="pre">SIGINT</span></code> handler which will
+<a class="reference internal" href="stubs/edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.stop()</span></code></a> the application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">MyAppElement</span><span class="p">())</span>
 <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">start_loop</span><span class="p">()</span> <span class="k">as</span> <span class="n">loop</span><span class="p">:</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">loop</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QSelectorEventLoop</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="edifice.App.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.stop" title="Link to this definition">#</a></dt>
+<dd><p>Stop the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

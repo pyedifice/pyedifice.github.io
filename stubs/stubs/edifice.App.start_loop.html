@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.App.start_loop &#8212; Edifice 0.3.7 documentation</title>
+    <title>edifice.App.start_loop &#8212; Edifice 0.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../_static/documentation_options.js?v=16b39043"></script>
+    <script src="../../_static/documentation_options.js?v=183391d5"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -44,7 +44,7 @@
     <link rel="icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="edifice.Reference" href="../edifice.Reference.html" />
+    <link rel="next" title="edifice.App.stop" href="edifice.App.stop.html" />
     <link rel="prev" title="edifice.App.start" href="edifice.App.start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.7 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.7 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.7</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -362,27 +362,28 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.App.start_loop">
 <span class="sig-prename descclassname"><span class="pre">App.</span></span><span class="sig-name descname"><span class="pre">start_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/edifice/app.html#App.start_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.start_loop" title="Link to this definition">#</a></dt>
-<dd><p>Start the application event loop manually.</p>
+<dd><p>Start the application event loop.</p>
 <p>A context manager alternative to <a class="reference internal" href="edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> which allows
 access to the application’s
-<a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>.</p>
-<p>The <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html">asyncio event loop</a>
-uses the <cite>QEventLoop</cite> as the current event loop. You can also access the
+<a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>
+after the application starts, and before the first render.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">QEventLoop</span></code> is the
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html">asyncio current event loop</a>.
+You can also access the
 <strong>asyncio</strong> current event loop in the usual way with
-<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html?highlight=run_forever#asyncio.get_running_loop">asyncio.get_running_loop()</a>.</p>
-<p>When you use <a class="reference internal" href="#edifice.App.start_loop" title="edifice.App.start_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_loop()</span></code></a>, you must explicitly run the event loop,
-for example with <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_forever">run_forever()</a>.
-When the user closes the <a class="reference internal" href="../edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> it will stop the event loop,
-see <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.PySide6.QtWidgets.QApplication.exec_">QApplication.exit_()</a>.</p>
-<p>In this example, we add a Unix <code class="code docutils literal notranslate"><span class="pre">SIGINT</span></code> handler which will also stop
-the event loop.</p>
-<p>Example:</p>
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.get_running_loop">asyncio.get_running_loop()</a>.</p>
+<p>In this example, we add a Unix <code class="code docutils literal notranslate"><span class="pre">SIGINT</span></code> handler which will
+<a class="reference internal" href="edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.stop()</span></code></a> the application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">edifice</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">MyAppElement</span><span class="p">())</span>
 <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">start_loop</span><span class="p">()</span> <span class="k">as</span> <span class="n">loop</span><span class="p">:</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">loop</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QSelectorEventLoop</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -408,11 +409,11 @@ the event loop.</p>
       </div>
     </a>
     <a class="right-next"
-       href="../edifice.Reference.html"
+       href="edifice.App.stop.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.Reference</p>
+        <p class="prev-next-title">edifice.App.stop</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

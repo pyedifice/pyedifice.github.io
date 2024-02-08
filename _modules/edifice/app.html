@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 0.3.5 documentation</title>
+    <title>edifice.app &#8212; Edifice 0.4.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../_static/documentation_options.js?v=ba3b9238"></script>
+    <script src="../../_static/documentation_options.js?v=183391d5"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -128,13 +128,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.3.5 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.3.5 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.3.5</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -383,19 +383,50 @@ document.write(`
 <span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The main application object.</span>
 
+<span class="sd">    Start</span>
+<span class="sd">    -----</span>
+
 <span class="sd">    To start the application, call the :func:`App.start` method::</span>
 
 <span class="sd">        App(MyRootElement()).start()</span>
 
 <span class="sd">    If the application is normal application in an operating</span>
-<span class="sd">    system window, then the top Element rendered by :code:`MyRootElement`</span>
+<span class="sd">    system window, then the root Element rendered by :code:`MyRootElement`</span>
 <span class="sd">    must be a :class:`Window`.</span>
 
-<span class="sd">    If you just want to create a widget that you&#39;ll integrate with an existing</span>
-<span class="sd">    Qt application, use the :func:`App.export_widgets` method.</span>
-<span class="sd">    This widget can then be plugged into the rest of your application, and there&#39;s no need</span>
-<span class="sd">    to manage the rendering of the widget -- state changes will trigger automatic re-render</span>
+<span class="sd">    1. Create the application event loop</span>
+<span class="sd">       `qasync.QEventLoop &lt;https://github.com/CabbageDevelopment/qasync&gt;`_.</span>
+<span class="sd">    2. Start the application event loop.</span>
+<span class="sd">    3. Render the root Element.</span>
+
+
+<span class="sd">    Stop</span>
+<span class="sd">    ----</span>
+
+<span class="sd">    When the user closes the :class:`Window` or when :func:`App.stop` is called,</span>
+<span class="sd">    the application will stop.</span>
+
+<span class="sd">    Stopping the application will:</span>
+
+<span class="sd">    1. Unmount all Elements.</span>
+<span class="sd">    2. Cancel all :func:`edifice.use_async` tasks.</span>
+<span class="sd">    3. Wait for the :func:`edifice.use_async` tasks to cancel.</span>
+<span class="sd">    4. Stop the application event loop.</span>
+<span class="sd">    5. Close the application event loop.</span>
+<span class="sd">    6. Exit.</span>
+
+<span class="sd">    Export Widgets</span>
+<span class="sd">    --------------</span>
+
+<span class="sd">    If you just want to create widgets that you&#39;ll integrate with an existing</span>
+<span class="sd">    Qt application, use the :func:`App.export_widgets` method instead of</span>
+<span class="sd">    :func:`App.start`.</span>
+<span class="sd">    These widgets can then be plugged into the rest of your Qt application, and there&#39;s no need</span>
+<span class="sd">    to manage the rendering of the widgets — state changes will trigger automatic re-render</span>
 <span class="sd">    without any intervention.</span>
+
+<span class="sd">    Caveat: Your Qt application must use a</span>
+<span class="sd">    `qasync.QEventLoop &lt;https://github.com/CabbageDevelopment/qasync&gt;`_.</span>
 
 <span class="sd">    Logging</span>
 <span class="sd">    -------</span>
@@ -406,11 +437,17 @@ document.write(`
 <span class="sd">        logger = logging.getLogger(&quot;Edifice&quot;)</span>
 <span class="sd">        logger.setLevel(logging.INFO)</span>
 
+<span class="sd">    App Construction</span>
+<span class="sd">    ----------------</span>
+
+<span class="sd">    By default, :func:`App` creates a new</span>
+<span class="sd">    `QtWidgets.QApplication &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html&gt;`_</span>
+<span class="sd">    instance.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        root_element: the root Element of the application.</span>
 <span class="sd">            It must render to an instance of :class:`Window` or</span>
-<span class="sd">            some other :class:`RootElement`</span>
+<span class="sd">            :class:`ExportList`.</span>
 <span class="sd">        inspector: whether or not to run an instance of the Edifice Inspector</span>
 <span class="sd">            alongside the main app. Defaults to False</span>
 <span class="sd">        create_application: (default True) whether or not to create an instance of QApplication.</span>
@@ -461,7 +498,7 @@ document.write(`
                     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
                         <span class="n">file_name</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_queue</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
                         <span class="k">try</span><span class="p">:</span>
-                            <span class="n">render_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_refresh_by_class</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_refresh_by_class</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
                         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
                             <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Encountered exception while reloading: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exception</span><span class="p">)</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -489,8 +526,6 @@ document.write(`
                                 <span class="nb">print</span><span class="p">((</span><span class="n">COLOR_SEQ</span> <span class="o">%</span> <span class="p">(</span><span class="mi">30</span> <span class="o">+</span> <span class="n">RED</span><span class="p">))</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">RESET_SEQ</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
                             <span class="k">continue</span>
-
-                        <span class="n">render_result</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
                         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -539,8 +574,7 @@ document.write(`
         <span class="k">del</span> <span class="n">newstate</span> <span class="c1">#TODO?</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
 
-        <span class="n">render_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
-        <span class="n">render_result</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
         <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_render</span><span class="p">:</span>
@@ -560,8 +594,11 @@ document.write(`
 
 <div class="viewcode-block" id="App.set_stylesheet">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.App.set_stylesheet.html#edifice.App.set_stylesheet">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_stylesheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stylesheet</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_stylesheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stylesheet</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;App&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a global stylesheet for the app.</span>
+
+<span class="sd">        See</span>
+<span class="sd">        `Qt Style Sheets &lt;https://doc.qt.io/qtforpython-6/overviews/stylesheet.html-style-sheets&gt;`_.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            stylesheet: String containing the contents of the stylesheet</span>
@@ -575,8 +612,8 @@ document.write(`
 <div class="viewcode-block" id="App.export_widgets">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.App.export_widgets.html#edifice.App.export_widgets">[docs]</a>
     <span class="k">def</span> <span class="nf">export_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exports the underlying Qt :code:`QWidgets` s from the components</span>
-<span class="sd">        in the :class:`ExportList`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exports the underlying Qt :code:`QWidgets` s from the Edifice</span>
+<span class="sd">        Elements in the :class:`ExportList`.</span>
 
 <span class="sd">        Returns a list of `QtWidgets.QWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html&gt;`_.</span>
 
@@ -587,15 +624,19 @@ document.write(`
 <span class="sd">            # Suppose parent_widget is defined in Qt code.</span>
 
 <span class="sd">            @component</span>
-<span class="sd">            def export_components(self):</span>
+<span class="sd">            def export_elements(self):</span>
 <span class="sd">                with ExportList():</span>
 <span class="sd">                    MyAwesomeComponent()</span>
+<span class="sd">                    AnotherComponent()</span>
 
-<span class="sd">            widgets = edifice.App(export_components).export_widgets()</span>
-<span class="sd">            widget[0].setParent(parent_widget)</span>
+<span class="sd">            edifice_app = edifice.App(export_elements(), create_application=False)</span>
+<span class="sd">            edifice_widgets = edifice_app.export_widgets()</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
+<span class="sd">            edifice_widgets[0].setParent(parent_widget)</span>
+<span class="sd">            parent_widget.layout().add_widget(edifice_widgets[0])</span>
+
+<span class="sd">            edifice_widgets[1].setParent(parent_widget)</span>
+<span class="sd">            parent_widget.layout().add_widget(edifice_widgets[1])</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">],</span> <span class="p">{})</span>
@@ -612,83 +653,83 @@ document.write(`
 
 <div class="viewcode-block" id="App.start">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.App.start.html#edifice.App.start">[docs]</a>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Start the application event loop.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            The result of :code:`loop.run_forever()`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_loop</span><span class="p">()</span> <span class="k">as</span> <span class="n">loop</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_loop</span><span class="p">()</span> <span class="k">as</span> <span class="n">_loop</span><span class="p">:</span>
+            <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="App.start_loop">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.App.start_loop.html#edifice.App.start_loop">[docs]</a>
     <span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
-    <span class="k">def</span> <span class="nf">start_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">start_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Generator</span><span class="p">[</span><span class="n">QEventLoop</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Start the application event loop manually.</span>
+<span class="sd">        Start the application event loop.</span>
 
 <span class="sd">        A context manager alternative to :func:`App.start` which allows</span>
 <span class="sd">        access to the application’s</span>
-<span class="sd">        `qasync.QEventLoop &lt;https://github.com/CabbageDevelopment/qasync&gt;`_.</span>
+<span class="sd">        `qasync.QEventLoop &lt;https://github.com/CabbageDevelopment/qasync&gt;`_</span>
+<span class="sd">        after the application starts, and before the first render.</span>
 
-<span class="sd">        The `asyncio event loop &lt;https://docs.python.org/3/library/asyncio-eventloop.html&gt;`_</span>
-<span class="sd">        uses the `QEventLoop` as the current event loop. You can also access the</span>
+<span class="sd">        The :code:`QEventLoop` is the</span>
+<span class="sd">        `asyncio current event loop &lt;https://docs.python.org/3/library/asyncio-eventloop.html&gt;`_.</span>
+<span class="sd">        You can also access the</span>
 <span class="sd">        **asyncio** current event loop in the usual way with</span>
-<span class="sd">        `asyncio.get_running_loop() &lt;https://docs.python.org/3/library/asyncio-eventloop.html?highlight=run_forever#asyncio.get_running_loop&gt;`_.</span>
+<span class="sd">        `asyncio.get_running_loop() &lt;https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.get_running_loop&gt;`_.</span>
 
-<span class="sd">        When you use :func:`start_loop`, you must explicitly run the event loop,</span>
-<span class="sd">        for example with `run_forever() &lt;https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_forever&gt;`_.</span>
-<span class="sd">        When the user closes the :class:`App` it will stop the event loop,</span>
-<span class="sd">        see `QApplication.exit_() &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.PySide6.QtWidgets.QApplication.exec_&gt;`_.</span>
-
-<span class="sd">        In this example, we add a Unix :code:`SIGINT` handler which will also stop</span>
-<span class="sd">        the event loop.</span>
-
-<span class="sd">        Example::</span>
+<span class="sd">        In this example, we add a Unix :code:`SIGINT` handler which will</span>
+<span class="sd">        :func:`App.stop` the application::</span>
 
 <span class="sd">            app = edifice.App(MyAppElement())</span>
 <span class="sd">            with app.start_loop() as loop:</span>
-<span class="sd">                loop.add_signal_handler(signal.SIGINT, loop.stop)</span>
-<span class="sd">                loop.run_forever()</span>
+<span class="sd">                loop.add_signal_handler(signal.SIGINT, app.stop)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">loop</span> <span class="o">=</span> <span class="n">QEventLoop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">asyncio</span><span class="o">.</span><span class="n">set_event_loop</span><span class="p">(</span><span class="n">loop</span><span class="p">)</span>
-            <span class="k">async</span> <span class="k">def</span> <span class="nf">first_render</span><span class="p">():</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">],</span> <span class="p">{})</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running inspector&quot;</span><span class="p">)</span>
-                    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">set_event_loop</span><span class="p">(</span><span class="n">loop</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">loop</span>
 
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">Inspector</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span>
-                        <span class="n">refresh</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">)))</span>
-                    <span class="n">icon_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">&quot;inspector/icon.png&quot;</span><span class="p">)</span>
-                    <span class="n">component</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Element Inspector&quot;</span><span class="p">,</span> <span class="n">on_close</span><span class="o">=</span><span class="n">cleanup</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon_path</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">)</span>
-                    <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_parent</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">component</span><span class="p">],</span> <span class="p">{})</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">first_render</span><span class="p">())</span>
-            <span class="k">yield</span> <span class="n">loop</span>
-            <span class="k">del</span> <span class="n">t</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="c1"># This is not right. Intead of run_forever() and then stop()ing the</span>
-            <span class="c1"># event loop, we should run_until_complete(). To exit, we should</span>
-            <span class="c1"># unmount all components, which would then remove all of the</span>
-            <span class="c1"># waiting event completions from the event loop, which would</span>
-            <span class="c1"># then cause the event loop to exit.</span>
-            <span class="c1"># See</span>
-            <span class="c1"># https://github.com/CabbageDevelopment/qasync/blob/ee9b0a3ab9548240c71d4a52e6c6a060a633e930/qasync/__init__.py#L404</span>
-            <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_delete_component</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">first_render</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">],</span> <span class="p">{})</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running inspector&quot;</span><span class="p">)</span>
+                <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="kc">None</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">Inspector</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span>
+                    <span class="n">refresh</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">)))</span>
+                <span class="n">icon_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">&quot;inspector/icon.png&quot;</span><span class="p">)</span>
+                <span class="n">component</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Element Inspector&quot;</span><span class="p">,</span> <span class="n">on_close</span><span class="o">=</span><span class="n">cleanup</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon_path</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">)</span>
+                <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_parent</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">component</span><span class="p">],</span> <span class="p">{})</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">first_render</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">app_run</span><span class="p">():</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_delete_component</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># At this time, all use_async hook tasks have been cancel()ed.</span>
+            <span class="c1"># Wait until all the cancelled tasks are done(), then exit.</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+        <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">app_run</span><span class="p">())</span>
+        <span class="k">del</span> <span class="n">t</span>
+        <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="App.stop">
+<a class="viewcode-back" href="../../stubs/stubs/edifice.App.stop.html#edifice.App.stop">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop the application.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span></div>
 </div>
 
 </pre></div>
