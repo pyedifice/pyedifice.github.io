@@ -425,7 +425,7 @@ document.write(`
 <a class="viewcode-back" href="../../stubs/edifice.use_effect.html#edifice.use_effect">[docs]</a>
 <span class="k">def</span> <span class="nf">use_effect</span><span class="p">(</span>
     <span class="n">setup</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
-    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Side-effect Hook inside a :func:`edifice.component` function.</span>
@@ -442,6 +442,12 @@ document.write(`
 
 <span class="sd">    If the dependencies change, then the old **cleanup function** is called and</span>
 <span class="sd">    then the new **setup function** is called.</span>
+
+<span class="sd">    If the dependencies are :code:`None`, then the new effect</span>
+<span class="sd">    **setup function** will always be called.</span>
+
+<span class="sd">    If you want to call the **setup function** only once, then pass an empty</span>
+<span class="sd">    tuple :code:`()` as the dependencies.</span>
 
 <span class="sd">    If the **setup function** raises an Exception then the</span>
 <span class="sd">    **cleanup function** will not be called.</span>
@@ -471,6 +477,9 @@ document.write(`
 <span class="sd">        dependencies:</span>
 <span class="sd">            The effect **setup function** will be called when the</span>
 <span class="sd">            dependencies are not :code:`__eq__` to the old dependencies.</span>
+
+<span class="sd">            If the dependencies are :code:`None`, then the effect</span>
+<span class="sd">            **setup function** will always be called.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        None</span>
 <span class="sd">    &quot;&quot;&quot;</span>

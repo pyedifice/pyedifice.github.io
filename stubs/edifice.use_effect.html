@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_effect &#8212; Edifice 0.4.1 documentation</title>
+    <title>edifice.use_effect &#8212; Edifice 0.4.2 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../_static/documentation_options.js?v=a3cf13c8"></script>
+    <script src="../_static/documentation_options.js?v=b4bb93ae"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -131,13 +131,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.1 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.1 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.2 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.2 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.1</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -361,7 +361,7 @@ document.write(`
 <h1>edifice.use_effect<a class="headerlink" href="#edifice-use-effect" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.use_effect">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_effect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_effect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_effect" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_effect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_effect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_effect" title="Link to this definition">#</a></dt>
 <dd><p>Bases:</p>
 <p>Side-effect Hook inside a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> function.</p>
 <p>Behaves like <a class="reference external" href="https://react.dev/reference/react/useEffect">React useEffect</a>.</p>
@@ -373,6 +373,10 @@ The <strong>cleanup function</strong>
 is called after render and before the component is deleted.</p>
 <p>If the dependencies change, then the old <strong>cleanup function</strong> is called and
 then the new <strong>setup function</strong> is called.</p>
+<p>If the dependencies are <code class="code docutils literal notranslate"><span class="pre">None</span></code>, then the new effect
+<strong>setup function</strong> will always be called.</p>
+<p>If you want to call the <strong>setup function</strong> only once, then pass an empty
+tuple <code class="code docutils literal notranslate"><span class="pre">()</span></code> as the dependencies.</p>
 <p>If the <strong>setup function</strong> raises an Exception then the
 <strong>cleanup function</strong> will not be called.
 Exceptions raised from the <strong>setup function</strong> and <strong>cleanup function</strong>
@@ -397,8 +401,11 @@ will be suppressed.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>setup</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]) – An effect <strong>setup function</strong> which returns a <strong>cleanup function</strong>
 or <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>dependencies</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – The effect <strong>setup function</strong> will be called when the
-dependencies are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the old dependencies.</p></li>
+<li><p><strong>dependencies</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]) – <p>The effect <strong>setup function</strong> will be called when the
+dependencies are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the old dependencies.</p>
+<p>If the dependencies are <code class="code docutils literal notranslate"><span class="pre">None</span></code>, then the effect
+<strong>setup function</strong> will always be called.</p>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
