@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.table_grid_view &#8212; Edifice 0.4.3 documentation</title>
+    <title>edifice.base_components.table_grid_view &#8212; Edifice 0.4.4 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=0f4711b3"></script>
+    <script src="../../../_static/documentation_options.js?v=9a529362"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.3 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.3 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.4 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.4 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.3</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.4</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -341,7 +341,6 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_WidgetTree</span><span class="p">],</span>
         <span class="n">newprops</span> <span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
-        <span class="n">newstate</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
         <span class="c1"># This element has no Qt underlying so it has nothing to do except store</span>
         <span class="c1"># the children of the row.</span>
@@ -405,13 +404,14 @@ document.write(`
             <span class="n">column_minwidth</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
             <span class="s2">&quot;row_stretch&quot;</span><span class="p">:</span> <span class="n">row_stretch</span><span class="p">,</span>
             <span class="s2">&quot;column_stretch&quot;</span><span class="p">:</span> <span class="n">column_stretch</span><span class="p">,</span>
             <span class="s2">&quot;row_minheight&quot;</span><span class="p">:</span> <span class="n">row_minheight</span><span class="p">,</span>
             <span class="s2">&quot;column_minwidth&quot;</span><span class="p">:</span> <span class="n">column_minwidth</span><span class="p">,</span>
         <span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># self._register_props(kwargs)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Like _LinearView._widget_children&quot;&quot;&quot;</span>
@@ -419,8 +419,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span> <span class="o">=</span> <span class="n">row_stretch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_column_stretch</span> <span class="o">=</span> <span class="n">column_stretch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_minheight</span> <span class="o">=</span> <span class="n">row_minheight</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span> <span class="o">=</span> <span class="n">column_minwidth</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span> <span class="o">=</span> <span class="n">column_minwidth</span></div>
 
 
 <div class="viewcode-block" id="TableGridView.row">
@@ -485,7 +484,6 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
         <span class="n">newprops</span><span class="p">,</span>
-        <span class="n">newstate</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
@@ -532,7 +530,7 @@ document.write(`
         <span class="k">if</span> <span class="s2">&quot;column_minwidth&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_minwidth</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;column_minwidth&quot;</span><span class="p">]))</span>
 
-        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">newstate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">commands</span>
 

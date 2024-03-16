@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice._component &#8212; Edifice 0.4.3 documentation</title>
+    <title>edifice._component &#8212; Edifice 0.4.4 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=0f4711b3"></script>
+    <script src="../../_static/documentation_options.js?v=9a529362"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.3 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.3 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.4 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.4 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.3</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.4</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -538,7 +538,7 @@ document.write(`
 <div class="viewcode-block" id="Reference.__init__">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.Reference.__init__.html#edifice.Reference.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">:</span> <span class="n">Element</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
     <span class="k">def</span> <span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -638,19 +638,14 @@ document.write(`
 
     <span class="n">_render_changes_context</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_render_unwind_context</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_ignored_variables</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_edifice_internal_parent</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="c1"># TODO Delete _edifice_internal_parent</span>
     <span class="n">_controller</span><span class="p">:</span> <span class="n">ControllerProtocol</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_edifice_internal_references</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Reference</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Element.__init__">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.Element.__init__.html#edifice.Element.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_ignored_variables&quot;</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_edifice_internal_references&quot;</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_props&quot;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_props</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[]}</span>
         <span class="c1"># Ensure we only construct this element once</span>
         <span class="k">assert</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_initialized&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">True</span>
@@ -692,8 +687,6 @@ document.write(`
 <span class="sd">        Args:</span>
 <span class="sd">            props: a dictionary representing the props to register.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_props&quot;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_props</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[]}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Element.set_key">
@@ -755,103 +748,25 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The props of this Element.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">PropsDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="p">)</span>
 
-    <span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
-    <span class="k">def</span> <span class="nf">_render_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignored_variables</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Context manager for managing changes to state.</span>
-
-<span class="sd">        This context manager does two things:</span>
-
-<span class="sd">        - Make a group of assignments to state atomically: if an exception occurs,</span>
-<span class="sd">          all changes will be rolled back.</span>
-<span class="sd">        - Renders changes to the state upon successful completion.</span>
-
-<span class="sd">        Note that this context manager will not keep track of changes to mutable objects.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            ignored_variables: an optional sequence of variables for the manager to ignore.</span>
-<span class="sd">                               These changes will not be reverted upon exception.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">entered</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">ignored</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ignored_variables</span><span class="p">)</span> <span class="k">if</span> <span class="n">ignored_variables</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="n">exception_raised</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_changes_context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_render_changes_context&quot;</span><span class="p">,</span> <span class="p">{})</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_render_unwind_context&quot;</span><span class="p">,</span> <span class="p">{})</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_ignored_variables&quot;</span><span class="p">,</span> <span class="n">ignored</span><span class="p">)</span>
-            <span class="n">entered</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">yield</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">exception_raised</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">raise</span> <span class="n">e</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">entered</span><span class="p">:</span>
-                <span class="n">changes_context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_changes_context</span>
-                <span class="n">unwind_context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_unwind_context</span>
-                <span class="k">assert</span> <span class="n">changes_context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="k">assert</span> <span class="n">unwind_context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_render_changes_context&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_render_unwind_context&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_ignored_variables&quot;</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">unwind_context</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">exception_raised</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_set_state</span><span class="p">(</span><span class="o">**</span><span class="n">changes_context</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">changes_context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_changes_context</span>
-        <span class="n">ignored_variables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ignored_variables</span>
-        <span class="k">if</span> <span class="n">changes_context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ignored_variables</span><span class="p">:</span>
-            <span class="n">unwind_context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_unwind_context</span>
-            <span class="k">assert</span> <span class="n">unwind_context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">unwind_context</span><span class="p">:</span>
-                <span class="n">unwind_context</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-            <span class="n">changes_context</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set state and render changes.</span>
-
-<span class="sd">        The keywords are the names of the state attributes of the class, e.g.</span>
-<span class="sd">        for the state :code:`self.mystate`, you call :code:`set_state(mystate=2)`.</span>
-
-<span class="sd">        At the end of this call, all changes will be rendered.</span>
-<span class="sd">        All changes are guaranteed to appear atomically: upon exception,</span>
-<span class="sd">        no changes to state will occur.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">should_update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_update</span><span class="p">(</span><span class="n">PropsDict</span><span class="p">({}),</span> <span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">old_vals</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-                    <span class="k">raise</span> <span class="ne">KeyError</span>
-                <span class="n">old_val</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-                <span class="n">old_vals</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_val</span>
-                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">s</span><span class="p">])</span>
-            <span class="k">if</span> <span class="n">should_update</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_controller</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_controller</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">old_vals</span><span class="p">:</span>
-                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">old_vals</span><span class="p">[</span><span class="n">s</span><span class="p">])</span>
-            <span class="k">raise</span> <span class="n">e</span>
-
-    <span class="k">def</span> <span class="nf">_should_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span> <span class="n">newstate</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_should_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines if the Element should rerender upon receiving new props and state.</span>
 
-<span class="sd">        The arguments, :code:`newprops` and :code:`newstate`, reflect the</span>
-<span class="sd">        props and state that change: they</span>
-<span class="sd">        may be a subset of the props and the state. When this function is called,</span>
-<span class="sd">        all props and state of this Element are the old values, so you can compare</span>
-<span class="sd">        :code:`self.props` to :code:`newprops` and :code`self` to :code:`newstate`</span>
+<span class="sd">        The :code:`newprops` reflect the</span>
+<span class="sd">        props that change: they</span>
+<span class="sd">        may be a subset of the props. When this function is called,</span>
+<span class="sd">        all props of this Element are the old values, so you can compare</span>
+<span class="sd">        :code:`self.props` to :code:`newprops`</span>
 <span class="sd">        to determine changes.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            newprops: the new set of props</span>
-<span class="sd">            newstate: the new set of state</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Whether or not the Element should be rerendered.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO if an Element has children, then _should_update will always</span>
+        <span class="c1"># return True, because the children will always be different, because</span>
+        <span class="c1"># _recycle_children hasn&#39;t been called yet. Is that correct behavior?</span>
 
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
@@ -863,46 +778,7 @@ document.write(`
             <span class="c1"># If the prop is not in the old props, then we rerender.</span>
                 <span class="k">return</span> <span class="kc">True</span>
 
-
-        <span class="c1"># for backward compatibility, we have to check for changes to state.</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">newstate</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">v2</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">v2</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">v2</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">True</span>
-
         <span class="k">return</span> <span class="kc">False</span>
-
-    <span class="k">def</span> <span class="nf">_did_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback function that is called when the Element mounts for the first time.</span>
-
-<span class="sd">        Override if you need to do something after the Element mounts</span>
-<span class="sd">        (e.g. start a timer).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">_did_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback function that is called whenever the Element updates.</span>
-
-<span class="sd">        *This is not called after the first render.*</span>
-<span class="sd">        Override if you need to do something after every render except the first.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">_did_render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback function that is called whenever the Element renders.</span>
-
-<span class="sd">        It will be called on both renders and updates.</span>
-<span class="sd">        Override if you need to do something after every render.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">_will_unmount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback function that is called when the Element will unmount.</span>
-
-<span class="sd">        Override if you need to clean up some state, e.g. stop a timer,</span>
-<span class="sd">        close a file.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
@@ -962,7 +838,7 @@ document.write(`
 <span class="k">def</span> <span class="nf">component</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Concatenate</span><span class="p">[</span><span class="n">C</span><span class="p">,</span><span class="n">P</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span><span class="n">Element</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator turning a render function of **props** into an :class:`Element`.</span>
 
-<span class="sd">    The compoment will be re-rendered when its **props** are not :code:`__eq__`</span>
+<span class="sd">    The component will be re-rendered when its **props** are not :code:`__eq__`</span>
 <span class="sd">    to the **props** from the last time the component rendered.</span>
 
 <span class="sd">    The component function must render exactly one :class:`Element`.</span>
@@ -1040,12 +916,12 @@ document.write(`
 
         <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
             <span class="n">name_to_val</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">not_ignored</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">varnames</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
             <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">(((</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span><span class="p">))</span>
             <span class="n">name_to_val</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name_to_val</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;children&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">name_to_val</span><span class="p">)</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="k">def</span> <span class="nf">_render_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_d</span>
@@ -1277,6 +1153,7 @@ document.write(`
         <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
             <span class="s2">&quot;style&quot;</span><span class="p">:</span> <span class="n">style</span><span class="p">,</span>
             <span class="s2">&quot;tool_tip&quot;</span><span class="p">:</span> <span class="n">tool_tip</span><span class="p">,</span>
@@ -1296,7 +1173,6 @@ document.write(`
             <span class="s2">&quot;on_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_mouse_move</span><span class="p">,</span>
             <span class="s2">&quot;on_drop&quot;</span><span class="p">:</span> <span class="n">on_drop</span><span class="p">,</span>
         <span class="p">})</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1643,7 +1519,6 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="s2">&quot;_WidgetTree&quot;</span><span class="p">],</span>
         <span class="n">newprops</span> <span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
-        <span class="n">newstate</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
@@ -1653,7 +1528,6 @@ document.write(`
         <span class="c1"># We must pass all of the widget_trees because some elements</span>
         <span class="c1"># like TableGridView need to know the children of the children.</span>
         <span class="n">newprops</span> <span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
-        <span class="n">newstate</span><span class="p">,</span>
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
         <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
