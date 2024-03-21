@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.extra.PyQtPlot &#8212; Edifice 0.4.4 documentation</title>
+    <title>edifice.extra.PyQtPlot &#8212; Edifice 0.4.5 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=9a529362"></script>
+    <script src="../_static/documentation_options.js?v=21ae117f"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,13 +134,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.4 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.4 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.5 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.5 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.5</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -389,8 +389,17 @@ package used by <strong>edifice</strong>.</p>
         <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
         <span class="n">plot_item</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ys</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
-        <span class="n">PyQtPlot</span><span class="p">(</span><span class="n">plot_fun</span><span class="o">=</span><span class="n">plot_fun</span><span class="p">)</span>
+    <span class="n">PyQtPlot</span><span class="p">(</span><span class="n">plot_fun</span><span class="o">=</span><span class="n">plot_fun</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want a non-interactive plot that doesn’t respond to the mouse,
+you can disable mouse interaction with the plot by setting properties
+on the <a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html">PlotItem</a>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">):</span>
+    <span class="n">plot_item</span><span class="o">.</span><span class="n">setMouseEnabled</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plot_item</span><span class="o">.</span><span class="n">hideButtons</span><span class="p">()</span>
+    <span class="o">...</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

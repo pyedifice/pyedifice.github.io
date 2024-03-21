@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.extra.pyqtgraph_plot &#8212; Edifice 0.4.4 documentation</title>
+    <title>edifice.extra.pyqtgraph_plot &#8212; Edifice 0.4.5 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=9a529362"></script>
+    <script src="../../../_static/documentation_options.js?v=21ae117f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.4 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.4 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.5 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.5 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.5</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -343,21 +343,32 @@ document.write(`
 
 <span class="sd">    Example::</span>
 
-<span class="sd">            import numpy as np</span>
-<span class="sd">            from edifice import View, component</span>
-<span class="sd">            from edifice.extra import PyQtPlot</span>
-<span class="sd">            import pyqtgraph as pg</span>
+<span class="sd">        import numpy as np</span>
+<span class="sd">        from edifice import View, component</span>
+<span class="sd">        from edifice.extra import PyQtPlot</span>
+<span class="sd">        import pyqtgraph as pg</span>
 
-<span class="sd">            @component</span>
-<span class="sd">            def Component(self):</span>
+<span class="sd">        @component</span>
+<span class="sd">        def Component(self):</span>
 
-<span class="sd">                def plot_fun(plot_item: pg.PlotItem):</span>
-<span class="sd">                    xs = np.linspace(-10, 10, 100)</span>
-<span class="sd">                    ys = np.sin(xs)</span>
-<span class="sd">                    plot_item.plot(x=xs, y=ys)</span>
+<span class="sd">            def plot_fun(plot_item: pg.PlotItem):</span>
+<span class="sd">                xs = np.linspace(-10, 10, 100)</span>
+<span class="sd">                ys = np.sin(xs)</span>
+<span class="sd">                plot_item.plot(x=xs, y=ys)</span>
 
-<span class="sd">                with View():</span>
-<span class="sd">                    PyQtPlot(plot_fun=plot_fun)</span>
+<span class="sd">            PyQtPlot(plot_fun=plot_fun)</span>
+
+
+<span class="sd">    If you want a non-interactive plot that doesn’t respond to the mouse,</span>
+<span class="sd">    you can disable mouse interaction with the plot by setting properties</span>
+<span class="sd">    on the `PlotItem &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html&gt;`_.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        def plot_fun(plot_item: pg.PlotItem):</span>
+<span class="sd">            plot_item.setMouseEnabled(x=False, y=False)</span>
+<span class="sd">            plot_item.hideButtons()</span>
+<span class="sd">            ...</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        plot_fun:</span>
@@ -387,9 +398,6 @@ document.write(`
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotWidget</span><span class="p">()</span>
-            <span class="c1"># Disable mouse interaction</span>
-            <span class="c1"># https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/viewbox.html#pyqtgraph.ViewBox.setMouseEnabled</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setMouseEnabled</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
 
