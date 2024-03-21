@@ -370,6 +370,16 @@ document.write(`
 <span class="sd">            plot_item.hideButtons()</span>
 <span class="sd">            ...</span>
 
+<span class="sd">    A more complete way to disable mouse interaction is to set the</span>
+<span class="sd">    :code:`PlotWidget` to be transparent for mouse events.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        def plot_fun(plot_item: pg.PlotItem):</span>
+<span class="sd">            cast(</span>
+<span class="sd">                pg.PlotWidget, plot_item.getViewWidget()</span>
+<span class="sd">            ).setAttribute(PySide6.QtCore.Qt.WidgetAttribute.WA_TransparentForMouseEvents)</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        plot_fun:</span>
 <span class="sd">            Function which takes a **PyQtGraph**</span>
