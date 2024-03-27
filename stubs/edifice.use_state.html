@@ -375,7 +375,8 @@ document.write(`
 <p>The <strong>state value</strong> will be the value of the state at the beginning of
 the render for this component.</p>
 <p>The <strong>setter function</strong> will, when called, set the <strong>state value</strong> before
-the next render.</p>
+the next render. If the new <strong>state value</strong> is not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the
+old <strong>state value</strong>, then the component will be re-rendered.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">Stateful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

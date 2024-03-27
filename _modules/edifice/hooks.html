@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 0.4.4 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 0.5.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=9a529362"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.4 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.4 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -315,7 +315,7 @@ document.write(`
                   
   <h1>Source code for edifice.hooks</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span>
-<span class="kn">from</span> <span class="nn">edifice._component</span> <span class="kn">import</span> <span class="n">get_render_context_maybe</span><span class="p">,</span> <span class="n">_T_use_state</span><span class="p">,</span> <span class="n">Reference</span>
+<span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="n">get_render_context_maybe</span><span class="p">,</span> <span class="n">_T_use_state</span><span class="p">,</span> <span class="n">Reference</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">cast</span>
 <span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">get_event_loop</span>
 
@@ -339,7 +339,8 @@ document.write(`
 <span class="sd">    the render for this component.</span>
 
 <span class="sd">    The **setter function** will, when called, set the **state value** before</span>
-<span class="sd">    the next render.</span>
+<span class="sd">    the next render. If the new **state value** is not :code:`__eq__` to the</span>
+<span class="sd">    old **state value**, then the component will be re-rendered.</span>
 
 <span class="sd">    Example::</span>
 
@@ -422,9 +423,9 @@ document.write(`
 <span class="sd">        2. A **setter function** for setting or updating the state value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_state used outside component&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">current_element</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">)</span></div>
 
 
 
@@ -491,9 +492,9 @@ document.write(`
 <span class="sd">        None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_effect used outside component&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">use_effect</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">use_effect</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">current_element</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
 
 
 
@@ -589,9 +590,9 @@ document.write(`
 <span class="sd">        A function which can be called to cancel the :code:`fn_coroutine` Task manually.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_async used outside component&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">current_element</span><span class="p">,</span> <span class="n">fn_coroutine</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
 
 
 

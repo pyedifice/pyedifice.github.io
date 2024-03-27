@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice._component &#8212; Edifice 0.4.4 documentation</title>
+    <title>edifice.engine &#8212; Edifice 0.5.0 documentation</title>
   
   
   
@@ -35,11 +35,11 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=9a529362"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/_component';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/engine';</script>
     <link rel="icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.4 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.4 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -313,17 +313,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <h1>Source code for edifice._component</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Iterable</span>
-<span class="kn">import</span> <span class="nn">contextlib</span>
-<span class="kn">import</span> <span class="nn">inspect</span>
+  <h1>Source code for edifice.engine</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">dedent</span>
+<span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 
 <span class="kn">from</span> <span class="nn">.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
@@ -331,6 +332,7 @@ document.write(`
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtGui</span>
 
+<span class="n">_T_use_state</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_use_state&quot;</span><span class="p">)</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Edifice&quot;</span><span class="p">)</span>
 
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
@@ -587,37 +589,71 @@ document.write(`
             <span class="n">children</span> <span class="o">|=</span> <span class="n">find_components</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">-</span> <span class="p">{</span><span class="n">child</span><span class="p">}</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">child</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="k">if</span> <span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">children</span><span class="p">]</span>
 
-<span class="k">class</span> <span class="nc">RenderContextProtocol</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_RenderContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Protocol for _RenderContext. TODO rearrange modules so we don&#39;t need this protocol.</span>
+<span class="sd">    Encapsulates various state that&#39;s needed for rendering.</span>
+
+<span class="sd">    One _RenderContext is created when a render begins, and it is destroyed</span>
+<span class="sd">    at the end of the render.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;need_qt_command_reissue&quot;</span><span class="p">,</span> <span class="s2">&quot;component_to_old_props&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;component_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;widget_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;enqueued_deletions&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;trackers&quot;</span><span class="p">,</span> <span class="s2">&quot;_callback_queue&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;engine&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;current_element&quot;</span><span class="p">,</span>
+                 <span class="p">)</span>
     <span class="n">trackers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_Tracker</span><span class="p">]</span>
-    <span class="k">def</span> <span class="nf">use_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span><span class="n">_T_use_state</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
-        <span class="n">_T_use_state</span><span class="p">,</span> <span class="c1"># current value</span>
-        <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span> <span class="c1"># updater</span>
-            <span class="p">[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span><span class="n">_T_use_state</span><span class="p">]],</span>
-            <span class="kc">None</span>
-        <span class="p">]]:</span>
-        <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">use_effect</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stack of _Tracker&quot;&quot;&quot;</span>
+    <span class="n">current_element</span><span class="p">:</span> <span class="s2">&quot;Element | None&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Element currently being rendered.&quot;&quot;&quot;</span>
+    <span class="c1"># I guess static scope typing of instance members is normal in Python?</span>
+    <span class="c1"># https://peps.python.org/pep-0526/#class-and-instance-variable-annotations</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">setup</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
-        <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">use_async</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
-        <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span><span class="kc">None</span><span class="p">]:</span>
-        <span class="o">...</span>
+        <span class="n">engine</span><span class="p">:</span> <span class="s2">&quot;RenderEngine&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">component_tree</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span><span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Map of a component to its children.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Map of a component to its rendered widget tree.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enqueued_deletions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_callback_queue</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">trackers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_element</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">mark_props_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;Element&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">component</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">props</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_props</span> <span class="o">=</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_d</span>
+
+    <span class="k">def</span> <span class="nf">get_old_props</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">PropsDict</span><span class="p">({})</span>
+
+    <span class="k">def</span> <span class="nf">mark_qt_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;QtWidgetElement&quot;</span><span class="p">,</span> <span class="n">need_rerender</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">need_rerender</span>
+
+    <span class="k">def</span> <span class="nf">need_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;QtWidgetElement&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 <span class="n">local_state</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">local</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">get_render_context</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RenderContextProtocol</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">get_render_context</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_RenderContext</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="s2">&quot;render_context&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">get_render_context_maybe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RenderContextProtocol</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">get_render_context_maybe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_RenderContext</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="s2">&quot;render_context&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Element">
@@ -914,7 +950,7 @@ document.write(`
 
     <span class="k">class</span> <span class="nc">ComponentElement</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
 
-        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
             <span class="n">name_to_val</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1632,6 +1668,742 @@ document.write(`
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+
+
+<span class="k">class</span> <span class="nc">RenderResult</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Encapsulates the results of a render.</span>
+
+<span class="sd">    Concretely, it stores information such as commands,</span>
+<span class="sd">    which must be executed by the caller.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">],</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commands</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="n">commands</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">_HookState</span><span class="p">:</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span>
+    <span class="n">updaters</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">_HookEffect</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">cleanup</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cleanup function called on unmount and overwrite</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">_HookAsync</span><span class="p">:</span>
+    <span class="n">task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The currently executing async effect task.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">]]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The queue of waiting async effect tasks. Max length 1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The dependencies of use_async().</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">elements_match</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Should return True if element b can be used to update element a</span>
+<span class="sd">    by _update_old_component().</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Elements must be of the same __class__.</span>
+    <span class="c1"># Elements must have the same __class__.__name__. This is to distinguish</span>
+    <span class="c1"># between different @component Components. (Why does class __eq__ return</span>
+    <span class="c1"># True if the class __name__ is different?)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+        <span class="ow">and</span>
+        <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="ow">and</span>
+        <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">RenderEngine</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    One RenderEngine instance persists across the life of the App.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;_component_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;_widget_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;_root&quot;</span><span class="p">,</span> <span class="s2">&quot;_app&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_state&quot;</span><span class="p">,</span> <span class="s2">&quot;_hook_state_setted&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_effect&quot;</span><span class="p">,</span> <span class="s2">&quot;_hook_async&quot;</span><span class="p">,</span> <span class="s2">&quot;is_stopped&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The _component_tree maps an Element to its children.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Map of an Element to its rendered widget tree.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_app</span> <span class="o">=</span> <span class="n">app</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">_HookState</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The per-element hooks for use_state().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The set of elements which have had their use_state() setters called</span>
+<span class="sd">        since the last render.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">_HookEffect</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The per-element hooks for use_effect().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">_HookAsync</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The per-element hooks for use_async().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag determining if the render engine has been stopped.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">is_hook_async_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        True if all of the async hooks for an Element are done.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_delete_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="c1"># Delete component from render trees</span>
+        <span class="n">sub_components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">recursive</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">sub_comp</span> <span class="ow">in</span> <span class="n">sub_components</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_delete_component</span><span class="p">(</span><span class="n">sub_comp</span><span class="p">,</span> <span class="n">recursive</span><span class="p">)</span>
+            <span class="c1"># Node deletion</span>
+
+        <span class="c1"># Clean up use_effect for the component</span>
+        <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">component</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># None indicates that the setup effect failed,</span>
+                    <span class="c1"># or that there is no cleanup function.</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">pass</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="c1"># Clean up use_async for the component</span>
+        <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]:</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># If there are some running tasks, wait until they are</span>
+                    <span class="c1"># done and then delete this HookAsync object.</span>
+                    <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">):</span>
+                                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">):</span>
+                <span class="c1"># If there are no running tasks, then we can delete this</span>
+                <span class="c1"># HookAsync object immediately.</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="c1"># Clean up use_state for the component</span>
+        <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+
+
+        <span class="c1"># Clean up component references</span>
+        <span class="c1"># Do this after use_effect cleanup, so that the cleanup function</span>
+        <span class="c1"># can still access the component References.</span>
+        <span class="k">assert</span> <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="p">:</span>
+            <span class="n">ref</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_refresh_by_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># This refresh is done only for a hot reload. It refreshes all</span>
+        <span class="c1"># elements which were defined in a module which was changed</span>
+        <span class="c1"># on the filesystem.</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Algorithm:</span>
+        <span class="c1"># 1) Find all old components that&#39;s not a child of another component</span>
+
+        <span class="c1"># components_to_replace is (old_component, new_component_class, parent component, new_component)</span>
+        <span class="n">components_to_replace</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># classes should be only ComponentElement, because only ComponentElement can change in user code.</span>
+        <span class="n">old_components</span> <span class="o">=</span> <span class="p">[</span><span class="bp">cls</span> <span class="k">for</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">]</span>
+        <span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">in</span> <span class="n">old_components</span> <span class="ow">and</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># We can&#39;t replace the unparented root</span>
+                <span class="n">new_component_class</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_cls</span> <span class="k">for</span> <span class="n">old_cls</span><span class="p">,</span> <span class="n">new_cls</span> <span class="ow">in</span> <span class="n">classes</span> <span class="k">if</span> <span class="n">old_cls</span> <span class="o">==</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">new_component_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error after updating code: cannot find class </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+                <span class="n">components_to_replace</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">comp</span><span class="p">,</span> <span class="n">new_component_class</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+                <span class="k">return</span>
+            <span class="n">sub_components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sub_components</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">sub_comp</span> <span class="ow">in</span> <span class="n">sub_components</span><span class="p">:</span>
+                    <span class="n">traverse</span><span class="p">(</span><span class="n">sub_comp</span><span class="p">,</span> <span class="n">comp</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">traverse</span><span class="p">(</span><span class="n">sub_components</span><span class="p">,</span> <span class="n">comp</span><span class="p">)</span>
+
+        <span class="n">traverse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># 2) For all such old components, construct a new component and merge in old component props</span>
+        <span class="k">for</span> <span class="n">parts</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">:</span>
+            <span class="n">old_comp</span><span class="p">,</span> <span class="n">new_comp_class</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">parts</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">new_comp_class</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+                          <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span> <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span>
+                          <span class="ow">and</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">}</span>
+                          <span class="c1"># We don&#39;t actually need all the kwargs, just enough</span>
+                          <span class="c1"># to construct new_comp_class.</span>
+                          <span class="c1"># The other kwargs will be set with _props.update.</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                    <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
+                        <span class="k">break</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Error while reloading </span><span class="si">{</span><span class="n">old_comp</span><span class="si">}</span><span class="s2">: &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;New class expects prop (</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) not present in old class&quot;</span>
+                <span class="p">)</span>
+            <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_comp_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">_props</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">old_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">old_comp</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">):</span>
+                <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">_key</span>
+
+        <span class="c1"># 3) Replace old component in the place in the tree where they first appear, with a reference to new component</span>
+
+        <span class="n">backup</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">old_comp</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent_comp</span><span class="p">,</span> <span class="n">new_comp</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">:</span>
+                <span class="n">backup</span><span class="p">[</span><span class="n">parent_comp</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parent_comp</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">comp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parent_comp</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">comp</span> <span class="ow">is</span> <span class="n">old_comp</span><span class="p">:</span>
+                        <span class="n">parent_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_comp</span>
+                        <span class="c1"># Move the hook states to the new component.</span>
+                        <span class="c1"># We want to be careful that the hooks don&#39;t have</span>
+                        <span class="c1"># any references to the old component, especially</span>
+                        <span class="c1"># function closures. I think this code is okay.</span>
+                        <span class="c1">#</span>
+                        <span class="c1"># During the effect functions and the async coroutine, usually</span>
+                        <span class="c1"># what happens is that some use_state setters are called,</span>
+                        <span class="c1"># and those use_state setters would be closures on the</span>
+                        <span class="c1"># state which was moved, not references to the old_comp.</span>
+                        <span class="c1">#</span>
+                        <span class="c1"># Because this is only during hot-reload, so only during</span>
+                        <span class="c1"># development, it&#39;s not catastrophic if some references</span>
+                        <span class="c1"># to old_comp are retained and cause bugs.</span>
+                        <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+
+        <span class="c1"># 5) call _render for all new component parents</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rerendering parents of: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">new_comp_class</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">new_comp_class</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rerendering: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">parent</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">parent_comp</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent_comp</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Restore components</span>
+            <span class="k">for</span> <span class="n">parent_comp</span><span class="p">,</span> <span class="n">backup_val</span> <span class="ow">in</span> <span class="n">backup</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">parent_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">backup_val</span>
+            <span class="k">raise</span> <span class="n">e</span>
+
+
+    <span class="k">def</span> <span class="nf">_update_old_component</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">new_component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_WidgetTree</span><span class="p">:</span>
+        <span class="c1"># new_component is a new rendering of old component, so update</span>
+        <span class="c1"># old component to have props of new_component.</span>
+        <span class="c1"># The new_component will be discarded.</span>
+        <span class="k">assert</span> <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">assert</span> <span class="n">new_component</span><span class="o">.</span><span class="n">_edifice_internal_references</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">newprops</span> <span class="o">=</span> <span class="n">new_component</span><span class="o">.</span><span class="n">props</span>
+        <span class="c1"># TODO are we leaking memory by holding onto the old references?</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new_component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="p">)</span>
+        <span class="c1"># component needs re-rendering if</span>
+        <span class="c1">#  1) props changed</span>
+        <span class="c1">#  2) state changed</span>
+        <span class="c1">#  3) it has any pending _hook_state updates</span>
+        <span class="c1">#  4) it has any references</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">_should_update</span><span class="p">(</span><span class="n">newprops</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="ow">or</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span>
+        <span class="p">):</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
+            <span class="n">rerendered_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">mark_qt_rerender</span><span class="p">(</span><span class="n">rerendered_obj</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">rerendered_obj</span>
+
+        <span class="c1"># TODO So _should_update returned False but then we call</span>
+        <span class="c1"># mark_props_change? What does mark_props_change mean then?</span>
+        <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_recycle_children</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span>
+        <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]:</span>
+        <span class="c1"># Children diffing and reconciliation</span>
+        <span class="c1">#</span>
+        <span class="c1"># Returns element children, which contains all the future children of the component:</span>
+        <span class="c1"># a mixture of old components (if they can be updated) and new ones</span>
+        <span class="c1">#</span>
+        <span class="c1"># Returns children widget trees, cached or newly rendered.</span>
+
+        <span class="n">children_old_bykey</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">children_new_bykey</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="n">children_old_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+
+        <span class="n">widgettree</span> <span class="o">=</span> <span class="n">_WidgetTree</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="p">[])</span>
+
+        <span class="c1"># We will mutate children_old to reuse and remove old elements if we can match them.</span>
+        <span class="c1"># Ordering of children_old must be preserved for reverse deletion.</span>
+        <span class="n">children_old</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="n">children_old_</span><span class="p">[:]</span>
+        <span class="k">for</span> <span class="n">child_old</span> <span class="ow">in</span> <span class="n">children_old</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">):</span>
+                <span class="n">children_old_bykey</span><span class="p">[</span><span class="n">child_old</span><span class="o">.</span><span class="n">_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_old</span>
+
+        <span class="c1"># We will mutate children_new to replace them with old elements if we can match them.</span>
+        <span class="n">children_new</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">children</span><span class="p">[:]</span>
+        <span class="k">for</span> <span class="n">child_new</span> <span class="ow">in</span> <span class="n">children_new</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">child_new</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">children_new_bykey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">child_new</span><span class="o">.</span><span class="n">_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Duplicate keys found in </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">component</span><span class="p">)</span>
+                <span class="n">children_new_bykey</span><span class="p">[</span><span class="n">child_new</span><span class="o">.</span><span class="n">_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_new</span>
+
+        <span class="c1"># We will not try to intelligently handle the situation where</span>
+        <span class="c1"># an unkeyed element is added or removed.</span>
+        <span class="c1"># If the elements are unkeyed then try to match them pairwise.</span>
+        <span class="n">i_old</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">i_new</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i_new</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">):</span>
+            <span class="n">child_new</span> <span class="o">=</span> <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">:=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">child_new</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">child_old_bykey</span> <span class="o">:=</span> <span class="n">children_old_bykey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="ow">and</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="n">child_new</span><span class="p">)):</span>
+                    <span class="c1"># then we have a match for reusing the old child</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+                    <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_old_bykey</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># Try to get the cached WidgetTree from this render</span>
+                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># Get the cached WidgetTree from previous render</span>
+                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">child_old_bykey</span><span class="p">]</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">children_old</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># new child so render</span>
+                    <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="c1"># this component will need qt rerender</span>
+                    <span class="n">render_context</span><span class="o">.</span><span class="n">mark_qt_rerender</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">i_old</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_old</span><span class="p">):</span>
+                <span class="n">child_old</span> <span class="o">=</span> <span class="n">children_old</span><span class="p">[</span><span class="n">i_old</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="n">child_new</span><span class="p">):</span>
+                    <span class="c1"># then we have a match for reusing the old child</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+                    <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_old</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># Try to get the cached WidgetTree from this render</span>
+                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># Get the cached WidgetTree from previous render</span>
+                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">child_old</span><span class="p">]</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">children_old</span><span class="p">[</span><span class="n">i_old</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># new child so render</span>
+                    <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="c1"># this component will need qt rerender</span>
+                    <span class="n">render_context</span><span class="o">.</span><span class="n">mark_qt_rerender</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+                    <span class="c1"># leave this old element to be deleted</span>
+                    <span class="n">i_old</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># new child so render</span>
+                <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                <span class="c1"># this component will need qt rerender</span>
+                <span class="n">render_context</span><span class="o">.</span><span class="n">mark_qt_rerender</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="n">i_new</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">render_context</span><span class="o">.</span><span class="n">enqueued_deletions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">children_old</span><span class="p">)</span>
+        <span class="n">render_context</span><span class="o">.</span><span class="n">component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">children_new</span>
+        <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">widgettree</span>
+        <span class="k">return</span> <span class="n">children_new</span>
+
+    <span class="k">def</span> <span class="nf">_render_base_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_WidgetTree</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">component</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">:</span>
+            <span class="c1"># New component, simply render everything</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+            <span class="n">rendered_children</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">component</span><span class="o">.</span><span class="n">children</span><span class="p">]</span>
+            <span class="n">widgettree</span> <span class="o">=</span> <span class="n">_WidgetTree</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">component</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">rendered_children</span><span class="p">])</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">widgettree</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">mark_qt_rerender</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">widgettree</span>
+
+        <span class="c1"># Figure out which children can be re-used</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recycle_children</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+
+        <span class="n">props_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span><span class="p">)</span>
+        <span class="n">props_dict</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
+        <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">PropsDict</span><span class="p">(</span><span class="n">props_dict</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_WidgetTree</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="p">:</span>
+                <span class="n">ref</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">component</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">component</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2"> is not correctly initialized. &quot;</span>
+                <span class="s2">&quot;Did you remember to call super().__init__() in the constructor? &quot;</span>
+                <span class="s2">&quot;(alternatively, the register_props decorator will also correctly initialize the component)&quot;</span>
+            <span class="p">)</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_base_component</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ret</span>
+
+        <span class="c1"># Before the render, set the hooks indices to 0.</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_hook_state_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_hook_effect_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_hook_async_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Record that we are rendering this component with current use_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+
+        <span class="c1"># Call user provided render function and retrieve old results</span>
+        <span class="k">with</span> <span class="n">Container</span><span class="p">()</span> <span class="k">as</span> <span class="n">container</span><span class="p">:</span>
+            <span class="n">prev_element</span> <span class="o">=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">current_element</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">current_element</span> <span class="o">=</span> <span class="n">component</span>
+            <span class="n">sub_component</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">_render_element</span><span class="p">()</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">current_element</span> <span class="o">=</span> <span class="n">prev_element</span>
+        <span class="c1"># If the component.render() call evaluates to an Element</span>
+        <span class="c1"># we use that as the sub_component the component renders as.</span>
+        <span class="k">if</span> <span class="n">sub_component</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># If the render() method doesn&#39;t render as</span>
+            <span class="c1"># an Element (always the case for @component Components)</span>
+            <span class="c1"># we obtain the rendered sub_component as either:</span>
+            <span class="c1">#</span>
+            <span class="c1"># 1. The only child of the Container wrapping the render, or</span>
+            <span class="c1"># 2. A View element containing the children of the Container</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">sub_component</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">newline</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="n">dedent</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">                    A @component must render as exactly one Element.</span>
+<span class="s2">                    Element </span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s2"> renders as </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">)</span><span class="si">}</span><span class="s2"> elements.&quot;&quot;&quot;</span><span class="p">)</span> \
+                    <span class="o">+</span> <span class="n">newline</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">child</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">])</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">old_rendering</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_component</span><span class="p">):</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span>
+                <span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">render_context</span><span class="o">.</span><span class="n">enqueued_deletions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">)</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sub_component</span><span class="p">]</span>
+            <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">sub_component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">gen_qt_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">element</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span>
+        <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Recursively generate the update commands for the widget tree.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">commands</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">commands</span>
+
+        <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+            <span class="n">rendered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_qt_commands</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">rendered</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">render_context</span><span class="o">.</span><span class="n">need_rerender</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">commands</span>
+
+        <span class="n">old_props</span> <span class="o">=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">get_old_props</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="n">new_props</span> <span class="o">=</span> <span class="n">PropsDict</span><span class="p">({</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_props</span> <span class="ow">or</span> <span class="n">old_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">v</span>
+        <span class="p">})</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">,</span> <span class="n">new_props</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">commands</span>
+
+    <span class="k">def</span> <span class="nf">_request_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">RenderResult</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">RenderResult</span><span class="p">([])</span>
+
+        <span class="n">components_</span> <span class="o">=</span> <span class="n">components</span><span class="p">[:]</span>
+        <span class="c1"># Before the render, reduce the _hook_state updaters.</span>
+        <span class="c1"># We can&#39;t do this after the render, because there may have been state</span>
+        <span class="c1"># updates from event handlers.</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="p">:</span>
+            <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
+                <span class="n">state0</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">state</span>
+                <span class="k">for</span> <span class="n">updater</span> <span class="ow">in</span> <span class="n">hook</span><span class="o">.</span><span class="n">updaters</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">updater</span><span class="p">):</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">updater</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+                        <span class="c1"># We don&#39;t catch the state updater exceptions.</span>
+                        <span class="c1"># We want the program to crash if state updaters throw.</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">updater</span>
+                <span class="k">if</span> <span class="n">state0</span> <span class="o">!=</span> <span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">:</span>
+                    <span class="c1"># State changed so we need to re-render this component.</span>
+                    <span class="k">if</span> <span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">components_</span><span class="p">:</span>
+                        <span class="n">components_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">updaters</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="n">all_commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Here is the problem.</span>
+        <span class="c1"># We need to render the child before parent if the child state changed.</span>
+        <span class="c1"># We need to render the parent before child if the child props changed.</span>
+        <span class="c1"># So we do a complete render of each component invividually, and then</span>
+        <span class="c1"># we don&#39;t have to solve the problem of the order of rendering.</span>
+        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components_</span><span class="p">:</span>
+
+            <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">render_context</span> <span class="o">=</span> <span class="n">_RenderContext</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">local_state</span><span class="o">.</span><span class="n">render_context</span> <span class="o">=</span> <span class="n">render_context</span>
+
+            <span class="n">widget_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+
+            <span class="c1"># Generate the update commands from the widget trees</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen_qt_commands</span><span class="p">(</span><span class="n">widget_tree</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">))</span>
+
+            <span class="c1"># Update the stored component trees and widget trees</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">render_context</span><span class="o">.</span><span class="n">component_tree</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">)</span>
+
+            <span class="c1"># This is the phase of the render when the commands run.</span>
+            <span class="k">for</span> <span class="n">command</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">command</span><span class="o">.</span><span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">command</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">command</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception while running command:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">command</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">all_commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span>
+
+            <span class="c1"># Delete components that should be deleted (and call the respective unmounts)</span>
+            <span class="k">for</span> <span class="n">component_delete</span> <span class="ow">in</span> <span class="n">render_context</span><span class="o">.</span><span class="n">enqueued_deletions</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_delete_component</span><span class="p">(</span><span class="n">component_delete</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># after render, call the use_effect setup functions.</span>
+        <span class="c1"># we want to guarantee that elements are fully rendered before</span>
+        <span class="c1"># effects are performed.</span>
+        <span class="k">for</span> <span class="n">hooks</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">setup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                            <span class="k">pass</span>
+                        <span class="k">finally</span><span class="p">:</span>
+                            <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">finally</span><span class="p">:</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">setup</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># We return all the commands but that&#39;s only needed for testing.</span>
+        <span class="k">return</span> <span class="n">RenderResult</span><span class="p">(</span><span class="n">all_commands</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">use_state</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">element</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span>
+        <span class="n">initial_state</span><span class="p">:</span><span class="n">_T_use_state</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+        <span class="n">_T_use_state</span><span class="p">,</span> <span class="c1"># current value</span>
+        <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span> <span class="c1"># updater</span>
+            <span class="p">[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span><span class="n">_T_use_state</span><span class="p">]],</span>
+            <span class="kc">None</span>
+        <span class="p">]</span>
+    <span class="p">]:</span>
+        <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+
+        <span class="n">h_index</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">_hook_state_index</span>
+        <span class="n">element</span><span class="o">.</span><span class="n">_hook_state_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
+            <span class="c1"># then this is the first render</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookState</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="nb">list</span><span class="p">())</span>
+            <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="n">updater</span><span class="p">):</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">updaters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">updater</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_app</span><span class="o">.</span><span class="n">_defer_rerender</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">setter</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">use_effect</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">setup</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># https://legacy.reactjs.org/docs/hooks-effect.html#example-using-hooks</span>
+        <span class="c1"># effects happen “after render”.</span>
+        <span class="c1"># React guarantees the DOM has been updated by the time it runs the effects.</span>
+
+        <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+
+        <span class="n">h_index</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">_hook_effect_index</span>
+        <span class="n">element</span><span class="o">.</span><span class="n">_hook_effect_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
+            <span class="c1"># then this is the first render</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookEffect</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span>
+            <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># then this is not the first render</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">dependencies</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">hook</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">!=</span> <span class="n">dependencies</span><span class="p">:</span>
+                <span class="c1"># deps changed</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">setup</span> <span class="o">=</span> <span class="n">setup</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span>
+
+    <span class="k">def</span> <span class="nf">use_async</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
+        <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]:</span>
+
+        <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+        <span class="n">h_index</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">_hook_async_index</span>
+        <span class="n">element</span><span class="o">.</span><span class="n">_hook_async_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># When the done_callback is called,</span>
+        <span class="c1"># this component might have already unmounted. In that case</span>
+        <span class="c1"># this done_callback will still be holding a reference to the</span>
+        <span class="c1"># _HookAsync, and the _HookAsync.queue will be cleared.</span>
+        <span class="c1"># After the done_callback is called, the _HookAsync object</span>
+        <span class="c1"># should be garbage collected.</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
+            <span class="c1"># then this is the first render.</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookAsync</span><span class="p">(</span>
+                <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
+                <span class="n">dependencies</span><span class="o">=</span><span class="n">dependencies</span><span class="p">,</span>
+                <span class="n">queue</span><span class="o">=</span><span class="p">[],</span>
+            <span class="p">)</span>
+            <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># There is another async task waiting in the queue</span>
+                    <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
+                    <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+
+            <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">cancel</span>
+
+        <span class="k">elif</span> <span class="n">dependencies</span> <span class="o">!=</span> <span class="p">(</span><span class="n">hook</span> <span class="o">:=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">])</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span>
+            <span class="c1"># then this is not the first render and deps changed</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span>
+            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># There&#39;s already an old async effect in flight, so enqueue</span>
+                <span class="c1"># the new async effect and cancel the old async effect.</span>
+                <span class="c1"># We also want to cancel all of the other async effects</span>
+                <span class="c1"># in the queue, so the queue should have max len 1.</span>
+                <span class="c1"># Maybe queue should be type Optional instead of list? That</span>
+                <span class="c1"># would be weird though.</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">)</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
+
+                <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># There is another async task waiting in the queue</span>
+                        <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
+                        <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">cancel</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># not first render, dependencies did not change</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
+
+            <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">cancel</span>
+
 </pre></div>
 
                 </article>

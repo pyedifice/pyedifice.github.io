@@ -361,7 +361,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-of-hooks">Rules of Hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eq-relation"><code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-hooks">Custom Hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hooks</a></li>
 </ul>
             </nav>
         </div>
@@ -402,6 +404,32 @@ in exactly the same order on every call to a <a class="reference internal" href=
 </li>
 </ol>
 </section>
+<section id="eq-relation">
+<h2><code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation<a class="headerlink" href="#eq-relation" title="Link to this heading">#</a></h2>
+<p>The <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation is important for all Hooks. It is used to decide
+when state has changed which determines when components need re-rendering.
+It is used to decide when dependencies have changed which determines when
+effects need re-running.</p>
+<p>For the <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation to work properly, it must mean that if two
+objects are <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>, then <em>one can be substituted for the other</em>.
+This relation is not true for many Python types, especially object types
+for which <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>
+<a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__eq__">defaults to identity</a>.</p>
+<p>Here is an example of a wrapper type for numpy arrays which implements
+<code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> so that they can be used in Hooks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T_Array_co</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T_Array_co&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">,</span> <span class="n">covariant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Array</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T_Array_co</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for numpy arrays for substitutional __eq__.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np_array</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">T_Array_co</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">np_array</span> <span class="o">=</span> <span class="n">np_array</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">np_array</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">np_array</span><span class="p">,</span> <span class="n">equal_nan</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="custom-hooks">
 <h2>Custom Hooks<a class="headerlink" href="#custom-hooks" title="Link to this heading">#</a></h2>
 <p>A “custom Hook” is just a function that calls other Hooks. For example, here
@@ -417,6 +445,9 @@ function:</p>
     <span class="n">use_effect</span><span class="p">(</span><span class="n">f_wrapped</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="id2">
+<h2>Hooks<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_state</span></code></a>(initial_state)</p></td>
@@ -485,7 +516,9 @@ function:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-of-hooks">Rules of Hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eq-relation"><code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-hooks">Custom Hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hooks</a></li>
 </ul>
   </nav></div>
 

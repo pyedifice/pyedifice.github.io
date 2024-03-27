@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.extra.pyqtgraph_plot &#8212; Edifice 0.4.5 documentation</title>
+    <title>edifice.extra.pyqtgraph_plot &#8212; Edifice 0.5.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=21ae117f"></script>
+    <script src="../../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.5 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.5 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.5</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -315,8 +315,7 @@ document.write(`
                   
   <h1>Source code for edifice.extra.pyqtgraph_plot</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
-<span class="kn">from</span> <span class="nn">..base_components</span> <span class="kn">import</span> <span class="n">QtWidgetElement</span>
-<span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="n">_CommandType</span>
+<span class="kn">from</span> <span class="nn">..base_components.base_components</span> <span class="kn">import</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">QtWidgetElement</span>
 
 <span class="c1"># Import PySide6 or PyQt6 before importing pyqtgraph so that pyqtgraph detects the same</span>
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>

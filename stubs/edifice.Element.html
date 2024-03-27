@@ -366,7 +366,7 @@ document.write(`
 <h1>edifice.Element<a class="headerlink" href="#edifice-element" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.Element">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">Element</span></span><a class="reference internal" href="../_modules/edifice/_component.html#Element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Element" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">Element</span></span><a class="reference internal" href="../_modules/edifice/engine.html#Element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Element" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The base class for Edifice Elements.</p>
 <p>In user code you should almost never use <a class="reference internal" href="#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> directly. Instead
@@ -415,14 +415,14 @@ by the external caller and should not be modified by this <a class="reference in
 
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.Element.register_ref">
-<span class="sig-name descname"><span class="pre">register_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/_component.html#Element.register_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Element.register_ref" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">register_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/engine.html#Element.register_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Element.register_ref" title="Link to this definition">#</a></dt>
 <dd><p>Registers provided <a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p>
 <p>During render, the provided reference will be set to point to the currently rendered instance of this Element
 (i.e. if another instance of the Element is rendered and the RenderEngine decides to reconcile the existing
 and current instances, the reference will eventually point to that previously existing Element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>reference</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice._component.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a></span>) – the Reference to register</p>
+<dd class="field-odd"><p><strong>reference</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.engine.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a></span>) – the Reference to register</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
@@ -435,7 +435,7 @@ and current instances, the reference will eventually point to that previously ex
 
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.Element.set_key">
-<span class="sig-name descname"><span class="pre">set_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/_component.html#Element.set_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Element.set_key" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/engine.html#Element.set_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Element.set_key" title="Link to this definition">#</a></dt>
 <dd><p>Sets the key of the Element.</p>
 <p>The key is used by the re-rendering logic to match a new list of Elements
 with an existing list of Elements.

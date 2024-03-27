@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 0.4.4 documentation</title>
+    <title>edifice.app &#8212; Edifice 0.5.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=9a529362"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.4.4 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.4.4 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.4.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -335,10 +335,9 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">qasync</span> <span class="kn">import</span> <span class="n">QEventLoop</span>
 
-<span class="kn">from</span> <span class="nn">._component</span> <span class="kn">import</span> <span class="n">Element</span>
-<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">Window</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">ExportList</span>
-<span class="kn">from</span> <span class="nn">.engine</span> <span class="kn">import</span> <span class="n">RenderEngine</span>
-<span class="kn">from</span> <span class="nn">.inspector</span> <span class="kn">import</span> <span class="n">inspector</span>
+<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">Window</span><span class="p">,</span> <span class="n">ExportList</span>
+<span class="kn">from</span> <span class="nn">.engine</span> <span class="kn">import</span> <span class="n">RenderEngine</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">QtWidgetElement</span>
+<span class="kn">from</span> <span class="nn">.inspector</span> <span class="kn">import</span> <span class="n">inspector</span> <span class="k">as</span> <span class="n">inspector_module</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">_logger_module</span><span class="o">.</span><span class="n">logger</span>
 
@@ -546,7 +545,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_inspector</span> <span class="o">=</span> <span class="n">inspector</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="p">:</span> <span class="n">Element</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_called_soon</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_rerendering</span> <span class="o">=</span> <span class="kc">False</span>
@@ -591,8 +590,8 @@ document.write(`
                          <span class="n">render_timing</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">render_timing</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">render_timing</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_first_render</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="s2">&quot;__edifice_inspector_element&quot;</span><span class="p">)</span>  <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">components</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="o">.</span><span class="n">force_refresh</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="s2">&quot;__edifice_inspector_element&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">components</span><span class="p">):</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">,</span> <span class="s2">&quot;force_refresh&quot;</span><span class="p">)()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_rerendering</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rerender_wanted</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_called_soon</span><span class="p">:</span>
@@ -706,7 +705,7 @@ document.write(`
                 <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="kc">None</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">Inspector</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="n">inspector_module</span><span class="o">.</span><span class="n">Inspector</span><span class="p">(</span>
                     <span class="n">refresh</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">,</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span>
@@ -722,10 +721,20 @@ document.write(`
 
         <span class="k">async</span> <span class="k">def</span> <span class="nf">app_run</span><span class="p">():</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_delete_component</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span>
+            <span class="n">engine</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">engine</span><span class="o">.</span><span class="n">_delete_component</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
             <span class="c1"># At this time, all use_async hook tasks have been cancel()ed.</span>
             <span class="c1"># Wait until all the cancelled tasks are done(), then exit.</span>
-            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Remove finished components from engine async hooks</span>
+                <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">component</span>
+                    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">engine</span><span class="o">.</span><span class="n">_hook_async</span>
+                    <span class="k">if</span> <span class="n">engine</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+                <span class="p">]</span>
+                <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">to_delete</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">engine</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
                 <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 
         <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">app_run</span><span class="p">())</span>
