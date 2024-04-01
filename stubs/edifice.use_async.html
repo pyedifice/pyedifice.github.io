@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 0.5.1 documentation</title>
+    <title>edifice.use_async &#8212; Edifice 0.5.2 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=5f152624"></script>
+    <script src="../_static/documentation_options.js?v=4861a642"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="edifice.use_async_call" href="edifice.use_async_call.html" />
-    <link rel="prev" title="edifice.use_effect" href="edifice.use_effect.html" />
+    <link rel="prev" title="edifice.use_effect_final" href="edifice.use_effect_final.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -134,13 +134,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.1 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.1 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.2 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.2 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.1</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -182,6 +182,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../hooks.html">Hooks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.use_ref.html">edifice.use_ref</a></li>
@@ -379,8 +380,12 @@ with the <code class="code docutils literal notranslate"><span class="pre">fn_co
     <span class="n">myword</span><span class="p">,</span> <span class="n">myword_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">fetcher</span><span class="p">():</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_word_from_the_internet</span><span class="p">()</span>
-        <span class="n">myword_set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_word_from_the_internet</span><span class="p">()</span>
+            <span class="n">myword_set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+            <span class="n">myword_set</span><span class="p">(</span><span class="s2">&quot;Fetch word cancelled&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
 
     <span class="n">_cancel_fetcher</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">myword</span><span class="p">)</span>
@@ -388,26 +393,29 @@ with the <code class="code docutils literal notranslate"><span class="pre">fn_co
 </div>
 <section id="cancellation">
 <h2>Cancellation<a class="headerlink" href="#cancellation" title="Link to this heading">#</a></h2>
-<p>If the component is unmounted before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
-the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled by calling
+<p>The async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task can be cancelled by Edifice. Edifice will call
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.cancel">cancel()</a>
 on the Task.
 See also
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#task-cancellation">Task Cancellation</a>.</p>
-<p>If the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
+<ol class="arabic simple">
+<li><p>If the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
 the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled and then the new
 <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will
-be started after the old <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes.</p>
-<p>Write your <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function in such a way that it
-cleans itself up after exceptions.
-Make sure that the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function
-does not try to do anything with this component after an
-<code class="code docutils literal notranslate"><span class="pre">asyncio.CancelledError</span></code>
-is raised, because this component may at that time
-already have been unmounted.</p>
-<p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook returns a function which can be called to
+be started after the old <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes.</p></li>
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook returns a function which can be called to
 cancel the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. In the example above,
-the <code class="code docutils literal notranslate"><span class="pre">_cancel_fetcher()</span></code> function can be called to cancel the fetcher.</p>
+the <code class="code docutils literal notranslate"><span class="pre">_cancel_fetcher()</span></code> function can be called to cancel the fetcher.</p></li>
+<li><p>If the component is unmounted before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
+the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled.</p></li>
+</ol>
+<p>Write your async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function in such a way that it
+cleans itself up after exceptions. If you catch a <code class="code docutils literal notranslate"><span class="pre">CancelledError</span></code>
+then always re-raise it.</p>
+<p>You may call a <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> setter during
+a <code class="code docutils literal notranslate"><span class="pre">CancelledError</span></code> exception. If the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task was
+cancelled because the component is being unmounted, then the
+<a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> setter will have no effect.</p>
 </section>
 <section id="timers">
 <h2>Timers<a class="headerlink" href="#timers" title="Link to this heading">#</a></h2>
@@ -472,12 +480,12 @@ Harmonic Oscillator in <a class="reference internal" href="../examples.html"><sp
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="edifice.use_effect.html"
+       href="edifice.use_effect_final.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.use_effect</p>
+        <p class="prev-next-title">edifice.use_effect_final</p>
       </div>
     </a>
     <a class="right-next"

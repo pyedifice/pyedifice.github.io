@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 0.5.1 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../_static/documentation_options.js?v=5f152624"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -520,8 +521,12 @@ document.write(`
 <span class="sd">            myword, myword_set = use_state(&quot;&quot;)</span>
 
 <span class="sd">            async def fetcher():</span>
-<span class="sd">                x = await fetch_word_from_the_internet()</span>
-<span class="sd">                myword_set(x)</span>
+<span class="sd">                try:</span>
+<span class="sd">                    x = await fetch_word_from_the_internet()</span>
+<span class="sd">                    myword_set(x)</span>
+<span class="sd">                except asyncio.CancelledError:</span>
+<span class="sd">                    myword_set(&quot;Fetch word cancelled&quot;)</span>
+<span class="sd">                    raise</span>
 
 <span class="sd">            _cancel_fetcher = use_async(fetcher, 0)</span>
 <span class="sd">            Label(text=myword)</span>
@@ -529,29 +534,30 @@ document.write(`
 <span class="sd">    Cancellation</span>
 <span class="sd">    ============</span>
 
-<span class="sd">    If the component is unmounted before the :code:`fn_coroutine` Task completes, then</span>
-<span class="sd">    the :code:`fn_coroutine` Task will be cancelled by calling</span>
+<span class="sd">    The async :code:`fn_coroutine` Task can be cancelled by Edifice. Edifice will call</span>
 <span class="sd">    `cancel() &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.cancel&gt;`_</span>
 <span class="sd">    on the Task.</span>
 <span class="sd">    See also</span>
 <span class="sd">    `Task Cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_.</span>
 
-<span class="sd">    If the :code:`dependencies` change before the :code:`fn_coroutine` Task completes, then</span>
-<span class="sd">    the :code:`fn_coroutine` Task will be cancelled and then the new</span>
-<span class="sd">    :code:`fn_coroutine` Task will</span>
-<span class="sd">    be started after the old :code:`fn_coroutine` Task completes.</span>
+<span class="sd">    1. If the :code:`dependencies` change before the :code:`fn_coroutine` Task completes, then</span>
+<span class="sd">       the :code:`fn_coroutine` Task will be cancelled and then the new</span>
+<span class="sd">       :code:`fn_coroutine` Task will</span>
+<span class="sd">       be started after the old :code:`fn_coroutine` Task completes.</span>
+<span class="sd">    2. The :code:`use_async` Hook returns a function which can be called to</span>
+<span class="sd">       cancel the :code:`fn_coroutine` Task manually. In the example above,</span>
+<span class="sd">       the :code:`_cancel_fetcher()` function can be called to cancel the fetcher.</span>
+<span class="sd">    3. If the component is unmounted before the :code:`fn_coroutine` Task completes, then</span>
+<span class="sd">       the :code:`fn_coroutine` Task will be cancelled.</span>
 
-<span class="sd">    Write your :code:`fn_coroutine` function in such a way that it</span>
-<span class="sd">    cleans itself up after exceptions.</span>
-<span class="sd">    Make sure that the :code:`fn_coroutine` function</span>
-<span class="sd">    does not try to do anything with this component after an</span>
-<span class="sd">    :code:`asyncio.CancelledError`</span>
-<span class="sd">    is raised, because this component may at that time</span>
-<span class="sd">    already have been unmounted.</span>
+<span class="sd">    Write your async :code:`fn_coroutine` function in such a way that it</span>
+<span class="sd">    cleans itself up after exceptions. If you catch a :code:`CancelledError`</span>
+<span class="sd">    then always re-raise it.</span>
 
-<span class="sd">    The :code:`use_async` Hook returns a function which can be called to</span>
-<span class="sd">    cancel the :code:`fn_coroutine` Task manually. In the example above,</span>
-<span class="sd">    the :code:`_cancel_fetcher()` function can be called to cancel the fetcher.</span>
+<span class="sd">    You may call a :func:`use_state` setter during</span>
+<span class="sd">    a :code:`CancelledError` exception. If the :code:`fn_coroutine` Task was</span>
+<span class="sd">    cancelled because the component is being unmounted, then the</span>
+<span class="sd">    :func:`use_state` setter will have no effect.</span>
 
 <span class="sd">    Timers</span>
 <span class="sd">    ======</span>
@@ -698,6 +704,87 @@ document.write(`
         <span class="n">loop</span><span class="o">.</span><span class="n">call_soon_threadsafe</span><span class="p">(</span><span class="n">cancel</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">callback</span><span class="p">,</span> <span class="n">cancel_threadsafe</span></div>
+
+
+
+<div class="viewcode-block" id="use_effect_final">
+<a class="viewcode-back" href="../../stubs/edifice.use_effect_final.html#edifice.use_effect_final">[docs]</a>
+<span class="k">def</span> <span class="nf">use_effect_final</span><span class="p">(</span>
+    <span class="n">cleanup</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">(),</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Side-effect Hook for when a :func:`edifice.component` unmounts.</span>
+
+<span class="sd">    This Hook will call the :code:`cleanup` side-effect function with the latest</span>
+<span class="sd">    local state from :func:`use_state` Hooks.</span>
+
+<span class="sd">    This Hook solves the problem of using :func:`use_effect` with constant</span>
+<span class="sd">    deps to run a :code:`cleanup` function when a component unmounts. If the</span>
+<span class="sd">    :func:`use_effect` deps are constant so that the :code:`cleanup` function</span>
+<span class="sd">    only runs once, then the :code:`cleanup` function will not have a closure</span>
+<span class="sd">    on the latest component :code:`use_state` state.</span>
+<span class="sd">    This Hook :code:`cleanup` function will always have a closure on the</span>
+<span class="sd">    latest component :code:`use_state`.</span>
+
+<span class="sd">    The optional :code:`dependencies` argument can be used to trigger the</span>
+<span class="sd">    Hook to call the :code:`cleanup` function before the component unmounts.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        x, set_x = ed.use_state(0)</span>
+
+<span class="sd">        def unmount_cleanup_x():</span>
+<span class="sd">            print(f&quot;At unmount, the value of x is {x}&quot;)</span>
+
+<span class="sd">        use_effect_final(unmount_cleanup_x)</span>
+
+<span class="sd">    Debounce</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    We can use this Hook together with :func:`use_async` to “debounce” an effect</span>
+<span class="sd">    which must always finally run when the component unmounts.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        x, set_x = ed.use_state(0)</span>
+
+<span class="sd">        # We want to save the value of x to a file whenever the value of</span>
+<span class="sd">        # x changes. But we don&#39;t want to do this too often because it would</span>
+<span class="sd">        # lag the GUI responses. Each :func:`use_async` call will cancel prior</span>
+<span class="sd">        # awaiting calls. So this will save 1 second after the last change to x.</span>
+
+<span class="sd">        async def save_x_debounce():</span>
+<span class="sd">            await asyncio.sleep(1.0)</span>
+<span class="sd">            save_to_file(x)</span>
+
+<span class="sd">        use_async(save_x_debouce, x)</span>
+
+<span class="sd">        # And we want to make sure that the final value of x is saved to</span>
+<span class="sd">        # the file when the component unmounts.</span>
+
+<span class="sd">        use_effect_final(lambda: save_to_file(x))</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">internal_mutable</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]],</span> <span class="p">[]))</span>
+
+    <span class="c1"># Always re-bind the cleanup function closed on the latest state</span>
+    <span class="k">def</span> <span class="nf">bind_cleanup</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">internal_mutable</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">internal_mutable</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleanup</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">internal_mutable</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cleanup</span>
+
+    <span class="n">use_effect</span><span class="p">(</span><span class="n">bind_cleanup</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># This unmount function is called when the component unmounts</span>
+    <span class="k">def</span> <span class="nf">unmount</span><span class="p">():</span>
+        <span class="k">def</span> <span class="nf">internal_cleanup</span><span class="p">():</span>
+            <span class="n">internal_mutable</span><span class="p">[</span><span class="mi">0</span><span class="p">]()</span>
+
+        <span class="k">return</span> <span class="n">internal_cleanup</span>
+
+    <span class="n">use_effect</span><span class="p">(</span><span class="n">unmount</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
 
 </pre></div>
 
