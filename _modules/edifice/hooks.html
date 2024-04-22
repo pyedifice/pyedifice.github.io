@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 0.5.1 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=5f152624"></script>
+    <script src="../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.1 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.1 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.1</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -320,14 +320,15 @@ document.write(`
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">cast</span>
 <span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">get_event_loop</span>
 
+
 <div class="viewcode-block" id="use_state">
 <a class="viewcode-back" href="../../stubs/edifice.use_state.html#edifice.use_state">[docs]</a>
-<span class="k">def</span> <span class="nf">use_state</span><span class="p">(</span><span class="n">initial_state</span><span class="p">:</span><span class="n">_T_use_state</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
-    <span class="n">_T_use_state</span><span class="p">,</span> <span class="c1"># current value</span>
-    <span class="n">Callable</span><span class="p">[</span> <span class="c1"># updater</span>
-        <span class="p">[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span><span class="n">_T_use_state</span><span class="p">]],</span>
-        <span class="kc">None</span>
-    <span class="p">]]:</span>
+<span class="k">def</span> <span class="nf">use_state</span><span class="p">(</span>
+    <span class="n">initial_state</span><span class="p">:</span> <span class="n">_T_use_state</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+    <span class="n">_T_use_state</span><span class="p">,</span>  <span class="c1"># current value</span>
+    <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span> <span class="n">_T_use_state</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>  <span class="c1"># updater</span>
+<span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Persistent mutable state Hook inside a :func:`edifice.component` function.</span>
 
@@ -626,7 +627,7 @@ document.write(`
 <div class="viewcode-block" id="use_async_call">
 <a class="viewcode-back" href="../../stubs/edifice.use_async_call.html#edifice.use_async_call">[docs]</a>
 <span class="k">def</span> <span class="nf">use_async_call</span><span class="p">(</span>
-    <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span>
+    <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Hook to call an async function from a non-async context.</span>

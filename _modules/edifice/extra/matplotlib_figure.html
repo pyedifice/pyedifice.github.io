@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.extra.matplotlib_figure &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.extra.matplotlib_figure &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -318,6 +319,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">..base_components.base_components</span> <span class="kn">import</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">QtWidgetElement</span>
 
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span><span class="p">:</span>
     <span class="k">pass</span>
 <span class="k">else</span><span class="p">:</span>
@@ -327,6 +329,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">matplotlib.backend_bases</span> <span class="kn">import</span> <span class="n">MouseEvent</span>
 <span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
 <span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
+
 
 <div class="viewcode-block" id="MatplotlibFigure">
 <a class="viewcode-back" href="../../../stubs/edifice.extra.MatplotlibFigure.html#edifice.extra.MatplotlibFigure">[docs]</a>
@@ -365,24 +368,26 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">plot_fun</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span>
         <span class="n">on_figure_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">MouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;plot_fun&quot;</span><span class="p">:</span> <span class="n">plot_fun</span><span class="p">,</span>
-            <span class="s2">&quot;on_figure_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_figure_mouse_move</span><span class="p">,</span>
-        <span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="p">:</span> <span class="n">FigureCanvasQTAgg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span>  <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span> <span class="p">:</span> <span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_plot_fun</span> <span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;plot_fun&quot;</span><span class="p">:</span> <span class="n">plot_fun</span><span class="p">,</span>
+                <span class="s2">&quot;on_figure_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_figure_mouse_move</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">:</span> <span class="n">FigureCanvasQTAgg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span><span class="p">:</span> <span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_plot_fun</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># Default to maximum figsize https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.figaspect</span>
             <span class="c1"># Constrain the Figure by putting it in a smaller View, it will resize itself correctly.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">FigureCanvasQTAgg</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span><span class="mf">16.0</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">FigureCanvasQTAgg</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">)))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -390,6 +395,7 @@ document.write(`
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">&quot;plot_fun&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+
             <span class="k">def</span> <span class="nf">_command_plot_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">current_plot_fun</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">plot_fun</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
@@ -397,15 +403,20 @@ document.write(`
                 <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
                 <span class="c1"># alternately we could do draw_idle() here, but I don&#39;t think it&#39;s</span>
                 <span class="c1"># any better and it messes up the mouse events.</span>
+
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">_command_plot_fun</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;on_figure_mouse_move&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+
             <span class="k">def</span> <span class="nf">_command_mouse_move</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mpl_disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">newprops</span><span class="p">[</span><span class="s1">&#39;on_figure_mouse_move&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;motion_notify_event&#39;</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s1">&#39;on_figure_mouse_move&#39;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;on_figure_mouse_move&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span>
+                        <span class="s2">&quot;motion_notify_event&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;on_figure_mouse_move&quot;</span><span class="p">]</span>
+                    <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="o">=</span> <span class="kc">None</span>
+
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">_command_mouse_move</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 

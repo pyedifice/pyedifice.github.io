@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -319,11 +320,22 @@ document.write(`
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
-<span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="n">_WidgetTree</span><span class="p">,</span> <span class="n">_get_widget_children</span><span class="p">,</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">PropsDict</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">_create_qmenu</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">,</span> <span class="n">_ensure_future</span>
+<span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_WidgetTree</span><span class="p">,</span>
+    <span class="n">_get_widget_children</span><span class="p">,</span>
+    <span class="n">_CommandType</span><span class="p">,</span>
+    <span class="n">PropsDict</span><span class="p">,</span>
+    <span class="n">Element</span><span class="p">,</span>
+    <span class="n">QtWidgetElement</span><span class="p">,</span>
+    <span class="n">_create_qmenu</span><span class="p">,</span>
+    <span class="n">_CURSORS</span><span class="p">,</span>
+    <span class="n">_ensure_future</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 
 <span class="kn">import</span> <span class="nn">edifice.icons</span>
+
 <span class="n">ICONS</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">edifice</span><span class="o">.</span><span class="n">icons</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
@@ -337,9 +349,11 @@ document.write(`
 
 <span class="n">RGBAType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
 
+
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_get_image</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
 
 <span class="k">def</span> <span class="nf">_image_descriptor_to_pixmap</span><span class="p">(</span><span class="n">inp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">:</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -348,6 +362,7 @@ document.write(`
         <span class="k">return</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="o">.</span><span class="n">fromImage</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">inp</span>
+
 
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_get_svg_image_raw</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
@@ -385,9 +400,11 @@ document.write(`
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
@@ -411,6 +428,7 @@ document.write(`
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">child_underlying</span><span class="o">.</span><span class="n">setParent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">))</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTitle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
+
 
 <div class="viewcode-block" id="Icon">
 <a class="viewcode-back" href="../../../stubs/edifice.Icon.html#edifice.Icon">[docs]</a>
@@ -466,14 +484,16 @@ document.write(`
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
-            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
-            <span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="n">collection</span><span class="p">,</span>
-            <span class="s2">&quot;sub_collection&quot;</span><span class="p">:</span> <span class="n">sub_collection</span><span class="p">,</span>
-            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
-            <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="n">rotation</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
+                <span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="n">collection</span><span class="p">,</span>
+                <span class="s2">&quot;sub_collection&quot;</span><span class="p">:</span> <span class="n">sub_collection</span><span class="p">,</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
+                <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="n">rotation</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -500,8 +520,17 @@ document.write(`
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="n">icon_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ICONS</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">collection</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">sub_collection</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.svg&quot;</span><span class="p">))</span>
 
-        <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;size&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;sub_collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;size&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;sub_collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+        <span class="p">):</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
 
@@ -539,7 +568,7 @@ document.write(`
 
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span>  <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
@@ -600,7 +629,8 @@ document.write(`
 
 <div class="viewcode-block" id="IconButton.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.IconButton.__init__.html#edifice.IconButton.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">,</span>
         <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;font-awesome&quot;</span><span class="p">,</span>
@@ -610,16 +640,17 @@ document.write(`
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
-            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
-            <span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="n">collection</span><span class="p">,</span>
-            <span class="s2">&quot;sub_collection&quot;</span><span class="p">:</span> <span class="n">sub_collection</span><span class="p">,</span>
-            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
-            <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="n">rotation</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
+                <span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="n">collection</span><span class="p">,</span>
+                <span class="s2">&quot;sub_collection&quot;</span><span class="p">:</span> <span class="n">sub_collection</span><span class="p">,</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
+                <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="n">rotation</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
-
 
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
@@ -632,8 +663,11 @@ document.write(`
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="n">size</span><span class="p">,</span>
-                       <span class="k">lambda</span> <span class="n">size</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="n">size</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span>
+            <span class="n">size</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">size</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="n">size</span><span class="p">),</span>
+        <span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">render_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
             <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_get_svg_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">)</span>
@@ -641,8 +675,17 @@ document.write(`
             <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
             <span class="n">widget</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="n">pixmap</span><span class="p">))</span>
 
-        <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;size&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;sub_collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;size&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;sub_collection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+            <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
+        <span class="p">):</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">_CommandType</span><span class="p">(</span><span class="n">render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
 
@@ -672,7 +715,8 @@ document.write(`
 
 <div class="viewcode-block" id="Label.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.Label.__init__.html#edifice.Label.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">selectable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">editable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -681,13 +725,15 @@ document.write(`
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-            <span class="s2">&quot;selectable&quot;</span><span class="p">:</span> <span class="n">selectable</span><span class="p">,</span>
-            <span class="s2">&quot;editable&quot;</span><span class="p">:</span> <span class="n">editable</span><span class="p">,</span>
-            <span class="s2">&quot;word_wrap&quot;</span><span class="p">:</span> <span class="n">word_wrap</span><span class="p">,</span>
-            <span class="s2">&quot;link_open&quot;</span><span class="p">:</span> <span class="n">link_open</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;selectable&quot;</span><span class="p">:</span> <span class="n">selectable</span><span class="p">,</span>
+                <span class="s2">&quot;editable&quot;</span><span class="p">:</span> <span class="n">editable</span><span class="p">,</span>
+                <span class="s2">&quot;word_wrap&quot;</span><span class="p">:</span> <span class="n">word_wrap</span><span class="p">,</span>
+                <span class="s2">&quot;link_open&quot;</span><span class="p">:</span> <span class="n">link_open</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -725,7 +771,10 @@ document.write(`
                 <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">selectable</span><span class="p">:</span>
                     <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">interaction_flags</span> <span class="o">=</span> <span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByMouse</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByKeyboard</span><span class="p">)</span>
+                    <span class="n">interaction_flags</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByMouse</span>
+                        <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByKeyboard</span>
+                    <span class="p">)</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">editable</span><span class="p">:</span>
                     <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="c1"># PyQt5 doesn&#39;t support bitwise or with ints</span>
@@ -755,13 +804,16 @@ document.write(`
 <span class="sd">            Either a path to an SVG image file, or a :code:`QByteArray`</span>
 <span class="sd">            containing the serialized XML representation of an SVG file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="ImageSvg.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.ImageSvg.__init__.html#edifice.ImageSvg.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QByteArray</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="n">src</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="n">src</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -785,6 +837,7 @@ document.write(`
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
+
 <span class="c1"># TODO</span>
 <span class="c1"># It seems to me that the type for Completer should be</span>
 <span class="c1">#</span>
@@ -798,10 +851,11 @@ document.write(`
     <span class="c1"># &quot;&quot;&quot;</span>
     <span class="c1"># Parameters for a `QCompleter &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html&gt;`_.</span>
     <span class="c1"># &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">options</span><span class="p">,</span>
         <span class="c1"># TODO In PySide6, there is no longer an options, instead its a model.</span>
-        <span class="n">mode</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;popup&quot;</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;popup&quot;</span><span class="p">,</span>
         <span class="c1"># TODO Should mode be this type instead? https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html#PySide6.QtWidgets.PySide6.QtWidgets.QCompleter.CompletionMode</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
@@ -849,25 +903,29 @@ document.write(`
 <span class="sd">            event, when the Return or Enter key is pressed, or if the line edit</span>
 <span class="sd">            loses focus and its contents have changed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#TODO Note that you can set an optional Completer, giving the dropdown for completion.</span>
+
+    <span class="c1"># TODO Note that you can set an optional Completer, giving the dropdown for completion.</span>
 
 <div class="viewcode-block" id="TextInput.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.TextInput.__init__.html#edifice.TextInput.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_edit_finish</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="c1"># completer: tp.Optional[Completer] = None,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-            <span class="s2">&quot;placeholder_text&quot;</span><span class="p">:</span> <span class="n">placeholder_text</span><span class="p">,</span>
-            <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-            <span class="s2">&quot;on_edit_finish&quot;</span><span class="p">:</span> <span class="n">on_edit_finish</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder_text&quot;</span><span class="p">:</span> <span class="n">placeholder_text</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
+                <span class="s2">&quot;on_edit_finish&quot;</span><span class="p">:</span> <span class="n">on_edit_finish</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -879,7 +937,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">textEdited</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handler</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_edit_finish</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_change_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_on_change_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span><span class="p">)(</span><span class="n">text</span><span class="p">)</span>
 
@@ -951,7 +1009,8 @@ document.write(`
 
 <div class="viewcode-block" id="Dropdown.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.Dropdown.__init__.html#edifice.Dropdown.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">selection</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">options</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -960,17 +1019,19 @@ document.write(`
         <span class="c1"># completer: tp.Optional[Completer] = None,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_select</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;selection&quot;</span><span class="p">:</span> <span class="n">selection</span><span class="p">,</span>
-            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-            <span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="n">options</span><span class="p">,</span>
-            <span class="s2">&quot;editable&quot;</span><span class="p">:</span> <span class="n">editable</span><span class="p">,</span>
-            <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-            <span class="s2">&quot;on_select&quot;</span><span class="p">:</span> <span class="n">on_select</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;selection&quot;</span><span class="p">:</span> <span class="n">selection</span><span class="p">,</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="n">options</span><span class="p">,</span>
+                <span class="s2">&quot;editable&quot;</span><span class="p">:</span> <span class="n">editable</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
+                <span class="s2">&quot;on_select&quot;</span><span class="p">:</span> <span class="n">on_select</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -1022,10 +1083,12 @@ document.write(`
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setEditable</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">editable</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;options&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
-                <span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">clear</span><span class="p">),</span>
-                <span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">addItems</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">options</span><span class="p">),</span>
-            <span class="p">])</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">clear</span><span class="p">),</span>
+                    <span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">addItems</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">options</span><span class="p">),</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_edit_text</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;selection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
@@ -1066,18 +1129,21 @@ document.write(`
 
 <div class="viewcode-block" id="RadioButton.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.RadioButton.__init__.html#edifice.RadioButton.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-     <span class="p">):</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;checked&quot;</span><span class="p">:</span> <span class="n">checked</span><span class="p">,</span>
-            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-            <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;checked&quot;</span><span class="p">:</span> <span class="n">checked</span><span class="p">,</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -1149,18 +1215,21 @@ document.write(`
 
 <div class="viewcode-block" id="CheckBox.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.CheckBox.__init__.html#edifice.CheckBox.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;checked&quot;</span><span class="p">:</span> <span class="n">checked</span><span class="p">,</span>
-            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-            <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;checked&quot;</span><span class="p">:</span> <span class="n">checked</span><span class="p">,</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -1200,6 +1269,7 @@ document.write(`
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
+
 <div class="viewcode-block" id="Slider">
 <a class="viewcode-back" href="../../../stubs/edifice.Slider.html#edifice.Slider">[docs]</a>
 <span class="k">class</span> <span class="nc">Slider</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
@@ -1235,6 +1305,8 @@ document.write(`
 <span class="sd">            Event handler for when the value of the slider changes,</span>
 <span class="sd">            but only when the slider is being move by the user,</span>
 <span class="sd">            not when the value prop changes.</span>
+<span class="sd">        enable_mouse_scroll:</span>
+<span class="sd">            Whether mouse scroll events should be able to change the value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Slider.__init__">
@@ -1246,16 +1318,21 @@ document.write(`
         <span class="n">max_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
         <span class="n">orientation</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Orientation</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Orientation</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">enable_mouse_scroll</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
-            <span class="s2">&quot;min_value&quot;</span><span class="p">:</span> <span class="n">min_value</span><span class="p">,</span>
-            <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="n">max_value</span><span class="p">,</span>
-            <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="n">orientation</span><span class="p">,</span>
-            <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+                <span class="s2">&quot;min_value&quot;</span><span class="p">:</span> <span class="n">min_value</span><span class="p">,</span>
+                <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="n">max_value</span><span class="p">,</span>
+                <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="n">orientation</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
+                <span class="s2">&quot;enable_mouse_scroll&quot;</span><span class="p">:</span> <span class="n">enable_mouse_scroll</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span></div>
@@ -1272,15 +1349,17 @@ document.write(`
 
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handle</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;enable_mouse_scroll&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">enable_mouse_scroll</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_on_change_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_on_change_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_change</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span> <span class="o">=</span> <span class="n">on_change</span>
 
-    <span class="k">def</span> <span class="nf">_set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSlider</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -1310,7 +1389,6 @@ document.write(`
 
 
 <span class="k">class</span> <span class="nc">_LinearView</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1334,26 +1412,25 @@ document.write(`
         <span class="c1"># In reverse order for speed because popping from the end of a list is</span>
         <span class="c1"># faster than popping from the beginning of a list?</span>
 
-
-		<span class="c1"># First we delete old children that are not in the right position.</span>
+        <span class="c1"># First we delete old children that are not in the right position.</span>
         <span class="c1"># We do this in two cases:</span>
         <span class="c1"># 1. If the first new child is the same as the first old child</span>
         <span class="c1"># 2. Else we hope the last new child is the same as the last old child</span>
 
-		<span class="c1"># Case 1: If the first new child is the same as the first old child.</span>
+        <span class="c1"># Case 1: If the first new child is the same as the first old child.</span>
         <span class="c1"># Then we iterate forward pairwise and hope that we get a lot of</span>
         <span class="c1"># matches between old and new children so we can reuse them</span>
         <span class="c1"># instead of deleting them.</span>
         <span class="c1">#</span>
         <span class="c1"># Note: QLayout.takeAt will decrement the indices of all greater children.</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">children_new</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="n">i_new</span><span class="o">=</span><span class="mi">0</span>
-            <span class="n">i_old</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">children_new</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">i_new</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">i_old</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">child_old</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">i_new</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">)</span> <span class="ow">and</span> <span class="n">child_old</span> <span class="ow">is</span> <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">i_new</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">)</span> <span class="ow">and</span> <span class="n">child_old</span> <span class="ow">is</span> <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]:</span>
                     <span class="c1"># old child is in the same position as new child</span>
                     <span class="n">children_old_positioned_reverse</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child_old</span><span class="p">)</span>
-                    <span class="n">i_old</span><span class="o">+=</span><span class="mi">1</span>
+                    <span class="n">i_old</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># old child is out of position</span>
                     <span class="k">if</span> <span class="n">child_old</span> <span class="ow">in</span> <span class="n">children_new</span><span class="p">:</span>
@@ -1362,21 +1439,21 @@ document.write(`
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># child will be deleted</span>
                         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
-                <span class="n">i_new</span><span class="o">+=</span><span class="mi">1</span>
+                <span class="n">i_new</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="n">r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">children_old_positioned_reverse</span><span class="p">))</span>
             <span class="n">children_old_positioned_reverse</span> <span class="o">=</span> <span class="n">r</span>
 
-		<span class="c1"># Case 2:</span>
+        <span class="c1"># Case 2:</span>
         <span class="c1"># Then we iterate backwards pairwise and hope that we get a lot of</span>
         <span class="c1"># matches between old and new children so we can reuse them</span>
         <span class="c1"># instead of deleting them.</span>
         <span class="c1"># This will likely be true if the last old child is the same as the</span>
         <span class="c1"># last new child.</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">i_new</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+            <span class="n">i_new</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
             <span class="k">for</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span><span class="p">))):</span>
-                <span class="k">if</span> <span class="n">i_new</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">child_old</span> <span class="ow">is</span> <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">i_new</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">child_old</span> <span class="ow">is</span> <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]:</span>
                     <span class="c1"># old child is in the same position as new child</span>
                     <span class="n">children_old_positioned_reverse</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child_old</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -1387,7 +1464,7 @@ document.write(`
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># child will be deleted</span>
                         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
-                <span class="n">i_new</span><span class="o">-=</span><span class="mi">1</span>
+                <span class="n">i_new</span> <span class="o">-=</span> <span class="mi">1</span>
 
         <span class="c1"># Now we have deleted all the old children that are not in the right position.</span>
         <span class="c1"># Add in the missing new children.</span>
@@ -1400,18 +1477,20 @@ document.write(`
                 <span class="k">assert</span> <span class="n">child_new</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_add_child</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_new</span><span class="o">.</span><span class="n">underlying</span><span class="p">))</span>
 
-		<span class="c1"># assert sanity check that we used all the old children.</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_old_positioned_reverse</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span>
+        <span class="c1"># assert sanity check that we used all the old children.</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_old_positioned_reverse</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_widget_children</span> <span class="o">=</span> <span class="n">children_new</span>
         <span class="k">return</span> <span class="n">commands</span>
 
     <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
     <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete the child from the layout.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
     <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Take the child out of the layout, but don&#39;t delete it. It will be</span>
@@ -1476,7 +1555,6 @@ document.write(`
             <span class="c1"># Then this is a fixed-position View</span>
             <span class="k">assert</span> <span class="n">old_child</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="n">old_child</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-
 
     <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1547,6 +1625,7 @@ document.write(`
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
+
 <div class="viewcode-block" id="Window">
 <a class="viewcode-back" href="../../../stubs/edifice.Window.html#edifice.Window">[docs]</a>
 <span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
@@ -1576,18 +1655,20 @@ document.write(`
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Edifice Application&quot;</span><span class="p">,</span>
-        <span class="n">icon</span><span class="p">:</span><span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">menu</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">menu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
-            <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
-            <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="n">menu</span><span class="p">,</span>
-            <span class="s2">&quot;on_close&quot;</span><span class="p">:</span> <span class="n">on_close</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+                <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+                <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="n">menu</span><span class="p">,</span>
+                <span class="s2">&quot;on_close&quot;</span><span class="p">:</span> <span class="n">on_close</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span></div>
@@ -1597,7 +1678,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span> <span class="o">=</span> <span class="n">on_close</span>
 
     <span class="k">def</span> <span class="nf">_handle_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">):</span>
-        <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span> <span class="c1"># Don&#39;t kill the app yet, instead stop the app after the children are unmounted.</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>  <span class="c1"># Don&#39;t kill the app yet, instead stop the app after the children are unmounted.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span>
             <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">)(</span><span class="n">event</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_controller</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1608,8 +1689,7 @@ document.write(`
         <span class="n">menu_bar</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">menu_title</span><span class="p">,</span> <span class="n">menu</span> <span class="ow">in</span> <span class="n">menus</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Menu must be a dict of dicts (each of which describes a submenu)&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Menu must be a dict of dicts (each of which describes a submenu)&quot;</span><span class="p">)</span>
             <span class="n">menu_bar</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="n">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="n">menu_title</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
@@ -1617,7 +1697,6 @@ document.write(`
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
         <span class="n">newprops</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
             <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">)</span>
@@ -1640,7 +1719,6 @@ document.write(`
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attach_menubar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
-
 
 
 
@@ -1671,9 +1749,11 @@ document.write(`
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.ScrollView.__init__.html#edifice.ScrollView.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">layout</span><span class="p">,</span>
-        <span class="p">})</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">layout</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span></div>
 
         <span class="c1"># self._register_props(kwargs)</span>
 
@@ -1724,8 +1804,11 @@ document.write(`
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recompute_children</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">commands</span></div>
+
 
 
 <span class="k">def</span> <span class="nf">npones</span><span class="p">(</span><span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">):</span>
@@ -1734,11 +1817,13 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rows</span><span class="p">)]</span>
 
+
 <span class="k">def</span> <span class="nf">npany</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    List replacement for numpy.any()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="nb">any</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>
+
 
 <span class="k">def</span> <span class="nf">set_slice2</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1748,18 +1833,20 @@ document.write(`
         <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">):</span>
             <span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
 
+
 <span class="k">def</span> <span class="nf">npargmax</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    List replacement for numpy.argmax(). Returns the indices of the maximum values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
     <span class="n">max_val</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
         <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="p">])):</span>
             <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">:</span>
                 <span class="n">max_val</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span>
-                <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
-    <span class="k">return</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span>
+                <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
+
 
 <span class="k">def</span> <span class="nf">_layout_str_to_grid_spec</span><span class="p">(</span><span class="n">layout</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses layout to return a grid spec.</span>
@@ -1859,10 +1946,12 @@ document.write(`
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.GridView.__init__.html#edifice.GridView.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">key_to_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">layout</span><span class="p">,</span>
-            <span class="s2">&quot;key_to_code&quot;</span><span class="p">:</span> <span class="n">key_to_code</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">layout</span><span class="p">,</span>
+                <span class="s2">&quot;key_to_code&quot;</span><span class="p">:</span> <span class="n">key_to_code</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="c1"># self._register_props(kwargs)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_previously_rendered</span> <span class="o">=</span> <span class="kc">None</span></div>
 
@@ -1926,9 +2015,11 @@ document.write(`
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.TabView.__init__.html#edifice.TabView.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span>
-        <span class="p">})</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span></div>
 
         <span class="c1"># self._register_props(kwargs)</span>
 
@@ -2051,7 +2142,6 @@ document.write(`
 
 
 
-
 <span class="c1">### TODO: Tables are not well tested</span>
 
 <span class="c1"># class Table(QtWidgetElement):</span>
@@ -2122,6 +2212,7 @@ document.write(`
 <span class="c1">#             self._already_rendered[child.component] = True</span>
 <span class="c1">#         return commands</span>
 
+
 <div class="viewcode-block" id="ProgressBar">
 <a class="viewcode-back" href="../../../stubs/edifice.ProgressBar.html#edifice.ProgressBar">[docs]</a>
 <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
@@ -2166,13 +2257,15 @@ document.write(`
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
-            <span class="s2">&quot;min_value&quot;</span><span class="p">:</span> <span class="n">min_value</span><span class="p">,</span>
-            <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="n">max_value</span><span class="p">,</span>
-            <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="n">orientation</span><span class="p">,</span>
-            <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="nb">format</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+                <span class="s2">&quot;min_value&quot;</span><span class="p">:</span> <span class="n">min_value</span><span class="p">,</span>
+                <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="n">max_value</span><span class="p">,</span>
+                <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="n">orientation</span><span class="p">,</span>
+                <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="nb">format</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="c1"># self._register_props(kwargs)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span></div>
 

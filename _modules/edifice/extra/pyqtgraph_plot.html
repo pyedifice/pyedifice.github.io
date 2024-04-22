@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.extra.pyqtgraph_plot &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.extra.pyqtgraph_plot &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -319,12 +320,14 @@ document.write(`
 
 <span class="c1"># Import PySide6 or PyQt6 before importing pyqtgraph so that pyqtgraph detects the same</span>
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="k">pass</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">pass</span>
 
 <span class="kn">import</span> <span class="nn">pyqtgraph</span> <span class="k">as</span> <span class="nn">pg</span>
+
 
 <div class="viewcode-block" id="PyQtPlot">
 <a class="viewcode-back" href="../../../stubs/edifice.extra.PyQtPlot.html#edifice.extra.PyQtPlot">[docs]</a>
@@ -393,15 +396,13 @@ document.write(`
 
 <div class="viewcode-block" id="PyQtPlot.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.extra.PyQtPlot.__init__.html#edifice.extra.PyQtPlot.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">plot_fun</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span>
-        <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_fun</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;plot_fun&quot;</span><span class="p">:</span> <span class="n">plot_fun</span><span class="p">,</span>
-        <span class="p">})</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;plot_fun&quot;</span><span class="p">:</span> <span class="n">plot_fun</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">):</span>
@@ -414,9 +415,11 @@ document.write(`
             <span class="n">plot_fun</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">plot_fun</span><span class="p">)</span>
             <span class="n">plot_widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">PlotWidget</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
             <span class="n">plot_item</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">,</span> <span class="n">plot_widget</span><span class="o">.</span><span class="n">getPlotItem</span><span class="p">())</span>
+
             <span class="k">def</span> <span class="nf">_update_plot</span><span class="p">():</span>
                 <span class="n">plot_item</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
                 <span class="n">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">)</span>
+
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">_update_plot</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>

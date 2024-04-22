@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -328,9 +329,11 @@ document.write(`
 
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span>
+
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;QT_API&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;pyqt6&quot;</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span>
+
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;QT_API&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;pyside6&quot;</span>
 
 <span class="kn">from</span> <span class="nn">qasync</span> <span class="kn">import</span> <span class="n">QEventLoop</span>
@@ -349,7 +352,6 @@ document.write(`
 
 
 <span class="k">class</span> <span class="nc">_TimingAvg</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">total_count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -372,7 +374,6 @@ document.write(`
 
 
 <span class="k">class</span> <span class="nc">_RateLimitedLogger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gap</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_log_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gap</span> <span class="o">=</span> <span class="n">gap</span>
@@ -470,12 +471,13 @@ document.write(`
 
 <div class="viewcode-block" id="App.__init__">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.App.__init__.html#edifice.App.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-            <span class="n">root_element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
-            <span class="n">inspector</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">create_application</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">qapplication</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">root_element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">inspector</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">create_application</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">qapplication</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="n">qapplication</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">create_application</span><span class="p">:</span>
@@ -486,9 +488,9 @@ document.write(`
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span> <span class="o">=</span> <span class="n">qapplication</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span> <span class="o">=</span> <span class="n">qapplication</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="p">:</span> <span class="n">Element</span> <span class="o">=</span> <span class="n">root_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span> <span class="n">Element</span> <span class="o">=</span> <span class="n">root_element</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span> <span class="o">=</span> <span class="n">RenderEngine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">_RateLimitedLogger</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_render_timing</span> <span class="o">=</span> <span class="n">_TimingAvg</span><span class="p">()</span>
@@ -511,15 +513,21 @@ document.write(`
                             <span class="n">etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
                             <span class="n">stack_trace</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">extract_tb</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
                             <span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
-                            <span class="n">user_stack_trace</span> <span class="o">=</span> <span class="p">[</span><span class="n">frame</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">stack_trace</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">frame</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">module_path</span><span class="p">)]</span>
+                            <span class="n">user_stack_trace</span> <span class="o">=</span> <span class="p">[</span>
+                                <span class="n">frame</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">stack_trace</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">frame</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
+                            <span class="p">]</span>
 
                             <span class="n">formatted_trace</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_list</span><span class="p">(</span><span class="n">stack_trace</span><span class="p">)</span>
                             <span class="n">formatted_user_trace</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_list</span><span class="p">(</span><span class="n">user_stack_trace</span><span class="p">)</span>
+
                             <span class="k">def</span> <span class="nf">should_bold</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
                                 <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">module_path</span><span class="p">):</span>
                                     <span class="k">return</span> <span class="n">line</span>
                                 <span class="k">return</span> <span class="n">BOLD_SEQ</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">RESET_SEQ</span>
-                            <span class="n">formatted_trace</span> <span class="o">=</span> <span class="p">[</span><span class="n">should_bold</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">formatted_trace</span><span class="p">,</span> <span class="n">stack_trace</span><span class="p">)]</span>
+
+                            <span class="n">formatted_trace</span> <span class="o">=</span> <span class="p">[</span>
+                                <span class="n">should_bold</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">formatted_trace</span><span class="p">,</span> <span class="n">stack_trace</span><span class="p">)</span>
+                            <span class="p">]</span>
 
                             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Traceback (most recent call last):&quot;</span><span class="p">)</span>
                             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">formatted_trace</span><span class="p">:</span>
@@ -545,11 +553,11 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_inspector</span> <span class="o">=</span> <span class="n">inspector</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="p">:</span> <span class="n">Element</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">:</span> <span class="n">Element</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_called_soon</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_rerendering</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_wanted</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_wanted</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -570,7 +578,6 @@ document.write(`
             <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">call_soon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rerender_callback</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_called_soon</span> <span class="o">=</span> <span class="kc">True</span>
 
-
     <span class="k">def</span> <span class="nf">_request_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call the RenderEngine to immediately render the widget tree.</span>
@@ -586,17 +593,22 @@ document.write(`
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_render</span><span class="p">:</span>
             <span class="n">render_timing</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_timing</span>
             <span class="n">render_timing</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rendered </span><span class="si">%d</span><span class="s2"> times, with average render time of </span><span class="si">%.2f</span><span class="s2"> ms and worst render time of </span><span class="si">%.2f</span><span class="s2"> ms&quot;</span><span class="p">,</span>
-                         <span class="n">render_timing</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">render_timing</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">render_timing</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;Rendered </span><span class="si">%d</span><span class="s2"> times, with average render time of </span><span class="si">%.2f</span><span class="s2"> ms and worst render time of </span><span class="si">%.2f</span><span class="s2"> ms&quot;</span><span class="p">,</span>
+                <span class="n">render_timing</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+                <span class="mi">1000</span> <span class="o">*</span> <span class="n">render_timing</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+                <span class="mi">1000</span> <span class="o">*</span> <span class="n">render_timing</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_first_render</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="s2">&quot;__edifice_inspector_element&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">components</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="s2">&quot;__edifice_inspector_element&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">components</span>
+        <span class="p">):</span>
             <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">,</span> <span class="s2">&quot;force_refresh&quot;</span><span class="p">)()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_rerendering</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rerender_wanted</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_called_soon</span><span class="p">:</span>
             <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">call_soon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rerender_callback</span><span class="p">)</span>
-
 
 <div class="viewcode-block" id="App.set_stylesheet">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.App.set_stylesheet.html#edifice.App.set_stylesheet">[docs]</a>
@@ -702,19 +714,25 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">])</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running inspector&quot;</span><span class="p">)</span>
+
                 <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="kc">None</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="o">=</span> <span class="n">inspector_module</span><span class="o">.</span><span class="n">Inspector</span><span class="p">(</span>
-                    <span class="n">refresh</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">,</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">,</span>
-                    <span class="p">))</span>
+                    <span class="n">refresh</span><span class="o">=</span><span class="p">(</span>
+                        <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
                 <span class="p">)</span>
                 <span class="n">icon_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">&quot;inspector/icon.png&quot;</span><span class="p">)</span>
-                <span class="n">component</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Element Inspector&quot;</span><span class="p">,</span> <span class="n">on_close</span><span class="o">=</span><span class="n">cleanup</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon_path</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">)</span>
+                <span class="n">component</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Element Inspector&quot;</span><span class="p">,</span> <span class="n">on_close</span><span class="o">=</span><span class="n">cleanup</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon_path</span><span class="p">)(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span>
+                <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">component</span><span class="p">])</span>
+
         <span class="n">t</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">first_render</span><span class="p">())</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
@@ -728,11 +746,7 @@ document.write(`
             <span class="c1"># Wait until all the cancelled tasks are done(), then exit.</span>
             <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="c1"># Remove finished components from engine async hooks</span>
-                <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="n">component</span>
-                    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">engine</span><span class="o">.</span><span class="n">_hook_async</span>
-                    <span class="k">if</span> <span class="n">engine</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
-                <span class="p">]</span>
+                <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[</span><span class="n">component</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">engine</span><span class="o">.</span><span class="n">_hook_async</span> <span class="k">if</span> <span class="n">engine</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">)]</span>
                 <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">to_delete</span><span class="p">:</span>
                     <span class="k">del</span> <span class="n">engine</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
                 <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>

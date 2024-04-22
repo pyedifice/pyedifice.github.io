@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.spin_input &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.base_components.spin_input &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -317,6 +318,7 @@ document.write(`
 <span></span><span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PyQt6.QtGui</span> <span class="kn">import</span> <span class="n">QValidator</span>
     <span class="kn">from</span> <span class="nn">PyQt6.QtWidgets</span> <span class="kn">import</span> <span class="n">QSpinBox</span>
@@ -326,13 +328,16 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">_ensure_future</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span>
 
+
 <span class="k">class</span> <span class="nc">_SpinBox</span><span class="p">(</span><span class="n">QSpinBox</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_textFromValue</span> <span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_valueFromText</span> <span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">]</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Invalid</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_textFromValue</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_valueFromText</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">]</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Invalid</span><span class="p">]</span>
+        <span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">textFromValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">textFromValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_textFromValue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_textFromValue</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -342,9 +347,9 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valueFromText</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valueFromText</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
                 <span class="k">case</span> <span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="mi">0</span> <span class="c1"># unreachable case</span>
+                    <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># unreachable case</span>
                 <span class="k">case</span> <span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Invalid</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="mi">0</span> <span class="c1"># unreachable case</span>
+                    <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># unreachable case</span>
                 <span class="k">case</span> <span class="n">val</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">val</span>
         <span class="k">else</span><span class="p">:</span>
@@ -362,10 +367,11 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
 
+
 <div class="viewcode-block" id="SpinInput">
 <a class="viewcode-back" href="../../../stubs/edifice.SpinInput.html#edifice.SpinInput">[docs]</a>
 <span class="k">class</span> <span class="nc">SpinInput</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Widget for a one-line text input value with up/down buttons.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Widget for a :code:`int` input value with up/down buttons.</span>
 
 <span class="sd">    Allows the user to choose a value by clicking the up/down buttons or</span>
 <span class="sd">    pressing up/down on the keyboard to increase/decrease the value currently</span>
@@ -400,39 +406,58 @@ document.write(`
 <span class="sd">            * :code:`QValidator.State.Invalid` if the text is invalid.</span>
 
 <span class="sd">            See `QValidator.State &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QValidator.html#PySide6.QtGui.PySide6.QtGui.QValidator.State&gt;`_.</span>
+<span class="sd">        enable_mouse_scroll:</span>
+<span class="sd">            Whether mouse scroll events should be able to change the value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#TODO Note that you can set an optional Completer, giving the dropdown for completion.</span>
+
+    <span class="c1"># TODO Note that you can set an optional Completer, giving the dropdown for completion.</span>
 
 <div class="viewcode-block" id="SpinInput.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.SpinInput.__init__.html#edifice.SpinInput.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">min_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">max_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">value_to_text</span> <span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">text_to_value</span> <span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">]</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Invalid</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
+        <span class="n">value_to_text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">text_to_value</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">]</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Invalid</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">enable_mouse_scroll</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
-            <span class="s2">&quot;min_value&quot;</span><span class="p">:</span> <span class="n">min_value</span><span class="p">,</span>
-            <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="n">max_value</span><span class="p">,</span>
-            <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-            <span class="s2">&quot;value_to_text&quot;</span><span class="p">:</span> <span class="n">value_to_text</span><span class="p">,</span>
-            <span class="s2">&quot;text_to_value&quot;</span><span class="p">:</span> <span class="n">text_to_value</span><span class="p">,</span>
-        <span class="p">})</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+                <span class="s2">&quot;min_value&quot;</span><span class="p">:</span> <span class="n">min_value</span><span class="p">,</span>
+                <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="n">max_value</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
+                <span class="s2">&quot;value_to_text&quot;</span><span class="p">:</span> <span class="n">value_to_text</span><span class="p">,</span>
+                <span class="s2">&quot;text_to_value&quot;</span><span class="p">:</span> <span class="n">text_to_value</span><span class="p">,</span>
+                <span class="s2">&quot;enable_mouse_scroll&quot;</span><span class="p">:</span> <span class="n">enable_mouse_scroll</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">_SpinBox</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handler</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;enable_mouse_scroll&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">enable_mouse_scroll</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_on_change_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_on_change_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span><span class="p">)(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">_SpinBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -455,7 +480,7 @@ document.write(`
         <span class="k">if</span> <span class="s2">&quot;max_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 </pre></div>

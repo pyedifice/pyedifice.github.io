@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.table_grid_view &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.base_components.table_grid_view &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -318,6 +319,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PyQt6.QtWidgets</span> <span class="kn">import</span> <span class="n">QGridLayout</span><span class="p">,</span> <span class="n">QWidget</span>
 <span class="k">else</span><span class="p">:</span>
@@ -326,6 +328,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">_CommandType</span><span class="p">,</span> <span class="n">PropsDict</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">_get_widget_children</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">,</span> <span class="n">QtWidgetElement</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Edifice&quot;</span><span class="p">)</span>
+
 
 <span class="k">class</span> <span class="nc">_TableGridViewRow</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -340,12 +343,13 @@ document.write(`
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">newprops</span> <span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
+        <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
         <span class="c1"># This element has no Qt underlying so it has nothing to do except store</span>
         <span class="c1"># the children of the row.</span>
         <span class="c1"># The _qt_update_commands for TableGridView will render the children.</span>
         <span class="k">return</span> <span class="p">[]</span>
+
 
 <div class="viewcode-block" id="TableGridView">
 <a class="viewcode-back" href="../../../stubs/edifice.TableGridView.html#edifice.TableGridView">[docs]</a>
@@ -397,23 +401,25 @@ document.write(`
 <div class="viewcode-block" id="TableGridView.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.TableGridView.__init__.html#edifice.TableGridView.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">row_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-            <span class="n">column_stretch</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-            <span class="n">row_minheight</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-            <span class="n">column_minwidth</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">row_stretch</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">column_stretch</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">row_minheight</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">column_minwidth</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;row_stretch&quot;</span><span class="p">:</span> <span class="n">row_stretch</span><span class="p">,</span>
-            <span class="s2">&quot;column_stretch&quot;</span><span class="p">:</span> <span class="n">column_stretch</span><span class="p">,</span>
-            <span class="s2">&quot;row_minheight&quot;</span><span class="p">:</span> <span class="n">row_minheight</span><span class="p">,</span>
-            <span class="s2">&quot;column_minwidth&quot;</span><span class="p">:</span> <span class="n">column_minwidth</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;row_stretch&quot;</span><span class="p">:</span> <span class="n">row_stretch</span><span class="p">,</span>
+                <span class="s2">&quot;column_stretch&quot;</span><span class="p">:</span> <span class="n">column_stretch</span><span class="p">,</span>
+                <span class="s2">&quot;row_minheight&quot;</span><span class="p">:</span> <span class="n">row_minheight</span><span class="p">,</span>
+                <span class="s2">&quot;column_minwidth&quot;</span><span class="p">:</span> <span class="n">column_minwidth</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="c1"># self._register_props(kwargs)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Like _LinearView._widget_children&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span> <span class="o">=</span> <span class="n">row_stretch</span>
@@ -445,7 +451,7 @@ document.write(`
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.PySide6.QtWidgets.QGridLayout.addWidget</span>
         <span class="k">assert</span> <span class="n">child_component</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">child_component</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
@@ -458,25 +464,25 @@ document.write(`
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">column</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setColumnMinimumWidth</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child No underlying_layout &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">layoutitem</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">itemAtPosition</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child itemAtPosition failed &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child itemAtPosition failed &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">layoutitem</span><span class="o">.</span><span class="n">widget</span><span class="p">())</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child widget is None &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child widget is None &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">w</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">removeItem</span><span class="p">(</span><span class="n">layoutitem</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child No underlying_layout &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">layoutitem</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">itemAtPosition</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child itemAtPosition failed &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;_delete_child itemAtPosition failed &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">removeItem</span><span class="p">(</span><span class="n">layoutitem</span><span class="p">)</span>
 
@@ -497,26 +503,26 @@ document.write(`
         <span class="c1"># the TableGridView.</span>
 
         <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="n">new_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">new_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">children_of_rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
             <span class="n">children_of_row</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
             <span class="n">children_of_rows</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">children_of_row</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">col</span><span class="p">,</span><span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">children_of_row</span><span class="p">):</span>
-                <span class="n">new_children</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">children_of_row</span><span class="p">):</span>
+                <span class="n">new_children</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
 
         <span class="n">old_deletions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">-</span> <span class="n">new_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="n">new_additions</span> <span class="o">=</span> <span class="n">new_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">w</span><span class="p">,(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">)</span> <span class="ow">in</span> <span class="n">old_deletions</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span> <span class="ow">in</span> <span class="n">old_deletions</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">new_children</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_soft_delete_child</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
 
-        <span class="k">for</span> <span class="n">w</span><span class="p">,(</span><span class="n">row</span><span class="p">,</span><span class="n">column</span><span class="p">)</span> <span class="ow">in</span> <span class="n">new_additions</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span> <span class="ow">in</span> <span class="n">new_additions</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_add_child</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_old_children</span> <span class="o">=</span> <span class="n">new_children</span>
@@ -530,28 +536,30 @@ document.write(`
         <span class="k">if</span> <span class="s2">&quot;column_minwidth&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_column_minwidth</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;column_minwidth&quot;</span><span class="p">]))</span>
 
-        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">commands</span>
 
     <span class="k">def</span> <span class="nf">_set_row_stretch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_stretch</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_stretch</span> <span class="o">=</span> <span class="n">row_stretch</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">stretch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row_stretch</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()]):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">stretch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row_stretch</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setRowStretch</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">stretch</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_column_stretch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_stretch</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_column_stretch</span> <span class="o">=</span> <span class="n">column_stretch</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">stretch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">column_stretch</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()]):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">stretch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">column_stretch</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setColumnStretch</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">stretch</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_row_minheight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_minheight</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_minheight</span> <span class="o">=</span> <span class="n">row_minheight</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">minheight</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row_minheight</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()]):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">minheight</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row_minheight</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setRowMinimumHeight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">minheight</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_column_minwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_minwidth</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_column_minwidth</span> <span class="o">=</span> <span class="n">column_minwidth</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">minwidth</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">column_minwidth</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()]):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">minwidth</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">column_minwidth</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setColumnMinimumWidth</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">minwidth</span><span class="p">)</span></div>
 
 </pre></div>

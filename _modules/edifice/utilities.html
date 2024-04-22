@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.utilities &#8212; Edifice 0.5.0 documentation</title>
+    <title>edifice.utilities &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -317,6 +318,7 @@ document.write(`
 <span></span><span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 
 <span class="kn">from</span> <span class="nn">.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
 <span class="k">else</span><span class="p">:</span>
@@ -342,8 +344,7 @@ document.write(`
     <span class="n">buttons</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
-            <span class="n">buttons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msgbox</span><span class="o">.</span><span class="n">addButton</span><span class="p">(</span>
-                <span class="n">choice</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">ButtonRole</span><span class="o">.</span><span class="n">ActionRole</span><span class="p">))</span>
+            <span class="n">buttons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msgbox</span><span class="o">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">ButtonRole</span><span class="o">.</span><span class="n">ActionRole</span><span class="p">))</span>
     <span class="n">msgbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
     <span class="n">clicked_button</span> <span class="o">=</span> <span class="n">msgbox</span><span class="o">.</span><span class="n">clickedButton</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">button</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">buttons</span><span class="p">):</span>
@@ -355,9 +356,9 @@ document.write(`
 
 <div class="viewcode-block" id="file_dialog">
 <a class="viewcode-back" href="../../utilities.html#edifice.utilities.file_dialog">[docs]</a>
-<span class="k">def</span> <span class="nf">file_dialog</span><span class="p">(</span><span class="n">caption</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-                <span class="n">directory</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-                <span class="n">file_filter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">file_dialog</span><span class="p">(</span>
+    <span class="n">caption</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file_filter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Displays a file choice dialog.</span>
 
 <span class="sd">    Args:</span>
@@ -386,10 +387,12 @@ document.write(`
 <div class="viewcode-block" id="set_trace">
 <a class="viewcode-back" href="../../utilities.html#edifice.utilities.set_trace">[docs]</a>
 <span class="k">def</span> <span class="nf">set_trace</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Set a tracepoint in the Python debugger that works with Qt&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set a tracepoint in the Python debugger that works with Qt&quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">pdb</span>
+
     <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">PyQt6.QtCore</span> <span class="kn">import</span> <span class="n">pyqtRemoveInputHook</span>
+
         <span class="n">pyqtRemoveInputHook</span><span class="p">()</span>
     <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></div>
 

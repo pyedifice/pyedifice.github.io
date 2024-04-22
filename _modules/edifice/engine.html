@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 0.5.1 documentation</title>
+    <title>edifice.engine &#8212; Edifice 0.5.3 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=5f152624"></script>
+    <script src="../../_static/documentation_options.js?v=f39d245f"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.1 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.1 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.1</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
@@ -327,6 +328,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtGui</span>
 <span class="k">else</span><span class="p">:</span>
@@ -339,24 +341,30 @@ document.write(`
 
 <span class="n">StyleType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]]]</span>
 
+
 <span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;QWidget&quot;</span><span class="p">):</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="ow">or</span> <span class="p">{}</span>
     <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;{</span><span class="si">%s</span><span class="s2">}&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
     <span class="k">return</span> <span class="n">stylesheet</span>
+
 
 <span class="c1"># TODO</span>
 <span class="c1"># https://stackoverflow.com/questions/37278647/fire-and-forget-python-async-await/37345564#37345564</span>
 <span class="c1"># “Replace asyncio.ensure_future with asyncio.create_task everywhere if you&#39;re</span>
 <span class="c1"># using Python &gt;= 3.7 It&#39;s a newer, nicer way to spawn tasks.”</span>
 
+
 <span class="k">def</span> <span class="nf">_ensure_future</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
     <span class="c1"># Ensures future if fn is a coroutine, otherwise don&#39;t modify fn</span>
     <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
         <span class="k">return</span> <span class="n">wrapper</span>
     <span class="k">return</span> <span class="n">fn</span>
+
 
 <span class="k">class</span> <span class="nc">_CommandType</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
@@ -393,11 +401,13 @@ document.write(`
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">())</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span>
 
+
 <span class="n">_T_use_state</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_use_state&quot;</span><span class="p">)</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Deferred function call. A tuple with a Callable, and all of the values of its arguments.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
 
 <span class="k">class</span> <span class="nc">PropsDict</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An immutable dictionary for storing props.</span>
@@ -417,6 +427,7 @@ document.write(`
 <span class="sd">    .. autoproperty:: _keys</span>
 <span class="sd">    .. autoproperty:: _items</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_d&quot;</span><span class="p">,)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
@@ -553,14 +564,19 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span></div>
 
 
+
 <span class="n">T</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
 
 <span class="k">class</span> <span class="nc">ControllerProtocol</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol for App&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">_request_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
         <span class="k">pass</span>
+
     <span class="k">def</span> <span class="nf">_defer_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">]):</span>
         <span class="k">pass</span>
+
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
@@ -570,6 +586,7 @@ document.write(`
 <span class="sd">    During a render, track the current element and the children being</span>
 <span class="sd">    added to the current element.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;Element&quot;</span><span class="p">):</span>
@@ -589,6 +606,7 @@ document.write(`
             <span class="n">children</span> <span class="o">|=</span> <span class="n">find_components</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">-</span> <span class="p">{</span><span class="n">child</span><span class="p">}</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">child</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="k">if</span> <span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">children</span><span class="p">]</span>
 
+
 <span class="k">class</span> <span class="nc">_RenderContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encapsulates various state that&#39;s needed for rendering.</span>
@@ -596,16 +614,23 @@ document.write(`
 <span class="sd">    One _RenderContext is created when a render begins, and it is destroyed</span>
 <span class="sd">    at the end of the render.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;need_qt_command_reissue&quot;</span><span class="p">,</span> <span class="s2">&quot;component_to_old_props&quot;</span><span class="p">,</span>
-                 <span class="s2">&quot;component_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;widget_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;enqueued_deletions&quot;</span><span class="p">,</span>
-                 <span class="s2">&quot;trackers&quot;</span><span class="p">,</span> <span class="s2">&quot;_callback_queue&quot;</span><span class="p">,</span>
-                 <span class="s2">&quot;engine&quot;</span><span class="p">,</span>
-                 <span class="s2">&quot;current_element&quot;</span><span class="p">,</span>
-                 <span class="p">)</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;need_qt_command_reissue&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;component_to_old_props&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;component_tree&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;widget_tree&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;enqueued_deletions&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;trackers&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_callback_queue&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;engine&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;current_element&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">trackers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_Tracker</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stack of _Tracker&quot;&quot;&quot;</span>
     <span class="n">current_element</span><span class="p">:</span> <span class="s2">&quot;Element | None&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The Element currently being rendered.&quot;&quot;&quot;</span>
+
     <span class="c1"># I guess static scope typing of instance members is normal in Python?</span>
     <span class="c1"># https://peps.python.org/pep-0526/#class-and-instance-variable-annotations</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -616,7 +641,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">component_tree</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span><span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">component_tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Map of a component to its children.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -648,13 +673,17 @@ document.write(`
     <span class="k">def</span> <span class="nf">need_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;QtWidgetElement&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
+
 <span class="n">local_state</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">local</span><span class="p">()</span>
+
 
 <span class="k">def</span> <span class="nf">get_render_context</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_RenderContext</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="s2">&quot;render_context&quot;</span><span class="p">)</span>
 
+
 <span class="k">def</span> <span class="nf">get_render_context_maybe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_RenderContext</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="s2">&quot;render_context&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="Element">
 <a class="viewcode-back" href="../../stubs/edifice.Element.html#edifice.Element">[docs]</a>
@@ -804,14 +833,14 @@ document.write(`
         <span class="c1"># return True, because the children will always be different, because</span>
         <span class="c1"># _recycle_children hasn&#39;t been called yet. Is that correct behavior?</span>
 
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
-            <span class="c1"># If the prop is in the old props, then we check if it&#39;s changed.</span>
+                <span class="c1"># If the prop is in the old props, then we check if it&#39;s changed.</span>
                 <span class="n">v2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">v2</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
                     <span class="k">return</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># If the prop is not in the old props, then we rerender.</span>
+                <span class="c1"># If the prop is not in the old props, then we rerender.</span>
                 <span class="k">return</span> <span class="kc">True</span>
 
         <span class="k">return</span> <span class="kc">False</span>
@@ -832,13 +861,11 @@ document.write(`
     <span class="k">def</span> <span class="nf">_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">classname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="k">return</span> <span class="p">[</span>
-            <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span>
-                <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span>
-                <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s&gt;&quot;</span>
+            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
             <span class="s2">&quot;&lt;/</span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">classname</span><span class="p">),</span>
-            <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s /&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span>
-                <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span>
-                <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s /&gt;&quot;</span>
+            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
         <span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -863,15 +890,18 @@ document.write(`
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
+
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Element</span><span class="p">)</span>
+
 
 <span class="k">def</span> <span class="nf">not_ignored</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span>
 
+
 <div class="viewcode-block" id="component">
 <a class="viewcode-back" href="../../stubs/edifice.component.html#edifice.component">[docs]</a>
-<span class="k">def</span> <span class="nf">component</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Concatenate</span><span class="p">[</span><span class="n">C</span><span class="p">,</span><span class="n">P</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span><span class="n">Element</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">component</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Concatenate</span><span class="p">[</span><span class="n">C</span><span class="p">,</span> <span class="n">P</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Element</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator turning a render function of **props** into an :class:`Element`.</span>
 
 <span class="sd">    The component will be re-rendered when its **props** are not :code:`__eq__`</span>
@@ -942,13 +972,10 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">varnames</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__code__</span><span class="o">.</span><span class="n">co_varnames</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
     <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
-    <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span> <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span>
-    <span class="p">}</span>
+    <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span> <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span><span class="p">}</span>
 
     <span class="k">class</span> <span class="nc">ComponentElement</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+        <span class="n">_edifice_original</span> <span class="o">=</span> <span class="n">f</span>
 
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
@@ -966,13 +993,15 @@ document.write(`
                 <span class="k">del</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span>
             <span class="c1"># We cannot type this because PropsDict forgets the types</span>
             <span class="c1"># call the render function</span>
-            <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span> <span class="c1"># type: ignore[reportGeneralTypeIssues]</span>
+            <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># type: ignore[reportGeneralTypeIssues]</span>
 
         <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span>
+
     <span class="n">ComponentElement</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span>
     <span class="n">comp</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Element</span><span class="p">],</span> <span class="n">ComponentElement</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">comp</span></div>
+
 
 
 <span class="k">def</span> <span class="nf">find_components</span><span class="p">(</span><span class="n">el</span><span class="p">:</span> <span class="n">Element</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="n">Element</span><span class="p">]:</span>
@@ -987,12 +1016,14 @@ document.write(`
                 <span class="c1"># in list[Element] to be a list[Element], so why recurse?</span>
             <span class="k">return</span> <span class="n">elements</span>
 
+
 <span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">Container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">pass</span>
 
 
 <span class="n">ContextMenuType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="s2">&quot;ContextMenuType&quot;</span><span class="p">]]</span>
+
 
 <span class="k">def</span> <span class="nf">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">ContextMenuType</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="n">widget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenu</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
@@ -1008,6 +1039,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">widget</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">widget</span>
+
 
 <span class="n">_CURSORS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="o">.</span><span class="n">ArrowCursor</span><span class="p">,</span>
@@ -1034,6 +1066,7 @@ document.write(`
     <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;px&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="QtWidgetElement">
 <a class="viewcode-back" href="../../stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement">[docs]</a>
@@ -1187,33 +1220,37 @@ document.write(`
         <span class="n">on_mouse_enter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_mouse_leave</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span>
+            <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span>
-            <span class="s2">&quot;style&quot;</span><span class="p">:</span> <span class="n">style</span><span class="p">,</span>
-            <span class="s2">&quot;tool_tip&quot;</span><span class="p">:</span> <span class="n">tool_tip</span><span class="p">,</span>
-            <span class="s2">&quot;cursor&quot;</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span>
-            <span class="s2">&quot;context_menu&quot;</span><span class="p">:</span> <span class="n">context_menu</span><span class="p">,</span>
-            <span class="s2">&quot;css_class&quot;</span><span class="p">:</span> <span class="n">css_class</span><span class="p">,</span>
-            <span class="s2">&quot;size_policy&quot;</span><span class="p">:</span> <span class="n">size_policy</span><span class="p">,</span>
-            <span class="s2">&quot;focus_policy&quot;</span><span class="p">:</span> <span class="n">focus_policy</span><span class="p">,</span>
-            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="n">enabled</span><span class="p">,</span>
-            <span class="s2">&quot;on_click&quot;</span><span class="p">:</span> <span class="n">on_click</span><span class="p">,</span>
-            <span class="s2">&quot;on_key_down&quot;</span><span class="p">:</span> <span class="n">on_key_down</span><span class="p">,</span>
-            <span class="s2">&quot;on_key_up&quot;</span><span class="p">:</span> <span class="n">on_key_up</span><span class="p">,</span>
-            <span class="s2">&quot;on_mouse_down&quot;</span><span class="p">:</span> <span class="n">on_mouse_down</span><span class="p">,</span>
-            <span class="s2">&quot;on_mouse_up&quot;</span><span class="p">:</span> <span class="n">on_mouse_up</span><span class="p">,</span>
-            <span class="s2">&quot;on_mouse_enter&quot;</span><span class="p">:</span> <span class="n">on_mouse_enter</span><span class="p">,</span>
-            <span class="s2">&quot;on_mouse_leave&quot;</span><span class="p">:</span> <span class="n">on_mouse_leave</span><span class="p">,</span>
-            <span class="s2">&quot;on_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_mouse_move</span><span class="p">,</span>
-            <span class="s2">&quot;on_drop&quot;</span><span class="p">:</span> <span class="n">on_drop</span><span class="p">,</span>
-        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;style&quot;</span><span class="p">:</span> <span class="n">style</span><span class="p">,</span>
+                <span class="s2">&quot;tool_tip&quot;</span><span class="p">:</span> <span class="n">tool_tip</span><span class="p">,</span>
+                <span class="s2">&quot;cursor&quot;</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span>
+                <span class="s2">&quot;context_menu&quot;</span><span class="p">:</span> <span class="n">context_menu</span><span class="p">,</span>
+                <span class="s2">&quot;css_class&quot;</span><span class="p">:</span> <span class="n">css_class</span><span class="p">,</span>
+                <span class="s2">&quot;size_policy&quot;</span><span class="p">:</span> <span class="n">size_policy</span><span class="p">,</span>
+                <span class="s2">&quot;focus_policy&quot;</span><span class="p">:</span> <span class="n">focus_policy</span><span class="p">,</span>
+                <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="n">enabled</span><span class="p">,</span>
+                <span class="s2">&quot;on_click&quot;</span><span class="p">:</span> <span class="n">on_click</span><span class="p">,</span>
+                <span class="s2">&quot;on_key_down&quot;</span><span class="p">:</span> <span class="n">on_key_down</span><span class="p">,</span>
+                <span class="s2">&quot;on_key_up&quot;</span><span class="p">:</span> <span class="n">on_key_up</span><span class="p">,</span>
+                <span class="s2">&quot;on_mouse_down&quot;</span><span class="p">:</span> <span class="n">on_mouse_down</span><span class="p">,</span>
+                <span class="s2">&quot;on_mouse_up&quot;</span><span class="p">:</span> <span class="n">on_mouse_up</span><span class="p">,</span>
+                <span class="s2">&quot;on_mouse_enter&quot;</span><span class="p">:</span> <span class="n">on_mouse_enter</span><span class="p">,</span>
+                <span class="s2">&quot;on_mouse_leave&quot;</span><span class="p">:</span> <span class="n">on_mouse_leave</span><span class="p">,</span>
+                <span class="s2">&quot;on_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_mouse_move</span><span class="p">,</span>
+                <span class="s2">&quot;on_drop&quot;</span><span class="p">:</span> <span class="n">on_drop</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_left</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># TODO _size_from_font is unused</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># TODO _size_from_font is unused</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_down</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1224,7 +1261,9 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span>
+            <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_press_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1263,7 +1302,6 @@ document.write(`
             <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_width</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_left</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
-
 
     <span class="k">def</span> <span class="nf">_get_height</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">):</span>
         <span class="c1"># TODO this function is unreferenced</span>
@@ -1388,10 +1426,13 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mouseMoveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
-        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span>
+    <span class="k">def</span> <span class="nf">_set_on_drop</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
+        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span>
+            <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">],</span>
     <span class="p">):</span>
-
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
         <span class="c1"># Store the QWidget&#39;s default virtual event handler methods</span>
@@ -1407,10 +1448,10 @@ document.write(`
         <span class="k">if</span> <span class="n">on_drop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="o">=</span> <span class="n">on_drop</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setAcceptDrops</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dragEnterEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="c1"># type: ignore</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dragMoveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="c1"># type: ignore</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dragLeaveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="c1"># type: ignore</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dropEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="c1"># type: ignore</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dragEnterEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dragMoveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dragLeaveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">dropEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setAcceptDrops</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -1425,7 +1466,7 @@ document.write(`
 
         <span class="k">if</span> <span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">new_margin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">new_margin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="s2">&quot;margin&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
                 <span class="n">new_margin</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin&quot;</span><span class="p">)</span>
@@ -1466,7 +1507,11 @@ document.write(`
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">set_margin</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">,</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">_CommandType</span><span class="p">(</span>
+                        <span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">,</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
             <span class="k">if</span> <span class="n">set_align</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1489,7 +1534,6 @@ document.write(`
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">set_align</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">style</span><span class="p">[</span><span class="s2">&quot;qproperty-alignment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_align</span>
-
 
         <span class="k">if</span> <span class="s2">&quot;font-size&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
             <span class="n">font_size</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">])</span>
@@ -1533,7 +1577,7 @@ document.write(`
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">css_string</span> <span class="o">=</span> <span class="n">_dict_to_style</span><span class="p">(</span><span class="n">style</span><span class="p">,</span>  <span class="s2">&quot;QWidget#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="n">css_string</span> <span class="o">=</span> <span class="n">_dict_to_style</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="s2">&quot;QWidget#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">,</span> <span class="n">css_string</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
 
@@ -1554,7 +1598,7 @@ document.write(`
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="s2">&quot;_WidgetTree&quot;</span><span class="p">],</span>
-        <span class="n">newprops</span> <span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
+        <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
@@ -1563,9 +1607,9 @@ document.write(`
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="s2">&quot;_WidgetTree&quot;</span><span class="p">],</span>
         <span class="c1"># We must pass all of the widget_trees because some elements</span>
         <span class="c1"># like TableGridView need to know the children of the children.</span>
-        <span class="n">newprops</span> <span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
+        <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
-        <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
@@ -1617,10 +1661,12 @@ document.write(`
                 <span class="k">if</span> <span class="n">css_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">css_class</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setProperty</span><span class="p">,</span> <span class="s2">&quot;css_class&quot;</span><span class="p">,</span> <span class="n">css_class</span><span class="p">))</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
-                    <span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">unpolish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">),</span>
-                    <span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">polish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">)</span>
-                <span class="p">])</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">unpolish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">),</span>
+                        <span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">polish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;cursor&quot;</span><span class="p">:</span>
                 <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;default&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_click</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;pointer&quot;</span><span class="p">)</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="n">cursor</span><span class="p">]))</span>
@@ -1628,27 +1674,35 @@ document.write(`
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span><span class="p">:</span>
                     <span class="n">underlying</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">context_menu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">CustomContextMenu</span><span class="p">))</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">CustomContextMenu</span><span class="p">)</span>
+                    <span class="p">)</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_context_menu</span><span class="p">,</span> <span class="n">underlying</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">DefaultContextMenu</span><span class="p">))</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">_CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">DefaultContextMenu</span><span class="p">)</span>
+                    <span class="p">)</span>
         <span class="k">return</span> <span class="n">commands</span></div>
+
 
 
 <span class="k">class</span> <span class="nc">_WidgetTree</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A QtWidgetElement and its QtWidgetElement children.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span> <span class="o">=</span> <span class="n">component</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]</span> <span class="o">=</span> <span class="n">children</span>
 
+
 <span class="k">def</span> <span class="nf">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span> <span class="n">element</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]:</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">widget_trees</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">w</span><span class="o">.</span><span class="n">children</span>
     <span class="k">return</span> <span class="p">[]</span>
+
 
 <span class="k">def</span> <span class="nf">_dereference_tree</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span> <span class="n">widget_tree</span><span class="p">:</span> <span class="n">_WidgetTree</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1657,6 +1711,7 @@ document.write(`
     <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">address</span><span class="p">:</span>
         <span class="n">widget_tree</span> <span class="o">=</span> <span class="n">widget_trees</span><span class="p">[</span><span class="n">widget_tree</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span>
     <span class="k">return</span> <span class="n">widget_tree</span>
+
 
 <span class="k">def</span> <span class="nf">print_tree</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">widget_trees</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
@@ -1670,7 +1725,6 @@ document.write(`
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 
 
-
 <span class="k">class</span> <span class="nc">RenderResult</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Encapsulates the results of a render.</span>
 
@@ -1682,12 +1736,14 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">],</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">commands</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="n">commands</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="n">commands</span>
+
 
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">_HookState</span><span class="p">:</span>
     <span class="n">state</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span>
     <span class="n">updaters</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span>
+
 
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">_HookEffect</span><span class="p">:</span>
@@ -1698,13 +1754,14 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span>
 
+
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">_HookAsync</span><span class="p">:</span>
     <span class="n">task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The currently executing async effect task.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">]]]</span>
+    <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The queue of waiting async effect tasks. Max length 1.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1712,6 +1769,7 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The dependencies of use_async().</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
 
 <span class="k">def</span> <span class="nf">elements_match</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1724,27 +1782,34 @@ document.write(`
     <span class="c1"># True if the class __name__ is different?)</span>
     <span class="k">return</span> <span class="p">(</span>
         <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
-        <span class="ow">and</span>
-        <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-        <span class="ow">and</span>
-        <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="ow">and</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
     <span class="p">)</span>
+
 
 <span class="k">class</span> <span class="nc">RenderEngine</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    One RenderEngine instance persists across the life of the App.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;_component_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;_widget_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;_root&quot;</span><span class="p">,</span> <span class="s2">&quot;_app&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_hook_state&quot;</span><span class="p">,</span> <span class="s2">&quot;_hook_state_setted&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_hook_effect&quot;</span><span class="p">,</span> <span class="s2">&quot;_hook_async&quot;</span><span class="p">,</span> <span class="s2">&quot;is_stopped&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_component_tree&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_widget_tree&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_root&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_app&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_state_setted&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_effect&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_async&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_stopped&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The _component_tree maps an Element to its children.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Map of an Element to its rendered widget tree.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1816,6 +1881,7 @@ document.write(`
                         <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
                             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">):</span>
                                 <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+
                     <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
                     <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">):</span>
@@ -1826,7 +1892,6 @@ document.write(`
         <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
-
 
         <span class="c1"># Clean up component references</span>
         <span class="c1"># Do this after use_effect cleanup, so that the cleanup function</span>
@@ -1852,8 +1917,9 @@ document.write(`
         <span class="n">components_to_replace</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># classes should be only ComponentElement, because only ComponentElement can change in user code.</span>
         <span class="n">old_components</span> <span class="o">=</span> <span class="p">[</span><span class="bp">cls</span> <span class="k">for</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">]</span>
+
         <span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">in</span> <span class="n">old_components</span> <span class="ow">and</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># We can&#39;t replace the unparented root</span>
+            <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">in</span> <span class="n">old_components</span> <span class="ow">and</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># We can&#39;t replace the unparented root</span>
                 <span class="n">new_component_class</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_cls</span> <span class="k">for</span> <span class="n">old_cls</span><span class="p">,</span> <span class="n">new_cls</span> <span class="ow">in</span> <span class="n">classes</span> <span class="k">if</span> <span class="n">old_cls</span> <span class="o">==</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">new_component_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error after updating code: cannot find class </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
@@ -1873,20 +1939,21 @@ document.write(`
             <span class="n">parameters</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">new_comp_class</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
 
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-                          <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span> <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span>
-                          <span class="ow">and</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">}</span>
-                          <span class="c1"># We don&#39;t actually need all the kwargs, just enough</span>
-                          <span class="c1"># to construct new_comp_class.</span>
-                          <span class="c1"># The other kwargs will be set with _props.update.</span>
+                <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">k</span><span class="p">:</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+                    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span> <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;kwargs&quot;</span>
+                <span class="p">}</span>
+            <span class="c1"># We don&#39;t actually need all the kwargs, just enough</span>
+            <span class="c1"># to construct new_comp_class.</span>
+            <span class="c1"># The other kwargs will be set with _props.update.</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="n">k</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
                     <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
                         <span class="k">break</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Error while reloading </span><span class="si">{</span><span class="n">old_comp</span><span class="si">}</span><span class="s2">: &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;New class expects prop (</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) not present in old class&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Error while reloading </span><span class="si">{</span><span class="n">old_comp</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="sa">f</span><span class="s2">&quot;New class expects prop (</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) not present in old class&quot;</span>
                 <span class="p">)</span>
             <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_comp_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">_props</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">old_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">)</span>
@@ -1897,36 +1964,39 @@ document.write(`
 
         <span class="n">backup</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">old_comp</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent_comp</span><span class="p">,</span> <span class="n">new_comp</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">:</span>
-                <span class="n">backup</span><span class="p">[</span><span class="n">parent_comp</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parent_comp</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">comp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parent_comp</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">comp</span> <span class="ow">is</span> <span class="n">old_comp</span><span class="p">:</span>
-                        <span class="n">parent_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_comp</span>
-                        <span class="c1"># Move the hook states to the new component.</span>
-                        <span class="c1"># We want to be careful that the hooks don&#39;t have</span>
-                        <span class="c1"># any references to the old component, especially</span>
-                        <span class="c1"># function closures. I think this code is okay.</span>
-                        <span class="c1">#</span>
-                        <span class="c1"># During the effect functions and the async coroutine, usually</span>
-                        <span class="c1"># what happens is that some use_state setters are called,</span>
-                        <span class="c1"># and those use_state setters would be closures on the</span>
-                        <span class="c1"># state which was moved, not references to the old_comp.</span>
-                        <span class="c1">#</span>
-                        <span class="c1"># Because this is only during hot-reload, so only during</span>
-                        <span class="c1"># development, it&#39;s not catastrophic if some references</span>
-                        <span class="c1"># to old_comp are retained and cause bugs.</span>
-                        <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
-                            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
-                        <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
-                            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
-                        <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
-                            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+            <span class="n">backup</span><span class="p">[</span><span class="n">parent_comp</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parent_comp</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">comp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parent_comp</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">comp</span> <span class="ow">is</span> <span class="n">old_comp</span><span class="p">:</span>
+                    <span class="n">parent_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_comp</span>
+                    <span class="c1"># Move the hook states to the new component.</span>
+                    <span class="c1"># We want to be careful that the hooks don&#39;t have</span>
+                    <span class="c1"># any references to the old component, especially</span>
+                    <span class="c1"># function closures. I think this code is okay.</span>
+                    <span class="c1">#</span>
+                    <span class="c1"># During the effect functions and the async coroutine, usually</span>
+                    <span class="c1"># what happens is that some use_state setters are called,</span>
+                    <span class="c1"># and those use_state setters would be closures on the</span>
+                    <span class="c1"># state which was moved, not references to the old_comp.</span>
+                    <span class="c1">#</span>
+                    <span class="c1"># Because this is only during hot-reload, so only during</span>
+                    <span class="c1"># development, it&#39;s not catastrophic if some references</span>
+                    <span class="c1"># to old_comp are retained and cause bugs.</span>
+                    <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">old_comp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">new_comp</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
+                        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">old_comp</span><span class="p">]</span>
 
         <span class="c1"># 5) call _render for all new component parents</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rerendering parents of: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">new_comp_class</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">new_comp_class</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;Rerendering parents of: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">new_comp_class</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">new_comp_class</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">],</span>
+            <span class="p">)</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rerendering: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">parent</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">parent_comp</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent_comp</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -1935,12 +2005,8 @@ document.write(`
                 <span class="n">parent_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">backup_val</span>
             <span class="k">raise</span> <span class="n">e</span>
 
-
     <span class="k">def</span> <span class="nf">_update_old_component</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
-        <span class="n">new_component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
-        <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">new_component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_WidgetTree</span><span class="p">:</span>
         <span class="c1"># new_component is a new rendering of old component, so update</span>
         <span class="c1"># old component to have props of new_component.</span>
@@ -1955,7 +2021,8 @@ document.write(`
         <span class="c1">#  2) state changed</span>
         <span class="c1">#  3) it has any pending _hook_state updates</span>
         <span class="c1">#  4) it has any references</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">_should_update</span><span class="p">(</span><span class="n">newprops</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">component</span><span class="o">.</span><span class="n">_should_update</span><span class="p">(</span><span class="n">newprops</span><span class="p">)</span>
             <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
             <span class="ow">or</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span>
         <span class="p">):</span>
@@ -1969,11 +2036,7 @@ document.write(`
         <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_recycle_children</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span>
-        <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_recycle_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]:</span>
         <span class="c1"># Children diffing and reconciliation</span>
         <span class="c1">#</span>
         <span class="c1"># Returns element children, which contains all the future children of the component:</span>
@@ -1981,8 +2044,8 @@ document.write(`
         <span class="c1">#</span>
         <span class="c1"># Returns children widget trees, cached or newly rendered.</span>
 
-        <span class="n">children_old_bykey</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="n">children_new_bykey</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">children_old_bykey</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">children_new_bykey</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
         <span class="n">children_old_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
 
@@ -2011,8 +2074,9 @@ document.write(`
         <span class="k">while</span> <span class="n">i_new</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_new</span><span class="p">):</span>
             <span class="n">child_new</span> <span class="o">=</span> <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">:=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">child_new</span><span class="p">,</span> <span class="s2">&quot;_key&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">((</span><span class="n">child_old_bykey</span> <span class="o">:=</span> <span class="n">children_old_bykey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                    <span class="ow">and</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="n">child_new</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">child_old_bykey</span> <span class="o">:=</span> <span class="n">children_old_bykey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">elements_match</span><span class="p">(</span>
+                    <span class="n">child_old_bykey</span><span class="p">,</span> <span class="n">child_new</span>
+                <span class="p">):</span>
                     <span class="c1"># then we have a match for reusing the old child</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
                     <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_old_bykey</span>
@@ -2125,16 +2189,18 @@ document.write(`
                 <span class="n">sub_component</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">newline</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="n">dedent</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="n">dedent</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s2">                    A @component must render as exactly one Element.</span>
-<span class="s2">                    Element </span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s2"> renders as </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">)</span><span class="si">}</span><span class="s2"> elements.&quot;&quot;&quot;</span><span class="p">)</span> \
-                    <span class="o">+</span> <span class="n">newline</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">child</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">])</span>
+<span class="s2">                    Element </span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s2"> renders as </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">)</span><span class="si">}</span><span class="s2"> elements.&quot;&quot;&quot;</span>
+                <span class="p">)</span> <span class="o">+</span> <span class="n">newline</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">child</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">])</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="n">old_rendering</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_component</span><span class="p">):</span>
             <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span>
-                <span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+                <span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_component</span><span class="p">,</span> <span class="n">render_context</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">render_context</span><span class="o">.</span><span class="n">enqueued_deletions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">)</span>
@@ -2143,15 +2209,11 @@ document.write(`
 
         <span class="k">return</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">gen_qt_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">element</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span>
-        <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">gen_qt_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Recursively generate the update commands for the widget tree.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">commands</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">commands</span>
 
@@ -2164,10 +2226,7 @@ document.write(`
             <span class="k">return</span> <span class="n">commands</span>
 
         <span class="n">old_props</span> <span class="o">=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">get_old_props</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-        <span class="n">new_props</span> <span class="o">=</span> <span class="n">PropsDict</span><span class="p">({</span>
-            <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span>
-                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_props</span> <span class="ow">or</span> <span class="n">old_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">v</span>
-        <span class="p">})</span>
+        <span class="n">new_props</span> <span class="o">=</span> <span class="n">PropsDict</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_props</span> <span class="ow">or</span> <span class="n">old_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">v</span><span class="p">})</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">,</span> <span class="n">new_props</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
 
@@ -2204,7 +2263,6 @@ document.write(`
         <span class="c1"># So we do a complete render of each component individually, and then</span>
         <span class="c1"># we don&#39;t have to solve the problem of the order of rendering.</span>
         <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components_</span><span class="p">:</span>
-
             <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="n">render_context</span> <span class="o">=</span> <span class="n">_RenderContext</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -2224,9 +2282,7 @@ document.write(`
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">command</span><span class="o">.</span><span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">command</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">command</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception while running command:</span><span class="se">\n</span><span class="s2">&quot;</span>
-                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">command</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception while running command:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">command</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">all_commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span>
 
             <span class="c1"># Delete components that should be deleted (and call the respective unmounts)</span>
@@ -2257,15 +2313,10 @@ document.write(`
         <span class="k">return</span> <span class="n">RenderResult</span><span class="p">(</span><span class="n">all_commands</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">use_state</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">element</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span>
-        <span class="n">initial_state</span><span class="p">:</span><span class="n">_T_use_state</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">_T_use_state</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
-        <span class="n">_T_use_state</span><span class="p">,</span> <span class="c1"># current value</span>
-        <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span> <span class="c1"># updater</span>
-            <span class="p">[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span><span class="n">_T_use_state</span><span class="p">]],</span>
-            <span class="kc">None</span>
-        <span class="p">]</span>
+        <span class="n">_T_use_state</span><span class="p">,</span>  <span class="c1"># current value</span>
+        <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span> <span class="n">_T_use_state</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>  <span class="c1"># updater</span>
     <span class="p">]:</span>
         <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
 
@@ -2327,7 +2378,6 @@ document.write(`
         <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
         <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]:</span>
-
         <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
         <span class="n">h_index</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">_hook_async_index</span>
         <span class="n">element</span><span class="o">.</span><span class="n">_hook_async_index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -2388,6 +2438,7 @@ document.write(`
                         <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
                         <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
                         <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
 
             <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
@@ -2409,7 +2460,6 @@ document.write(`
                     <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
             <span class="k">return</span> <span class="n">cancel</span>
-
 </pre></div>
 
                 </article>
