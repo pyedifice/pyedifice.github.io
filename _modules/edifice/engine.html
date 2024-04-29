@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 0.5.4 documentation</title>
+    <title>edifice.engine &#8212; Edifice 0.5.5 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=6688a68e"></script>
+    <script src="../../_static/documentation_options.js?v=dd742493"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.4 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.4 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.5 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.5 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.5</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -1280,6 +1280,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_move_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_leave_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drop_event</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1469,12 +1470,17 @@ document.write(`
 
     <span class="k">def</span> <span class="nf">_set_on_resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+        <span class="c1"># Store the QWidget&#39;s default virtual event handler method one time</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span>
+
         <span class="k">if</span> <span class="n">on_resize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_resize</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resizeEvent</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span>
 
     <span class="k">def</span> <span class="nf">_gen_styling_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
