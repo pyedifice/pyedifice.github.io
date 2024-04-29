@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 0.5.3 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 0.5.4 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=f39d245f"></script>
+    <script src="../../../_static/documentation_options.js?v=6688a68e"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.3 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.3 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.4 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.4 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.3</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.4</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -323,7 +323,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">..engine</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">_WidgetTree</span><span class="p">,</span>
     <span class="n">_get_widget_children</span><span class="p">,</span>
-    <span class="n">_CommandType</span><span class="p">,</span>
+    <span class="n">CommandType</span><span class="p">,</span>
     <span class="n">PropsDict</span><span class="p">,</span>
     <span class="n">Element</span><span class="p">,</span>
     <span class="n">QtWidgetElement</span><span class="p">,</span>
@@ -425,8 +425,8 @@ document.write(`
         <span class="n">child_underlying</span> <span class="o">=</span> <span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">underlying</span>
         <span class="k">assert</span> <span class="n">child_underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">child_underlying</span><span class="o">.</span><span class="n">setParent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">))</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTitle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">child_underlying</span><span class="o">.</span><span class="n">setParent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTitle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
 
 
@@ -529,7 +529,7 @@ document.write(`
             <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
         <span class="p">):</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+                <span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
@@ -585,7 +585,7 @@ document.write(`
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">)))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">)))</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
 
@@ -684,7 +684,7 @@ document.write(`
             <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">newprops</span>
         <span class="p">):</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">_CommandType</span><span class="p">(</span><span class="n">render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+                <span class="n">CommandType</span><span class="p">(</span><span class="n">render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
@@ -761,11 +761,11 @@ document.write(`
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">])))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">])))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;word_wrap&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">word_wrap</span><span class="p">))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">word_wrap</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;link_open&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOpenExternalLinks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">link_open</span><span class="p">))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOpenExternalLinks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">link_open</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;selectable&quot;</span> <span class="ow">or</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;editable&quot;</span><span class="p">:</span>
                 <span class="n">interaction_flags</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">False</span>
@@ -784,9 +784,9 @@ document.write(`
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">interaction_flags</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextEditable</span>
                 <span class="k">if</span> <span class="n">change_cursor</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
                 <span class="k">if</span> <span class="n">interaction_flags</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTextInteractionFlags</span><span class="p">,</span> <span class="n">interaction_flags</span><span class="p">))</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTextInteractionFlags</span><span class="p">,</span> <span class="n">interaction_flags</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -833,7 +833,7 @@ document.write(`
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;src&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">load</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">src</span><span class="p">))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">load</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">src</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -965,12 +965,12 @@ document.write(`
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
             <span class="c1"># This setCursorPosition is needed because otherwise the cursor will</span>
             <span class="c1"># jump to the end of the text after the setText.</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursorPosition</span><span class="p">,</span> <span class="n">widget</span><span class="o">.</span><span class="n">cursorPosition</span><span class="p">()))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursorPosition</span><span class="p">,</span> <span class="n">widget</span><span class="o">.</span><span class="n">cursorPosition</span><span class="p">()))</span>
         <span class="k">if</span> <span class="s2">&quot;placeholder_text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">placeholder_text</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">placeholder_text</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -1005,6 +1005,8 @@ document.write(`
 <span class="sd">        on_select:</span>
 <span class="sd">            Callback for when the selection changes.</span>
 <span class="sd">            The callback is passed the new value of the text.</span>
+<span class="sd">        enable_mouse_scroll:</span>
+<span class="sd">            Whether mouse scroll events should be able to change the value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Dropdown.__init__">
@@ -1019,6 +1021,7 @@ document.write(`
         <span class="c1"># completer: tp.Optional[Completer] = None,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_select</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">enable_mouse_scroll</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1030,6 +1033,7 @@ document.write(`
                 <span class="s2">&quot;editable&quot;</span><span class="p">:</span> <span class="n">editable</span><span class="p">,</span>
                 <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
                 <span class="s2">&quot;on_select&quot;</span><span class="p">:</span> <span class="n">on_select</span><span class="p">,</span>
+                <span class="s2">&quot;enable_mouse_scroll&quot;</span><span class="p">:</span> <span class="n">enable_mouse_scroll</span><span class="p">,</span>
             <span class="p">}</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -1040,6 +1044,8 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">editTextChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">textActivated</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_select</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;enable_mouse_scroll&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">enable_mouse_scroll</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>
 
     <span class="c1"># TODO</span>
     <span class="c1"># def _set_completer(self, completer):</span>
@@ -1081,20 +1087,20 @@ document.write(`
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setEditable</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">editable</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setEditable</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">editable</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;options&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
                 <span class="p">[</span>
-                    <span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">clear</span><span class="p">),</span>
-                    <span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">addItems</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">options</span><span class="p">),</span>
+                    <span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">clear</span><span class="p">),</span>
+                    <span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">addItems</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">options</span><span class="p">),</span>
                 <span class="p">]</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_edit_text</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_edit_text</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;selection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_current_text</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">selection</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_current_text</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">selection</span><span class="p">))</span>
         <span class="c1"># elif prop == &quot;completer&quot;:</span>
-        <span class="c1">#     commands.append(_CommandType(self._set_completer, newprops[prop]))</span>
+        <span class="c1">#     commands.append(CommandType(self._set_completer, newprops[prop]))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -1176,9 +1182,9 @@ document.write(`
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;checked&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_checked</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_checked</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -1263,9 +1269,9 @@ document.write(`
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
         <span class="k">if</span> <span class="s2">&quot;checked&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_checked</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_checked</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -1377,13 +1383,13 @@ document.write(`
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;min_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">min_value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">min_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;max_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;on_change&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_change</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_change</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_change</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -1405,7 +1411,7 @@ document.write(`
 
         <span class="n">children_new</span> <span class="o">=</span> <span class="n">children</span>
 
-        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="n">children_old_positioned_reverse</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># old children in the same position as new children.</span>
@@ -1435,10 +1441,10 @@ document.write(`
                     <span class="c1"># old child is out of position</span>
                     <span class="k">if</span> <span class="n">child_old</span> <span class="ow">in</span> <span class="n">children_new</span><span class="p">:</span>
                         <span class="c1"># child will be added back in later</span>
-                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_soft_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_soft_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># child will be deleted</span>
-                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
                 <span class="n">i_new</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="n">r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">children_old_positioned_reverse</span><span class="p">))</span>
@@ -1460,10 +1466,10 @@ document.write(`
                     <span class="c1"># old child is out of position</span>
                     <span class="k">if</span> <span class="n">child_old</span> <span class="ow">in</span> <span class="n">children_new</span><span class="p">:</span>
                         <span class="c1"># child will be added back in later</span>
-                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_soft_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_soft_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># child will be deleted</span>
-                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_child</span><span class="p">,</span> <span class="n">i_old</span><span class="p">,</span> <span class="n">child_old</span><span class="p">))</span>
                 <span class="n">i_new</span> <span class="o">-=</span> <span class="mi">1</span>
 
         <span class="c1"># Now we have deleted all the old children that are not in the right position.</span>
@@ -1475,7 +1481,7 @@ document.write(`
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child_new</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">)</span>
                 <span class="k">assert</span> <span class="n">child_new</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_add_child</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_new</span><span class="o">.</span><span class="n">underlying</span><span class="p">))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_add_child</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_new</span><span class="o">.</span><span class="n">underlying</span><span class="p">))</span>
 
         <span class="c1"># assert sanity check that we used all the old children.</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">children_old_positioned_reverse</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
@@ -1703,20 +1709,20 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
+        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;on_close&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_close</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_close</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_close</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_close</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;icon&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">and</span> <span class="n">newprops</span><span class="o">.</span><span class="n">icon</span><span class="p">:</span>
             <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_image_descriptor_to_pixmap</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">icon</span><span class="p">)</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)))</span>
         <span class="k">if</span> <span class="s2">&quot;menu&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">and</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenuBar</span><span class="p">()</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attach_menubar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attach_menubar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
 
@@ -1983,11 +1989,11 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">code_to_child</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">key_to_code</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">_key</span><span class="p">]:</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">children</span><span class="p">}</span>
         <span class="n">grid_spec</span> <span class="o">=</span> <span class="p">[(</span><span class="n">code_to_child</span><span class="p">[</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]],)</span> <span class="o">+</span> <span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">grid_spec</span> <span class="k">if</span> <span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&quot; _&quot;</span><span class="p">]</span>
-        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">grid_spec</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previously_rendered</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clear</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clear</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">child</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">dx</span> <span class="ow">in</span> <span class="n">grid_spec</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">dx</span><span class="p">))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">dx</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_previously_rendered</span> <span class="o">=</span> <span class="n">grid_spec</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
@@ -2115,7 +2121,7 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_widget</span><span class="p">()</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -2174,21 +2180,21 @@ document.write(`
 <span class="c1">#</span>
 <span class="c1">#         for prop in newprops:</span>
 <span class="c1">#             if prop == &quot;rows&quot;:</span>
-<span class="c1">#                 commands.append(_CommandType(widget.setRowCount, newprops[prop]))</span>
+<span class="c1">#                 commands.append(CommandType(widget.setRowCount, newprops[prop]))</span>
 <span class="c1">#             elif prop == &quot;columns&quot;:</span>
-<span class="c1">#                 commands.append(_CommandType(widget.setColumnCount, newprops[prop]))</span>
+<span class="c1">#                 commands.append(CommandType(widget.setColumnCount, newprops[prop]))</span>
 <span class="c1">#             elif prop == &quot;alternating_row_colors&quot;:</span>
-<span class="c1">#                 commands.append(_CommandType(widget.setAlternatingRowColors, newprops[prop]))</span>
+<span class="c1">#                 commands.append(CommandType(widget.setAlternatingRowColors, newprops[prop]))</span>
 <span class="c1">#             elif prop == &quot;row_headers&quot;:</span>
 <span class="c1">#                 if newprops[prop] is not None:</span>
-<span class="c1">#                     commands.append(_CommandType(widget.setVerticalHeaderLabels, list(map(str, newprops[prop]))))</span>
+<span class="c1">#                     commands.append(CommandType(widget.setVerticalHeaderLabels, list(map(str, newprops[prop]))))</span>
 <span class="c1">#                 else:</span>
-<span class="c1">#                     commands.append(_CommandType(widget.setVerticalHeaderLabels, list(map(str, range(newprops.rows)))))</span>
+<span class="c1">#                     commands.append(CommandType(widget.setVerticalHeaderLabels, list(map(str, range(newprops.rows)))))</span>
 <span class="c1">#             elif prop == &quot;column_headers&quot;:</span>
 <span class="c1">#                 if newprops[prop] is not None:</span>
-<span class="c1">#                     commands.append(_CommandType(widget.setHorizontalHeaderLabels, list(map(str, newprops[prop]))))</span>
+<span class="c1">#                     commands.append(CommandType(widget.setHorizontalHeaderLabels, list(map(str, newprops[prop]))))</span>
 <span class="c1">#                 else:</span>
-<span class="c1">#                     commands.append(_CommandType(widget.setHorizontalHeaderLabels, list(map(str, range(newprops.columns)))))</span>
+<span class="c1">#                     commands.append(CommandType(widget.setHorizontalHeaderLabels, list(map(str, range(newprops.columns)))))</span>
 <span class="c1">#</span>
 <span class="c1">#         new_children = set()</span>
 <span class="c1">#         for child in children:</span>
@@ -2202,13 +2208,13 @@ document.write(`
 <span class="c1">#             if old_child not in new_children:</span>
 <span class="c1">#                 for j, el in enumerate(old_child.children):</span>
 <span class="c1">#                     if el:</span>
-<span class="c1">#                         commands.append(_CommandType(widget.setCellWidget, i, j, QtWidgets.QWidget()))</span>
+<span class="c1">#                         commands.append(CommandType(widget.setCellWidget, i, j, QtWidgets.QWidget()))</span>
 <span class="c1">#</span>
 <span class="c1">#         self._widget_children = [child.component for child in children]</span>
 <span class="c1">#         for i, child in enumerate(children):</span>
 <span class="c1">#             if child.component not in self._already_rendered:</span>
 <span class="c1">#                 for j, el in enumerate(child.children):</span>
-<span class="c1">#                     commands.append(_CommandType(widget.setCellWidget, i, j, el.component.underlying))</span>
+<span class="c1">#                     commands.append(CommandType(widget.setCellWidget, i, j, el.component.underlying))</span>
 <span class="c1">#             self._already_rendered[child.component] = True</span>
 <span class="c1">#         return commands</span>
 
@@ -2287,15 +2293,15 @@ document.write(`
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;orientation&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOrientation</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">orientation</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOrientation</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">orientation</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;min_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">min_value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">min_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;max_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;format&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setFormat</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">format</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setFormat</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">format</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 </pre></div>
