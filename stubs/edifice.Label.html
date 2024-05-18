@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.Label &#8212; Edifice 0.5.5 documentation</title>
+    <title>edifice.Label &#8212; Edifice 0.5.6 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=dd742493"></script>
+    <script src="../_static/documentation_options.js?v=ca00a4f5"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,13 +134,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.5 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.5 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.6 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.6 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.5</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.6</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -170,6 +170,7 @@
 <li class="toctree-l2"><a class="reference internal" href="edifice.Button.html">edifice.Button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.TextInputMultiline.html">edifice.TextInputMultiline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.SpinInput.html">edifice.SpinInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -377,16 +378,16 @@ document.write(`
 <figure class="align-default">
 <a class="reference internal image-reference" href="../_images/label.png"><img alt="../_images/label.png" src="../_images/label.png" style="width: 500px;" /></a>
 </figure>
-<p>You can render rich text with the
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html">Qt supported HTML subset</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – the text to display. Can be any Python type; the text prop is converted to a string using str before being displayed</p></li>
-<li><p><strong>word_wrap</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – enable/disable word wrapping.</p></li>
-<li><p><strong>link_open</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – whether hyperlinks will open to the operating system. Defaults to False. <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks">PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks</a></p></li>
-<li><p><strong>selectable</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – whether the content of the label can be selected. Defaults to False.</p></li>
-<li><p><strong>editable</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – whether the content of the label can be edited. Defaults to False.</p></li>
+<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The text to display. You can render rich text with the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html">Qt supported HTML subset</a>.</p></li>
+<li><p><strong>word_wrap</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Enable/disable word wrapping.</p></li>
+<li><p><strong>link_open</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether hyperlinks will open to the operating system. Defaults to False.
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks">PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks</a></p></li>
+<li><p><strong>selectable</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the content of the label can be selected. Defaults to False.</p></li>
+<li><p><strong>editable</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the content of the label can be edited. Defaults to False.</p></li>
 </ul>
 </dd>
 </dl>

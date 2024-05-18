@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 0.5.4 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 0.5.6 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=6688a68e"></script>
+    <script src="../../../_static/documentation_options.js?v=ca00a4f5"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.4 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.4 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.6 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.6 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.6</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -169,6 +169,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Button.html">edifice.Button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.TextInputMultiline.html">edifice.TextInputMultiline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.SpinInput.html">edifice.SpinInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -702,22 +703,21 @@ document.write(`
 <span class="sd">    .. figure:: /image/label.png</span>
 <span class="sd">       :width: 500</span>
 
-<span class="sd">    You can render rich text with the</span>
-<span class="sd">    `Qt supported HTML subset &lt;https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html&gt;`_.</span>
-
 <span class="sd">    Args:</span>
-<span class="sd">        text: the text to display. Can be any Python type; the text prop is converted to a string using str before being displayed</span>
-<span class="sd">        word_wrap: enable/disable word wrapping.</span>
-<span class="sd">        link_open: whether hyperlinks will open to the operating system. Defaults to False. `PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks&gt;`_</span>
-<span class="sd">        selectable: whether the content of the label can be selected. Defaults to False.</span>
-<span class="sd">        editable: whether the content of the label can be edited. Defaults to False.</span>
+<span class="sd">        text: The text to display. You can render rich text with the</span>
+<span class="sd">            `Qt supported HTML subset &lt;https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html&gt;`_.</span>
+<span class="sd">        word_wrap: Enable/disable word wrapping.</span>
+<span class="sd">        link_open: Whether hyperlinks will open to the operating system. Defaults to False.</span>
+<span class="sd">            `PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.PySide6.QtWidgets.QLabel.setOpenExternalLinks&gt;`_</span>
+<span class="sd">        selectable: Whether the content of the label can be selected. Defaults to False.</span>
+<span class="sd">        editable: Whether the content of the label can be edited. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Label.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.Label.__init__.html#edifice.Label.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">text</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">selectable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">editable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">word_wrap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -738,7 +738,7 @@ document.write(`
 
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
@@ -750,7 +750,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">)),</span> <span class="n">size</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">size</span><span class="p">:</span> <span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">)),</span> <span class="n">size</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">size</span><span class="p">:</span> <span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">)),</span> <span class="n">size</span><span class="p">))</span>
 
         <span class="c1"># TODO</span>
         <span class="c1"># If you want the QLabel to fit the text then you must use adjustSize()</span>
@@ -759,34 +759,33 @@ document.write(`
 
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">])))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;word_wrap&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">word_wrap</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;link_open&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOpenExternalLinks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">link_open</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;selectable&quot;</span> <span class="ow">or</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;editable&quot;</span><span class="p">:</span>
-                <span class="n">interaction_flags</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">False</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">selectable</span><span class="p">:</span>
-                    <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">interaction_flags</span> <span class="o">=</span> <span class="p">(</span>
-                        <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByMouse</span>
-                        <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByKeyboard</span>
-                    <span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">editable</span><span class="p">:</span>
-                    <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="c1"># PyQt5 doesn&#39;t support bitwise or with ints</span>
-                    <span class="c1"># TODO What about PyQt6?</span>
-                    <span class="k">if</span> <span class="n">interaction_flags</span><span class="p">:</span>
-                        <span class="n">interaction_flags</span> <span class="o">|=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextEditable</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">interaction_flags</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextEditable</span>
-                <span class="k">if</span> <span class="n">change_cursor</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s2">&quot;word_wrap&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;word_wrap&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s2">&quot;link_open&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOpenExternalLinks</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;link_open&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s2">&quot;selectable&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;editable&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">interaction_flags</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">selectable</span><span class="p">:</span>
+                <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">interaction_flags</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByMouse</span>
+                    <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByKeyboard</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">editable</span><span class="p">:</span>
+                <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="c1"># PyQt5 doesn&#39;t support bitwise or with ints</span>
+                <span class="c1"># TODO What about PyQt6?</span>
                 <span class="k">if</span> <span class="n">interaction_flags</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTextInteractionFlags</span><span class="p">,</span> <span class="n">interaction_flags</span><span class="p">))</span>
+                    <span class="n">interaction_flags</span> <span class="o">|=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextEditable</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">interaction_flags</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextEditable</span>
+            <span class="k">if</span> <span class="n">change_cursor</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="n">interaction_flags</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTextInteractionFlags</span><span class="p">,</span> <span class="n">interaction_flags</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -969,6 +968,87 @@ document.write(`
             <span class="c1"># This setCursorPosition is needed because otherwise the cursor will</span>
             <span class="c1"># jump to the end of the text after the setText.</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursorPosition</span><span class="p">,</span> <span class="n">widget</span><span class="o">.</span><span class="n">cursorPosition</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="s2">&quot;placeholder_text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">placeholder_text</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">commands</span></div>
+
+
+
+<div class="viewcode-block" id="TextInputMultiline">
+<a class="viewcode-back" href="../../../stubs/edifice.TextInputMultiline.html#edifice.TextInputMultiline">[docs]</a>
+<span class="k">class</span> <span class="nc">TextInputMultiline</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a multiline text input.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">        `QTextEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTextEdit.html&gt;`_</span>
+
+<span class="sd">    Accepts only plain text, not “rich text.”</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text:</span>
+<span class="sd">            Initial text.</span>
+<span class="sd">        placeholder_text:</span>
+<span class="sd">            “Setting this property makes the editor display a grayed-out</span>
+<span class="sd">            placeholder text as long as the document() is empty.”</span>
+<span class="sd">            See `placeholderText &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTextEdit.html#PySide6.QtWidgets.QTextEdit.placeholderText&gt;`_.</span>
+<span class="sd">        on_change:</span>
+<span class="sd">            Event handler for when the value of the text input changes, but</span>
+<span class="sd">            only when the user is editing the text, not when the text prop</span>
+<span class="sd">            changes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TextInputMultiline.__init__">
+<a class="viewcode-back" href="../../../stubs/stubs/edifice.TextInputMultiline.__init__.html#edifice.TextInputMultiline.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder_text&quot;</span><span class="p">:</span> <span class="n">placeholder_text</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTextEdit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">textChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setAcceptRichText</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_change_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTextEdit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+            <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span><span class="p">)(</span><span class="n">widget</span><span class="o">.</span><span class="n">toPlainText</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">_set_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTextEdit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">widget</span><span class="o">.</span><span class="n">toPlainText</span><span class="p">()</span> <span class="o">==</span> <span class="n">text</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">setPlainText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">newprops</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTextEdit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+
+        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_text</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;placeholder_text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">placeholder_text</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
@@ -2103,7 +2183,7 @@ document.write(`
 
 <div class="viewcode-block" id="CustomWidget.create_widget">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.CustomWidget.create_widget.html#edifice.CustomWidget.create_widget">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">create_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 

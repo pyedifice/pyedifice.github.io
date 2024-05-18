@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Styling &#8212; Edifice 0.5.5 documentation</title>
+    <title>Styling &#8212; Edifice 0.5.6 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=dd742493"></script>
+    <script src="_static/documentation_options.js?v=ca00a4f5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,13 +134,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.5 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.5 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.6 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.6 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.5</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.6</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -170,6 +170,7 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Button.html">edifice.Button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TextInputMultiline.html">edifice.TextInputMultiline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.SpinInput.html">edifice.SpinInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -369,10 +370,13 @@ document.write(`
 should be separated from the <em>structure of the content</em>.
 In web development, HTML would represent the content structure,
 while CSS represents the formatting of the presentation.</p>
-<p>Edfice supports <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt widget styling</a>.
-The <strong>style prop</strong> of Edifice base <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> allows you to set the style for that component.
-It is either a dictionary or a list of dictionaries, in which case the dictionaries are merged from left to right.
-The keys of the dictionary are the supported style name, and the values are the value of that style name.</p>
+<p>Edfice supports <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt widget styling</a>.</p>
+<p>The <strong>style prop</strong> of Edifice base <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> allows
+you to set the style for that component.
+It is either a dictionary or a list of dictionaries, in which case the
+dictionaries are merged from left to right.
+The keys of the dictionary are the supported style name, and the values
+are the value of that style name.</p>
 <p>For example, if you want to make a label with <em>10px</em> margins, with <em>red</em> text
 in a <em>16pt</em> font on a <em>beige</em> <em>semi-transparent</em> background:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Label</span><span class="p">(</span>
@@ -398,27 +402,29 @@ font sizes, you can create a common style object encoding shared styles:</p>
     <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="n">LABEL_STYLE</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}])</span>
 </pre></div>
 </div>
-<p>Currently, the following CSS styles are tested to be supported:</p>
-<ul class="simple">
-<li><p><strong>color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
-<li><p><strong>font-size</strong>: Font size in points.</p></li>
-<li><p><strong>font-weight</strong>: A number indicating how bold the font should be.</p></li>
-<li><p><strong>background-color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
-<li><p><strong>margin</strong>: Margin in pixels. This is equivalent to CSS <code class="code docutils literal notranslate"><span class="pre">padding</span></code>. CSS <code class="code docutils literal notranslate"><span class="pre">margin</span></code> doesn’t exist in Qt.</p></li>
-<li><p><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong></p></li>
-<li><p><strong>border</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">color&quot;</span></code></p></li>
-<li><p><strong>border-left</strong>, etc.</p></li>
-<li><p><strong>height</strong>, <strong>width</strong>: Height/width in pixels.</p></li>
-<li><p><strong>min-height</strong>, <strong>max-height</strong>, etc.: Min/max height/width in pixels.</p></li>
-<li><p><strong>align</strong>: One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.</p></li>
-<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): Pixel offset from a
-<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> with <code class="code docutils literal notranslate"><span class="pre">layout=None</span></code>.</p></li>
-</ul>
 <p>All style properties supported by Qt will also work with Edifice.
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.
 Note that sometimes Qt styling behaves very differently from CSS styling
 (despite similar syntax and naming)
 and are not necessarily supported by all widgets.</p>
+<p>Currently, the following CSS styles are tested to be supported:</p>
+<ul class="simple">
+<li><p><strong>color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
+<li><p><strong>font-size</strong>: Font size in points.</p></li>
+<li><p><strong>font-weight</strong>: A number indicating how bold the font should be.</p></li>
+<li><p><strong>font-family</strong>: Font family name.</p></li>
+<li><p><strong>font-style</strong>: Font style, i.e. <code class="code docutils literal notranslate"><span class="pre">&quot;italic&quot;</span></code>.</p></li>
+<li><p><strong>background-color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
+<li><p><strong>margin</strong>: Interior margin in pixels. This is equivalent to CSS <code class="code docutils literal notranslate"><span class="pre">padding</span></code>. CSS <code class="code docutils literal notranslate"><span class="pre">margin</span></code> doesn’t exist in Qt.</p></li>
+<li><p><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong>: Interior margin in pixels.</p></li>
+<li><p><strong>border</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>height</strong>, <strong>width</strong>: Height/width in pixels.</p></li>
+<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: Min/max height/width in pixels.</p></li>
+<li><p><strong>align</strong>: One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.</p></li>
+<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): Pixel offset from a
+<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> with <code class="code docutils literal notranslate"><span class="pre">layout=None</span></code>.</p></li>
+</ul>
 </section>
 
 
