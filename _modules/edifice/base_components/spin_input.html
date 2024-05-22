@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.spin_input &#8212; Edifice 0.5.4 documentation</title>
+    <title>edifice.base_components.spin_input &#8212; Edifice 0.6.1 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=6688a68e"></script>
+    <script src="../../../_static/documentation_options.js?v=810a7e51"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.4 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.4 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.6.1 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.6.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.6.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -169,6 +169,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.Button.html">edifice.Button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.TextInputMultiline.html">edifice.TextInputMultiline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.SpinInput.html">edifice.SpinInput</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
@@ -459,6 +460,18 @@ document.write(`
         <span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_set_min_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">_SpinBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_max_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">_SpinBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
@@ -475,12 +488,12 @@ document.write(`
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="nb">setattr</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="s2">&quot;_textFromValue&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value_to_text</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;text_to_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="nb">setattr</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="s2">&quot;_valueFromText&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text_to_value</span><span class="p">))</span>
-        <span class="k">if</span> <span class="s2">&quot;min_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">min_value</span><span class="p">))</span>
-        <span class="k">if</span> <span class="s2">&quot;max_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;min_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_min_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">min_value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;max_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_max_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 </pre></div>
