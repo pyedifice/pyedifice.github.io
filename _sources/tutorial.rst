@@ -82,7 +82,11 @@ when the Element state changes.
 As you might expect, you can run this application simply with :code:`python tutorial.py`.
 However, let us take advantage of Edifice's :doc:`dynamic loading capability<developer_tools>`,
 so that we do not have to continually close the app and re-issue the command every time we change something.
-To run the app with dynamic loading, do::
+To run the app with dynamic loading, first install watchdog::
+
+    pip install watchdog
+
+then do::
 
     python -m edifice tutorial.py MyApp
 
@@ -171,7 +175,7 @@ If you want to see the state changes in action, you can open the Element Inspect
 
     python -m edifice --inspect tutorial.py MyApp
 
-The Element Inspector allows you to see the current state and props for all components in an UI (which, of course,
+The Element Inspector allows you to see the current state and props for all components in a UI (which, of course,
 was created with Edifice). Play around with the application and see how the state changes.
 
 Now suppose we want to add conversion from feet to meters. Instead of copying our code and repeating

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.extra.matplotlib_figure &#8212; Edifice 0.7.0 documentation</title>
+    <title>edifice.base_components.radio_button &#8212; Edifice 0.6.2 documentation</title>
   
   
   
@@ -35,11 +35,11 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=c62cc9a0"></script>
+    <script src="../../../_static/documentation_options.js?v=967efe37"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/extra/matplotlib_figure';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/radio_button';</script>
     <link rel="icon" href="../../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.6.2 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.6.2 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.6.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -315,110 +315,139 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <h1>Source code for edifice.extra.matplotlib_figure</h1><div class="highlight"><pre>
+  <h1>Source code for edifice.base_components.radio_button</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
-<span class="kn">from</span> <span class="nn">..base_components.base_components</span> <span class="kn">import</span> <span class="n">CommandType</span><span class="p">,</span> <span class="n">QtWidgetElement</span>
+<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">CommandType</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">,</span> <span class="n">_ensure_future</span>
 
 <span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 
-<span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span><span class="p">:</span>
-    <span class="k">pass</span>
+<span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">pass</span>
-
-<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_qtagg</span> <span class="kn">import</span> <span class="n">FigureCanvasQTAgg</span>
-<span class="kn">from</span> <span class="nn">matplotlib.backend_bases</span> <span class="kn">import</span> <span class="n">MouseEvent</span>
-<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
-<span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
+    <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
 
 
-<div class="viewcode-block" id="MatplotlibFigure">
-<a class="viewcode-back" href="../../../stubs/edifice.extra.MatplotlibFigure.html#edifice.extra.MatplotlibFigure">[docs]</a>
-<span class="k">class</span> <span class="nc">MatplotlibFigure</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A **matplotlib** `Figure &lt;https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure&gt;`_.</span>
+<span class="k">class</span> <span class="nc">EdRadioButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QRadioButton</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="sd">    Requires `matplotlib &lt;https://matplotlib.org/stable/&gt;`_.</span>
+    <span class="k">def</span> <span class="nf">nextCheckState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractButton.html#PySide6.QtWidgets.QAbstractButton.nextCheckState</span>
+
+<span class="sd">        We override this because we never want the radio button checked state to</span>
+<span class="sd">        be set directly by the user, or by the Qt radio button group mechanism.</span>
+<span class="sd">        We always want the checked state to be set by the checked prop.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="RadioButton">
+<a class="viewcode-back" href="../../../stubs/edifice.RadioButton.html#edifice.RadioButton">[docs]</a>
+<span class="k">class</span> <span class="nc">RadioButton</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Radio buttons.</span>
+
+<span class="sd">    * Underlying Qt Widget</span>
+<span class="sd">      `QRadioButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html&gt;`_</span>
+
+<span class="sd">    .. figure:: /image/radio_button.png</span>
+<span class="sd">       :width: 300</span>
+
+<span class="sd">       Three mutually exclusive radio buttons.</span>
+
+<span class="sd">    Radio buttons are used to specify a single choice out of many.</span>
+
+<span class="sd">    Because of the declarative nature of Edifice, we can ignore all of the</span>
+<span class="sd">    Qt mechanisms for radio button “groups” and “exclusivity.”</span>
+<span class="sd">    Just declare each radio button :code:`checked` prop to depend on the state.</span>
 
 <span class="sd">    Example::</span>
 
-<span class="sd">        from matplotlib.axes import Axes</span>
-<span class="sd">        import numpy as np</span>
-<span class="sd">        from edifice.extra import MatplotlibFigure</span>
+<span class="sd">        value, value_set = use_state(cast(Literal[&quot;op1&quot;, &quot;op2&quot;], &quot;op1&quot;))</span>
 
-<span class="sd">        def plot_fun(ax:Axes):</span>
-<span class="sd">            time_range = np.linspace(-10, 10, num=120)</span>
-<span class="sd">            ax.plot(time_range, np.sin(time_range))</span>
-
-<span class="sd">        MatplotlibFigure(plot_fun=plot_fun)</span>
+<span class="sd">        with ed.View():</span>
+<span class="sd">            # Exclusive RadioButtons with different parents</span>
+<span class="sd">            with ed.View():</span>
+<span class="sd">                ed.RadioButton(</span>
+<span class="sd">                    checked = value == &quot;op1&quot;,</span>
+<span class="sd">                    on_change = lambda checked: value_set(&quot;op1&quot;) if checked else None,</span>
+<span class="sd">                    text = &quot;Option 1&quot;,</span>
+<span class="sd">                    style = {} if value == &quot;op1&quot; else { &quot;color&quot;: &quot;grey&quot; },</span>
+<span class="sd">                )</span>
+<span class="sd">            with ed.View():</span>
+<span class="sd">                ed.RadioButton(</span>
+<span class="sd">                    checked = value == &quot;op2&quot;,</span>
+<span class="sd">                    on_change = lambda checked: value_set(&quot;op2&quot;) if checked else None,</span>
+<span class="sd">                    text = &quot;Option 2&quot;,</span>
+<span class="sd">                    style = {} if value == &quot;op1&quot; else { &quot;color&quot;: &quot;grey&quot; },</span>
+<span class="sd">                )</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        plot_fun:</span>
-<span class="sd">            Function which takes **matplotlib**</span>
-<span class="sd">            `Axes &lt;https://matplotlib.org/stable/api/axes_api.html&gt;`_</span>
-<span class="sd">            and calls</span>
-<span class="sd">            `Axes.plot &lt;https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html&gt;`_.</span>
-<span class="sd">        on_figure_mouse_move:</span>
-<span class="sd">            Handler for mouse move</span>
-<span class="sd">            `MouseEvent &lt;https://matplotlib.org/stable/api/backend_bases_api.html#matplotlib.backend_bases.MouseEvent&gt;`_.</span>
+<span class="sd">        checked:</span>
+<span class="sd">            Whether or not the RadioButton is checked.</span>
+<span class="sd">        text:</span>
+<span class="sd">            Text for the label of the RadioButton.</span>
+<span class="sd">        on_change:</span>
+<span class="sd">            Event handler for when the checked value changes, but</span>
+<span class="sd">            only when the user checks or unchecks, not when the checked prop</span>
+<span class="sd">            changes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MatplotlibFigure.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.extra.MatplotlibFigure.__init__.html#edifice.extra.MatplotlibFigure.__init__">[docs]</a>
+<div class="viewcode-block" id="RadioButton.__init__">
+<a class="viewcode-back" href="../../../stubs/stubs/edifice.RadioButton.__init__.html#edifice.RadioButton.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">plot_fun</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span>
-        <span class="n">on_figure_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">MouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
             <span class="p">{</span>
-                <span class="s2">&quot;plot_fun&quot;</span><span class="p">:</span> <span class="n">plot_fun</span><span class="p">,</span>
-                <span class="s2">&quot;on_figure_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_figure_mouse_move</span><span class="p">,</span>
+                <span class="s2">&quot;checked&quot;</span><span class="p">:</span> <span class="n">checked</span><span class="p">,</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
             <span class="p">}</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">:</span> <span class="n">FigureCanvasQTAgg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span><span class="p">:</span> <span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_plot_fun</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">EdRadioButton</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="c1"># We setAutoExclusive(False) because we don&#39;t want to use the Qt</span>
+        <span class="c1"># radio button group mechanism. We handle the exclusivity.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setAutoExclusive</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_clicked</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span><span class="p">)(</span><span class="ow">not</span> <span class="n">checked</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_checked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">EdRadioButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">checked</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">newprops</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="c1"># Default to maximum figsize https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.figaspect</span>
-            <span class="c1"># Constrain the Figure by putting it in a smaller View, it will resize itself correctly.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">FigureCanvasQTAgg</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">)))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Axes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">subplots</span><span class="p">())</span> <span class="c1"># TODO is this cast valid?</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">EdRadioButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
 
-        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="s2">&quot;plot_fun&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-
-            <span class="k">def</span> <span class="nf">_command_plot_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">current_plot_fun</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">plot_fun</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">current_plot_fun</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subplots</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-                <span class="c1"># alternately we could do draw_idle() here, but I don&#39;t think it&#39;s</span>
-                <span class="c1"># any better and it messes up the mouse events.</span>
-
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">_command_plot_fun</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
-        <span class="k">if</span> <span class="s2">&quot;on_figure_mouse_move&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-
-            <span class="k">def</span> <span class="nf">_command_mouse_move</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mpl_disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;on_figure_mouse_move&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span>
-                        <span class="s2">&quot;motion_notify_event&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;on_figure_mouse_move&quot;</span><span class="p">]</span>
-                    <span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_move_connect_id</span> <span class="o">=</span> <span class="kc">None</span>
-
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">_command_mouse_move</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;checked&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_checked</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 </pre></div>

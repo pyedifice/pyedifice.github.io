@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 0.6.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 0.6.2 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=3af6fc4c"></script>
+    <script src="../../../_static/documentation_options.js?v=967efe37"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.6.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.6.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.6.2 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.6.2 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.6.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.6.2</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
@@ -1146,177 +1146,6 @@ document.write(`
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_options</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">options</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;selection&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_current_index</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">selection</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">commands</span></div>
-
-
-
-<div class="viewcode-block" id="RadioButton">
-<a class="viewcode-back" href="../../../stubs/edifice.RadioButton.html#edifice.RadioButton">[docs]</a>
-<span class="k">class</span> <span class="nc">RadioButton</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Radio buttons.</span>
-
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QRadioButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html&gt;`_</span>
-
-<span class="sd">    .. figure:: /image/radio_button.png</span>
-<span class="sd">       :width: 300</span>
-
-<span class="sd">       Three mutually exclusive radio buttons.</span>
-
-<span class="sd">    Radio buttons are used to specify a single choice out of many.</span>
-<span class="sd">    Radio buttons belonging to the same parent Element are exclusive:</span>
-<span class="sd">    only one may be selected at a time.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        checked:</span>
-<span class="sd">            Whether or not the RadioButton is checked.</span>
-<span class="sd">        text:</span>
-<span class="sd">            Text for the label of the RadioButton.</span>
-<span class="sd">        on_change:</span>
-<span class="sd">            Event handler for when the checked value changes, but</span>
-<span class="sd">            only when the user checks or unchecks, not when the checked prop</span>
-<span class="sd">            changes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="RadioButton.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.RadioButton.__init__.html#edifice.RadioButton.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;checked&quot;</span><span class="p">:</span> <span class="n">checked</span><span class="p">,</span>
-                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-
-    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QRadioButton</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">toggled</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span><span class="p">)(</span><span class="n">checked</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_set_checked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QRadioButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">checked</span><span class="p">)</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">newprops</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QRadioButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-
-        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s2">&quot;checked&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_checked</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
-        <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="n">commands</span></div>
-
-
-
-<div class="viewcode-block" id="CheckBox">
-<a class="viewcode-back" href="../../../stubs/edifice.CheckBox.html#edifice.CheckBox">[docs]</a>
-<span class="k">class</span> <span class="nc">CheckBox</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checkbox widget.</span>
-
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QCheckBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCheckBox.html&gt;`_</span>
-
-<span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
-<span class="sd">       :width: 300</span>
-
-<span class="sd">       Checkbox on the left.</span>
-
-<span class="sd">    A checkbox allows the user to specify some boolean state.</span>
-
-<span class="sd">    The checked prop determines the initial check-state of the widget.</span>
-<span class="sd">    When the user toggles the check state, the :code:`on_change` callback is called</span>
-<span class="sd">    with the new check state.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        checked:</span>
-<span class="sd">            Whether or not the CheckBox is checked.</span>
-<span class="sd">        text:</span>
-<span class="sd">            Text for the label of the CheckBox.</span>
-<span class="sd">        on_change:</span>
-<span class="sd">            Event handler for when the checked value changes, but</span>
-<span class="sd">            only when the user checks or unchecks, not when the checked prop</span>
-<span class="sd">            changes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="CheckBox.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.CheckBox.__init__.html#edifice.CheckBox.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;checked&quot;</span><span class="p">:</span> <span class="n">checked</span><span class="p">,</span>
-                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-                <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-
-    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCheckBox</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">stateChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_change</span><span class="p">)(</span><span class="n">checked</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_set_checked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCheckBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">check_state</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CheckState</span><span class="o">.</span><span class="n">Checked</span> <span class="k">if</span> <span class="n">checked</span> <span class="k">else</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CheckState</span><span class="o">.</span><span class="n">Unchecked</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">setCheckState</span><span class="p">(</span><span class="n">check_state</span><span class="p">)</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">newprops</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCheckBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-
-        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
-        <span class="k">if</span> <span class="s2">&quot;checked&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_checked</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">checked</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.RadioButton &#8212; Edifice 0.6.2 documentation</title>
+    <title>edifice.RadioButton &#8212; Edifice 0.7.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=967efe37"></script>
+    <script src="../_static/documentation_options.js?v=c62cc9a0"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,13 +134,13 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.6.2 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.6.2 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.6.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
@@ -368,7 +368,7 @@ document.write(`
 <h1>edifice.RadioButton<a class="headerlink" href="#edifice-radiobutton" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.RadioButton">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">RadioButton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#RadioButton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.RadioButton" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">RadioButton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/radio_button.html#RadioButton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.RadioButton" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a></p>
 <p>Radio buttons.</p>
 <ul class="simple">
@@ -381,9 +381,31 @@ document.write(`
 <p><span class="caption-text">Three mutually exclusive radio buttons.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Radio buttons are used to specify a single choice out of many.
-Radio buttons belonging to the same parent Element are exclusive:
-only one may be selected at a time.</p>
+<p>Radio buttons are used to specify a single choice out of many.</p>
+<p>Because of the declarative nature of Edifice, we can ignore all of the
+Qt mechanisms for radio button “groups” and “exclusivity.”
+Just declare each radio button <code class="code docutils literal notranslate"><span class="pre">checked</span></code> prop to depend on the state.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;op1&quot;</span><span class="p">,</span> <span class="s2">&quot;op2&quot;</span><span class="p">],</span> <span class="s2">&quot;op1&quot;</span><span class="p">))</span>
+
+<span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">View</span><span class="p">():</span>
+    <span class="c1"># Exclusive RadioButtons with different parents</span>
+    <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">View</span><span class="p">():</span>
+        <span class="n">ed</span><span class="o">.</span><span class="n">RadioButton</span><span class="p">(</span>
+            <span class="n">checked</span> <span class="o">=</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op1&quot;</span><span class="p">,</span>
+            <span class="n">on_change</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">checked</span><span class="p">:</span> <span class="n">value_set</span><span class="p">(</span><span class="s2">&quot;op1&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">checked</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Option 1&quot;</span><span class="p">,</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op1&quot;</span> <span class="k">else</span> <span class="p">{</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;grey&quot;</span> <span class="p">},</span>
+        <span class="p">)</span>
+    <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">View</span><span class="p">():</span>
+        <span class="n">ed</span><span class="o">.</span><span class="n">RadioButton</span><span class="p">(</span>
+            <span class="n">checked</span> <span class="o">=</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op2&quot;</span><span class="p">,</span>
+            <span class="n">on_change</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">checked</span><span class="p">:</span> <span class="n">value_set</span><span class="p">(</span><span class="s2">&quot;op2&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">checked</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op1&quot;</span> <span class="k">else</span> <span class="p">{</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;grey&quot;</span> <span class="p">},</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial &#8212; Edifice 0.6.2 documentation</title>
+    <title>Tutorial &#8212; Edifice 0.7.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=967efe37"></script>
+    <script src="_static/documentation_options.js?v=c62cc9a0"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,13 +134,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.6.2 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.6.2 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.6.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial</a></li>
@@ -440,7 +440,11 @@ when the Element state changes.</p>
 <p>As you might expect, you can run this application simply with <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">tutorial.py</span></code>.
 However, let us take advantage of Edifice’s <a class="reference internal" href="developer_tools.html"><span class="doc">dynamic loading capability</span></a>,
 so that we do not have to continually close the app and re-issue the command every time we change something.
-To run the app with dynamic loading, do:</p>
+To run the app with dynamic loading, first install watchdog:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">watchdog</span>
+</pre></div>
+</div>
+<p>then do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">edifice</span> <span class="n">tutorial</span><span class="o">.</span><span class="n">py</span> <span class="n">MyApp</span>
 </pre></div>
 </div>
@@ -524,7 +528,7 @@ and it will trigger a re-render.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">edifice</span> <span class="o">--</span><span class="n">inspect</span> <span class="n">tutorial</span><span class="o">.</span><span class="n">py</span> <span class="n">MyApp</span>
 </pre></div>
 </div>
-<p>The Element Inspector allows you to see the current state and props for all components in an UI (which, of course,
+<p>The Element Inspector allows you to see the current state and props for all components in a UI (which, of course,
 was created with Edifice). Play around with the application and see how the state changes.</p>
 <p>Now suppose we want to add conversion from feet to meters. Instead of copying our code and repeating
 it for each measurement pair, we can factor out the conversion logic into its own component:</p>
