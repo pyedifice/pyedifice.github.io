@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Styling &#8212; Edifice 0.7.0 documentation</title>
+    <title>Styling &#8212; Edifice 0.7.1 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=c62cc9a0"></script>
+    <script src="_static/documentation_options.js?v=7dd04bbd"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,13 +134,13 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.1 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.1 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.0</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.1</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -339,7 +339,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -355,6 +357,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#widget-styling">Widget Styling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-styling">View Styling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-policy">Size Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-merging">Style Merging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-advice">Style Advice</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -366,28 +380,106 @@ document.write(`
                   
   <section id="styling">
 <h1>Styling<a class="headerlink" href="#styling" title="Link to this heading">#</a></h1>
-<p>Another important idea in UI design is that the <em>presentation of content</em>
-should be separated from the <em>structure of the content</em>.
-In web development, HTML would represent the content structure,
-while CSS represents the formatting of the presentation.</p>
-<p>Edfice supports <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt widget styling</a>.</p>
-<p>The <strong>style prop</strong> of Edifice base <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> allows
-you to set the style for that component.
+<p>Edfice supports
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt Widget Style Sheet Syntax</a>.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">style</span></code> <strong>prop</strong> of Edifice <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> allows
+you to set the style for that Element.
 It is either a dictionary or a list of dictionaries, in which case the
 dictionaries are merged from left to right.
 The keys of the dictionary are the supported style name, and the values
-are the value of that style name.</p>
+are the value of that style name which are usually either strings or numbers.</p>
 <p>For example, if you want to make a label with <em>10px</em> margins, with <em>red</em> text
 in a <em>16pt</em> font on a <em>beige</em> <em>semi-transparent</em> background:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Label</span><span class="p">(</span>
     <span class="s2">&quot;Red text&quot;</span><span class="p">,</span>
     <span class="n">style</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
         <span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
         <span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;rgba(245, 245, 220, 100)&quot;</span>
     <span class="p">})</span>
 </pre></div>
 </div>
+<p>All style properties supported by Qt will also work with Edifice.
+See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.</p>
+<p>Note that sometimes Qt styling behaves differently from CSS styling
+(despite similar syntax and naming) and is not supported by all widgets.</p>
+<p>Currently, the following styles are tested to be supported.</p>
+<section id="widget-styling">
+<h2>Widget Styling<a class="headerlink" href="#widget-styling" title="Link to this heading">#</a></h2>
+<p>Widgets follow the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html#box-model">Qt Style Sheet Box Model</a>.</p>
+<ul class="simple">
+<li><p><strong>color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
+<li><p><strong>font-size</strong>: Font size in points.</p></li>
+<li><p><strong>font-weight</strong>: A number indicating how bold the font should be.</p></li>
+<li><p><strong>font-family</strong>: Font family name.</p></li>
+<li><p><strong>font-style</strong>: Font style, i.e. <code class="code docutils literal notranslate"><span class="pre">&quot;italic&quot;</span></code>.</p></li>
+<li><p><strong>background-color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
+<li><p><strong>margin</strong>: Exterior margin in pixels.</p></li>
+<li><p><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong>: Exterior margin in pixels.</p></li>
+<li><p><strong>padding</strong>: Interior padding in pixels.</p></li>
+<li><p><strong>padding-left</strong>, <strong>padding-right</strong>, <strong>padding-top</strong>, <strong>padding-bottom</strong>: Interior padding in pixels.</p></li>
+<li><p><strong>border</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>border-width</strong>: Border width in pixels.</p></li>
+<li><p><strong>border-left-width</strong>, <strong>border-right-width</strong>, <strong>border-top-width</strong>, <strong>border-bottom-width</strong>: Border width in pixels.</p></li>
+<li><p><strong>border-style</strong>: Border style.</p></li>
+<li><p><strong>border-left-style</strong>, <strong>border-right-style</strong>, <strong>border-top-style</strong>, <strong>border-bottom-style</strong>: Border style.</p></li>
+<li><p><strong>border-color</strong>: Border color.</p></li>
+<li><p><strong>border-left-color</strong>, <strong>border-right-color</strong>, <strong>border-top-color</strong>, <strong>border-bottom-color</strong>: Border color.</p></li>
+<li><p><strong>border-radius</strong>: Border corner radius in pixels.</p></li>
+<li><p><strong>border-top-left-radius</strong>, <strong>border-top-right-radius</strong>, <strong>border-bottom-right-radius</strong>, <strong>border-bottom-left-radius</strong></p></li>
+<li><p><strong>height</strong>, <strong>width</strong>: Height/width in pixels.</p></li>
+<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: Min/max height/width in pixels.</p></li>
+<li><p><strong>align</strong>: One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.
+<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> with <code class="code docutils literal notranslate"><span class="pre">layout=None</span></code>.</p></li>
+<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): Position offset in pixels from a
+<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> with <code class="code docutils literal notranslate"><span class="pre">layout=None</span></code>.</p></li>
+</ul>
+</section>
+<section id="view-styling">
+<h2>View Styling<a class="headerlink" href="#view-styling" title="Link to this heading">#</a></h2>
+<p>Every Base Element named <code class="code docutils literal notranslate"><span class="pre">View</span></code> has an underlying
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html">QLayout</a>
+and follows slightly different rules than the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html#box-model">Qt Style Sheet Box Model</a>.</p>
+<p>Note especially that there is no <code class="code docutils literal notranslate"><span class="pre">margin</span></code> style for <code class="code docutils literal notranslate"><span class="pre">View</span></code> layout
+Elements. (Currently we allow setting the <code class="code docutils literal notranslate"><span class="pre">padding</span></code> with the
+<code class="code docutils literal notranslate"><span class="pre">margin</span></code> keyword, but probably this will be deprecated in the future.)</p>
+<p>Also note that the padding of a <code class="code docutils literal notranslate"><span class="pre">View</span></code> includes the border, so
+if you want a <em>2px</em> border around the <code class="code docutils literal notranslate"><span class="pre">View</span></code> then you should also
+set at least <em>2px</em> of padding so that the content does not obscure the border.</p>
+<ul class="simple">
+<li><p><strong>background-color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
+<li><p><strong>margin</strong>: Alias for <strong>padding</strong>. Interior padding in pixels.</p></li>
+<li><p><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong>: Interior padding in pixels.</p></li>
+<li><p><strong>padding</strong>: Interior padding in pixels.</p></li>
+<li><p><strong>padding-left</strong>, <strong>padding-right</strong>, <strong>padding-top</strong>, <strong>padding-bottom</strong>: Interior padding in pixels.</p></li>
+<li><p><strong>border</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>border-width</strong>: Border width in pixels.</p></li>
+<li><p><strong>border-left-width</strong>, <strong>border-right-width</strong>, <strong>border-top-width</strong>, <strong>border-bottom-width</strong>: Border width in pixels.</p></li>
+<li><p><strong>border-style</strong>: Border style.</p></li>
+<li><p><strong>border-left-style</strong>, <strong>border-right-style</strong>, <strong>border-top-style</strong>, <strong>border-bottom-style</strong>: Border style.</p></li>
+<li><p><strong>border-color</strong>: Border color.</p></li>
+<li><p><strong>border-left-color</strong>, <strong>border-right-color</strong>, <strong>border-top-color</strong>, <strong>border-bottom-color</strong>: Border color.</p></li>
+<li><p><strong>border-radius</strong>: Border corner radius in pixels.</p></li>
+<li><p><strong>border-top-left-radius</strong>, <strong>border-top-right-radius</strong>, <strong>border-bottom-right-radius</strong>, <strong>border-bottom-left-radius</strong></p></li>
+<li><p><strong>height</strong>, <strong>width</strong>: Height/width in pixels.</p></li>
+<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: Min/max height/width in pixels.</p></li>
+<li><p><strong>align</strong>: One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.</p></li>
+<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): Position offset in pixels from a
+<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> with <code class="code docutils literal notranslate"><span class="pre">layout=None</span></code>.</p></li>
+</ul>
+</section>
+<section id="size-policy">
+<h2>Size Policy<a class="headerlink" href="#size-policy" title="Link to this heading">#</a></h2>
+<p>The <code class="code docutils literal notranslate"><span class="pre">size_policy</span></code> <strong>prop</strong> of <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> is also
+sometimes useful for controlling the Qt layout behavior.</p>
+</section>
+<section id="style-merging">
+<h2>Style Merging<a class="headerlink" href="#style-merging" title="Link to this heading">#</a></h2>
 <p>If you want to make all <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Labels</span></code></a> be <em>red</em> but have labels of different
 font sizes, you can create a common style object encoding shared styles:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LABEL_STYLE</span> <span class="o">=</span> <span class="p">{</span>
@@ -402,29 +494,23 @@ font sizes, you can create a common style object encoding shared styles:</p>
     <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="n">LABEL_STYLE</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}])</span>
 </pre></div>
 </div>
-<p>All style properties supported by Qt will also work with Edifice.
-See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.
-Note that sometimes Qt styling behaves very differently from CSS styling
-(despite similar syntax and naming)
-and are not necessarily supported by all widgets.</p>
-<p>Currently, the following CSS styles are tested to be supported:</p>
+<p>You can also accomplish the same style merging with the Python dictionary
+merge operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">View</span><span class="p">():</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">LABEL_STYLE</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">LABEL_STYLE</span><span class="p">)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">LABEL_STYLE</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="style-advice">
+<h2>Style Advice<a class="headerlink" href="#style-advice" title="Link to this heading">#</a></h2>
+<p>Set global application styles:</p>
 <ul class="simple">
-<li><p><strong>color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
-<li><p><strong>font-size</strong>: Font size in points.</p></li>
-<li><p><strong>font-weight</strong>: A number indicating how bold the font should be.</p></li>
-<li><p><strong>font-family</strong>: Font family name.</p></li>
-<li><p><strong>font-style</strong>: Font style, i.e. <code class="code docutils literal notranslate"><span class="pre">&quot;italic&quot;</span></code>.</p></li>
-<li><p><strong>background-color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
-<li><p><strong>margin</strong>: Interior margin in pixels. This is equivalent to CSS <code class="code docutils literal notranslate"><span class="pre">padding</span></code>. CSS <code class="code docutils literal notranslate"><span class="pre">margin</span></code> doesn’t exist in Qt.</p></li>
-<li><p><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong>: Interior margin in pixels.</p></li>
-<li><p><strong>border</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
-<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
-<li><p><strong>height</strong>, <strong>width</strong>: Height/width in pixels.</p></li>
-<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: Min/max height/width in pixels.</p></li>
-<li><p><strong>align</strong>: One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.</p></li>
-<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): Pixel offset from a
-<a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> with <code class="code docutils literal notranslate"><span class="pre">layout=None</span></code>.</p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.QApplication.setStyleSheet">QApplication.setStyleSheet</a></p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.QApplication.setStyle">QApplication.setStyle</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -463,7 +549,24 @@ and are not necessarily supported by all widgets.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#widget-styling">Widget Styling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-styling">View Styling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-policy">Size Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-merging">Style Merging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-advice">Style Advice</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

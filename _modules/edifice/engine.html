@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 0.5.5 documentation</title>
+    <title>edifice.engine &#8212; Edifice 0.7.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=dd742493"></script>
+    <script src="../../_static/documentation_options.js?v=c62cc9a0"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,13 +133,13 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.5.5 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.5.5 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.5.5</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -1492,28 +1492,62 @@ document.write(`
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">new_margin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># QLayouts don&#39;t observe the Box Model.</span>
+            <span class="c1"># https://doc.qt.io/qtforpython-6/overviews/stylesheet-customizing.html#the-box-model</span>
+            <span class="c1">#</span>
+            <span class="c1"># The &quot;border&quot; style will work.</span>
+            <span class="c1">#</span>
+            <span class="c1"># The &quot;margin&quot; style will not work.</span>
+            <span class="c1">#</span>
+            <span class="c1"># The &quot;padding&quot; style will not work, but we can fake it by</span>
+            <span class="c1"># using QLayout.setContentsMargins().</span>
+            <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html#PySide6.QtWidgets.QLayout.setContentsMargins</span>
+            <span class="c1">#</span>
+            <span class="c1"># Also we keep the &quot;margin&quot; style for the QLayout because</span>
+            <span class="c1"># that&#39;s how PyEdifice has always worked and we don&#39;t want to</span>
+            <span class="c1"># break backwards compatibility for that yet.</span>
+            <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="s2">&quot;margin&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
+                <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin&quot;</span><span class="p">)</span>
-                <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-left&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-left&quot;</span><span class="p">]))</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-left&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-left&quot;</span><span class="p">)</span>
-                <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-right&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-right&quot;</span><span class="p">]))</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-right&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-right&quot;</span><span class="p">)</span>
-                <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-top&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-top&quot;</span><span class="p">]))</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-top&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-top&quot;</span><span class="p">)</span>
-                <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;margin-bottom&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_margin</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">]))</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">]))</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">)</span>
-                <span class="n">set_margin</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="s2">&quot;padding&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+                <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
+                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding&quot;</span><span class="p">)</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-left&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-left&quot;</span><span class="p">]))</span>
+                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-left&quot;</span><span class="p">)</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-right&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-right&quot;</span><span class="p">]))</span>
+                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-right&quot;</span><span class="p">)</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-top&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-top&quot;</span><span class="p">]))</span>
+                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-top&quot;</span><span class="p">)</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-bottom&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-bottom&quot;</span><span class="p">]))</span>
+                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-bottom&quot;</span><span class="p">)</span>
+                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
 
             <span class="n">set_align</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
@@ -1533,10 +1567,14 @@ document.write(`
                     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unknown alignment: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">])</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">set_margin</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">set_padding</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="n">CommandType</span><span class="p">(</span>
-                        <span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">,</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">new_margin</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                        <span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">,</span>
+                        <span class="n">new_padding</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                        <span class="n">new_padding</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="n">new_padding</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                        <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
             <span class="k">if</span> <span class="n">set_align</span><span class="p">:</span>
