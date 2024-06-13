@@ -414,8 +414,7 @@ the <a class="reference internal" href="#edifice.component" title="edifice.compo
 in the parent <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>’s render function.</p></li>
 </ol>
 <p>With these two features, you can declare how the parent
-container <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> will render its children.</p>
-<p>Example:</p>
+container <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> will render its children:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">ContainerComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span> <span class="n">children</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span><span class="o">=</span><span class="p">[]):</span>
     <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
@@ -438,20 +437,16 @@ the side-effect of inserting itself to the rendered <a class="reference internal
 as a child of the <code class="code docutils literal notranslate"><span class="pre">with</span></code> context layout Element.</p>
 <p>For that reason, you have to be careful about binding Elements to variables
 and passing them around. They will insert themselves at the time they are
-created. This code will <strong>NOT</strong> declare the intended Element tree.</p>
-<blockquote>
-<div><p>&#64;component
-def MySimpleComp(self, prop1, prop2, prop3):</p>
-<blockquote>
-<div><p>label3 = Label(prop3)
-with View():</p>
-<blockquote>
-<div><p>Label(prop1)
-Label(prop2)
-label3</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+created. This code will <strong>NOT</strong> declare the intended Element tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
+    <span class="n">label3</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">prop3</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">prop1</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">prop2</span><span class="p">)</span>
+        <span class="n">label3</span>
+</pre></div>
+</div>
 <p>To solve this, defer the construction of the Element with a lambda function.
 This code will declare the same intended Element tree as the code above:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>

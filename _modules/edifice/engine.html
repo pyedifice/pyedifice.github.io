@@ -956,21 +956,19 @@ document.write(`
 <span class="sd">       in the parent :func:`component`’s render function.</span>
 
 <span class="sd">    With these two features, you can declare how the parent</span>
-<span class="sd">    container :func:`component` will render its children.</span>
+<span class="sd">    container :func:`component` will render its children::</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">        @component</span>
+<span class="sd">        def ContainerComponent(self:Element, children:list[Element]=[]):</span>
+<span class="sd">            with View():</span>
+<span class="sd">                for child in children:</span>
+<span class="sd">                    with View():</span>
+<span class="sd">                        child_place(child)</span>
 
-<span class="sd">            @component</span>
-<span class="sd">            def ContainerComponent(self:Element, children:list[Element]=[]):</span>
-<span class="sd">                with View():</span>
-<span class="sd">                    for child in children:</span>
-<span class="sd">                        with View():</span>
-<span class="sd">                            child_place(child)</span>
-
-<span class="sd">            with ContainerComponent():</span>
-<span class="sd">                Label(&quot;First Child&quot;)</span>
-<span class="sd">                Label(&quot;Second Child&quot;)</span>
-<span class="sd">                Label(&quot;Third Child&quot;)</span>
+<span class="sd">        with ContainerComponent():</span>
+<span class="sd">            Label(&quot;First Child&quot;)</span>
+<span class="sd">            Label(&quot;Second Child&quot;)</span>
+<span class="sd">            Label(&quot;Third Child&quot;)</span>
 
 <span class="sd">    Element initialization is a render side-effect</span>
 <span class="sd">    ----------------------------------------------</span>
@@ -982,7 +980,7 @@ document.write(`
 
 <span class="sd">    For that reason, you have to be careful about binding Elements to variables</span>
 <span class="sd">    and passing them around. They will insert themselves at the time they are</span>
-<span class="sd">    created. This code will **NOT** declare the intended Element tree.</span>
+<span class="sd">    created. This code will **NOT** declare the intended Element tree::</span>
 
 <span class="sd">        @component</span>
 <span class="sd">        def MySimpleComp(self, prop1, prop2, prop3):</span>
