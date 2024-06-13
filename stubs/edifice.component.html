@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.component &#8212; Edifice 0.7.3 documentation</title>
+    <title>edifice.component &#8212; Edifice 0.7.4 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=d15849c6"></script>
+    <script src="../_static/documentation_options.js?v=444dcb17"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -44,8 +44,8 @@
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.App" href="edifice.App.html" />
-    <link rel="prev" title="Edifice Core" href="../edifice.html" />
+    <link rel="next" title="edifice.child_place" href="edifice.child_place.html" />
+    <link rel="prev" title="edifice.Element.set_key" href="stubs/edifice.Element.set_key.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -134,23 +134,24 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.3 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.3 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.4 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.4 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.3</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.4</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../edifice.html">Edifice Core</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="edifice.Element.html">edifice.Element</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">edifice.component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edifice.child_place.html">edifice.child_place</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.App.html">edifice.App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edifice.Reference.html">edifice.Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -385,26 +386,72 @@ single root:</p>
         <span class="n">Label</span><span class="p">(</span><span class="n">prop3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To declare an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> to be the parent of some other
-<a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> s in the tree, use the parent as a
-<a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#context-managers">with statement context manager</a>.</p>
-<p>To introduce <strong>state</strong> into a component, use <a class="reference internal" href="../hooks.html"><span class="doc">Hooks</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">P</span></code>)], <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.engine.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>]</span></p>
+</dd>
+</dl>
+<section id="state">
+<h2>State<a class="headerlink" href="#state" title="Link to this heading">#</a></h2>
+<p>The <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> function is a stateless function from <strong>props</strong>
+to an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.
+To introduce <strong>state</strong> into a <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>, use <a class="reference internal" href="../hooks.html"><span class="doc">Hooks</span></a>.</p>
+</section>
+<section id="composition">
+<h2>Composition<a class="headerlink" href="#composition" title="Link to this heading">#</a></h2>
+<p>An <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>’s children can be passed to it as <strong>props</strong>. This allows a
+<a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> to act as a parent container for other <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> s,
+and to render them in a specific layout.</p>
+<p>There are two features to accomplish this.</p>
+<ol class="arabic">
+<li><p>The special <code class="code docutils literal notranslate"><span class="pre">children</span></code> <strong>prop</strong> is a list of <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> s.
+This special <strong>prop</strong> must always be declared as a <strong>keyword argument</strong>
+with a default value.</p>
+<p>Do not explicitly pass the <code class="code docutils literal notranslate"><span class="pre">children</span></code> <strong>prop</strong> when calling
+the <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>. The children will be passed implicitly.</p>
+</li>
+<li><p>The <a class="reference internal" href="edifice.child_place.html#edifice.child_place" title="edifice.child_place"><code class="xref py py-func docutils literal notranslate"><span class="pre">child_place()</span></code></a> function is used to place the <code class="code docutils literal notranslate"><span class="pre">children</span></code>
+in the parent <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>’s render function.</p></li>
+</ol>
+<p>With these two features, you can declare how the parent
+container <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> will render its children.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">ContainerComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span> <span class="n">children</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
+                <span class="n">child_place</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">ContainerComponent</span><span class="p">():</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;First Child&quot;</span><span class="p">)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Second Child&quot;</span><span class="p">)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Third Child&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="element-initialization-is-a-render-side-effect">
+<h2>Element initialization is a render side-effect<a class="headerlink" href="#element-initialization-is-a-render-side-effect" title="Link to this heading">#</a></h2>
 <p>Each <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> is actually implemented as the constructor function
 for a Python class. The <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> constructor function also has
 the side-effect of inserting itself to the rendered <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree,
 as a child of the <code class="code docutils literal notranslate"><span class="pre">with</span></code> context layout Element.</p>
 <p>For that reason, you have to be careful about binding Elements to variables
 and passing them around. They will insert themselves at the time they are
-created. This code will <strong>NOT</strong> declare the intended Element tree, same as the code above:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
-    <span class="n">label3</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">prop3</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">prop1</span><span class="p">)</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">prop2</span><span class="p">)</span>
-        <span class="n">label3</span>
-</pre></div>
-</div>
+created. This code will <strong>NOT</strong> declare the intended Element tree.</p>
+<blockquote>
+<div><p>&#64;component
+def MySimpleComp(self, prop1, prop2, prop3):</p>
+<blockquote>
+<div><p>label3 = Label(prop3)
+with View():</p>
+<blockquote>
+<div><p>Label(prop1)
+Label(prop2)
+label3</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 <p>To solve this, defer the construction of the Element with a lambda function.
 This code will declare the same intended Element tree as the code above:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
@@ -426,18 +473,23 @@ a normal render function with no decorator:</p>
         <span class="n">Label</span><span class="p">(</span><span class="n">prop3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>instead. The difference is, with the decorator, an actual <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> object is created,
-which can be viewed, for example, in the inspector. Moreover, you need an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> to
-be able to use Hooks such as <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>, since those are bound to an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+<p>instead. The difference is, with the <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> decorator, an
+actual <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> object is created,
+which means that subsequent renders will be skipped if the <strong>props</strong> didn’t change.
+Also we need an <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> to
+be able to use Hooks such as <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>, because those are bound to
+an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Concatenate</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">C</span></code>, bound= <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.engine.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>), <code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">P</span></code>)]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – the function to wrap. Its first argument must be self.
+<dt class="field-odd">type f<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Concatenate</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">selfT</span></code>, bound= <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.engine.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>), <code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">P</span></code>)]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+<dt class="field-even">param f<span class="colon">:</span></dt>
+<dd class="field-even"><p>The render function to wrap.
+Its first argument must be <code class="code docutils literal notranslate"><span class="pre">self</span></code>.
 Subsequent arguments are <strong>props</strong>.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">P</span></code>)], <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.engine.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>]</span></p>
-</dd>
 </dl>
+</section>
 </dd></dl>
 
 </section>
@@ -454,20 +506,20 @@ Subsequent arguments are <strong>props</strong>.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../edifice.html"
+       href="stubs/edifice.Element.set_key.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Edifice Core</p>
+        <p class="prev-next-title">edifice.Element.set_key</p>
       </div>
     </a>
     <a class="right-next"
-       href="edifice.App.html"
+       href="edifice.child_place.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.App</p>
+        <p class="prev-next-title">edifice.child_place</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

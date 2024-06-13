@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 0.7.2 documentation</title>
+    <title>edifice.engine &#8212; Edifice 0.7.4 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=6aa4cbdb"></script>
+    <script src="../../_static/documentation_options.js?v=444dcb17"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,23 +133,24 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.2 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.2 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.4 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.4 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.2</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.4</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Element.html">edifice.Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.component.html">edifice.component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.child_place.html">edifice.child_place</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.App.html">edifice.App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Reference.html">edifice.Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Element.html">edifice.Element</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -687,6 +688,16 @@ document.write(`
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="s2">&quot;render_context&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
 
+<div class="viewcode-block" id="child_place">
+<a class="viewcode-back" href="../../stubs/edifice.child_place.html#edifice.child_place">[docs]</a>
+<span class="k">def</span> <span class="nf">child_place</span><span class="p">(</span><span class="n">component</span><span class="p">:</span> <span class="s2">&quot;Element&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Place a child passed through the special :code:`children` **props** into</span>
+<span class="sd">    the layout of a parent :func:`component`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">get_render_context</span><span class="p">()</span><span class="o">.</span><span class="n">trackers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append_child</span><span class="p">(</span><span class="n">component</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Element">
 <a class="viewcode-back" href="../../stubs/edifice.Element.html#edifice.Element">[docs]</a>
 <span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
@@ -894,16 +905,15 @@ document.write(`
 
 
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
-<span class="n">C</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Element</span><span class="p">)</span>
+<span class="n">selfT</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;selfT&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Element</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">not_ignored</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span>
 
-
 <div class="viewcode-block" id="component">
 <a class="viewcode-back" href="../../stubs/edifice.component.html#edifice.component">[docs]</a>
-<span class="k">def</span> <span class="nf">component</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Concatenate</span><span class="p">[</span><span class="n">C</span><span class="p">,</span> <span class="n">P</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Element</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">component</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Concatenate</span><span class="p">[</span><span class="n">selfT</span><span class="p">,</span> <span class="n">P</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Element</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator turning a render function of **props** into an :class:`Element`.</span>
 
 <span class="sd">    The component will be re-rendered when its **props** are not :code:`__eq__`</span>
@@ -920,11 +930,50 @@ document.write(`
 <span class="sd">                Label(prop2)</span>
 <span class="sd">                Label(prop3)</span>
 
-<span class="sd">    To declare an :class:`Element` to be the parent of some other</span>
-<span class="sd">    :class:`Element` s in the tree, use the parent as a</span>
-<span class="sd">    `with statement context manager &lt;https://docs.python.org/3/reference/datamodel.html#context-managers&gt;`_.</span>
+<span class="sd">    State</span>
+<span class="sd">    -----</span>
 
-<span class="sd">    To introduce **state** into a component, use :doc:`Hooks &lt;../hooks&gt;`.</span>
+<span class="sd">    The :func:`component` function is a stateless function from **props**</span>
+<span class="sd">    to an :class:`Element`.</span>
+<span class="sd">    To introduce **state** into a :func:`component`, use :doc:`Hooks &lt;../hooks&gt;`.</span>
+
+<span class="sd">    Composition</span>
+<span class="sd">    -----------</span>
+
+<span class="sd">    An :func:`component`’s children can be passed to it as **props**. This allows a</span>
+<span class="sd">    :func:`component` to act as a parent container for other :class:`Element` s,</span>
+<span class="sd">    and to render them in a specific layout.</span>
+
+<span class="sd">    There are two features to accomplish this.</span>
+
+<span class="sd">    1. The special :code:`children` **prop** is a list of :class:`Element` s.</span>
+<span class="sd">       This special **prop** must always be declared as a **keyword argument**</span>
+<span class="sd">       with a default value.</span>
+
+<span class="sd">       Do not explicitly pass the :code:`children` **prop** when calling</span>
+<span class="sd">       the :func:`component`. The children will be passed implicitly.</span>
+<span class="sd">    2. The :func:`child_place` function is used to place the :code:`children`</span>
+<span class="sd">       in the parent :func:`component`’s render function.</span>
+
+<span class="sd">    With these two features, you can declare how the parent</span>
+<span class="sd">    container :func:`component` will render its children.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">            @component</span>
+<span class="sd">            def ContainerComponent(self:Element, children:list[Element]=[]):</span>
+<span class="sd">                with View():</span>
+<span class="sd">                    for child in children:</span>
+<span class="sd">                        with View():</span>
+<span class="sd">                            child_place(child)</span>
+
+<span class="sd">            with ContainerComponent():</span>
+<span class="sd">                Label(&quot;First Child&quot;)</span>
+<span class="sd">                Label(&quot;Second Child&quot;)</span>
+<span class="sd">                Label(&quot;Third Child&quot;)</span>
+
+<span class="sd">    Element initialization is a render side-effect</span>
+<span class="sd">    ----------------------------------------------</span>
 
 <span class="sd">    Each :class:`Element` is actually implemented as the constructor function</span>
 <span class="sd">    for a Python class. The :class:`Element` constructor function also has</span>
@@ -933,7 +982,7 @@ document.write(`
 
 <span class="sd">    For that reason, you have to be careful about binding Elements to variables</span>
 <span class="sd">    and passing them around. They will insert themselves at the time they are</span>
-<span class="sd">    created. This code will **NOT** declare the intended Element tree, same as the code above::</span>
+<span class="sd">    created. This code will **NOT** declare the intended Element tree.</span>
 
 <span class="sd">        @component</span>
 <span class="sd">        def MySimpleComp(self, prop1, prop2, prop3):</span>
@@ -964,13 +1013,19 @@ document.write(`
 <span class="sd">                Label(prop2)</span>
 <span class="sd">                Label(prop3)</span>
 
-<span class="sd">    instead. The difference is, with the decorator, an actual :class:`Element` object is created,</span>
-<span class="sd">    which can be viewed, for example, in the inspector. Moreover, you need an :class:`Element` to</span>
-<span class="sd">    be able to use Hooks such as :func:`use_state`, since those are bound to an :class:`Element`.</span>
+<span class="sd">    instead. The difference is, with the :func:`component` decorator, an</span>
+<span class="sd">    actual :class:`Element` object is created,</span>
+<span class="sd">    which means that subsequent renders will be skipped if the **props** didn’t change.</span>
+<span class="sd">    Also we need an :func:`component` to</span>
+<span class="sd">    be able to use Hooks such as :func:`use_state`, because those are bound to</span>
+<span class="sd">    an :class:`Element`.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        f: the function to wrap. Its first argument must be self.</span>
+<span class="sd">        f:</span>
+<span class="sd">            The render function to wrap.</span>
+<span class="sd">            Its first argument must be :code:`self`.</span>
 <span class="sd">            Subsequent arguments are **props**.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">varnames</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__code__</span><span class="o">.</span><span class="n">co_varnames</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
     <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
@@ -991,8 +1046,10 @@ document.write(`
         <span class="k">def</span> <span class="nf">_render_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_d</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
             <span class="k">if</span> <span class="s2">&quot;children&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">varnames</span><span class="p">:</span>
                 <span class="k">del</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span>
+
             <span class="c1"># We cannot type this because PropsDict forgets the types</span>
             <span class="c1"># call the render function</span>
             <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># type: ignore[reportGeneralTypeIssues]</span>
