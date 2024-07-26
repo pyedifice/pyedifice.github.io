@@ -33,6 +33,5 @@ edifice.TabView
    
       ~TabView.children
       ~TabView.props
-      ~TabView.underlying
    
    

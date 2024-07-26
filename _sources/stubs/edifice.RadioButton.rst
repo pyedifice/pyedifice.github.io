@@ -33,6 +33,5 @@ edifice.RadioButton
    
       ~RadioButton.children
       ~RadioButton.props
-      ~RadioButton.underlying
    
    

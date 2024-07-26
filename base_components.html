@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Base Elements &#8212; Edifice 0.7.4 documentation</title>
+    <title>Base Elements &#8212; Edifice 0.8.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=444dcb17"></script>
+    <script src="_static/documentation_options.js?v=d6acfc83"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,14 +134,14 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.4 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.4 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.8.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -158,8 +158,12 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ExportList.html">edifice.ExportList</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.View.html">edifice.View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.VBoxView.html">edifice.VBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.HBoxView.html">edifice.HBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.FixView.html">edifice.FixView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.VScrollView.html">edifice.VScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.HScrollView.html">edifice.HScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.FixScrollView.html">edifice.FixScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
@@ -195,6 +199,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="extra.html">Extra Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.html">edifice.extra.PyQtPlot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.html">edifice.extra.MatplotlibFigure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.NumpyImage.html">edifice.extra.NumpyImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.NumpyArray.html">edifice.extra.NumpyArray</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Utility functions</a></li>
@@ -364,6 +370,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout-base-elements">Layout Base Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-base-elements">Content Base Elements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#events">Events</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-widgets">Custom Widgets</a></li>
 </ul>
@@ -386,46 +394,62 @@ Base Element manages an underlying
 <p>If the Base Element is a layout, then it also manages an underlying
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html">QLayout</a>,
 and it can have children.</p>
-<p>When the base Element renders, it adjusts the properties of the
-underlying QWidget and QLayout.</p>
 <p>All Elements in this module inherit from <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>
 and its props, such as <code class="code docutils literal notranslate"><span class="pre">style</span></code> and <code class="code docutils literal notranslate"><span class="pre">on_click</span></code>.
-This means that all Elements can respond to clicks and are stylable using
-<code class="code docutils literal notranslate"><span class="pre">style</span></code> prop and <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html">Qt Style Sheets</a>.</p>
-<p>Base Element can roughly be divided into layout Elements and leaf Elements.</p>
-<p>Layout Elements take a list of children and function as a container for its children;
-it is most analogous to the <code class="code docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code> html tag.
-The two basic layout components are <a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> and <a class="reference internal" href="stubs/edifice.ScrollView.html#edifice.ScrollView" title="edifice.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
-They take a layout prop, which controls whether children are laid out in a row,
-a column, or without any preset layout.
-A layout component without children will appear as an empty spot in the window;
-of course, you could still set the background color, borders,
-and size, making this a handy way of reserving blank spot on the screen
-or drawing an empty rectangle.</p>
-<p>Content components display some information or control on the window.
-The basic component for displaying text is <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a>,
-which simply displays the given text (or any Python object).
-The font can be controlled using the style prop.
-The <a class="reference internal" href="stubs/edifice.Icon.html#edifice.Icon" title="edifice.Icon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Icon</span></code></a> component is another handy component, displaying an icon from the
-Font Awesome icon set.
-Finally, the <a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-class docutils literal notranslate"><span class="pre">Button</span></code></a> and <a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextInput</span></code></a>
-components allow you to collect input from the user.</p>
+This means that all Base Elements can respond to clicks and are stylable using
+<code class="code docutils literal notranslate"><span class="pre">style</span></code> prop, see <a class="reference internal" href="styling.html"><span class="doc">Styling</span></a>.</p>
+<p>Base Element can roughly be divided into Layout Elements and Content Elements.</p>
+<section id="layout-base-elements">
+<h2>Layout Base Elements<a class="headerlink" href="#layout-base-elements" title="Link to this heading">#</a></h2>
+<p>All of the Layout Base Elements have the name suffix <code class="code docutils literal notranslate"><span class="pre">View</span></code>.</p>
+<p>Layout Base Elements are containers for children, like the <code class="code docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code> HTML tag.</p>
+<p>To render a Layout Base Element, always use the <code class="code docutils literal notranslate"><span class="pre">with</span></code> statement
+and indent the element’s children:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello, World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The basic Layout Base Elements are <a class="reference internal" href="stubs/edifice.VBoxView.html#edifice.VBoxView" title="edifice.VBoxView"><code class="xref py py-class docutils literal notranslate"><span class="pre">VBoxView</span></code></a>
+and <a class="reference internal" href="stubs/edifice.VScrollView.html#edifice.VScrollView" title="edifice.VScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">VScrollView</span></code></a>.</p>
+</section>
+<section id="content-base-elements">
+<h2>Content Base Elements<a class="headerlink" href="#content-base-elements" title="Link to this heading">#</a></h2>
+<p>Content Base Elements render a single Qt Widget and do not have children.</p>
+<p>The basic element for displaying text is <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a>.
+The font can be controlled using the <code class="code docutils literal notranslate"><span class="pre">style</span></code> prop.</p>
+<p>The <a class="reference internal" href="stubs/edifice.Icon.html#edifice.Icon" title="edifice.Icon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Icon</span></code></a> element displays an icon from the
+Font Awesome icon set.</p>
+<p>The <a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-class docutils literal notranslate"><span class="pre">Button</span></code></a> and <a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextInput</span></code></a>
+elements collect input from the user.</p>
+</section>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>([style, tool_tip, cursor, ...])</p></td>
 <td><p>Base Qt Widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Window</span></code></a>([title, icon, menu, on_close])</p></td>
-<td><p>The root <a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></a> element of an <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> which runs in an operating system window.</p></td>
+<td><p>The root <code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code> element of an <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> which runs in an operating system window.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportList</span></code></a>()</p></td>
 <td><p>The root element for an App which does <a class="reference internal" href="stubs/stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.export_widgets()</span></code></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-obj docutils literal notranslate"><span class="pre">View</span></code></a>([layout])</p></td>
-<td><p>Basic layout widget for grouping children together.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.VBoxView.html#edifice.VBoxView" title="edifice.VBoxView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VBoxView</span></code></a>(**kwargs)</p></td>
+<td><p>Vertical column layout view for child elements.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.ScrollView.html#edifice.ScrollView" title="edifice.ScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScrollView</span></code></a>([layout])</p></td>
-<td><p>Scrollable layout widget for grouping children together.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.HBoxView.html#edifice.HBoxView" title="edifice.HBoxView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HBoxView</span></code></a>(**kwargs)</p></td>
+<td><p>Horizontal row layout view for child elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.FixView.html#edifice.FixView" title="edifice.FixView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FixView</span></code></a>(**kwargs)</p></td>
+<td><p>View layout for child widgets with fixed position.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.VScrollView.html#edifice.VScrollView" title="edifice.VScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VScrollView</span></code></a>(**kwargs)</p></td>
+<td><p>Scrollable vertical column layout widget for grouping children together.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.HScrollView.html#edifice.HScrollView" title="edifice.HScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HScrollView</span></code></a>(**kwargs)</p></td>
+<td><p>Scrollable horizontal row layout widget for grouping children together.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.FixScrollView.html#edifice.FixScrollView" title="edifice.FixScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FixScrollView</span></code></a>([layout])</p></td>
+<td><p>Scrollable layout widget for child widgets with fixed position.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TabView.html#edifice.TabView" title="edifice.TabView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabView</span></code></a>([labels])</p></td>
 <td><p>Widget with multiple tabs.</p></td>
@@ -439,8 +463,8 @@ components allow you to collect input from the user.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.FlowView.html#edifice.FlowView" title="edifice.FlowView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowView</span></code></a>(**kwargs)</p></td>
 <td><p>Flow-style layout widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>([text, selectable, editable, ...])</p></td>
-<td><p>Basic widget for displaying text.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>(newprops, super_commands[, text, ...])</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Image.html#edifice.Image" title="edifice.Image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Image</span></code></a>(src[, aspect_ratio_mode])</p></td>
 <td><p>An image container.</p></td>
@@ -457,8 +481,8 @@ components allow you to collect input from the user.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Button.html#edifice.Button" title="edifice.Button"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Button</span></code></a>([title])</p></td>
 <td><p>Basic button widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ButtonView.html#edifice.ButtonView" title="edifice.ButtonView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ButtonView</span></code></a>([layout, on_trigger])</p></td>
-<td><p>A Button where the label is the Button’s children rendered in a <a class="reference internal" href="stubs/edifice.View.html#edifice.View" title="edifice.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.View</span></code></a>.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ButtonView.html#edifice.ButtonView" title="edifice.ButtonView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ButtonView</span></code></a>([on_trigger])</p></td>
+<td><p>A Button where the label is the Button’s children rendered in a <a class="reference internal" href="stubs/edifice.HBoxView.html#edifice.HBoxView" title="edifice.HBoxView"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.HBoxView</span></code></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextInput</span></code></a>([text, placeholder_text, ...])</p></td>
 <td><p>Basic widget for a one line text input.</p></td>
@@ -612,6 +636,8 @@ QtWidgets to an Edifice Element.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout-base-elements">Layout Base Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-base-elements">Content Base Elements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#events">Events</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-widgets">Custom Widgets</a></li>
 </ul>

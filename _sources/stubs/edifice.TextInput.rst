@@ -33,6 +33,5 @@ edifice.TextInput
    
       ~TextInput.children
       ~TextInput.props
-      ~TextInput.underlying
    
    

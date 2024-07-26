@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extra Elements &#8212; Edifice 0.7.4 documentation</title>
+    <title>Extra Elements &#8212; Edifice 0.8.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=444dcb17"></script>
+    <script src="_static/documentation_options.js?v=d6acfc83"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,14 +134,14 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.4 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.4 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.8.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -158,8 +158,12 @@
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ExportList.html">edifice.ExportList</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.View.html">edifice.View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.ScrollView.html">edifice.ScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.VBoxView.html">edifice.VBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.HBoxView.html">edifice.HBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.FixView.html">edifice.FixView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.VScrollView.html">edifice.VScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.HScrollView.html">edifice.HScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.FixScrollView.html">edifice.FixScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
@@ -195,10 +199,13 @@
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Extra Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.html">edifice.extra.PyQtPlot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.html">edifice.extra.MatplotlibFigure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.NumpyImage.html">edifice.extra.NumpyImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stubs/edifice.extra.NumpyArray.html">edifice.extra.NumpyArray</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Utility functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer_tools.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="future.html">Roadmap</a></li>
 </ul>
 
@@ -367,8 +374,10 @@ document.write(`
                   
   <section id="extra-elements">
 <h1>Extra Elements<a class="headerlink" href="#extra-elements" title="Link to this heading">#</a></h1>
-<p>Edifice also provides a few extra Elements that provide useful but non-core features.</p>
-<p>These Elements are <em>not</em> imported into the <code class="code docutils literal notranslate"><span class="pre">edifice</span></code> namespace.
+<p>Edifice provides a few extra Elements that provide useful but non-core
+features.</p>
+<p>These Elements have additional dependencies, so they are
+not included in the <code class="code docutils literal notranslate"><span class="pre">edifice</span></code> module.
 To use them, you have to import from the module <code class="code docutils literal notranslate"><span class="pre">edifice.extra</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">edifice.extra</span> <span class="kn">import</span> <span class="n">MatplotlibFigure</span>
 </pre></div>
@@ -381,6 +390,12 @@ To use them, you have to import from the module <code class="code docutils liter
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.html#edifice.extra.MatplotlibFigure" title="edifice.extra.MatplotlibFigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatplotlibFigure</span></code></a>(plot_fun[, ...])</p></td>
 <td><p>A <strong>matplotlib</strong> <a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure">Figure</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.NumpyImage.html#edifice.extra.NumpyImage" title="edifice.extra.NumpyImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NumpyImage</span></code></a>(src[, aspect_ratio_mode])</p></td>
+<td><p>Render a <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> array as an image.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.NumpyArray.html#edifice.extra.NumpyArray" title="edifice.extra.NumpyArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NumpyArray</span></code></a>(np_array)</p></td>
+<td><p>Wrapper for one <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">numpy.ndarray</a>.</p></td>
 </tr>
 </tbody>
 </table>

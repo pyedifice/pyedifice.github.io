@@ -33,6 +33,5 @@ edifice.QtWidgetElement
    
       ~QtWidgetElement.children
       ~QtWidgetElement.props
-      ~QtWidgetElement.underlying
    
    

@@ -33,6 +33,5 @@ edifice.extra.MatplotlibFigure
    
       ~MatplotlibFigure.children
       ~MatplotlibFigure.props
-      ~MatplotlibFigure.underlying
    
    

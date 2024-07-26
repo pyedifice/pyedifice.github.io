@@ -33,6 +33,5 @@ edifice.Image
    
       ~Image.children
       ~Image.props
-      ~Image.underlying
    
    

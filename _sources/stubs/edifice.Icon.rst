@@ -33,6 +33,5 @@ edifice.Icon
    
       ~Icon.children
       ~Icon.props
-      ~Icon.underlying
    
    

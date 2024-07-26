@@ -33,6 +33,5 @@ edifice.ButtonView
    
       ~ButtonView.children
       ~ButtonView.props
-      ~ButtonView.underlying
    
    

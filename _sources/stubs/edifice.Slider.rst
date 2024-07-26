@@ -33,6 +33,5 @@ edifice.Slider
    
       ~Slider.children
       ~Slider.props
-      ~Slider.underlying
    
    

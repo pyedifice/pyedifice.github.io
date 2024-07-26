@@ -35,6 +35,5 @@ edifice.CustomWidget
    
       ~CustomWidget.children
       ~CustomWidget.props
-      ~CustomWidget.underlying
    
    

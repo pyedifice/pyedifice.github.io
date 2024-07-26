@@ -33,6 +33,5 @@ edifice.ExportList
    
       ~ExportList.children
       ~ExportList.props
-      ~ExportList.underlying
    
    

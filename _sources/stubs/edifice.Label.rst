@@ -33,6 +33,5 @@ edifice.Label
    
       ~Label.children
       ~Label.props
-      ~Label.underlying
    
    

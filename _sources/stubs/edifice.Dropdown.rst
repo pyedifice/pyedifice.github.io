@@ -33,6 +33,5 @@ edifice.Dropdown
    
       ~Dropdown.children
       ~Dropdown.props
-      ~Dropdown.underlying
    
    

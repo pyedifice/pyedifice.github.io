@@ -33,6 +33,5 @@ edifice.Button
    
       ~Button.children
       ~Button.props
-      ~Button.underlying
    
    

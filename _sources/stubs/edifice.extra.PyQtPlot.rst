@@ -33,6 +33,5 @@ edifice.extra.PyQtPlot
    
       ~PyQtPlot.children
       ~PyQtPlot.props
-      ~PyQtPlot.underlying
    
    

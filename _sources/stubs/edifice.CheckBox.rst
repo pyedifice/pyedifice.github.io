@@ -33,6 +33,5 @@ edifice.CheckBox
    
       ~CheckBox.children
       ~CheckBox.props
-      ~CheckBox.underlying
    
    

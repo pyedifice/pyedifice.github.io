@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.ScrollView.register_ref &#8212; Edifice 0.7.4 documentation</title>
+    <title>edifice.HScrollView.__init__ &#8212; Edifice 0.8.0 documentation</title>
   
   
   
@@ -36,16 +36,16 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=444dcb17"></script>
+    <script src="../../_static/documentation_options.js?v=d6acfc83"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.ScrollView.register_ref';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.HScrollView.__init__';</script>
     <link rel="icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="edifice.ScrollView.set_key" href="edifice.ScrollView.set_key.html" />
-    <link rel="prev" title="edifice.ScrollView.__init__" href="edifice.ScrollView.__init__.html" />
+    <link rel="next" title="edifice.HScrollView.register_ref" href="edifice.HScrollView.register_ref.html" />
+    <link rel="prev" title="edifice.HScrollView" href="../edifice.HScrollView.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -134,14 +134,14 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.4 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.4 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.8.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -158,8 +158,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.ExportList.html">edifice.ExportList</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.View.html">edifice.View</a></li>
-<li class="toctree-l2 current active"><a class="reference internal" href="../edifice.ScrollView.html">edifice.ScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.VBoxView.html">edifice.VBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.HBoxView.html">edifice.HBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.FixView.html">edifice.FixView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.VScrollView.html">edifice.VScrollView</a></li>
+<li class="toctree-l2 current active"><a class="reference internal" href="../edifice.HScrollView.html">edifice.HScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.FixScrollView.html">edifice.FixScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.TableGridView.html">edifice.TableGridView</a></li>
@@ -195,6 +199,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../extra.html">Extra Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.extra.PyQtPlot.html">edifice.extra.PyQtPlot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.extra.MatplotlibFigure.html">edifice.extra.MatplotlibFigure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.NumpyImage.html">edifice.extra.NumpyImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.NumpyArray.html">edifice.extra.NumpyArray</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utility functions</a></li>
@@ -270,7 +276,7 @@
       
       
       
-      <li><a href="../../_sources/stubs/stubs/edifice.ScrollView.register_ref.rst" target="_blank"
+      <li><a href="../../_sources/stubs/stubs/edifice.HScrollView.__init__.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +358,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>edifice.ScrollView.register_ref</h1>
+    <h1>edifice.HScrollView.__init__</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -366,27 +372,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-scrollview-register-ref">
-<h1>edifice.ScrollView.register_ref<a class="headerlink" href="#edifice-scrollview-register-ref" title="Link to this heading">#</a></h1>
+  <section id="edifice-hscrollview-init">
+<h1>edifice.HScrollView.__init__<a class="headerlink" href="#edifice-hscrollview-init" title="Link to this heading">#</a></h1>
 <dl class="py method">
-<dt class="sig sig-object py" id="edifice.ScrollView.register_ref">
-<span class="sig-prename descclassname"><span class="pre">ScrollView.</span></span><span class="sig-name descname"><span class="pre">register_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#edifice.ScrollView.register_ref" title="Link to this definition">#</a></dt>
-<dd><p>Registers provided <a class="reference internal" href="../edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p>
-<p>During render, the provided reference will be set to point to the currently rendered instance of this Element
-(i.e. if another instance of the Element is rendered and the RenderEngine decides to reconcile the existing
-and current instances, the reference will eventually point to that previously existing Element.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>reference</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../edifice.Reference.html#edifice.Reference" title="edifice.engine.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a></span>) – the Reference to register</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Element self.</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="edifice.HScrollView.__init__">
+<span class="sig-prename descclassname"><span class="pre">HScrollView.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/edifice/base_components/base_components.html#HScrollView.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.HScrollView.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 </section>
 
@@ -402,20 +393,20 @@ and current instances, the reference will eventually point to that previously ex
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="edifice.ScrollView.__init__.html"
+       href="../edifice.HScrollView.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.ScrollView.__init__</p>
+        <p class="prev-next-title">edifice.HScrollView</p>
       </div>
     </a>
     <a class="right-next"
-       href="edifice.ScrollView.set_key.html"
+       href="edifice.HScrollView.register_ref.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.ScrollView.set_key</p>
+        <p class="prev-next-title">edifice.HScrollView.register_ref</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

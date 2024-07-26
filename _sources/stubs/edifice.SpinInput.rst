@@ -33,6 +33,5 @@ edifice.SpinInput
    
       ~SpinInput.children
       ~SpinInput.props
-      ~SpinInput.underlying
    
    

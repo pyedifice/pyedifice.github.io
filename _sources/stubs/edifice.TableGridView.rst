@@ -34,6 +34,5 @@ edifice.TableGridView
    
       ~TableGridView.children
       ~TableGridView.props
-      ~TableGridView.underlying
    
    

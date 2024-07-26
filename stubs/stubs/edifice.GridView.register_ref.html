@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.GridView.register_ref &#8212; Edifice 0.7.4 documentation</title>
+    <title>edifice.GridView.register_ref &#8212; Edifice 0.8.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=444dcb17"></script>
+    <script src="../../_static/documentation_options.js?v=d6acfc83"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -134,14 +134,14 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.7.4 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.7.4 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.0 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.7.4</i></div>
+	<div style="text-align:center;"><b>Edifice</b> <i>v0.8.0</i></div>
 	<div class="bd-toc-item navbar-nav active">
 			<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -158,8 +158,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.Window.html">edifice.Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.ExportList.html">edifice.ExportList</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.View.html">edifice.View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.ScrollView.html">edifice.ScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.VBoxView.html">edifice.VBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.HBoxView.html">edifice.HBoxView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.FixView.html">edifice.FixView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.VScrollView.html">edifice.VScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.HScrollView.html">edifice.HScrollView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.FixScrollView.html">edifice.FixScrollView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l2 current active"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.TableGridView.html">edifice.TableGridView</a></li>
@@ -195,6 +199,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../extra.html">Extra Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.extra.PyQtPlot.html">edifice.extra.PyQtPlot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../edifice.extra.MatplotlibFigure.html">edifice.extra.MatplotlibFigure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.NumpyImage.html">edifice.extra.NumpyImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.NumpyArray.html">edifice.extra.NumpyArray</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utility functions</a></li>
@@ -377,7 +383,7 @@ document.write(`
 and current instances, the reference will eventually point to that previously existing Element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>reference</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../edifice.Reference.html#edifice.Reference" title="edifice.engine.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a></span>) – the Reference to register</p>
+<dd class="field-odd"><p><strong>reference</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../edifice.Reference.html#edifice.Reference" title="edifice.engine.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code>]</span>) – the Reference to register</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>

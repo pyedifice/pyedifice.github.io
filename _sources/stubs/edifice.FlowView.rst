@@ -33,6 +33,5 @@ edifice.FlowView
    
       ~FlowView.children
       ~FlowView.props
-      ~FlowView.underlying
    
    

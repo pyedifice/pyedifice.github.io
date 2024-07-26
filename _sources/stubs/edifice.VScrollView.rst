@@ -1,12 +1,12 @@
 ﻿.. Taken from
 .. https://github.com/sphinx-doc/sphinx/blob/13da5d7b2fda0da58137534e8fcdb0da9c88e55f/sphinx/ext/autosummary/templates/autosummary/class.rst
 
-edifice.View
-============
+edifice.VScrollView
+===================
 
 .. currentmodule:: edifice
 
-.. autoclass:: View
+.. autoclass:: VScrollView
    :members:
    :show-inheritance:
 
@@ -19,9 +19,9 @@ edifice.View
    .. autosummary::
       :toctree: stubs
    
-      ~View.__init__
-      ~View.register_ref
-      ~View.set_key
+      ~VScrollView.__init__
+      ~VScrollView.register_ref
+      ~VScrollView.set_key
    
    
 
@@ -31,8 +31,7 @@ edifice.View
 
    .. autosummary::
    
-      ~View.children
-      ~View.props
-      ~View.underlying
+      ~VScrollView.children
+      ~VScrollView.props
    
    

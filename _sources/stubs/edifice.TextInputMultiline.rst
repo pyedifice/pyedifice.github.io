@@ -33,6 +33,5 @@ edifice.TextInputMultiline
    
       ~TextInputMultiline.children
       ~TextInputMultiline.props
-      ~TextInputMultiline.underlying
    
    

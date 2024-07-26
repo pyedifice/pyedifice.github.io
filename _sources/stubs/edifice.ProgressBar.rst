@@ -33,6 +33,5 @@ edifice.ProgressBar
    
       ~ProgressBar.children
       ~ProgressBar.props
-      ~ProgressBar.underlying
    
    

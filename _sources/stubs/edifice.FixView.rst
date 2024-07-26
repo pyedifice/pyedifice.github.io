@@ -1,12 +1,12 @@
 ﻿.. Taken from
 .. https://github.com/sphinx-doc/sphinx/blob/13da5d7b2fda0da58137534e8fcdb0da9c88e55f/sphinx/ext/autosummary/templates/autosummary/class.rst
 
-edifice.ScrollView
-==================
+edifice.FixView
+===============
 
 .. currentmodule:: edifice
 
-.. autoclass:: ScrollView
+.. autoclass:: FixView
    :members:
    :show-inheritance:
 
@@ -19,9 +19,9 @@ edifice.ScrollView
    .. autosummary::
       :toctree: stubs
    
-      ~ScrollView.__init__
-      ~ScrollView.register_ref
-      ~ScrollView.set_key
+      ~FixView.__init__
+      ~FixView.register_ref
+      ~FixView.set_key
    
    
 
@@ -31,8 +31,7 @@ edifice.ScrollView
 
    .. autosummary::
    
-      ~ScrollView.children
-      ~ScrollView.props
-      ~ScrollView.underlying
+      ~FixView.children
+      ~FixView.props
    
    

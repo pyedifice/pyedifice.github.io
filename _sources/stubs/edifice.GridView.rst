@@ -33,6 +33,5 @@ edifice.GridView
    
       ~GridView.children
       ~GridView.props
-      ~GridView.underlying
    
    

@@ -33,6 +33,5 @@ edifice.ImageSvg
    
       ~ImageSvg.children
       ~ImageSvg.props
-      ~ImageSvg.underlying
    
    
