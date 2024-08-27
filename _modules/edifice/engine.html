@@ -7,38 +7,37 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 0.8.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 0.8.1 documentation</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6d93ce8e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=d6acfc83"></script>
+    <script src="../../_static/documentation_options.js?v=ec16d22d"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/engine';</script>
     <link rel="icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -52,27 +51,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -85,8 +80,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -94,32 +89,25 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
-    </header>
-  
 
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
 
   
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
   
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="../../index.html">
@@ -133,84 +121,321 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.1 documentation - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.8.0</i></div>
-	<div class="bd-toc-item navbar-nav active">
-			<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Element.html">edifice.Element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.component.html">edifice.component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.child_place.html">edifice.child_place</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.App.html">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Reference.html">edifice.Reference</a></li>
-</ul>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial.html">
+    Tutorial
+  </a>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Window.html">edifice.Window</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ExportList.html">edifice.ExportList</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.VBoxView.html">edifice.VBoxView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.HBoxView.html">edifice.HBoxView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.FixView.html">edifice.FixView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.VScrollView.html">edifice.VScrollView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.HScrollView.html">edifice.HScrollView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.FixScrollView.html">edifice.FixScrollView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TabView.html">edifice.TabView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.GridView.html">edifice.GridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.FlowView.html">edifice.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Label.html">edifice.Label</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Image.html">edifice.Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ImageSvg.html">edifice.ImageSvg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Icon.html">edifice.Icon</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.IconButton.html">edifice.IconButton</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Button.html">edifice.Button</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ButtonView.html">edifice.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TextInput.html">edifice.TextInput</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.TextInputMultiline.html">edifice.TextInputMultiline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.SpinInput.html">edifice.SpinInput</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CheckBox.html">edifice.CheckBox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.RadioButton.html">edifice.RadioButton</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Slider.html">edifice.Slider</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.ProgressBar.html">edifice.ProgressBar</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.Dropdown.html">edifice.Dropdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.CustomWidget.html">edifice.CustomWidget</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_state.html">edifice.use_state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect.html">edifice.use_effect</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async.html">edifice.use_async</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.use_ref.html">edifice.use_ref</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../styling.html">Styling</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../extra.html">Extra Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.extra.PyQtPlot.html">edifice.extra.PyQtPlot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.extra.MatplotlibFigure.html">edifice.extra.MatplotlibFigure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.extra.NumpyImage.html">edifice.extra.NumpyImage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../stubs/edifice.extra.NumpyArray.html">edifice.extra.NumpyArray</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utility functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../developer_tools.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../versions.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../future.html">Roadmap</a></li>
-</ul>
 
-	</div>
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../edifice.html">
+    Edifice Core
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../base_components.html">
+    Base Elements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../hooks.html">
+    Hooks
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../styling.html">
+    Styling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../extra.html">
+    Extra Elements
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../utilities.html">
+    Utility functions
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../developer_tools.html">
+    Developer Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../versions.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../future.html">
+    Roadmap
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
 </nav></div>
+      
     </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyedifice/pyedifice" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial.html">
+    Tutorial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../edifice.html">
+    Edifice Core
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../base_components.html">
+    Base Elements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../hooks.html">
+    Hooks
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../styling.html">
+    Styling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../extra.html">
+    Extra Elements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../utilities.html">
+    Utility functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_tools.html">
+    Developer Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../versions.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../future.html">
+    Roadmap
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyedifice/pyedifice" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -221,103 +446,44 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
-
-<div class="sbt-scroll-pixel-helper"></div>
-
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
         <div class="header-article-item">
 
-<div class="article-header-buttons">
 
 
-<a href="https://github.com/pyedifice/pyedifice" target="_blank"
-   class="btn btn-sm btn-source-repository-button"
-   title="Source repository"
-   data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-
-</a>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-
-</div></div>
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">edifice.engine</li>
+  </ul>
+</nav>
+</div>
       
     </div>
   
+  
 </div>
 </div>
               
               
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-        </div>
-    </div>
-</div>
-
               
                 
 <div id="searchbox"></div>
@@ -354,7 +520,7 @@ document.write(`
 
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 
-<span class="n">StyleType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]]]</span>
+<span class="n">StyleType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]]]</span>
 
 
 <span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;QWidget&quot;</span><span class="p">):</span>
@@ -559,7 +725,7 @@ document.write(`
 
 <span class="sd">            use_effect(did_render, ref)</span>
 
-<span class="sd">            with View():</span>
+<span class="sd">            with VBoxView():</span>
 <span class="sd">                Label(&quot;Before&quot;).register_ref(ref)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -575,7 +741,7 @@ document.write(`
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">_T_Element</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_Element</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span></div>
 
 
@@ -586,10 +752,10 @@ document.write(`
 <span class="k">class</span> <span class="nc">ControllerProtocol</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol for App&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_request_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">_request_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Element</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">_defer_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">_defer_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]):</span>
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -631,14 +797,14 @@ document.write(`
     <span class="p">)</span>
     <span class="n">trackers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_Tracker</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stack of _Tracker&quot;&quot;&quot;</span>
-    <span class="n">current_element</span><span class="p">:</span> <span class="s2">&quot;Element | None&quot;</span>
+    <span class="n">current_element</span><span class="p">:</span> <span class="n">Element</span> <span class="o">|</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The Element currently being rendered.&quot;&quot;&quot;</span>
 
     <span class="c1"># I guess static scope typing of instance members is normal in Python?</span>
     <span class="c1"># https://peps.python.org/pep-0526/#class-and-instance-variable-annotations</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">engine</span><span class="p">:</span> <span class="s2">&quot;RenderEngine&quot;</span><span class="p">,</span>
+        <span class="n">engine</span><span class="p">:</span> <span class="n">RenderEngine</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span> <span class="o">=</span> <span class="p">{}</span>
@@ -660,7 +826,7 @@ document.write(`
 
         <span class="bp">self</span><span class="o">.</span><span class="n">current_element</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">mark_props_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;Element&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">mark_props_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">component</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">props</span>
         <span class="n">component</span><span class="o">.</span><span class="n">_props</span> <span class="o">=</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_d</span>
@@ -670,10 +836,10 @@ document.write(`
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">PropsDict</span><span class="p">({})</span>
 
-    <span class="k">def</span> <span class="nf">mark_qt_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;QtWidgetElement&quot;</span><span class="p">,</span> <span class="n">need_rerender</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">mark_qt_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">need_rerender</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">need_rerender</span>
 
-    <span class="k">def</span> <span class="nf">need_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="s2">&quot;QtWidgetElement&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">need_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 
@@ -759,7 +925,7 @@ document.write(`
         <span class="n">prop</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tracker</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_register_props</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">props</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_register_props</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">props</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register props.</span>
 
 <span class="sd">        Args:</span>
@@ -783,7 +949,7 @@ document.write(`
 <span class="sd">        Example::</span>
 
 <span class="sd">            # inside a render call</span>
-<span class="sd">            with View():</span>
+<span class="sd">            with VBoxView():</span>
 <span class="sd">                Label(&quot;Hello&quot;).set_key(&quot;en&quot;)</span>
 <span class="sd">                Label(&quot;Bonjour&quot;).set_key(&quot;fr&quot;)</span>
 <span class="sd">                Label(&quot;Hola&quot;).set_key(&quot;es&quot;)</span>
@@ -885,7 +1051,7 @@ document.write(`
         <span class="n">tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">tags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_render_element</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_render_element</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Element</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Logic for rendering, must be overridden.</span>
 
 <span class="sd">        The render logic for this Element, not implemented for this abstract class.</span>
@@ -941,7 +1107,7 @@ document.write(`
 
 <span class="sd">        @component</span>
 <span class="sd">        def MySimpleComp(self, prop1, prop2, prop3):</span>
-<span class="sd">            with View():</span>
+<span class="sd">            with VBoxView():</span>
 <span class="sd">                Label(text=prop1)</span>
 <span class="sd">                Label(text=prop2)</span>
 <span class="sd">                Label(text=prop3)</span>
@@ -961,7 +1127,7 @@ document.write(`
 <span class="sd">        @component</span>
 <span class="sd">        def MySimpleComp(self, prop1, prop2, prop3):</span>
 <span class="sd">            label3 = Label(text=prop3)</span>
-<span class="sd">            with View():</span>
+<span class="sd">            with VBoxView():</span>
 <span class="sd">                Label(text=prop1)</span>
 <span class="sd">                Label(text=prop2)</span>
 <span class="sd">                label3</span>
@@ -972,7 +1138,7 @@ document.write(`
 <span class="sd">        @component</span>
 <span class="sd">        def MySimpleComp(self, prop1, prop2, prop3):</span>
 <span class="sd">            label3 = lambda: Label(text=prop3)</span>
-<span class="sd">            with View():</span>
+<span class="sd">            with VBoxView():</span>
 <span class="sd">                Label(text=prop1)</span>
 <span class="sd">                Label(text=prop2)</span>
 <span class="sd">                label3()</span>
@@ -982,7 +1148,7 @@ document.write(`
 
 <span class="sd">        # No decorator</span>
 <span class="sd">        def MySimpleComp(prop1, prop2, prop3):</span>
-<span class="sd">            with View():</span>
+<span class="sd">            with VBoxView():</span>
 <span class="sd">                Label(text=prop1)</span>
 <span class="sd">                Label(text=prop2)</span>
 <span class="sd">                Label(text=prop3)</span>
@@ -1024,9 +1190,9 @@ document.write(`
 
 <span class="sd">        @component</span>
 <span class="sd">        def ContainerComponent(self:Element, children:tuple[Element, ...]=()):</span>
-<span class="sd">            with View():</span>
+<span class="sd">            with VBoxView():</span>
 <span class="sd">                for child in children:</span>
-<span class="sd">                    with View():</span>
+<span class="sd">                    with VBoxView():</span>
 <span class="sd">                        child_place(child)</span>
 
 <span class="sd">        with ContainerComponent():</span>
@@ -1082,10 +1248,10 @@ document.write(`
     <span class="k">pass</span>
 
 
-<span class="n">ContextMenuType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="s2">&quot;ContextMenuType&quot;</span><span class="p">]]</span>
+<span class="n">ContextMenuType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="s2">&quot;ContextMenuType&quot;</span><span class="p">]]</span>
 
 
-<span class="k">def</span> <span class="nf">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">ContextMenuType</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">ContextMenuType</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="n">widget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenu</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -1269,25 +1435,26 @@ document.write(`
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">style</span><span class="p">:</span> <span class="n">StyleType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">tool_tip</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">cursor</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">context_menu</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">ContextMenuType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">css_class</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">size_policy</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">focus_policy</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">FocusPolicy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">enabled</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_click</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_key_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_key_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_enter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_leave</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span>
-            <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
-        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tool_tip</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cursor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">context_menu</span><span class="p">:</span> <span class="n">ContextMenuType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">css_class</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">size_policy</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">focus_policy</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">FocusPolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_click</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_key_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_key_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_enter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_leave</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span>
+        <span class="p">]</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
@@ -1310,7 +1477,7 @@ document.write(`
                 <span class="s2">&quot;on_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_mouse_move</span><span class="p">,</span>
                 <span class="s2">&quot;on_drop&quot;</span><span class="p">:</span> <span class="n">on_drop</span><span class="p">,</span>
                 <span class="s2">&quot;on_resize&quot;</span><span class="p">:</span> <span class="n">on_resize</span><span class="p">,</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1327,10 +1494,11 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span><span class="p">:</span> <span class="p">(</span>
             <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
-        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_press_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1492,9 +1660,10 @@ document.write(`
     <span class="k">def</span> <span class="nf">_set_on_drop</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
-        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span>
-            <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
-        <span class="p">],</span>
+        <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span>
+        <span class="p">]</span>
+        <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="c1"># Store the QWidget&#39;s default virtual event handler methods</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_enter_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1521,9 +1690,7 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_on_resize</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_on_resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Store the QWidget&#39;s default virtual event handler method one time</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span>
@@ -1782,7 +1949,7 @@ document.write(`
                     <span class="p">[</span>
                         <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">unpolish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">),</span>
                         <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">polish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">),</span>
-                    <span class="p">]</span>
+                    <span class="p">],</span>
                 <span class="p">)</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;cursor&quot;</span><span class="p">:</span>
                 <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;default&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_click</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;pointer&quot;</span><span class="p">)</span>
@@ -1792,12 +1959,12 @@ document.write(`
                     <span class="n">underlying</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">context_menu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">CustomContextMenu</span><span class="p">)</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">CustomContextMenu</span><span class="p">),</span>
                     <span class="p">)</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_context_menu</span><span class="p">,</span> <span class="n">underlying</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">DefaultContextMenu</span><span class="p">)</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">DefaultContextMenu</span><span class="p">),</span>
                     <span class="p">)</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
@@ -1830,7 +1997,7 @@ document.write(`
 
         <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="s2">&quot;_WidgetTree&quot;</span><span class="p">],</span>
+            <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
             <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
             <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_d</span>
@@ -2172,7 +2339,10 @@ document.write(`
             <span class="k">raise</span> <span class="n">e</span>
 
     <span class="k">def</span> <span class="nf">_update_old_component</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">new_component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">new_component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_WidgetTree</span><span class="p">:</span>
         <span class="c1"># new_component is a new rendering of old component, so update</span>
         <span class="c1"># old component to have props of new_component.</span>
@@ -2210,8 +2380,8 @@ document.write(`
         <span class="c1">#</span>
         <span class="c1"># Returns children widget trees, cached or newly rendered.</span>
 
-        <span class="n">children_old_bykey</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="n">children_new_bykey</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">children_old_bykey</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">children_new_bykey</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="n">children_old_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
 
@@ -2358,7 +2528,7 @@ document.write(`
                 <span class="n">message</span> <span class="o">=</span> <span class="n">dedent</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s2">                    A @component must render as exactly one Element.</span>
-<span class="s2">                    Element </span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s2"> renders as </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">)</span><span class="si">}</span><span class="s2"> elements.&quot;&quot;&quot;</span>
+<span class="s2">                    Element </span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s2"> renders as </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">)</span><span class="si">}</span><span class="s2"> elements.&quot;&quot;&quot;</span><span class="p">,</span>
                 <span class="p">)</span> <span class="o">+</span> <span class="n">newline</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">child</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">container</span><span class="o">.</span><span class="n">children</span><span class="p">])</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="n">old_rendering</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -2637,12 +2807,11 @@ document.write(`
 
                 </article>
               
-
               
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -2652,48 +2821,48 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
-              
             
           </div>
           <footer class="bd-footer-content">
             
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By David Ding, James D. Brock, Viktor Kronvall
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
           </footer>
         
-
       </main>
     </div>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
   </footer>
   </body>
 </html>

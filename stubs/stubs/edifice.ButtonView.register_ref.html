@@ -8,38 +8,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.ButtonView.register_ref &#8212; Edifice 0.8.0 documentation</title>
+    <title>edifice.ButtonView.register_ref &#8212; Edifice 0.8.1 documentation</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6d93ce8e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=d6acfc83"></script>
+    <script src="../../_static/documentation_options.js?v=ec16d22d"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.ButtonView.register_ref';</script>
     <link rel="icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -55,27 +54,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -88,8 +83,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -97,8 +92,211 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.1 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial.html">
+    Tutorial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../edifice.html">
+    Edifice Core
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../base_components.html">
+    Base Elements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../hooks.html">
+    Hooks
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../styling.html">
+    Styling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../extra.html">
+    Extra Elements
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../utilities.html">
+    Utility functions
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../developer_tools.html">
+    Developer Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../versions.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../future.html">
+    Roadmap
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyedifice/pyedifice" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
     </header>
   
 
@@ -114,102 +312,171 @@
   <div class="sidebar-header-items sidebar-primary__section">
     
     
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial.html">
+    Tutorial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../edifice.html">
+    Edifice Core
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../base_components.html">
+    Base Elements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../hooks.html">
+    Hooks
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../styling.html">
+    Styling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../extra.html">
+    Extra Elements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../utilities.html">
+    Utility functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_tools.html">
+    Developer Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../versions.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../future.html">
+    Roadmap
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyedifice/pyedifice" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
-  
-
-<a class="navbar-brand logo" href="../../index.html">
-  
-  
-  
-  
-  
-    
-    
-      
-    
-    
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.0 documentation - Home"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item">
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-	<div style="text-align:center;"><b>Edifice</b> <i>v0.8.0</i></div>
-	<div class="bd-toc-item navbar-nav active">
-			<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../edifice.html">Edifice Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Element.html">edifice.Element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.component.html">edifice.component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.child_place.html">edifice.child_place</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.App.html">edifice.App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Reference.html">edifice.Reference</a></li>
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.Window.html">edifice.Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.ExportList.html">edifice.ExportList</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.VBoxView.html">edifice.VBoxView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.HBoxView.html">edifice.HBoxView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.FixView.html">edifice.FixView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.VScrollView.html">edifice.VScrollView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.HScrollView.html">edifice.HScrollView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.FixScrollView.html">edifice.FixScrollView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.FlowView.html">edifice.FlowView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.Label.html">edifice.Label</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.Image.html">edifice.Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.ImageSvg.html">edifice.ImageSvg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.Icon.html">edifice.Icon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.IconButton.html">edifice.IconButton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.Button.html">edifice.Button</a></li>
+<li class="toctree-l1 current active"><a class="reference internal" href="../edifice.ButtonView.html">edifice.ButtonView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.TextInput.html">edifice.TextInput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.TextInputMultiline.html">edifice.TextInputMultiline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.SpinInput.html">edifice.SpinInput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.CheckBox.html">edifice.CheckBox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.RadioButton.html">edifice.RadioButton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.Slider.html">edifice.Slider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.ProgressBar.html">edifice.ProgressBar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.Dropdown.html">edifice.Dropdown</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../base_components.html">Base Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Window.html">edifice.Window</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.ExportList.html">edifice.ExportList</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.VBoxView.html">edifice.VBoxView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.HBoxView.html">edifice.HBoxView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.FixView.html">edifice.FixView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.VScrollView.html">edifice.VScrollView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.HScrollView.html">edifice.HScrollView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.FixScrollView.html">edifice.FixScrollView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.TableGridView.html">edifice.TableGridView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.FlowView.html">edifice.FlowView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Label.html">edifice.Label</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Image.html">edifice.Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.ImageSvg.html">edifice.ImageSvg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Icon.html">edifice.Icon</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.IconButton.html">edifice.IconButton</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Button.html">edifice.Button</a></li>
-<li class="toctree-l2 current active"><a class="reference internal" href="../edifice.ButtonView.html">edifice.ButtonView</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.TextInput.html">edifice.TextInput</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.TextInputMultiline.html">edifice.TextInputMultiline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.SpinInput.html">edifice.SpinInput</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.CheckBox.html">edifice.CheckBox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.RadioButton.html">edifice.RadioButton</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Slider.html">edifice.Slider</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.ProgressBar.html">edifice.ProgressBar</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.Dropdown.html">edifice.Dropdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.CustomWidget.html">edifice.CustomWidget</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../edifice.CustomWidget.html">edifice.CustomWidget</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../hooks.html">Hooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.use_state.html">edifice.use_state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.use_effect.html">edifice.use_effect</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.use_effect_final.html">edifice.use_effect_final</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.use_async.html">edifice.use_async</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.use_async_call.html">edifice.use_async_call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.use_ref.html">edifice.use_ref</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../styling.html">Styling</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../extra.html">Extra Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.PyQtPlot.html">edifice.extra.PyQtPlot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.MatplotlibFigure.html">edifice.extra.MatplotlibFigure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.NumpyImage.html">edifice.extra.NumpyImage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../edifice.extra.NumpyArray.html">edifice.extra.NumpyArray</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utility functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../developer_tools.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../versions.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../future.html">Roadmap</a></li>
-</ul>
-
-	</div>
+</div>
 </nav></div>
     </div>
   
@@ -222,151 +489,47 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
-
-<div class="sbt-scroll-pixel-helper"></div>
-
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
         <div class="header-article-item">
 
-<div class="article-header-buttons">
 
 
-<a href="https://github.com/pyedifice/pyedifice" target="_blank"
-   class="btn btn-sm btn-source-repository-button"
-   title="Source repository"
-   data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-
-</a>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../../_sources/stubs/stubs/edifice.ButtonView.register_ref.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../base_components.html" class="nav-link">Base Elements</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../edifice.ButtonView.html" class="nav-link">edifice.ButtonView</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">edifice.Butt...</li>
   </ul>
+</nav>
 </div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-
-</div></div>
       
     </div>
   
+  
 </div>
 </div>
               
               
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>edifice.ButtonView.register_ref</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-        </div>
-    </div>
-</div>
-
               
                 
 <div id="searchbox"></div>
@@ -399,12 +562,11 @@ and current instances, the reference will eventually point to that previously ex
 
                 </article>
               
-
               
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -432,48 +594,48 @@ and current instances, the reference will eventually point to that previously ex
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
-              
             
           </div>
           <footer class="bd-footer-content">
             
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By David Ding, James D. Brock, Viktor Kronvall
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
           </footer>
         
-
       </main>
     </div>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
   </footer>
   </body>
 </html>
