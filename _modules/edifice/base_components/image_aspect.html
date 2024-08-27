@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.image_aspect &#8212; Edifice 0.8.1 documentation</title>
+    <title>edifice.base_components.image_aspect &#8212; Edifice 1.0.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=ec16d22d"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/image_aspect';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 0.8.1 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 0.8.1 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -490,20 +490,18 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for edifice.base_components.image_aspect</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">..qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+
+<span class="kn">from</span> <span class="nn">edifice.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">PyQt6.QtCore</span> <span class="k">as</span> <span class="nn">QtCore</span>
-    <span class="kn">import</span> <span class="nn">PyQt6.QtGui</span> <span class="k">as</span> <span class="nn">QtGui</span>
-    <span class="kn">import</span> <span class="nn">PyQt6.QtWidgets</span> <span class="k">as</span> <span class="nn">QtWidgets</span>
+    <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">PySide6.QtCore</span> <span class="k">as</span> <span class="nn">QtCore</span>
-    <span class="kn">import</span> <span class="nn">PySide6.QtGui</span> <span class="k">as</span> <span class="nn">QtGui</span>
-    <span class="kn">import</span> <span class="nn">PySide6.QtWidgets</span> <span class="k">as</span> <span class="nn">QtWidgets</span>
+    <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
 
-<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">_image_descriptor_to_pixmap</span><span class="p">,</span> <span class="n">CommandType</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span>
+<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">CommandType</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">_image_descriptor_to_pixmap</span><span class="p">,</span> <span class="n">_WidgetTree</span>
 
 
 <span class="k">class</span> <span class="nc">_ScaledLabel</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">):</span>
@@ -531,7 +529,7 @@ document.write(`
                             <span class="bp">self</span><span class="o">.</span><span class="n">frameSize</span><span class="p">(),</span>
                             <span class="n">aspect_ratio_mode</span><span class="p">,</span>
                             <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TransformationMode</span><span class="o">.</span><span class="n">SmoothTransformation</span><span class="p">,</span>
-                        <span class="p">)</span>
+                        <span class="p">),</span>
                     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_setPixmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pixmap</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">):</span>
@@ -548,16 +546,13 @@ document.write(`
 <div class="viewcode-block" id="Image">
 <a class="viewcode-back" href="../../../stubs/edifice.Image.html#edifice.Image">[docs]</a>
 <span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An image container.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render an image.</span>
 
 <span class="sd">    * Underlying Qt Widget</span>
 <span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
-<span class="sd">    If you want to display a 3-dimensional :code:`uint8` :code:`numpy` array as an image,</span>
-<span class="sd">    checkout:</span>
-
-<span class="sd">    * `&lt;https://pyedifice.github.io/stubs/edifice.extra.NumpyImage.html&gt;`_</span>
-<span class="sd">    * `&lt;https://pyedifice.github.io/stubs/edifice.extra.NumpyArray_to_QImage.html&gt;`_</span>
+<span class="sd">    To render a 3-dimensional :code:`uint8` :code:`numpy` array as an image,</span>
+<span class="sd">    see :class:`edifice.extra.NumpyImage`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        src:</span>
@@ -589,9 +584,8 @@ document.write(`
             <span class="p">{</span>
                 <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="n">src</span><span class="p">,</span>
                 <span class="s2">&quot;aspect_ratio_mode&quot;</span><span class="p">:</span> <span class="n">aspect_ratio_mode</span><span class="p">,</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
         <span class="p">)</span>
-        <span class="c1"># self._register_props(kwargs)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">:</span> <span class="n">_ScaledLabel</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
