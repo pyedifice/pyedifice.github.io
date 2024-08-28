@@ -558,31 +558,26 @@ next render.</p>
 unmodified so that it can be compared to the new state variable during
 the next render.
 Instead create a shallow <a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.copy">copy</a>
-of the state, modify the copy, then call the <strong>setter function</strong> with the modified copy.</p>
-<blockquote>
-<div><p>from copy import copy</p>
-<dl>
-<dt>def Stateful(self):</dt><dd><p>x, x_setter = use_state(cast(list[str], []))</p>
-<dl>
-<dt>def updater(x_previous):</dt><dd><p>x_new = copy(x_previous)
-x_new.append(“Label Text “ + str(len(x_previous)))
-return x_new</p>
-</dd>
-<dt>with View():</dt><dd><dl class="simple">
-<dt>Button(</dt><dd><p>title=”Add One”,
-on_click = lambda _event: x_setter(updater)</p>
-</dd>
-</dl>
-<p>)
-for t in x:</p>
-<blockquote>
-<div><p>Label(text=t)</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
+of the state, modify the copy, then call the <strong>setter function</strong> with the modified copy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+
+<span class="k">def</span> <span class="nf">Stateful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">x_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="p">[]))</span>
+
+    <span class="k">def</span> <span class="nf">updater</span><span class="p">(</span><span class="n">x_previous</span><span class="p">):</span>
+        <span class="n">x_new</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">x_previous</span><span class="p">)</span>
+        <span class="n">x_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Label Text &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_previous</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">x_new</span>
+
+    <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
+        <span class="n">Button</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Add One&quot;</span><span class="p">,</span>
+            <span class="n">on_click</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">x_setter</span><span class="p">(</span><span class="n">updater</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>A good technique for declaring immutable state datastructures is to use
 <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html#frozen-instances">frozen dataclasses</a>.
 Use the
