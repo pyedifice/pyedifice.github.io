@@ -563,6 +563,7 @@ document.write(`
 <span class="sd">    of the state, modify the copy, then call the **setter function** with the modified copy::</span>
 
 <span class="sd">        from copy import copy</span>
+<span class="sd">        from typing import cast</span>
 
 <span class="sd">        def Stateful(self):</span>
 <span class="sd">            x, x_setter = use_state(cast(list[str], []))</span>
