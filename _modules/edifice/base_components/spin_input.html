@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.spin_input &#8212; Edifice 1.0.0 documentation</title>
+    <title>edifice.base_components.spin_input &#8212; Edifice 1.1.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../../_static/documentation_options.js?v=fc837d61"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/spin_input';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.0.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.0.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.1.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.1.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -517,8 +517,7 @@ document.write(`
     <span class="k">def</span> <span class="nf">textFromValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_textFromValue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_textFromValue</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">textFromValue</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">textFromValue</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">valueFromText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valueFromText</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -532,7 +531,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">valueFromText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>  <span class="c1"># noqa: A002</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valueFromText</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valueFromText</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
                 <span class="k">case</span> <span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">:</span>
@@ -583,6 +582,11 @@ document.write(`
 <span class="sd">            * :code:`QValidator.State.Invalid` if the text is invalid.</span>
 
 <span class="sd">            See `QValidator.State &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QValidator.html#PySide6.QtGui.QValidator.State&gt;`_.</span>
+
+<span class="sd">            (At the time of this writing, the PySide6.QValidator.State Enum cannot</span>
+<span class="sd">            be correctly typechecked as a Literal by Pyright for some reason.)</span>
+<span class="sd">        single_step:</span>
+<span class="sd">            The value step size for the up/down buttons.</span>
 <span class="sd">        enable_mouse_scroll:</span>
 <span class="sd">            Whether mouse scroll events should be able to change the value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -603,6 +607,7 @@ document.write(`
             <span class="nb">int</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">,</span> <span class="n">QValidator</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">Invalid</span><span class="p">],</span>
         <span class="p">]</span>
         <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">single_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">enable_mouse_scroll</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
@@ -615,8 +620,9 @@ document.write(`
                 <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
                 <span class="s2">&quot;value_to_text&quot;</span><span class="p">:</span> <span class="n">value_to_text</span><span class="p">,</span>
                 <span class="s2">&quot;text_to_value&quot;</span><span class="p">:</span> <span class="n">text_to_value</span><span class="p">,</span>
+                <span class="s2">&quot;single_step&quot;</span><span class="p">:</span> <span class="n">single_step</span><span class="p">,</span>
                 <span class="s2">&quot;enable_mouse_scroll&quot;</span><span class="p">:</span> <span class="n">enable_mouse_scroll</span><span class="p">,</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
         <span class="p">)</span></div>
 
 
@@ -657,20 +663,21 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span>
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">&quot;value_to_text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="nb">setattr</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="s2">&quot;_textFromValue&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value_to_text</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="nb">setattr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="s2">&quot;_textFromValue&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value_to_text</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;text_to_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="nb">setattr</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="s2">&quot;_valueFromText&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text_to_value</span><span class="p">))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="nb">setattr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="s2">&quot;_valueFromText&quot;</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text_to_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;min_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_min_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">min_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;max_value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_max_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">max_value</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;value&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;single_step&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setSingleStep</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">single_step</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 </pre></div>
