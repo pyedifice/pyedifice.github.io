@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.App &#8212; Edifice 1.1.0 documentation</title>
+    <title>edifice.App &#8212; Edifice 1.2.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=fc837d61"></script>
+    <script src="../_static/documentation_options.js?v=6efca38a"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.App';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.1.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.1.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -510,7 +510,7 @@ document.write(`
 <h1>edifice.App<a class="headerlink" href="#edifice-app" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.App">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_application</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qapplication</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_application</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qapplication</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The main application object.</p>
 <section id="start">
@@ -594,13 +594,6 @@ However, if the QApplication is already created (e.g. in a test suite or if you 
 to make a widget to plug into an existing Qt application),
 you can set this to False.</p>
 </dd>
-<dt class="field-odd">type application_name<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
-</dd>
-<dt class="field-even">param application_name<span class="colon">:</span></dt>
-<dd class="field-even"><p>DEPRECATED the Qt application name to set when creating a new QApplication.
-This option is only relevant if create_application is True.</p>
-</dd>
 <dt class="field-odd">type qapplication<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QApplication</span></code>]</span></p>
 </dd>
@@ -619,16 +612,13 @@ If you do not provide one, it will be created for you.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_widgets</span></code></a>()</p></td>
 <td><p>Exports the underlying Qt <code class="code docutils literal notranslate"><span class="pre">QWidgets</span></code> s from the Edifice Elements in the <a class="reference internal" href="edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.set_stylesheet.html#edifice.App.set_stylesheet" title="edifice.App.set_stylesheet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_stylesheet</span></code></a>(stylesheet)</p></td>
-<td><p>Adds a global stylesheet for the app.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start</span></code></a>()</p></td>
 <td><p>Start the application event loop.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.start_loop.html#edifice.App.start_loop" title="edifice.App.start_loop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_loop</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.start_loop.html#edifice.App.start_loop" title="edifice.App.start_loop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_loop</span></code></a>()</p></td>
 <td><p>Start the application event loop.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>()</p></td>
 <td><p>Stop the application.</p></td>
 </tr>
 </tbody>
@@ -664,25 +654,6 @@ You can mount these widgets to your pre-existing Qt application this way:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>]</span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="edifice.App.set_stylesheet">
-<span class="sig-name descname"><span class="pre">set_stylesheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stylesheet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/app.html#App.set_stylesheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.App.set_stylesheet" title="Link to this definition">#</a></dt>
-<dd><p>Adds a global stylesheet for the app.</p>
-<p>See
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet.html-style-sheets">Qt Style Sheets</a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stylesheet</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – String containing the contents of the stylesheet</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#edifice.App" title="edifice.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>self</p>
 </dd>
 </dl>
 </dd></dl>

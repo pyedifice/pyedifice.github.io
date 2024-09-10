@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 1.1.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 1.2.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=fc837d61"></script>
+    <script src="../../_static/documentation_options.js?v=6efca38a"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/app';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.1.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.1.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -529,7 +529,7 @@ document.write(`
 <span class="n">BOLD_SEQ</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m&quot;</span>
 
 
-<span class="k">class</span> <span class="nc">_TimingAvg</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_TimingAvg</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">total_count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -551,7 +551,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span>
 
 
-<span class="k">class</span> <span class="nc">_RateLimitedLogger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_RateLimitedLogger</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gap</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_log_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gap</span> <span class="o">=</span> <span class="n">gap</span>
@@ -565,7 +565,7 @@ document.write(`
 
 <div class="viewcode-block" id="App">
 <a class="viewcode-back" href="../../stubs/edifice.App.html#edifice.App">[docs]</a>
-<span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The main application object.</span>
 
 <span class="sd">    Start</span>
@@ -640,8 +640,6 @@ document.write(`
 <span class="sd">            However, if the QApplication is already created (e.g. in a test suite or if you just want Edifice</span>
 <span class="sd">            to make a widget to plug into an existing Qt application),</span>
 <span class="sd">            you can set this to False.</span>
-<span class="sd">        application_name: DEPRECATED the Qt application name to set when creating a new QApplication.</span>
-<span class="sd">            This option is only relevant if create_application is True.</span>
 <span class="sd">        qapplication: (default None)</span>
 <span class="sd">            The `QtWidgets.QApplication &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html&gt;`_.</span>
 <span class="sd">            If you do not provide one, it will be created for you.</span>
@@ -654,13 +652,12 @@ document.write(`
         <span class="n">root_element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
         <span class="n">inspector</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">create_application</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">qapplication</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="n">qapplication</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">create_application</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">([</span><span class="n">application_name</span><span class="p">]</span> <span class="k">if</span> <span class="n">application_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">()</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;There is already an instance of QtWidgets.QApplication&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -686,7 +683,7 @@ document.write(`
                         <span class="k">try</span><span class="p">:</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_refresh_by_class</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
                         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
-                            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Encountered exception while reloading: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exception</span><span class="p">)</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Encountered exception while reloading&quot;</span><span class="p">)</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
                             <span class="n">etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
                             <span class="n">stack_trace</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">extract_tb</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
@@ -723,8 +720,7 @@ document.write(`
                         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
                         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rerendering Elements in </span><span class="si">%s</span><span class="s2"> due to source change&quot;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
                     <span class="k">return</span> <span class="kc">True</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_event_receiver</span> <span class="o">=</span> <span class="n">EventReceiverWidget</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
@@ -788,23 +784,6 @@ document.write(`
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rerender_wanted</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_called_soon</span><span class="p">:</span>
             <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">call_soon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rerender_callback</span><span class="p">)</span>
 
-<div class="viewcode-block" id="App.set_stylesheet">
-<a class="viewcode-back" href="../../stubs/stubs/edifice.App.set_stylesheet.html#edifice.App.set_stylesheet">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_stylesheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stylesheet</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;App&quot;</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a global stylesheet for the app.</span>
-
-<span class="sd">        See</span>
-<span class="sd">        `Qt Style Sheets &lt;https://doc.qt.io/qtforpython-6/overviews/stylesheet.html-style-sheets&gt;`_.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            stylesheet: String containing the contents of the stylesheet</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            self</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">stylesheet</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span></div>
-
-
 <div class="viewcode-block" id="App.export_widgets">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.App.export_widgets.html#edifice.App.export_widgets">[docs]</a>
     <span class="k">def</span> <span class="nf">export_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]:</span>
@@ -843,8 +822,7 @@ document.write(`
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
                     <span class="n">widgets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">widgets</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;The root element of the App for export_widgets() must be an ExportList&quot;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;The root element of the App for export_widgets() must be an ExportList&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="App.start">
@@ -903,11 +881,11 @@ document.write(`
                             <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">,</span>
                         <span class="p">)</span>
-                    <span class="p">)</span>
+                    <span class="p">),</span>
                 <span class="p">)</span>
                 <span class="n">icon_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">&quot;inspector/icon.png&quot;</span><span class="p">)</span>
                 <span class="n">component</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Element Inspector&quot;</span><span class="p">,</span> <span class="n">on_close</span><span class="o">=</span><span class="n">cleanup</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon_path</span><span class="p">)(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">component</span><span class="p">])</span>
 

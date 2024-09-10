@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Styling &#8212; Edifice 1.1.0 documentation</title>
+    <title>Styling &#8212; Edifice 1.2.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=fc837d61"></script>
+    <script src="_static/documentation_options.js?v=6efca38a"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'styling';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.1.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.1.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -659,11 +659,18 @@ merge operator:</p>
 </section>
 <section id="style-advice">
 <h2>Style Advice<a class="headerlink" href="#style-advice" title="Link to this heading">#</a></h2>
-<p>Set global application styles:</p>
+<p>Set global application styles during the
+<a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> <code class="code docutils literal notranslate"><span class="pre">on_open</span></code> event.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.QApplication.setStyleSheet">QApplication.setStyleSheet</a></p></li>
 <li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.QApplication.setStyle">QApplication.setStyle</a></p></li>
 </ul>
+<p>If you think that Qt’s default color palette has weird choices, you can try
+the Edifice color palettes
+<a class="reference internal" href="utilities.html#edifice.utilities.palette_edifice_light" title="edifice.utilities.palette_edifice_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_light</span></code></a> and
+<a class="reference internal" href="utilities.html#edifice.utilities.palette_edifice_dark" title="edifice.utilities.palette_edifice_dark"><code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_dark</span></code></a>.
+See <a class="reference internal" href="utilities.html#edifice.utilities.theme_is_light" title="edifice.utilities.theme_is_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">theme_is_light</span></code></a> for instructions
+on how to use them.</p>
 </section>
 </section>
 

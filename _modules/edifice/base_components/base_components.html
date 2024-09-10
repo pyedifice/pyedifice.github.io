@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 1.1.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 1.2.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=fc837d61"></script>
+    <script src="../../../_static/documentation_options.js?v=6efca38a"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/base_components';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.1.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.1.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -545,17 +545,16 @@ document.write(`
 
 
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_get_svg_image_raw</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_get_svg_image_raw</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">:</span>
     <span class="n">svg_renderer</span> <span class="o">=</span> <span class="n">QtSvg</span><span class="o">.</span><span class="n">QSvgRenderer</span><span class="p">(</span><span class="n">icon_path</span><span class="p">)</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span><span class="o">.</span><span class="n">Format</span><span class="o">.</span><span class="n">Format_ARGB32</span><span class="p">)</span>
     <span class="n">image</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mh">0x00000000</span><span class="p">)</span>
     <span class="n">svg_renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPainter</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
-    <span class="n">pixmap</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="o">.</span><span class="n">fromImage</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pixmap</span>
+    <span class="k">return</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="o">.</span><span class="n">fromImage</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 
 
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_get_svg_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">_get_svg_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">:</span>
     <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_get_svg_image_raw</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">color</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> <span class="ow">and</span> <span class="n">rotation</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">pixmap</span>
@@ -1112,13 +1111,13 @@ document.write(`
 <span class="c1"># TODO</span>
 <span class="c1"># It seems to me that the type for Completer should be</span>
 <span class="c1">#</span>
-<span class="c1">#     Callable[[str], str]</span>
+<span class="c1"># &gt;   Callable[[str], str]</span>
 <span class="c1">#</span>
-<span class="c1"># But Qt doesn’t like higher-order functions and they’ve done something</span>
+<span class="c1"># But Qt doesn&#39;t like higher-order functions and they&#39;ve done something</span>
 <span class="c1"># much weirder and more complicated.</span>
 <span class="c1"># https://doc.qt.io/qtforpython-5/PySide2/QtWidgets/QCompleter.html</span>
 <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html</span>
-<span class="k">class</span> <span class="nc">Completer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Completer</span><span class="p">:</span>
     <span class="c1"># &quot;&quot;&quot;</span>
     <span class="c1"># Parameters for a `QCompleter &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html&gt;`_.</span>
     <span class="c1"># &quot;&quot;&quot;</span>
@@ -1183,9 +1182,9 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_edit_finish</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="c1"># completer: tp.Optional[Completer] = None,</span>
+        <span class="c1"># &gt; completer: tp.Optional[Completer] = None,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1216,13 +1215,13 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_edit_finish</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_edit_finish</span><span class="p">)()</span>
 
-    <span class="c1"># def _set_completer(self, completer):</span>
-    <span class="c1">#     if completer:</span>
-    <span class="c1">#         qt_completer = QtWidgets.QCompleter(completer.options)</span>
-    <span class="c1">#         qt_completer.setCompletionMode(completer.mode)</span>
-    <span class="c1">#         self.underlying.setCompleter(qt_completer)</span>
-    <span class="c1">#     else:</span>
-    <span class="c1">#         self.underlying.setCompleter(None)</span>
+    <span class="c1"># &gt; def _set_completer(self, completer):</span>
+    <span class="c1"># &gt;     if completer:</span>
+    <span class="c1"># &gt;         qt_completer = QtWidgets.QCompleter(completer.options)</span>
+    <span class="c1"># &gt;         qt_completer.setCompletionMode(completer.mode)</span>
+    <span class="c1"># &gt;         self.underlying.setCompleter(qt_completer)</span>
+    <span class="c1"># &gt;     else:</span>
+    <span class="c1"># &gt;         self.underlying.setCompleter(None)</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1385,7 +1384,7 @@ document.write(`
 
     <span class="k">def</span> <span class="nf">_on_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_select</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_select</span><span class="p">)(</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_select</span><span class="p">)(</span><span class="n">text</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_current_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
@@ -1493,10 +1492,10 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSlider</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span>
 
         <span class="c1"># TODO: figure out what&#39;s the right default height and width</span>
-        <span class="c1"># if self.orientation == QtCore.Qt.Horizontal:</span>
-        <span class="c1">#     self._set_size(size * len(self.props.text), size)</span>
-        <span class="c1"># else:</span>
-        <span class="c1">#     self._set_size(size * len(self.props.text), size)</span>
+        <span class="c1"># &gt; if self.orientation == QtCore.Qt.Horizontal:</span>
+        <span class="c1"># &gt;     self._set_size(size * len(self.props.text), size)</span>
+        <span class="c1"># &gt; else:</span>
+        <span class="c1"># &gt;     self._set_size(size * len(self.props.text), size)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handle</span><span class="p">)</span>
@@ -1911,9 +1910,44 @@ document.write(`
 <span class="sd">        menu:</span>
 <span class="sd">            The window’s menu bar. In some GUI settings, for example Mac OS,</span>
 <span class="sd">            this menu will appear seperately from the window.</span>
+<span class="sd">        on_open:</span>
+<span class="sd">            Event handler for when this window is opening. This event handler</span>
+<span class="sd">            function will be called exactly once, before the children are mounted.</span>
+
+<span class="sd">            Instead of calling application initialization code from the</span>
+<span class="sd">            :code:`__main__` function, it should be called here, because this</span>
+<span class="sd">            function will run when the app is started by the Edifice Runner.</span>
+
+<span class="sd">            The event handler function will be passed the application’s</span>
+<span class="sd">            `QApplication &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html&gt;`_</span>
+<span class="sd">            object.</span>
+
+<span class="sd">            Example::</span>
+
+<span class="sd">                from PySide6.QtWidgets import QApplication</span>
+<span class="sd">                from PySide6.QtGui import QFont</span>
+
+<span class="sd">                @component</span>
+<span class="sd">                def Main(self):</span>
+
+<span class="sd">                    def init(qapp: QApplication):</span>
+<span class="sd">                        qapp.setApplicationName(&quot;My App&quot;)</span>
+<span class="sd">                        QApplication.setStyle(&quot;fusion&quot;)</span>
+<span class="sd">                        qapp.setFont(QFont(&quot;Yu Gothic UI&quot;, 10))</span>
+<span class="sd">                        qapp.setStyleSheet(&quot;QLabel { font-size: 12pt; }&quot;)</span>
+
+<span class="sd">                    with Window(on_open=init):</span>
+<span class="sd">                        Label(&quot;Hello, World!&quot;)</span>
+
+<span class="sd">            For more information on global style sheets, see</span>
+<span class="sd">            `Qt Style Sheet Syntax &lt;https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html&gt;`_</span>
+
 <span class="sd">        on_close:</span>
 <span class="sd">            Event handler for when this window is closing. This event handler</span>
 <span class="sd">            will fire before the children are unmounted.</span>
+
+<span class="sd">            The event handler function will be passed a</span>
+<span class="sd">            `QCloseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Window.__init__">
@@ -1921,8 +1955,9 @@ document.write(`
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Edifice Application&quot;</span><span class="p">,</span>
-        <span class="n">icon</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">menu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_open</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1937,7 +1972,9 @@ document.write(`
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span> <span class="o">=</span> <span class="n">on_open</span></div>
 
 
     <span class="k">def</span> <span class="nf">_set_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_close</span><span class="p">):</span>
@@ -1964,6 +2001,12 @@ document.write(`
         <span class="n">newprops</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># We want on_open to be called exactly once only for this Window</span>
+            <span class="c1"># instance before any Qt Widgets are created.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">qapp</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">())</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span><span class="p">(</span><span class="n">qapp</span><span class="p">)</span>
+
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
             <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
@@ -2223,7 +2266,7 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    List replacement for numpy.any()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="nb">any</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">set_slice2</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>

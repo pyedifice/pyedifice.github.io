@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Utility functions &#8212; Edifice 1.1.0 documentation</title>
+    <title>Utility functions &#8212; Edifice 1.2.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=fc837d61"></script>
+    <script src="_static/documentation_options.js?v=6efca38a"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'utilities';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.1.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.1.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -548,6 +548,45 @@ and this function will return the user’s choice.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="edifice.utilities.palette_dump">
+<span class="sig-prename descclassname"><span class="pre">edifice.utilities.</span></span><span class="sig-name descname"><span class="pre">palette_dump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">palette</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette_compare</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/utilities.html#palette_dump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.utilities.palette_dump" title="Link to this definition">#</a></dt>
+<dd><p>Dump the palette to the console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>palette</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">QPalette</span></code></span>) – Dump the palette to the console.</p></li>
+<li><p><strong>palette_compare</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QPalette</span></code>]</span>) – Compare the palette with another palette if palette_compare is not None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="edifice.utilities.palette_edifice_dark">
+<span class="sig-prename descclassname"><span class="pre">edifice.utilities.</span></span><span class="sig-name descname"><span class="pre">palette_edifice_dark</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/utilities.html#palette_edifice_dark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.utilities.palette_edifice_dark" title="Link to this definition">#</a></dt>
+<dd><p>Edifice dark theme palette. This is the Qt Linux default dark theme palette, with some adjustments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">QPalette</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="edifice.utilities.palette_edifice_light">
+<span class="sig-prename descclassname"><span class="pre">edifice.utilities.</span></span><span class="sig-name descname"><span class="pre">palette_edifice_light</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/utilities.html#palette_edifice_light"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.utilities.palette_edifice_light" title="Link to this definition">#</a></dt>
+<dd><p>Edifice light theme palette. This is the Qt Linux default light theme palette, with some adjustments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">QPalette</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="edifice.utilities.set_trace">
 <span class="sig-prename descclassname"><span class="pre">edifice.utilities.</span></span><span class="sig-name descname"><span class="pre">set_trace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/utilities.html#set_trace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.utilities.set_trace" title="Link to this definition">#</a></dt>
 <dd><p>Set a tracepoint in the Python debugger that works with PyQt.</p>
@@ -556,6 +595,28 @@ equivalent to <code class="code docutils literal notranslate"><span class="pre">
 but it can properly pause the PyQt event loop
 to enable use of the debugger
 (users of PySide need not worry about this).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="edifice.utilities.theme_is_light">
+<span class="sig-prename descclassname"><span class="pre">edifice.utilities.</span></span><span class="sig-name descname"><span class="pre">theme_is_light</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/utilities.html#theme_is_light"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.utilities.theme_is_light" title="Link to this definition">#</a></dt>
+<dd><p>Detect the operating environment theme.</p>
+<p>True if light theme, false if dark theme.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">theme_is_light</span><span class="p">():</span>
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette_edifice_light</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette_edifice_dark</span><span class="p">())</span>
+
+<span class="k">with</span> <span class="n">Window</span><span class="p">(</span><span class="n">on_open</span><span class="o">=</span><span class="n">init</span><span class="p">):</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
