@@ -512,10 +512,9 @@ document.write(`
 <section id="declaring-element-trees">
 <h2>Declaring Element Trees<a class="headerlink" href="#declaring-element-trees" title="Link to this heading">#</a></h2>
 <p>An edifice application is created by rendering a <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> with an
-<a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.
-Let’s examine what these objects are to understand what this statement means.</p>
+<a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.</p>
 <p>The rendering for an Edifice application is done by declaring a tree of Elements
-starting with a single root Element, and then declaring its children.</p>
+starting with a single root <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>, and then declaring its children.</p>
 <p>An Element may be either a
 <a class="reference internal" href="base_components.html"><span class="doc">Base Element</span></a>
 or a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element.</p>
@@ -530,7 +529,7 @@ The external properties, <strong>props</strong>, are passed into the Element:</p
 </pre></div>
 </div>
 <p>These values are owned by the external caller and should not be modified by this Element.</p>
-<p>The internal state, henceforth referred to as the <strong>state</strong>, belong to the Element.
+<p>The internal <strong>state</strong>, belongs to the Element.
 In a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element, the internal state is managed by <a class="reference internal" href="hooks.html"><span class="doc">Hooks</span></a>.</p>
 <p>Changes in <strong>state</strong> or <strong>props</strong> will automatically trigger a re-render.</p>
 <p>Declaring an Element tree in a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element render function looks
@@ -564,12 +563,19 @@ child Elements in the tree, use the parent as a
 <span class="nt">&lt;/Window&gt;</span>
 </pre></div>
 </div>
-<p>You can thus describe your entire application as a single root Element,
-which is composed of various sub-Elements representing different parts of your application.
-Each Element is responsible for managing its own state,
-updating it as necessary given user interactions and events.
-Because state is self-contained, you can compose Elements arbitarily,
-including across projects.</p>
+<p>You describe your entire application as a single root Element,
+which has child Elements representing different parts of your application.
+Each Element is responsible for managing its own state,</p>
+<p>An <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> provides the rendering engine that’s responsible
+for issuing the commands necessary to render the each of the declared Elements.
+The <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> object is created by passing in the root <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>,
+and it tracks all state changes in the Element tree with the given root.
+Calling the <a class="reference internal" href="stubs/stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method on the App object will run your application
+and display the GUI you created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">App</span><span class="p">(</span><span class="n">MyApp</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 <section id="model-view-update">
 <h2>Model-View-Update<a class="headerlink" href="#model-view-update" title="Link to this heading">#</a></h2>
@@ -596,28 +602,30 @@ this style of GUI programming scale up well to complicated user interfaces.</p>
 </section>
 <section id="rendering">
 <h2>Rendering<a class="headerlink" href="#rendering" title="Link to this heading">#</a></h2>
-<p>An <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> provides the rendering engine that’s responsible
-for issuing the commands necessary to render the each of the declared Elements.
-The <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> object is created by passing in the root <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>,
-and it tracks all state changes in the Element tree with the given root.
-Calling the <a class="reference internal" href="stubs/stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method on the App object will run your application
-and display the GUI you created:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">App</span><span class="p">(</span><span class="n">MyApp</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</pre></div>
-</div>
+<p>Conceptually, Edifice (and ReactJS) works like this: Every time there is a
+change (Update) to the <strong>state</strong> (Model), the render function (View) is
+called and it renders the entire Element tree of Qt Widgets from scratch.</p>
+<p>That sounds expensive and slow, and it would be if it weren’t for the diffing
+algorithm.
+The diffing algorithm compares the new Element tree with the old Element tree
+and makes minimal changes to the Qt Widgets.</p>
+</section>
+<section id="the-diffing-algorithm">
+<h2>The diffing algorithm<a class="headerlink" href="#the-diffing-algorithm" title="Link to this heading">#</a></h2>
 <p>When Elements are rendered,
 the result is then compared against the result
-of the previous render (if that exists). The two renders are diffed,
+of the previous render. The two renders are diffed,
 and on certain conditions, the Element objects from the previous render
-are updated with new props.
-Two Elements belonging to different classes will always be re-rendered,
+are updated with new props.</p>
+<p>The diffing algorithm will compare a parents Element’s children
+from the previous render with the children from the new render.</p>
+<p>Two Elements belonging to different classes will always be re-rendered,
 and Elements belonging to the same class are assumed to be the same
 and thus maintained (preserving the old state).</p>
-<p>When parent Element has many child Elements of the same class,
+<p>When a parent Element has many child Elements of the same class,
 a more complex procedure (the same as in ReactJS)
-will determine which Elements to maintain and which to replace.
-When comparing the child Elements, the Element’s
+will determine which Elements to maintain and which to replace.</p>
+<p>When comparing the child Elements, the Element’s
 <code class="code docutils literal notranslate"><span class="pre">_key</span></code> attribute will
 be compared. Elements with the same <code class="code docutils literal notranslate"><span class="pre">_key</span></code> and same class are assumed to be
 the same. You can set the key using the <a class="reference internal" href="stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> method:</p>
@@ -705,6 +713,7 @@ whenever you have many children of the same class.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-element-trees">Declaring Element Trees</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-view-update">Model-View-Update</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffing-algorithm">The diffing algorithm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a></li>
 </ul>
   </nav></div>
