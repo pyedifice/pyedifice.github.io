@@ -495,12 +495,10 @@ document.write(`
 <h1>Styling<a class="headerlink" href="#styling" title="Link to this heading">#</a></h1>
 <p>Edfice supports
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt Widget Style Sheet Syntax</a>.</p>
-<p>The <code class="code docutils literal notranslate"><span class="pre">style</span></code> <strong>prop</strong> of Edifice <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> allows
-you to set the style for that Element.
-It is either a dictionary or a list of dictionaries, in which case the
-dictionaries are merged from left to right.
-The keys of the dictionary are the supported style name, and the values
-are the value of that style name which are usually either strings or numbers.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">style</span></code> <strong>prop</strong> of every <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> is
+a dictionary of style properties.</p>
+<p>The keys of the <code class="code docutils literal notranslate"><span class="pre">style</span></code> dictionary are the style name, and the values
+are usually either strings or numbers.</p>
 <p>For example, if you want to make a label with <em>10px</em> margins, with <em>red</em> text
 in a <em>16pt</em> font on a <em>beige</em> <em>semi-transparent</em> background:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Label</span><span class="p">(</span>
@@ -516,14 +514,14 @@ in a <em>16pt</em> font on a <em>beige</em> <em>semi-transparent</em> background
 <p>All style properties supported by Qt will also work with Edifice.
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.</p>
 <p>Note that sometimes Qt styling behaves differently from CSS styling
-(despite similar syntax and naming) and is not supported by all widgets.</p>
+(despite similar syntax and naming) and is not supported by all Widgets.</p>
 <p>Currently, the following styles are tested to be supported.</p>
 <section id="widget-styling">
 <h2>Widget Styling<a class="headerlink" href="#widget-styling" title="Link to this heading">#</a></h2>
 <p>Widgets follow the
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html#box-model">Qt Style Sheet Box Model</a>.</p>
 <ul class="simple">
-<li><p><strong>color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(r,</span> <span class="pre">g,</span> <span class="pre">b,</span> <span class="pre">a)&quot;</span></code> or named colors.</p></li>
+<li><p><strong>color</strong>: <code class="code docutils literal notranslate"><span class="pre">&quot;rgba(red,</span> <span class="pre">green,</span> <span class="pre">blue,</span> <span class="pre">alpha)&quot;</span></code> range <em>0—255</em> or named colors like <code class="code docutils literal notranslate"><span class="pre">&quot;red&quot;</span></code>.</p></li>
 <li><p><strong>font-size</strong>: Font size in points.</p></li>
 <li><p><strong>font-weight</strong>: A number indicating how bold the font should be.</p></li>
 <li><p><strong>font-family</strong>: Font family name.</p></li>

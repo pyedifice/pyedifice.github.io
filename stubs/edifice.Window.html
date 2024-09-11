@@ -443,10 +443,14 @@ document.write(`
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="edifice.QtWidgetElement.html">edifice.QtWidgetElement</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">edifice.Window</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.ExportList.html">edifice.ExportList</a></li>
+</ul>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="edifice.VBoxView.html">edifice.VBoxView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.HBoxView.html">edifice.HBoxView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.FixView.html">edifice.FixView</a></li>
@@ -457,6 +461,8 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.TableGridView.html">edifice.TableGridView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.FlowView.html">edifice.FlowView</a></li>
+</ul>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="edifice.Label.html">edifice.Label</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.Image.html">edifice.Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.ImageSvg.html">edifice.ImageSvg</a></li>
@@ -575,8 +581,7 @@ object.</p>
         <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>For more information on global style sheets, see
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt Style Sheet Syntax</a></p>
+<p>For more information about global styles, see <a class="reference internal" href="../styling.html"><span class="doc">Styling</span></a>.</p>
 </p></li>
 <li><p><strong>on_close</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QCloseEvent</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – <p>Event handler for when this window is closing. This event handler
 will fire before the children are unmounted.</p>
