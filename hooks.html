@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hooks &#8212; Edifice 1.2.0 documentation</title>
+    <title>Hooks &#8212; Edifice 1.3.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=6efca38a"></script>
+    <script src="_static/documentation_options.js?v=1f29e9d3"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'hooks';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -450,10 +450,13 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_effect.html">edifice.use_effect</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_async.html">edifice.use_async</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_ref.html">edifice.use_ref</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_hover.html">edifice.use_hover</a></li>
 </ul>
 </div>
 </nav></div>
@@ -537,60 +540,8 @@ in exactly the same order on every call to a <a class="reference internal" href=
 </li>
 </ol>
 </section>
-<section id="eq-relation">
-<h2><code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation<a class="headerlink" href="#eq-relation" title="Link to this heading">#</a></h2>
-<p>The <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation is important for all Hooks. It is used to decide
-when state has changed which determines when components need re-rendering.
-It is used to decide when dependencies have changed which determines when
-effects need re-running.</p>
-<p>For the <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation to work properly, it must mean that if two
-objects are <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>, then <em>one can be substituted for the other</em>.
-This relation is not true for many Python types, especially object types
-for which <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>
-<a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__eq__">defaults to identity</a>.</p>
-<p>Here is an example of a wrapper type for numpy arrays which implements
-<code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> so that the numpy arrays can be used in Hooks:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T_Array_co</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T_Array_co&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">,</span> <span class="n">covariant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">NumpyArray</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T_Numpy_Array_co</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for :code:`numpy` arrays.</span>
-
-<span class="sd">    This wrapper class provides the :code:`__eq__` relation for the wrapped</span>
-<span class="sd">    :code:`numpy` array such that if two wrapped arrays are :code:`__eq__`,</span>
-<span class="sd">    then one can be substituted for the other. This class may be used as a</span>
-<span class="sd">    **prop** or a **state**.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">np_array</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">T_Numpy_Array_co</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np_array</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">T_Numpy_Array_co</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np_array</span><span class="o">.</span><span class="n">dtype</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">np_array</span> <span class="o">=</span> <span class="n">np_array</span>
-
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">NumpyArray</span><span class="p">[</span><span class="n">T_Numpy_Array_co</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">np_array</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">np_array</span><span class="p">,</span> <span class="n">equal_nan</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="custom-hooks">
-<h2>Custom Hooks<a class="headerlink" href="#custom-hooks" title="Link to this heading">#</a></h2>
-<p>A “custom Hook” is just a function that calls other Hooks. For example, here
-is a custom Hook which runs an effect exactly once, without providing
-dependencies to trigger re-running the effect, and without running a cleanup
-function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">use_effect_once</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">f_wrapped</span><span class="p">():</span>
-        <span class="n">f</span><span class="p">()</span>
-        <span class="k">def</span> <span class="nf">no_cleanup</span><span class="p">():</span>
-              <span class="k">pass</span>
-        <span class="k">return</span> <span class="n">no_cleanup</span>
-    <span class="n">use_effect</span><span class="p">(</span><span class="n">f_wrapped</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="id2">
-<h2>Hooks<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="base-hooks">
+<h2>Base Hooks<a class="headerlink" href="#base-hooks" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_state</span></code></a>(initial_state)</p></td>
@@ -599,20 +550,59 @@ function:</p>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_effect</span></code></a>(setup[, dependencies])</p></td>
 <td><p>Side-effect Hook inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_effect_final.html#edifice.use_effect_final" title="edifice.use_effect_final"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_effect_final</span></code></a>(cleanup[, dependencies])</p></td>
-<td><p>Side-effect Hook for when a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> unmounts.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async</span></code></a>(fn_coroutine, dependencies)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async</span></code></a>(fn_coroutine, dependencies)</p></td>
 <td><p>Asynchronous side-effect Hook inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> function.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async_call</span></code></a>(fn_coroutine)</p></td>
-<td><p>Hook to call an async function from a non-async context.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_ref.html#edifice.use_ref" title="edifice.use_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_ref</span></code></a>()</p></td>
 <td><p>Hook for creating a <a class="reference internal" href="stubs/edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> function.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</section>
+<section id="derived-hooks">
+<h2>Derived Hooks<a class="headerlink" href="#derived-hooks" title="Link to this heading">#</a></h2>
+<p>Derived Hooks are functions which are written in terms of other Hooks.</p>
+<p>These Derived Hooks are provided by Edifice.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_effect_final.html#edifice.use_effect_final" title="edifice.use_effect_final"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_effect_final</span></code></a>(cleanup[, dependencies])</p></td>
+<td><p>Side-effect Hook for when a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> unmounts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async_call</span></code></a>(fn_coroutine)</p></td>
+<td><p>Hook to call an async function from a non-async context.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_hover.html#edifice.use_hover" title="edifice.use_hover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_hover</span></code></a>()</p></td>
+<td><p>Hook to track mouse hovering.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="custom-hooks">
+<h2>Custom Hooks<a class="headerlink" href="#custom-hooks" title="Link to this heading">#</a></h2>
+<p>A “Custom Hook” is just a Derived Hook that is defined in user code.</p>
+<p>For example, here is a Custom Hook which provides a clock value. Using this
+Hook will cause the <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> to re-render every second with the
+clock value incremented each time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">use_clocktick</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">tick</span><span class="p">,</span> <span class="n">tick_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">increment</span><span class="p">():</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">tick_set</span><span class="p">(</span><span class="n">tick</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">use_async</span><span class="p">(</span><span class="n">increment</span><span class="p">,</span> <span class="n">tick</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tick</span>
+</pre></div>
+</div>
+<p>Use it in a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Clock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">tick</span> <span class="o">=</span> <span class="n">use_clocktick</span><span class="p">()</span>
+    <span class="n">Label</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tick</span><span class="p">))</span>
+</pre></div>
 </div>
 </section>
 </section>
@@ -664,9 +654,9 @@ function:</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-of-hooks">Rules of Hooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eq-relation"><code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-hooks">Base Hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-hooks">Derived Hooks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-hooks">Custom Hooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hooks</a></li>
 </ul>
   </nav></div>
 

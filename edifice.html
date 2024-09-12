@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice Core &#8212; Edifice 1.2.0 documentation</title>
+    <title>Edifice Core &#8212; Edifice 1.3.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=6efca38a"></script>
+    <script src="_static/documentation_options.js?v=1f29e9d3"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'edifice';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -647,6 +647,76 @@ it is recommended to use <a class="reference internal" href="stubs/stubs/edifice
 to tell the diffing algorithm which child Elements are identical so that it
 doesn’t have to guess.</p>
 </section>
+<section id="substitutional-eq-relation">
+<h2>Substitutional <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation<a class="headerlink" href="#substitutional-eq-relation" title="Link to this heading">#</a></h2>
+<p>The Python
+<a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__eq__">__eq__ relation</a>
+is important for everything in Edifice. It is used, for example:</p>
+<ol class="arabic simple">
+<li><p>To compare <strong>props</strong> for deciding when an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> must be re-rendered.</p></li>
+<li><p>To compare <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> <strong>state</strong> variables for deciding when a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> must be re-rendered.</p></li>
+<li><p>To compare <strong>dependencies</strong> for deciding when a <a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> must be re-run.</p></li>
+</ol>
+<p>For the <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation to work properly, it should mean that if two
+objects are <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>, then <em>one can be substituted for the other</em>.
+This is not true for many Python types, especially object types
+for which <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> defaults to identity.</p>
+<blockquote>
+<div><p>By default, <code class="code docutils literal notranslate"><span class="pre">object</span></code> implements <code class="code docutils literal notranslate"><span class="pre">__eq__()</span></code> by using <code class="code docutils literal notranslate"><span class="pre">is</span></code></p>
+</div></blockquote>
+<p>Every value used as a <strong>prop</strong> or <strong>state</strong> or <strong>dependency</strong> in Edifice should
+have a <em>substitutional</em> <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation.</p>
+</section>
+<section id="element-initialization-is-a-render-side-effect">
+<h2>Element initialization is a render side-effect<a class="headerlink" href="#element-initialization-is-a-render-side-effect" title="Link to this heading">#</a></h2>
+<p>Each <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> is implemented as the constructor function
+for a Python class. The <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> constructor function also has
+the side-effect of inserting itself to the rendered <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree,
+as a child of the <code class="code docutils literal notranslate"><span class="pre">with</span></code> context layout Element.</p>
+<p>We like this style of declaring Element trees in Python code because it forces
+the indentation structure of the Python code to reflect the structure of the
+Element tree.</p>
+<p>Because Element initialization is a render side-effect,
+we have to be careful about binding Elements to variables
+and passing them around. They will insert themselves at the time they are
+created. This code will <strong>NOT</strong> declare the intended Element tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
+    <span class="n">label3</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop3</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop1</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop2</span><span class="p">)</span>
+        <span class="n">label3</span>
+</pre></div>
+</div>
+<p>To solve this, defer the construction of the Element with a lambda function.
+This code will declare the same intended Element tree as the code above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
+    <span class="n">label3</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop3</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop1</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop2</span><span class="p">)</span>
+        <span class="n">label3</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If these component Elements are render functions, then why couldn’t we just write
+a normal render function with no decorator instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># No decorator</span>
+<span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop1</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop2</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The difference is, with the <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> decorator, an
+actual <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> object is created,
+which means that subsequent renders will be skipped if the <strong>props</strong> didn’t change.
+Also we need an <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> to
+be able to use Hooks such as <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>, because those are bound to
+an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+</section>
 <section id="class-overview">
 <h2>Class overview<a class="headerlink" href="#class-overview" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
@@ -722,6 +792,8 @@ doesn’t have to guess.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-view-update">Model-View-Update</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffing-algorithm">The diffing algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitutional-eq-relation">Substitutional <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-initialization-is-a-render-side-effect">Element initialization is a render side-effect</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a></li>
 </ul>
   </nav></div>

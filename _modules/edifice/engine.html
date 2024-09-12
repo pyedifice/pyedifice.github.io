@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 1.2.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 1.3.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=6efca38a"></script>
+    <script src="../../_static/documentation_options.js?v=1f29e9d3"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/engine';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.2.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -1111,54 +1111,6 @@ document.write(`
 <span class="sd">                Label(text=prop1)</span>
 <span class="sd">                Label(text=prop2)</span>
 <span class="sd">                Label(text=prop3)</span>
-
-<span class="sd">    Element initialization is a render side-effect</span>
-<span class="sd">    ----------------------------------------------</span>
-
-<span class="sd">    Each :class:`Element` is actually implemented as the constructor function</span>
-<span class="sd">    for a Python class. The :class:`Element` constructor function also has</span>
-<span class="sd">    the side-effect of inserting itself to the rendered :class:`Element` tree,</span>
-<span class="sd">    as a child of the :code:`with` context layout Element.</span>
-
-<span class="sd">    For that reason, you have to be careful about binding Elements to variables</span>
-<span class="sd">    and passing them around. They will insert themselves at the time they are</span>
-<span class="sd">    created. This code will **NOT** declare the intended Element tree::</span>
-
-<span class="sd">        @component</span>
-<span class="sd">        def MySimpleComp(self, prop1, prop2, prop3):</span>
-<span class="sd">            label3 = Label(text=prop3)</span>
-<span class="sd">            with VBoxView():</span>
-<span class="sd">                Label(text=prop1)</span>
-<span class="sd">                Label(text=prop2)</span>
-<span class="sd">                label3</span>
-
-<span class="sd">    To solve this, defer the construction of the Element with a lambda function.</span>
-<span class="sd">    This code will declare the same intended Element tree as the code above::</span>
-
-<span class="sd">        @component</span>
-<span class="sd">        def MySimpleComp(self, prop1, prop2, prop3):</span>
-<span class="sd">            label3 = lambda: Label(text=prop3)</span>
-<span class="sd">            with VBoxView():</span>
-<span class="sd">                Label(text=prop1)</span>
-<span class="sd">                Label(text=prop2)</span>
-<span class="sd">                label3()</span>
-
-<span class="sd">    If these component Elements are render functions, then why couldn’t we just write</span>
-<span class="sd">    a normal render function with no decorator::</span>
-
-<span class="sd">        # No decorator</span>
-<span class="sd">        def MySimpleComp(prop1, prop2, prop3):</span>
-<span class="sd">            with VBoxView():</span>
-<span class="sd">                Label(text=prop1)</span>
-<span class="sd">                Label(text=prop2)</span>
-<span class="sd">                Label(text=prop3)</span>
-
-<span class="sd">    instead. The difference is, with the :func:`component` decorator, an</span>
-<span class="sd">    actual :class:`Element` object is created,</span>
-<span class="sd">    which means that subsequent renders will be skipped if the **props** didn’t change.</span>
-<span class="sd">    Also we need an :func:`component` to</span>
-<span class="sd">    be able to use Hooks such as :func:`use_state`, because those are bound to</span>
-<span class="sd">    an :class:`Element`.</span>
 
 <span class="sd">    State</span>
 <span class="sd">    -----</span>
