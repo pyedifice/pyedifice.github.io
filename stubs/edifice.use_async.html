@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 1.3.0 documentation</title>
+    <title>edifice.use_async &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="../_static/documentation_options.js?v=9172181d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_async';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -516,13 +516,14 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.use_async">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async" title="Link to this definition">#</a></dt>
 <dd><p>Bases:</p>
-<p>Asynchronous side-effect Hook inside a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> function.</p>
+<p>Asynchronous side-effect Hook inside a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p>
 <p>Will create a new
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task">Task</a>
 with the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> coroutine.</p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be called every time the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">use_async to fetch from the network</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">Asynchronous</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">myword</span><span class="p">,</span> <span class="n">myword_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
@@ -537,6 +538,7 @@ with the <code class="code docutils literal notranslate"><span class="pre">fn_co
     <span class="n">_cancel_fetcher</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">myword</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <section id="cancellation">
 <h2>Cancellation<a class="headerlink" href="#cancellation" title="Link to this heading">#</a></h2>

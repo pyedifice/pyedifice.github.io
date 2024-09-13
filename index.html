@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice &#8212; Edifice 1.3.0 documentation</title>
+    <title>Edifice &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="_static/documentation_options.js?v=9172181d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
@@ -123,8 +123,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -482,9 +482,8 @@ as a backend. Edifice is like
 <a class="reference external" href="https://react.dev/">React</a>, but with
 Python instead of JavaScript, and <a class="reference external" href="https://doc.qt.io/qt-6/qtwidgets-index.html">Qt Widgets</a>
 instead of the HTML DOM.
-If you have experience with React,
-you will find Edifice easy to learn.
-Edifice has function components, props, and Hooks just like React.</p>
+If you have React experience, you’ll find Edifice easy to learn.
+Edifice has function Components, Props, and Hooks just like React.</p>
 <section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
@@ -514,30 +513,29 @@ see <a class="reference internal" href="edifice.html"><span class="doc">Edifice 
 <section id="why-edifice">
 <h2>Why Edifice?<a class="headerlink" href="#why-edifice" title="Link to this heading">#</a></h2>
 <p><strong>Declarative</strong></p>
-<p>The premise of Edifice is that
-GUI designers should only need to worry about <em>what</em> is rendered on the screen,
-not <em>how</em> the content is rendered.</p>
 <p>Most existing GUI libraries in Python, such as Tkinter and Qt, operate imperatively.
 To create a dynamic application using these libraries,
-you must not only think about <em>what</em> to display to the user given state changes,
-but also <em>how</em> to issue the commands to achieve the desired display.</p>
-<p>Edifice allows you to declare <em>what</em> should be rendered given the current state,
-leaving the <em>how</em> to the library.</p>
-<p>User interactions update the state, and state changes update the GUI.
-You only need to specify what is to be displayed given the current state and how
-user interactions modify this state.</p>
-<p>With Edifice you write code like:</p>
+you must not only think about <em>what</em> widgets to display to the user,
+but also <em>how</em> to issue the commands to modify the widgets.</p>
+<p>With Edifice the developer
+need only declare <em>what</em> is rendered,
+not <em>how</em> the content is rendered.</p>
+<p>User interactions update the application state, the state renders to a widget tree,
+and Edifice modifies the existing widget tree to reflect the new state.</p>
+<p>Edifice code looks like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">number</span><span class="p">,</span> <span class="n">set_number</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
     <span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Add 5&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="n">set_number</span><span class="p">(</span><span class="n">number</span><span class="o">+</span><span class="mi">5</span><span class="p">))</span>
     <span class="n">Label</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="ow">and</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Number is mid&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>and get the expected result: the GUI always displays
-a button and a label displaying the current value of <code class="code docutils literal notranslate"><span class="pre">number</span></code>.
-Clicking the button adds 5 to the <code class="code docutils literal notranslate"><span class="pre">number</span></code>,
-and Edifice will handle updating the GUI.</p>
+<p>The GUI displays
+a button and a label with the current value of <code class="code docutils literal notranslate"><span class="pre">number</span></code>.
+Clicking the button will add 5 to the <code class="code docutils literal notranslate"><span class="pre">number</span></code>.
+If the <code class="code docutils literal notranslate"><span class="pre">number</span></code> is “mid” then another label will reveal that fact.</p>
 <p><strong>Developer Tools</strong></p>
 <ul class="simple">
 <li><p>Dynamic hot-reloading of source code changes.</p></li>
@@ -546,21 +544,21 @@ and Edifice will handle updating the GUI.</p>
 <p>See <a class="reference internal" href="developer_tools.html"><span class="doc">Developer Tools</span></a> for more details.</p>
 <p><strong>Edifice vs. Qt Quick</strong></p>
 <p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtQuick/">Qt Quick</a> is Qt’s declarative GUI framework for Qt.</p>
-<ul class="simple">
-<li><p>Edifice programs are written in Python, whereas Qt Quick programs are written
-in Python + the special <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qmlapplications.html">QML</a> language + JavaScript.</p></li>
-<li><p>Because Edifice interfaces are declared in Python code, binding the code to the declared UI is much more</p></li>
-</ul>
-<p>straightforward.
-- Edifice makes it easy to create dynamic applications. It’s easy to create, shuffle, and destroy widgets
-because the interface is written in Python code. QML assumes a much more static interface.</p>
-<p>By analogy, Qt Quick is like DOM + HTML + JavaScript, whereas Edifice is like React.js.
-While QML and HTML are both declarative UI languages,
+<p>Edifice programs are written in Python.</p>
+<p>Qt Quick programs are written in Python + the
+special <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qmlapplications.html">QML</a> language + JavaScript.</p>
+<p>Because Edifice programs are only Python, binding to the
+UI is much more straightforward.
+Edifice makes it easy to dynamically create, mutate, shuffle, and destroy sections of the UI.
+Qt Quick assumes a much more static interface.</p>
+<p>Qt Quick is like DOM + HTML + JavaScript, whereas Edifice is like React.
+QML and HTML are both declarative UI languages but
 they require imperative logic in another language for dynamism.
-Edifice and React.js allow fully dynamic applications to be specified declaratively in one language.</p>
+Edifice and React allow fully dynamic applications to be specified
+declaratively in one language.</p>
 <p><strong>Extendable</strong></p>
-<p>Edifice is still currently under development, and some Qt widgets/functionality are not supported.
-However, it is easy to interface with Qt, either <a class="reference internal" href="base_components.html#custom-widget"><span class="std std-ref">incorporating a Qt Widget</span></a> into an Edifice component,
+<p>Edifice does not support every feature of Qt,
+but it is easy to interface with Qt, either <a class="reference internal" href="base_components.html#custom-widget"><span class="std std-ref">incorporating a Qt Widget</span></a> into an Edifice component,
 <a class="reference internal" href="stubs/edifice.Reference.html"><span class="doc">use Qt commands directly</span></a> with an existing Edifice component,
 or <a class="reference internal" href="stubs/stubs/edifice.App.export_widgets.html"><span class="doc">incorporating Edifice components</span></a> in a Qt application.</p>
 </section>
@@ -664,6 +662,7 @@ under the more flexible <em>LGPL</em> license.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="versions.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#v1-4-0">v1.4.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="versions.html#v1-3-0">v1.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="versions.html#v1-2-0">v1.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="versions.html#v1-1-0">v1.1.0</a></li>

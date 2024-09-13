@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_effect_final &#8212; Edifice 1.3.0 documentation</title>
+    <title>edifice.use_effect_final &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="../_static/documentation_options.js?v=9172181d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_effect_final';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -516,7 +516,7 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.use_effect_final">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_effect_final</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cleanup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_effect_final"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_effect_final" title="Link to this definition">#</a></dt>
 <dd><p>Bases:</p>
-<p>Side-effect Hook for when a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> unmounts.</p>
+<p>Side-effect Hook for when a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> unmounts.</p>
 <p>This Hook will call the <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> side-effect function with the latest
 local state from <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> Hooks.</p>
 <p>This Hook solves the problem of using <a class="reference internal" href="edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> with constant
@@ -528,8 +528,9 @@ This Hook <code class="code docutils literal notranslate"><span class="pre">clea
 latest component <code class="code docutils literal notranslate"><span class="pre">use_state</span></code>.</p>
 <p>The optional <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> argument can be used to trigger the
 Hook to call the <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> function before the component unmounts.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">set_x</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">use_effect_final</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">set_x</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">unmount_cleanup_x</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;At unmount, the value of x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -537,29 +538,35 @@ Hook to call the <code class="code docutils literal notranslate"><span class="pr
 <span class="n">use_effect_final</span><span class="p">(</span><span class="n">unmount_cleanup_x</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 <section id="debounce">
 <h2>Debounce<a class="headerlink" href="#debounce" title="Link to this heading">#</a></h2>
-<p>We can use this Hook together with <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> to “debounce” an effect
-which must always finally run when the component unmounts.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">set_x</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<p>We can use this Hook together with <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> to
+<a class="reference external" href="https://stackoverflow.com/questions/25991367/difference-between-throttling-and-debouncing-a-function">“debounce”</a>
+an effect which must always finally run when the component unmounts.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Debounce</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">set_x</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># We want to save the value of x to a file whenever the value of</span>
 <span class="c1"># x changes. But we don&#39;t want to do this too often because it would</span>
-<span class="c1"># lag the GUI responses. Each :func:`use_async` call will cancel prior</span>
+<span class="c1"># lag the GUI responses. Each use_async call will cancel prior</span>
 <span class="c1"># awaiting calls. So this will save 1 second after the last change to x.</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">save_x_debounce</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
     <span class="n">save_to_file</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="n">use_async</span><span class="p">(</span><span class="n">save_x_debouce</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">use_async</span><span class="p">(</span><span class="n">save_x_debounce</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># And we want to make sure that the final value of x is saved to</span>
 <span class="c1"># the file when the component unmounts.</span>
+<span class="c1"># Unmounting the component will cancel the save_x_debounce Task,</span>
+<span class="c1"># then the use_effect_final will save the final value of x.</span>
 
 <span class="n">use_effect_final</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">save_to_file</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
+</div>
 </div>
 </section>
 </dd></dl>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 1.3.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="../../_static/documentation_options.js?v=9172181d"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/app';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -571,19 +571,57 @@ document.write(`
 <span class="sd">    Start</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    To start the application, call the :func:`App.start` method::</span>
+<span class="sd">    To start the application, construct an :class:`App` with a root Element</span>
+<span class="sd">    and call the :func:`App.start` method::</span>
 
 <span class="sd">        App(MyRootElement()).start()</span>
 
-<span class="sd">    If the application is normal application in an operating</span>
+<span class="sd">    If the application is a normal application in an operating</span>
 <span class="sd">    system window, then the root Element rendered by :code:`MyRootElement`</span>
 <span class="sd">    must be a :class:`Window`.</span>
+
+<span class="sd">    The :func:`App.start` method will:</span>
 
 <span class="sd">    1. Create the application event loop</span>
 <span class="sd">       `qasync.QEventLoop &lt;https://github.com/CabbageDevelopment/qasync&gt;`_.</span>
 <span class="sd">    2. Start the application event loop.</span>
 <span class="sd">    3. Render the root Element.</span>
 
+<span class="sd">    Instead of calling application initialization code from the</span>
+<span class="sd">    :code:`__main__` function, call the initialization code from a</span>
+<span class="sd">    :func:`use_state` **initializer function** in the root Element</span>
+<span class="sd">    because this function will run when the app is started by the Edifice</span>
+<span class="sd">    Runner.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        from PySide6.QtWidgets import QApplication</span>
+<span class="sd">        from PySide6.QtGui import QFont</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Main(self):</span>
+
+<span class="sd">            def initalizer():</span>
+<span class="sd">                qapp = cast(QApplication, QApplication.instance())</span>
+<span class="sd">                QApplication.setStyle(&quot;fusion&quot;)</span>
+<span class="sd">                qapp.setApplicationName(&quot;My App&quot;)</span>
+<span class="sd">                qapp.setFont(QFont(&quot;Yu Gothic UI&quot;, 10))</span>
+<span class="sd">                qapp.setStyleSheet(&quot;QLabel { font-size: 12pt; }&quot;)</span>
+<span class="sd">                if theme_is_light():</span>
+<span class="sd">                    qapp.setPalette(palette_edifice_light())</span>
+<span class="sd">                else:</span>
+<span class="sd">                    qapp.setPalette(palette_edifice_dark())</span>
+
+<span class="sd">            _, _ = use_state(initalizer)</span>
+
+<span class="sd">            with Window():</span>
+<span class="sd">                Label(&quot;Hello, World!&quot;)</span>
+
+
+<span class="sd">        if __name__ == &quot;__main__&quot;:</span>
+<span class="sd">            App(Main()).start()</span>
+
+<span class="sd">    For more information about global styles, see :doc:`Styling&lt;../styling&gt;`.</span>
 
 <span class="sd">    Stop</span>
 <span class="sd">    ----</span>
@@ -630,17 +668,21 @@ document.write(`
 <span class="sd">    instance.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        root_element: the root Element of the application.</span>
+<span class="sd">        root_element:</span>
+<span class="sd">            The root Element of the application.</span>
 <span class="sd">            It must render to an instance of :class:`Window` or</span>
 <span class="sd">            :class:`ExportList`.</span>
-<span class="sd">        inspector: whether or not to run an instance of the Edifice Inspector</span>
-<span class="sd">            alongside the main app. Defaults to False</span>
-<span class="sd">        create_application: (default True) whether or not to create an instance of QApplication.</span>
+<span class="sd">        inspector:</span>
+<span class="sd">            Whether or not to run an instance of the Edifice Inspector</span>
+<span class="sd">            alongside the main app. Defaults to :code:`False`.</span>
+<span class="sd">        create_application:</span>
+<span class="sd">            (Default :code:`True`) Whether or not to create an instance of QApplication.</span>
 <span class="sd">            Usually you want to use the default setting.</span>
 <span class="sd">            However, if the QApplication is already created (e.g. in a test suite or if you just want Edifice</span>
 <span class="sd">            to make a widget to plug into an existing Qt application),</span>
 <span class="sd">            you can set this to False.</span>
-<span class="sd">        qapplication: (default None)</span>
+<span class="sd">        qapplication:</span>
+<span class="sd">            (Default :code:`None`)</span>
 <span class="sd">            The `QtWidgets.QApplication &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html&gt;`_.</span>
 <span class="sd">            If you do not provide one, it will be created for you.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 1.3.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="../../../_static/documentation_options.js?v=9172181d"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/base_components';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -1914,32 +1914,9 @@ document.write(`
 <span class="sd">            Event handler for when this window is opening. This event handler</span>
 <span class="sd">            function will be called exactly once, before the children are mounted.</span>
 
-<span class="sd">            Instead of calling application initialization code from the</span>
-<span class="sd">            :code:`__main__` function, it should be called here, because this</span>
-<span class="sd">            function will run when the app is started by the Edifice Runner.</span>
-
 <span class="sd">            The event handler function will be passed the application’s</span>
 <span class="sd">            `QApplication &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html&gt;`_</span>
 <span class="sd">            object.</span>
-
-<span class="sd">            Example::</span>
-
-<span class="sd">                from PySide6.QtWidgets import QApplication</span>
-<span class="sd">                from PySide6.QtGui import QFont</span>
-
-<span class="sd">                @component</span>
-<span class="sd">                def Main(self):</span>
-
-<span class="sd">                    def init(qapp: QApplication):</span>
-<span class="sd">                        qapp.setApplicationName(&quot;My App&quot;)</span>
-<span class="sd">                        QApplication.setStyle(&quot;fusion&quot;)</span>
-<span class="sd">                        qapp.setFont(QFont(&quot;Yu Gothic UI&quot;, 10))</span>
-<span class="sd">                        qapp.setStyleSheet(&quot;QLabel { font-size: 12pt; }&quot;)</span>
-
-<span class="sd">                    with Window(on_open=init):</span>
-<span class="sd">                        Label(&quot;Hello, World!&quot;)</span>
-
-<span class="sd">            For more information about global styles, see :doc:`Styling&lt;../styling&gt;`.</span>
 <span class="sd">        on_close:</span>
 <span class="sd">            Event handler for when this window is closing. This event handler</span>
 <span class="sd">            will fire before the children are unmounted.</span>

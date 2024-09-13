@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 1.3.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="../../_static/documentation_options.js?v=9172181d"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/engine';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -2608,7 +2608,9 @@ document.write(`
         <span class="k">return</span> <span class="n">RenderResult</span><span class="p">(</span><span class="n">all_commands</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">use_state</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">_T_use_state</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">initial_state</span><span class="p">:</span> <span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">_T_use_state</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
         <span class="n">_T_use_state</span><span class="p">,</span>  <span class="c1"># current value</span>
         <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_state</span><span class="p">],</span> <span class="n">_T_use_state</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>  <span class="c1"># updater</span>
@@ -2619,8 +2621,11 @@ document.write(`
         <span class="n">element</span><span class="o">.</span><span class="n">_hook_state_index</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
-            <span class="c1"># then this is the first render</span>
-            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookState</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="nb">list</span><span class="p">())</span>
+            <span class="c1"># Then this is the first render.</span>
+            <span class="c1"># Call the initializer function if it is a function.</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookState</span><span class="p">(</span><span class="n">initial_state</span><span class="p">()</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span> <span class="k">else</span> <span class="n">initial_state</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The state value of use_state cannot be Callable.&quot;</span><span class="p">)</span>
             <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>

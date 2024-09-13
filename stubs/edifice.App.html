@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.App &#8212; Edifice 1.3.0 documentation</title>
+    <title>edifice.App &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="../_static/documentation_options.js?v=9172181d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.App';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -515,19 +515,55 @@ document.write(`
 <p>The main application object.</p>
 <section id="start">
 <h2>Start<a class="headerlink" href="#start" title="Link to this heading">#</a></h2>
-<p>To start the application, call the <a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method:</p>
+<p>To start the application, construct an <a class="reference internal" href="#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> with a root Element
+and call the <a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">App</span><span class="p">(</span><span class="n">MyRootElement</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>If the application is normal application in an operating
+<p>If the application is a normal application in an operating
 system window, then the root Element rendered by <code class="code docutils literal notranslate"><span class="pre">MyRootElement</span></code>
 must be a <a class="reference internal" href="edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a>.</p>
+<p>The <a class="reference internal" href="stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method will:</p>
 <ol class="arabic simple">
 <li><p>Create the application event loop
 <a class="reference external" href="https://github.com/CabbageDevelopment/qasync">qasync.QEventLoop</a>.</p></li>
 <li><p>Start the application event loop.</p></li>
 <li><p>Render the root Element.</p></li>
 </ol>
+<p>Instead of calling application initialization code from the
+<code class="code docutils literal notranslate"><span class="pre">__main__</span></code> function, call the initialization code from a
+<a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> <strong>initializer function</strong> in the root Element
+because this function will run when the app is started by the Edifice
+Runner.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QFont</span>
+
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">initalizer</span><span class="p">():</span>
+        <span class="n">qapp</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">QApplication</span><span class="p">,</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">())</span>
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="s2">&quot;fusion&quot;</span><span class="p">)</span>
+        <span class="n">qapp</span><span class="o">.</span><span class="n">setApplicationName</span><span class="p">(</span><span class="s2">&quot;My App&quot;</span><span class="p">)</span>
+        <span class="n">qapp</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">QFont</span><span class="p">(</span><span class="s2">&quot;Yu Gothic UI&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="n">qapp</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;QLabel { font-size: 12pt; }&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">theme_is_light</span><span class="p">():</span>
+            <span class="n">qapp</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette_edifice_light</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qapp</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette_edifice_dark</span><span class="p">())</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">initalizer</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">App</span><span class="p">(</span><span class="n">Main</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For more information about global styles, see <a class="reference internal" href="../styling.html"><span class="doc">Styling</span></a>.</p>
 </section>
 <section id="stop">
 <h2>Stop<a class="headerlink" href="#stop" title="Link to this heading">#</a></h2>
@@ -573,7 +609,7 @@ instance.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.engine.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></span></p>
 </dd>
 <dt class="field-even">param root_element<span class="colon">:</span></dt>
-<dd class="field-even"><p>the root Element of the application.
+<dd class="field-even"><p>The root Element of the application.
 It must render to an instance of <a class="reference internal" href="edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> or
 <a class="reference internal" href="edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a>.</p>
 </dd>
@@ -581,14 +617,14 @@ It must render to an instance of <a class="reference internal" href="edifice.Win
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 <dt class="field-even">param inspector<span class="colon">:</span></dt>
-<dd class="field-even"><p>whether or not to run an instance of the Edifice Inspector
-alongside the main app. Defaults to False</p>
+<dd class="field-even"><p>Whether or not to run an instance of the Edifice Inspector
+alongside the main app. Defaults to <code class="code docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
 <dt class="field-odd">type create_application<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 <dt class="field-even">param create_application<span class="colon">:</span></dt>
-<dd class="field-even"><p>(default True) whether or not to create an instance of QApplication.
+<dd class="field-even"><p>(Default <code class="code docutils literal notranslate"><span class="pre">True</span></code>) Whether or not to create an instance of QApplication.
 Usually you want to use the default setting.
 However, if the QApplication is already created (e.g. in a test suite or if you just want Edifice
 to make a widget to plug into an existing Qt application),
@@ -598,7 +634,7 @@ you can set this to False.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QApplication</span></code>]</span></p>
 </dd>
 <dt class="field-even">param qapplication<span class="colon">:</span></dt>
-<dd class="field-even"><p>(default None)
+<dd class="field-even"><p>(Default <code class="code docutils literal notranslate"><span class="pre">None</span></code>)
 The <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html">QtWidgets.QApplication</a>.
 If you do not provide one, it will be created for you.</p>
 </dd>

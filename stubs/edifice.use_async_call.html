@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async_call &#8212; Edifice 1.3.0 documentation</title>
+    <title>edifice.use_async_call &#8212; Edifice 1.4.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+    <script src="../_static/documentation_options.js?v=9172181d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_async_call';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.3.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -531,18 +531,24 @@ safe to call from any thread.</p></li>
 the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. This cancellation function is
 safe to call from any thread.</p></li>
 </ol>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">delay_print_async</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">use_async_call to delay print</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">delay_print_async</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 <span class="n">delay_print</span><span class="p">,</span> <span class="n">cancel_print</span> <span class="o">=</span> <span class="n">use_async_call</span><span class="p">(</span><span class="n">delay_print_async</span><span class="p">)</span>
 
 <span class="n">delay_print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
-
-<span class="c1"># some time later, if we want to manually cancel the delayed print:</span>
-<span class="n">cancel_print</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<p>Some time later, if we want to manually cancel the delayed print:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">cancel the delayed print</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cancel_print</span><span class="p">()</span>
+</pre></div>
+</div>
 </div>
 <p>This Hook is similar to <code class="code docutils literal notranslate"><span class="pre">useAsyncCallback</span></code> from
 <a class="reference external" href="https://www.npmjs.com/package/react-async-hook">https://www.npmjs.com/package/react-async-hook</a></p>
@@ -550,13 +556,7 @@ safe to call from any thread.</p></li>
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.create_task">create_task()</a> ,
 but because it uses
 <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>, it will cancel the Task
-when this <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">edifice.component()</span></code></a> is unmounted, or when the function is called again.</p>
-<p>We can
-<a class="reference external" href="https://stackoverflow.com/questions/25991367/difference-between-throttling-and-debouncing-a-function">“debounce”</a>
-a function by using this Hook on an async function
-which has an
-<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep">await asyncio.sleep()</a>
-delay at the beginning of it.</p>
+when this <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> is unmounted, or when the function is called again.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fn_coroutine</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Async Coroutine function to be run as a Task.</p>
