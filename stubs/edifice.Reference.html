@@ -512,54 +512,39 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.Reference">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">Reference</span></span><a class="reference internal" href="../_modules/edifice/engine.html#Reference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Reference" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">_T_Element</span></code>]</p>
-<p>Reference to a <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> to allow imperative modifications.</p>
-<p>While Edifice is a declarative library and tries to abstract away the need to issue
-imperative commands to widgets,
-this is not always possible, either due to limitations with the underlying backened,
-or because some feature implemented by the backend is not yet supported by the declarative layer.
-In these cases, you might need to issue imperative commands to the underlying Widgets and Elements,
-and <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> gives you a handle to the currently rendered <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
-<p>Create a <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> with the <a class="reference internal" href="edifice.use_ref.html#edifice.use_ref" title="edifice.use_ref"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_ref()</span></code></a> Hook:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">MyComp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">ref</span> <span class="o">=</span> <span class="n">use_ref</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">issue_command</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-        <span class="n">ref</span><span class="p">()</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-
-    <span class="n">AnotherElement</span><span class="p">(</span><span class="n">on_click</span><span class="o">=</span><span class="n">issue_command</span><span class="p">)</span><span class="o">.</span><span class="n">register_ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Under the hood, <a class="reference internal" href="stubs/edifice.Element.register_ref.html#edifice.Element.register_ref" title="edifice.Element.register_ref"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.register_ref()</span></code></a> registers the <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> object
-to the <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> returned by the <code class="code docutils literal notranslate"><span class="pre">render</span></code> function.
-While rendering, Edifice will examine all requested references and attaches
-them to the correct <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
-<p>Initially, a <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> object will point to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
-After the first render, it will point to the rendered <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.
+<p>Reference to an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> for imperative commands.</p>
+<p>Edifice tries to abstract away the need to issue
+imperative commands to widgets but this is not always possible and not
+every feature of Qt Widgets is supported by Edifice.
+In some cases, we might need to issue imperative commands to the
+Elements and their underlying Qt Widgets.
+<a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> gives us access to a rendered <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+<p>Create a <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> with the <a class="reference internal" href="edifice.use_ref.html#edifice.use_ref" title="edifice.use_ref"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_ref()</span></code></a> Hook.</p>
+<p><a class="reference internal" href="stubs/edifice.Element.register_ref.html#edifice.Element.register_ref" title="edifice.Element.register_ref"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.register_ref()</span></code></a> registers the <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> object
+to the <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+<p><a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> can be dereferenced by calling it. An instance of
+type <code class="code docutils literal notranslate"><span class="pre">Reference[Label]</span></code> will dereference to an instance of
+<code class="code docutils literal notranslate"><span class="pre">Label</span></code> when called.</p>
+<p>Initially, a <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> object will dereference to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
+After the first render, it will dereference to the rendered <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.
 When the rendered <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> dismounts, the reference will once again
-point to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
-You may assume that <a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> is valid whenever it is
-not <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
-<a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> will evaluate false if the underlying value is <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
-<p><a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> can be dereferenced by calling it. An idiomatic way of using references is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">ref</span><span class="p">:</span>
-    <span class="n">ref</span><span class="p">()</span><span class="o">.</span><span class="n">do_something</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>If you want to access the QWidget underlying a Base Element,
-you can use the <code class="code docutils literal notranslate"><span class="pre">underlying</span></code> attribute of the Element.
-<a class="reference internal" href="edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> Hooks always run after the Elements are fully rendered:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+dereference to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
+<a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> is valid whenever it is not <code class="code docutils literal notranslate"><span class="pre">None</span></code>.
+<a class="reference internal" href="#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> will evaluate false if the <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> is <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>Access the QWidget underlying a <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>,
+through the <code class="code docutils literal notranslate"><span class="pre">underlying</span></code> attribute of the <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>.
+<a class="reference internal" href="edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> Hooks always run after the Elements are fully rendered.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MyComp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">ref</span> <span class="o">=</span> <span class="n">use_ref</span><span class="p">()</span>
+    <span class="n">label_ref</span><span class="p">:</span><span class="n">Reference</span><span class="p">[</span><span class="n">Label</span><span class="p">]</span> <span class="o">=</span> <span class="n">use_ref</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">did_render</span><span class="p">():</span>
-        <span class="n">element</span> <span class="o">=</span> <span class="n">ref</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">Label</span><span class="p">)</span>
-        <span class="n">element</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;After&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">lambda</span><span class="p">:</span><span class="kc">None</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">label_ref</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">and</span> <span class="n">label</span><span class="o">.</span><span class="n">underlying</span><span class="p">:</span>
+            <span class="c1"># Set the text of the Label’s underlying QLabel widget.</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;After&quot;</span><span class="p">)</span>
 
-    <span class="n">use_effect</span><span class="p">(</span><span class="n">did_render</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+    <span class="n">use_effect</span><span class="p">(</span><span class="n">did_render</span><span class="p">,</span> <span class="p">())</span>
 
     <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
         <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Before&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">register_ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>

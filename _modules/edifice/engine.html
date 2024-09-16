@@ -671,59 +671,48 @@ document.write(`
 <div class="viewcode-block" id="Reference">
 <a class="viewcode-back" href="../../stubs/edifice.Reference.html#edifice.Reference">[docs]</a>
 <span class="k">class</span> <span class="nc">Reference</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Generic</span><span class="p">[</span><span class="n">_T_Element</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reference to a :class:`Element` to allow imperative modifications.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reference to an :class:`Element` for imperative commands.</span>
 
-<span class="sd">    While Edifice is a declarative library and tries to abstract away the need to issue</span>
-<span class="sd">    imperative commands to widgets,</span>
-<span class="sd">    this is not always possible, either due to limitations with the underlying backened,</span>
-<span class="sd">    or because some feature implemented by the backend is not yet supported by the declarative layer.</span>
-<span class="sd">    In these cases, you might need to issue imperative commands to the underlying Widgets and Elements,</span>
-<span class="sd">    and :class:`Reference` gives you a handle to the currently rendered :class:`Element`.</span>
+<span class="sd">    Edifice tries to abstract away the need to issue</span>
+<span class="sd">    imperative commands to widgets but this is not always possible and not</span>
+<span class="sd">    every feature of Qt Widgets is supported by Edifice.</span>
+<span class="sd">    In some cases, we might need to issue imperative commands to the</span>
+<span class="sd">    Elements and their underlying Qt Widgets.</span>
+<span class="sd">    :class:`Reference` gives us access to a rendered :class:`Element`.</span>
 
-<span class="sd">    Create a :class:`Reference` with the :func:`use_ref` Hook::</span>
+<span class="sd">    Create a :class:`Reference` with the :func:`use_ref` Hook.</span>
 
-<span class="sd">        @component</span>
-<span class="sd">        def MyComp(self):</span>
-<span class="sd">            ref = use_ref()</span>
+<span class="sd">    :func:`Element.register_ref` registers the :class:`Reference` object</span>
+<span class="sd">    to the :class:`Element`.</span>
 
-<span class="sd">            def issue_command(e):</span>
-<span class="sd">                ref().command()</span>
+<span class="sd">    :class:`Reference` can be dereferenced by calling it. An instance of</span>
+<span class="sd">    type :code:`Reference[Label]` will dereference to an instance of</span>
+<span class="sd">    :code:`Label` when called.</span>
 
-<span class="sd">            AnotherElement(on_click=issue_command).register_ref(ref)</span>
-
-<span class="sd">    Under the hood, :func:`Element.register_ref` registers the :class:`Reference` object</span>
-<span class="sd">    to the :class:`Element` returned by the :code:`render` function.</span>
-<span class="sd">    While rendering, Edifice will examine all requested references and attaches</span>
-<span class="sd">    them to the correct :class:`Element`.</span>
-
-<span class="sd">    Initially, a :class:`Reference` object will point to :code:`None`.</span>
-<span class="sd">    After the first render, it will point to the rendered :class:`Element`.</span>
+<span class="sd">    Initially, a :class:`Reference` object will dereference to :code:`None`.</span>
+<span class="sd">    After the first render, it will dereference to the rendered :class:`Element`.</span>
 <span class="sd">    When the rendered :class:`Element` dismounts, the reference will once again</span>
-<span class="sd">    point to :code:`None`.</span>
-<span class="sd">    You may assume that :class:`Reference` is valid whenever it is</span>
-<span class="sd">    not :code:`None`.</span>
-<span class="sd">    :class:`Reference` will evaluate false if the underlying value is :code:`None`.</span>
+<span class="sd">    dereference to :code:`None`.</span>
+<span class="sd">    :class:`Reference` is valid whenever it is not :code:`None`.</span>
+<span class="sd">    :class:`Reference` will evaluate false if the :class:`Element` is :code:`None`.</span>
 
-<span class="sd">    :class:`Reference` can be dereferenced by calling it. An idiomatic way of using references is::</span>
+<span class="sd">    Access the QWidget underlying a :class:`QtWidgetElement`,</span>
+<span class="sd">    through the :code:`underlying` attribute of the :class:`QtWidgetElement`.</span>
+<span class="sd">    :func:`use_effect` Hooks always run after the Elements are fully rendered.</span>
 
-<span class="sd">        if ref:</span>
-<span class="sd">            ref().do_something()</span>
-
-<span class="sd">    If you want to access the QWidget underlying a Base Element,</span>
-<span class="sd">    you can use the :code:`underlying` attribute of the Element.</span>
-<span class="sd">    :func:`use_effect` Hooks always run after the Elements are fully rendered::</span>
+<span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        @component</span>
 <span class="sd">        def MyComp(self):</span>
-<span class="sd">            ref = use_ref()</span>
+<span class="sd">            label_ref:Reference[Label] = use_ref()</span>
 
 <span class="sd">            def did_render():</span>
-<span class="sd">                element = ref()</span>
-<span class="sd">                assert isinstance(element, Label)</span>
-<span class="sd">                element.underlying.setText(&quot;After&quot;)</span>
-<span class="sd">                return lambda:None</span>
+<span class="sd">                label = label_ref()</span>
+<span class="sd">                if label and label.underlying:</span>
+<span class="sd">                    # Set the text of the Label’s underlying QLabel widget.</span>
+<span class="sd">                    label.underlying.setText(&quot;After&quot;)</span>
 
-<span class="sd">            use_effect(did_render, ref)</span>
+<span class="sd">            use_effect(did_render, ())</span>
 
 <span class="sd">            with VBoxView():</span>
 <span class="sd">                Label(&quot;Before&quot;).register_ref(ref)</span>
