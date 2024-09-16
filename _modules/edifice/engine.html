@@ -715,7 +715,7 @@ document.write(`
 <span class="sd">            use_effect(did_render, ())</span>
 
 <span class="sd">            with VBoxView():</span>
-<span class="sd">                Label(&quot;Before&quot;).register_ref(ref)</span>
+<span class="sd">                Label(&quot;Before&quot;).register_ref(label_ref)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Reference.__init__">
@@ -957,9 +957,8 @@ document.write(`
     <span class="k">def</span> <span class="nf">register_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Self</span><span class="p">,</span> <span class="n">reference</span><span class="p">:</span> <span class="n">Reference</span><span class="p">[</span><span class="n">Self</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Registers provided :class:`Reference` to this Element.</span>
 
-<span class="sd">        During render, the provided reference will be set to point to the currently rendered instance of this Element</span>
-<span class="sd">        (i.e. if another instance of the Element is rendered and the RenderEngine decides to reconcile the existing</span>
-<span class="sd">        and current instances, the reference will eventually point to that previously existing Element.</span>
+<span class="sd">        During render, the provided reference will be set to point to the</span>
+<span class="sd">        currently rendered instance of this Element.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            reference: the Reference to register</span>
