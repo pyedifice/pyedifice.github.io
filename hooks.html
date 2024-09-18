@@ -513,19 +513,19 @@ document.write(`
                   
   <section id="hooks">
 <h1>Hooks<a class="headerlink" href="#hooks" title="Link to this heading">#</a></h1>
-<p>Hooks introduce various features into stateless <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Elements.</p>
+<p>Hooks introduce various features into stateless <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Elements.</p>
 <section id="rules-of-hooks">
 <h2>Rules of Hooks<a class="headerlink" href="#rules-of-hooks" title="Link to this heading">#</a></h2>
-<p>Hooks are inspired by <a class="reference external" href="https://react.dev/reference/react/hooks">React Hooks</a>,
+<p>Edifice Hooks imitate <a class="reference external" href="https://react.dev/reference/react/hooks">React Hooks</a>,
 and follow the React
-<a class="reference external" href="https://legacy.reactjs.org/docs/hooks-rules.html">Rules of Hooks</a>:</p>
+<a class="reference external" href="https://react.dev/reference/rules/rules-of-hooks">Rules of Hooks</a>.</p>
 <p>The exact same Hooks must be called
 in exactly the same order on every call to a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p>
 <ol class="arabic simple">
 <li><dl class="simple">
 <dt>Only call Hooks</dt><dd><ul class="simple">
-<li><p>In the top level of a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element function.</p></li>
-<li><p>In the body of a custom Hook.</p></li>
+<li><p>In the top level of a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element render function.</p></li>
+<li><p>In the body of a Custom Hook.</p></li>
 </ul>
 </dd>
 </dl>

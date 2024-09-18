@@ -507,18 +507,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-edifice">
-<span id="edifice-core"></span><h1>Edifice Core<a class="headerlink" href="#module-edifice" title="Link to this heading">#</a></h1>
+  <section id="edifice-core">
+<h1>Edifice Core<a class="headerlink" href="#edifice-core" title="Link to this heading">#</a></h1>
 <section id="declaring-element-trees">
 <h2>Declaring Element Trees<a class="headerlink" href="#declaring-element-trees" title="Link to this heading">#</a></h2>
 <p>An edifice application is created by rendering a <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> with an
 <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.</p>
 <p>The rendering for an Edifice application is done by declaring a tree of Elements
-starting with a single root <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>, and then declaring its children.</p>
+starting with a single root <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>, and then declaring its children.</p>
 <p>An Element may be either a
 <a class="reference internal" href="base_components.html"><span class="doc">Base Element</span></a>
-or a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element.</p>
-<p>A <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element is a function which renders an
+or a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element.</p>
+<p>A <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element is a function which renders an
 <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree.</p>
 <p>Elements have both internal state and external properties.
 The external properties, <strong>props</strong>, are passed as arguments to the Element:</p>
@@ -527,15 +527,15 @@ The external properties, <strong>props</strong>, are passed as arguments to the 
 </pre></div>
 </div>
 <p>The <strong>props</strong> are owned by the external caller and must not be modified by
-this <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element.</p>
+this <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element.</p>
 <p>Render a <code class="code docutils literal notranslate"><span class="pre">Foo</span></code> with props <code class="code docutils literal notranslate"><span class="pre">a=1,</span> <span class="pre">b=2,</span> <span class="pre">c=3</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The internal <strong>state</strong> belongs to the Element.
-In a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element, the internal state is managed by <a class="reference internal" href="hooks.html"><span class="doc">Hooks</span></a>.</p>
+In a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element, the internal state is managed by <a class="reference internal" href="hooks.html"><span class="doc">Hooks</span></a>.</p>
 <p>Changes in <strong>state</strong> or <strong>props</strong> will automatically trigger a re-render.</p>
-<p>Declaring an Element tree in a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> Element render function looks
+<p>Declaring an Element tree in a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element render function looks
 like this.
 To declare an Element to be the parent of some other
 child Elements in the tree, use the parent as a
@@ -552,7 +552,7 @@ child Elements in the tree, use the parent as a
                 <span class="n">TextInput</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In HTML/XML, this would be written as:</p>
+<p>In HTML/XML/JSX, this would be written as:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Window&gt;</span>
 <span class="w">    </span><span class="nt">&lt;VBoxView&gt;</span>
 <span class="w">        </span><span class="nt">&lt;HBoxView&gt;</span>
@@ -589,10 +589,10 @@ Update and then back to Model.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <tbody>
 <tr class="row-odd"><td><p>Model</p></td>
-<td><p>The <strong>state</strong> of the application.</p></td>
+<td><p>The <strong>state</strong> of the application declared with <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p>View</p></td>
-<td><p>The declarative render function, which takes the <strong>state</strong> and renders an Element tree.</p></td>
+<td><p>The <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> render function takes the <strong>state</strong> and renders an Element tree.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Update</p></td>
 <td><p>Event handlers which change the <strong>state</strong>.</p></td>
@@ -600,12 +600,21 @@ Update and then back to Model.</p>
 </tbody>
 </table>
 </div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/model-view-update.svg"><img alt="_images/model-view-update.svg" src="_images/model-view-update.svg" width="600" /></a>
+</figure>
 <p>It is the one-way information flow of Model-View-Update which makes
 this style of GUI programming scale up well to complicated user interfaces.</p>
+<p>Compare this to the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtquick-modelviewsdata-modelview.html">Models and Views in Qt Quick</a>
+and notice how in Qt Quick the information flow is bidirectional through the <strong>Delegate</strong>.</p>
+<figure class="align-default">
+<img alt="https://doc.qt.io/qtforpython-6/_images/modelview-overview.png" src="https://doc.qt.io/qtforpython-6/_images/modelview-overview.png" />
+</figure>
 </section>
 <section id="rendering">
 <h2>Rendering<a class="headerlink" href="#rendering" title="Link to this heading">#</a></h2>
-<p>Conceptually, Edifice (and ReactJS) works like this: Every time there is a
+<p>Conceptually, Edifice (and React) works like this: Every time there is a
 change (Update) to the <strong>state</strong> (Model), the render function (View) is
 called and it renders the entire Element tree of Qt Widgets from scratch.</p>
 <p>That sounds expensive and slow, and it would be if it weren’t for the diffing
@@ -654,7 +663,7 @@ doesn’t have to guess.</p>
 is important for everything in Edifice. It is used, for example:</p>
 <ol class="arabic simple">
 <li><p>To compare <strong>props</strong> for deciding when an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> must be re-rendered.</p></li>
-<li><p>To compare <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> <strong>state</strong> variables for deciding when a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> must be re-rendered.</p></li>
+<li><p>To compare <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> <strong>state</strong> variables for deciding when a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> must be re-rendered.</p></li>
 <li><p>To compare <strong>dependencies</strong> for deciding when a <a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> must be re-run.</p></li>
 </ol>
 <p>For the <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation to work properly, it should mean that if two
@@ -710,12 +719,33 @@ a normal render function with no decorator instead:</p>
         <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The difference is, with the <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> decorator, an
+<p>The difference is, with the <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> decorator, an
 actual <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> object is created,
 which means that subsequent renders will be skipped if the <strong>props</strong> didn’t change.
-Also we need an <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> to
+Also we need an <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> to
 be able to use Hooks such as <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>, because those are bound to
 an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+</section>
+<section id="rules-of-edifice">
+<h2>Rules of Edifice<a class="headerlink" href="#rules-of-edifice" title="Link to this heading">#</a></h2>
+<p>Are the same as the <a class="reference external" href="https://react.dev/reference/rules">Rules of React</a>.</p>
+<p><strong>Components and Hooks must be pure</strong></p>
+<p>Purity in Components and Hooks is a key rule of Edifice that makes your app
+predictable, easy to debug, and allows Edifice to automatically optimize your code.</p>
+<ul class="simple">
+<li><p><strong>Components must be idempotent</strong> – Edifice components are assumed to always
+return the same output with respect to their inputs – props, state, and context.</p></li>
+<li><p><strong>Side effects must run outside of render</strong> – Side effects should not run in
+render.</p></li>
+<li><p><strong>Props and state are immutable</strong> – A component’s props and state are
+immutable snapshots with respect to a single render. Never mutate them directly.</p></li>
+<li><p><strong>Return values and arguments to Hooks are immutable</strong> – Once values are
+passed to a Hook, you should not modify them. Like props in an Element,
+values become immutable when passed to a Hook.</p></li>
+<li><p><strong>Values are immutable after being passed to an Element</strong> – Don’t mutate
+values after they’ve been used in an Element. Move the mutation before the
+Element is created.</p></li>
+</ul>
 </section>
 <section id="class-overview">
 <h2>Class overview<a class="headerlink" href="#class-overview" title="Link to this heading">#</a></h2>
@@ -794,6 +824,7 @@ an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Elemen
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffing-algorithm">The diffing algorithm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitutional-eq-relation">Substitutional <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-initialization-is-a-render-side-effect">Element initialization is a render side-effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-of-edifice">Rules of Edifice</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a></li>
 </ul>
   </nav></div>
