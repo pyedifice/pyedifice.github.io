@@ -1,0 +1,6 @@
+edifice.WindowPopView.\_\_init\_\_
+==================================
+
+.. currentmodule:: edifice
+
+.. automethod:: WindowPopView.__init__

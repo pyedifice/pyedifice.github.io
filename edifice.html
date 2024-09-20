@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice Core &#8212; Edifice 1.4.0 documentation</title>
+    <title>Edifice Core &#8212; Edifice 1.5.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=9172181d"></script>
+    <script src="_static/documentation_options.js?v=e0a75244"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'edifice';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -568,34 +568,24 @@ child Elements in the tree, use the parent as a
 </div>
 <p>You describe your entire application as a single root Element,
 which has child Elements representing different parts of your application.
-Each Element is responsible for managing its own state,</p>
-<p>An <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> provides the rendering engine that’s responsible
-for issuing the commands necessary to render the each of the declared Elements.
-The <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> object is created by passing in the root <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>,
-and it tracks all state changes in the Element tree with the given root.
-Calling the <a class="reference internal" href="stubs/stubs/edifice.App.start.html#edifice.App.start" title="edifice.App.start"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.start()</span></code></a> method on the App object will run your application
-and display the GUI you created:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">App</span><span class="p">(</span><span class="n">MyApp</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</pre></div>
-</div>
+Each Element is responsible for managing its own state.</p>
 </section>
 <section id="model-view-update">
 <h2>Model-View-Update<a class="headerlink" href="#model-view-update" title="Link to this heading">#</a></h2>
 <p>Edifice, like React, uses the <a class="reference external" href="https://guide.elm-lang.org/architecture/">Elm Architecture</a>,
 also known as Model-View-Update.
-This means that there is a one-way information flow from Model to View to
+This means that there is a <em>one-way information flow</em> from Model to View to
 Update and then back to Model.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <tbody>
-<tr class="row-odd"><td><p>Model</p></td>
+<tr class="row-odd"><td><p><strong>Model</strong></p></td>
 <td><p>The <strong>state</strong> of the application declared with <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p>View</p></td>
-<td><p>The <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> render function takes the <strong>state</strong> and renders an Element tree.</p></td>
+<tr class="row-even"><td><p><strong>View</strong></p></td>
+<td><p>The <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> render function takes the <strong>state</strong> and renders an Element tree of Qt Widgets.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Update</p></td>
-<td><p>Event handlers which change the <strong>state</strong>.</p></td>
+<tr class="row-odd"><td><p><strong>Update</strong></p></td>
+<td><p>Qt Widget event handlers which change the <strong>state</strong>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -603,8 +593,11 @@ Update and then back to Model.</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/model-view-update.svg"><img alt="_images/model-view-update.svg" src="_images/model-view-update.svg" width="600" /></a>
 </figure>
-<p>It is the one-way information flow of Model-View-Update which makes
-this style of GUI programming scale up well to complicated user interfaces.</p>
+<p>It is the <em>one-way information flow</em> of Model-View-Update which
+differentiates it from Model-View-Controller, and which makes the
+Model-View-Update style
+of GUI programming scale up well to complicated user interfaces
+while remaining well-organized and bug-free.</p>
 <p>Compare this to the
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtquick-modelviewsdata-modelview.html">Models and Views in Qt Quick</a>
 and notice how in Qt Quick the information flow is bidirectional through the <strong>Delegate</strong>.</p>
@@ -755,7 +748,7 @@ Element is created.</p></li>
 <td><p>The base class for Edifice Elements.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component</span></code></a>(f)</p></td>
-<td><p>Decorator turning a render function of <strong>props</strong> into an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
+<td><p>Decorator which turns a render function of <strong>props</strong> into an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.child_place.html#edifice.child_place" title="edifice.child_place"><code class="xref py py-obj docutils literal notranslate"><span class="pre">child_place</span></code></a>(element)</p></td>
 <td><p>Place a child passed through the special <code class="code docutils literal notranslate"><span class="pre">children</span></code> <strong>props</strong> into the layout of a parent <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>.</p></td>

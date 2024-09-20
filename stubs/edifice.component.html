@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.component &#8212; Edifice 1.4.0 documentation</title>
+    <title>edifice.component &#8212; Edifice 1.5.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=9172181d"></script>
+    <script src="../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.component';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -512,7 +512,7 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.component">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/engine.html#component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.component" title="Link to this definition">#</a></dt>
 <dd><p>Bases:</p>
-<p>Decorator turning a render function of <strong>props</strong> into an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+<p>Decorator which turns a render function of <strong>props</strong> into an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
 <p>The first argument of the render function must be <code class="code docutils literal notranslate"><span class="pre">self</span></code>, for
 internal technical reasons.</p>
 <dl class="field-list simple">
@@ -522,16 +522,16 @@ internal technical reasons.</p>
 </dl>
 <section id="props">
 <h2>Props<a class="headerlink" href="#props" title="Link to this heading">#</a></h2>
-<p>The <strong>props</strong> are the arguments passed to the <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> function.</p>
-<p>The component will be re-rendered when some of its <strong>props</strong> are not
-<code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the <strong>props</strong> from the last time the component rendered.
-If the <strong>props</strong> are all <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>, the component will not re-render.</p>
+<p>The <strong>props</strong> are the arguments passed to the <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p>
+<p>The &#64;component will be re-rendered when some of its <strong>props</strong> are not
+<code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the <strong>props</strong> from the last time the &#64;component rendered.
+If the <strong>props</strong> are all <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>, the &#64;component will not re-render.</p>
 <p>Arguments with a leading underscore <code class="code docutils literal notranslate"><span class="pre">_</span></code> will not count as <strong>props</strong>.</p>
 </section>
 <section id="render">
 <h2>Render<a class="headerlink" href="#render" title="Link to this heading">#</a></h2>
-<p>The component function must render exactly one <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.
-In the component function, declare a tree of <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> with a
+<p>The &#64;component function must render exactly one <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.
+In the &#64;component function, declare a tree of <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> with a
 single root:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
@@ -544,14 +544,14 @@ single root:</p>
 </section>
 <section id="state">
 <h2>State<a class="headerlink" href="#state" title="Link to this heading">#</a></h2>
-<p>The <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> function is a stateless function from <strong>props</strong>
+<p>The <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function is a stateless function from <strong>props</strong>
 to an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.
-To introduce <strong>state</strong> into a <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>, use <a class="reference internal" href="../hooks.html"><span class="doc">Hooks</span></a>.</p>
+To introduce <strong>state</strong> into a <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>, use <a class="reference internal" href="../hooks.html"><span class="doc">Hooks</span></a>.</p>
 </section>
 <section id="composition">
 <h2>Composition<a class="headerlink" href="#composition" title="Link to this heading">#</a></h2>
-<p>An <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>’s children can be passed to it as <strong>props</strong>. This allows a
-<a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> to act as a parent container for other <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> s,
+<p>An <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>’s children can be passed to it as <strong>props</strong>. This allows a
+<a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> to act as a parent container for other <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> s,
 and to render them in a specific layout.</p>
 <p>There are two features to accomplish this.</p>
 <ol class="arabic">
@@ -559,13 +559,13 @@ and to render them in a specific layout.</p>
 This special <strong>prop</strong> must always be declared as a <strong>keyword argument</strong>
 with a default value.</p>
 <p>Do not explicitly pass the <code class="code docutils literal notranslate"><span class="pre">children</span></code> <strong>prop</strong> when calling
-the <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>. The children will be passed implicitly.</p>
+the <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>. The children will be passed implicitly.</p>
 </li>
 <li><p>The <a class="reference internal" href="edifice.child_place.html#edifice.child_place" title="edifice.child_place"><code class="xref py py-func docutils literal notranslate"><span class="pre">child_place()</span></code></a> function is used to place the <code class="code docutils literal notranslate"><span class="pre">children</span></code>
-in the parent <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>’s render function.</p></li>
+in the parent <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>’s render function.</p></li>
 </ol>
 <p>With these two features, you can declare how the parent
-container <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> will render its children:</p>
+container <a class="reference internal" href="#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> will render its children:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">ContainerComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="n">Element</span><span class="p">,</span> <span class="n">children</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">=</span><span class="p">()):</span>
     <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>

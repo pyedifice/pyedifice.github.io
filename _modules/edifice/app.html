@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 1.4.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 1.5.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=9172181d"></script>
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/app';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -568,6 +568,10 @@ document.write(`
 <span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The main application object.</span>
 
+<span class="sd">    The :class:`App` provides the rendering engine that’s responsible</span>
+<span class="sd">    for issuing the commands necessary to render each</span>
+<span class="sd">    :class:`Element` as Qt Widgets.</span>
+
 <span class="sd">    Start</span>
 <span class="sd">    -----</span>
 
@@ -597,6 +601,7 @@ document.write(`
 
 <span class="sd">        from PySide6.QtWidgets import QApplication</span>
 <span class="sd">        from PySide6.QtGui import QFont</span>
+<span class="sd">        from edifice import App, Window, Label, component, use_state</span>
 
 <span class="sd">        @component</span>
 <span class="sd">        def Main(self):</span>

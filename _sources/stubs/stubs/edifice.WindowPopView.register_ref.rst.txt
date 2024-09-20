@@ -1,0 +1,6 @@
+edifice.WindowPopView.register\_ref
+===================================
+
+.. currentmodule:: edifice
+
+.. automethod:: WindowPopView.register_ref

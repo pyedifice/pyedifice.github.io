@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 1.4.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 1.5.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=9172181d"></script>
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/engine';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.4.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.4.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -860,7 +860,7 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The base class for Edifice Elements.</span>
 
 <span class="sd">    In user code you should almost never use :class:`Element` directly. Instead</span>
-<span class="sd">    use :doc:`Base Elements &lt;../base_components&gt;` and :func:`component` Elements.</span>
+<span class="sd">    use :doc:`Base Elements &lt;../base_components&gt;` and :func:`@component&lt;component&gt;` Elements.</span>
 
 <span class="sd">    A :class:`Element` is a stateful container wrapping a render function.</span>
 <span class="sd">    Elements have both internal and external properties.</span>
@@ -1070,7 +1070,7 @@ document.write(`
 <a class="viewcode-back" href="../../stubs/edifice.component.html#edifice.component">[docs]</a>
 <span class="k">def</span> <span class="nf">component</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Concatenate</span><span class="p">[</span><span class="n">selfT</span><span class="p">,</span> <span class="n">P</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Element</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Decorator turning a render function of **props** into an :class:`Element`.</span>
+<span class="sd">    Decorator which turns a render function of **props** into an :class:`Element`.</span>
 
 <span class="sd">    The first argument of the render function must be :code:`self`, for</span>
 <span class="sd">    internal technical reasons.</span>
@@ -1078,19 +1078,19 @@ document.write(`
 <span class="sd">    Props</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    The **props** are the arguments passed to the :func:`component` function.</span>
+<span class="sd">    The **props** are the arguments passed to the :func:`@component&lt;component&gt;` function.</span>
 
-<span class="sd">    The component will be re-rendered when some of its **props** are not</span>
-<span class="sd">    :code:`__eq__` to the **props** from the last time the component rendered.</span>
-<span class="sd">    If the **props** are all :code:`__eq__`, the component will not re-render.</span>
+<span class="sd">    The @component will be re-rendered when some of its **props** are not</span>
+<span class="sd">    :code:`__eq__` to the **props** from the last time the @component rendered.</span>
+<span class="sd">    If the **props** are all :code:`__eq__`, the @component will not re-render.</span>
 
 <span class="sd">    Arguments with a leading underscore :code:`_` will not count as **props**.</span>
 
 <span class="sd">    Render</span>
 <span class="sd">    ------</span>
 
-<span class="sd">    The component function must render exactly one :class:`Element`.</span>
-<span class="sd">    In the component function, declare a tree of :class:`Element` with a</span>
+<span class="sd">    The @component function must render exactly one :class:`Element`.</span>
+<span class="sd">    In the @component function, declare a tree of :class:`Element` with a</span>
 <span class="sd">    single root::</span>
 
 <span class="sd">        @component</span>
@@ -1103,15 +1103,15 @@ document.write(`
 <span class="sd">    State</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    The :func:`component` function is a stateless function from **props**</span>
+<span class="sd">    The :func:`@component&lt;component&gt;` function is a stateless function from **props**</span>
 <span class="sd">    to an :class:`Element`.</span>
-<span class="sd">    To introduce **state** into a :func:`component`, use :doc:`Hooks &lt;../hooks&gt;`.</span>
+<span class="sd">    To introduce **state** into a :func:`@component&lt;component&gt;`, use :doc:`Hooks &lt;../hooks&gt;`.</span>
 
 <span class="sd">    Composition</span>
 <span class="sd">    -----------</span>
 
-<span class="sd">    An :func:`component`’s children can be passed to it as **props**. This allows a</span>
-<span class="sd">    :func:`component` to act as a parent container for other :class:`Element` s,</span>
+<span class="sd">    An :func:`@component&lt;component&gt;`’s children can be passed to it as **props**. This allows a</span>
+<span class="sd">    :func:`@component&lt;component&gt;` to act as a parent container for other :class:`Element` s,</span>
 <span class="sd">    and to render them in a specific layout.</span>
 
 <span class="sd">    There are two features to accomplish this.</span>
@@ -1121,12 +1121,12 @@ document.write(`
 <span class="sd">       with a default value.</span>
 
 <span class="sd">       Do not explicitly pass the :code:`children` **prop** when calling</span>
-<span class="sd">       the :func:`component`. The children will be passed implicitly.</span>
+<span class="sd">       the :func:`@component&lt;component&gt;`. The children will be passed implicitly.</span>
 <span class="sd">    2. The :func:`child_place` function is used to place the :code:`children`</span>
-<span class="sd">       in the parent :func:`component`’s render function.</span>
+<span class="sd">       in the parent :func:`@component&lt;component&gt;`’s render function.</span>
 
 <span class="sd">    With these two features, you can declare how the parent</span>
-<span class="sd">    container :func:`component` will render its children::</span>
+<span class="sd">    container :func:`@component&lt;component&gt;` will render its children::</span>
 
 <span class="sd">        @component</span>
 <span class="sd">        def ContainerComponent(self:Element, children:tuple[Element, ...]=()):</span>
@@ -1734,7 +1734,7 @@ document.write(`
                         <span class="n">new_padding</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                         <span class="n">new_padding</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                         <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-                    <span class="p">)</span>
+                    <span class="p">),</span>
                 <span class="p">)</span>
             <span class="k">if</span> <span class="n">set_align</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span>
@@ -1799,6 +1799,9 @@ document.write(`
         <span class="k">if</span> <span class="n">set_move</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
+        <span class="c1"># CSS style selection is matched by setting underlying.setObjectName(str(id(self)))</span>
+        <span class="c1"># In Element initialization.</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#PySide6.QtCore.QObject.setObjectName</span>
         <span class="n">css_string</span> <span class="o">=</span> <span class="n">_dict_to_style</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="s2">&quot;QWidget#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">,</span> <span class="n">css_string</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
@@ -1819,14 +1822,14 @@ document.write(`
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="s2">&quot;_WidgetTree&quot;</span><span class="p">],</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
         <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands_super</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="s2">&quot;_WidgetTree&quot;</span><span class="p">],</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
         <span class="c1"># We must pass all of the widget_trees because some elements</span>
         <span class="c1"># like TableGridView need to know the children of the children.</span>
         <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>

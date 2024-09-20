@@ -1,0 +1,6 @@
+edifice.WindowPopView.set\_key
+==============================
+
+.. currentmodule:: edifice
+
+.. automethod:: WindowPopView.set_key
