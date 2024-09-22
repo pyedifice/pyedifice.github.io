@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice Core &#8212; Edifice 1.5.0 documentation</title>
+    <title>Edifice Core &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=e0a75244"></script>
+    <script src="_static/documentation_options.js?v=51b770b3"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'edifice';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -211,13 +211,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="future.html">
-    Roadmap
   </a>
 </li>
 
@@ -390,13 +383,6 @@ document.write(`
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="future.html">
-    Roadmap
   </a>
 </li>
 
@@ -609,11 +595,9 @@ and notice how in Qt Quick the information flow is bidirectional through the <st
 <h2>Rendering<a class="headerlink" href="#rendering" title="Link to this heading">#</a></h2>
 <p>Conceptually, Edifice (and React) works like this: Every time there is a
 change (Update) to the <strong>state</strong> (Model), the render function (View) is
-called and it renders the entire Element tree of Qt Widgets from scratch.</p>
-<p>That sounds expensive and slow, and it would be if it weren’t for the diffing
-algorithm.
-The diffing algorithm compares the new Element tree with the old Element tree
-and makes minimal changes to the Qt Widgets.</p>
+called and it renders the entire <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree of Qt Widgets from scratch.</p>
+<p>That sounds expensive and slow, and it would be if it weren’t for
+the diffing algorithm.</p>
 </section>
 <section id="the-diffing-algorithm">
 <h2>The diffing algorithm<a class="headerlink" href="#the-diffing-algorithm" title="Link to this heading">#</a></h2>
@@ -630,20 +614,25 @@ is replaced with the new Element.</p>
 <p>If a new Element is the same class as the old Element, they are assumed to
 be the same and the old Element will be updated with new <strong>props</strong> and the same
 <strong>state</strong>.</p>
+<p>If the <strong>props</strong> and <strong>state</strong> of an Element are the same as the previous
+render, then the Element from the previous render will be re-used and not
+rendered.</p>
 <p>When a parent Element has many peer child Elements of the same class,
-a more complex procedure (the same as in ReactJS)
+a more complex procedure (the same as in React)
 will determine which Elements to maintain and which to replace.</p>
 <p>When comparing the child Elements, the Element’s
 <code class="code docutils literal notranslate"><span class="pre">_key</span></code> attribute will
 be compared. Elements with the same <code class="code docutils literal notranslate"><span class="pre">_key</span></code> and same class are assumed to be
-the same. You can set the key using the <a class="reference internal" href="stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> method:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">HBoxView</span><span class="p">():</span>
-    <span class="n">MyElement</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
-    <span class="n">MyElement</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+the same. You can set the key using the <a class="reference internal" href="stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">HBoxView</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">some_condition</span><span class="p">:</span>
+        <span class="n">MyElement</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">other_condition</span><span class="p">:</span>
+        <span class="n">MyElement</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If the <code class="code docutils literal notranslate"><span class="pre">_key</span></code> is not provided, the diffing algorithm will guess which
-Elements to maintain based on the order of the children.</p>
+child Elements are identical based on the order of the children.</p>
 <p>Whenever a parent has many children which are added and removed,
 it is recommended to use <a class="reference internal" href="stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a>
 to tell the diffing algorithm which child Elements are identical so that it

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.HScrollView.set_key &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.HScrollView.set_key &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.HScrollView.set_key';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -211,13 +211,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -389,13 +382,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -460,6 +446,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.TableGridRow.html">edifice.TableGridRow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.WindowPopView.html">edifice.WindowPopView</a></li>
 </ul>
@@ -547,30 +534,38 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.HScrollView.set_key">
 <span class="sig-prename descclassname"><span class="pre">HScrollView.</span></span><span class="sig-name descname"><span class="pre">set_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#edifice.HScrollView.set_key" title="Link to this definition">#</a></dt>
-<dd><p>Sets the key of the Element.</p>
-<p>The key is used by the re-rendering logic to match a new list of Elements
-with an existing list of Elements.
-The algorithm will assume that Elements with the same key are logically the same.
-If the key is not provided, the list index will be used as the key;
-however, providing the key may provide more accurate results, leading to efficiency gains.</p>
+<dd><p>Set the key of an <a class="reference internal" href="../edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+<p>The key is used when re-rendering to match new child Elements
+with old child Elements.
+The diffing algorithm will assume that child Elements with the same key
+are identical.</p>
+<p>Each key must be unique and persistent. The <strong>Edifice Rules
+of Keys</strong> are the same as the
+<a class="reference external" href="https://react.dev/learn/rendering-lists#rules-of-keys">React Rules of Keys</a>.</p>
+<ul class="simple">
+<li><p><strong>Keys must be unique among siblings.</strong> However, it’s okay to use the same keys for Elements of different parents.</p></li>
+<li><p><strong>Keys must not change</strong> or that defeats their purpose! Don’t generate them while rendering.</p></li>
+</ul>
 <p>Returns the Element to allow for chaining.</p>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># inside a render call</span>
-<span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
-    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">)</span>
-    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;fr&quot;</span><span class="p">)</span>
-    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hola&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;es&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">english</span><span class="p">:</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">french</span><span class="p">:</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;fr&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">spanish</span><span class="p">:</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hola&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;es&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The key to label the Element with.</p>
+<dd class="field-odd"><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The Element unique key string.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Element itself.</p>
+<dd class="field-odd"><p>The Element.</p>
 </dd>
 </dl>
 </dd></dl>

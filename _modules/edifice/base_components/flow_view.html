@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.flow_view &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.base_components.flow_view &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/flow_view';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -208,13 +208,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -385,13 +378,6 @@ document.write(`
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -630,8 +616,11 @@ document.write(`
 <a class="viewcode-back" href="../../../stubs/edifice.FlowView.html#edifice.FlowView">[docs]</a>
 <span class="k">class</span> <span class="nc">FlowView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QWidget</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Flow-style layout widget. Displays its children in a row which wraps onto</span>
-<span class="sd">    multiple lines.</span>
+<span class="sd">    Flow-style layout widget.</span>
+
+<span class="sd">    Displays its children horizonally left-to-right and wraps into multiple rows.</span>
+
+<span class="sd">    The height of each row is determined by the tallest child in that row.</span>
 
 <span class="sd">    This component has similar behavior to an `HTML CSS</span>
 <span class="sd">    wrap flex container &lt;https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap&gt;`_.</span>

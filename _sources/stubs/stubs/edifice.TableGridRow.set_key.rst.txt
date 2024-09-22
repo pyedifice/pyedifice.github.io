@@ -1,0 +1,6 @@
+edifice.TableGridRow.set\_key
+=============================
+
+.. currentmodule:: edifice
+
+.. automethod:: TableGridRow.set_key

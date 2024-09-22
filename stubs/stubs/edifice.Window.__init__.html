@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.Window.__init__ &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.Window.__init__ &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.Window.__init__';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -211,13 +211,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -389,13 +382,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -460,6 +446,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../edifice.TableGridRow.html">edifice.TableGridRow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../edifice.WindowPopView.html">edifice.WindowPopView</a></li>
 </ul>
@@ -546,7 +533,7 @@ document.write(`
 <h1>edifice.Window.__init__<a class="headerlink" href="#edifice-window-init" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="edifice.Window.__init__">
-<span class="sig-prename descclassname"><span class="pre">Window.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Edifice</span> <span class="pre">Application'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">menu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/edifice/base_components/base_components.html#Window.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Window.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Window.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Edifice</span> <span class="pre">Application'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">menu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_size_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/edifice/base_components/base_components.html#Window.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Window.__init__" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.FlowView &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.FlowView &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.FlowView';</script>
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="edifice.FlowView.__init__" href="stubs/edifice.FlowView.__init__.html" />
-    <link rel="prev" title="edifice.TableGridView.set_key" href="stubs/edifice.TableGridView.set_key.html" />
+    <link rel="prev" title="edifice.TableGridRow.set_key" href="stubs/edifice.TableGridRow.set_key.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -211,13 +211,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -389,13 +382,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -460,6 +446,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edifice.TableGridRow.html">edifice.TableGridRow</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">edifice.FlowView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="edifice.WindowPopView.html">edifice.WindowPopView</a></li>
 </ul>
@@ -545,8 +532,9 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.FlowView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">FlowView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/flow_view.html#FlowView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.FlowView" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_LinearView</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>]</p>
-<p>Flow-style layout widget. Displays its children in a row which wraps onto
-multiple lines.</p>
+<p>Flow-style layout widget.</p>
+<p>Displays its children horizonally left-to-right and wraps into multiple rows.</p>
+<p>The height of each row is determined by the tallest child in that row.</p>
 <p>This component has similar behavior to an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">HTML CSS
 wrap flex container</a>.</p>
 <p class="rubric">Methods</p>
@@ -559,7 +547,7 @@ wrap flex container</a>.</p>
 <td><p>Registers provided <a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.FlowView.set_key.html#edifice.FlowView.set_key" title="edifice.FlowView.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
-<td><p>Sets the key of the Element.</p></td>
+<td><p>Set the key of an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -591,12 +579,12 @@ wrap flex container</a>.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/edifice.TableGridView.set_key.html"
+       href="stubs/edifice.TableGridRow.set_key.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.TableGridView.set_key</p>
+        <p class="prev-next-title">edifice.TableGridRow.set_key</p>
       </div>
     </a>
     <a class="right-next"

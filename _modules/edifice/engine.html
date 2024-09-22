@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/engine';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -208,13 +208,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -388,13 +381,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -519,9 +505,6 @@ document.write(`
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Edifice&quot;</span><span class="p">)</span>
 
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
-
-<span class="n">StyleType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]]]</span>
-
 
 <span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;QWidget&quot;</span><span class="p">):</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="ow">or</span> <span class="p">{}</span>
@@ -738,13 +721,13 @@ document.write(`
 <span class="n">T</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">ControllerProtocol</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AppProtocol</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol for App&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_request_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Element</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">_defer_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">_defer_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">):</span>
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -872,7 +855,7 @@ document.write(`
 
     <span class="n">_render_changes_context</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_render_unwind_context</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_controller</span><span class="p">:</span> <span class="n">ControllerProtocol</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_controller</span><span class="p">:</span> <span class="n">AppProtocol</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_edifice_internal_references</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Reference</span><span class="p">[</span><span class="n">Self</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Element.__init__">
@@ -925,28 +908,36 @@ document.write(`
 <div class="viewcode-block" id="Element.set_key">
 <a class="viewcode-back" href="../../stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key">[docs]</a>
     <span class="k">def</span> <span class="nf">set_key</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the key of the Element.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the key of an :class:`Element`.</span>
 
-<span class="sd">        The key is used by the re-rendering logic to match a new list of Elements</span>
-<span class="sd">        with an existing list of Elements.</span>
-<span class="sd">        The algorithm will assume that Elements with the same key are logically the same.</span>
-<span class="sd">        If the key is not provided, the list index will be used as the key;</span>
-<span class="sd">        however, providing the key may provide more accurate results, leading to efficiency gains.</span>
+<span class="sd">        The key is used when re-rendering to match new child Elements</span>
+<span class="sd">        with old child Elements.</span>
+<span class="sd">        The diffing algorithm will assume that child Elements with the same key</span>
+<span class="sd">        are identical.</span>
+
+<span class="sd">        Each key must be unique and persistent. The **Edifice Rules</span>
+<span class="sd">        of Keys** are the same as the</span>
+<span class="sd">        `React Rules of Keys &lt;https://react.dev/learn/rendering-lists#rules-of-keys&gt;`_.</span>
+
+<span class="sd">        - **Keys must be unique among siblings.** However, it’s okay to use the same keys for Elements of different parents.</span>
+<span class="sd">        - **Keys must not change** or that defeats their purpose! Don’t generate them while rendering.</span>
 
 <span class="sd">        Returns the Element to allow for chaining.</span>
 
 <span class="sd">        Example::</span>
 
-<span class="sd">            # inside a render call</span>
 <span class="sd">            with VBoxView():</span>
-<span class="sd">                Label(&quot;Hello&quot;).set_key(&quot;en&quot;)</span>
-<span class="sd">                Label(&quot;Bonjour&quot;).set_key(&quot;fr&quot;)</span>
-<span class="sd">                Label(&quot;Hola&quot;).set_key(&quot;es&quot;)</span>
+<span class="sd">                if english:</span>
+<span class="sd">                    Label(&quot;Hello&quot;).set_key(&quot;en&quot;)</span>
+<span class="sd">                if french:</span>
+<span class="sd">                    Label(&quot;Bonjour&quot;).set_key(&quot;fr&quot;)</span>
+<span class="sd">                if spanish:</span>
+<span class="sd">                    Label(&quot;Hola&quot;).set_key(&quot;es&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            key: The key to label the Element with.</span>
+<span class="sd">            key: The Element unique key string.</span>
 <span class="sd">        Returns:</span>
-<span class="sd">            The Element itself.</span>
+<span class="sd">            The Element.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">key</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -1374,7 +1365,7 @@ document.write(`
 <a class="viewcode-back" href="../../stubs/stubs/edifice.QtWidgetElement.__init__.html#edifice.QtWidgetElement.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">style</span><span class="p">:</span> <span class="n">StyleType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">style</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tool_tip</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">cursor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">context_menu</span><span class="p">:</span> <span class="n">ContextMenuType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1661,32 +1652,8 @@ document.write(`
             <span class="c1"># The &quot;padding&quot; style will not work, but we can fake it by</span>
             <span class="c1"># using QLayout.setContentsMargins().</span>
             <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html#PySide6.QtWidgets.QLayout.setContentsMargins</span>
-            <span class="c1">#</span>
-            <span class="c1"># Also we keep the &quot;margin&quot; style for the QLayout because</span>
-            <span class="c1"># that&#39;s how PyEdifice has always worked and we don&#39;t want to</span>
-            <span class="c1"># break backwards compatibility for that yet.</span>
             <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-            <span class="k">if</span> <span class="s2">&quot;margin&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin&quot;</span><span class="p">)</span>
-                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;margin-left&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-left&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-left&quot;</span><span class="p">)</span>
-                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;margin-right&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-right&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-right&quot;</span><span class="p">)</span>
-                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;margin-top&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-top&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-top&quot;</span><span class="p">)</span>
-                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;margin-bottom&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;margin-bottom&quot;</span><span class="p">)</span>
-                <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="s2">&quot;padding&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
                 <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding&quot;</span><span class="p">)</span>
@@ -1708,7 +1675,6 @@ document.write(`
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-bottom&quot;</span><span class="p">)</span>
                 <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
 
-            <span class="n">set_align</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
                     <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignLeft</span>
@@ -1723,8 +1689,9 @@ document.write(`
                 <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
                     <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignBottom</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unknown alignment: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">])</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span>
 
             <span class="k">if</span> <span class="n">set_padding</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -1736,8 +1703,6 @@ document.write(`
                         <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
                     <span class="p">),</span>
                 <span class="p">)</span>
-            <span class="k">if</span> <span class="n">set_align</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
@@ -1753,11 +1718,9 @@ document.write(`
                 <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
                     <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignBottom&quot;</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unknown alignment: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">])</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">set_align</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">style</span><span class="p">[</span><span class="s2">&quot;qproperty-alignment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_align</span>
+                <span class="n">style</span><span class="p">[</span><span class="s2">&quot;qproperty-alignment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_align</span>
 
         <span class="k">if</span> <span class="s2">&quot;font-size&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
             <span class="n">font_size</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">])</span>
@@ -1839,15 +1802,7 @@ document.write(`
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;style&quot;</span><span class="p">:</span>
-                <span class="n">style</span> <span class="o">=</span> <span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span> <span class="ow">or</span> <span class="p">{}</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-                    <span class="c1"># style is nonempty since otherwise the or statement would make it a dict</span>
-                    <span class="n">first_style</span> <span class="o">=</span> <span class="n">style</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-                    <span class="k">for</span> <span class="n">next_style</span> <span class="ow">in</span> <span class="n">style</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-                        <span class="n">first_style</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">next_style</span><span class="p">)</span>
-                    <span class="n">style</span> <span class="o">=</span> <span class="n">first_style</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">style</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+                <span class="n">style</span> <span class="o">=</span> <span class="n">newprops</span><span class="o">.</span><span class="n">style</span> <span class="ow">or</span> <span class="p">{}</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gen_styling_commands</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">underlying_layout</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;size_policy&quot;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">size_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2062,7 +2017,7 @@ document.write(`
     <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">_key</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">_key</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">RenderEngine</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RenderEngine</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    One RenderEngine instance persists across the life of the App.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2079,7 +2034,7 @@ document.write(`
         <span class="s2">&quot;is_stopped&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">AppProtocol</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The _component_tree maps an Element to its children.</span>
@@ -2089,7 +2044,7 @@ document.write(`
 <span class="sd">        Map of an Element to its rendered widget tree.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="o">=</span> <span class="n">root</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_app</span> <span class="o">=</span> <span class="n">app</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_app</span><span class="p">:</span> <span class="n">AppProtocol</span> <span class="o">=</span> <span class="n">app</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">_HookState</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

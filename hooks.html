@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hooks &#8212; Edifice 1.5.0 documentation</title>
+    <title>Hooks &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=e0a75244"></script>
+    <script src="_static/documentation_options.js?v=51b770b3"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'hooks';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -211,13 +211,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="future.html">
-    Roadmap
   </a>
 </li>
 
@@ -393,13 +386,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -451,12 +437,13 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_state.html">edifice.use_state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_effect.html">edifice.use_effect</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_async.html">edifice.use_async</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 </ul>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_ref.html">edifice.use_ref</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_effect_final.html">edifice.use_effect_final</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_async_call.html">edifice.use_async_call</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_hover.html">edifice.use_hover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.use_stop.html">edifice.use_stop</a></li>
 </ul>
 </div>
 </nav></div>
@@ -553,9 +540,6 @@ in exactly the same order on every call to a <a class="reference internal" href=
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async</span></code></a>(fn_coroutine, dependencies)</p></td>
 <td><p>Asynchronous side-effect Hook inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_ref.html#edifice.use_ref" title="edifice.use_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_ref</span></code></a>()</p></td>
-<td><p>Hook for creating a <a class="reference internal" href="stubs/edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -566,14 +550,20 @@ in exactly the same order on every call to a <a class="reference internal" href=
 <p>These Derived Hooks are provided by Edifice.</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_effect_final.html#edifice.use_effect_final" title="edifice.use_effect_final"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_effect_final</span></code></a>(cleanup[, dependencies])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_ref.html#edifice.use_ref" title="edifice.use_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_ref</span></code></a>()</p></td>
+<td><p>Hook for creating a <a class="reference internal" href="stubs/edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_effect_final.html#edifice.use_effect_final" title="edifice.use_effect_final"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_effect_final</span></code></a>(cleanup[, dependencies])</p></td>
 <td><p>Side-effect Hook for when a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> unmounts.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async_call</span></code></a>(fn_coroutine)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async_call</span></code></a>(fn_coroutine)</p></td>
 <td><p>Hook to call an async function from a non-async context.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_hover.html#edifice.use_hover" title="edifice.use_hover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_hover</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_hover.html#edifice.use_hover" title="edifice.use_hover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_hover</span></code></a>()</p></td>
 <td><p>Hook to track mouse hovering.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_stop.html#edifice.use_stop" title="edifice.use_stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_stop</span></code></a>()</p></td>
+<td><p>This Hook returns a function which will stop the application by calling <a class="reference internal" href="stubs/stubs/edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.stop()</span></code></a>.</p></td>
 </tr>
 </tbody>
 </table>

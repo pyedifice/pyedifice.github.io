@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/hooks';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -208,13 +208,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -385,13 +378,6 @@ document.write(`
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -690,7 +676,7 @@ document.write(`
 <span class="sd">    then the new **setup function** is called.</span>
 
 <span class="sd">    If the dependencies are :code:`None`, then the new effect</span>
-<span class="sd">    **setup function** will always be called.</span>
+<span class="sd">    **setup function** will always be called on every render.</span>
 
 <span class="sd">    If you want to call the **setup function** only once, then pass an empty</span>
 <span class="sd">    tuple :code:`()` as the dependencies.</span>
@@ -702,6 +688,9 @@ document.write(`
 
 <span class="sd">    The **setup function** can return :code:`None` if there is no</span>
 <span class="sd">    **cleanup function**.</span>
+
+<span class="sd">    The **setup function** and **cleanup function** can call the setter of</span>
+<span class="sd">    a :func:`use_state` Hook to update the application state.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_effect to attach and remove an event handler</span>
@@ -944,13 +933,6 @@ document.write(`
 
 
 <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">use_singleton</span><span class="p">(</span><span class="n">constructor</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-    <span class="n">internal_mutable</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="p">[]))</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">internal_mutable</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">internal_mutable</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constructor</span><span class="p">())</span>
-    <span class="k">return</span> <span class="n">internal_mutable</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="use_effect_final">

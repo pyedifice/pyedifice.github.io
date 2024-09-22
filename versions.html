@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 1.5.0 documentation</title>
+    <title>Release Notes &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -36,14 +36,13 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=e0a75244"></script>
+    <script src="_static/documentation_options.js?v=51b770b3"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'versions';</script>
     <link rel="icon" href="_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Roadmap" href="future.html" />
     <link rel="prev" title="Developer Tools" href="developer_tools.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -124,8 +123,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -211,13 +210,6 @@
 <li class=" current active">
   <a class="nav-link dropdown-item nav-internal" href="#">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="future.html">
-    Roadmap
   </a>
 </li>
 
@@ -393,13 +385,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -493,6 +478,38 @@ document.write(`
                   
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<section id="v2-0-0">
+<h2>v2.0.0<a class="headerlink" href="#v2-0-0" title="Link to this heading">#</a></h2>
+<p>Released: 2024-09-22</p>
+<ul class="simple">
+<li><p>Delete method <a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a> <code class="code docutils literal notranslate"><span class="pre">row()</span></code>.</p></li>
+<li><p>New Element <a class="reference internal" href="stubs/edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridRow</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a> props type change from <code class="code docutils literal notranslate"><span class="pre">list</span></code> to <code class="code docutils literal notranslate"><span class="pre">tuple</span></code>.</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a> delete prop <code class="code docutils literal notranslate"><span class="pre">editable</span></code>.</p></li>
+<li><p>Delete deprecated <code class="code docutils literal notranslate"><span class="pre">View</span></code> and <code class="code docutils literal notranslate"><span class="pre">ScrollView</span></code>.</p></li>
+<li><p>Delete deprecated <code class="code docutils literal notranslate"><span class="pre">&quot;margin&quot;</span></code> alias for <code class="code docutils literal notranslate"><span class="pre">&quot;padding&quot;</span></code> in Views.</p></li>
+<li><p>Remove <code class="code docutils literal notranslate"><span class="pre">style</span></code> prop <code class="code docutils literal notranslate"><span class="pre">Sequence</span></code> type. (<code class="code docutils literal notranslate"><span class="pre">style</span></code> must be a <code class="code docutils literal notranslate"><span class="pre">dict</span></code>, not a <code class="code docutils literal notranslate"><span class="pre">list[dict]</span></code>.)</p></li>
+<li><p>Dependency <code class="code docutils literal notranslate"><span class="pre">PySide6-Essentials</span></code> tested.</p></li>
+<li><p>New Hook <a class="reference internal" href="stubs/edifice.use_stop.html#edifice.use_stop" title="edifice.use_stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_stop()</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> <a class="reference internal" href="stubs/edifice.WindowPopView.html#edifice.WindowPopView" title="edifice.WindowPopView"><code class="xref py py-class docutils literal notranslate"><span class="pre">WindowPopView</span></code></a> new arg <code class="code docutils literal notranslate"><span class="pre">_size_open</span></code>.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id41">
+<div class="code-block-caption"><span class="caption-text">Old TableGridView API</span><a class="headerlink" href="#id41" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">()</span> <span class="k">as</span> <span class="n">tgv</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">tgv</span><span class="o">.</span><span class="n">row</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id42">
+<div class="code-block-caption"><span class="caption-text">New TableGridView API</span><a class="headerlink" href="#id42" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">TableGridRow</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
 <section id="v1-5-0">
 <h2>v1.5.0<a class="headerlink" href="#v1-5-0" title="Link to this heading">#</a></h2>
 <p>Released: 2024-09-20</p>
@@ -1044,15 +1061,6 @@ and clearer error messages for Dropdowns and Sliders.</p>
         <p class="prev-next-title">Developer Tools</p>
       </div>
     </a>
-    <a class="right-next"
-       href="future.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Roadmap</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -1071,6 +1079,7 @@ and clearer error messages for Dropdowns and Sliders.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-0-0">v2.0.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v1-5-0">v1.5.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v1-4-0">v1.4.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v1-3-0">v1.3.0</a></li>

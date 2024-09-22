@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/base_components';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -208,13 +208,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -388,13 +381,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -497,9 +483,6 @@ document.write(`
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">deprecated</span>
 
 <span class="kn">import</span> <span class="nn">edifice.icons</span>
 <span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="p">(</span>
@@ -971,17 +954,22 @@ document.write(`
 <span class="sd">    * Underlying Qt Widget</span>
 <span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
+<span class="sd">    Render rich text with the</span>
+<span class="sd">    `Qt supported HTML subset &lt;https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html&gt;`_.</span>
+
 <span class="sd">    .. figure:: /image/label.png</span>
 <span class="sd">       :width: 500</span>
 
+<span class="sd">    .. note::</span>
+<span class="sd">        The combination of rich text and :code:`word_wrap` can sometimes cause</span>
+<span class="sd">        `Qt Layout Issues &lt;https://doc.qt.io/qtforpython-6/overviews/layout.html#layout-issues&gt;`_.</span>
+
 <span class="sd">    Args:</span>
-<span class="sd">        text: The text to display. You can render rich text with the</span>
-<span class="sd">            `Qt supported HTML subset &lt;https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html&gt;`_.</span>
+<span class="sd">        text: The text to display.</span>
 <span class="sd">        word_wrap: Enable/disable word wrapping.</span>
 <span class="sd">        link_open: Whether hyperlinks will open to the operating system. Defaults to False.</span>
 <span class="sd">            `PySide6.QtWidgets.QLabel.setOpenExternalLinks &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.QLabel.setOpenExternalLinks&gt;`_</span>
 <span class="sd">        selectable: Whether the content of the label can be selected. Defaults to False.</span>
-<span class="sd">        editable: Whether the content of the label can be edited. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Label.__init__">
@@ -990,7 +978,6 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">selectable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">editable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">word_wrap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">link_open</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -1000,7 +987,6 @@ document.write(`
             <span class="p">{</span>
                 <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
                 <span class="s2">&quot;selectable&quot;</span><span class="p">:</span> <span class="n">selectable</span><span class="p">,</span>
-                <span class="s2">&quot;editable&quot;</span><span class="p">:</span> <span class="n">editable</span><span class="p">,</span>
                 <span class="s2">&quot;word_wrap&quot;</span><span class="p">:</span> <span class="n">word_wrap</span><span class="p">,</span>
                 <span class="s2">&quot;link_open&quot;</span><span class="p">:</span> <span class="n">link_open</span><span class="p">,</span>
             <span class="p">},</span>
@@ -1031,32 +1017,24 @@ document.write(`
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;word_wrap&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;word_wrap&quot;</span><span class="p">]))</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">word_wrap</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;link_open&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOpenExternalLinks</span><span class="p">,</span> <span class="n">newprops</span><span class="p">[</span><span class="s2">&quot;link_open&quot;</span><span class="p">]))</span>
-        <span class="k">if</span> <span class="s2">&quot;selectable&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">or</span> <span class="s2">&quot;editable&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="n">interaction_flags</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setOpenExternalLinks</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">link_open</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;selectable&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">selectable</span><span class="p">:</span>
-                <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="n">interaction_flags</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByMouse</span>
                     <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextSelectableByKeyboard</span>
                 <span class="p">)</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">editable</span><span class="p">:</span>
-                <span class="n">change_cursor</span> <span class="o">=</span> <span class="kc">True</span>
-                <span class="c1"># PyQt5 doesn&#39;t support bitwise or with ints</span>
-                <span class="c1"># TODO What about PyQt6?</span>
-                <span class="k">if</span> <span class="n">interaction_flags</span><span class="p">:</span>
-                    <span class="n">interaction_flags</span> <span class="o">|=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextEditable</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">interaction_flags</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">TextInteractionFlag</span><span class="o">.</span><span class="n">TextEditable</span>
-            <span class="k">if</span> <span class="n">change_cursor</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
-            <span class="k">if</span> <span class="n">interaction_flags</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTextInteractionFlags</span><span class="p">,</span> <span class="n">interaction_flags</span><span class="p">))</span>
+                <span class="k">if</span> <span class="s2">&quot;cursor&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;cursor&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]))</span>
+
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -1873,23 +1851,6 @@ document.write(`
 
 
 
-<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead of View use VBoxView, HBoxView, or FixView&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">View</span><span class="p">(</span>
-    <span class="n">layout</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;column&quot;</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="k">match</span> <span class="n">layout</span><span class="p">:</span>
-        <span class="k">case</span> <span class="s2">&quot;column&quot;</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Use VBoxView instead of View(layout=&quot;column&quot;)&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">VBoxView</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s2">&quot;row&quot;</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Use HBoxView instead of View(layout=&quot;row&quot;)&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">HBoxView</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Use FixView instead of View(layout=&quot;none&quot;)&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">FixView</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-
 <div class="viewcode-block" id="Window">
 <a class="viewcode-back" href="../../../stubs/edifice.Window.html#edifice.Window">[docs]</a>
 <span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">VBoxView</span><span class="p">):</span>
@@ -1925,6 +1886,9 @@ document.write(`
 
 <span class="sd">            The event handler function will be passed a</span>
 <span class="sd">            `QCloseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html&gt;`_.</span>
+<span class="sd">        _size_open:</span>
+<span class="sd">            This argument is not a **prop** and will not cause re-render when changed.</span>
+<span class="sd">            It will only be used once to set width and height of the window when it is opened.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Window.__init__">
@@ -1936,6 +1900,7 @@ document.write(`
         <span class="n">menu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">on_open</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">_size_open</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1951,7 +1916,8 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span> <span class="o">=</span> <span class="n">on_open</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span> <span class="o">=</span> <span class="n">on_open</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="o">=</span> <span class="n">_size_open</span></div>
 
 
     <span class="k">def</span> <span class="nf">_set_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_close</span><span class="p">):</span>
@@ -1988,6 +1954,8 @@ document.write(`
             <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span><span class="p">)</span>
 
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
 
@@ -2063,6 +2031,9 @@ document.write(`
 
 <span class="sd">            The event handler function will be passed a</span>
 <span class="sd">            `QCloseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html&gt;`_.</span>
+<span class="sd">        _size_open:</span>
+<span class="sd">            This argument is not a **prop** and will not cause re-render when changed.</span>
+<span class="sd">            It will only be used once to set width and height of the window when it is opened.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="WindowPopView.__init__">
@@ -2072,6 +2043,7 @@ document.write(`
         <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">icon</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">_size_open</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2090,7 +2062,8 @@ document.write(`
 <span class="sd">        Special widget that is not a child of any parent widget.</span>
 <span class="sd">        The layout of this Element is set to this widget, and all Element</span>
 <span class="sd">        children are children of this widget.</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="o">=</span> <span class="n">_size_open</span></div>
 
 
     <span class="k">def</span> <span class="nf">_set_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_close</span><span class="p">):</span>
@@ -2124,6 +2097,8 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">destroyed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle_destroyed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -2364,23 +2339,6 @@ document.write(`
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
-
-
-<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead of ScrollView use VScrollView, HScrollView, or FixScrollView&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">ScrollView</span><span class="p">(</span>
-    <span class="n">layout</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;column&quot;</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="k">match</span> <span class="n">layout</span><span class="p">:</span>
-        <span class="k">case</span> <span class="s2">&quot;column&quot;</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Use VScrollView instead of ScrollView(layout=&quot;column&quot;)&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">VScrollView</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s2">&quot;row&quot;</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Use HScrollView instead of ScrollView(layout=&quot;row&quot;)&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">HScrollView</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Use FixScrollView instead of ScrollView(layout=&quot;none&quot;)&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">FixScrollView</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">npones</span><span class="p">(</span><span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">):</span>

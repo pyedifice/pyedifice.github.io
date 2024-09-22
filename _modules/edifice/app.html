@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 1.5.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/app';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -208,13 +208,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../future.html">
-    Roadmap
   </a>
 </li>
 
@@ -388,13 +381,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -516,9 +502,9 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">qasync</span> <span class="kn">import</span> <span class="n">QEventLoop</span>
 
-<span class="kn">from</span> <span class="nn">.base_components</span> <span class="kn">import</span> <span class="n">ExportList</span><span class="p">,</span> <span class="n">Window</span>
-<span class="kn">from</span> <span class="nn">.engine</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">RenderEngine</span>
-<span class="kn">from</span> <span class="nn">.inspector</span> <span class="kn">import</span> <span class="n">inspector</span> <span class="k">as</span> <span class="n">inspector_module</span>
+<span class="kn">from</span> <span class="nn">edifice.base_components</span> <span class="kn">import</span> <span class="n">ExportList</span><span class="p">,</span> <span class="n">Window</span>
+<span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">RenderEngine</span><span class="p">,</span> <span class="n">get_render_context_maybe</span>
+<span class="kn">from</span> <span class="nn">edifice.inspector</span> <span class="kn">import</span> <span class="n">inspector</span> <span class="k">as</span> <span class="n">inspector_module</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">_logger_module</span><span class="o">.</span><span class="n">logger</span>
 
@@ -964,9 +950,32 @@ document.write(`
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop the application.</span>
+
+<span class="sd">        See :func:`use_stop` for a way to stop the :class:`App` from within a</span>
+<span class="sd">        :func:`@component&lt;component&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span></div>
 </div>
+
+
+
+<div class="viewcode-block" id="use_stop">
+<a class="viewcode-back" href="../../stubs/edifice.use_stop.html#edifice.use_stop">[docs]</a>
+<span class="k">def</span> <span class="nf">use_stop</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This Hook returns a function which will stop the application by calling</span>
+<span class="sd">    :func:`App.stop`.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        stop = use_stop()</span>
+
+<span class="sd">        Button(&quot;Exit&quot;, on_click=lambda _: stop())</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">render_context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">render_context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">render_context</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">_app</span><span class="o">.</span><span class="n">stop</span></div>
 
 </pre></div>
 

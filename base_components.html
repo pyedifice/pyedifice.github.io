@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Base Elements &#8212; Edifice 1.5.0 documentation</title>
+    <title>Base Elements &#8212; Edifice 2.0.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=e0a75244"></script>
+    <script src="_static/documentation_options.js?v=51b770b3"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'base_components';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 1.5.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 1.5.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -211,13 +211,6 @@
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="versions.html">
     Release Notes
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="future.html">
-    Roadmap
   </a>
 </li>
 
@@ -393,13 +386,6 @@ document.write(`
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="future.html">
-    Roadmap
-  </a>
-</li>
-
   </ul>
 </nav></div>
           
@@ -464,6 +450,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.TabView.html">edifice.TabView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.GridView.html">edifice.GridView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.TableGridView.html">edifice.TableGridView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.TableGridRow.html">edifice.TableGridRow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.FlowView.html">edifice.FlowView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stubs/edifice.WindowPopView.html">edifice.WindowPopView</a></li>
 </ul>
@@ -567,7 +554,7 @@ and Content Elements.</p>
 a normal PySide6/PyQt6 app.</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Window</span></code></a>([title, icon, menu, on_open, on_close])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Window</span></code></a>([title, icon, menu, on_open, ...])</p></td>
 <td><p>The root <code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code> element of an <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> which runs in an operating system window.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportList</span></code></a>()</p></td>
@@ -620,10 +607,13 @@ and indent the element’s children:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableGridView</span></code></a>([row_stretch, column_stretch, ...])</p></td>
 <td><p>Table-style grid layout displays its children as aligned rows of columns.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.FlowView.html#edifice.FlowView" title="edifice.FlowView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowView</span></code></a>(**kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableGridRow</span></code></a>()</p></td>
+<td><p>Row Element of a <a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.FlowView.html#edifice.FlowView" title="edifice.FlowView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowView</span></code></a>(**kwargs)</p></td>
 <td><p>Flow-style layout widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.WindowPopView.html#edifice.WindowPopView" title="edifice.WindowPopView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WindowPopView</span></code></a>([title, icon, on_close])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.WindowPopView.html#edifice.WindowPopView" title="edifice.WindowPopView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WindowPopView</span></code></a>([title, icon, on_close, ...])</p></td>
 <td><p>Pop-up Window.</p></td>
 </tr>
 </tbody>
@@ -635,7 +625,7 @@ and indent the element’s children:</p>
 <p>Content Base Elements render a single Qt Widget and mostly do not have children.</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>([text, selectable, editable, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>([text, selectable, word_wrap, link_open])</p></td>
 <td><p>Basic widget for displaying text.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Image.html#edifice.Image" title="edifice.Image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Image</span></code></a>(src[, aspect_ratio_mode])</p></td>

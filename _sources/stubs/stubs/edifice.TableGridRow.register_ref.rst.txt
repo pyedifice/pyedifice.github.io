@@ -1,0 +1,6 @@
+edifice.TableGridRow.register\_ref
+==================================
+
+.. currentmodule:: edifice
+
+.. automethod:: TableGridRow.register_ref

@@ -1,0 +1,6 @@
+edifice.TableGridRow.\_\_init\_\_
+=================================
+
+.. currentmodule:: edifice
+
+.. automethod:: TableGridRow.__init__

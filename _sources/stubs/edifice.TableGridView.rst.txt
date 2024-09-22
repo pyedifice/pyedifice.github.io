@@ -21,7 +21,6 @@ edifice.TableGridView
    
       ~TableGridView.__init__
       ~TableGridView.register_ref
-      ~TableGridView.row
       ~TableGridView.set_key
    
    
