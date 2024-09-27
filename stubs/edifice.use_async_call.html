@@ -403,11 +403,10 @@ document.write(`
                   
   <section id="edifice-use-async-call">
 <h1>edifice.use_async_call<a class="headerlink" href="#edifice-use-async-call" title="Link to this heading">#</a></h1>
-<dl class="py class">
+<dl class="py function">
 <dt class="sig sig-object py" id="edifice.use_async_call">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async_call" title="Link to this definition">#</a></dt>
-<dd><p>Bases:</p>
-<p>Hook to call an async function from a non-async context.</p>
+<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async_call" title="Link to this definition">#</a></dt>
+<dd><p>Hook to call an async function from a non-async context.</p>
 <p>The async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function can have any argument
 signature, but it must return <code class="code docutils literal notranslate"><span class="pre">None</span></code>. The return value is discarded.</p>
 <p>The Hook takes an async function <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> and returns a tuple
