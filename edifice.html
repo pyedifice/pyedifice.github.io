@@ -43,8 +43,8 @@
     <link rel="icon" href="_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="edifice.Element" href="stubs/edifice.Element.html" />
-    <link rel="prev" title="Examples" href="examples.html" />
+    <link rel="next" title="edifice.App" href="stubs/edifice.App.html" />
+    <link rel="prev" title="API" href="api.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,68 +155,25 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
-    Edifice Core
+  <a class="nav-link nav-internal" href="api.html">
+    API
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="base_components.html">
-    Base Elements
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="hooks.html">
-    Hooks
-  </a>
-</li>
-
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="styling.html">
-    Styling
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="extra.html">
-    Extra Elements
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="utilities.html">
-    Utility functions
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="developer_tools.html">
+  <a class="nav-link nav-internal" href="developer_tools.html">
     Developer Tools
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="versions.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="versions.html">
     Release Notes
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -302,7 +259,7 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -332,43 +289,8 @@ document.write(`
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
-    Edifice Core
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="base_components.html">
-    Base Elements
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="hooks.html">
-    Hooks
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="styling.html">
-    Styling
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="extra.html">
-    Extra Elements
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="utilities.html">
-    Utility functions
+  <a class="nav-link nav-internal" href="api.html">
+    API
   </a>
 </li>
 
@@ -428,22 +350,6 @@ document.write(`
     
   </div>
   
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.Element.html">edifice.Element</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.component.html">edifice.component</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.child_place.html">edifice.child_place</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.App.html">edifice.App</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stubs/edifice.Reference.html">edifice.Reference</a></li>
-</ul>
-</div>
-</nav></div>
-    </div>
-  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -476,6 +382,9 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
+    
+    <li class="breadcrumb-item"><a href="api.html" class="nav-link">API</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page">Edifice Core</li>
   </ul>
 </nav>
@@ -495,6 +404,29 @@ document.write(`
                   
   <section id="edifice-core">
 <h1>Edifice Core<a class="headerlink" href="#edifice-core" title="Link to this heading">#</a></h1>
+<section id="class-overview">
+<h2>Class overview<a class="headerlink" href="#class-overview" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-obj docutils literal notranslate"><span class="pre">App</span></code></a>(root_element[, inspector, ...])</p></td>
+<td><p>The main application object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Element</span></code></a>()</p></td>
+<td><p>The base class for Edifice Elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component</span></code></a>(f)</p></td>
+<td><p>Decorator which turns a render function of <strong>props</strong> into an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.child_place.html#edifice.child_place" title="edifice.child_place"><code class="xref py py-obj docutils literal notranslate"><span class="pre">child_place</span></code></a>(element)</p></td>
+<td><p>Place a child passed through the special <code class="code docutils literal notranslate"><span class="pre">children</span></code> <strong>props</strong> into the layout of a parent <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reference</span></code></a>()</p></td>
+<td><p>Reference to an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> for imperative commands.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="declaring-element-trees">
 <h2>Declaring Element Trees<a class="headerlink" href="#declaring-element-trees" title="Link to this heading">#</a></h2>
 <p>An edifice application is created by rendering a <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> with an
@@ -729,29 +661,6 @@ values after they’ve been used in an Element. Move the mutation before the
 Element is created.</p></li>
 </ul>
 </section>
-<section id="class-overview">
-<h2>Class overview<a class="headerlink" href="#class-overview" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Element</span></code></a>()</p></td>
-<td><p>The base class for Edifice Elements.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component</span></code></a>(f)</p></td>
-<td><p>Decorator which turns a render function of <strong>props</strong> into an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.child_place.html#edifice.child_place" title="edifice.child_place"><code class="xref py py-obj docutils literal notranslate"><span class="pre">child_place</span></code></a>(element)</p></td>
-<td><p>Place a child passed through the special <code class="code docutils literal notranslate"><span class="pre">children</span></code> <strong>props</strong> into the layout of a parent <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-obj docutils literal notranslate"><span class="pre">App</span></code></a>(root_element[, inspector, ...])</p></td>
-<td><p>The main application object.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reference</span></code></a>()</p></td>
-<td><p>Reference to an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> for imperative commands.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
 </section>
 
 
@@ -765,20 +674,20 @@ Element is created.</p></li>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="examples.html"
+       href="api.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Examples</p>
+        <p class="prev-next-title">API</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.Element.html"
+       href="stubs/edifice.App.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.Element</p>
+        <p class="prev-next-title">edifice.App</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -800,6 +709,7 @@ Element is created.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-element-trees">Declaring Element Trees</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-view-update">Model-View-Update</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a></li>
@@ -807,7 +717,6 @@ Element is created.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitutional-eq-relation">Substitutional <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-initialization-is-a-render-side-effect">Element initialization is a render side-effect</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-of-edifice">Rules of Edifice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a></li>
 </ul>
   </nav></div>
 
