@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 2.0.1 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 2.1.0 documentation</title>
   
   
   
@@ -35,7 +35,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=f5cff4aa"></script>
+    <script src="../../../_static/documentation_options.js?v=20623aea"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/base_components/base_components';</script>
@@ -121,8 +121,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.1 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.1 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.1.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.1.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -544,7 +544,7 @@ document.write(`
     <span class="n">pixmap</span> <span class="o">=</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">color</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">):</span>
         <span class="n">mask</span> <span class="o">=</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">mask</span><span class="p">()</span>
-        <span class="n">pixmap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="p">(</span><span class="o">*</span><span class="n">color</span><span class="p">))</span> <span class="c1"># TODO this messes up the alpha channel edges</span>
+        <span class="n">pixmap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="p">(</span><span class="o">*</span><span class="n">color</span><span class="p">))</span>  <span class="c1"># TODO this messes up the alpha channel edges</span>
         <span class="n">pixmap</span><span class="o">.</span><span class="n">setMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">rotation</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">width</span><span class="p">(),</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
@@ -1851,6 +1851,16 @@ document.write(`
 
 
 
+<span class="k">def</span> <span class="nf">_window_state_string</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">&amp;</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowState</span><span class="o">.</span><span class="n">WindowMaximized</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Maximized&quot;</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">&amp;</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowState</span><span class="o">.</span><span class="n">WindowMinimized</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Minimized&quot;</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">&amp;</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowState</span><span class="o">.</span><span class="n">WindowFullScreen</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;FullScreen&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;Normal&quot;</span>
+
+
 <div class="viewcode-block" id="Window">
 <a class="viewcode-back" href="../../../stubs/edifice.Window.html#edifice.Window">[docs]</a>
 <span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">VBoxView</span><span class="p">):</span>
@@ -1861,6 +1871,25 @@ document.write(`
 <span class="sd">    The children of this :class:`Window` are the visible Elements of the</span>
 <span class="sd">    :class:`App`. When this :class:`Window` closes, all of the children</span>
 <span class="sd">    are unmounted and then the :class:`App` stops.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example Window with F11 Full Screen Toggle</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Main(self):</span>
+<span class="sd">            full_screen, full_screen_set = use_state(False)</span>
+
+<span class="sd">            def handle_key_down(event: PySide6.QtGui.QKeyEvent):</span>
+<span class="sd">                if event.key() == PySide6.QtGui.Qt.Key.Key_F11:</span>
+<span class="sd">                    full_screen_set(not full_screen)</span>
+
+<span class="sd">            with Window(</span>
+<span class="sd">                title=&quot;Full Screen Example&quot;,</span>
+<span class="sd">                _size_open=(800, 600),</span>
+<span class="sd">                full_screen=full_screen,</span>
+<span class="sd">                on_key_down=handle_key_down,</span>
+<span class="sd">            ):</span>
+<span class="sd">                Label(&quot;Press F11 to toggle full screen mode&quot;)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        title:</span>
@@ -1873,7 +1902,9 @@ document.write(`
 <span class="sd">        menu:</span>
 <span class="sd">            The window’s menu bar. In some GUI settings, for example Mac OS,</span>
 <span class="sd">            this menu will appear seperately from the window.</span>
-<span class="sd">        on_open:</span>
+<span class="sd">        _on_open:</span>
+<span class="sd">            This argument is not a **prop** and will not cause re-render when changed.</span>
+
 <span class="sd">            Event handler for when this window is opening. This event handler</span>
 <span class="sd">            function will be called exactly once, before the children are mounted.</span>
 
@@ -1886,9 +1917,22 @@ document.write(`
 
 <span class="sd">            The event handler function will be passed a</span>
 <span class="sd">            `QCloseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html&gt;`_.</span>
+<span class="sd">        on_window_state_change:</span>
+<span class="sd">            Event handler for when the window state changes.</span>
+
+<span class="sd">            This event handler will be passed the old window state and the</span>
+<span class="sd">            new window state.</span>
+<span class="sd">        full_screen:</span>
+<span class="sd">            Whether the window is in full screen mode.</span>
 <span class="sd">        _size_open:</span>
 <span class="sd">            This argument is not a **prop** and will not cause re-render when changed.</span>
+
 <span class="sd">            It will only be used once to set width and height of the window when it is opened.</span>
+
+<span class="sd">            If the value :code:`&quot;Maximized&quot;` is passed, the window will be</span>
+<span class="sd">            opened maximized (does not work on X11, see</span>
+<span class="sd">            `showMaximized &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized&gt;`_</span>
+<span class="sd">            ).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Window.__init__">
@@ -1898,9 +1942,18 @@ document.write(`
         <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Edifice Application&quot;</span><span class="p">,</span>
         <span class="n">icon</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">menu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_open</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">_on_open</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">_size_open</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_window_state_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="p">[</span>
+                <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+                <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+            <span class="p">],</span>
+            <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span>
+        <span class="p">]</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">full_screen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">_size_open</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Maximized&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1910,18 +1963,52 @@ document.write(`
                 <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
                 <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="n">menu</span><span class="p">,</span>
                 <span class="s2">&quot;on_close&quot;</span><span class="p">:</span> <span class="n">on_close</span><span class="p">,</span>
+                <span class="s2">&quot;on_window_state_change&quot;</span><span class="p">:</span> <span class="n">on_window_state_change</span><span class="p">,</span>
+                <span class="s2">&quot;full_screen&quot;</span><span class="p">:</span> <span class="n">full_screen</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+                    <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+                <span class="p">],</span>
+                <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span>
+            <span class="p">]</span>
+            <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span> <span class="o">=</span> <span class="n">on_open</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="o">=</span> <span class="n">_size_open</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span> <span class="o">=</span> <span class="n">_on_open</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="o">=</span> <span class="n">_size_open</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Store the old window state so that we can restore to the old state</span>
+<span class="sd">        after FullScreen.</span>
+<span class="sd">        None means that the window has not been opened yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
 
 
     <span class="k">def</span> <span class="nf">_set_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_close</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span> <span class="o">=</span> <span class="n">on_close</span>
+
+    <span class="k">def</span> <span class="nf">_set_on_window_state_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_window_state_change</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span> <span class="o">=</span> <span class="n">on_window_state_change</span>
+
+    <span class="k">def</span> <span class="nf">_handle_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QEvent</span><span class="p">):</span>
+        <span class="k">match</span> <span class="n">event</span><span class="p">:</span>
+            <span class="k">case</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QWindowStateChangeEvent</span><span class="p">():</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">window_new_state</span> <span class="o">=</span> <span class="n">_window_state_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">windowState</span><span class="p">())</span>
+                    <span class="n">window_old_state</span> <span class="o">=</span> <span class="n">_window_state_string</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">oldState</span><span class="p">())</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># Disregard the first window state change event so that</span>
+                        <span class="c1"># we can start FullScreen or Maximized</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="o">=</span> <span class="n">window_old_state</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span><span class="p">:</span>
+                        <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span><span class="p">)(</span><span class="n">window_old_state</span><span class="p">,</span> <span class="n">window_new_state</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_handle_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">):</span>
         <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>  <span class="c1"># Don&#39;t kill the app yet, instead stop the app after the children are unmounted.</span>
@@ -1944,6 +2031,8 @@ document.write(`
         <span class="n">newprops</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Inialization for the first time</span>
+
             <span class="c1"># We want on_open to be called exactly once only for this Window</span>
             <span class="c1"># instance before any Qt Widgets are created.</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_open</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1953,9 +2042,33 @@ document.write(`
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
             <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">changeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_change</span>
+
+            <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">full_screen</span><span class="p">:</span>
+                <span class="n">case</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="n">case</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">()</span>
+                <span class="k">case</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="k">case</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">()</span>
+                <span class="k">case</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">()</span>
+                    <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized</span>
+                    <span class="c1">#</span>
+                    <span class="c1"># &gt; On X11, this function may not work properly with certain window managers.</span>
+                    <span class="c1">#</span>
+                    <span class="c1"># Does not work on X11 for opening the window Maximized.</span>
+                    <span class="c1"># But from FullScreen, this function will change window to Maximized.</span>
+                    <span class="c1">#</span>
+                    <span class="c1"># By the way this works on X11 but its obviously very stupid:</span>
+                    <span class="c1"># &gt; self.underlying.show()</span>
+                    <span class="c1"># &gt; asyncio.get_event_loop().call_later(0.1, self.underlying.showMaximized)</span>
+                <span class="k">case</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">()</span>
 
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
 
@@ -1972,7 +2085,24 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenuBar</span><span class="p">()</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attach_menubar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menu_bar</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">menu</span><span class="p">))</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="o">=</span> <span class="n">_window_state_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">windowState</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="s2">&quot;full_screen&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">full_screen</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">:</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">))</span>
+                    <span class="c1"># We don&#39;t restore from FullScreen to &quot;Minimized&quot;:</span>
+                    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">showNormal</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="s2">&quot;on_window_state_change&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_window_state_change</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_window_state_change</span><span class="p">))</span>
+
         <span class="k">return</span> <span class="n">commands</span></div>
+
 
 
 <div class="viewcode-block" id="WindowPopView">
@@ -2031,9 +2161,22 @@ document.write(`
 
 <span class="sd">            The event handler function will be passed a</span>
 <span class="sd">            `QCloseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html&gt;`_.</span>
+<span class="sd">        on_window_state_change:</span>
+<span class="sd">            Event handler for when the window state changes.</span>
+
+<span class="sd">            This event handler will be passed the old window state and the</span>
+<span class="sd">            new window state.</span>
+<span class="sd">        full_screen:</span>
+<span class="sd">            Whether the window is in full screen mode.</span>
 <span class="sd">        _size_open:</span>
 <span class="sd">            This argument is not a **prop** and will not cause re-render when changed.</span>
+
 <span class="sd">            It will only be used once to set width and height of the window when it is opened.</span>
+
+<span class="sd">            If the value :code:`&quot;Maximized&quot;` is passed, the window will be</span>
+<span class="sd">            opened maximized (does not work on X11, see</span>
+<span class="sd">            `showMaximized &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized&gt;`_</span>
+<span class="sd">            ).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="WindowPopView.__init__">
@@ -2043,7 +2186,16 @@ document.write(`
         <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">icon</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_close</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">_size_open</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_window_state_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="p">[</span>
+                <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+                <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+            <span class="p">],</span>
+            <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span>
+        <span class="p">]</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">full_screen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">_size_open</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Maximized&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2052,6 +2204,8 @@ document.write(`
                 <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
                 <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
                 <span class="s2">&quot;on_close&quot;</span><span class="p">:</span> <span class="n">on_close</span><span class="p">,</span>
+                <span class="s2">&quot;on_window_state_change&quot;</span><span class="p">:</span> <span class="n">on_window_state_change</span><span class="p">,</span>
+                <span class="s2">&quot;full_screen&quot;</span><span class="p">:</span> <span class="n">full_screen</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">)</span>
 
@@ -2063,8 +2217,42 @@ document.write(`
 <span class="sd">        The layout of this Element is set to this widget, and all Element</span>
 <span class="sd">        children are children of this widget.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="o">=</span> <span class="n">_size_open</span></div>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+                    <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">],</span>
+                <span class="p">],</span>
+                <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span>
+            <span class="p">]</span>
+            <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="o">=</span> <span class="n">_size_open</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimized&quot;</span><span class="p">,</span> <span class="s2">&quot;FullScreen&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Store the old window state so that we can restore to the old state</span>
+<span class="sd">        after FullScreen.</span>
+<span class="sd">        None means that the window has not been opened yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_set_on_window_state_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_window_state_change</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span> <span class="o">=</span> <span class="n">on_window_state_change</span>
+
+    <span class="k">def</span> <span class="nf">_handle_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QEvent</span><span class="p">):</span>
+        <span class="k">match</span> <span class="n">event</span><span class="p">:</span>
+            <span class="k">case</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QWindowStateChangeEvent</span><span class="p">():</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">window_new_state</span> <span class="o">=</span> <span class="n">_window_state_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">windowState</span><span class="p">())</span>
+                    <span class="n">window_old_state</span> <span class="o">=</span> <span class="n">_window_state_string</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">oldState</span><span class="p">())</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># Disregard the first window state change event so that</span>
+                        <span class="c1"># we can start FullScreen or Maximized</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="o">=</span> <span class="n">window_old_state</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span><span class="p">:</span>
+                        <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_window_state_change</span><span class="p">)(</span><span class="n">window_old_state</span><span class="p">,</span> <span class="n">window_new_state</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_close</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span> <span class="o">=</span> <span class="n">on_close</span>
@@ -2080,33 +2268,52 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">:</span>
             <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span><span class="p">)(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span><span class="p">())</span>
 
-    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># The self.underlying is an invisible placeholder widget that will</span>
-        <span class="c1"># occupy a position in its parent&#39;s layout, but will have zero size.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">()</span>
-        <span class="c1"># The self.underlying_noparent is the widget that will be shown</span>
-        <span class="c1"># to the user as a new pop-up window and which will be the parent</span>
-        <span class="c1"># of all this Element&#39;s children.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span> <span class="c1"># this is for CSS style selection</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">destroyed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle_destroyed</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
         <span class="n">newprops</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+            <span class="c1"># The self.underlying is an invisible placeholder widget that will</span>
+            <span class="c1"># occupy a position in its parent&#39;s layout, but will have zero size.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">()</span>
+            <span class="c1"># The self.underlying_noparent is the widget that will be shown</span>
+            <span class="c1"># to the user as a new pop-up window and which will be the parent</span>
+            <span class="c1"># of all this Element&#39;s children.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>  <span class="c1"># this is for CSS style selection</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">destroyed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle_destroyed</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">closeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_close</span>
+
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">changeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_change</span>
+
+            <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_open</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">full_screen</span><span class="p">:</span>
+                <span class="n">case</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="n">case</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">()</span>
+                <span class="k">case</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="k">case</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">()</span>
+                <span class="k">case</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">()</span>
+                    <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized</span>
+                    <span class="c1">#</span>
+                    <span class="c1"># &gt; On X11, this function may not work properly with certain window managers.</span>
+                    <span class="c1">#</span>
+                    <span class="c1"># Does not work on X11 for opening the window Maximized.</span>
+                    <span class="c1"># But from FullScreen, this function will change window to Maximized.</span>
+                <span class="k">case</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">()</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
@@ -2120,7 +2327,9 @@ document.write(`
 
         <span class="c1"># Important to note that the QtWidgetElement underlying is the underlying_noparent.</span>
         <span class="c1"># This is so that all styles and event handlers are attached to the underlying_noparent.</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
@@ -2129,6 +2338,22 @@ document.write(`
         <span class="k">if</span> <span class="s2">&quot;icon&quot;</span> <span class="ow">in</span> <span class="n">newprops</span> <span class="ow">and</span> <span class="n">newprops</span><span class="o">.</span><span class="n">icon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_image_descriptor_to_pixmap</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">icon</span><span class="p">)</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span> <span class="o">=</span> <span class="n">_window_state_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">windowState</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="s2">&quot;full_screen&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">full_screen</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">showFullScreen</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">_window_old_state</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="s2">&quot;Maximized&quot;</span><span class="p">:</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">))</span>
+                    <span class="c1"># We don&#39;t restore from FullScreen to &quot;Minimized&quot;:</span>
+                    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_noparent</span><span class="o">.</span><span class="n">showNormal</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="s2">&quot;on_window_state_change&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_window_state_change</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_window_state_change</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
 

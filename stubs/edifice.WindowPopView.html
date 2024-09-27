@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.WindowPopView &#8212; Edifice 2.0.1 documentation</title>
+    <title>edifice.WindowPopView &#8212; Edifice 2.1.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=f5cff4aa"></script>
+    <script src="../_static/documentation_options.js?v=20623aea"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.WindowPopView';</script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.0.1 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.0.1 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.1.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.1.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -530,7 +530,7 @@ document.write(`
 <h1>edifice.WindowPopView<a class="headerlink" href="#edifice-windowpopview" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.WindowPopView">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">WindowPopView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_size_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#WindowPopView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.WindowPopView" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">WindowPopView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_window_state_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_screen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_size_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#WindowPopView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.WindowPopView" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.VBoxView.html#edifice.VBoxView" title="edifice.base_components.base_components.VBoxView"><code class="xref py py-class docutils literal notranslate"><span class="pre">VBoxView</span></code></a></p>
 <p>Pop-up Window.</p>
 <p>This Element will render as a new operating system window instead
@@ -579,15 +579,25 @@ See the example above.</p>
 <p>The event handler function will be passed a
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html">QCloseEvent</a>.</p>
 </p></li>
-<li><p><strong>_size_open</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]</span>) – This argument is not a <strong>prop</strong> and will not cause re-render when changed.
-It will only be used once to set width and height of the window when it is opened.</p></li>
+<li><p><strong>on_window_state_change</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>]], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – <p>Event handler for when the window state changes.</p>
+<p>This event handler will be passed the old window state and the
+new window state.</p>
+</p></li>
+<li><p><strong>full_screen</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the window is in full screen mode.</p></li>
+<li><p><strong>_size_open</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – <p>This argument is not a <strong>prop</strong> and will not cause re-render when changed.</p>
+<p>It will only be used once to set width and height of the window when it is opened.</p>
+<p>If the value <code class="code docutils literal notranslate"><span class="pre">&quot;Maximized&quot;</span></code> is passed, the window will be
+opened maximized (does not work on X11, see
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized">showMaximized</a>
+).</p>
+</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.WindowPopView.__init__.html#edifice.WindowPopView.__init__" title="edifice.WindowPopView.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([title, icon, on_close, _size_open])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.WindowPopView.__init__.html#edifice.WindowPopView.__init__" title="edifice.WindowPopView.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([title, icon, on_close, ...])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.WindowPopView.register_ref.html#edifice.WindowPopView.register_ref" title="edifice.WindowPopView.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
