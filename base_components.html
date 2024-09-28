@@ -29,6 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=6d93ce8e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -39,6 +40,8 @@
     <script src="_static/documentation_options.js?v=20623aea"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'base_components';</script>
     <link rel="icon" href="_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -559,6 +562,8 @@ or the <code class="code docutils literal notranslate"><span class="pre">on_chan
 and text input.
 When the event occurs the callback function will be called with an argument
 describing the event.</p>
+<p>Usually, what you want to do in an event handler callback is to update some
+state with a <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> <strong>setter function</strong>.</p>
 <p>These callbacks run in the same thread as the main application.
 This is handy, as you don’t have to worry about locking and race conditions.
 However, a lengthy operation will block the application from interacting with the user,
