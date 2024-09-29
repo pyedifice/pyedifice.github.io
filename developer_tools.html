@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Developer Tools &#8212; Edifice 2.1.0 documentation</title>
+    <title>Developer Tools &#8212; Edifice 2.2.0 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=20623aea"></script>
+    <script src="_static/documentation_options.js?v=b21de401"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.1.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.1.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -439,6 +439,32 @@ during hot-reload.
 If you structure your program in a modular way across multiple files,
 only a few components would need to be reloaded,
 saving you the time of navigating through your app to get to the changed widget.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Dynamic hot-reload currently will not work for the root
+<code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code> which contains the <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>.</p>
+<p>It will only work for child components of the root component.</p>
+<p>So it’s a good idea to structure your application with a
+root Main <code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code> that only contains the <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>,
+like this.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">HelloWorld</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>
+        <span class="n">HelloWorld</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">App</span><span class="p">(</span><span class="n">Main</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>You will find there are other limitations to dynamic hot-reload. It will work
+for changes to style and layout and text, but if you make more drastic changes
+like introducing new component types or changing the Hooks then the hot-reloader
+often fail and then you will need to restart the application.</p>
 </section>
 <section id="element-inspector">
 <h2>Element Inspector<a class="headerlink" href="#element-inspector" title="Link to this heading">#</a></h2>
