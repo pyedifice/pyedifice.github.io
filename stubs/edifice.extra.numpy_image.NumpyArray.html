@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.extra.PyQtPlot &#8212; Edifice 2.2.0 documentation</title>
+    <title>edifice.extra.numpy_image.NumpyArray &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -37,17 +37,17 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=b21de401"></script>
+    <script src="../_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.extra.PyQtPlot';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.extra.numpy_image.NumpyArray';</script>
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.extra.PyQtPlot.__init__" href="stubs/edifice.extra.PyQtPlot.__init__.html" />
-    <link rel="prev" title="Extra Elements" href="../extra.html" />
+    <link rel="next" title="edifice.extra.numpy_image.NumpyArray.__init__" href="stubs/edifice.extra.numpy_image.NumpyArray.__init__.html" />
+    <link rel="prev" title="edifice.extra.numpy_image.NumpyImage.set_key" href="stubs/edifice.extra.numpy_image.NumpyImage.set_key.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -404,78 +404,28 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-extra-pyqtplot">
-<h1>edifice.extra.PyQtPlot<a class="headerlink" href="#edifice-extra-pyqtplot" title="Link to this heading">#</a></h1>
+  <section id="edifice-extra-numpy-image-numpyarray">
+<h1>edifice.extra.numpy_image.NumpyArray<a class="headerlink" href="#edifice-extra-numpy-image-numpyarray" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="edifice.extra.PyQtPlot">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.extra.</span></span><span class="sig-name descname"><span class="pre">PyQtPlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_fun</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/extra/pyqtgraph_plot.html#PyQtPlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.extra.PyQtPlot" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PlotWidget</span></code>]</p>
-<p>A <strong>PyQtGraph</strong>
-<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/widgets/plotwidget.html">PlotWidget</a>.</p>
-<p>Requires
-<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/">PyQtGraph</a>.</p>
-<p>It’s important to import <strong>edifice</strong> before importing <strong>pyqtgraph</strong>, so that <strong>pyqtgraph</strong>
-<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/getting_started/how_to_use.html#pyqt-and-pyside">detects the same PyQt6 or PySide6</a>
-package used by <strong>edifice</strong>.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">component</span>
-<span class="kn">from</span> <span class="nn">edifice.extra</span> <span class="kn">import</span> <span class="n">PyQtPlot</span>
-<span class="kn">import</span> <span class="nn">pyqtgraph</span> <span class="k">as</span> <span class="nn">pg</span>
-
-<span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Component</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">):</span>
-        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
-        <span class="n">plot_item</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ys</span><span class="p">)</span>
-
-    <span class="n">PyQtPlot</span><span class="p">(</span><span class="n">plot_fun</span><span class="o">=</span><span class="n">plot_fun</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>If you want a non-interactive plot that doesn’t respond to the mouse,
-you can disable mouse interaction with the plot by setting properties
-on the <a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html">PlotItem</a>.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">):</span>
-    <span class="n">plot_item</span><span class="o">.</span><span class="n">setMouseEnabled</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">plot_item</span><span class="o">.</span><span class="n">hideButtons</span><span class="p">()</span>
-    <span class="o">...</span>
-</pre></div>
-</div>
-<p>A more complete way to disable mouse interaction is to set the
-<code class="code docutils literal notranslate"><span class="pre">PlotWidget</span></code> to be transparent for mouse events.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">):</span>
-    <span class="n">cast</span><span class="p">(</span>
-        <span class="n">pg</span><span class="o">.</span><span class="n">PlotWidget</span><span class="p">,</span> <span class="n">plot_item</span><span class="o">.</span><span class="n">getViewWidget</span><span class="p">()</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">PySide6</span><span class="o">.</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">WidgetAttribute</span><span class="o">.</span><span class="n">WA_TransparentForMouseEvents</span><span class="p">)</span>
-</pre></div>
-</div>
+<dt class="sig sig-object py" id="edifice.extra.numpy_image.NumpyArray">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.extra.numpy_image.</span></span><span class="sig-name descname"><span class="pre">NumpyArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/extra/numpy_image.html#NumpyArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.extra.numpy_image.NumpyArray" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">T_Numpy_Array_co</span></code>]</p>
+<p>Wrapper for one <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">numpy.ndarray</a>.</p>
+<p>This wrapper class provides the <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation for the wrapped
+<code class="code docutils literal notranslate"><span class="pre">numpy</span></code> array such that if two wrapped arrays are <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>,
+then one can be substituted for the other. This class may be used as a
+<strong>prop</strong> or a <strong>state</strong>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>plot_fun</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">PlotItem</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – <p>Function which takes a <strong>PyQtGraph</strong>
-<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html">PlotItem</a>
-and calls
-<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.plot">plot()</a>.</p>
-<p>Edifice will call
-<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.clear">clear()</a>
-before calling <code class="code docutils literal notranslate"><span class="pre">plot_fun</span></code>.</p>
+<dd class="field-odd"><p><strong>np_array</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T_Numpy_Array_co</span></code>, bound= <code class="xref py py-class docutils literal notranslate"><span class="pre">generic</span></code>, covariant=True)]]</span>) – <p>A <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">numpy.ndarray</a>.</p>
 </p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.__init__.html#edifice.extra.PyQtPlot.__init__" title="edifice.extra.PyQtPlot.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(plot_fun, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.numpy_image.NumpyArray.__init__.html#edifice.extra.numpy_image.NumpyArray.__init__" title="edifice.extra.numpy_image.NumpyArray.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(np_array)</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.register_ref.html#edifice.extra.PyQtPlot.register_ref" title="edifice.extra.PyQtPlot.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
-<td><p>Registers provided <code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code> to this Element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.set_key.html#edifice.extra.PyQtPlot.set_key" title="edifice.extra.PyQtPlot.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
-<td><p>Set the key of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -483,11 +433,8 @@ before calling <code class="code docutils literal notranslate"><span class="pre"
 <p class="rubric">Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></p></td>
-<td><p>The children of this Element.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></p></td>
-<td><p>The props of this Element.</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">np_array</span></code></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -507,20 +454,20 @@ before calling <code class="code docutils literal notranslate"><span class="pre"
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../extra.html"
+       href="stubs/edifice.extra.numpy_image.NumpyImage.set_key.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Extra Elements</p>
+        <p class="prev-next-title">edifice.extra.numpy_image.NumpyImage.set_key</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.extra.PyQtPlot.__init__.html"
+       href="stubs/edifice.extra.numpy_image.NumpyArray.__init__.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.extra.PyQtPlot.__init__</p>
+        <p class="prev-next-title">edifice.extra.numpy_image.NumpyArray.__init__</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

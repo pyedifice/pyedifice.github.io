@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.extra.MatplotlibFigure &#8212; Edifice 2.2.0 documentation</title>
+    <title>edifice.extra.pyqtgraph_plot.PyQtPlot &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -37,17 +37,17 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=b21de401"></script>
+    <script src="../_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.extra.MatplotlibFigure';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.extra.pyqtgraph_plot.PyQtPlot';</script>
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.extra.MatplotlibFigure.__init__" href="stubs/edifice.extra.MatplotlibFigure.__init__.html" />
-    <link rel="prev" title="edifice.extra.PyQtPlot.set_key" href="stubs/edifice.extra.PyQtPlot.set_key.html" />
+    <link rel="next" title="edifice.extra.pyqtgraph_plot.PyQtPlot.__init__" href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.__init__.html" />
+    <link rel="prev" title="Extra Elements" href="../extra.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -404,48 +404,77 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-extra-matplotlibfigure">
-<h1>edifice.extra.MatplotlibFigure<a class="headerlink" href="#edifice-extra-matplotlibfigure" title="Link to this heading">#</a></h1>
+  <section id="edifice-extra-pyqtgraph-plot-pyqtplot">
+<h1>edifice.extra.pyqtgraph_plot.PyQtPlot<a class="headerlink" href="#edifice-extra-pyqtgraph-plot-pyqtplot" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="edifice.extra.MatplotlibFigure">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.extra.</span></span><span class="sig-name descname"><span class="pre">MatplotlibFigure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_figure_mouse_move</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/extra/matplotlib_figure.html#MatplotlibFigure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.extra.MatplotlibFigure" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a></p>
-<p>A <strong>matplotlib</strong> <a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure">Figure</a>.</p>
-<p>Requires <a class="reference external" href="https://matplotlib.org/stable/">matplotlib</a>.</p>
+<dt class="sig sig-object py" id="edifice.extra.pyqtgraph_plot.PyQtPlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.extra.pyqtgraph_plot.</span></span><span class="sig-name descname"><span class="pre">PyQtPlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_fun</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/extra/pyqtgraph_plot.html#PyQtPlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.extra.pyqtgraph_plot.PyQtPlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PlotWidget</span></code>]</p>
+<p>A <strong>PyQtGraph</strong>
+<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/widgets/plotwidget.html">PlotWidget</a>.</p>
+<p>Requires
+<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/">PyQtGraph</a>.</p>
+<p>It’s important to import <strong>edifice</strong> before importing <strong>pyqtgraph</strong>, so that <strong>pyqtgraph</strong>
+<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/getting_started/how_to_use.html#pyqt-and-pyside">detects the same PyQt6 or PySide6</a>
+package used by <strong>edifice</strong>.</p>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">edifice.extra</span> <span class="kn">import</span> <span class="n">MatplotlibFigure</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">component</span>
+<span class="kn">from</span> <span class="nn">edifice.extra</span> <span class="kn">import</span> <span class="n">PyQtPlot</span>
+<span class="kn">import</span> <span class="nn">pyqtgraph</span> <span class="k">as</span> <span class="nn">pg</span>
 
-<span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">ax</span><span class="p">:</span><span class="n">Axes</span><span class="p">):</span>
-    <span class="n">time_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_range</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">time_range</span><span class="p">))</span>
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Component</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-<span class="n">MatplotlibFigure</span><span class="p">(</span><span class="n">plot_fun</span><span class="o">=</span><span class="n">plot_fun</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">):</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+        <span class="n">plot_item</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ys</span><span class="p">)</span>
+
+    <span class="n">PyQtPlot</span><span class="p">(</span><span class="n">plot_fun</span><span class="o">=</span><span class="n">plot_fun</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want a non-interactive plot that doesn’t respond to the mouse,
+you can disable mouse interaction with the plot by setting properties
+on the <a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html">PlotItem</a>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">):</span>
+    <span class="n">plot_item</span><span class="o">.</span><span class="n">setMouseEnabled</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plot_item</span><span class="o">.</span><span class="n">hideButtons</span><span class="p">()</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>A more complete way to disable mouse interaction is to set the
+<code class="code docutils literal notranslate"><span class="pre">PlotWidget</span></code> to be transparent for mouse events.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fun</span><span class="p">(</span><span class="n">plot_item</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">PlotItem</span><span class="p">):</span>
+    <span class="n">cast</span><span class="p">(</span>
+        <span class="n">pg</span><span class="o">.</span><span class="n">PlotWidget</span><span class="p">,</span> <span class="n">plot_item</span><span class="o">.</span><span class="n">getViewWidget</span><span class="p">()</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">PySide6</span><span class="o">.</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">WidgetAttribute</span><span class="o">.</span><span class="n">WA_TransparentForMouseEvents</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>plot_fun</strong> (<span class="sphinx_autodoc_typehints-type">tp.Callable[[Axes], None]</span>) – Function which takes <strong>matplotlib</strong>
-<a class="reference external" href="https://matplotlib.org/stable/api/axes_api.html">Axes</a>
+<dd class="field-odd"><p><strong>plot_fun</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">PlotItem</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – <p>Function which takes a <strong>PyQtGraph</strong>
+<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html">PlotItem</a>
 and calls
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html">Axes.plot</a>.</p></li>
-<li><p><strong>on_figure_mouse_move</strong> (<span class="sphinx_autodoc_typehints-type">tp.Callable[[MouseEvent], None] | None</span>) – Handler for mouse move
-<a class="reference external" href="https://matplotlib.org/stable/api/backend_bases_api.html#matplotlib.backend_bases.MouseEvent">MouseEvent</a>.</p></li>
-</ul>
+<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.plot">plot()</a>.</p>
+<p>Edifice will call
+<a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.clear">clear()</a>
+before calling <code class="code docutils literal notranslate"><span class="pre">plot_fun</span></code>.</p>
+</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.__init__.html#edifice.extra.MatplotlibFigure.__init__" title="edifice.extra.MatplotlibFigure.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(plot_fun[, on_figure_mouse_move])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.__init__.html#edifice.extra.pyqtgraph_plot.PyQtPlot.__init__" title="edifice.extra.pyqtgraph_plot.PyQtPlot.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(plot_fun, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.register_ref.html#edifice.extra.MatplotlibFigure.register_ref" title="edifice.extra.MatplotlibFigure.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.register_ref.html#edifice.extra.pyqtgraph_plot.PyQtPlot.register_ref" title="edifice.extra.pyqtgraph_plot.PyQtPlot.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
 <td><p>Registers provided <code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code> to this Element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.set_key.html#edifice.extra.MatplotlibFigure.set_key" title="edifice.extra.MatplotlibFigure.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.set_key.html#edifice.extra.pyqtgraph_plot.PyQtPlot.set_key" title="edifice.extra.pyqtgraph_plot.PyQtPlot.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
 <td><p>Set the key of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code>.</p></td>
 </tr>
 </tbody>
@@ -459,6 +488,9 @@ and calls
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></p></td>
 <td><p>The props of this Element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying</span></code></p></td>
+<td><p>The underlying QWidget, which may not exist if this Element has not rendered.</p></td>
 </tr>
 </tbody>
 </table>
@@ -478,20 +510,20 @@ and calls
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/edifice.extra.PyQtPlot.set_key.html"
+       href="../extra.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.extra.PyQtPlot.set_key</p>
+        <p class="prev-next-title">Extra Elements</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.extra.MatplotlibFigure.__init__.html"
+       href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.__init__.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.extra.MatplotlibFigure.__init__</p>
+        <p class="prev-next-title">edifice.extra.pyqtgraph_plot.PyQtPlot.__init__</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

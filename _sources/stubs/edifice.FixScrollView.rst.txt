@@ -33,5 +33,6 @@ edifice.FixScrollView
    
       ~FixScrollView.children
       ~FixScrollView.props
+      ~FixScrollView.underlying
    
    

@@ -1,12 +1,12 @@
 ﻿.. Taken from
 .. https://github.com/sphinx-doc/sphinx/blob/13da5d7b2fda0da58137534e8fcdb0da9c88e55f/sphinx/ext/autosummary/templates/autosummary/class.rst
 
-edifice.extra.NumpyImage
-========================
+edifice.extra.numpy\_image.NumpyArray
+=====================================
 
-.. currentmodule:: edifice.extra
+.. currentmodule:: edifice.extra.numpy_image
 
-.. autoclass:: NumpyImage
+.. autoclass:: NumpyArray
    :members:
    :show-inheritance:
 
@@ -19,9 +19,7 @@ edifice.extra.NumpyImage
    .. autosummary::
       :toctree: stubs
    
-      ~NumpyImage.__init__
-      ~NumpyImage.register_ref
-      ~NumpyImage.set_key
+      ~NumpyArray.__init__
    
    
 
@@ -31,7 +29,6 @@ edifice.extra.NumpyImage
 
    .. autosummary::
    
-      ~NumpyImage.children
-      ~NumpyImage.props
+      ~NumpyArray.np_array
    
    

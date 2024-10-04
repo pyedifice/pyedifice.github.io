@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.extra.NumpyArray &#8212; Edifice 2.2.0 documentation</title>
+    <title>edifice.extra.numpy_image.NumpyImage &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -37,17 +37,17 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=b21de401"></script>
+    <script src="../_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.extra.NumpyArray';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.extra.numpy_image.NumpyImage';</script>
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.extra.NumpyArray.__init__" href="stubs/edifice.extra.NumpyArray.__init__.html" />
-    <link rel="prev" title="edifice.extra.NumpyImage.set_key" href="stubs/edifice.extra.NumpyImage.set_key.html" />
+    <link rel="next" title="edifice.extra.numpy_image.NumpyImage.__init__" href="stubs/edifice.extra.numpy_image.NumpyImage.__init__.html" />
+    <link rel="prev" title="edifice.extra.matplotlib_figure.MatplotlibFigure.set_key" href="stubs/edifice.extra.matplotlib_figure.MatplotlibFigure.set_key.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -404,28 +404,51 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-extra-numpyarray">
-<h1>edifice.extra.NumpyArray<a class="headerlink" href="#edifice-extra-numpyarray" title="Link to this heading">#</a></h1>
+  <section id="edifice-extra-numpy-image-numpyimage">
+<h1>edifice.extra.numpy_image.NumpyImage<a class="headerlink" href="#edifice-extra-numpy-image-numpyimage" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="edifice.extra.NumpyArray">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.extra.</span></span><span class="sig-name descname"><span class="pre">NumpyArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/extra/numpy_image.html#NumpyArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.extra.NumpyArray" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">T_Numpy_Array_co</span></code>]</p>
-<p>Wrapper for one <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">numpy.ndarray</a>.</p>
-<p>This wrapper class provides the <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation for the wrapped
-<code class="code docutils literal notranslate"><span class="pre">numpy</span></code> array such that if two wrapped arrays are <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code>,
-then one can be substituted for the other. This class may be used as a
-<strong>prop</strong> or a <strong>state</strong>.</p>
+<dt class="sig sig-object py" id="edifice.extra.numpy_image.NumpyImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.extra.numpy_image.</span></span><span class="sig-name descname"><span class="pre">NumpyImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect_ratio_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/extra/numpy_image.html#NumpyImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.extra.numpy_image.NumpyImage" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a></p>
+<p>Render a <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> array as an image.</p>
+<ul class="simple">
+<li><p>Underlying Qt Widget
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html">QLabel</a></p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>np_array</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T_Numpy_Array_co</span></code>, bound= <code class="xref py py-class docutils literal notranslate"><span class="pre">generic</span></code>, covariant=True)]]</span>) – <p>A <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">numpy.ndarray</a>.</p>
-</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="edifice.extra.numpy_image.NumpyArray.html#edifice.extra.numpy_image.NumpyArray" title="edifice.extra.numpy_image.NumpyArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumpyArray</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">uint8</span></code>]</span>) – <p>A <a class="reference internal" href="edifice.extra.numpy_image.NumpyArray.html#edifice.extra.numpy_image.NumpyArray" title="edifice.extra.numpy_image.NumpyArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumpyArray</span></code></a> wrapping a <code class="code docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> of <code class="code docutils literal notranslate"><span class="pre">uint8</span></code>.</p>
+<p>Allowed shapes:</p>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">(height,</span> <span class="pre">width)</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">(height,</span> <span class="pre">width,</span> <span class="pre">1)</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">(height,</span> <span class="pre">width,</span> <span class="pre">3)</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">(height,</span> <span class="pre">width,</span> <span class="pre">4)</span></code></p></li>
+</ul>
+</p></li>
+<li><p><strong>aspect_ratio_mode</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AspectRatioMode</span></code>]</span>) – <p>The aspect ratio mode of the image.</p>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">None</span></code> for a fixed image which doesn’t scale.</p></li>
+<li><p>An
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.AspectRatioMode">AspectRatioMode</a>
+to specify how the image should scale.</p></li>
+</ul>
+</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.NumpyArray.__init__.html#edifice.extra.NumpyArray.__init__" title="edifice.extra.NumpyArray.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(np_array)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.numpy_image.NumpyImage.__init__.html#edifice.extra.numpy_image.NumpyImage.__init__" title="edifice.extra.numpy_image.NumpyImage.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(src[, aspect_ratio_mode])</p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.numpy_image.NumpyImage.register_ref.html#edifice.extra.numpy_image.NumpyImage.register_ref" title="edifice.extra.numpy_image.NumpyImage.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
+<td><p>Registers provided <code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code> to this Element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.numpy_image.NumpyImage.set_key.html#edifice.extra.numpy_image.NumpyImage.set_key" title="edifice.extra.numpy_image.NumpyImage.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
+<td><p>Set the key of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -433,8 +456,14 @@ then one can be substituted for the other. This class may be used as a
 <p class="rubric">Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">np_array</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></p></td>
+<td><p>The children of this Element.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></p></td>
+<td><p>The props of this Element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying</span></code></p></td>
+<td><p>The underlying QWidget, which may not exist if this Element has not rendered.</p></td>
 </tr>
 </tbody>
 </table>
@@ -454,20 +483,20 @@ then one can be substituted for the other. This class may be used as a
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/edifice.extra.NumpyImage.set_key.html"
+       href="stubs/edifice.extra.matplotlib_figure.MatplotlibFigure.set_key.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.extra.NumpyImage.set_key</p>
+        <p class="prev-next-title">edifice.extra.matplotlib_figure.MatplotlibFigure.set_key</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.extra.NumpyArray.__init__.html"
+       href="stubs/edifice.extra.numpy_image.NumpyImage.__init__.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.extra.NumpyArray.__init__</p>
+        <p class="prev-next-title">edifice.extra.numpy_image.NumpyImage.__init__</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

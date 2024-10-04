@@ -33,5 +33,6 @@ edifice.HBoxView
    
       ~HBoxView.children
       ~HBoxView.props
+      ~HBoxView.underlying
    
    

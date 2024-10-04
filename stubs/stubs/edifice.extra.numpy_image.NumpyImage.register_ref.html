@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.extra.PyQtPlot.set_key &#8212; Edifice 2.2.0 documentation</title>
+    <title>edifice.extra.numpy_image.NumpyImage.register_ref &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -37,17 +37,17 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=b21de401"></script>
+    <script src="../../_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.extra.PyQtPlot.set_key';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.extra.numpy_image.NumpyImage.register_ref';</script>
     <link rel="icon" href="../../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="edifice.extra.MatplotlibFigure" href="../edifice.extra.MatplotlibFigure.html" />
-    <link rel="prev" title="edifice.extra.PyQtPlot.register_ref" href="edifice.extra.PyQtPlot.register_ref.html" />
+    <link rel="next" title="edifice.extra.numpy_image.NumpyImage.set_key" href="edifice.extra.numpy_image.NumpyImage.set_key.html" />
+    <link rel="prev" title="edifice.extra.numpy_image.NumpyImage.__init__" href="edifice.extra.numpy_image.NumpyImage.__init__.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -390,7 +390,7 @@ document.write(`
     <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
     
     
-    <li class="breadcrumb-item"><a href="../edifice.extra.PyQtPlot.html" class="nav-link">edifice.extra.PyQtPlot</a></li>
+    <li class="breadcrumb-item"><a href="../edifice.extra.numpy_image.NumpyImage.html" class="nav-link">edifice.extra.numpy_image.NumpyImage</a></li>
     
     <li class="breadcrumb-item active" aria-current="page">edifice.extr...</li>
   </ul>
@@ -409,43 +409,23 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-extra-pyqtplot-set-key">
-<h1>edifice.extra.PyQtPlot.set_key<a class="headerlink" href="#edifice-extra-pyqtplot-set-key" title="Link to this heading">#</a></h1>
+  <section id="edifice-extra-numpy-image-numpyimage-register-ref">
+<h1>edifice.extra.numpy_image.NumpyImage.register_ref<a class="headerlink" href="#edifice-extra-numpy-image-numpyimage-register-ref" title="Link to this heading">#</a></h1>
 <dl class="py method">
-<dt class="sig sig-object py" id="edifice.extra.PyQtPlot.set_key">
-<span class="sig-prename descclassname"><span class="pre">PyQtPlot.</span></span><span class="sig-name descname"><span class="pre">set_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#edifice.extra.PyQtPlot.set_key" title="Link to this definition">#</a></dt>
-<dd><p>Set the key of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code>.</p>
-<p>The key is used when re-rendering to match new child Elements
-with old child Elements.
-The diffing algorithm will assume that child Elements with the same key
-are identical.</p>
-<p>Each key must be unique and persistent. The <strong>Edifice Rules
-of Keys</strong> are the same as the
-<a class="reference external" href="https://react.dev/learn/rendering-lists#rules-of-keys">React Rules of Keys</a>.</p>
-<ul class="simple">
-<li><p><strong>Keys must be unique among siblings.</strong> However, it’s okay to use the same keys for Elements of different parents.</p></li>
-<li><p><strong>Keys must not change</strong> or that defeats their purpose! Don’t generate them while rendering.</p></li>
-</ul>
-<p>Returns the Element to allow for chaining.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">english</span><span class="p">:</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">french</span><span class="p">:</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;fr&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">spanish</span><span class="p">:</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hola&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;es&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<dt class="sig sig-object py" id="edifice.extra.numpy_image.NumpyImage.register_ref">
+<span class="sig-prename descclassname"><span class="pre">NumpyImage.</span></span><span class="sig-name descname"><span class="pre">register_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#edifice.extra.numpy_image.NumpyImage.register_ref" title="Link to this definition">#</a></dt>
+<dd><p>Registers provided <code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code> to this Element.</p>
+<p>During render, the provided reference will be set to point to the
+currently rendered instance of this Element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The Element unique key string.</p>
+<dd class="field-odd"><p><strong>reference</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../edifice.Reference.html#edifice.Reference" title="edifice.engine.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code>]</span>) – the Reference to register</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Element.</p>
+<dd class="field-odd"><p>The Element self.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -463,20 +443,20 @@ of Keys</strong> are the same as the
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="edifice.extra.PyQtPlot.register_ref.html"
+       href="edifice.extra.numpy_image.NumpyImage.__init__.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.extra.PyQtPlot.register_ref</p>
+        <p class="prev-next-title">edifice.extra.numpy_image.NumpyImage.__init__</p>
       </div>
     </a>
     <a class="right-next"
-       href="../edifice.extra.MatplotlibFigure.html"
+       href="edifice.extra.numpy_image.NumpyImage.set_key.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.extra.MatplotlibFigure</p>
+        <p class="prev-next-title">edifice.extra.numpy_image.NumpyImage.set_key</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

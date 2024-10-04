@@ -1,0 +1,6 @@
+edifice.extra.matplotlib\_figure.MatplotlibFigure.\_\_init\_\_
+==============================================================
+
+.. currentmodule:: edifice.extra.matplotlib_figure
+
+.. automethod:: MatplotlibFigure.__init__

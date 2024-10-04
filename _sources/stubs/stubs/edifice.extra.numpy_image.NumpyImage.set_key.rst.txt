@@ -1,0 +1,6 @@
+edifice.extra.numpy\_image.NumpyImage.set\_key
+==============================================
+
+.. currentmodule:: edifice.extra.numpy_image
+
+.. automethod:: NumpyImage.set_key

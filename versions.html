@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 2.2.0 documentation</title>
+    <title>Release Notes &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=b21de401"></script>
+    <script src="_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -126,8 +126,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -403,6 +403,15 @@ document.write(`
                   
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<section id="v2-3-0">
+<h2>v2.3.0<a class="headerlink" href="#v2-3-0" title="Link to this heading">#</a></h2>
+<p>Released: 2024-10-05</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextInput</span></code></a> new prop <code class="code docutils literal notranslate"><span class="pre">completer</span></code>.</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> new argument <code class="code docutils literal notranslate"><span class="pre">_focus_open</span></code>.</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> <code class="code docutils literal notranslate"><span class="pre">on_key_down</span></code> and <code class="code docutils literal notranslate"><span class="pre">on_key_up</span></code> events will propagate to parent.</p></li>
+</ul>
+</section>
 <section id="v2-2-0">
 <h2>v2.2.0<a class="headerlink" href="#v2-2-0" title="Link to this heading">#</a></h2>
 <p>Released: 2024-09-29</p>
@@ -507,7 +516,7 @@ version 1.</p>
 <h2>v0.8.0<a class="headerlink" href="#v0-8-0" title="Link to this heading">#</a></h2>
 <p>Released: 2024-07-27</p>
 <ul>
-<li><p>New Element: <a class="reference internal" href="stubs/edifice.extra.NumpyImage.html#edifice.extra.NumpyImage" title="edifice.extra.NumpyImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumpyImage</span></code></a>.</p></li>
+<li><p>New Element: <code class="xref py py-class docutils literal notranslate"><span class="pre">NumpyImage</span></code>.</p></li>
 <li><p>Inspector improvements and debugging.</p></li>
 <li><p><a class="reference internal" href="stubs/edifice.Slider.html#edifice.Slider" title="edifice.Slider"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slider</span></code></a> <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> event handler prop can be a future.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">children</span></code> prop type changed to <code class="code docutils literal notranslate"><span class="pre">tuple[Element,</span> <span class="pre">...]</span></code>.</p>
@@ -701,7 +710,7 @@ prop changed.</p>
 </dd>
 </dl>
 </li>
-<li><p><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.html#edifice.extra.PyQtPlot" title="edifice.extra.PyQtPlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.PyQtPlot</span></code></a> instructions for disabling mouse interaction.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.PyQtPlot</span></code> instructions for disabling mouse interaction.</p></li>
 </ul>
 </section>
 <section id="v0-4-4">
@@ -726,7 +735,7 @@ prop changed.</p>
 <p>Released: 2024-02-26</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> allways run when <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> is <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.html#edifice.extra.PyQtPlot" title="edifice.extra.PyQtPlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.PyQtPlot</span></code></a> disable mouse interaction.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.PyQtPlot</span></code> disable mouse interaction.</p></li>
 </ul>
 </section>
 <section id="v0-4-1">
@@ -843,8 +852,8 @@ tuple.</p></li>
 <li><p><a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> <code class="code docutils literal notranslate"><span class="pre">on_drop</span></code> event handler.</p></li>
 <li><dl class="simple">
 <dt><strong>Extra Elements</strong></dt><dd><ul>
-<li><p><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.html#edifice.extra.MatplotlibFigure" title="edifice.extra.MatplotlibFigure"><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.MatplotlibFigure</span></code></a></p></li>
-<li><p><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.html#edifice.extra.PyQtPlot" title="edifice.extra.PyQtPlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.PyQtPlot</span></code></a></p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.MatplotlibFigure</span></code></p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">extra.PyQtPlot</span></code></p></li>
 </ul>
 </dd>
 </dl>
@@ -1020,6 +1029,7 @@ and clearer error messages for Dropdowns and Sliders.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-3-0">v2.3.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-2-0">v2.2.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-1-0">v2.1.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-0-1">v2.0.1</a></li>

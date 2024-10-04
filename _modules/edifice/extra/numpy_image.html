@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.extra.numpy_image &#8212; Edifice 2.2.0 documentation</title>
+    <title>edifice.extra.numpy_image &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=b21de401"></script>
+    <script src="../../../_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -425,7 +425,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="NumpyArray">
-<a class="viewcode-back" href="../../../stubs/edifice.extra.NumpyArray.html#edifice.extra.NumpyArray">[docs]</a>
+<a class="viewcode-back" href="../../../stubs/edifice.extra.numpy_image.NumpyArray.html#edifice.extra.numpy_image.NumpyArray">[docs]</a>
 <span class="k">class</span> <span class="nc">NumpyArray</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T_Numpy_Array_co</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for one `numpy.ndarray &lt;https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html&gt;`_.</span>
 
@@ -443,7 +443,7 @@ document.write(`
     <span class="n">np_array</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">T_Numpy_Array_co</span><span class="p">]</span>
 
 <div class="viewcode-block" id="NumpyArray.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.extra.NumpyArray.__init__.html#edifice.extra.NumpyArray.__init__">[docs]</a>
+<a class="viewcode-back" href="../../../stubs/stubs/edifice.extra.numpy_image.NumpyArray.__init__.html#edifice.extra.numpy_image.NumpyArray.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np_array</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">T_Numpy_Array_co</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np_array</span><span class="o">.</span><span class="n">dtype</span>
@@ -455,6 +455,8 @@ document.write(`
 
 
 
+<div class="viewcode-block" id="NumpyArray_to_QImage">
+<a class="viewcode-back" href="../../../stubs/edifice.extra.numpy_image.NumpyArray_to_QImage.html#edifice.extra.numpy_image.NumpyArray_to_QImage">[docs]</a>
 <span class="k">def</span> <span class="nf">NumpyArray_to_QImage</span><span class="p">(</span><span class="n">arr</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">|</span> <span class="n">NumpyArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">QImage</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to convert :code:`numpy` arrays into QImages.</span>
 
@@ -496,11 +498,12 @@ document.write(`
                 <span class="n">QImage</span><span class="o">.</span><span class="n">Format</span><span class="o">.</span><span class="n">Format_RGB888</span> <span class="k">if</span> <span class="n">channel</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format</span><span class="o">.</span><span class="n">Format_RGBA8888</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Numpy array with shape </span><span class="si">{</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> cannot be converted into a QImage.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Numpy array with shape </span><span class="si">{</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> cannot be converted into a QImage.&quot;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="NumpyImage">
-<a class="viewcode-back" href="../../../stubs/edifice.extra.NumpyImage.html#edifice.extra.NumpyImage">[docs]</a>
+<a class="viewcode-back" href="../../../stubs/edifice.extra.numpy_image.NumpyImage.html#edifice.extra.numpy_image.NumpyImage">[docs]</a>
 <span class="k">class</span> <span class="nc">NumpyImage</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render a :code:`numpy` array as an image.</span>
 
@@ -528,7 +531,7 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="NumpyImage.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.extra.NumpyImage.__init__.html#edifice.extra.NumpyImage.__init__">[docs]</a>
+<a class="viewcode-back" href="../../../stubs/stubs/edifice.extra.numpy_image.NumpyImage.__init__.html#edifice.extra.numpy_image.NumpyImage.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">src</span><span class="p">:</span> <span class="n">NumpyArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">],</span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extra Elements &#8212; Edifice 2.2.0 documentation</title>
+    <title>Extra Elements &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=b21de401"></script>
+    <script src="_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -46,7 +46,7 @@
     <link rel="icon" href="_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="edifice.extra.PyQtPlot" href="stubs/edifice.extra.PyQtPlot.html" />
+    <link rel="next" title="edifice.extra.pyqtgraph_plot.PyQtPlot" href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.html" />
     <link rel="prev" title="Styling" href="styling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -406,25 +406,34 @@ document.write(`
 <p>Edifice provides a few extra Elements that provide useful but non-core
 features.</p>
 <p>These Elements have additional dependencies, so they are
-not included in the <code class="code docutils literal notranslate"><span class="pre">edifice</span></code> module.
-To use them, you have to import from the module <code class="code docutils literal notranslate"><span class="pre">edifice.extra</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">edifice.extra</span> <span class="kn">import</span> <span class="n">MatplotlibFigure</span>
+not included in the <code class="code docutils literal notranslate"><span class="pre">edifice</span></code> module.</p>
+<p>Importing one of these extra Elements will require the installation of the
+additional dependencies.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">edifice.extra.matplotlib_figure</span> <span class="kn">import</span> <span class="n">MatplotlibFigure</span>
 </pre></div>
 </div>
 <p>User contributions are of course welcome!</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.PyQtPlot.html#edifice.extra.PyQtPlot" title="edifice.extra.PyQtPlot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PyQtPlot</span></code></a>(plot_fun, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.html#edifice.extra.pyqtgraph_plot.PyQtPlot" title="edifice.extra.pyqtgraph_plot.PyQtPlot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyqtgraph_plot.PyQtPlot</span></code></a>(plot_fun, **kwargs)</p></td>
 <td><p>A <strong>PyQtGraph</strong> <a class="reference external" href="https://pyqtgraph.readthedocs.io/en/latest/api_reference/widgets/plotwidget.html">PlotWidget</a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.MatplotlibFigure.html#edifice.extra.MatplotlibFigure" title="edifice.extra.MatplotlibFigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatplotlibFigure</span></code></a>(plot_fun[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.matplotlib_figure.MatplotlibFigure.html#edifice.extra.matplotlib_figure.MatplotlibFigure" title="edifice.extra.matplotlib_figure.MatplotlibFigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib_figure.MatplotlibFigure</span></code></a>(plot_fun)</p></td>
 <td><p>A <strong>matplotlib</strong> <a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure">Figure</a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.NumpyImage.html#edifice.extra.NumpyImage" title="edifice.extra.NumpyImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NumpyImage</span></code></a>(src[, aspect_ratio_mode])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.numpy_image.NumpyImage.html#edifice.extra.numpy_image.NumpyImage" title="edifice.extra.numpy_image.NumpyImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy_image.NumpyImage</span></code></a>(src[, aspect_ratio_mode])</p></td>
 <td><p>Render a <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> array as an image.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.NumpyArray.html#edifice.extra.NumpyArray" title="edifice.extra.NumpyArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NumpyArray</span></code></a>(np_array)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.extra.numpy_image.NumpyArray.html#edifice.extra.numpy_image.NumpyArray" title="edifice.extra.numpy_image.NumpyArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy_image.NumpyArray</span></code></a>(np_array)</p></td>
 <td><p>Wrapper for one <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">numpy.ndarray</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.extra.numpy_image.NumpyArray_to_QImage.html#edifice.extra.numpy_image.NumpyArray_to_QImage" title="edifice.extra.numpy_image.NumpyArray_to_QImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy_image.NumpyArray_to_QImage</span></code></a>(arr)</p></td>
+<td><p>Function to convert <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> arrays into QImages.</p></td>
 </tr>
 </tbody>
 </table>
@@ -451,11 +460,11 @@ To use them, you have to import from the module <code class="code docutils liter
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.extra.PyQtPlot.html"
+       href="stubs/edifice.extra.pyqtgraph_plot.PyQtPlot.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.extra.PyQtPlot</p>
+        <p class="prev-next-title">edifice.extra.pyqtgraph_plot.PyQtPlot</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

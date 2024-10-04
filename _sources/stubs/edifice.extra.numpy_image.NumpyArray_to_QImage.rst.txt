@@ -1,0 +1,6 @@
+﻿edifice.extra.numpy\_image.NumpyArray\_to\_QImage
+=================================================
+
+.. currentmodule:: edifice.extra.numpy_image
+
+.. autofunction:: NumpyArray_to_QImage

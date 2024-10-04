@@ -33,5 +33,6 @@ edifice.FixView
    
       ~FixView.children
       ~FixView.props
+      ~FixView.underlying
    
    

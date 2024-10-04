@@ -33,5 +33,6 @@ edifice.HScrollView
    
       ~HScrollView.children
       ~HScrollView.props
+      ~HScrollView.underlying
    
    

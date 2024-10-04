@@ -34,5 +34,6 @@ edifice.WindowPopView
       ~WindowPopView.children
       ~WindowPopView.props
       ~WindowPopView.underlying_noparent
+      ~WindowPopView.underlying
    
    

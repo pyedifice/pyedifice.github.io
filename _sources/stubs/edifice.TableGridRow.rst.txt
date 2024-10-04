@@ -33,5 +33,6 @@ edifice.TableGridRow
    
       ~TableGridRow.children
       ~TableGridRow.props
+      ~TableGridRow.underlying
    
    

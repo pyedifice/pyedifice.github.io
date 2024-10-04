@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 2.2.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 2.3.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=b21de401"></script>
+    <script src="../../../_static/documentation_options.js?v=c3c8ae58"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.2.0 documentation - Home"/>
-    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.2.0 documentation - Home"/>`);</script>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -1011,41 +1011,6 @@ document.write(`
 
 
 
-<span class="c1"># TODO</span>
-<span class="c1"># It seems to me that the type for Completer should be</span>
-<span class="c1">#</span>
-<span class="c1"># &gt;   Callable[[str], str]</span>
-<span class="c1">#</span>
-<span class="c1"># But Qt doesn&#39;t like higher-order functions and they&#39;ve done something</span>
-<span class="c1"># much weirder and more complicated.</span>
-<span class="c1"># https://doc.qt.io/qtforpython-5/PySide2/QtWidgets/QCompleter.html</span>
-<span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html</span>
-<span class="k">class</span> <span class="nc">Completer</span><span class="p">:</span>
-    <span class="c1"># &quot;&quot;&quot;</span>
-    <span class="c1"># Parameters for a `QCompleter &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html&gt;`_.</span>
-    <span class="c1"># &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">options</span><span class="p">,</span>
-        <span class="c1"># TODO In PySide6, there is no longer an options, instead its a model.</span>
-        <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;popup&quot;</span><span class="p">,</span>
-        <span class="c1"># TODO Should mode be this type instead? https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html#PySide6.QtWidgets.QCompleter.CompletionMode</span>
-    <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
-        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;popup&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="o">.</span><span class="n">CompletionMode</span><span class="o">.</span><span class="n">PopupCompletion</span>
-        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;inline&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="o">.</span><span class="n">CompletionMode</span><span class="o">.</span><span class="n">InlineCompletion</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span>
-
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">options</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">options</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-
 <div class="viewcode-block" id="TextInput">
 <a class="viewcode-back" href="../../../stubs/edifice.TextInput.html#edifice.TextInput">[docs]</a>
 <span class="k">class</span> <span class="nc">TextInput</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLineEdit</span><span class="p">]):</span>
@@ -1075,9 +1040,22 @@ document.write(`
 <span class="sd">            `editingFinished &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html#PySide6.QtWidgets.QLineEdit.editingFinished&gt;`_</span>
 <span class="sd">            event, when the Return or Enter key is pressed, or if the line edit</span>
 <span class="sd">            loses focus and its contents have changed</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        completer:</span>
+<span class="sd">            A suggested completion list based on the current :code:`text`.</span>
 
-    <span class="c1"># TODO Note that you can set an optional Completer, giving the dropdown for completion.</span>
+<span class="sd">            This **prop** is a tuple of two elements:</span>
+
+<span class="sd">            1. The `CompletionMode &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html#PySide6.QtWidgets.QCompleter.CompletionMode&gt;`_</span>
+<span class="sd">               which indicates how the completions should be presented to the user.</span>
+<span class="sd">               :code:`UnfilteredPopupCompletion` works best.</span>
+<span class="sd">            2. A tuple of strings, the completion options. Calculate these</span>
+<span class="sd">               based on the current :code:`text`.</span>
+
+<span class="sd">            Or optionally you can pass in an instance of a</span>
+<span class="sd">            `QCompleter &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html&gt;`_</span>
+<span class="sd">            (not recommended).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TextInput.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.TextInput.__init__.html#edifice.TextInput.__init__">[docs]</a>
@@ -1087,7 +1065,7 @@ document.write(`
         <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_change</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_edit_finish</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="c1"># &gt; completer: tp.Optional[Completer] = None,</span>
+        <span class="n">completer</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="o">.</span><span class="n">CompletionMode</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">|</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1097,6 +1075,7 @@ document.write(`
                 <span class="s2">&quot;placeholder_text&quot;</span><span class="p">:</span> <span class="n">placeholder_text</span><span class="p">,</span>
                 <span class="s2">&quot;on_change&quot;</span><span class="p">:</span> <span class="n">on_change</span><span class="p">,</span>
                 <span class="s2">&quot;on_edit_finish&quot;</span><span class="p">:</span> <span class="n">on_edit_finish</span><span class="p">,</span>
+                <span class="s2">&quot;completer&quot;</span><span class="p">:</span> <span class="n">completer</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -1118,13 +1097,22 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_edit_finish</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_edit_finish</span><span class="p">)()</span>
 
-    <span class="c1"># &gt; def _set_completer(self, completer):</span>
-    <span class="c1"># &gt;     if completer:</span>
-    <span class="c1"># &gt;         qt_completer = QtWidgets.QCompleter(completer.options)</span>
-    <span class="c1"># &gt;         qt_completer.setCompletionMode(completer.mode)</span>
-    <span class="c1"># &gt;         self.underlying.setCompleter(qt_completer)</span>
-    <span class="c1"># &gt;     else:</span>
-    <span class="c1"># &gt;         self.underlying.setCompleter(None)</span>
+    <span class="k">def</span> <span class="nf">_set_completer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">completer</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">match</span> <span class="n">completer</span><span class="p">:</span>
+            <span class="n">case</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+            <span class="k">case</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="n">completer</span><span class="p">)</span>
+            <span class="k">case</span> <span class="n">mode</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span>
+                <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html</span>
+                <span class="n">qt_completer</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QCompleter</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">options</span><span class="p">))</span>
+                <span class="n">qt_completer</span><span class="o">.</span><span class="n">setCompletionMode</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="n">qt_completer</span><span class="p">)</span>
+                <span class="c1"># this if hasFocus() then complete() condition is needed</span>
+                <span class="c1"># to make the completer pop after new Completion is set</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">hasFocus</span><span class="p">():</span>
+                    <span class="n">qt_completer</span><span class="o">.</span><span class="n">complete</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1144,6 +1132,9 @@ document.write(`
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setCursorPosition</span><span class="p">,</span> <span class="n">widget</span><span class="o">.</span><span class="n">cursorPosition</span><span class="p">()))</span>
         <span class="k">if</span> <span class="s2">&quot;placeholder_text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">placeholder_text</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s2">&quot;completer&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_completer</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">completer</span><span class="p">))</span>
+
         <span class="k">return</span> <span class="n">commands</span></div>
 
 

@@ -1,0 +1,6 @@
+edifice.extra.numpy\_image.NumpyArray.\_\_init\_\_
+==================================================
+
+.. currentmodule:: edifice.extra.numpy_image
+
+.. automethod:: NumpyArray.__init__

@@ -33,5 +33,6 @@ edifice.Window
    
       ~Window.children
       ~Window.props
+      ~Window.underlying
    
    

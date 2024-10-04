@@ -1,0 +1,6 @@
+edifice.extra.matplotlib\_figure.MatplotlibFigure.register\_ref
+===============================================================
+
+.. currentmodule:: edifice.extra.matplotlib_figure
+
+.. automethod:: MatplotlibFigure.register_ref

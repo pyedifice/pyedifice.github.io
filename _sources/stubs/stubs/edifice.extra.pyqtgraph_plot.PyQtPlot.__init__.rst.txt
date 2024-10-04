@@ -1,0 +1,6 @@
+edifice.extra.pyqtgraph\_plot.PyQtPlot.\_\_init\_\_
+===================================================
+
+.. currentmodule:: edifice.extra.pyqtgraph_plot
+
+.. automethod:: PyQtPlot.__init__

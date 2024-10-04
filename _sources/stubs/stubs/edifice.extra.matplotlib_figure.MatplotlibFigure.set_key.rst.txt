@@ -1,0 +1,6 @@
+edifice.extra.matplotlib\_figure.MatplotlibFigure.set\_key
+==========================================================
+
+.. currentmodule:: edifice.extra.matplotlib_figure
+
+.. automethod:: MatplotlibFigure.set_key

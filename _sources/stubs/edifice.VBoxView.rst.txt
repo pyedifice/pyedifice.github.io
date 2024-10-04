@@ -33,5 +33,6 @@ edifice.VBoxView
    
       ~VBoxView.children
       ~VBoxView.props
+      ~VBoxView.underlying
    
    

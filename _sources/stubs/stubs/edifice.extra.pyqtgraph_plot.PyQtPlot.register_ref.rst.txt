@@ -1,0 +1,6 @@
+edifice.extra.pyqtgraph\_plot.PyQtPlot.register\_ref
+====================================================
+
+.. currentmodule:: edifice.extra.pyqtgraph_plot
+
+.. automethod:: PyQtPlot.register_ref

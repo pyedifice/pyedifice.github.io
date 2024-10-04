@@ -1,0 +1,6 @@
+edifice.extra.pyqtgraph\_plot.PyQtPlot.set\_key
+===============================================
+
+.. currentmodule:: edifice.extra.pyqtgraph_plot
+
+.. automethod:: PyQtPlot.set_key

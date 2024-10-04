@@ -1,0 +1,6 @@
+edifice.extra.numpy\_image.NumpyImage.register\_ref
+===================================================
+
+.. currentmodule:: edifice.extra.numpy_image
+
+.. automethod:: NumpyImage.register_ref

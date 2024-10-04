@@ -33,5 +33,6 @@ edifice.VScrollView
    
       ~VScrollView.children
       ~VScrollView.props
+      ~VScrollView.underlying
    
    
