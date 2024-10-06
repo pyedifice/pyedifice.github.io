@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.TabView &#8212; Edifice 2.3.0 documentation</title>
+    <title>edifice.TabView &#8212; Edifice 2.4.0 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=c3c8ae58"></script>
+    <script src="../_static/documentation_options.js?v=4d935f96"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.3.0 documentation - Home"/>
-    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.3.0 documentation - Home"/>`);</script>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.4.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.4.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -410,20 +410,23 @@ document.write(`
 <dt class="sig sig-object py" id="edifice.TabView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">TabView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#TabView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.TabView" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_LinearView</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QTabWidget</span></code>]</p>
-<p>Widget with multiple tabs.</p>
+<p>Layout widget with multiple tabs.</p>
 <ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTabWidget.html">QTabWidget</a></p></li>
 </ul>
+<p>Each child of a TabView will be the content of one tab.</p>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/tab_view.png"><img alt="../_images/tab_view.png" src="../_images/tab_view.png" style="width: 300px;" /></a>
 <figcaption>
 <p><span class="caption-text">A TabView with 2 children.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<p>It’s important to <a class="reference internal" href="stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> the child tabs if you add and
+remove child tabs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>labels</strong> – The labels for the tabs. The number of labels must match the number of children.</p>
+<dd class="field-odd"><p><strong>labels</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – The labels for the tabs. The number of labels must match the number of children.</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
