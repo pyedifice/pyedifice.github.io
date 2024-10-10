@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 2.5.0 documentation</title>
+    <title>edifice.use_callback &#8212; Edifice 2.5.0 documentation</title>
   
   
   
@@ -42,12 +42,12 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_async';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_callback';</script>
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.use_ref" href="edifice.use_ref.html" />
-    <link rel="prev" title="edifice.use_effect" href="edifice.use_effect.html" />
+    <link rel="next" title="edifice.use_hover" href="edifice.use_hover.html" />
+    <link rel="prev" title="edifice.use_async_call" href="edifice.use_async_call.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -387,7 +387,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../hooks.html" class="nav-link">Hooks</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">edifice.use_async</li>
+    <li class="breadcrumb-item active" aria-current="page">edifice.use_callback</li>
   </ul>
 </nav>
 </div>
@@ -404,105 +404,128 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-use-async">
-<h1>edifice.use_async<a class="headerlink" href="#edifice-use-async" title="Link to this heading">#</a></h1>
+  <section id="edifice-use-callback">
+<h1>edifice.use_callback<a class="headerlink" href="#edifice-use-callback" title="Link to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="edifice.use_async">
-<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async" title="Link to this definition">#</a></dt>
-<dd><p>Asynchronous side-effect Hook inside a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p>
-<p>Will create a new
-<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task">Task</a>
-with the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> coroutine.</p>
-<p>The <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be called every time the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">use_async to fetch from the network</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<dt class="sig sig-object py" id="edifice.use_callback">
+<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_callback" title="Link to this definition">#</a></dt>
+<dd><p>Hook for a callback function to pass as <strong>props</strong>.</p>
+<p>This Hook behaves like React <a class="reference external" href="https://react.dev/reference/react/useCallback">useCallback</a>.</p>
+<p>Use this Hook to reduce the re-render frequency of
+a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> which has a <strong>prop</strong> that is a function.</p>
+<p>This Hook will return a callback function with specific
+bound <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>
+and the callback function will only change when the
+specified <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to
+the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> from the last render, so the callback function
+can be used as a stable <strong>prop</strong>.</p>
+<section id="the-problem">
+<h2>The problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h2>
+<p>We want to present the user with a hundred buttons and give the buttons
+an <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> <strong>prop</strong>.</p>
+<p>This <code class="code docutils literal notranslate"><span class="pre">SuperComp</span></code> component will re-render every time
+the <code class="code docutils literal notranslate"><span class="pre">fastprop</span></code> <strong>prop</strong> changes, so then we will have to re-render all
+the buttons even though the buttons don’t depend on the <code class="code docutils literal notranslate"><span class="pre">fastprop</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Asynchronous</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">myword</span><span class="p">,</span> <span class="n">myword_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">SuperComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fastprop</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">slowprop</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">fetcher</span><span class="p">():</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_word_from_the_internet</span><span class="p">()</span>
-            <span class="n">myword_set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
-            <span class="n">myword_set</span><span class="p">(</span><span class="s2">&quot;Fetch word cancelled&quot;</span><span class="p">)</span>
-            <span class="k">raise</span>
+    <span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="n">_cancel_fetcher</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">myword</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">value_from_slowprop</span><span class="p">():</span>
+        <span class="n">value_set</span><span class="p">(</span><span class="n">slowprop</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">Button</span><span class="p">(</span>
+            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">value_from_slowprop</span><span class="p">()</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
+<p>The general solution to this kind of performance problem is to
+create a new <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> to render the
+buttons. This new <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>
+will only re-render when its <code class="code docutils literal notranslate"><span class="pre">click_handler</span></code> <strong>prop</strong> changes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Buttons100</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">click_handler</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]):</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">Button</span><span class="p">(</span>
+            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">click_handler</span><span class="p">()</span>
+        <span class="p">)</span>
+
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">SuperComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fastprop</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">slowprop</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+
+    <span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">value_from_slowprop</span><span class="p">():</span>
+        <span class="n">value_set</span><span class="p">(</span><span class="n">slowprop</span><span class="p">)</span>
+
+    <span class="n">Buttons100</span><span class="p">(</span><span class="n">value_from_slowprop</span><span class="p">)</span>
+</pre></div>
 </div>
-<section id="cancellation">
-<h2>Cancellation<a class="headerlink" href="#cancellation" title="Link to this heading">#</a></h2>
-<p>The async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task can be cancelled by Edifice. Edifice will call
-<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.cancel">cancel()</a>
-on the Task.
-See also
-<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#task-cancellation">Task Cancellation</a>.</p>
-<ol class="arabic simple">
-<li><p>If the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
-the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled and then the new
-<code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will
-be started after the old <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes.</p></li>
-<li><p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook returns a function which can be called to
-cancel the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. In the example above,
-the <code class="code docutils literal notranslate"><span class="pre">_cancel_fetcher()</span></code> function can be called to cancel the fetcher.</p></li>
-<li><p>If the component is unmounted before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
-the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled.</p></li>
-</ol>
-<p>Write your async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function in such a way that it
-cleans itself up after exceptions. If you catch a <code class="code docutils literal notranslate"><span class="pre">CancelledError</span></code>
-then always re-raise it.</p>
-<p>You may call a <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> setter during
-a <code class="code docutils literal notranslate"><span class="pre">CancelledError</span></code> exception. If the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task was
-cancelled because the component is being unmounted, then the
-<a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> setter will have no effect.</p>
+<p>But there is a problem here, which is that the <code class="code docutils literal notranslate"><span class="pre">click_handler</span></code> <strong>prop</strong>
+for the <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> component is a new function
+<code class="code docutils literal notranslate"><span class="pre">value_from_slowprop</span></code> every time that
+the <code class="code docutils literal notranslate"><span class="pre">SuperComp</span></code> component re-renders, so it will always cause
+the <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> to re-render.</p>
+<p>We can’t define <code class="code docutils literal notranslate"><span class="pre">value_from_slowprop</span></code> as a constant
+function declared outside of the <code class="code docutils literal notranslate"><span class="pre">SuperComp</span></code> component because it
+depends on bindings to <code class="code docutils literal notranslate"><span class="pre">slowprop</span></code> and <code class="code docutils literal notranslate"><span class="pre">value_set</span></code>.</p>
 </section>
-<section id="timers">
-<h2>Timers<a class="headerlink" href="#timers" title="Link to this heading">#</a></h2>
-<p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook is also useful for timers and animation.</p>
-<p>Here is an example which shows how to run a timer in a component. The
-Harmonic Oscillator in <a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> uses this technique:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">is_playing</span><span class="p">,</span> <span class="n">is_playing_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">play_trigger</span><span class="p">,</span> <span class="n">play_trigger_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<section id="the-solution">
+<h2>The solution<a class="headerlink" href="#the-solution" title="Link to this heading">#</a></h2>
+<p>So we use the <a class="reference internal" href="#edifice.use_callback" title="edifice.use_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_callback()</span></code></a> Hook to create a callback function
+which only changes when <code class="code docutils literal notranslate"><span class="pre">slowprop</span></code> changes.</p>
+<p>And now the <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> will only re-render when the <code class="code docutils literal notranslate"><span class="pre">slowprop</span></code>
+changes.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">value_set</span></code> <strong>setter function</strong> does not need to be in
+the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> because each <strong>setter function</strong> is always
+<code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> from the previous render.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Buttons100</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">click_handler</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]):</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">play_tick</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">is_playing</span><span class="p">:</span>
-        <span class="c1"># Do the timer effect here</span>
-        <span class="c1"># (timer effect code)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">Button</span><span class="p">(</span>
+            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">click_handler</span><span class="p">(),</span>
+        <span class="p">)</span>
 
-        <span class="c1"># Then wait for 0.05 seconds and trigger another play_tick.</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
-        <span class="n">play_trigger_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="ow">not</span> <span class="n">p</span><span class="p">)</span>
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">SuperComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fastprop</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">slowprop</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
 
-<span class="n">use_async</span><span class="p">(</span><span class="n">play_tick</span><span class="p">,</span> <span class="p">(</span><span class="n">is_playing</span><span class="p">,</span> <span class="n">play_trigger</span><span class="p">))</span>
+    <span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">Button</span><span class="p">(</span>
-    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;pause&quot;</span> <span class="k">if</span> <span class="n">is_playing</span> <span class="k">else</span> <span class="s2">&quot;play&quot;</span><span class="p">,</span>
-    <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">is_playing_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="ow">not</span> <span class="n">p</span><span class="p">),</span>
-<span class="p">)</span>
+    <span class="k">def</span> <span class="nf">make_value_from_slowprop</span><span class="p">():</span>
+        <span class="k">def</span> <span class="nf">value_from_slowprop</span><span class="p">():</span>
+            <span class="n">value_set</span><span class="p">(</span><span class="n">slowprop</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value_from_slowprop</span>
+
+    <span class="n">value_from_slowprop</span> <span class="o">=</span> <span class="n">use_callback</span><span class="p">(</span>
+        <span class="n">make_value_from_slowprop</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">slowprop</span><span class="p">,),</span>
+    <span class="p">)</span>
+
+    <span class="n">Buttons100</span><span class="p">(</span><span class="n">value_from_slowprop</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">type fn_coroutine<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">Coroutine</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
+<dt class="field-odd">type fn<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_callback</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
 </dd>
-<dt class="field-even">param fn_coroutine<span class="colon">:</span></dt>
-<dd class="field-even"><p>Async Coroutine function to be run as a Task.</p>
+<dt class="field-even">param fn<span class="colon">:</span></dt>
+<dd class="field-even"><p>A function of no arguments which creates and returns a callback function.</p>
 </dd>
 <dt class="field-odd">type dependencies<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span></p>
 </dd>
 <dt class="field-even">param dependencies<span class="colon">:</span></dt>
-<dd class="field-even"><p>The <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be started when the
+<dd class="field-even"><p>The callback function will be created when the
 <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the old <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>.</p>
 </dd>
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_callback</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
 </dd>
 <dt class="field-even">returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A function which can be called to cancel the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually.</p>
+<dd class="field-even"><p>A callback function.</p>
 </dd>
 </dl>
 </section>
@@ -521,20 +544,20 @@ Harmonic Oscillator in <a class="reference internal" href="../examples.html"><sp
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="edifice.use_effect.html"
+       href="edifice.use_async_call.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.use_effect</p>
+        <p class="prev-next-title">edifice.use_async_call</p>
       </div>
     </a>
     <a class="right-next"
-       href="edifice.use_ref.html"
+       href="edifice.use_hover.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.use_ref</p>
+        <p class="prev-next-title">edifice.use_hover</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -1,0 +1,6 @@
+﻿edifice.use\_callback
+=====================
+
+.. currentmodule:: edifice
+
+.. autofunction:: use_callback

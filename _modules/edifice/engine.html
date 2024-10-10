@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.4.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.5.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=4d935f96"></script>
+    <script src="../../_static/documentation_options.js?v=3c4615cf"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.4.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.4.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -1929,6 +1929,23 @@ document.write(`
 <span class="k">class</span> <span class="nc">_HookState</span><span class="p">:</span>
     <span class="n">state</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span>
     <span class="n">updaters</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span>
+    <span class="n">element</span><span class="p">:</span> <span class="n">Element</span>
+    <span class="n">engine</span><span class="p">:</span> <span class="n">RenderEngine</span>
+
+    <span class="c1"># Stable setter function will always be the same function</span>
+    <span class="c1"># returned by repeated calls to use_state. So it can be used</span>
+    <span class="c1"># as a stable prop.</span>
+    <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">updater</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
+            <span class="c1"># Then the component has been deleted and unmounted.</span>
+            <span class="c1"># This might happen if the setter is called during a</span>
+            <span class="c1"># a use_async CancelledError handler.</span>
+            <span class="c1"># In that case, we don&#39;t want to update the state.</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updaters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">updater</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">_app</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">_app</span><span class="o">.</span><span class="n">_defer_rerender</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
 
 
 <span class="nd">@dataclass</span>
@@ -2217,8 +2234,6 @@ document.write(`
             <span class="n">render_context</span><span class="o">.</span><span class="n">mark_qt_rerender</span><span class="p">(</span><span class="n">rerendered_obj</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">rerendered_obj</span>
 
-        <span class="c1"># TODO So _should_update returned False but then we call</span>
-        <span class="c1"># mark_props_change? What does mark_props_change mean then?</span>
         <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
 
@@ -2520,27 +2535,20 @@ document.write(`
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
             <span class="c1"># Then this is the first render.</span>
-            <span class="c1"># Call the initializer function if it is a function.</span>
-            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookState</span><span class="p">(</span><span class="n">initial_state</span><span class="p">()</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span> <span class="k">else</span> <span class="n">initial_state</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookState</span><span class="p">(</span>
+                <span class="c1"># Call the initializer function if it is a function.</span>
+                <span class="n">initial_state</span><span class="p">()</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span> <span class="k">else</span> <span class="n">initial_state</span><span class="p">,</span>
+                <span class="p">[],</span>
+                <span class="n">element</span><span class="p">,</span>
+                <span class="bp">self</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The state value of use_state cannot be Callable.&quot;</span><span class="p">)</span>
             <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
 
-        <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="n">updater</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
-                <span class="c1"># Then the component has been deleted and unmounted.</span>
-                <span class="c1"># This might happen if the setter is called during a</span>
-                <span class="c1"># a use_async CancelledError handler.</span>
-                <span class="c1"># In that case, we don&#39;t want to update the state.</span>
-                <span class="k">return</span>
-            <span class="n">hook</span><span class="o">.</span><span class="n">updaters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">updater</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_app</span><span class="o">.</span><span class="n">_defer_rerender</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">setter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">hook</span><span class="o">.</span><span class="n">setter</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">use_effect</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

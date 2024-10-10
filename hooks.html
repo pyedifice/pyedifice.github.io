@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hooks &#8212; Edifice 2.4.0 documentation</title>
+    <title>Hooks &#8212; Edifice 2.5.0 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=4d935f96"></script>
+    <script src="_static/documentation_options.js?v=3c4615cf"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -127,8 +127,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.4.0 documentation - Home"/>
-    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.4.0 documentation - Home"/>`);</script>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.5.0 documentation - Home"/>
+    <script>document.write(`<img src="_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -466,10 +466,13 @@ in exactly the same order on every call to a <a class="reference internal" href=
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async_call</span></code></a>(fn_coroutine)</p></td>
 <td><p>Hook to call an async function from a non-async context.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_hover.html#edifice.use_hover" title="edifice.use_hover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_hover</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_callback.html#edifice.use_callback" title="edifice.use_callback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_callback</span></code></a>(fn, dependencies)</p></td>
+<td><p>Hook for a callback function to pass as <strong>props</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_hover.html#edifice.use_hover" title="edifice.use_hover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_hover</span></code></a>()</p></td>
 <td><p>Hook to track mouse hovering.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_stop.html#edifice.use_stop" title="edifice.use_stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_stop</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_stop.html#edifice.use_stop" title="edifice.use_stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_stop</span></code></a>()</p></td>
 <td><p>This Hook returns a function which will stop the application by calling <a class="reference internal" href="stubs/stubs/edifice.App.stop.html#edifice.App.stop" title="edifice.App.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.stop()</span></code></a>.</p></td>
 </tr>
 </tbody>

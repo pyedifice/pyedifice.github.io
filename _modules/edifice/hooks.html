@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 2.4.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 2.5.0 documentation</title>
   
   
   
@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=4d935f96"></script>
+    <script src="../../_static/documentation_options.js?v=3c4615cf"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.4.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.4.0 documentation - Home"/>`);</script>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/EdificePyramid.svg" class="logo__image only-dark" alt="Edifice 2.5.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -764,6 +764,151 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">((</span><span class="n">Reference</span><span class="p">(),))</span>
     <span class="k">return</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+
+<span class="n">_P_callback</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P_callback&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="use_callback">
+<a class="viewcode-back" href="../../stubs/edifice.use_callback.html#edifice.use_callback">[docs]</a>
+<span class="k">def</span> <span class="nf">use_callback</span><span class="p">(</span>
+    <span class="n">fn</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hook for a callback function to pass as **props**.</span>
+
+<span class="sd">    This Hook behaves like React `useCallback &lt;https://react.dev/reference/react/useCallback&gt;`_.</span>
+
+<span class="sd">    Use this Hook to reduce the re-render frequency of</span>
+<span class="sd">    a :func:`@component&lt;edifice.component&gt;` which has a **prop** that is a function.</span>
+
+<span class="sd">    This Hook will return a callback function with specific</span>
+<span class="sd">    bound :code:`dependencies`</span>
+<span class="sd">    and the callback function will only change when the</span>
+<span class="sd">    specified :code:`dependencies` are not :code:`__eq__` to</span>
+<span class="sd">    the :code:`dependencies` from the last render, so the callback function</span>
+<span class="sd">    can be used as a stable **prop**.</span>
+
+<span class="sd">    The problem</span>
+<span class="sd">    ===========</span>
+
+<span class="sd">    We want to present the user with a hundred buttons and give the buttons</span>
+<span class="sd">    an :code:`on_click` **prop**.</span>
+
+<span class="sd">    This :code:`SuperComp` component will re-render every time</span>
+<span class="sd">    the :code:`fastprop` **prop** changes, so then we will have to re-render all</span>
+<span class="sd">    the buttons even though the buttons don’t depend on the :code:`fastprop`.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
+
+<span class="sd">            value, value_set = use_state(0)</span>
+
+<span class="sd">            def value_from_slowprop():</span>
+<span class="sd">                value_set(slowprop)</span>
+
+<span class="sd">            for i in range(100):</span>
+<span class="sd">                Button(</span>
+<span class="sd">                    on_click=lambda _event: value_from_slowprop()</span>
+<span class="sd">                )</span>
+
+<span class="sd">    The general solution to this kind of performance problem is to</span>
+<span class="sd">    create a new :func:`@component&lt;component&gt;` to render the</span>
+<span class="sd">    buttons. This new :code:`Buttons100` :func:`@component&lt;component&gt;`</span>
+<span class="sd">    will only re-render when its :code:`click_handler` **prop** changes.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Buttons100(self, click_handler:Callable[[], None]):</span>
+
+<span class="sd">            for i in range(100):</span>
+<span class="sd">                Button(</span>
+<span class="sd">                    on_click=lambda _event: click_handler()</span>
+<span class="sd">                )</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
+
+<span class="sd">            value, value_set = use_state(0)</span>
+
+<span class="sd">            def value_from_slowprop():</span>
+<span class="sd">                value_set(slowprop)</span>
+
+<span class="sd">            Buttons100(value_from_slowprop)</span>
+
+<span class="sd">    But there is a problem here, which is that the :code:`click_handler` **prop**</span>
+<span class="sd">    for the :code:`Buttons100` component is a new function</span>
+<span class="sd">    :code:`value_from_slowprop` every time that</span>
+<span class="sd">    the :code:`SuperComp` component re-renders, so it will always cause</span>
+<span class="sd">    the :code:`Buttons100` to re-render.</span>
+
+<span class="sd">    We can’t define :code:`value_from_slowprop` as a constant</span>
+<span class="sd">    function declared outside of the :code:`SuperComp` component because it</span>
+<span class="sd">    depends on bindings to :code:`slowprop` and :code:`value_set`.</span>
+
+<span class="sd">    The solution</span>
+<span class="sd">    ============</span>
+
+<span class="sd">    So we use the :func:`use_callback` Hook to create a callback function</span>
+<span class="sd">    which only changes when :code:`slowprop` changes.</span>
+
+<span class="sd">    And now the :code:`Buttons100` will only re-render when the :code:`slowprop`</span>
+<span class="sd">    changes.</span>
+
+<span class="sd">    The :code:`value_set` **setter function** does not need to be in</span>
+<span class="sd">    the :code:`dependencies` because each **setter function** is always</span>
+<span class="sd">    :code:`__eq__` from the previous render.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Buttons100(self, click_handler:Callable[[], None]):</span>
+
+<span class="sd">            for i in range(100):</span>
+<span class="sd">                Button(</span>
+<span class="sd">                    on_click=lambda _event: click_handler(),</span>
+<span class="sd">                )</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
+
+<span class="sd">            value, value_set = use_state(0)</span>
+
+<span class="sd">            def make_value_from_slowprop():</span>
+<span class="sd">                def value_from_slowprop():</span>
+<span class="sd">                    value_set(slowprop)</span>
+<span class="sd">                return value_from_slowprop</span>
+
+<span class="sd">            value_from_slowprop = use_callback(</span>
+<span class="sd">                make_value_from_slowprop,</span>
+<span class="sd">                (slowprop,),</span>
+<span class="sd">            )</span>
+
+<span class="sd">            Buttons100(value_from_slowprop)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn:</span>
+<span class="sd">            A function of no arguments which creates and returns a callback function.</span>
+<span class="sd">        dependencies:</span>
+<span class="sd">            The callback function will be created when the</span>
+<span class="sd">            :code:`dependencies` are not :code:`__eq__` to the old :code:`dependencies`.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A callback function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">initialize_f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">fn</span><span class="p">(),</span> <span class="n">dependencies</span><span class="p">)</span>
+
+    <span class="n">stored</span><span class="p">,</span> <span class="n">stored_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">initialize_f</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stored</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">dependencies</span><span class="p">:</span>
+        <span class="n">new_fn</span> <span class="o">=</span> <span class="n">fn</span><span class="p">()</span>
+        <span class="n">stored_set</span><span class="p">((</span><span class="n">new_fn</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">new_fn</span>
+    <span class="k">return</span> <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
 
 
