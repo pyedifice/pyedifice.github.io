@@ -441,7 +441,8 @@ see <a class="reference internal" href="edifice.html"><span class="doc">Edifice 
 </section>
 <section id="why-edifice">
 <h2>Why Edifice?<a class="headerlink" href="#why-edifice" title="Link to this heading">#</a></h2>
-<p><strong>Declarative</strong></p>
+<section id="declarative">
+<h3>Declarative<a class="headerlink" href="#declarative" title="Link to this heading">#</a></h3>
 <p>Most existing GUI libraries in Python, such as Tkinter and Qt, operate imperatively.
 To create a dynamic application using these libraries,
 you must not only think about <em>what</em> widgets to display to the user,
@@ -465,13 +466,17 @@ and Edifice modifies the existing widget tree to reflect the new state.</p>
 a button and a label with the current value of <code class="code docutils literal notranslate"><span class="pre">number</span></code>.
 Clicking the button will add 5 to the <code class="code docutils literal notranslate"><span class="pre">number</span></code>.
 If the <code class="code docutils literal notranslate"><span class="pre">number</span></code> is “mid” then another label will reveal that fact.</p>
-<p><strong>Developer Tools</strong></p>
+</section>
+<section id="developer-tools">
+<h3>Developer Tools<a class="headerlink" href="#developer-tools" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Dynamic hot-reloading of source code changes.</p></li>
 <li><p>Element Inspector.</p></li>
 </ul>
 <p>See <a class="reference internal" href="developer_tools.html"><span class="doc">Developer Tools</span></a> for more details.</p>
-<p><strong>Edifice vs. Qt Quick</strong></p>
+</section>
+<section id="edifice-vs-qt-quick">
+<h3>Edifice vs. Qt Quick<a class="headerlink" href="#edifice-vs-qt-quick" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtQuick/">Qt Quick</a> is Qt’s declarative GUI framework for Qt.</p>
 <p>Qt Quick programs are written in Python + the
 special <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qmlapplications.html">QML</a> language + JavaScript.</p>
@@ -485,11 +490,14 @@ QML and HTML are both declarative UI languages but
 they require imperative logic in another language for dynamism.
 Edifice and React allow fully dynamic applications to be specified
 declaratively in one language.</p>
-<p><strong>Extendable</strong></p>
+</section>
+<section id="extendable">
+<h3>Extendable<a class="headerlink" href="#extendable" title="Link to this heading">#</a></h3>
 <p>Edifice does not support every feature of Qt,
 but it is easy to interface with Qt, either <a class="reference internal" href="base_components.html#custom-widget"><span class="std std-ref">incorporating a Qt Widget</span></a> into an Edifice component,
 <a class="reference internal" href="stubs/edifice.Reference.html"><span class="doc">use Qt commands directly</span></a> with an existing Edifice component,
 or <a class="reference internal" href="stubs/stubs/edifice.App.export_widgets.html"><span class="doc">incorporating Edifice components</span></a> in a Qt application.</p>
+</section>
 </section>
 <section id="poetry-build-system">
 <h2>Poetry Build System<a class="headerlink" href="#poetry-build-system" title="Link to this heading">#</a></h2>
@@ -580,7 +588,13 @@ under the more flexible <em>LGPL</em> license.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-edifice">Why Edifice?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-edifice">Why Edifice?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declarative">Declarative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#developer-tools">Developer Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edifice-vs-qt-quick">Edifice vs. Qt Quick</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extendable">Extendable</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poetry-build-system">Poetry Build System</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-and-code-availability">License and Code Availability</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>

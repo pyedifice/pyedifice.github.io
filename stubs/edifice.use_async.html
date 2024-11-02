@@ -393,19 +393,26 @@ Only one <code class="code docutils literal notranslate"><span class="pre">fn_co
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">use_async to fetch from the network</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Asynchronous</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">myword</span><span class="p">,</span> <span class="n">myword_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">WordDefinition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">definition</span><span class="p">,</span> <span class="n">definition_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">fetcher</span><span class="p">():</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_word_from_the_internet</span><span class="p">()</span>
-            <span class="n">myword_set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">definition_set</span><span class="p">(</span><span class="s2">&quot;Fetch definition pending&quot;</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_definition_from_the_internet</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="n">definition_set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
-            <span class="n">myword_set</span><span class="p">(</span><span class="s2">&quot;Fetch word cancelled&quot;</span><span class="p">)</span>
+            <span class="n">definition_set</span><span class="p">(</span><span class="s2">&quot;Fetch definition cancelled&quot;</span><span class="p">)</span>
             <span class="k">raise</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+            <span class="n">defintion_set</span><span class="p">(</span><span class="s2">&quot;Fetch definition failed&quot;</span><span class="p">)</span>
 
-    <span class="n">_cancel_fetcher</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">myword</span><span class="p">)</span>
+    <span class="n">cancel_fetcher</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">word</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">definition</span><span class="p">)</span>
+        <span class="n">Button</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Cancel fetch&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span><span class="n">cancel_fetcher</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>

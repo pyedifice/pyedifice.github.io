@@ -440,16 +440,16 @@ In a <a class="reference internal" href="stubs/edifice.component.html#edifice.co
 like this.
 To declare an Element to be the parent of some other
 child Elements in the tree, use the parent as a
-<a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#context-managers">with statement context manager</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#context-managers">with statement context manager</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MyApp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>
         <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
             <span class="k">with</span> <span class="n">HBoxView</span><span class="p">():</span>
-                <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Username: &quot;</span><span class="p">)</span>
+                <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Username: &quot;</span><span class="p">)</span>
                 <span class="n">TextInput</span><span class="p">()</span>
             <span class="k">with</span> <span class="n">HBoxView</span><span class="p">():</span>
-                <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Email: &quot;</span><span class="p">)</span>
+                <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Email: &quot;</span><span class="p">)</span>
                 <span class="n">TextInput</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -463,6 +463,7 @@ child Elements in the tree, use the parent as a
 <span class="w">        </span><span class="nt">&lt;HBoxView&gt;</span>
 <span class="w">            </span><span class="nt">&lt;Label</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;Email: &quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;TextInput</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/HBoxView&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/VBoxView&gt;</span>
 <span class="nt">&lt;/Window&gt;</span>
 </pre></div>
@@ -588,20 +589,20 @@ the indentation structure of the Python code to reflect the structure of the
 Element tree.</p>
 <p>Because Element initialization is a render side-effect,
 we have to be careful about binding Elements to variables
-and passing them around. They will insert themselves at the time they are
-created. This code will <strong>NOT</strong> declare the intended Element tree:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+and passing them around. They will insert themselves in the tree at the time
+they are initialized. This code will <strong>NOT</strong> declare the intended Element tree.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
     <span class="n">label3</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop3</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
         <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop1</span><span class="p">)</span>
         <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop2</span><span class="p">)</span>
-        <span class="n">label3</span>
+        <span class="n">label3</span> <span class="c1"># This will NOT render here as intended</span>
 </pre></div>
 </div>
 <p>To solve this, defer the construction of the Element with a lambda function.
-This code will declare the same intended Element tree as the code above:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+This code will declare the same intended Element tree as the code above.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
     <span class="n">label3</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop3</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
@@ -611,8 +612,8 @@ This code will declare the same intended Element tree as the code above:</p>
 </pre></div>
 </div>
 <p>If these component Elements are render functions, then why couldn’t we just write
-a normal render function with no decorator instead:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># No decorator</span>
+a normal render function with no decorator instead?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># No decorator</span>
 <span class="k">def</span> <span class="nf">MySimpleComp</span><span class="p">(</span><span class="n">prop1</span><span class="p">,</span> <span class="n">prop2</span><span class="p">,</span> <span class="n">prop3</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
         <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prop1</span><span class="p">)</span>

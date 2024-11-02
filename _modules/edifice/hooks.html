@@ -449,7 +449,8 @@
 
 <span class="sd">    An **initializer function** is a function of no arguments.</span>
 
-<span class="sd">    If an **initializer function** is passed to :func:`use_state`, then the</span>
+<span class="sd">    If an **initializer function** is passed to :func:`use_state` instead</span>
+<span class="sd">    of an initial value, then the</span>
 <span class="sd">    **initializer function** will be called once before</span>
 <span class="sd">    this :func:`components`’s first render to get the **initial state**.</span>
 
@@ -512,11 +513,20 @@
 <span class="sd">    Do not mutate the state variable. The old state variable must be left</span>
 <span class="sd">    unmodified so that it can be compared to the new state variable during</span>
 <span class="sd">    the next render.</span>
-<span class="sd">    Instead create a shallow `copy &lt;https://docs.python.org/3/library/copy.html#copy.copy&gt;`_</span>
-<span class="sd">    of the state, modify the copy, then call the **setter function** with the modified copy.</span>
+
+<span class="sd">    If Python does not have an</span>
+<span class="sd">    `immutable &lt;https://docs.python.org/3/glossary.html#term-immutable&gt;`_</span>
+<span class="sd">    version of your state data structure,</span>
+<span class="sd">    like for example the :code:`dict`, then you just have to take care to never</span>
+<span class="sd">    mutate it.</span>
+
+<span class="sd">    Instead of mutating a state :code:`list`, create a</span>
+<span class="sd">    shallow `copy &lt;https://docs.python.org/3/library/copy.html#copy.copy&gt;`_</span>
+<span class="sd">    of the :code:`list`, modify the copy, then call the **setter function**</span>
+<span class="sd">    with the modified copy.</span>
 
 <span class="sd">    .. code-block:: python</span>
-<span class="sd">        :caption: Updater function with shallow copy</span>
+<span class="sd">        :caption: Updater function with shallow copy of a list</span>
 
 <span class="sd">        from copy import copy</span>
 <span class="sd">        from typing import cast</span>
@@ -537,12 +547,35 @@
 <span class="sd">                for t in x:</span>
 <span class="sd">                    Label(text=t)</span>
 
-<span class="sd">    A good technique for declaring immutable state datastructures is to use</span>
-<span class="sd">    `frozen dataclasses &lt;https://docs.python.org/3/library/dataclasses.html#frozen-instances&gt;`_.</span>
-<span class="sd">    Use the</span>
-<span class="sd">    `replace() &lt;https://docs.python.org/3/library/dataclasses.html#dataclasses.replace&gt;`_</span>
-<span class="sd">    function to update the dataclass.</span>
+<span class="sd">    Techniques for `immutable &lt;https://docs.python.org/3/glossary.html#term-immutable&gt;`_ datastructures in Python</span>
+<span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 
+<span class="sd">    - `Shallow copy &lt;https://docs.python.org/3/library/copy.html#copy.copy&gt;`_.</span>
+<span class="sd">      We never need a deep copy because all the data structure items are also immutable.</span>
+<span class="sd">    - `Frozen dataclasses &lt;https://docs.python.org/3/library/dataclasses.html#frozen-instances&gt;`_.</span>
+<span class="sd">      Use the</span>
+<span class="sd">      `replace() &lt;https://docs.python.org/3/library/dataclasses.html#dataclasses.replace&gt;`_</span>
+<span class="sd">      function to update the dataclass.</span>
+<span class="sd">    - Tuples (:code:`my_list:tuple[str, ...]`) instead of lists (:code:`my_list:list[str]`).</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Updater function with shallow copy of a tuple</span>
+
+<span class="sd">        from typing import cast</span>
+
+<span class="sd">        def Stateful(self):</span>
+<span class="sd">            x, x_setter = use_state(cast(tuple[str, ...], ()))</span>
+
+<span class="sd">            def updater(x_previous:tuple[str, ...]) -&gt; tuple[str, ...]:</span>
+<span class="sd">                return x_previous + (&quot;Label Text &quot; + str(len(x_previous)),)</span>
+
+<span class="sd">            with View():</span>
+<span class="sd">                Button(</span>
+<span class="sd">                    title=&quot;Add One&quot;,</span>
+<span class="sd">                    on_click = lambda _event: x_setter(updater)</span>
+<span class="sd">                )</span>
+<span class="sd">                for t in x:</span>
+<span class="sd">                    Label(text=t)</span>
 <span class="sd">    Args:</span>
 <span class="sd">        initial_state: The initial **state value** or **initializer function**.</span>
 <span class="sd">    Returns:</span>
@@ -653,19 +686,26 @@
 <span class="sd">        :caption: use_async to fetch from the network</span>
 
 <span class="sd">        @component</span>
-<span class="sd">        def Asynchronous(self):</span>
-<span class="sd">            myword, myword_set = use_state(&quot;&quot;)</span>
+<span class="sd">        def WordDefinition(self, word:str):</span>
+<span class="sd">            definition, definition_set = use_state(&quot;&quot;)</span>
 
 <span class="sd">            async def fetcher():</span>
 <span class="sd">                try:</span>
-<span class="sd">                    x = await fetch_word_from_the_internet()</span>
-<span class="sd">                    myword_set(x)</span>
+<span class="sd">                    definition_set(&quot;Fetch definition pending&quot;)</span>
+<span class="sd">                    x = await fetch_definition_from_the_internet(word)</span>
+<span class="sd">                    definition_set(x)</span>
 <span class="sd">                except asyncio.CancelledError:</span>
-<span class="sd">                    myword_set(&quot;Fetch word cancelled&quot;)</span>
+<span class="sd">                    definition_set(&quot;Fetch definition cancelled&quot;)</span>
 <span class="sd">                    raise</span>
+<span class="sd">                except BaseException:</span>
+<span class="sd">                    defintion_set(&quot;Fetch definition failed&quot;)</span>
 
-<span class="sd">            _cancel_fetcher = use_async(fetcher, 0)</span>
-<span class="sd">            Label(text=myword)</span>
+<span class="sd">            cancel_fetcher = use_async(fetcher, word)</span>
+
+<span class="sd">            with VBoxView():</span>
+<span class="sd">                Label(text=word)</span>
+<span class="sd">                Label(text=definition)</span>
+<span class="sd">                Button(text=&quot;Cancel fetch&quot;, on_click=lambda _:cancel_fetcher())</span>
 
 <span class="sd">    Cancellation</span>
 <span class="sd">    ============</span>

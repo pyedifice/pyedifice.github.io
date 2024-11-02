@@ -421,11 +421,12 @@ it in a <code class="code docutils literal notranslate"><span class="pre">tuple<
 <section id="initialization">
 <h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading">#</a></h2>
 <p>An <strong>initializer function</strong> is a function of no arguments.</p>
-<p>If an <strong>initializer function</strong> is passed to <a class="reference internal" href="#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>, then the
+<p>If an <strong>initializer function</strong> is passed to <a class="reference internal" href="#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> instead
+of an initial value, then the
 <strong>initializer function</strong> will be called once before
 this <code class="xref py py-func docutils literal notranslate"><span class="pre">components()</span></code>’s first render to get the <strong>initial state</strong>.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">Initializer function</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Initializer function</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initializer</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">))</span>
 
@@ -454,8 +455,8 @@ small configuration files.</p>
 <p>If an <strong>updater function</strong> is passed to the <strong>setter function</strong>, then before the
 beginning of the next render the <strong>state value</strong> will be modified by calling all of the
 <strong>updater functions</strong> in the order in which they were set.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Updater function</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Updater function</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">Stateful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">x_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -477,11 +478,18 @@ crash.</p>
 <h2>State must not be mutated<a class="headerlink" href="#state-must-not-be-mutated" title="Link to this heading">#</a></h2>
 <p>Do not mutate the state variable. The old state variable must be left
 unmodified so that it can be compared to the new state variable during
-the next render.
-Instead create a shallow <a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.copy">copy</a>
-of the state, modify the copy, then call the <strong>setter function</strong> with the modified copy.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Updater function with shallow copy</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+the next render.</p>
+<p>If Python does not have an
+<a class="reference external" href="https://docs.python.org/3/glossary.html#term-immutable">immutable</a>
+version of your state data structure,
+like for example the <code class="code docutils literal notranslate"><span class="pre">dict</span></code>, then you just have to take care to never
+mutate it.</p>
+<p>Instead of mutating a state <code class="code docutils literal notranslate"><span class="pre">list</span></code>, create a
+shallow <a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.copy">copy</a>
+of the <code class="code docutils literal notranslate"><span class="pre">list</span></code>, modify the copy, then call the <strong>setter function</strong>
+with the modified copy.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Updater function with shallow copy of a list</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
 
@@ -503,11 +511,37 @@ of the state, modify the copy, then call the <strong>setter function</strong> wi
 </pre></div>
 </div>
 </div>
-<p>A good technique for declaring immutable state datastructures is to use
-<a class="reference external" href="https://docs.python.org/3/library/dataclasses.html#frozen-instances">frozen dataclasses</a>.
+<section id="techniques-for-immutable-datastructures-in-python">
+<h3>Techniques for <a class="reference external" href="https://docs.python.org/3/glossary.html#term-immutable">immutable</a> datastructures in Python<a class="headerlink" href="#techniques-for-immutable-datastructures-in-python" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.copy">Shallow copy</a>.
+We never need a deep copy because all the data structure items are also immutable.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/dataclasses.html#frozen-instances">Frozen dataclasses</a>.
 Use the
 <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.replace">replace()</a>
-function to update the dataclass.</p>
+function to update the dataclass.</p></li>
+<li><p>Tuples (<code class="code docutils literal notranslate"><span class="pre">my_list:tuple[str,</span> <span class="pre">...]</span></code>) instead of lists (<code class="code docutils literal notranslate"><span class="pre">my_list:list[str]</span></code>).</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Updater function with shallow copy of a tuple</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
+
+<span class="k">def</span> <span class="nf">Stateful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">x_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">updater</span><span class="p">(</span><span class="n">x_previous</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">x_previous</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;Label Text &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_previous</span><span class="p">)),)</span>
+
+    <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
+        <span class="n">Button</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Add One&quot;</span><span class="p">,</span>
+            <span class="n">on_click</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">x_setter</span><span class="p">(</span><span class="n">updater</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">type initial_state<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>)]]</span></p>
@@ -526,6 +560,7 @@ function to update the dataclass.</p>
 </ol>
 </dd>
 </dl>
+</section>
 </section>
 </dd></dl>
 
