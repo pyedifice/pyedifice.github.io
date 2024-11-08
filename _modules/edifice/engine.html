@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.6.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.6.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../_static/documentation_options.js?v=ae39cb24"></script>
+    <script src="../../_static/documentation_options.js?v=0a414f3d"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.6.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.6.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.6.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.6.1 documentation - Home"/>
   
   
 </a></div>
@@ -1154,24 +1154,22 @@
 
 
 <span class="sd">    Args:</span>
-<span class="sd">        style: style for the widget. Could either be a dictionary or a list of dictionaries.</span>
-
-<span class="sd">            See :doc:`../../styling` for a primer on styling.</span>
+<span class="sd">        style: Style dictionary. See :doc:`../../styling` for details.</span>
 <span class="sd">        tool_tip:</span>
-<span class="sd">            the tool tip displayed when hovering over the widget.</span>
+<span class="sd">            The tool tip displayed when hovering over the widget.</span>
 <span class="sd">        cursor:</span>
-<span class="sd">            the shape of the cursor when mousing over this widget. Must be one of:</span>
+<span class="sd">            The shape of the cursor when mousing over this widget. Must be one of:</span>
 <span class="sd">            :code:`&quot;default&quot;`, :code:`&quot;arrow&quot;`, :code:`&quot;pointer&quot;`, :code:`&quot;grab&quot;`, :code:`&quot;grabbing&quot;`,</span>
 <span class="sd">            :code:`&quot;text&quot;`, :code:`&quot;crosshair&quot;`, :code:`&quot;move&quot;`, :code:`&quot;wait&quot;`, :code:`&quot;ew-resize&quot;`,</span>
 <span class="sd">            :code:`&quot;ns-resize&quot;`, :code:`&quot;nesw-resize&quot;`, :code:`&quot;nwse-resize&quot;`,</span>
 <span class="sd">            :code:`&quot;not-allowed&quot;`, :code:`&quot;forbidden&quot;`</span>
 <span class="sd">        context_menu:</span>
-<span class="sd">            the context menu to display when the user right clicks on the widget.</span>
+<span class="sd">            The context menu to display when the user right clicks on the widget.</span>
 <span class="sd">            Expressed as a dict mapping the name of the context menu entry to either a function</span>
 <span class="sd">            (which will be called when this entry is clicked) or to another sub context menu.</span>
 <span class="sd">            For example, :code:`{&quot;Copy&quot;: copy_fun, &quot;Share&quot;: {&quot;Twitter&quot;: twitter_share_fun, &quot;Facebook&quot;: facebook_share_fun}}`</span>
 <span class="sd">        css_class:</span>
-<span class="sd">            a string or a list of strings, which will be stored in the :code:`css_class` property of the Qt Widget.</span>
+<span class="sd">            A string or a list of strings, which will be stored in the :code:`css_class` property of the Qt Widget.</span>
 <span class="sd">            This can be used in an application stylesheet, like:</span>
 
 <span class="sd">                QLabel[css_class=&quot;heading&quot;] { font-size: 18px; }</span>
@@ -1573,6 +1571,9 @@
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
         <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="c1"># shallow copy the style because we will be modifying it</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

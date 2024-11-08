@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.QtWidgetElement &#8212; Edifice 2.6.0 documentation</title>
+    <title>edifice.QtWidgetElement &#8212; Edifice 2.6.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../_static/documentation_options.js?v=ae39cb24"></script>
+    <script src="../_static/documentation_options.js?v=0a414f3d"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.6.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.6.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.6.1 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.6.1 documentation - Home"/>
   
   
 </a></div>
@@ -393,20 +393,18 @@ inherit from this element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>style</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]</span>) – <p>style for the widget. Could either be a dictionary or a list of dictionaries.</p>
-<p>See <a class="reference internal" href="../styling.html"><span class="doc">Styling</span></a> for a primer on styling.</p>
-</p></li>
-<li><p><strong>tool_tip</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – the tool tip displayed when hovering over the widget.</p></li>
-<li><p><strong>cursor</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – the shape of the cursor when mousing over this widget. Must be one of:
+<li><p><strong>style</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]</span>) – Style dictionary. See <a class="reference internal" href="../styling.html"><span class="doc">Styling</span></a> for details.</p></li>
+<li><p><strong>tool_tip</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The tool tip displayed when hovering over the widget.</p></li>
+<li><p><strong>cursor</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The shape of the cursor when mousing over this widget. Must be one of:
 <code class="code docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;arrow&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;pointer&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;grab&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;grabbing&quot;</span></code>,
 <code class="code docutils literal notranslate"><span class="pre">&quot;text&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;crosshair&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;move&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;wait&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;ew-resize&quot;</span></code>,
 <code class="code docutils literal notranslate"><span class="pre">&quot;ns-resize&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;nesw-resize&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;nwse-resize&quot;</span></code>,
 <code class="code docutils literal notranslate"><span class="pre">&quot;not-allowed&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;forbidden&quot;</span></code></p></li>
-<li><p><strong>context_menu</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], ContextMenuType]]]]]</span>) – the context menu to display when the user right clicks on the widget.
+<li><p><strong>context_menu</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], ContextMenuType]]]]]</span>) – The context menu to display when the user right clicks on the widget.
 Expressed as a dict mapping the name of the context menu entry to either a function
 (which will be called when this entry is clicked) or to another sub context menu.
 For example, <code class="code docutils literal notranslate"><span class="pre">{&quot;Copy&quot;:</span> <span class="pre">copy_fun,</span> <span class="pre">&quot;Share&quot;:</span> <span class="pre">{&quot;Twitter&quot;:</span> <span class="pre">twitter_share_fun,</span> <span class="pre">&quot;Facebook&quot;:</span> <span class="pre">facebook_share_fun}}</span></code></p></li>
-<li><p><strong>css_class</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span>) – <p>a string or a list of strings, which will be stored in the <code class="code docutils literal notranslate"><span class="pre">css_class</span></code> property of the Qt Widget.
+<li><p><strong>css_class</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span>) – <p>A string or a list of strings, which will be stored in the <code class="code docutils literal notranslate"><span class="pre">css_class</span></code> property of the Qt Widget.
 This can be used in an application stylesheet, like:</p>
 <blockquote>
 <div><p>QLabel[css_class=”heading”] { font-size: 18px; }</p>
