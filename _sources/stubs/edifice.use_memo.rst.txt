@@ -1,0 +1,6 @@
+﻿edifice.use\_memo
+=================
+
+.. currentmodule:: edifice
+
+.. autofunction:: use_memo

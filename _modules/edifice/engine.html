@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.6.1 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.7.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../_static/documentation_options.js?v=0a414f3d"></script>
+    <script src="../../_static/documentation_options.js?v=dfec817d"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.6.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.6.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.7.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.7.0 documentation - Home"/>
   
   
 </a></div>
@@ -407,10 +407,8 @@
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;QWidget&quot;</span><span class="p">):</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="ow">or</span> <span class="p">{}</span>
-    <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;{</span><span class="si">%s</span><span class="s2">}&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-    <span class="k">return</span> <span class="n">stylesheet</span>
+<span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;QWidget&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
 
 
 <span class="c1"># TODO</span>
@@ -474,7 +472,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 
-<span class="k">class</span> <span class="nc">PropsDict</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PropsDict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An immutable dictionary for storing props.</span>
 
 <span class="sd">    Props may be accessed either by indexing</span>
@@ -549,7 +547,7 @@
         <span class="k">return</span> <span class="s2">&quot;PropsDict(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
 
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">NoReturn</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Props are immutable&quot;</span><span class="p">)</span>  <span class="c1"># noqa: TRY003</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Props are immutable&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Reference">
@@ -649,7 +647,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_RenderContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_RenderContext</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encapsulates various state that&#39;s needed for rendering.</span>
 
@@ -720,7 +718,7 @@
 
 
 <span class="k">def</span> <span class="nf">get_render_context</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_RenderContext</span><span class="p">:</span>
-    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="s2">&quot;render_context&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="s2">&quot;render_context&quot;</span><span class="p">)</span>  <span class="c1"># noqa: B009</span>
 
 
 <span class="k">def</span> <span class="nf">get_render_context_maybe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_RenderContext</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -921,10 +919,10 @@
         <span class="n">classname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s&gt;&quot;</span>
-            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
-            <span class="s2">&quot;&lt;/</span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">classname</span><span class="p">),</span>
+            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;/</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">,</span>
             <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s /&gt;&quot;</span>
-            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
+            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
         <span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1085,8 +1083,7 @@
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span>
 
     <span class="n">ComponentElement</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span>
-    <span class="n">comp</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Element</span><span class="p">],</span> <span class="n">ComponentElement</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">comp</span></div>
+    <span class="k">return</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Element</span><span class="p">],</span> <span class="n">ComponentElement</span><span class="p">)</span></div>
 
 
 
@@ -1302,7 +1299,8 @@
         <span class="n">on_mouse_leave</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
-            <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span>
+            <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span>
+            <span class="kc">None</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1365,7 +1363,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">cursor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_CURSORS</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unrecognized cursor </span><span class="si">%s</span><span class="s2">. Cursor must be one of </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">_CURSORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unrecognized cursor </span><span class="si">{</span><span class="n">cursor</span><span class="si">}</span><span class="s2">. Cursor must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_CURSORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">:</span> <span class="n">_T_widget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1524,7 +1522,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
         <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
-            <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span>
+            <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span>
+            <span class="kc">None</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1541,10 +1540,10 @@
         <span class="k">if</span> <span class="n">on_drop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="o">=</span> <span class="n">on_drop</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">setAcceptDrops</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">underlying</span><span class="o">.</span><span class="n">dragEnterEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
-            <span class="n">underlying</span><span class="o">.</span><span class="n">dragMoveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
-            <span class="n">underlying</span><span class="o">.</span><span class="n">dragLeaveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
-            <span class="n">underlying</span><span class="o">.</span><span class="n">dropEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">dragEnterEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">dragMoveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">dragLeaveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">dropEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">setAcceptDrops</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -1567,7 +1566,7 @@
 
     <span class="k">def</span> <span class="nf">_gen_styling_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">style</span><span class="p">,</span>
+        <span class="n">style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span>
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
         <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1638,24 +1637,23 @@
                         <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
                     <span class="p">),</span>
                 <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignLeft&quot;</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignCenter&quot;</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignRight&quot;</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;justify&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignJustify&quot;</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignTop&quot;</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignBottom&quot;</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
-                <span class="n">style</span><span class="p">[</span><span class="s2">&quot;qproperty-alignment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_align</span>
+        <span class="k">elif</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignLeft&quot;</span>
+            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
+                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignCenter&quot;</span>
+            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignRight&quot;</span>
+            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;justify&quot;</span><span class="p">:</span>
+                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignJustify&quot;</span>
+            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span>
+                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignTop&quot;</span>
+            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
+                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignBottom&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
+            <span class="n">style</span><span class="p">[</span><span class="s2">&quot;qproperty-alignment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_align</span>
 
         <span class="k">if</span> <span class="s2">&quot;font-size&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
             <span class="n">font_size</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">])</span>
@@ -1833,7 +1831,7 @@
             <span class="n">name_to_val</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">not_ignored</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">varnames</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
             <span class="c1"># kwards prefixed with _ are excluded from props</span>
-            <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">(((</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span><span class="p">))</span>
+            <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">name_to_val</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
@@ -1846,24 +1844,24 @@
             <span class="n">newkeys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">_d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
             <span class="k">def</span> <span class="nf">super_commands</span><span class="p">(</span><span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">ComponentElement</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span>
-                    <span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">layout</span>
+                <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ComponentElement</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span>
+                    <span class="n">widget_trees</span><span class="p">,</span>
+                    <span class="n">newprops</span><span class="p">,</span>
+                    <span class="n">underlying</span><span class="p">,</span>
+                    <span class="n">layout</span><span class="p">,</span>
                 <span class="p">)</span>
-                <span class="k">return</span> <span class="n">commands</span>
 
             <span class="n">me</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">qtT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="n">commands</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">newkeys</span><span class="p">,</span> <span class="n">super_commands</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">commands</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">newkeys</span><span class="p">,</span> <span class="n">super_commands</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span>
 
     <span class="n">ComponentElement</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span>
-    <span class="n">comp</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">],</span> <span class="n">ComponentElement</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">comp</span>
+    <span class="k">return</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">],</span> <span class="n">ComponentElement</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_WidgetTree</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_WidgetTree</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A QtWidgetElement and its QtWidgetElement children.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1894,15 +1892,15 @@
     <span class="n">t</span> <span class="o">=</span> <span class="n">widget_trees</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
     <span class="n">tags</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_tags</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># noqa: T201</span>
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="n">print_tree</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># noqa: T201</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">tags</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># noqa: T201</span>
 
 
-<span class="k">class</span> <span class="nc">RenderResult</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RenderResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Encapsulates the results of a render.</span>
 
 <span class="sd">    Concretely, it stores information such as commands,</span>
@@ -2002,6 +2000,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Map of an Element to its rendered widget tree.</span>
+
+<span class="sd">        TODO This should actually be a map of each QtWidgetElement to its rendered</span>
+<span class="sd">        children, of type dict[QtWidgetElement, list[QtWidgetElement]].</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="o">=</span> <span class="n">root</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app</span><span class="p">:</span> <span class="n">AppProtocol</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">app</span>
@@ -2057,7 +2058,7 @@
                     <span class="c1"># or that there is no cleanup function.</span>
                     <span class="k">try</span><span class="p">:</span>
                         <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
-                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: S110, BLE001</span>
                         <span class="k">pass</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
         <span class="c1"># Clean up use_async for the component</span>
@@ -2110,9 +2111,9 @@
 
         <span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">in</span> <span class="n">old_components</span> <span class="ow">and</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># We can&#39;t replace the unparented root</span>
-                <span class="n">new_component_class</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_cls</span> <span class="k">for</span> <span class="n">old_cls</span><span class="p">,</span> <span class="n">new_cls</span> <span class="ow">in</span> <span class="n">classes</span> <span class="k">if</span> <span class="n">old_cls</span> <span class="o">==</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">new_component_class</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">new_cls</span> <span class="k">for</span> <span class="n">old_cls</span><span class="p">,</span> <span class="n">new_cls</span> <span class="ow">in</span> <span class="n">classes</span> <span class="k">if</span> <span class="n">old_cls</span> <span class="o">==</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">new_component_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error after updating code: cannot find class </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error after updating code: cannot find class </span><span class="si">{</span><span class="n">comp</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">components_to_replace</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">comp</span><span class="p">,</span> <span class="n">new_component_class</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
                 <span class="k">return</span>
             <span class="n">sub_components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span>
@@ -2137,14 +2138,14 @@
             <span class="c1"># We don&#39;t actually need all the kwargs, just enough</span>
             <span class="c1"># to construct new_comp_class.</span>
             <span class="c1"># The other kwargs will be set with _props.update.</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
                 <span class="n">k</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
                     <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
                         <span class="k">break</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Error while reloading </span><span class="si">{</span><span class="n">old_comp</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="sa">f</span><span class="s2">&quot;New class expects prop (</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) not present in old class&quot;</span>
-                <span class="p">)</span>
+                    <span class="sa">f</span><span class="s2">&quot;Error while reloading </span><span class="si">{</span><span class="n">old_comp</span><span class="si">}</span><span class="s2">: New class expects prop (</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) not present in old class&quot;</span><span class="p">,</span>
+                <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
             <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_comp_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">_props</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">old_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">)</span>
             <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">old_comp</span><span class="o">.</span><span class="n">_key</span>
@@ -2190,11 +2191,11 @@
             <span class="p">)</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rerendering: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">parent</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">parent_comp</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">parent_comp</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">components_to_replace</span><span class="p">])</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="c1"># Restore components</span>
             <span class="k">for</span> <span class="n">parent_comp</span><span class="p">,</span> <span class="n">backup_val</span> <span class="ow">in</span> <span class="n">backup</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">parent_comp</span><span class="o">.</span><span class="n">_props</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">backup_val</span>
-            <span class="k">raise</span> <span class="n">e</span>
+            <span class="k">raise</span>
 
     <span class="k">def</span> <span class="nf">_update_old_component</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -2271,14 +2272,10 @@
                     <span class="n">child_new</span><span class="p">,</span>
                 <span class="p">):</span>
                     <span class="c1"># then we have a match for reusing the old child</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+                    <span class="n">child_wtree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
                     <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_old_bykey</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="c1"># Try to get the cached WidgetTree from this render</span>
-                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="c1"># Get the cached WidgetTree from previous render</span>
-                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">child_old_bykey</span><span class="p">]</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child_wtree</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">child_wtree</span><span class="o">.</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_wtree</span>
                     <span class="n">children_old</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">child_old_bykey</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># new child so render</span>
@@ -2290,14 +2287,10 @@
                 <span class="n">child_old</span> <span class="o">=</span> <span class="n">children_old</span><span class="p">[</span><span class="n">i_old</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="n">child_new</span><span class="p">):</span>
                     <span class="c1"># then we have a match for reusing the old child</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
+                    <span class="n">child_wtree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="n">child_new</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
                     <span class="n">children_new</span><span class="p">[</span><span class="n">i_new</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_old</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">child_old</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="c1"># Try to get the cached WidgetTree from this render</span>
-                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="c1"># Get the cached WidgetTree from previous render</span>
-                        <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="n">child_old</span><span class="p">]</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">widgettree</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child_wtree</span><span class="o">.</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">child_wtree</span><span class="o">.</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_wtree</span>
                     <span class="k">del</span> <span class="n">children_old</span><span class="p">[</span><span class="n">i_old</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># new child so render</span>
@@ -2343,12 +2336,12 @@
             <span class="k">assert</span> <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="p">:</span>
                 <span class="n">ref</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">component</span>
-        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">component</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2"> is not correctly initialized. &quot;</span>
                 <span class="s2">&quot;Did you remember to call super().__init__() in the constructor? &quot;</span>
-                <span class="s2">&quot;(alternatively, the register_props decorator will also correctly initialize the component)&quot;</span>
-            <span class="p">)</span>
+                <span class="s2">&quot;(alternatively, the register_props decorator will also correctly initialize the component)&quot;</span><span class="p">,</span>
+            <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
         <span class="n">component</span><span class="o">.</span><span class="n">_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
@@ -2390,6 +2383,10 @@
         <span class="n">old_rendering</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_component</span><span class="p">):</span>
+            <span class="c1"># TODO Why do we set the key of the widget_tree to be a #component</span>
+            <span class="c1"># Element here? This is not used anywhere. This widget_tree[component]</span>
+            <span class="c1"># insertion should not happen. widget_tree key should be a QtWidgetElement.</span>
+            <span class="c1"># See _widget_tree.</span>
             <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_old_component</span><span class="p">(</span>
                 <span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                 <span class="n">sub_component</span><span class="p">,</span>
@@ -2399,6 +2396,10 @@
             <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">render_context</span><span class="o">.</span><span class="n">enqueued_deletions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">)</span>
             <span class="n">render_context</span><span class="o">.</span><span class="n">component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sub_component</span><span class="p">]</span>
+            <span class="c1"># TODO Why do we set the key of the widget_tree to be a #component</span>
+            <span class="c1"># Element here? This is not used anywhere. This widget_tree[component]</span>
+            <span class="c1"># insertion should not happen. widget_tree key should be a QtWidgetElement.</span>
+            <span class="c1"># See _widget_tree.</span>
             <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">sub_component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
@@ -2480,8 +2481,8 @@
             <span class="k">for</span> <span class="n">command</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">command</span><span class="o">.</span><span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">command</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">command</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception while running command:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">command</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: PERF203</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception while running command:</span><span class="se">\n</span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: G004</span>
             <span class="n">all_commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span>
 
             <span class="c1"># Delete components that should be deleted (and call the respective unmounts)</span>
@@ -2497,13 +2498,13 @@
                     <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                         <span class="k">try</span><span class="p">:</span>
                             <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
-                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: S110, BLE001</span>
                             <span class="k">pass</span>
                         <span class="k">finally</span><span class="p">:</span>
                             <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">=</span> <span class="kc">None</span>
                     <span class="k">try</span><span class="p">:</span>
                         <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
-                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
                         <span class="n">hook</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">=</span> <span class="kc">None</span>
                     <span class="k">finally</span><span class="p">:</span>
                         <span class="n">hook</span><span class="o">.</span><span class="n">setup</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2611,7 +2612,7 @@
 
             <span class="k">return</span> <span class="n">cancel</span>
 
-        <span class="k">elif</span> <span class="n">dependencies</span> <span class="o">!=</span> <span class="p">(</span><span class="n">hook</span> <span class="o">:=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">])</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dependencies</span> <span class="o">!=</span> <span class="p">(</span><span class="n">hook</span> <span class="o">:=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">])</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span>
             <span class="c1"># then this is not the first render and deps changed</span>
             <span class="n">hook</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span>
             <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2646,17 +2647,16 @@
 
             <span class="k">return</span> <span class="n">cancel</span>
 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># not first render, dependencies did not change</span>
-            <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
+        <span class="c1"># not first render, dependencies did not change</span>
+        <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
 
-            <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-            <span class="k">return</span> <span class="n">cancel</span>
+        <span class="k">return</span> <span class="n">cancel</span>
 </pre></div>
 
                 </article>

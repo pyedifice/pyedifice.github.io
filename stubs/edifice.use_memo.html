@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.ImageSvg &#8212; Edifice 2.7.0 documentation</title>
+    <title>edifice.use_memo &#8212; Edifice 2.7.0 documentation</title>
   
   
   
@@ -45,12 +45,12 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.ImageSvg';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_memo';</script>
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.ImageSvg.__init__" href="stubs/edifice.ImageSvg.__init__.html" />
-    <link rel="prev" title="edifice.Image.set_key" href="stubs/edifice.Image.set_key.html" />
+    <link rel="next" title="edifice.use_hover" href="edifice.use_hover.html" />
+    <link rel="prev" title="edifice.use_callback" href="edifice.use_callback.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -360,9 +360,9 @@
     <li class="breadcrumb-item"><a href="../api.html" class="nav-link">API</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../base_components.html" class="nav-link">Base Elements</a></li>
+    <li class="breadcrumb-item"><a href="../hooks.html" class="nav-link">Hooks</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">edifice.ImageSvg</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">edifice.use_memo</span></li>
   </ul>
 </nav>
 </div>
@@ -379,53 +379,40 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-imagesvg">
-<h1>edifice.ImageSvg<a class="headerlink" href="#edifice-imagesvg" title="Link to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="edifice.ImageSvg">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">ImageSvg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#ImageSvg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.ImageSvg" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QSvgWidget</span></code>]</p>
-<p>Render an SVG image.</p>
-<ul class="simple">
-<li><p>Underlying Qt Widget
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtSvgWidgets/QSvgWidget.html">QSvgWidget</a></p></li>
-</ul>
+  <section id="edifice-use-memo">
+<h1>edifice.use_memo<a class="headerlink" href="#edifice-use-memo" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="edifice.use_memo">
+<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_memo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_memo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_memo" title="Link to this definition">#</a></dt>
+<dd><p>Hook to memoize a function.</p>
+<p>Behaves like <a class="reference external" href="https://react.dev/reference/react/useMemo">React useMemo</a>.</p>
+<p>Use this hook during a render to memoize a value which is pure and
+non-side-effecting but expensive to compute.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example use_memo</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_factor</span><span class="p">,</span> <span class="n">x_factor_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">expensive_computation</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">1000000</span> <span class="o">*</span> <span class="n">x_factor</span>
+
+<span class="n">bignumber</span> <span class="o">=</span> <span class="n">use_memo</span><span class="p">(</span><span class="n">expensive_computation</span><span class="p">,</span> <span class="p">(</span><span class="n">x_factor</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>src</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">QByteArray</span></code></span>) – Either a path to an SVG image file, or a <code class="code docutils literal notranslate"><span class="pre">QByteArray</span></code>
-containing the serialized XML representation of an SVG file.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_memo</span></code>)]</span>) – A function of no arguments which returns a value.</p></li>
+<li><p><strong>dependencies</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – The value will be recomputed when the dependencies change. If <code class="code docutils literal notranslate"><span class="pre">None</span></code>, then the value will be recomputed every render.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_memo</span></code>)</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The memoized value from calling <code class="code docutils literal notranslate"><span class="pre">fn</span></code>.</p>
 </dd>
 </dl>
-<p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.ImageSvg.__init__.html#edifice.ImageSvg.__init__" title="edifice.ImageSvg.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(src, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ImageSvg.register_ref.html#edifice.ImageSvg.register_ref" title="edifice.ImageSvg.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
-<td><p>Registers provided <a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.ImageSvg.set_key.html#edifice.ImageSvg.set_key" title="edifice.ImageSvg.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
-<td><p>Set the key of an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="rubric">Attributes</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></p></td>
-<td><p>The children of this Element.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></p></td>
-<td><p>The props of this Element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying</span></code></p></td>
-<td><p>The underlying QWidget, which may not exist if this Element has not rendered.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </dd></dl>
 
 </section>
@@ -441,20 +428,20 @@ containing the serialized XML representation of an SVG file.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/edifice.Image.set_key.html"
+       href="edifice.use_callback.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.Image.set_key</p>
+        <p class="prev-next-title">edifice.use_callback</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.ImageSvg.__init__.html"
+       href="edifice.use_hover.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.ImageSvg.__init__</p>
+        <p class="prev-next-title">edifice.use_hover</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
