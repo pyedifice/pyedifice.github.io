@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.7.1 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.8.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../_static/documentation_options.js?v=7b940564"></script>
+    <script src="../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.7.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.7.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.0 documentation - Home"/>
   
   
 </a></div>
@@ -1227,6 +1227,10 @@
 <span class="sd">            Takes a</span>
 <span class="sd">            `QMouseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QMouseEvent.html&gt;`_</span>
 <span class="sd">            as argument.</span>
+<span class="sd">        on_mouse_wheel:</span>
+<span class="sd">            Callback for mouse wheel events. Takes a</span>
+<span class="sd">            `QWheelEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QWheelEvent.html&gt;`_</span>
+<span class="sd">            as argument.</span>
 <span class="sd">        on_drop:</span>
 <span class="sd">            Handle drop events.</span>
 
@@ -1298,6 +1302,7 @@
         <span class="n">on_mouse_enter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_mouse_leave</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_wheel</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWheelEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
             <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span>
             <span class="kc">None</span><span class="p">,</span>
@@ -1324,6 +1329,7 @@
                 <span class="s2">&quot;on_mouse_enter&quot;</span><span class="p">:</span> <span class="n">on_mouse_enter</span><span class="p">,</span>
                 <span class="s2">&quot;on_mouse_leave&quot;</span><span class="p">:</span> <span class="n">on_mouse_leave</span><span class="p">,</span>
                 <span class="s2">&quot;on_mouse_move&quot;</span><span class="p">:</span> <span class="n">on_mouse_move</span><span class="p">,</span>
+                <span class="s2">&quot;on_mouse_wheel&quot;</span><span class="p">:</span> <span class="n">on_mouse_wheel</span><span class="p">,</span>
                 <span class="s2">&quot;on_drop&quot;</span><span class="p">:</span> <span class="n">on_drop</span><span class="p">,</span>
                 <span class="s2">&quot;on_resize&quot;</span><span class="p">:</span> <span class="n">on_resize</span><span class="p">,</span>
             <span class="p">},</span>
@@ -1343,6 +1349,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_drop</span><span class="p">:</span> <span class="p">(</span>
             <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
             <span class="o">|</span> <span class="kc">None</span>
@@ -1353,6 +1360,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_enter_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_leave_event</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_wheel_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_enter_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_move_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_leave_event</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1439,6 +1447,25 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">mouseReleaseEvent</span>
         <span class="n">underlying</span><span class="o">.</span><span class="n">mouseReleaseEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_release</span><span class="p">(</span><span class="n">underlying</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handle_mouse_wheel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QWheelEvent</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span><span class="o">.</span><span class="n">wheelEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+
+    <span class="k">def</span> <span class="nf">_set_mouse_wheel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_wheel</span><span class="p">):</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.wheelEvent</span>
+        <span class="c1"># “If you reimplement this handler, it is very important that</span>
+        <span class="c1"># you ignore() the event if you do not handle it, so that the widget’s</span>
+        <span class="c1"># parent can interpret it.”</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_wheel_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_wheel_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_mouse_wheel</span>
+        <span class="k">if</span> <span class="n">on_mouse_wheel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_wheel</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_handle_key_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1555,7 +1582,7 @@
             <span class="c1"># the QScrollArea widget to resize its children. If we don&#39;t call the default</span>
             <span class="c1"># method then that functionality is lost.</span>
             <span class="c1"># I&#39;ve got no reference that says we can call a method like this, but it works.</span>
-            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span><span class="o">.</span><span class="n">resizeEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span><span class="o">.</span><span class="n">resizeEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
 
     <span class="k">def</span> <span class="nf">_set_on_resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Store the QWidget&#39;s default virtual event handler method one time</span>
@@ -1769,6 +1796,8 @@
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_leave</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_leave</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_move&quot;</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_move</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_move</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_wheel&quot;</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_mouse_wheel</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_wheel</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_drop&quot;</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_drop</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_drop</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_resize&quot;</span><span class="p">:</span>

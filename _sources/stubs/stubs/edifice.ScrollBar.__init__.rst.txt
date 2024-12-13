@@ -1,0 +1,6 @@
+edifice.ScrollBar.\_\_init\_\_
+==============================
+
+.. currentmodule:: edifice
+
+.. automethod:: ScrollBar.__init__

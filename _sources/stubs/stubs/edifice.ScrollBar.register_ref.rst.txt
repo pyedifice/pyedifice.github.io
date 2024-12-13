@@ -1,0 +1,6 @@
+edifice.ScrollBar.register\_ref
+===============================
+
+.. currentmodule:: edifice
+
+.. automethod:: ScrollBar.register_ref

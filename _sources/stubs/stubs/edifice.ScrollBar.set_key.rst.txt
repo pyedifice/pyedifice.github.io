@@ -1,0 +1,6 @@
+edifice.ScrollBar.set\_key
+==========================
+
+.. currentmodule:: edifice
+
+.. automethod:: ScrollBar.set_key
