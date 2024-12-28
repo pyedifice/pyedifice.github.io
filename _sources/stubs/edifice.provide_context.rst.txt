@@ -1,0 +1,6 @@
+﻿edifice.provide\_context
+========================
+
+.. currentmodule:: edifice
+
+.. autofunction:: provide_context

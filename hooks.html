@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hooks &#8212; Edifice 2.8.1 documentation</title>
+    <title>Hooks &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="_static/documentation_options.js?v=cd87aae0"></script>
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.1 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.1 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -419,7 +419,7 @@ in exactly the same order on every call to a <a class="reference internal" href=
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_effect</span></code></a>(setup[, dependencies])</p></td>
 <td><p>Side-effect Hook inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async</span></code></a>(fn_coroutine, dependencies)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_async</span></code></a>(fn_coroutine[, dependencies])</p></td>
 <td><p>Asynchronous side-effect Hook inside a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p></td>
 </tr>
 </tbody>
@@ -442,10 +442,16 @@ in exactly the same order on every call to a <a class="reference internal" href=
 <td><p>Hook to call an async function from a non-async context.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_callback.html#edifice.use_callback" title="edifice.use_callback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_callback</span></code></a>(fn, dependencies)</p></td>
-<td><p>Hook for a callback function to pass as <strong>props</strong>.</p></td>
+<td><p>Deprecated alias for <a class="reference internal" href="stubs/edifice.use_memo.html#edifice.use_memo" title="edifice.use_memo"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_memo()</span></code></a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_memo.html#edifice.use_memo" title="edifice.use_memo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_memo</span></code></a>(fn, dependencies)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_memo.html#edifice.use_memo" title="edifice.use_memo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_memo</span></code></a>(fn[, dependencies])</p></td>
 <td><p>Hook to memoize the result of calling a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.provide_context.html#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-obj docutils literal notranslate"><span class="pre">provide_context</span></code></a>(context_key, initial_state)</p></td>
+<td><p>Context state provider Hook for <em>prop drilling</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.use_context.html#edifice.use_context" title="edifice.use_context"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_context</span></code></a>(context_key, value_type)</p></td>
+<td><p>Context state consumer Hook for <em>prop drilling</em>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.use_hover.html#edifice.use_hover" title="edifice.use_hover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_hover</span></code></a>()</p></td>
 <td><p>Hook to track mouse hovering.</p></td>
@@ -469,10 +475,11 @@ clock value incremented each time.</p>
     <span class="n">tick</span><span class="p">,</span> <span class="n">tick_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">increment</span><span class="p">():</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">tick_set</span><span class="p">(</span><span class="n">tick</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">tick_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">use_async</span><span class="p">(</span><span class="n">increment</span><span class="p">,</span> <span class="n">tick</span><span class="p">)</span>
+    <span class="n">use_async</span><span class="p">(</span><span class="n">increment</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">tick</span>
 </pre></div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_state &#8212; Edifice 2.8.1 documentation</title>
+    <title>edifice.use_state &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../_static/documentation_options.js?v=cd87aae0"></script>
+    <script src="../_static/documentation_options.js?v=182a64a0"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.1 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.1 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -385,8 +385,24 @@
 <dt class="sig sig-object py" id="edifice.use_state">
 <span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_state" title="Link to this definition">#</a></dt>
 <dd><p>Persistent mutable state Hook inside a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> function.</p>
-<p>Behaves like <a class="reference external" href="https://react.dev/reference/react/useState">React useState</a>.</p>
-<p><a class="reference internal" href="#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> is called with an <strong>initial state</strong>.
+<p>Behaves like React <a class="reference external" href="https://react.dev/reference/react/useState">useState</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>initial_state</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>)]]</span>) – The initial <strong>state value</strong> or <strong>initializer function</strong>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>)]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>A tuple pair containing</p>
+<ol class="arabic simple">
+<li><p>The current <strong>state value</strong>.</p></li>
+<li><p>A <strong>setter function</strong> for setting or updating the state value.</p></li>
+</ol>
+</p>
+</dd>
+</dl>
+<p><a class="reference internal" href="#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> is called with an <strong>initial value</strong>.
 It returns a <strong>state value</strong> and a
 <strong>setter function</strong>.</p>
 <p>The <strong>state value</strong> will be the value of the state at the beginning of
@@ -405,6 +421,9 @@ old <strong>state value</strong>, then the component will be re-rendered.</p>
     <span class="p">)</span>
 </pre></div>
 </div>
+<p>The <strong>setter function</strong> is referentially stable, so it will always
+be <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the <strong>setter function</strong> from the previous render.
+It can be passed as a <strong>prop</strong> to child components.</p>
 <p>The <strong>setter function</strong> should be called inside of an event handler
 or a <a class="reference internal" href="edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> function.</p>
 <p>Never call the <strong>setter function</strong>
@@ -420,9 +439,10 @@ it in a <code class="code docutils literal notranslate"><span class="pre">tuple<
 </div>
 <section id="initialization">
 <h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading">#</a></h2>
+<p>The <strong>initial value</strong> can be either a <strong>state value</strong> or an <strong>initializer function</strong>.</p>
 <p>An <strong>initializer function</strong> is a function of no arguments.</p>
 <p>If an <strong>initializer function</strong> is passed to <a class="reference internal" href="#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> instead
-of an initial value, then the
+of an <strong>state value</strong>, then the
 <strong>initializer function</strong> will be called once before
 this <code class="xref py py-func docutils literal notranslate"><span class="pre">components()</span></code>’s first render to get the <strong>initial state</strong>.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
@@ -451,7 +471,11 @@ small configuration files.</p>
 </section>
 <section id="update">
 <h2>Update<a class="headerlink" href="#update" title="Link to this heading">#</a></h2>
-<p>An <strong>updater function</strong> is a function from the previous state to the new state.</p>
+<p>All updates from calling the <strong>setter function</strong> will be applied before the
+beginning of the next render.</p>
+<p>A <strong>setter function</strong> can be called with a <strong>state value</strong> or an <strong>updater function</strong>.</p>
+<p>An <strong>updater function</strong> is a function from the previous <strong>state value</strong> to the
+new <strong>state value</strong>.</p>
 <p>If an <strong>updater function</strong> is passed to the <strong>setter function</strong>, then before the
 beginning of the next render the <strong>state value</strong> will be modified by calling all of the
 <strong>updater functions</strong> in the order in which they were set.</p>
@@ -498,7 +522,7 @@ with the modified copy.</p>
 
     <span class="k">def</span> <span class="nf">updater</span><span class="p">(</span><span class="n">x_previous</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="n">x_new</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">x_previous</span><span class="p">)</span>
-        <span class="n">x_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Label Text &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_previous</span><span class="p">)))</span>
+        <span class="n">x_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;another&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x_new</span>
 
     <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
@@ -530,7 +554,7 @@ function to update the dataclass.</p></li>
     <span class="n">x</span><span class="p">,</span> <span class="n">x_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="p">()))</span>
 
     <span class="k">def</span> <span class="nf">updater</span><span class="p">(</span><span class="n">x_previous</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">x_previous</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;Label Text &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_previous</span><span class="p">)),)</span>
+        <span class="k">return</span> <span class="n">x_previous</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;another&quot;</span><span class="p">,)</span>
 
     <span class="k">with</span> <span class="n">View</span><span class="p">():</span>
         <span class="n">Button</span><span class="p">(</span>
@@ -542,24 +566,6 @@ function to update the dataclass.</p></li>
 </pre></div>
 </div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">type initial_state<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>)]]</span></p>
-</dd>
-<dt class="field-even">param initial_state<span class="colon">:</span></dt>
-<dd class="field-even"><p>The initial <strong>state value</strong> or <strong>initializer function</strong>.</p>
-</dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_state</span></code>)]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
-</dd>
-<dt class="field-even">returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple pair containing</p>
-<ol class="arabic simple">
-<li><p>The current <strong>state value</strong>.</p></li>
-<li><p>A <strong>setter function</strong> for setting or updating the state value.</p></li>
-</ol>
-</dd>
-</dl>
 </section>
 </section>
 </dd></dl>

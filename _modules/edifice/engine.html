@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.8.1 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../_static/documentation_options.js?v=cd87aae0"></script>
+    <script src="../../_static/documentation_options.js?v=182a64a0"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -407,8 +407,17 @@
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;QWidget&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
+
+<span class="k">def</span> <span class="nf">stylevalue_to_str</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">match</span> <span class="n">v</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="p">():</span>
+            <span class="c1"># should be equivalent to f&quot;rgba({color.red()}, {color.green()}, {color.blue()}, {color.alpha()})&quot;</span>
+            <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="o">.</span><span class="n">NameFormat</span><span class="o">.</span><span class="n">HexArgb</span><span class="p">)</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">v</span>
+
+<span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">stylevalue_to_str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
 
 
 <span class="c1"># TODO</span>
@@ -1366,6 +1375,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_leave_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drop_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1603,7 +1613,7 @@
         <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="c1"># shallow copy the style because we will be modifying it</span>
-        <span class="n">style</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="n">cpstyle</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
 
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -1620,43 +1630,50 @@
             <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html#PySide6.QtWidgets.QLayout.setContentsMargins</span>
             <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-            <span class="k">if</span> <span class="s2">&quot;padding&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;padding&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">new_padding</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;padding&quot;</span><span class="p">]))]</span> <span class="o">*</span> <span class="mi">4</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding&quot;</span><span class="p">)</span>
                 <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;padding-left&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-left&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-left&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-left&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;padding-left&quot;</span><span class="p">]))</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-left&quot;</span><span class="p">)</span>
                 <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;padding-right&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-right&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-right&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-right&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;padding-right&quot;</span><span class="p">]))</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-right&quot;</span><span class="p">)</span>
                 <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;padding-top&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-top&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-top&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-top&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;padding-top&quot;</span><span class="p">]))</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-top&quot;</span><span class="p">)</span>
                 <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="s2">&quot;padding-bottom&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;padding-bottom&quot;</span><span class="p">]))</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-bottom&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;padding-bottom&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;padding-bottom&quot;</span><span class="p">]))</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding-bottom&quot;</span><span class="p">)</span>
                 <span class="n">set_padding</span> <span class="o">=</span> <span class="kc">True</span>
 
-            <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignLeft</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignCenter</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignRight</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;justify&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignJustify</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignTop</span>
-                <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
-                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignBottom</span>
+            <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html#PySide6.QtWidgets.QLayout.setAlignment</span>
+                <span class="n">cpstyle_align</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cpstyle_align</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignLeft</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignCenter</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignRight</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;justify&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignJustify</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignTop</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignBottom</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">cpstyle_align</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">cpstyle_align</span><span class="p">)</span> <span class="ow">is</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">cpstyle_align</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Style align wrong type: </span><span class="si">{</span><span class="n">cpstyle_align</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span>
 
             <span class="k">if</span> <span class="n">set_padding</span><span class="p">:</span>
@@ -1669,59 +1686,88 @@
                         <span class="n">new_padding</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
                     <span class="p">),</span>
                 <span class="p">)</span>
-        <span class="k">elif</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
-                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignLeft&quot;</span>
-            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
-                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignCenter&quot;</span>
-            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
-                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignRight&quot;</span>
-            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;justify&quot;</span><span class="p">:</span>
-                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignJustify&quot;</span>
-            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span>
-                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignTop&quot;</span>
-            <span class="k">elif</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
-                <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignBottom&quot;</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">style</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
-            <span class="n">style</span><span class="p">[</span><span class="s2">&quot;qproperty-alignment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_align</span>
 
-        <span class="k">if</span> <span class="s2">&quot;font-size&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-            <span class="n">font_size</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">underlying</span><span class="p">),</span> <span class="s2">&quot;setAlignment&quot;</span><span class="p">):</span>
+            <span class="c1"># QLabels and other things that have a setAlignment method</span>
+            <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.QLabel.setAlignment</span>
+                <span class="n">cpstyle_align</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cpstyle_align</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignLeft</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignCenter</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignRight</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;justify&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignJustify</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignTop</span>
+                    <span class="k">elif</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
+                        <span class="n">set_align</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignBottom</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">cpstyle_align</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">cpstyle_align</span><span class="p">)</span> <span class="ow">is</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="n">cpstyle_align</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Style align wrong type: </span><span class="si">{</span><span class="n">cpstyle_align</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Set the align property for the style sheet</span>
+                <span class="c1"># TODO This case is probably unreachable?</span>
+                <span class="k">if</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignLeft&quot;</span>
+                <span class="k">elif</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignCenter&quot;</span>
+                <span class="k">elif</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignRight&quot;</span>
+                <span class="k">elif</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;justify&quot;</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignJustify&quot;</span>
+                <span class="k">elif</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignTop&quot;</span>
+                <span class="k">elif</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span>
+                    <span class="n">set_align</span> <span class="o">=</span> <span class="s2">&quot;AlignBottom&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown style align: </span><span class="si">{</span><span class="n">cpstyle</span><span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
+                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;qproperty-alignment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_align</span>
+
+        <span class="k">if</span> <span class="s2">&quot;font-size&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="n">font_size</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">])</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">px&quot;</span> <span class="o">%</span> <span class="n">font_size</span>
-        <span class="k">if</span> <span class="s2">&quot;width&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s2">&quot;min-width&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">style</span><span class="p">[</span><span class="s2">&quot;min-width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="s2">&quot;max-width&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">style</span><span class="p">[</span><span class="s2">&quot;max-width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">px&quot;</span> <span class="o">%</span> <span class="n">font_size</span>
+        <span class="k">if</span> <span class="s2">&quot;width&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;min-width&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;min-width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;max-width&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;max-width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
         <span class="c1"># else:</span>
-        <span class="c1">#     if &quot;min-width&quot; not in style:</span>
-        <span class="c1">#         style[&quot;min-width&quot;] = self._get_width(children)</span>
+        <span class="c1">#     if &quot;min-width&quot; not in cpstyle:</span>
+        <span class="c1">#         cpstyle[&quot;min-width&quot;] = self._get_width(children)</span>
 
-        <span class="k">if</span> <span class="s2">&quot;height&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s2">&quot;min-height&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">style</span><span class="p">[</span><span class="s2">&quot;min-height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="s2">&quot;max-height&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
-                <span class="n">style</span><span class="p">[</span><span class="s2">&quot;max-height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;height&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;min-height&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;min-height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;max-height&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;max-height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>
         <span class="c1"># else:</span>
-        <span class="c1">#     if &quot;min-height&quot; not in style:</span>
-        <span class="c1">#         style[&quot;min-height&quot;] = self._get_height(children)</span>
+        <span class="c1">#     if &quot;min-height&quot; not in cpstyle:</span>
+        <span class="c1">#         cpstyle[&quot;min-height&quot;] = self._get_height(children)</span>
 
         <span class="n">set_move</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">move_coords</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s2">&quot;top&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;top&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
             <span class="n">set_move</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">move_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;top&quot;</span><span class="p">]))</span>
+            <span class="n">move_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;top&quot;</span><span class="p">]))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s2">&quot;left&quot;</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;left&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
             <span class="n">set_move</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">move_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">]))</span>
+            <span class="n">move_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">]))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_left</span> <span class="o">=</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">set_move</span><span class="p">:</span>
@@ -1730,7 +1776,7 @@
         <span class="c1"># CSS style selection is matched by setting underlying.setObjectName(str(id(self)))</span>
         <span class="c1"># In Element initialization.</span>
         <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#PySide6.QtCore.QObject.setObjectName</span>
-        <span class="n">css_string</span> <span class="o">=</span> <span class="n">_dict_to_style</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="s2">&quot;QWidget#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="n">css_string</span> <span class="o">=</span> <span class="s2">&quot;QWidget#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="o">+</span> <span class="n">_dict_to_style</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">)</span>
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">,</span> <span class="n">css_string</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
 
@@ -1771,7 +1817,11 @@
                 <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gen_styling_commands</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">underlying_layout</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;size_policy&quot;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">size_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">size_policy</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;focus_policy&quot;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">focus_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setFocusPolicy</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">focus_policy</span><span class="p">))</span>

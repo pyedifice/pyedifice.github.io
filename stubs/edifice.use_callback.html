@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_callback &#8212; Edifice 2.8.1 documentation</title>
+    <title>edifice.use_callback &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../_static/documentation_options.js?v=cd87aae0"></script>
+    <script src="../_static/documentation_options.js?v=182a64a0"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.1 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.1 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -384,126 +384,12 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="edifice.use_callback">
 <span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_callback" title="Link to this definition">#</a></dt>
-<dd><p>Hook for a callback function to pass as <strong>props</strong>.</p>
-<p>This Hook behaves like React <a class="reference external" href="https://react.dev/reference/react/useCallback">useCallback</a>.</p>
-<p>Use this Hook to reduce the re-render frequency of
-a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> which has a <strong>prop</strong> that is a function.</p>
-<p>This Hook will return a callback function with specific
-bound <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>
-and the callback function will only change when the
-specified <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to
-the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> from the last render, so the callback function
-can be used as a stable <strong>prop</strong>.</p>
-<section id="the-problem">
-<h2>The problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h2>
-<p>We want to present the user with a hundred buttons and give the buttons
-an <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> <strong>prop</strong>.</p>
-<p>This <code class="code docutils literal notranslate"><span class="pre">SuperComp</span></code> component will re-render every time
-the <code class="code docutils literal notranslate"><span class="pre">fastprop</span></code> <strong>prop</strong> changes, so then we will have to re-render all
-the buttons even though the buttons don’t depend on the <code class="code docutils literal notranslate"><span class="pre">fastprop</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">SuperComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fastprop</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">slowprop</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-
-    <span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">value_from_slowprop</span><span class="p">():</span>
-        <span class="n">value_set</span><span class="p">(</span><span class="n">slowprop</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">Button</span><span class="p">(</span>
-            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">value_from_slowprop</span><span class="p">()</span>
-        <span class="p">)</span>
-</pre></div>
-</div>
-<p>The general solution to this kind of performance problem is to
-create a new <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> to render the
-buttons. This new <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>
-will only re-render when its <code class="code docutils literal notranslate"><span class="pre">click_handler</span></code> <strong>prop</strong> changes.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Buttons100</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">click_handler</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]):</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">Button</span><span class="p">(</span>
-            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">click_handler</span><span class="p">()</span>
-        <span class="p">)</span>
-
-<span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">SuperComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fastprop</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">slowprop</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-
-    <span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">value_from_slowprop</span><span class="p">():</span>
-        <span class="n">value_set</span><span class="p">(</span><span class="n">slowprop</span><span class="p">)</span>
-
-    <span class="n">Buttons100</span><span class="p">(</span><span class="n">value_from_slowprop</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>But there is a problem here, which is that the <code class="code docutils literal notranslate"><span class="pre">click_handler</span></code> <strong>prop</strong>
-for the <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> component is a new function
-<code class="code docutils literal notranslate"><span class="pre">value_from_slowprop</span></code> every time that
-the <code class="code docutils literal notranslate"><span class="pre">SuperComp</span></code> component re-renders, so it will always cause
-the <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> to re-render.</p>
-<p>We can’t define <code class="code docutils literal notranslate"><span class="pre">value_from_slowprop</span></code> as a constant
-function declared outside of the <code class="code docutils literal notranslate"><span class="pre">SuperComp</span></code> component because it
-depends on bindings to <code class="code docutils literal notranslate"><span class="pre">slowprop</span></code> and <code class="code docutils literal notranslate"><span class="pre">value_set</span></code>.</p>
-</section>
-<section id="the-solution">
-<h2>The solution<a class="headerlink" href="#the-solution" title="Link to this heading">#</a></h2>
-<p>So we use the <a class="reference internal" href="#edifice.use_callback" title="edifice.use_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_callback()</span></code></a> Hook to create a callback function
-which only changes when <code class="code docutils literal notranslate"><span class="pre">slowprop</span></code> changes.</p>
-<p>And now the <code class="code docutils literal notranslate"><span class="pre">Buttons100</span></code> will only re-render when the <code class="code docutils literal notranslate"><span class="pre">slowprop</span></code>
-changes.</p>
-<p>The <code class="code docutils literal notranslate"><span class="pre">value_set</span></code> <strong>setter function</strong> does not need to be in
-the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> because each <strong>setter function</strong> is always
-<code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> from the previous render.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Buttons100</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">click_handler</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]):</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">Button</span><span class="p">(</span>
-            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">click_handler</span><span class="p">(),</span>
-        <span class="p">)</span>
-
-<span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">SuperComp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fastprop</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">slowprop</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-
-    <span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">make_value_from_slowprop</span><span class="p">():</span>
-        <span class="k">def</span> <span class="nf">value_from_slowprop</span><span class="p">():</span>
-            <span class="n">value_set</span><span class="p">(</span><span class="n">slowprop</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">value_from_slowprop</span>
-
-    <span class="n">value_from_slowprop</span> <span class="o">=</span> <span class="n">use_callback</span><span class="p">(</span>
-        <span class="n">make_value_from_slowprop</span><span class="p">,</span>
-        <span class="p">(</span><span class="n">slowprop</span><span class="p">,),</span>
-    <span class="p">)</span>
-
-    <span class="n">Buttons100</span><span class="p">(</span><span class="n">value_from_slowprop</span><span class="p">)</span>
-</pre></div>
-</div>
+<dd><p>Deprecated alias for <a class="reference internal" href="edifice.use_memo.html#edifice.use_memo" title="edifice.use_memo"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_memo()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">type fn<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_callback</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
-</dd>
-<dt class="field-even">param fn<span class="colon">:</span></dt>
-<dd class="field-even"><p>A function of no arguments which creates and returns a callback function.</p>
-</dd>
-<dt class="field-odd">type dependencies<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span></p>
-</dd>
-<dt class="field-even">param dependencies<span class="colon">:</span></dt>
-<dd class="field-even"><p>The callback function will be created when the
-<code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the old <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>.</p>
-</dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_callback</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
 </dd>
-<dt class="field-even">returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A callback function.</p>
-</dd>
 </dl>
-</section>
 </dd></dl>
 
 </section>

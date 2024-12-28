@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 2.8.1 documentation</title>
+    <title>Release Notes &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="_static/documentation_options.js?v=cd87aae0"></script>
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,8 +118,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.1 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.1 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -378,6 +378,17 @@
                   
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<section id="v2-9-0">
+<h2>v2.9.0<a class="headerlink" href="#v2-9-0" title="Link to this heading">#</a></h2>
+<p>Released: 2024-12-28</p>
+<ul class="simple">
+<li><p>New Hooks: <a class="reference internal" href="stubs/edifice.provide_context.html#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a>, <a class="reference internal" href="stubs/edifice.use_context.html#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="styling.html#styling"><span class="std std-ref">Styling</span></a> <code class="code docutils literal notranslate"><span class="pre">style</span></code> prop <code class="code docutils literal notranslate"><span class="pre">&quot;align&quot;</span></code> can take an
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.AlignmentFlag">AlignmentFlag</a>.</p></li>
+<li><p><a class="reference internal" href="styling.html#styling"><span class="std std-ref">Styling</span></a> <code class="code docutils literal notranslate"><span class="pre">style</span></code> prop colors can take a <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QColor.html">QColor</a>.</p></li>
+<li><p>Deprecate Hook <a class="reference internal" href="stubs/edifice.use_callback.html#edifice.use_callback" title="edifice.use_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_callback()</span></code></a> in favor of <a class="reference internal" href="stubs/edifice.use_memo.html#edifice.use_memo" title="edifice.use_memo"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_memo()</span></code></a>.</p></li>
+</ul>
+</section>
 <section id="v2-8-1">
 <h2>v2.8.1<a class="headerlink" href="#v2-8-1" title="Link to this heading">#</a></h2>
 <p>Released: 2024-12-18</p>
@@ -480,16 +491,16 @@ Fix bug children disappeared when re-rendering with no changes.</p></li>
 <li><p>New Hook <a class="reference internal" href="stubs/edifice.use_stop.html#edifice.use_stop" title="edifice.use_stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_stop()</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> <a class="reference internal" href="stubs/edifice.WindowPopView.html#edifice.WindowPopView" title="edifice.WindowPopView"><code class="xref py py-class docutils literal notranslate"><span class="pre">WindowPopView</span></code></a> new arg <code class="code docutils literal notranslate"><span class="pre">_size_open</span></code>.</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id41">
-<div class="code-block-caption"><span class="caption-text">Old TableGridView API</span><a class="headerlink" href="#id41" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Old TableGridView API</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">()</span> <span class="k">as</span> <span class="n">tgv</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">tgv</span><span class="o">.</span><span class="n">row</span><span class="p">():</span>
         <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id42">
-<div class="code-block-caption"><span class="caption-text">New TableGridView API</span><a class="headerlink" href="#id42" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">New TableGridView API</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">TableGridRow</span><span class="p">():</span>
         <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
@@ -593,7 +604,7 @@ These functions have deprecation warnings at the type level and at runtime,
 and they will be removed in the future.</p>
 </section>
 <section id="v0-7-4">
-<span id="id1"></span><h2>v0.7.4<a class="headerlink" href="#v0-7-4" title="Link to this heading">#</a></h2>
+<h2>v0.7.4<a class="headerlink" href="#v0-7-4" title="Link to this heading">#</a></h2>
 <p>Released: 2024-06-14</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">component()</span></code></a> composition with <code class="code docutils literal notranslate"><span class="pre">children</span></code> props
@@ -601,28 +612,28 @@ and <a class="reference internal" href="stubs/edifice.child_place.html#edifice.c
 </ul>
 </section>
 <section id="v0-7-3">
-<span id="id2"></span><h2>v0.7.3<a class="headerlink" href="#v0-7-3" title="Link to this heading">#</a></h2>
+<h2>v0.7.3<a class="headerlink" href="#v0-7-3" title="Link to this heading">#</a></h2>
 <p>Released: 2024-06-12</p>
 <ul class="simple">
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code> <code class="code docutils literal notranslate"><span class="pre">layout=&quot;none&quot;</span></code> remove minimum size 100×100.</p></li>
 </ul>
 </section>
 <section id="v0-7-2">
-<span id="id3"></span><h2>v0.7.2<a class="headerlink" href="#v0-7-2" title="Link to this heading">#</a></h2>
+<h2>v0.7.2<a class="headerlink" href="#v0-7-2" title="Link to this heading">#</a></h2>
 <p>Released: 2024-06-11</p>
 <ul class="simple">
 <li><p>Bugfix <code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code> <code class="code docutils literal notranslate"><span class="pre">layout=&quot;none&quot;</span></code> added children become visible.</p></li>
 </ul>
 </section>
 <section id="v0-7-1">
-<span id="id4"></span><h2>v0.7.1<a class="headerlink" href="#v0-7-1" title="Link to this heading">#</a></h2>
+<h2>v0.7.1<a class="headerlink" href="#v0-7-1" title="Link to this heading">#</a></h2>
 <p>Released: 2024-06-06</p>
 <ul class="simple">
 <li><p>Prop <code class="code docutils literal notranslate"><span class="pre">padding</span></code> for <code class="code docutils literal notranslate"><span class="pre">View</span></code> layout Elements.</p></li>
 </ul>
 </section>
 <section id="v0-7-0">
-<span id="id5"></span><h2>v0.7.0<a class="headerlink" href="#v0-7-0" title="Link to this heading">#</a></h2>
+<h2>v0.7.0<a class="headerlink" href="#v0-7-0" title="Link to this heading">#</a></h2>
 <p>Released: 2024-06-04</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.RadioButton.html#edifice.RadioButton" title="edifice.RadioButton"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadioButton</span></code></a> fully declarative <code class="code docutils literal notranslate"><span class="pre">checked</span></code> prop.</p></li>
@@ -635,14 +646,14 @@ of the parent widget, and only depends on how the <code class="code docutils lit
 is calculated.</p>
 </section>
 <section id="v0-6-2">
-<span id="id6"></span><h2>v0.6.2<a class="headerlink" href="#v0-6-2" title="Link to this heading">#</a></h2>
+<h2>v0.6.2<a class="headerlink" href="#v0-6-2" title="Link to this heading">#</a></h2>
 <p>Released: 2024-05-22</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.SpinInput.html#edifice.SpinInput" title="edifice.SpinInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpinInput</span></code></a> bugfix: Set value after min/max.</p></li>
 </ul>
 </section>
 <section id="v0-6-1">
-<span id="id7"></span><h2>v0.6.1<a class="headerlink" href="#v0-6-1" title="Link to this heading">#</a></h2>
+<h2>v0.6.1<a class="headerlink" href="#v0-6-1" title="Link to this heading">#</a></h2>
 <p>Released: 2024-05-22</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.SpinInput.html#edifice.SpinInput" title="edifice.SpinInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpinInput</span></code></a> bugfix: Block <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> signal while setting
@@ -650,7 +661,7 @@ min and max value.</p></li>
 </ul>
 </section>
 <section id="v0-6-0">
-<span id="id8"></span><h2>v0.6.0<a class="headerlink" href="#v0-6-0" title="Link to this heading">#</a></h2>
+<h2>v0.6.0<a class="headerlink" href="#v0-6-0" title="Link to this heading">#</a></h2>
 <p>Released: 2024-05-21</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -664,7 +675,7 @@ min and max value.</p></li>
 </ul>
 </section>
 <section id="v0-5-6">
-<span id="id9"></span><h2>v0.5.6<a class="headerlink" href="#v0-5-6" title="Link to this heading">#</a></h2>
+<h2>v0.5.6<a class="headerlink" href="#v0-5-6" title="Link to this heading">#</a></h2>
 <p>Released: 2024-05-18</p>
 <ul class="simple">
 <li><p>New base element <a class="reference internal" href="stubs/edifice.TextInputMultiline.html#edifice.TextInputMultiline" title="edifice.TextInputMultiline"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextInputMultiline</span></code></a>.</p></li>
@@ -672,14 +683,14 @@ min and max value.</p></li>
 </ul>
 </section>
 <section id="v0-5-5">
-<span id="id10"></span><h2>v0.5.5<a class="headerlink" href="#v0-5-5" title="Link to this heading">#</a></h2>
+<h2>v0.5.5<a class="headerlink" href="#v0-5-5" title="Link to this heading">#</a></h2>
 <p>Released: 2024-04-30</p>
 <ul class="simple">
 <li><p>bugfix <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> <code class="code docutils literal notranslate"><span class="pre">on_resize</span></code> event handler prop.</p></li>
 </ul>
 </section>
 <section id="v0-5-4">
-<span id="id11"></span><h2>v0.5.4<a class="headerlink" href="#v0-5-4" title="Link to this heading">#</a></h2>
+<h2>v0.5.4<a class="headerlink" href="#v0-5-4" title="Link to this heading">#</a></h2>
 <p>Released: 2024-04-29</p>
 <ul class="simple">
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">CommandType</span></code> non-private for writing custom <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> classes.</p></li>
@@ -688,7 +699,7 @@ min and max value.</p></li>
 </ul>
 </section>
 <section id="v0-5-3">
-<span id="id12"></span><h2>v0.5.3<a class="headerlink" href="#v0-5-3" title="Link to this heading">#</a></h2>
+<h2>v0.5.3<a class="headerlink" href="#v0-5-3" title="Link to this heading">#</a></h2>
 <p>Released: 2024-04-22</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.SpinInput.html#edifice.SpinInput" title="edifice.SpinInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpinInput</span></code></a> don’t fire on_change when prop value changes.</p></li>
@@ -697,7 +708,7 @@ min and max value.</p></li>
 </ul>
 </section>
 <section id="v0-5-2">
-<span id="id13"></span><h2>v0.5.2<a class="headerlink" href="#v0-5-2" title="Link to this heading">#</a></h2>
+<h2>v0.5.2<a class="headerlink" href="#v0-5-2" title="Link to this heading">#</a></h2>
 <p>Released: 2024-04-01</p>
 <ul class="simple">
 <li><p>New Hook <a class="reference internal" href="stubs/edifice.use_effect_final.html#edifice.use_effect_final" title="edifice.use_effect_final"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect_final()</span></code></a></p></li>
@@ -707,7 +718,7 @@ component.</p></li>
 </ul>
 </section>
 <section id="v0-5-1">
-<span id="id14"></span><h2>v0.5.1<a class="headerlink" href="#v0-5-1" title="Link to this heading">#</a></h2>
+<h2>v0.5.1<a class="headerlink" href="#v0-5-1" title="Link to this heading">#</a></h2>
 <p>Released: 2024-03-27</p>
 <ul class="simple">
 <li><p>Big reductions in memory leaking from <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> Hook.</p></li>
@@ -716,7 +727,7 @@ schedule new <a class="reference internal" href="stubs/edifice.use_async.html#ed
 </ul>
 </section>
 <section id="v0-5-0">
-<span id="id15"></span><h2>v0.5.0<a class="headerlink" href="#v0-5-0" title="Link to this heading">#</a></h2>
+<h2>v0.5.0<a class="headerlink" href="#v0-5-0" title="Link to this heading">#</a></h2>
 <p>Released: 2024-03-21</p>
 <ul>
 <li><p>Change event handler props called only on UI interaction.</p>
@@ -736,7 +747,7 @@ prop changed.</p>
 </ul>
 </section>
 <section id="v0-4-5">
-<span id="id16"></span><h2>v0.4.5<a class="headerlink" href="#v0-4-5" title="Link to this heading">#</a></h2>
+<h2>v0.4.5<a class="headerlink" href="#v0-4-5" title="Link to this heading">#</a></h2>
 <p>Released: 2024-03-21</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -751,7 +762,7 @@ prop changed.</p>
 </ul>
 </section>
 <section id="v0-4-4">
-<span id="id17"></span><h2>v0.4.4<a class="headerlink" href="#v0-4-4" title="Link to this heading">#</a></h2>
+<h2>v0.4.4<a class="headerlink" href="#v0-4-4" title="Link to this heading">#</a></h2>
 <p>Released: 2024-03-16</p>
 <ul class="simple">
 <li><p>Inspector is working now with <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>.</p></li>
@@ -760,7 +771,7 @@ prop changed.</p>
 </ul>
 </section>
 <section id="v0-4-3">
-<span id="id18"></span><h2>v0.4.3<a class="headerlink" href="#v0-4-3" title="Link to this heading">#</a></h2>
+<h2>v0.4.3<a class="headerlink" href="#v0-4-3" title="Link to this heading">#</a></h2>
 <p>Released: 2024-03-06</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextInput</span></code></a> bugfix don’t <code class="code docutils literal notranslate"><span class="pre">setText</span></code> on every render.</p></li>
@@ -768,7 +779,7 @@ prop changed.</p>
 </ul>
 </section>
 <section id="v0-4-2">
-<span id="id19"></span><h2>v0.4.2<a class="headerlink" href="#v0-4-2" title="Link to this heading">#</a></h2>
+<h2>v0.4.2<a class="headerlink" href="#v0-4-2" title="Link to this heading">#</a></h2>
 <p>Released: 2024-02-26</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> allways run when <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> is <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
@@ -776,7 +787,7 @@ prop changed.</p>
 </ul>
 </section>
 <section id="v0-4-1">
-<span id="id20"></span><h2>v0.4.1<a class="headerlink" href="#v0-4-1" title="Link to this heading">#</a></h2>
+<h2>v0.4.1<a class="headerlink" href="#v0-4-1" title="Link to this heading">#</a></h2>
 <p>Released: 2024-02-17</p>
 <ul class="simple">
 <li><p>Rending logic correctness and stability improvements.</p></li>
@@ -785,7 +796,7 @@ prop changed.</p>
 </ul>
 </section>
 <section id="v0-4-0">
-<span id="id21"></span><h2>v0.4.0<a class="headerlink" href="#v0-4-0" title="Link to this heading">#</a></h2>
+<h2>v0.4.0<a class="headerlink" href="#v0-4-0" title="Link to this heading">#</a></h2>
 <p>Released: 2024-02-08</p>
 <p>Major changes to <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> and the <a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a></p>
 <ul class="simple">
@@ -824,7 +835,7 @@ hot-reloading to work properly.</p></li>
 </ul>
 </section>
 <section id="v0-3-7">
-<span id="id22"></span><h2>v0.3.7<a class="headerlink" href="#v0-3-7" title="Link to this heading">#</a></h2>
+<h2>v0.3.7<a class="headerlink" href="#v0-3-7" title="Link to this heading">#</a></h2>
 <p>Released: 2024-02-06</p>
 <ul class="simple">
 <li><p>Breaking change: Hook <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call()</span></code></a> returns canceller function in a
@@ -832,42 +843,42 @@ tuple.</p></li>
 </ul>
 </section>
 <section id="v0-3-6">
-<span id="id23"></span><h2>v0.3.6<a class="headerlink" href="#v0-3-6" title="Link to this heading">#</a></h2>
+<h2>v0.3.6<a class="headerlink" href="#v0-3-6" title="Link to this heading">#</a></h2>
 <p>Released: 2024-02-06</p>
 <ul class="simple">
 <li><p>Hooks <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> and <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call()</span></code></a> are manually cancellable.</p></li>
 </ul>
 </section>
 <section id="v0-3-5">
-<span id="id24"></span><h2>v0.3.5<a class="headerlink" href="#v0-3-5" title="Link to this heading">#</a></h2>
+<h2>v0.3.5<a class="headerlink" href="#v0-3-5" title="Link to this heading">#</a></h2>
 <p>Released: 2024-02-03</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> bugfix.</p></li>
 </ul>
 </section>
 <section id="v0-3-4">
-<span id="id25"></span><h2>v0.3.4<a class="headerlink" href="#v0-3-4" title="Link to this heading">#</a></h2>
+<h2>v0.3.4<a class="headerlink" href="#v0-3-4" title="Link to this heading">#</a></h2>
 <p>Released: 2024-01-31</p>
 <ul class="simple">
 <li><p>New Hook <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call()</span></code></a></p></li>
 </ul>
 </section>
 <section id="v0-3-3">
-<span id="id26"></span><h2>v0.3.3<a class="headerlink" href="#v0-3-3" title="Link to this heading">#</a></h2>
+<h2>v0.3.3<a class="headerlink" href="#v0-3-3" title="Link to this heading">#</a></h2>
 <p>Released: 2024-01-25</p>
 <ul class="simple">
 <li><p>Internal improvements and <em>typing-extensions</em> requirement.</p></li>
 </ul>
 </section>
 <section id="v0-3-2">
-<span id="id27"></span><h2>v0.3.2<a class="headerlink" href="#v0-3-2" title="Link to this heading">#</a></h2>
+<h2>v0.3.2<a class="headerlink" href="#v0-3-2" title="Link to this heading">#</a></h2>
 <p>Released: 2024-01-22</p>
 <ul class="simple">
 <li><p>Hooks are preserved during hot-reload.</p></li>
 </ul>
 </section>
 <section id="v0-3-1">
-<span id="id28"></span><h2>v0.3.1<a class="headerlink" href="#v0-3-1" title="Link to this heading">#</a></h2>
+<h2>v0.3.1<a class="headerlink" href="#v0-3-1" title="Link to this heading">#</a></h2>
 <p>Released: 2024-01-19</p>
 <ul class="simple">
 <li><p>Hot-reload improvements and bugfixes.</p></li>
@@ -875,7 +886,7 @@ tuple.</p></li>
 </ul>
 </section>
 <section id="v0-3-0">
-<span id="id29"></span><h2>v0.3.0<a class="headerlink" href="#v0-3-0" title="Link to this heading">#</a></h2>
+<h2>v0.3.0<a class="headerlink" href="#v0-3-0" title="Link to this heading">#</a></h2>
 <p>Released: 2023-12-19</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -906,14 +917,14 @@ tuple.</p></li>
 </ul>
 </section>
 <section id="v0-2-1">
-<span id="id30"></span><h2>v0.2.1<a class="headerlink" href="#v0-2-1" title="Link to this heading">#</a></h2>
+<h2>v0.2.1<a class="headerlink" href="#v0-2-1" title="Link to this heading">#</a></h2>
 <p>Released: 2023-11-14</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.ExportList.html#edifice.ExportList" title="edifice.ExportList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExportList</span></code></a> for <a class="reference internal" href="stubs/stubs/edifice.App.export_widgets.html#edifice.App.export_widgets" title="edifice.App.export_widgets"><code class="xref py py-func docutils literal notranslate"><span class="pre">App.export_widgets()</span></code></a>.</p></li>
 </ul>
 </section>
 <section id="v0-2-0">
-<span id="id31"></span><h2>v0.2.0<a class="headerlink" href="#v0-2-0" title="Link to this heading">#</a></h2>
+<h2>v0.2.0<a class="headerlink" href="#v0-2-0" title="Link to this heading">#</a></h2>
 <p>Released: 2023-11-13</p>
 <p>This version has a lot of breaking changes. We have done essentially the same
 upgrade that React.js did when they upgraded to function components and Hooks
@@ -952,7 +963,7 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 </ol>
 </section>
 <section id="v0-1-2">
-<span id="id32"></span><h2>v0.1.2<a class="headerlink" href="#v0-1-2" title="Link to this heading">#</a></h2>
+<h2>v0.1.2<a class="headerlink" href="#v0-1-2" title="Link to this heading">#</a></h2>
 <p>Released: 2023-10-06</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">PropsDict</span></code> type annotations.</p></li>
@@ -960,14 +971,14 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 </ul>
 </section>
 <section id="v0-1-1">
-<span id="id33"></span><h2>v0.1.1<a class="headerlink" href="#v0-1-1" title="Link to this heading">#</a></h2>
+<h2>v0.1.1<a class="headerlink" href="#v0-1-1" title="Link to this heading">#</a></h2>
 <p>Released: 2023-09-15</p>
 <ul class="simple">
 <li><p>Documentation and metadata improvements.</p></li>
 </ul>
 </section>
 <section id="v0-1-0">
-<span id="id34"></span><h2>v0.1.0<a class="headerlink" href="#v0-1-0" title="Link to this heading">#</a></h2>
+<h2>v0.1.0<a class="headerlink" href="#v0-1-0" title="Link to this heading">#</a></h2>
 <p>Released: 2023-09-14</p>
 <ul class="simple">
 <li><p><strong>Upgrade to PySide6/PyQt6.</strong> Deprecate PySide2/PyQt5.</p></li>
@@ -985,7 +996,7 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 </ul>
 </section>
 <section id="v0-0-10">
-<span id="id35"></span><h2>v0.0.10<a class="headerlink" href="#v0-0-10" title="Link to this heading">#</a></h2>
+<h2>v0.0.10<a class="headerlink" href="#v0-0-10" title="Link to this heading">#</a></h2>
 <p>Released: 2021-07-15</p>
 <ul class="simple">
 <li><p>Fix deletion from View and ScrollView.</p></li>
@@ -993,7 +1004,7 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 </ul>
 </section>
 <section id="v0-0-9">
-<span id="id36"></span><h2>v0.0.9<a class="headerlink" href="#v0-0-9" title="Link to this heading">#</a></h2>
+<h2>v0.0.9<a class="headerlink" href="#v0-0-9" title="Link to this heading">#</a></h2>
 <p>Released: 2021-06-20</p>
 <ul class="simple">
 <li><p>Add grid view.</p></li>
@@ -1007,23 +1018,23 @@ is now <code class="code docutils literal notranslate"><span class="pre">_set_st
 </ul>
 </section>
 <section id="v0-0-8">
-<span id="id37"></span><h2>v0.0.8<a class="headerlink" href="#v0-0-8" title="Link to this heading">#</a></h2>
+<h2>v0.0.8<a class="headerlink" href="#v0-0-8" title="Link to this heading">#</a></h2>
 <p>Released: 2021-02-04</p>
 <p>Bug fixes for dynamic loading,
 and clearer error messages for Dropdowns and Sliders.</p>
 </section>
 <section id="v0-0-7">
-<span id="id38"></span><h2>v0.0.7<a class="headerlink" href="#v0-0-7" title="Link to this heading">#</a></h2>
+<h2>v0.0.7<a class="headerlink" href="#v0-0-7" title="Link to this heading">#</a></h2>
 <p>Released: 2021-02-02</p>
 <p>Bug fixes for checkboxes and forms.</p>
 </section>
 <section id="v0-0-6">
-<span id="id39"></span><h2>v0.0.6<a class="headerlink" href="#v0-0-6" title="Link to this heading">#</a></h2>
+<h2>v0.0.6<a class="headerlink" href="#v0-0-6" title="Link to this heading">#</a></h2>
 <p>Released: 2021-01-27</p>
 <p>Support for asyncio.</p>
 </section>
 <section id="v0-0-5">
-<span id="id40"></span><h2>v0.0.5<a class="headerlink" href="#v0-0-5" title="Link to this heading">#</a></h2>
+<h2>v0.0.5<a class="headerlink" href="#v0-0-5" title="Link to this heading">#</a></h2>
 <p>Released: 2021-01-26</p>
 <p>First public release.</p>
 </section>
@@ -1067,6 +1078,7 @@ and clearer error messages for Dropdowns and Sliders.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-9-0">v2.9.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-8-1">v2.8.1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-8-0">v2.8.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-7-1">v2.7.1</a></li>

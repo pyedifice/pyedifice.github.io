@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.ExportList.set_key &#8212; Edifice 2.9.0 documentation</title>
+    <title>edifice.use_context &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -27,30 +27,30 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7d2b32d0" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=7d2b32d0" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../_static/documentation_options.js?v=182a64a0"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/stubs/edifice.ExportList.set_key';</script>
-    <link rel="icon" href="../../_static/EdificePyramid.ico"/>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="edifice.VBoxView" href="../edifice.VBoxView.html" />
-    <link rel="prev" title="edifice.ExportList.register_ref" href="edifice.ExportList.register_ref.html" />
+    <script src="../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.use_context';</script>
+    <link rel="icon" href="../_static/EdificePyramid.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="edifice.use_hover" href="edifice.use_hover.html" />
+    <link rel="prev" title="edifice.provide_context" href="edifice.provide_context.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -72,7 +72,7 @@
   <dialog id="pst-search-dialog">
     
 <form class="bd-search d-flex align-items-center"
-      action="../../search.html"
+      action="../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -108,7 +108,7 @@
     
   
 
-<a class="navbar-brand logo" href="../../index.html">
+<a class="navbar-brand logo" href="../index.html">
   
   
   
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -136,35 +136,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../tutorial.html">
+  <a class="nav-link nav-internal" href="../tutorial.html">
     Tutorial
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../examples.html">
+  <a class="nav-link nav-internal" href="../examples.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../api.html">
+  <a class="nav-link nav-internal" href="../api.html">
     API
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../developer_tools.html">
+  <a class="nav-link nav-internal" href="../developer_tools.html">
     Developer Tools
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../versions.html">
+  <a class="nav-link nav-internal" href="../versions.html">
     Release Notes
   </a>
 </li>
@@ -255,35 +255,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../tutorial.html">
+  <a class="nav-link nav-internal" href="../tutorial.html">
     Tutorial
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../examples.html">
+  <a class="nav-link nav-internal" href="../examples.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../api.html">
+  <a class="nav-link nav-internal" href="../api.html">
     API
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../developer_tools.html">
+  <a class="nav-link nav-internal" href="../developer_tools.html">
     Developer Tools
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../versions.html">
+  <a class="nav-link nav-internal" href="../versions.html">
     Release Notes
   </a>
 </li>
@@ -352,20 +352,17 @@
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
-      <a href="../../index.html" class="nav-link" aria-label="Home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../api.html" class="nav-link">API</a></li>
+    <li class="breadcrumb-item"><a href="../api.html" class="nav-link">API</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../../base_components.html" class="nav-link">Base Elements</a></li>
+    <li class="breadcrumb-item"><a href="../hooks.html" class="nav-link">Hooks</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../edifice.ExportList.html" class="nav-link">edifice.ExportList</a></li>
-    
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">edifice.ExportList.set_key</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">edifice.use_context</span></li>
   </ul>
 </nav>
 </div>
@@ -382,45 +379,43 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-exportlist-set-key">
-<h1>edifice.ExportList.set_key<a class="headerlink" href="#edifice-exportlist-set-key" title="Link to this heading">#</a></h1>
-<dl class="py method">
-<dt class="sig sig-object py" id="edifice.ExportList.set_key">
-<span class="sig-prename descclassname"><span class="pre">ExportList.</span></span><span class="sig-name descname"><span class="pre">set_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#edifice.ExportList.set_key" title="Link to this definition">#</a></dt>
-<dd><p>Set the key of an <a class="reference internal" href="../edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
-<p>The key is used when re-rendering to match new child Elements
-with old child Elements.
-The diffing algorithm will assume that child Elements with the same key
-are identical.</p>
-<p>Each key must be unique and persistent. The <strong>Edifice Rules
-of Keys</strong> are the same as the
-<a class="reference external" href="https://react.dev/learn/rendering-lists#rules-of-keys">React Rules of Keys</a>.</p>
-<ul class="simple">
-<li><p><strong>Keys must be unique among siblings.</strong> However, it’s okay to use the same keys for Elements of different parents.</p></li>
-<li><p><strong>Keys must not change</strong> or that defeats their purpose! Don’t generate them while rendering.</p></li>
-</ul>
-<p>Returns the Element to allow for chaining.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">english</span><span class="p">:</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">french</span><span class="p">:</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;fr&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">spanish</span><span class="p">:</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hola&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;es&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+  <section id="edifice-use-context">
+<h1>edifice.use_context<a class="headerlink" href="#edifice-use-context" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="edifice.use_context">
+<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_context" title="Link to this definition">#</a></dt>
+<dd><p>Context state consumer Hook for <em>prop drilling</em>.</p>
+<p>Provides similar features to React <a class="reference external" href="https://react.dev/reference/react/useContext">useContext</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The Element unique key string.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context_key</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Identifier for a shared context.</p></li>
+<li><p><strong>value_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_context</span></code>)]</span>) – The type of the <strong>initial value</strong> in the parent <a class="reference internal" href="edifice.provide_context.html#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a></p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_context</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_context</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_context</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_use_context</span></code>)]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Element.</p>
+<dd class="field-odd"><p><p>A tuple pair containing</p>
+<ol class="arabic simple">
+<li><p>The current <strong>state value</strong> for the given <code class="code docutils literal notranslate"><span class="pre">context_key</span></code>.</p></li>
+<li><p>A <strong>setter function</strong> for setting or updating the <strong>state value</strong>.</p></li>
+</ol>
+</p>
 </dd>
 </dl>
+<p>Use this Hook to consume state transmitted by the <a class="reference internal" href="edifice.provide_context.html#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a> with
+the same <code class="code docutils literal notranslate"><span class="pre">context_key</span></code>.</p>
+<p><a class="reference internal" href="#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a> is called with a <code class="code docutils literal notranslate"><span class="pre">context_key</span></code> and a <code class="code docutils literal notranslate"><span class="pre">value_type</span></code>.
+It returns a <strong>state value</strong> and a <strong>setter function</strong>. The
+<strong>state value</strong> and <strong>setter function</strong> behave exactly like the
+ones documented in <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>. The <code class="code docutils literal notranslate"><span class="pre">value_type</span></code> must be the same
+as the type of the <strong>initial value</strong> in the <a class="reference internal" href="edifice.provide_context.html#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a>
+with the same <code class="code docutils literal notranslate"><span class="pre">context_key</span></code>.</p>
+<p>The <strong>setter function</strong> will, when called, update the <strong>state value</strong> across
+each <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> using <a class="reference internal" href="#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a> with the
+same <code class="code docutils literal notranslate"><span class="pre">context_key</span></code>.</p>
 </dd></dl>
 
 </section>
@@ -436,20 +431,20 @@ of Keys</strong> are the same as the
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="edifice.ExportList.register_ref.html"
+       href="edifice.provide_context.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.ExportList.register_ref</p>
+        <p class="prev-next-title">edifice.provide_context</p>
       </div>
     </a>
     <a class="right-next"
-       href="../edifice.VBoxView.html"
+       href="edifice.use_hover.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.VBoxView</p>
+        <p class="prev-next-title">edifice.use_hover</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -471,8 +466,8 @@ of Keys</strong> are the same as the
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

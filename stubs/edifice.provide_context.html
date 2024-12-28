@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.ScrollBar &#8212; Edifice 2.9.0 documentation</title>
+    <title>edifice.provide_context &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -45,12 +45,12 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.ScrollBar';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stubs/edifice.provide_context';</script>
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.ScrollBar.__init__" href="stubs/edifice.ScrollBar.__init__.html" />
-    <link rel="prev" title="edifice.RadioButton.set_key" href="stubs/edifice.RadioButton.set_key.html" />
+    <link rel="next" title="edifice.use_context" href="edifice.use_context.html" />
+    <link rel="prev" title="edifice.use_memo" href="edifice.use_memo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -360,9 +360,9 @@
     <li class="breadcrumb-item"><a href="../api.html" class="nav-link">API</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../base_components.html" class="nav-link">Base Elements</a></li>
+    <li class="breadcrumb-item"><a href="../hooks.html" class="nav-link">Hooks</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">edifice.ScrollBar</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">edifice.provide_context</span></li>
   </ul>
 </nav>
 </div>
@@ -379,62 +379,64 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="edifice-scrollbar">
-<h1>edifice.ScrollBar<a class="headerlink" href="#edifice-scrollbar" title="Link to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="edifice.ScrollBar">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">ScrollBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_single=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_page=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation=&lt;Orientation.Vertical:</span> <span class="pre">2&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_value_changed=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_slider_pressed=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_slider_released=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/scroll_bar.html#ScrollBar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.ScrollBar" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QScrollBar</span></code>]</p>
-<p>Scroll bar widget.</p>
-<p>Render a scroll bar widget that allows the user to scroll through a range of values.</p>
-<ul class="simple">
-<li><p>Underlying Qt Widget:
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollBar.html">QScrollBar</a></p></li>
-</ul>
+  <section id="edifice-provide-context">
+<h1>edifice.provide_context<a class="headerlink" href="#edifice-provide-context" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="edifice.provide_context">
+<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">provide_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#provide_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.provide_context" title="Link to this definition">#</a></dt>
+<dd><p>Context state provider Hook for <em>prop drilling</em>.</p>
+<p>Provides similar features to React <a class="reference external" href="https://react.dev/reference/react/useContext">useContext</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type">int</span>) – The current value of the scroll bar.</p></li>
-<li><p><strong>minimum</strong> (<span class="sphinx_autodoc_typehints-type">int</span>) – The minimum value of the scroll bar.</p></li>
-<li><p><strong>maximum</strong> (<span class="sphinx_autodoc_typehints-type">int</span>) – The maximum value of the scroll bar.</p></li>
-<li><p><strong>step_single</strong> (<span class="sphinx_autodoc_typehints-type">int | None</span>) – The step size for arrow keys.</p></li>
-<li><p><strong>step_page</strong> (<span class="sphinx_autodoc_typehints-type">int | None</span>) – The step size for PgUp/PgDown keys.</p></li>
-<li><p><strong>orientation</strong> (<span class="sphinx_autodoc_typehints-type">Qt.Orientation</span>) – The scroll bar <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#Qt.Orientation">Orientation</a>.</p></li>
-<li><p><strong>on_value_changed</strong> (<span class="sphinx_autodoc_typehints-type">Callable[[int], None | Awaitable[None]] | None</span>) – Callback for when the value of the scroll bar changes.</p></li>
-<li><p><strong>on_slider_pressed</strong> (<span class="sphinx_autodoc_typehints-type">Callable[[], None | Awaitable[None]] | None</span>) – Callback for when the slider is pressed.</p></li>
-<li><p><strong>on_slider_released</strong> (<span class="sphinx_autodoc_typehints-type">Callable[[], None | Awaitable[None]] | None</span>) – Callback for when the slider is released.</p></li>
+<li><p><strong>context_key</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Identifier for a shared context.</p></li>
+<li><p><strong>initial_state</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_provide_context</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_provide_context</span></code>)]]</span>) – The initial <strong>state value</strong> or <strong>initializer function</strong>.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_provide_context</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_provide_context</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_provide_context</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_provide_context</span></code>)]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>A tuple pair containing</p>
+<ol class="arabic simple">
+<li><p>The current <strong>state value</strong> for the given <code class="code docutils literal notranslate"><span class="pre">context_key</span></code>.</p></li>
+<li><p>A <strong>setter function</strong> for setting or updating the <strong>state value</strong>.</p></li>
+</ol>
+</p>
+</dd>
 </dl>
-<p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.ScrollBar.__init__.html#edifice.ScrollBar.__init__" title="edifice.ScrollBar.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([value, minimum, maximum, ...])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ScrollBar.register_ref.html#edifice.ScrollBar.register_ref" title="edifice.ScrollBar.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
-<td><p>Registers provided <a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.ScrollBar.set_key.html#edifice.ScrollBar.set_key" title="edifice.ScrollBar.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
-<td><p>Set the key of an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
-</tr>
-</tbody>
-</table>
+<p>Use this Hook to transmit state without passing the state down through
+the <strong>props</strong> to a child <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> using
+<a class="reference internal" href="edifice.use_context.html#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a>.</p>
+<p><a class="reference internal" href="#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a> is called with a <code class="code docutils literal notranslate"><span class="pre">context_key</span></code> and an <strong>initial value</strong>.
+It returns a <strong>state value</strong> and a <strong>setter function</strong>. The <strong>initial value</strong>,
+<strong>state value</strong> and <strong>setter function</strong> behave exactly like the
+ones documented in <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">context_key</span></code> must be unique for each <a class="reference internal" href="#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a> Hook.</p>
+<p>The <strong>setter function</strong> will, when called, update the <strong>state value</strong> across
+each <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> using <a class="reference internal" href="edifice.use_context.html#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a> with the
+same <code class="code docutils literal notranslate"><span class="pre">context_key</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example provide_context, use_context</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">ContextChild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">x_setter</span> <span class="o">=</span> <span class="n">use_context</span><span class="p">(</span><span class="s2">&quot;x_context_key&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">Button</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;+1&quot;</span>
+        <span class="n">on_click</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="n">x_setter</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">ContextParent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">_x_setter</span> <span class="o">=</span> <span class="n">provide_context</span><span class="p">(</span><span class="s2">&quot;x_context_key&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">VBoxview</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">ContextChild</span><span class="p">()</span>
+        <span class="n">ContextChild</span><span class="p">()</span>
+</pre></div>
 </div>
-<p class="rubric">Attributes</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></p></td>
-<td><p>The children of this Element.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></p></td>
-<td><p>The props of this Element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying</span></code></p></td>
-<td><p>The underlying QWidget, which may not exist if this Element has not rendered.</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </dd></dl>
 
@@ -451,20 +453,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stubs/edifice.RadioButton.set_key.html"
+       href="edifice.use_memo.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.RadioButton.set_key</p>
+        <p class="prev-next-title">edifice.use_memo</p>
       </div>
     </a>
     <a class="right-next"
-       href="stubs/edifice.ScrollBar.__init__.html"
+       href="edifice.use_context.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.ScrollBar.__init__</p>
+        <p class="prev-next-title">edifice.use_context</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

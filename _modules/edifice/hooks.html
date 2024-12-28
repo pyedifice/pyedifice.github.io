@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 2.8.1 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../_static/documentation_options.js?v=cd87aae0"></script>
+    <script src="../../_static/documentation_options.js?v=182a64a0"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -381,7 +381,10 @@
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 <span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">get_event_loop</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">deprecated</span>
 
 <span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="n">Reference</span><span class="p">,</span> <span class="n">_T_use_state</span><span class="p">,</span> <span class="n">get_render_context_maybe</span>
 <span class="kn">from</span> <span class="nn">edifice.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
@@ -403,9 +406,17 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Persistent mutable state Hook inside a :func:`@component&lt;edifice.component&gt;` function.</span>
 
-<span class="sd">    Behaves like `React useState &lt;https://react.dev/reference/react/useState&gt;`_.</span>
+<span class="sd">    Behaves like React `useState &lt;https://react.dev/reference/react/useState&gt;`_.</span>
 
-<span class="sd">    :func:`use_state` is called with an **initial state**.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        initial_state: The initial **state value** or **initializer function**.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple pair containing</span>
+
+<span class="sd">        1. The current **state value**.</span>
+<span class="sd">        2. A **setter function** for setting or updating the state value.</span>
+
+<span class="sd">    :func:`use_state` is called with an **initial value**.</span>
 <span class="sd">    It returns a **state value** and a</span>
 <span class="sd">    **setter function**.</span>
 
@@ -428,6 +439,10 @@
 <span class="sd">                on_click = lambda _event: x_setter(x + 1)</span>
 <span class="sd">            )</span>
 
+<span class="sd">    The **setter function** is referentially stable, so it will always</span>
+<span class="sd">    be :code:`__eq__` to the **setter function** from the previous render.</span>
+<span class="sd">    It can be passed as a **prop** to child components.</span>
+
 <span class="sd">    The **setter function** should be called inside of an event handler</span>
 <span class="sd">    or a :func:`use_effect` function.</span>
 
@@ -447,10 +462,12 @@
 <span class="sd">    Initialization</span>
 <span class="sd">    --------------</span>
 
+<span class="sd">    The **initial value** can be either a **state value** or an **initializer function**.</span>
+
 <span class="sd">    An **initializer function** is a function of no arguments.</span>
 
 <span class="sd">    If an **initializer function** is passed to :func:`use_state` instead</span>
-<span class="sd">    of an initial value, then the</span>
+<span class="sd">    of an **state value**, then the</span>
 <span class="sd">    **initializer function** will be called once before</span>
 <span class="sd">    this :func:`components`’s first render to get the **initial state**.</span>
 
@@ -483,7 +500,13 @@
 <span class="sd">    Update</span>
 <span class="sd">    ------</span>
 
-<span class="sd">    An **updater function** is a function from the previous state to the new state.</span>
+<span class="sd">    All updates from calling the **setter function** will be applied before the</span>
+<span class="sd">    beginning of the next render.</span>
+
+<span class="sd">    A **setter function** can be called with a **state value** or an **updater function**.</span>
+
+<span class="sd">    An **updater function** is a function from the previous **state value** to the</span>
+<span class="sd">    new **state value**.</span>
 
 <span class="sd">    If an **updater function** is passed to the **setter function**, then before the</span>
 <span class="sd">    beginning of the next render the **state value** will be modified by calling all of the</span>
@@ -536,7 +559,7 @@
 
 <span class="sd">            def updater(x_previous:list[str]) -&gt; list[str]:</span>
 <span class="sd">                x_new = copy(x_previous)</span>
-<span class="sd">                x_new.append(&quot;Label Text &quot; + str(len(x_previous)))</span>
+<span class="sd">                x_new.append(&quot;another&quot;)</span>
 <span class="sd">                return x_new</span>
 
 <span class="sd">            with View():</span>
@@ -567,7 +590,7 @@
 <span class="sd">            x, x_setter = use_state(cast(tuple[str, ...], ()))</span>
 
 <span class="sd">            def updater(x_previous:tuple[str, ...]) -&gt; tuple[str, ...]:</span>
-<span class="sd">                return x_previous + (&quot;Label Text &quot; + str(len(x_previous)),)</span>
+<span class="sd">                return x_previous + (&quot;another&quot;,)</span>
 
 <span class="sd">            with View():</span>
 <span class="sd">                Button(</span>
@@ -576,13 +599,6 @@
 <span class="sd">                )</span>
 <span class="sd">                for t in x:</span>
 <span class="sd">                    Label(text=t)</span>
-<span class="sd">    Args:</span>
-<span class="sd">        initial_state: The initial **state value** or **initializer function**.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        A tuple pair containing</span>
-
-<span class="sd">        1. The current **state value**.</span>
-<span class="sd">        2. A **setter function** for setting or updating the state value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -600,7 +616,20 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Side-effect Hook inside a :func:`@component&lt;edifice.component&gt;` function.</span>
 
-<span class="sd">    Behaves like `React useEffect &lt;https://react.dev/reference/react/useEffect&gt;`_.</span>
+<span class="sd">    Behaves like React `useEffect &lt;https://react.dev/reference/react/useEffect&gt;`_.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        setup:</span>
+<span class="sd">            An effect **setup function** which returns a **cleanup function**</span>
+<span class="sd">            or :code:`None`.</span>
+<span class="sd">        dependencies:</span>
+<span class="sd">            The effect **setup function** will be called when the</span>
+<span class="sd">            dependencies are not :code:`__eq__` to the old dependencies.</span>
+
+<span class="sd">            If the dependencies are :code:`None`, then the effect</span>
+<span class="sd">            **setup function** will always be called.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
 
 <span class="sd">    The **setup function** will be called after render and after the underlying</span>
 <span class="sd">    Qt Widgets are updated.</span>
@@ -645,19 +674,6 @@
 <span class="sd">                return cleanup_handler</span>
 
 <span class="sd">            use_effect(setup_handler, handler)</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        setup:</span>
-<span class="sd">            An effect **setup function** which returns a **cleanup function**</span>
-<span class="sd">            or :code:`None`.</span>
-<span class="sd">        dependencies:</span>
-<span class="sd">            The effect **setup function** will be called when the</span>
-<span class="sd">            dependencies are not :code:`__eq__` to the old dependencies.</span>
-
-<span class="sd">            If the dependencies are :code:`None`, then the effect</span>
-<span class="sd">            **setup function** will always be called.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -670,10 +686,19 @@
 <a class="viewcode-back" href="../../stubs/edifice.use_async.html#edifice.use_async">[docs]</a>
 <span class="k">def</span> <span class="nf">use_async</span><span class="p">(</span>
     <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
-    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">(),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Asynchronous side-effect Hook inside a :func:`@component&lt;edifice.component&gt;` function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_coroutine:</span>
+<span class="sd">            Async Coroutine function to be run as a Task.</span>
+<span class="sd">        dependencies:</span>
+<span class="sd">            The :code:`fn_coroutine` Task will be started when the</span>
+<span class="sd">            :code:`dependencies` are not :code:`__eq__` to the old :code:`dependencies`.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A function which can be called to cancel the :code:`fn_coroutine` Task manually.</span>
 
 <span class="sd">    Will create a new</span>
 <span class="sd">    `Task &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task&gt;`_</span>
@@ -761,15 +786,6 @@
 <span class="sd">            text=&quot;pause&quot; if is_playing else &quot;play&quot;,</span>
 <span class="sd">            on_click=lambda e: is_playing_set(lambda p: not p),</span>
 <span class="sd">        )</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        fn_coroutine:</span>
-<span class="sd">            Async Coroutine function to be run as a Task.</span>
-<span class="sd">        dependencies:</span>
-<span class="sd">            The :code:`fn_coroutine` Task will be started when the</span>
-<span class="sd">            :code:`dependencies` are not :code:`__eq__` to the old :code:`dependencies`.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        A function which can be called to cancel the :code:`fn_coroutine` Task manually.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -795,143 +811,15 @@
 
 <div class="viewcode-block" id="use_callback">
 <a class="viewcode-back" href="../../stubs/edifice.use_callback.html#edifice.use_callback">[docs]</a>
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;use_callback is deprecated, use use_memo instead&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">use_callback</span><span class="p">(</span>
-    <span class="n">fn</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
+    <span class="n">fn</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Hook for a callback function to pass as **props**.</span>
-
-<span class="sd">    This Hook behaves like React `useCallback &lt;https://react.dev/reference/react/useCallback&gt;`_.</span>
-
-<span class="sd">    Use this Hook to reduce the re-render frequency of</span>
-<span class="sd">    a :func:`@component&lt;edifice.component&gt;` which has a **prop** that is a function.</span>
-
-<span class="sd">    This Hook will return a callback function with specific</span>
-<span class="sd">    bound :code:`dependencies`</span>
-<span class="sd">    and the callback function will only change when the</span>
-<span class="sd">    specified :code:`dependencies` are not :code:`__eq__` to</span>
-<span class="sd">    the :code:`dependencies` from the last render, so the callback function</span>
-<span class="sd">    can be used as a stable **prop**.</span>
-
-<span class="sd">    The problem</span>
-<span class="sd">    ===========</span>
-
-<span class="sd">    We want to present the user with a hundred buttons and give the buttons</span>
-<span class="sd">    an :code:`on_click` **prop**.</span>
-
-<span class="sd">    This :code:`SuperComp` component will re-render every time</span>
-<span class="sd">    the :code:`fastprop` **prop** changes, so then we will have to re-render all</span>
-<span class="sd">    the buttons even though the buttons don’t depend on the :code:`fastprop`.</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        @component</span>
-<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
-
-<span class="sd">            value, value_set = use_state(0)</span>
-
-<span class="sd">            def value_from_slowprop():</span>
-<span class="sd">                value_set(slowprop)</span>
-
-<span class="sd">            for i in range(100):</span>
-<span class="sd">                Button(</span>
-<span class="sd">                    on_click=lambda _event: value_from_slowprop()</span>
-<span class="sd">                )</span>
-
-<span class="sd">    The general solution to this kind of performance problem is to</span>
-<span class="sd">    create a new :func:`@component&lt;component&gt;` to render the</span>
-<span class="sd">    buttons. This new :code:`Buttons100` :func:`@component&lt;component&gt;`</span>
-<span class="sd">    will only re-render when its :code:`click_handler` **prop** changes.</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        @component</span>
-<span class="sd">        def Buttons100(self, click_handler:Callable[[], None]):</span>
-
-<span class="sd">            for i in range(100):</span>
-<span class="sd">                Button(</span>
-<span class="sd">                    on_click=lambda _event: click_handler()</span>
-<span class="sd">                )</span>
-
-<span class="sd">        @component</span>
-<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
-
-<span class="sd">            value, value_set = use_state(0)</span>
-
-<span class="sd">            def value_from_slowprop():</span>
-<span class="sd">                value_set(slowprop)</span>
-
-<span class="sd">            Buttons100(value_from_slowprop)</span>
-
-<span class="sd">    But there is a problem here, which is that the :code:`click_handler` **prop**</span>
-<span class="sd">    for the :code:`Buttons100` component is a new function</span>
-<span class="sd">    :code:`value_from_slowprop` every time that</span>
-<span class="sd">    the :code:`SuperComp` component re-renders, so it will always cause</span>
-<span class="sd">    the :code:`Buttons100` to re-render.</span>
-
-<span class="sd">    We can’t define :code:`value_from_slowprop` as a constant</span>
-<span class="sd">    function declared outside of the :code:`SuperComp` component because it</span>
-<span class="sd">    depends on bindings to :code:`slowprop` and :code:`value_set`.</span>
-
-<span class="sd">    The solution</span>
-<span class="sd">    ============</span>
-
-<span class="sd">    So we use the :func:`use_callback` Hook to create a callback function</span>
-<span class="sd">    which only changes when :code:`slowprop` changes.</span>
-
-<span class="sd">    And now the :code:`Buttons100` will only re-render when the :code:`slowprop`</span>
-<span class="sd">    changes.</span>
-
-<span class="sd">    The :code:`value_set` **setter function** does not need to be in</span>
-<span class="sd">    the :code:`dependencies` because each **setter function** is always</span>
-<span class="sd">    :code:`__eq__` from the previous render.</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        @component</span>
-<span class="sd">        def Buttons100(self, click_handler:Callable[[], None]):</span>
-
-<span class="sd">            for i in range(100):</span>
-<span class="sd">                Button(</span>
-<span class="sd">                    on_click=lambda _event: click_handler(),</span>
-<span class="sd">                )</span>
-
-<span class="sd">        @component</span>
-<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
-
-<span class="sd">            value, value_set = use_state(0)</span>
-
-<span class="sd">            def make_value_from_slowprop():</span>
-<span class="sd">                def value_from_slowprop():</span>
-<span class="sd">                    value_set(slowprop)</span>
-<span class="sd">                return value_from_slowprop</span>
-
-<span class="sd">            value_from_slowprop = use_callback(</span>
-<span class="sd">                make_value_from_slowprop,</span>
-<span class="sd">                (slowprop,),</span>
-<span class="sd">            )</span>
-
-<span class="sd">            Buttons100(value_from_slowprop)</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        fn:</span>
-<span class="sd">            A function of no arguments which creates and returns a callback function.</span>
-<span class="sd">        dependencies:</span>
-<span class="sd">            The callback function will be created when the</span>
-<span class="sd">            :code:`dependencies` are not :code:`__eq__` to the old :code:`dependencies`.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        A callback function.</span>
+<span class="sd">    Deprecated alias for :func:`use_memo`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">initialize_f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">fn</span><span class="p">(),</span> <span class="n">dependencies</span><span class="p">)</span>
-
-    <span class="n">stored</span><span class="p">,</span> <span class="n">stored_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">initialize_f</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">stored</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">dependencies</span><span class="p">:</span>
-        <span class="n">new_fn</span> <span class="o">=</span> <span class="n">fn</span><span class="p">()</span>
-        <span class="n">stored_set</span><span class="p">((</span><span class="n">new_fn</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">new_fn</span>
-    <span class="k">return</span> <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">use_memo</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
 
 
 
@@ -951,6 +839,16 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Hook to call an async function from a non-async context.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_coroutine:</span>
+<span class="sd">            Async Coroutine function to be run as a Task.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple pair of non-async functions.</span>
+<span class="sd">            1. A non-async function with the same argument signature as the</span>
+<span class="sd">               :code:`fn_coroutine`.</span>
+<span class="sd">            2. A non-async cancellation function which can be called to cancel</span>
+<span class="sd">               the :code:`fn_coroutine` Task manually.</span>
 
 <span class="sd">    The async :code:`fn_coroutine` function can have any argument</span>
 <span class="sd">    signature, but it must return :code:`None`. The return value is discarded.</span>
@@ -993,17 +891,6 @@
 <span class="sd">    but because it uses</span>
 <span class="sd">    :func:`use_async`, it will cancel the Task</span>
 <span class="sd">    when this :func:`@component&lt;edifice.component&gt;` is unmounted, or when the function is called again.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        fn_coroutine:</span>
-<span class="sd">            Async Coroutine function to be run as a Task.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        A tuple pair of non-async functions.</span>
-<span class="sd">            1. A non-async function with the same argument signature as the</span>
-<span class="sd">               :code:`fn_coroutine`.</span>
-<span class="sd">            2. A non-async cancellation function which can be called to cancel</span>
-<span class="sd">               the :code:`fn_coroutine` Task manually.</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">triggered</span><span class="p">,</span> <span class="n">triggered_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">_AsyncCommand</span><span class="p">[</span><span class="n">_P_async</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
@@ -1037,6 +924,14 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Side-effect Hook for when a :func:`@component&lt;edifice.component&gt;` unmounts.</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        cleanup:</span>
+<span class="sd">            A function of no arguments and no return value.</span>
+<span class="sd">        dependencies:</span>
+<span class="sd">            If the :code:`dependencies`</span>
+<span class="sd">            are not :code:`__eq__` to the old :code:`dependencies`</span>
+<span class="sd">            then the :code:`cleanup` function will be called.</span>
+
 <span class="sd">    This Hook will call the :code:`cleanup` side-effect function with the latest</span>
 <span class="sd">    local state from :func:`use_state` Hooks.</span>
 
@@ -1050,6 +945,8 @@
 
 <span class="sd">    The optional :code:`dependencies` argument can be used to trigger the</span>
 <span class="sd">    Hook to call the :code:`cleanup` function before the component unmounts.</span>
+<span class="sd">    The :code:`cleanup` function will be called again when the</span>
+<span class="sd">    component unmounts.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_effect_final</span>
@@ -1122,6 +1019,19 @@
 
 <span class="sd">    Use this hook to track if the mouse is hovering over a :class:`QtWidgetElement`.</span>
 
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple of three values:</span>
+<span class="sd">            1. :code:`bool`</span>
+<span class="sd">                True if the mouse is hovering over the</span>
+<span class="sd">                :class:`QtWidgetElement`, False otherwise.</span>
+<span class="sd">            2. :code:`Callable[[QtGui.QMouseEvent], None]`</span>
+<span class="sd">                Pass this function</span>
+<span class="sd">                to the :code:`on_mouse_enter` prop of the :class:`QtWidgetElement`</span>
+<span class="sd">            3. :code:`Callable[[QtGui.QMouseEvent], None]`</span>
+<span class="sd">                Pass this function</span>
+<span class="sd">                to the :code:`on_mouse_leave` prop of the :class:`QtWidgetElement`.</span>
+
+
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_hover</span>
 
@@ -1137,19 +1047,6 @@
 
 <span class="sd">    The :code:`on_mouse_enter` and :code:`on_mouse_leave` functions can be</span>
 <span class="sd">    passed to more than one :class:`QtWidgetElement`.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        A tuple of three values:</span>
-<span class="sd">            1. :code:`bool`</span>
-<span class="sd">                True if the mouse is hovering over the</span>
-<span class="sd">                :class:`QtWidgetElement`, False otherwise.</span>
-<span class="sd">            2. :code:`Callable[[QtGui.QMouseEvent], None]`</span>
-<span class="sd">                Pass this function</span>
-<span class="sd">                to the :code:`on_mouse_enter` prop of the :class:`QtWidgetElement`</span>
-<span class="sd">            3. :code:`Callable[[QtGui.QMouseEvent], None]`</span>
-<span class="sd">                Pass this function</span>
-<span class="sd">                to the :code:`on_mouse_leave` prop of the :class:`QtWidgetElement`.</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hover</span><span class="p">,</span> <span class="n">hover_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
@@ -1165,18 +1062,34 @@
 
 <span class="n">_T_use_memo</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_use_memo&quot;</span><span class="p">)</span>
 
+
 <div class="viewcode-block" id="use_memo">
 <a class="viewcode-back" href="../../stubs/edifice.use_memo.html#edifice.use_memo">[docs]</a>
 <span class="k">def</span> <span class="nf">use_memo</span><span class="p">(</span>
-    <span class="n">fn</span><span class="p">:</span>  <span class="n">Callable</span><span class="p">[[],</span> <span class="n">_T_use_memo</span><span class="p">],</span>
-    <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
+    <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">_T_use_memo</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="p">(),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_use_memo</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Hook to memoize the result of calling a function.</span>
 
-<span class="sd">    Behaves like `React useMemo &lt;https://react.dev/reference/react/useMemo&gt;`_.</span>
+<span class="sd">    Behaves like React `useMemo &lt;https://react.dev/reference/react/useMemo&gt;`_.</span>
 
-<span class="sd">    Use this hook during a render to memoize a value which is pure and</span>
+<span class="sd">    Args:</span>
+<span class="sd">        fn:</span>
+<span class="sd">            A function of no arguments which returns a **value**.</span>
+<span class="sd">        dependencies:</span>
+<span class="sd">            The :code:`fn` will be called to recompute the **value** when the</span>
+<span class="sd">            :code:`dependencies`</span>
+<span class="sd">            are not :code:`__eq__` to the old :code:`dependencies`.</span>
+<span class="sd">            If :code:`dependencies` is :code:`None`, then the **value** will</span>
+<span class="sd">            recompute on every render.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The memoized **value** from calling :code:`fn`.</span>
+
+<span class="sd">    Memoize an expensive computation</span>
+<span class="sd">    --------------------------------</span>
+
+<span class="sd">    Use this Hook during a render to memoize a value which is pure and</span>
 <span class="sd">    non-side-effecting but expensive to compute.</span>
 
 <span class="sd">    .. code-block:: python</span>
@@ -1189,20 +1102,300 @@
 
 <span class="sd">        bignumber = use_memo(expensive_computation, (x_factor,))</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        fn: A function of no arguments which returns a value.</span>
-<span class="sd">        dependencies: The value will be recomputed when the dependencies change. If :code:`None`, then the value will be recomputed every render.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        The memoized value from calling :code:`fn`.</span>
+<span class="sd">    Memoize a function definition</span>
+<span class="sd">    -----------------------------</span>
+
+<span class="sd">    This Hook also behaves like React `useCallback &lt;https://react.dev/reference/react/useCallback&gt;`_.</span>
+
+<span class="sd">    Use this Hook to reduce the re-render frequency of</span>
+<span class="sd">    a :func:`@component&lt;edifice.component&gt;` which has a **prop** that is a function.</span>
+
+<span class="sd">    This Hook can store callback function with specific</span>
+<span class="sd">    bound :code:`dependencies`</span>
+<span class="sd">    and the callback function will only change when the</span>
+<span class="sd">    specified :code:`dependencies` are not :code:`__eq__` to</span>
+<span class="sd">    the :code:`dependencies` from the last render, so the callback function</span>
+<span class="sd">    can be used as a stable **prop** which does not change on every render.</span>
+
+<span class="sd">    Memoize a function definition: The problem</span>
+<span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="sd">    We want to present the user with a hundred buttons and give the buttons</span>
+<span class="sd">    an :code:`on_click` **prop**.</span>
+
+<span class="sd">    This :code:`SuperComp` component will re-render every time</span>
+<span class="sd">    the :code:`fastprop` **prop** changes, so then we will have to re-render all</span>
+<span class="sd">    the buttons even though the buttons don’t depend on the :code:`fastprop`.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
+
+<span class="sd">            value, value_set = use_state(0)</span>
+
+<span class="sd">            def value_from_slowprop():</span>
+<span class="sd">                value_set(slowprop)</span>
+
+<span class="sd">            for i in range(100):</span>
+<span class="sd">                Button(on_click=lambda _event: value_from_slowprop())</span>
+
+<span class="sd">    The general solution to this kind of performance problem is to</span>
+<span class="sd">    create a new :func:`@component&lt;component&gt;` to render the</span>
+<span class="sd">    buttons. This new :code:`Buttons100` :func:`@component&lt;component&gt;`</span>
+<span class="sd">    will only re-render when its :code:`click_handler` **prop** changes.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Buttons100(self, click_handler:Callable[[], None]):</span>
+
+<span class="sd">            for i in range(100):</span>
+<span class="sd">                Button(on_click=lambda _event: click_handler())</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
+
+<span class="sd">            value, value_set = use_state(0)</span>
+
+<span class="sd">            def value_from_slowprop():</span>
+<span class="sd">                value_set(slowprop)</span>
+
+<span class="sd">            Buttons100(value_from_slowprop)</span>
+
+<span class="sd">    But there is a problem here, which is that the :code:`click_handler` **prop**</span>
+<span class="sd">    for the :code:`Buttons100` component is a new function</span>
+<span class="sd">    :code:`value_from_slowprop` every time that</span>
+<span class="sd">    the :code:`SuperComp` component re-renders, so it will always cause</span>
+<span class="sd">    the :code:`Buttons100` to re-render.</span>
+
+<span class="sd">    We can’t define :code:`value_from_slowprop` as a constant</span>
+<span class="sd">    function declared outside of the :code:`SuperComp` component because it</span>
+<span class="sd">    depends on bindings to :code:`slowprop` and :code:`value_set`.</span>
+
+<span class="sd">    Memoize a function definition: The solution</span>
+<span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="sd">    So we use the :func:`use_memo` Hook to create a callback function</span>
+<span class="sd">    which only changes when :code:`slowprop` changes.</span>
+
+<span class="sd">    And now the :code:`Buttons100` will only re-render when the :code:`slowprop`</span>
+<span class="sd">    changes.</span>
+
+<span class="sd">    (The :code:`value_set` **setter function** does not need to be in</span>
+<span class="sd">    the :code:`dependencies` because each **setter function** is constant, so</span>
+<span class="sd">    it is always :code:`__eq__` from the previous render.)</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Buttons100(self, click_handler:Callable[[], None]):</span>
+
+<span class="sd">            for i in range(100):</span>
+<span class="sd">                Button(on_click=lambda _event: click_handler())</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def SuperComp(self, fastprop:int, slowprop:int):</span>
+
+<span class="sd">            value, value_set = use_state(0)</span>
+
+<span class="sd">            def value_from_slowprop():</span>
+<span class="sd">                value_set(slowprop)</span>
+
+<span class="sd">            value_from_slowprop_memo = use_memo(</span>
+<span class="sd">                lambda: value_from_slowprop,</span>
+<span class="sd">                slowprop,</span>
+<span class="sd">            )</span>
+
+<span class="sd">            Buttons100(value_from_slowprop_memo)</span>
+
+<span class="sd">    The :code:`lambda` function passed to :func:`use_memo` will only be</span>
+<span class="sd">    called when the :code:`slowprop` changes, so the memoized</span>
+<span class="sd">    :code:`value_from_slowprop`</span>
+<span class="sd">    function will only change when the :code:`slowprop` changes.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">stored</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">])</span>
+
+    <span class="n">stored</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">dependencies</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span><span class="p">()</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+        <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span><span class="p">()</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
     <span class="k">elif</span> <span class="n">stored</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">dependencies</span><span class="p">:</span>
-        <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span><span class="p">()</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+        <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span><span class="p">()</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
         <span class="n">stored</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dependencies</span>
-    <span class="k">return</span> <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># type: ignore  # noqa: PGH003</span></div>
+    <span class="k">return</span> <span class="n">stored</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore  # noqa: PGH003</span></div>
+
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">_EdificeProvideContext</span><span class="p">:</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Global value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stable_setter</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    setter that calls all the setters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">setters</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    setters for the all of the use_context subscribers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<span class="n">_edifice_provide_context</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_EdificeProvideContext</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">_T_provide_context</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_provide_context&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="provide_context">
+<a class="viewcode-back" href="../../stubs/edifice.provide_context.html#edifice.provide_context">[docs]</a>
+<span class="k">def</span> <span class="nf">provide_context</span><span class="p">(</span>
+    <span class="n">context_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">initial_state</span><span class="p">:</span> <span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">_T_provide_context</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+    <span class="n">_T_provide_context</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span><span class="p">],</span> <span class="n">_T_provide_context</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Context state provider Hook for *prop drilling*.</span>
+
+<span class="sd">    Provides similar features to React `useContext &lt;https://react.dev/reference/react/useContext&gt;`_.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        context_key:</span>
+<span class="sd">            Identifier for a shared context.</span>
+<span class="sd">        initial_state:</span>
+<span class="sd">            The initial **state value** or **initializer function**.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple pair containing</span>
+
+<span class="sd">        1. The current **state value** for the given :code:`context_key`.</span>
+<span class="sd">        2. A **setter function** for setting or updating the **state value**.</span>
+
+<span class="sd">    Use this Hook to transmit state without passing the state down through</span>
+<span class="sd">    the **props** to a child :func:`@component&lt;edifice.component&gt;` using</span>
+<span class="sd">    :func:`use_context`.</span>
+
+<span class="sd">    :func:`provide_context` is called with a :code:`context_key` and an **initial value**.</span>
+<span class="sd">    It returns a **state value** and a **setter function**. The **initial value**,</span>
+<span class="sd">    **state value** and **setter function** behave exactly like the</span>
+<span class="sd">    ones documented in :func:`use_state`.</span>
+
+<span class="sd">    The :code:`context_key` must be unique for each :func:`provide_context` Hook.</span>
+
+<span class="sd">    The **setter function** will, when called, update the **state value** across</span>
+<span class="sd">    each :func:`@component&lt;edifice.component&gt;` using :func:`use_context` with the</span>
+<span class="sd">    same :code:`context_key`.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example provide_context, use_context</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def ContextChild(self):</span>
+<span class="sd">            x, x_setter = use_context(&quot;x_context_key&quot;, int)</span>
+
+<span class="sd">            Button(</span>
+<span class="sd">                title=str(x) + &quot;+1&quot;</span>
+<span class="sd">                on_click = lambda _event: x_setter(x + 1)</span>
+<span class="sd">            )</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def ContextParent(self):</span>
+<span class="sd">            x, _x_setter = provide_context(&quot;x_context_key&quot;, 0)</span>
+
+<span class="sd">            with VBoxview():</span>
+<span class="sd">                Label(text=str(x))</span>
+<span class="sd">                ContextChild()</span>
+<span class="sd">                ContextChild()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">local_state</span><span class="p">,</span> <span class="n">local_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">context_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_edifice_provide_context</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">stable_setter</span><span class="p">(</span><span class="n">update</span><span class="p">:</span> <span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span><span class="p">],</span> <span class="n">_T_provide_context</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span>
+            <span class="n">new_value</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">Callable</span><span class="p">)</span> <span class="k">else</span> <span class="n">update</span>
+            <span class="k">if</span> <span class="n">new_value</span> <span class="o">!=</span> <span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="n">context</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">new_value</span>
+                <span class="c1"># Call each setter for every use_context with this context_key.</span>
+                <span class="c1"># This is how we trigger re-render for every component using the context.</span>
+                <span class="c1"># Note that the context value update happens now but the local_setter</span>
+                <span class="c1"># updates will not happen until the beginning of the next render.</span>
+                <span class="k">for</span> <span class="n">use_context_setter</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="p">:</span>
+                    <span class="n">use_context_setter</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+                <span class="n">local_setter</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+
+        <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_EdificeProvideContext</span><span class="p">(</span><span class="n">local_state</span><span class="p">,</span> <span class="n">stable_setter</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
+        <span class="k">del</span> <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span>
+
+    <span class="c1"># We want the cleanup function bound to the context_key before it changed</span>
+    <span class="n">use_effect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">cleanup</span><span class="p">,</span> <span class="n">context_key</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">local_state</span><span class="p">,</span> <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span><span class="o">.</span><span class="n">stable_setter</span></div>
+
+
+
+<span class="n">_T_use_context</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_use_context&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="use_context">
+<a class="viewcode-back" href="../../stubs/edifice.use_context.html#edifice.use_context">[docs]</a>
+<span class="k">def</span> <span class="nf">use_context</span><span class="p">(</span>
+    <span class="n">context_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_T_use_context</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">_T_use_context</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_context</span><span class="p">],</span> <span class="n">_T_use_context</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Context state consumer Hook for *prop drilling*.</span>
+
+<span class="sd">    Provides similar features to React `useContext &lt;https://react.dev/reference/react/useContext&gt;`_.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        context_key:</span>
+<span class="sd">            Identifier for a shared context.</span>
+<span class="sd">        value_type:</span>
+<span class="sd">            The type of the **initial value** in the parent :func:`provide_context`</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple pair containing</span>
+
+<span class="sd">        1. The current **state value** for the given :code:`context_key`.</span>
+<span class="sd">        2. A **setter function** for setting or updating the **state value**.</span>
+
+<span class="sd">    Use this Hook to consume state transmitted by the :func:`provide_context` with</span>
+<span class="sd">    the same :code:`context_key`.</span>
+
+<span class="sd">    :func:`use_context` is called with a :code:`context_key` and a :code:`value_type`.</span>
+<span class="sd">    It returns a **state value** and a **setter function**. The</span>
+<span class="sd">    **state value** and **setter function** behave exactly like the</span>
+<span class="sd">    ones documented in :func:`use_state`. The :code:`value_type` must be the same</span>
+<span class="sd">    as the type of the **initial value** in the :func:`provide_context`</span>
+<span class="sd">    with the same :code:`context_key`.</span>
+
+<span class="sd">    The **setter function** will, when called, update the **state value** across</span>
+<span class="sd">    each :func:`@component&lt;edifice.component&gt;` using :func:`use_context` with the</span>
+<span class="sd">    same :code:`context_key`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_edifice_provide_context</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;use_context context_key &#39;</span><span class="si">{</span><span class="n">context_key</span><span class="si">}</span><span class="s2">&#39; has no provide_context.&quot;</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span>
+
+    <span class="n">local_state</span><span class="p">,</span> <span class="n">local_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">context_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">local_setter</span><span class="p">)</span>
+        <span class="c1"># call the local setter so that it gets the value if the context_key</span>
+        <span class="c1"># changed.</span>
+        <span class="k">if</span> <span class="n">local_state</span> <span class="o">!=</span> <span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">local_setter</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
+        <span class="c1"># We want the cleanup function bound to the context_key before it changed</span>
+        <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span><span class="o">.</span><span class="n">setters</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">local_setter</span><span class="p">)</span>
+
+    <span class="n">use_effect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">cleanup</span><span class="p">,</span> <span class="n">context_key</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">local_state</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">stable_setter</span></div>
 
 </pre></div>
 

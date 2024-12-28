@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_effect_final &#8212; Edifice 2.8.1 documentation</title>
+    <title>edifice.use_effect_final &#8212; Edifice 2.9.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../_static/documentation_options.js?v=cd87aae0"></script>
+    <script src="../_static/documentation_options.js?v=182a64a0"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.8.1 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.8.1 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.0 documentation - Home"/>
   
   
 </a></div>
@@ -385,6 +385,16 @@
 <dt class="sig sig-object py" id="edifice.use_effect_final">
 <span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_effect_final</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cleanup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_effect_final"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_effect_final" title="Link to this definition">#</a></dt>
 <dd><p>Side-effect Hook for when a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> unmounts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cleanup</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – A function of no arguments and no return value.</p></li>
+<li><p><strong>dependencies</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – If the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>
+are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the old <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>
+then the <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> function will be called.</p></li>
+</ul>
+</dd>
+</dl>
 <p>This Hook will call the <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> side-effect function with the latest
 local state from <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> Hooks.</p>
 <p>This Hook solves the problem of using <a class="reference internal" href="edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> with constant
@@ -395,7 +405,9 @@ on the latest component <code class="code docutils literal notranslate"><span cl
 This Hook <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> function will always have a closure on the
 latest component <code class="code docutils literal notranslate"><span class="pre">use_state</span></code>.</p>
 <p>The optional <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> argument can be used to trigger the
-Hook to call the <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> function before the component unmounts.</p>
+Hook to call the <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> function before the component unmounts.
+The <code class="code docutils literal notranslate"><span class="pre">cleanup</span></code> function will be called again when the
+component unmounts.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">use_effect_final</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">set_x</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
