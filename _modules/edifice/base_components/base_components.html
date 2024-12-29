@@ -497,26 +497,13 @@
 <span class="k">class</span> <span class="nc">Icon</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an Icon.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
-<span class="sd">    .. figure:: /image/icons.png</span>
-<span class="sd">       :width: 300</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">       Two icons. Note that you can set the color and rotation.</span>
-
-<span class="sd">    Icons are central to modern-looking UI design.</span>
-<span class="sd">    Edifice comes with the Font Awesome (https://fontawesome.com) regular and solid</span>
-<span class="sd">    icon sets, to save you time from looking up your own icon set.</span>
-<span class="sd">    You can specify an icon simplify using its name (and optionally the sub_collection).</span>
-
-<span class="sd">    Example::</span>
-
-<span class="sd">        Icon(name=&quot;share&quot;)</span>
-
-<span class="sd">    will create a classic share icon.</span>
-
-<span class="sd">    You can browse and search for icons here: https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        name:</span>
@@ -531,6 +518,27 @@
 <span class="sd">            the RGBA value for the icon color</span>
 <span class="sd">        rotation:</span>
 <span class="sd">            an angle (in degrees) for the icon rotation</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. figure:: /image/icons.png</span>
+<span class="sd">       :width: 300</span>
+
+<span class="sd">       Two icons</span>
+
+<span class="sd">    Icons are central to modern-looking UI design.</span>
+<span class="sd">    Edifice comes with the Font Awesome (https://fontawesome.com) regular and solid</span>
+<span class="sd">    icon sets, to save you time from looking up your own icon set.</span>
+<span class="sd">    You can specify an icon simplify using its name (and optionally the sub_collection).</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example classic share icon</span>
+
+<span class="sd">        Icon(name=&quot;share&quot;)</span>
+
+<span class="sd">    You can browse and search for icons here: https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
+
+<span class="sd">    For full control of custom icons, use an :class:`ImageSvg` instead.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Icon.__init__">
@@ -603,21 +611,25 @@
 <span class="k">class</span> <span class="nc">Button</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic button widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/textinput_button.png</span>
 <span class="sd">       :width: 300</span>
 
 <span class="sd">       Button on the right</span>
 
-<span class="sd">    Set the on_click prop (inherited from QtWidgetElement) to define the behavior on click.</span>
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    Set the :code:`on_click` **prop** (inherited from :class:`QtWidgetElement`) to</span>
+<span class="sd">    define the click behavior.</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        title:</span>
-<span class="sd">            the button text</span>
-<span class="sd">        style:</span>
-<span class="sd">            the styling of the button</span>
+<span class="sd">            The button text</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Button.__init__">
@@ -641,8 +653,9 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="n">size</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">size</span><span class="p">:</span> <span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="n">size</span><span class="p">))</span>
+        <span class="c1"># TODO _set_size doesn&#39;t work</span>
+        <span class="c1"># &gt; size = self.underlying.font().pointSize()</span>
+        <span class="c1"># &gt; self._set_size(size * len(self.props.title), size, lambda size: (size * len(self.props.title), size))</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
@@ -658,8 +671,23 @@
 <span class="k">class</span> <span class="nc">IconButton</span><span class="p">(</span><span class="n">Button</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an Icon Button.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name: name of the icon. Search for icon names on https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
+<span class="sd">        size: size of the icon.</span>
+<span class="sd">        collection: the icon package. Currently only font-awesome is supported.</span>
+<span class="sd">        sub_collection: for font awesome, either solid or regular</span>
+<span class="sd">        color: the RGBA value for the icon color</span>
+<span class="sd">        rotation: an angle (in degrees) for the icon rotation</span>
+
+<span class="sd">    .. rubric:: Usage</span>
 
 <span class="sd">    .. figure:: /image/icons.png</span>
 <span class="sd">       :width: 300</span>
@@ -672,33 +700,24 @@
 <span class="sd">    icon sets, to save you time from looking up your own icon set.</span>
 <span class="sd">    You can specify an icon simplify using its name (and optionally the sub_collection).</span>
 
-<span class="sd">    Example::</span>
-
-<span class="sd">        IconButton(name=&quot;share&quot;, on_click: self.share)</span>
-
-<span class="sd">    will create a button with a share icon.</span>
-
 <span class="sd">    You can browse and search for icons here: https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        name: name of the icon. Search for the name on https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
-<span class="sd">        size: size of the icon.</span>
-<span class="sd">        collection: the icon package. Currently only font-awesome is supported.</span>
-<span class="sd">        sub_collection: for font awesome, either solid or regular</span>
-<span class="sd">        color: the RGBA value for the icon color</span>
-<span class="sd">        rotation: an angle (in degrees) for the icon rotation</span>
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example share icon button</span>
+
+<span class="sd">        IconButton(name=&quot;share&quot;, on_click: lambda _: share())</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="IconButton.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.IconButton.__init__.html#edifice.IconButton.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">,</span>
-        <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;font-awesome&quot;</span><span class="p">,</span>
-        <span class="n">sub_collection</span><span class="o">=</span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
-        <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
-        <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">size</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">collection</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;font-awesome&quot;</span><span class="p">,</span>
+        <span class="n">sub_collection</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+        <span class="n">rotation</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -849,20 +868,15 @@
 <div class="viewcode-block" id="Label">
 <a class="viewcode-back" href="../../../stubs/edifice.Label.html#edifice.Label">[docs]</a>
 <span class="k">class</span> <span class="nc">Label</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for displaying text.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Text display widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
-<span class="sd">    Render rich text with the</span>
-<span class="sd">    `Qt supported HTML subset &lt;https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html&gt;`_.</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">    .. figure:: /image/label.png</span>
-<span class="sd">       :width: 500</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        The combination of rich text and :code:`word_wrap` can sometimes cause</span>
-<span class="sd">        `Qt Layout Issues &lt;https://doc.qt.io/qtforpython-6/overviews/layout.html#layout-issues&gt;`_.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        text: The text to display.</span>
@@ -873,6 +887,18 @@
 <span class="sd">        text_format: The text format of the label.</span>
 <span class="sd">             Defaults to :code:`QtCore.Qt.TextFormat.AutoText`.</span>
 <span class="sd">             See `QtCore.Qt.TextFormat &lt;https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.TextFormat&gt;`_.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    Render rich text with the</span>
+<span class="sd">    `Qt supported HTML subset &lt;https://doc.qt.io/qtforpython-6/overviews/richtext-html-subset.html&gt;`_.</span>
+
+<span class="sd">    .. figure:: /image/label.png</span>
+<span class="sd">       :width: 500</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The combination of rich text and :code:`word_wrap` can sometimes cause</span>
+<span class="sd">        `Qt Layout Issues &lt;https://doc.qt.io/qtforpython-6/overviews/layout.html#layout-issues&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Label.__init__">
@@ -947,14 +973,19 @@
 <span class="k">class</span> <span class="nc">ImageSvg</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtSvgWidgets</span><span class="o">.</span><span class="n">QSvgWidget</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render an SVG image.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QSvgWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtSvgWidgets/QSvgWidget.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QSvgWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtSvgWidgets/QSvgWidget.html&gt;`_</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`, plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        src:</span>
 <span class="sd">            Either a path to an SVG image file, or a</span>
 <span class="sd">            `QByteArray &lt;https://doc.qt.io/qtforpython-6/PySide6/QtCore/QByteArray.html&gt;`_</span>
-<span class="sd">            containing the serialized XML representation of an SVG file.</span>
+<span class="sd">            containing the XML string of an SVG file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ImageSvg.__init__">
@@ -993,15 +1024,15 @@
 <div class="viewcode-block" id="TextInput">
 <a class="viewcode-back" href="../../../stubs/edifice.TextInput.html#edifice.TextInput">[docs]</a>
 <span class="k">class</span> <span class="nc">TextInput</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLineEdit</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a one line text input.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;One line text input widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QLineEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QLineEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html&gt;`_</span>
 
-<span class="sd">    .. figure:: /image/textinput_button.png</span>
-<span class="sd">       :width: 300</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">       TextInput on the left.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        text:</span>
@@ -1033,6 +1064,13 @@
 <span class="sd">            Or optionally you can pass in an instance of a</span>
 <span class="sd">            `QCompleter &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCompleter.html&gt;`_</span>
 <span class="sd">            (not recommended).</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. figure:: /image/textinput_button.png</span>
+<span class="sd">       :width: 300</span>
+
+<span class="sd">       TextInput on the left.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1121,11 +1159,17 @@
 <div class="viewcode-block" id="TextInputMultiline">
 <a class="viewcode-back" href="../../../stubs/edifice.TextInputMultiline.html#edifice.TextInputMultiline">[docs]</a>
 <span class="k">class</span> <span class="nc">TextInputMultiline</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTextEdit</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a multiline text input.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiline text input widget.</span>
 
-<span class="sd">    * Underlying Qt Widget `QTextEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTextEdit.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QTextEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTextEdit.html&gt;`_</span>
 
 <span class="sd">    Accepts only plain text, not “rich text.”</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        text:</span>
@@ -1201,15 +1245,15 @@
 <div class="viewcode-block" id="Dropdown">
 <a class="viewcode-back" href="../../../stubs/edifice.Dropdown.html#edifice.Dropdown">[docs]</a>
 <span class="k">class</span> <span class="nc">Dropdown</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widget for a dropdown menu.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dropdown selection widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QComboBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QComboBox.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QComboBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QComboBox.html&gt;`_</span>
 
-<span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
-<span class="sd">       :width: 300</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">       Dropdown on the right.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement`, plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        selection:</span>
@@ -1223,6 +1267,13 @@
 <span class="sd">            when the selection prop changes.</span>
 <span class="sd">        enable_mouse_scroll:</span>
 <span class="sd">            Whether mouse scroll events should be able to change the selection.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
+<span class="sd">       :width: 300</span>
+
+<span class="sd">       Dropdown on the right.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Dropdown.__init__">
@@ -1304,20 +1355,15 @@
 <span class="k">class</span> <span class="nc">Slider</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSlider</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Slider bar widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QSlider &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSlider.html&gt;`_</span>
-
-<span class="sd">    .. figure:: /image/slider.png</span>
-<span class="sd">       :width: 300</span>
-
-<span class="sd">       Horizontal and vertical sliders</span>
-
 <span class="sd">    A Slider bar allows the user to input a continuous value.</span>
-<span class="sd">    The bar could be displayed either horizontally or vertically.</span>
 
-<span class="sd">    The value prop determines the position of the slider.</span>
-<span class="sd">    When the user changes the position of the slider,</span>
-<span class="sd">    the on_change callback is called with the new value.</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QSlider &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSlider.html&gt;`_</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1336,6 +1382,13 @@
 <span class="sd">            not when the value prop changes.</span>
 <span class="sd">        enable_mouse_scroll:</span>
 <span class="sd">            Whether mouse scroll events should be able to change the value.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. figure:: /image/slider.png</span>
+<span class="sd">       :width: 300</span>
+
+<span class="sd">       Horizontal and vertical sliders</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Slider.__init__">
@@ -1541,11 +1594,19 @@
 <span class="sd">    This is the basic layout element which behaves like an</span>
 <span class="sd">    `HTML div &lt;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div&gt;`_.</span>
 
-<span class="sd">    * Underlying Qt Layout</span>
-<span class="sd">      `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+
+<span class="sd">        - Underlying Qt Layout</span>
+<span class="sd">          `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
 
 <span class="sd">    Content that does not fit into the VBoxView layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`VScrollView&lt;edifice.VScrollView&gt;`.</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="VBoxView.__init__">
@@ -1615,11 +1676,19 @@
 <span class="k">class</span> <span class="nc">HBoxView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Horizontal row layout view for child elements.</span>
 
-<span class="sd">    * Underlying Qt Layout</span>
-<span class="sd">      `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+
+<span class="sd">        - Underlying Qt Layout</span>
+<span class="sd">          `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
 
 <span class="sd">    Content that does not fit into the HBoxView layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`HScrollView&lt;edifice.HScrollView&gt;`.</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="HBoxView.__init__">
@@ -1692,15 +1761,23 @@
 <span class="sd">    Content that does not fit into the FixView layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`FixScrollView&lt;edifice.FixScrollView&gt;`.</span>
 
-<span class="sd">    Use the :code:`top` and :code:`left` style properties to set the position of the child widgets.</span>
+<span class="sd">    Use the :code:`top` and :code:`left` :ref:`style&lt;styling&gt;` properties to set the</span>
+<span class="sd">    position of the child widgets.</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example FixView with Label at 100px from top and 200px from left</span>
 
 <span class="sd">        with FixView():</span>
 <span class="sd">            Label(</span>
 <span class="sd">                text=&quot;Label 100px from top and 200px from left&quot;,</span>
 <span class="sd">                style={&quot;top&quot;: 100, &quot;left&quot;: 200},</span>
 <span class="sd">            )</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="FixView.__init__">
@@ -2017,12 +2094,54 @@
 <a class="viewcode-back" href="../../../stubs/edifice.WindowPopView.html#edifice.WindowPopView">[docs]</a>
 <span class="k">class</span> <span class="nc">WindowPopView</span><span class="p">(</span><span class="n">VBoxView</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Pop-up Window.</span>
+<span class="sd">    Pop-up Window layout.</span>
 
-<span class="sd">    This Element will render as a new operating system window instead</span>
+<span class="sd">    This Element will render its children in a new operating system window instead</span>
 <span class="sd">    of appearing in its parent’s layout. It will occupy a zero-size position</span>
 <span class="sd">    in its parent’s layout.</span>
 
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        title:</span>
+<span class="sd">            The window title.</span>
+<span class="sd">        icon:</span>
+<span class="sd">            The window icon image.</span>
+
+<span class="sd">            See caveats in `windowIcon &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.windowIcon&gt;`_.</span>
+<span class="sd">            This prop is not supported on all platforms.</span>
+<span class="sd">        on_close:</span>
+<span class="sd">            When the user tries to close this window, the window will not close.</span>
+<span class="sd">            Instead, this event handler will be called.</span>
+
+<span class="sd">            The only way to close a :class:`WindowPopView` is to remove it from</span>
+<span class="sd">            its parent’s layout. This event handler should set some state which causes the</span>
+<span class="sd">            :class:`WindowPopView` to be removed from the parent layout.</span>
+<span class="sd">            See the example below.</span>
+
+<span class="sd">            The event handler function will be passed a</span>
+<span class="sd">            `QCloseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html&gt;`_.</span>
+<span class="sd">        on_window_state_change:</span>
+<span class="sd">            Event handler for when the window state changes.</span>
+
+<span class="sd">            This event handler will be passed the old window state and the</span>
+<span class="sd">            new window state.</span>
+<span class="sd">        full_screen:</span>
+<span class="sd">            Whether the window is in full screen mode.</span>
+<span class="sd">        _size_open:</span>
+<span class="sd">            This argument is not a **prop** and will not cause re-render when changed.</span>
+
+<span class="sd">            It will only be used once to set width and height of the window when it is opened.</span>
+
+<span class="sd">            If the value :code:`&quot;Maximized&quot;` is passed, the window will be</span>
+<span class="sd">            opened maximized (does not work on X11, see</span>
+<span class="sd">            `showMaximized &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized&gt;`_</span>
+<span class="sd">            ).</span>
+
+<span class="sd">    .. rubric:: Usage</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: Pop-up Window Example</span>
@@ -2050,41 +2169,6 @@
 <span class="sd">                        )</span>
 
 
-<span class="sd">    Args:</span>
-<span class="sd">        title:</span>
-<span class="sd">            The window title.</span>
-<span class="sd">        icon:</span>
-<span class="sd">            The window icon image.</span>
-
-<span class="sd">            See caveats in `windowIcon &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.windowIcon&gt;`_.</span>
-<span class="sd">            This prop is not supported on all platforms.</span>
-<span class="sd">        on_close:</span>
-<span class="sd">            When the user tries to close this window, the window will not close.</span>
-<span class="sd">            Instead, this event handler will be called.</span>
-
-<span class="sd">            The only way to close a :class:`WindowPopView` is to remove it from</span>
-<span class="sd">            its parent’s layout. This event handler should set some state which causes the</span>
-<span class="sd">            :class:`WindowPopView` to be removed from the parent layout.</span>
-<span class="sd">            See the example above.</span>
-
-<span class="sd">            The event handler function will be passed a</span>
-<span class="sd">            `QCloseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html&gt;`_.</span>
-<span class="sd">        on_window_state_change:</span>
-<span class="sd">            Event handler for when the window state changes.</span>
-
-<span class="sd">            This event handler will be passed the old window state and the</span>
-<span class="sd">            new window state.</span>
-<span class="sd">        full_screen:</span>
-<span class="sd">            Whether the window is in full screen mode.</span>
-<span class="sd">        _size_open:</span>
-<span class="sd">            This argument is not a **prop** and will not cause re-render when changed.</span>
-
-<span class="sd">            It will only be used once to set width and height of the window when it is opened.</span>
-
-<span class="sd">            If the value :code:`&quot;Maximized&quot;` is passed, the window will be</span>
-<span class="sd">            opened maximized (does not work on X11, see</span>
-<span class="sd">            `showMaximized &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized&gt;`_</span>
-<span class="sd">            ).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="WindowPopView.__init__">
@@ -2270,19 +2354,25 @@
 <div class="viewcode-block" id="VScrollView">
 <a class="viewcode-back" href="../../../stubs/edifice.VScrollView.html#edifice.VScrollView">[docs]</a>
 <span class="k">class</span> <span class="nc">VScrollView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable vertical column layout widget for grouping children together.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable vertical column layout.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
-<span class="sd">    * Underlying Qt Layout</span>
-<span class="sd">      `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout</span>
+<span class="sd">          `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/scroll_view.png</span>
 <span class="sd">       :width: 500</span>
 
 <span class="sd">       A VScrollView containing a Label.</span>
 
-<span class="sd">    Overflows in both the x and y direction will cause a scrollbar to show.</span>
+<span class="sd">    Overflows in both the *x* and *y* direction will cause a scrollbar to show.</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="VScrollView.__init__">
@@ -2338,19 +2428,25 @@
 <div class="viewcode-block" id="HScrollView">
 <a class="viewcode-back" href="../../../stubs/edifice.HScrollView.html#edifice.HScrollView">[docs]</a>
 <span class="k">class</span> <span class="nc">HScrollView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable horizontal row layout widget for grouping children together.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable horizontal row layout widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
-<span class="sd">    * Underlying Qt Layout</span>
-<span class="sd">      `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout</span>
+<span class="sd">          `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/scroll_view.png</span>
 <span class="sd">       :width: 500</span>
 
 <span class="sd">       An HScrollView containing a Label.</span>
 
-<span class="sd">    Overflows in both the x and y direction will cause a scrollbar to show.</span>
+<span class="sd">    Overflows in both the *x* and *y* direction will cause a scrollbar to show.</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="HScrollView.__init__">
@@ -2408,25 +2504,33 @@
 <span class="k">class</span> <span class="nc">FixScrollView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable layout widget for child widgets with fixed position.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/scroll_view.png</span>
 <span class="sd">       :width: 500</span>
 
 <span class="sd">       A ScrollView containing a Label.</span>
 
-<span class="sd">    Overflows in both the x and y direction will cause a scrollbar to show.</span>
+<span class="sd">    Overflows in both the *x* and *y* direction will cause a scrollbar to show.</span>
 
 <span class="sd">    Use the :code:`top` and :code:`left` style properties to set the position of the child widgets.</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example FixScrollView with Label at 100px from top and 200px from left</span>
 
 <span class="sd">        with FixScrollView():</span>
 <span class="sd">            Label(</span>
 <span class="sd">                text=&quot;Label 100px from top and 200px from left&quot;,</span>
 <span class="sd">                style={&quot;top&quot;: 100, &quot;left&quot;: 200},</span>
 <span class="sd">            )</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="FixScrollView.__init__">
@@ -2555,13 +2659,26 @@
 <span class="k">class</span> <span class="nc">GridView</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Grid layout widget for rendering children on a 2D rectangular grid.</span>
 
-<span class="sd">    * Underlying Qt Layout</span>
-<span class="sd">      `QGridLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Layout</span>
+<span class="sd">          `QGridLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html&gt;`_</span>
 
 <span class="sd">    Grid views allow you to precisely control 2D positioning of widgets.</span>
 <span class="sd">    specifying the exact location of children relative to each other (with proper alignment)</span>
 <span class="sd">    requires extensive fine tuning of style attributes.</span>
 <span class="sd">    The GridView allows you to lay out widgets at specified grid indices and size.</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** for :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        layout: description of layout as described above</span>
+<span class="sd">        key_to_code: mapping from key to a single character representing that child in the layout string</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Usage</span>
 
 <span class="sd">    Children will be laid out according to the layout argument.</span>
 <span class="sd">    Each child is assigned a character code (by default, the first character of the key;</span>
@@ -2583,7 +2700,8 @@
 <span class="sd">        aa__</span>
 <span class="sd">        aabc</span>
 
-<span class="sd">    Here is a complete example of using GridView::</span>
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: GridView Example</span>
 
 <span class="sd">        def render(self):</span>
 <span class="sd">            return ed.GridView(layout=&#39;&#39;&#39;</span>
@@ -2598,10 +2716,6 @@
 <span class="sd">                ed.Button(&quot;0&quot;).set_key(&quot;0&quot;),                              ed.Button(&quot;.&quot;).set_key(&quot;.&quot;), ed.Button(&quot;*&quot;).set_key(&quot;/&quot;),</span>
 <span class="sd">            )</span>
 
-<span class="sd">    Args:</span>
-
-<span class="sd">        layout: description of layout as described above</span>
-<span class="sd">        key_to_code: mapping from key to a single character representing that child in the layout string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="GridView.__init__">
@@ -2660,21 +2774,28 @@
 <span class="k">class</span> <span class="nc">TabView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTabWidget</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Layout widget with multiple tabs.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QTabWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTabWidget.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QTabWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTabWidget.html&gt;`_</span>
 
-<span class="sd">    Each child of a TabView will be the content of one tab.</span>
+<span class="sd">    Each child of a :class:`TabView` will be the content of one tab.</span>
 
 <span class="sd">    .. figure:: /image/tab_view.png</span>
 <span class="sd">       :width: 300</span>
 
 <span class="sd">       A TabView with 2 children.</span>
 
-<span class="sd">    It’s important to :func:`Element.set_key` the child tabs if you add and</span>
-<span class="sd">    remove child tabs.</span>
+<span class="sd">    It’s important for performance to :func:`Element.set_key` the child tabs</span>
+<span class="sd">    if you dynamically add and remove child tabs.</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        labels: The labels for the tabs. The number of labels must match the number of children.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TabView.__init__">
@@ -2883,20 +3004,19 @@
 <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QProgressBar</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Progress bar widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QProgressBar &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QProgressBar.html&gt;`_.</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QProgressBar &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QProgressBar.html&gt;`_.</span>
 
 <span class="sd">    A progress bar is used to give the user an indication of the progress of an operation.</span>
 
-<span class="sd">    The :code:`value` prop indicates the progress from :code:`min_value` to</span>
-<span class="sd">    :code:`max_value`.</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">    If :code:`min_value` and :code:`max_value` both are set to *0*, the bar shows</span>
-<span class="sd">    a busy indicator instead of a percentage of steps.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
-<span class="sd">            The progress.</span>
+<span class="sd">            The progress from :code:`min_value` to :code:`max_value`.</span>
 <span class="sd">        min_value:</span>
 <span class="sd">            The starting progress.</span>
 <span class="sd">        max_value:</span>
@@ -2908,6 +3028,9 @@
 <span class="sd">            The orientation of the bar,</span>
 <span class="sd">            either :code:`Horizontal` or :code:`Vertical`.</span>
 <span class="sd">            See `Orientation &lt;https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.Orientation&gt;`_.</span>
+
+<span class="sd">    If :code:`min_value` and :code:`max_value` both are set to *0*, the bar shows</span>
+<span class="sd">    a busy indicator instead of a percentage of steps.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ProgressBar.__init__">

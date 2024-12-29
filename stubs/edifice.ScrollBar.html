@@ -387,22 +387,26 @@
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QScrollBar</span></code>]</p>
 <p>Scroll bar widget.</p>
 <p>Render a scroll bar widget that allows the user to scroll through a range of values.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget:
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollBar.html">QScrollBar</a></p></li>
 </ul>
+</div></blockquote>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type">int</span>) – The current value of the scroll bar.</p></li>
-<li><p><strong>minimum</strong> (<span class="sphinx_autodoc_typehints-type">int</span>) – The minimum value of the scroll bar.</p></li>
-<li><p><strong>maximum</strong> (<span class="sphinx_autodoc_typehints-type">int</span>) – The maximum value of the scroll bar.</p></li>
-<li><p><strong>step_single</strong> (<span class="sphinx_autodoc_typehints-type">int | None</span>) – The step size for arrow keys.</p></li>
-<li><p><strong>step_page</strong> (<span class="sphinx_autodoc_typehints-type">int | None</span>) – The step size for PgUp/PgDown keys.</p></li>
-<li><p><strong>orientation</strong> (<span class="sphinx_autodoc_typehints-type">Qt.Orientation</span>) – The scroll bar <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#Qt.Orientation">Orientation</a>.</p></li>
-<li><p><strong>on_value_changed</strong> (<span class="sphinx_autodoc_typehints-type">Callable[[int], None | Awaitable[None]] | None</span>) – Callback for when the value of the scroll bar changes.</p></li>
-<li><p><strong>on_slider_pressed</strong> (<span class="sphinx_autodoc_typehints-type">Callable[[], None | Awaitable[None]] | None</span>) – Callback for when the slider is pressed.</p></li>
-<li><p><strong>on_slider_released</strong> (<span class="sphinx_autodoc_typehints-type">Callable[[], None | Awaitable[None]] | None</span>) – Callback for when the slider is released.</p></li>
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The current value of the scroll bar.</p></li>
+<li><p><strong>minimum</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The minimum value of the scroll bar.</p></li>
+<li><p><strong>maximum</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The maximum value of the scroll bar.</p></li>
+<li><p><strong>step_single</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – The step size for arrow keys.</p></li>
+<li><p><strong>step_page</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – The step size for PgUp/PgDown keys.</p></li>
+<li><p><strong>orientation</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orientation</span></code></span>) – The scroll bar <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#Qt.Orientation">Orientation</a>.</p></li>
+<li><p><strong>on_value_changed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]</span>) – Callback for when the value of the scroll bar changes.</p></li>
+<li><p><strong>on_slider_pressed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]</span>) – Callback for when the slider is pressed.</p></li>
+<li><p><strong>on_slider_released</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]</span>) – Callback for when the slider is released.</p></li>
 </ul>
 </dd>
 </dl>

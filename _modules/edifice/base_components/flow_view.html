@@ -518,7 +518,7 @@
 <a class="viewcode-back" href="../../../stubs/edifice.FlowView.html#edifice.FlowView">[docs]</a>
 <span class="k">class</span> <span class="nc">FlowView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QWidget</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Flow-style layout widget.</span>
+<span class="sd">    Flow-style layout.</span>
 
 <span class="sd">    Displays its children horizonally left-to-right and wraps into multiple rows.</span>
 
@@ -530,9 +530,13 @@
 <span class="sd">    .. note::</span>
 
 <span class="sd">        The :class:`FlowView` element is implemented in Python because Qt does not provide</span>
-<span class="sd">        any :code:`QLayout` which behaves this way. Currently the :class:`FlowView`</span>
-<span class="sd">        has O(N\ :sup:`2`) time complexity for adding children</span>
-<span class="sd">        because of technical limitation of the Qt API.</span>
+<span class="sd">        any native :code:`QLayout` which behaves this way. Currently the :class:`FlowView`</span>
+<span class="sd">        has worst-case O(N :sup:`2`) time complexity for inserting children</span>
+<span class="sd">        because of technical limitations of the Qt API.</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** for :class:`QtWidgetElement`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="FlowView.__init__">

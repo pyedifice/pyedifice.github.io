@@ -386,25 +386,41 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">RadioButton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/radio_button.html#RadioButton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.RadioButton" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EdRadioButton</span></code>]</p>
 <p>Radio buttons.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html">QRadioButton</a></p></li>
 </ul>
+</div></blockquote>
+<p>Radio buttons are used to specify a single choice out of many.</p>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>checked</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether or not the RadioButton is checked.</p></li>
+<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Text for the label of the RadioButton.</p></li>
+<li><p><strong>on_change</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – Event handler for when the checked value changes, but
+only when the user checks or unchecks, not when the checked prop
+changes.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Usage</p>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/radio_button.png"><img alt="../_images/radio_button.png" src="../_images/radio_button.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Three mutually exclusive radio buttons.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Three RadioButtons</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Radio buttons are used to specify a single choice out of many.</p>
 <p>Because of the declarative nature of Edifice, we can ignore all of the
 Qt mechanisms for radio button “groups” and “exclusivity.”
 Just declare each radio button <code class="code docutils literal notranslate"><span class="pre">checked</span></code> prop to depend on the state.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;op1&quot;</span><span class="p">,</span> <span class="s2">&quot;op2&quot;</span><span class="p">],</span> <span class="s2">&quot;op1&quot;</span><span class="p">))</span>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Exclusive RadioButtons with different parents</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;op1&quot;</span><span class="p">,</span> <span class="s2">&quot;op2&quot;</span><span class="p">],</span> <span class="s2">&quot;op1&quot;</span><span class="p">))</span>
 
 <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">VBoxView</span><span class="p">():</span>
-    <span class="c1"># Exclusive RadioButtons with different parents</span>
     <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">VBoxView</span><span class="p">():</span>
         <span class="n">ed</span><span class="o">.</span><span class="n">RadioButton</span><span class="p">(</span>
             <span class="n">checked</span> <span class="o">=</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op1&quot;</span><span class="p">,</span>
@@ -421,17 +437,7 @@ Just declare each radio button <code class="code docutils literal notranslate"><
         <span class="p">)</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>checked</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether or not the RadioButton is checked.</p></li>
-<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Text for the label of the RadioButton.</p></li>
-<li><p><strong>on_change</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – Event handler for when the checked value changes, but
-only when the user checks or unchecks, not when the checked prop
-changes.</p></li>
-</ul>
-</dd>
-</dl>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

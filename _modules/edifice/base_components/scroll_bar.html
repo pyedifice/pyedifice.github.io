@@ -390,11 +390,10 @@
     <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span>
 
 
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span>  <span class="c1"># noqa: TCH003</span>
+
 <span class="kn">import</span> <span class="nn">edifice</span> <span class="k">as</span> <span class="nn">ed</span>
 <span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="n">CommandType</span><span class="p">,</span> <span class="n">PropsDict</span><span class="p">,</span> <span class="n">_ensure_future</span><span class="p">,</span> <span class="n">_WidgetTree</span>
-
-<span class="k">if</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span>
 
 
 <div class="viewcode-block" id="ScrollBar">
@@ -405,8 +404,13 @@
 
 <span class="sd">    Render a scroll bar widget that allows the user to scroll through a range of values.</span>
 
-<span class="sd">    - Underlying Qt Widget:</span>
-<span class="sd">      `QScrollBar &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollBar.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget:</span>
+<span class="sd">          `QScrollBar &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollBar.html&gt;`_</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value: The current value of the scroll bar.</span>

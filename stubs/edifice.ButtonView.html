@@ -385,29 +385,41 @@
 <dt class="sig sig-object py" id="edifice.ButtonView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">ButtonView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on_trigger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/button_view.html#ButtonView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.ButtonView" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.HBoxView.html#edifice.HBoxView" title="edifice.base_components.base_components.HBoxView"><code class="xref py py-class docutils literal notranslate"><span class="pre">HBoxView</span></code></a></p>
+<p>Button with child layout.</p>
 <p>A Button where the label is the Button’s children rendered in a <a class="reference internal" href="edifice.HBoxView.html#edifice.HBoxView" title="edifice.HBoxView"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.HBoxView</span></code></a>.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html">QPushButton</a></p></li>
 </ul>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ButtonView</span><span class="p">(</span>
+</div></blockquote>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>on_trigger</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QKeyEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QMouseEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – <p>Event fires when the button is triggered by mouse or
+the Spacebar or Enter key. Event type is either
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QMouseEvent.html">QMouseEvent</a>
+or
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QKeyEvent.html">QKeyEvent</a>.</p>
+<p>Use either this <strong>prop</strong> or <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> <strong>prop</strong>, not both.</p>
+</p>
+</dd>
+</dl>
+<p class="rubric">Usage</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example ButtonView</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ButtonView</span><span class="p">(</span>
     <span class="n">on_click</span><span class="o">=</span><span class="n">handle_click</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="n">Icon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;share&quot;</span><span class="p">)</span>
     <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;i&gt;Share the Content&lt;/i&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 <figure class="align-default">
 <img alt="../_images/button_view.png" src="../_images/button_view.png" />
 </figure>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>on_trigger</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QKeyEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QMouseEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – Event fires when the button is triggered by mouse or
-the Spacebar or Enter key. Event type is either <code class="code docutils literal notranslate"><span class="pre">QMouseEvent</span></code> or <code class="code docutils literal notranslate"><span class="pre">QKeyEvent</span></code>.
-Use either this or <code class="code docutils literal notranslate"><span class="pre">on_click</span></code>, not both.</p>
-</dd>
-</dl>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

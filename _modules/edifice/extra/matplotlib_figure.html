@@ -404,7 +404,23 @@
 
 <span class="sd">    Requires `matplotlib &lt;https://matplotlib.org/stable/&gt;`_.</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`edifice.QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        plot_fun:</span>
+<span class="sd">            Function which takes **matplotlib**</span>
+<span class="sd">            `Axes &lt;https://matplotlib.org/stable/api/axes_api.html&gt;`_</span>
+<span class="sd">            and calls</span>
+<span class="sd">            `Axes.plot &lt;https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html&gt;`_.</span>
+<span class="sd">        on_figure_mouse_move:</span>
+<span class="sd">            Handler for mouse move</span>
+<span class="sd">            `MouseEvent &lt;https://matplotlib.org/stable/api/backend_bases_api.html#matplotlib.backend_bases.MouseEvent&gt;`_.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from matplotlib.axes import Axes</span>
 <span class="sd">        import numpy as np</span>
@@ -416,15 +432,6 @@
 
 <span class="sd">        MatplotlibFigure(plot_fun=plot_fun)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        plot_fun:</span>
-<span class="sd">            Function which takes **matplotlib**</span>
-<span class="sd">            `Axes &lt;https://matplotlib.org/stable/api/axes_api.html&gt;`_</span>
-<span class="sd">            and calls</span>
-<span class="sd">            `Axes.plot &lt;https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html&gt;`_.</span>
-<span class="sd">        on_figure_mouse_move:</span>
-<span class="sd">            Handler for mouse move</span>
-<span class="sd">            `MouseEvent &lt;https://matplotlib.org/stable/api/backend_bases_api.html#matplotlib.backend_bases.MouseEvent&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MatplotlibFigure.__init__">

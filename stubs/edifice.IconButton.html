@@ -386,10 +386,27 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">IconButton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'font-awesome'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'solid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">255)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#IconButton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.IconButton" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.Button.html#edifice.Button" title="edifice.base_components.base_components.Button"><code class="xref py py-class docutils literal notranslate"><span class="pre">Button</span></code></a></p>
 <p>Display an Icon Button.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html">QPushButton</a></p></li>
 </ul>
+</div></blockquote>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – name of the icon. Search for icon names on <a class="reference external" href="https://fontawesome.com/icons?d=gallery&amp;s=regular,solid">https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</a></p></li>
+<li><p><strong>size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – size of the icon.</p></li>
+<li><p><strong>collection</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the icon package. Currently only font-awesome is supported.</p></li>
+<li><p><strong>sub_collection</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – for font awesome, either solid or regular</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – the RGBA value for the icon color</p></li>
+<li><p><strong>rotation</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – an angle (in degrees) for the icon rotation</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Usage</p>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/icons.png"><img alt="../_images/icons.png" src="../_images/icons.png" style="width: 300px;" /></a>
 <figcaption>
@@ -401,24 +418,13 @@ this Element allows you to put an icon in a button.
 Edifice comes with the Font Awesome (<a class="reference external" href="https://fontawesome.com">https://fontawesome.com</a>) regular and solid
 icon sets, to save you time from looking up your own icon set.
 You can specify an icon simplify using its name (and optionally the sub_collection).</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IconButton</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;share&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">share</span><span class="p">)</span>
+<p>You can browse and search for icons here: <a class="reference external" href="https://fontawesome.com/icons?d=gallery&amp;s=regular,solid">https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</a></p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Example share icon button</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">IconButton</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;share&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">share</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>will create a button with a share icon.</p>
-<p>You can browse and search for icons here: <a class="reference external" href="https://fontawesome.com/icons?d=gallery&amp;s=regular,solid">https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – name of the icon. Search for the name on <a class="reference external" href="https://fontawesome.com/icons?d=gallery&amp;s=regular,solid">https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</a></p></li>
-<li><p><strong>size</strong> – size of the icon.</p></li>
-<li><p><strong>collection</strong> – the icon package. Currently only font-awesome is supported.</p></li>
-<li><p><strong>sub_collection</strong> – for font awesome, either solid or regular</p></li>
-<li><p><strong>color</strong> – the RGBA value for the icon color</p></li>
-<li><p><strong>rotation</strong> – an angle (in degrees) for the icon rotation</p></li>
-</ul>
-</dd>
-</dl>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

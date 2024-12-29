@@ -416,12 +416,32 @@
 <a class="viewcode-back" href="../../../stubs/edifice.ButtonView.html#edifice.ButtonView">[docs]</a>
 <span class="k">class</span> <span class="nc">ButtonView</span><span class="p">(</span><span class="n">HBoxView</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Button with child layout.</span>
+
 <span class="sd">    A Button where the label is the Button’s children rendered in a :class:`edifice.HBoxView`.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        on_trigger:</span>
+<span class="sd">            Event fires when the button is triggered by mouse or</span>
+<span class="sd">            the Spacebar or Enter key. Event type is either</span>
+<span class="sd">            `QMouseEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QMouseEvent.html&gt;`_</span>
+<span class="sd">            or</span>
+<span class="sd">            `QKeyEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QKeyEvent.html&gt;`_.</span>
+
+<span class="sd">            Use either this **prop** or :code:`on_click` **prop**, not both.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example ButtonView</span>
 
 <span class="sd">        with ButtonView(</span>
 <span class="sd">            on_click=handle_click,</span>
@@ -431,11 +451,6 @@
 
 <span class="sd">    .. figure:: /image/button_view.png</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        on_trigger:</span>
-<span class="sd">            Event fires when the button is triggered by mouse or</span>
-<span class="sd">            the Spacebar or Enter key. Event type is either :code:`QMouseEvent` or :code:`QKeyEvent`.</span>
-<span class="sd">            Use either this or :code:`on_click`, not both.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ButtonView.__init__">

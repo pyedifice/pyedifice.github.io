@@ -412,19 +412,15 @@
 <span class="k">class</span> <span class="nc">CheckBox</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">EdCheckBox</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checkbox widget.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QCheckBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCheckBox.html&gt;`_</span>
+<span class="sd">    A CheckBox allows the user to select a boolean.</span>
 
-<span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
-<span class="sd">       :width: 300</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QCheckBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCheckBox.html&gt;`_</span>
 
-<span class="sd">       Checkbox on the left.</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">    A checkbox allows the user to specify some boolean state.</span>
-
-<span class="sd">    The :code:`checked` prop determines the check-state of the widget.</span>
-<span class="sd">    When the user toggles the check state, the :code:`on_change` callback is called</span>
-<span class="sd">    with the requested new check state.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement`, plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        checked:</span>
@@ -435,6 +431,17 @@
 <span class="sd">            Event handler for when the checked value changes, but</span>
 <span class="sd">            only when the user checks or unchecks, not when the checked prop</span>
 <span class="sd">            changes.</span>
+
+<span class="sd">    The :code:`checked` prop determines the check-state of the widget.</span>
+<span class="sd">    When the user toggles the check state, the :code:`on_change` callback is called</span>
+<span class="sd">    with the requested new check state.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
+<span class="sd">       :width: 300</span>
+
+<span class="sd">       Checkbox on the left.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CheckBox.__init__">

@@ -393,7 +393,7 @@ stylable using the <code class="code docutils literal notranslate"><span class="
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>([style, tool_tip, cursor, ...])</p></td>
-<td><p>Base Qt Widget.</p></td>
+<td><p>Base Qt Widget Element.</p></td>
 </tr>
 </tbody>
 </table>
@@ -443,10 +443,10 @@ and indent the element’s children:</p>
 <td><p>View layout for child widgets with fixed position.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.VScrollView.html#edifice.VScrollView" title="edifice.VScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VScrollView</span></code></a>(**kwargs)</p></td>
-<td><p>Scrollable vertical column layout widget for grouping children together.</p></td>
+<td><p>Scrollable vertical column layout.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.HScrollView.html#edifice.HScrollView" title="edifice.HScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HScrollView</span></code></a>(**kwargs)</p></td>
-<td><p>Scrollable horizontal row layout widget for grouping children together.</p></td>
+<td><p>Scrollable horizontal row layout widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.FixScrollView.html#edifice.FixScrollView" title="edifice.FixScrollView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FixScrollView</span></code></a>(**kwargs)</p></td>
 <td><p>Scrollable layout widget for child widgets with fixed position.</p></td>
@@ -464,10 +464,10 @@ and indent the element’s children:</p>
 <td><p>Row Element of a <a class="reference internal" href="stubs/edifice.TableGridView.html#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.FlowView.html#edifice.FlowView" title="edifice.FlowView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowView</span></code></a>(**kwargs)</p></td>
-<td><p>Flow-style layout widget.</p></td>
+<td><p>Flow-style layout.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.WindowPopView.html#edifice.WindowPopView" title="edifice.WindowPopView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WindowPopView</span></code></a>([title, icon, on_close, ...])</p></td>
-<td><p>Pop-up Window.</p></td>
+<td><p>Pop-up Window layout.</p></td>
 </tr>
 </tbody>
 </table>
@@ -482,13 +482,13 @@ and indent the element’s children:</p>
 <td><p>Basic button widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ButtonView.html#edifice.ButtonView" title="edifice.ButtonView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ButtonView</span></code></a>([on_trigger])</p></td>
-<td><p>A Button where the label is the Button’s children rendered in a <a class="reference internal" href="stubs/edifice.HBoxView.html#edifice.HBoxView" title="edifice.HBoxView"><code class="xref py py-class docutils literal notranslate"><span class="pre">edifice.HBoxView</span></code></a>.</p></td>
+<td><p>Button with child layout.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CheckBox.html#edifice.CheckBox" title="edifice.CheckBox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CheckBox</span></code></a>([checked, text, on_change])</p></td>
 <td><p>Checkbox widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.Dropdown.html#edifice.Dropdown" title="edifice.Dropdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dropdown</span></code></a>([selection, options, on_select, ...])</p></td>
-<td><p>Basic widget for a dropdown menu.</p></td>
+<td><p>Dropdown selection widget.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Image.html#edifice.Image" title="edifice.Image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Image</span></code></a>(src[, aspect_ratio_mode])</p></td>
 <td><p>Render an image.</p></td>
@@ -503,7 +503,7 @@ and indent the element’s children:</p>
 <td><p>Display an Icon Button.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>([text, selectable, word_wrap, ...])</p></td>
-<td><p>Basic widget for displaying text.</p></td>
+<td><p>Text display widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.ProgressBar.html#edifice.ProgressBar" title="edifice.ProgressBar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgressBar</span></code></a>(value[, min_value, max_value, ...])</p></td>
 <td><p>Progress bar widget.</p></td>
@@ -521,10 +521,10 @@ and indent the element’s children:</p>
 <td><p>Widget for a <code class="code docutils literal notranslate"><span class="pre">int</span></code> input value with up/down buttons.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.TextInput.html#edifice.TextInput" title="edifice.TextInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextInput</span></code></a>([text, placeholder_text, ...])</p></td>
-<td><p>Basic widget for a one line text input.</p></td>
+<td><p>One line text input widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.TextInputMultiline.html#edifice.TextInputMultiline" title="edifice.TextInputMultiline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextInputMultiline</span></code></a>([text, placeholder_text, ...])</p></td>
-<td><p>Basic widget for a multiline text input.</p></td>
+<td><p>Multiline text input widget.</p></td>
 </tr>
 </tbody>
 </table>

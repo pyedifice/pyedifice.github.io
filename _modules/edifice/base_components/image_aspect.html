@@ -434,11 +434,13 @@
 <span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render an image.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
-<span class="sd">    To render a 3-dimensional :code:`uint8` :code:`numpy` array as an image,</span>
-<span class="sd">    see :class:`edifice.extra.NumpyImage`.</span>
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`, plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        src:</span>
@@ -455,6 +457,10 @@
 <span class="sd">              `AspectRatioMode &lt;https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.AspectRatioMode&gt;`_</span>
 <span class="sd">              to specify how the image should scale.</span>
 
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    To render a 3-dimensional :code:`uint8` :code:`numpy` array as an image,</span>
+<span class="sd">    see :class:`edifice.extra.numpy_image.NumpyImage`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Image.__init__">

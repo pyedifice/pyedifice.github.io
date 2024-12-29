@@ -388,15 +388,20 @@
 <p>View layout for child widgets with fixed position.</p>
 <p>Content that does not fit into the FixView layout will be clipped.
 To allow scrolling in case of overflow, use <a class="reference internal" href="edifice.FixScrollView.html#edifice.FixScrollView" title="edifice.FixScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixScrollView</span></code></a>.</p>
-<p>Use the <code class="code docutils literal notranslate"><span class="pre">top</span></code> and <code class="code docutils literal notranslate"><span class="pre">left</span></code> style properties to set the position of the child widgets.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">FixView</span><span class="p">():</span>
+<p>Use the <code class="code docutils literal notranslate"><span class="pre">top</span></code> and <code class="code docutils literal notranslate"><span class="pre">left</span></code> <a class="reference internal" href="../styling.html#styling"><span class="std std-ref">style</span></a> properties to set the
+position of the child widgets.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example FixView with Label at 100px from top and 200px from left</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">FixView</span><span class="p">():</span>
     <span class="n">Label</span><span class="p">(</span>
         <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Label 100px from top and 200px from left&quot;</span><span class="p">,</span>
         <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span>
     <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

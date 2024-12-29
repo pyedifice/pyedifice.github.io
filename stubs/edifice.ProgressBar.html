@@ -386,19 +386,19 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">ProgressBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_value=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_value=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation=&lt;Orientation.Horizontal:</span> <span class="pre">1&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#ProgressBar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.ProgressBar" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QProgressBar</span></code>]</p>
 <p>Progress bar widget.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QProgressBar.html">QProgressBar</a>.</p></li>
 </ul>
+</div></blockquote>
 <p>A progress bar is used to give the user an indication of the progress of an operation.</p>
-<p>The <code class="code docutils literal notranslate"><span class="pre">value</span></code> prop indicates the progress from <code class="code docutils literal notranslate"><span class="pre">min_value</span></code> to
-<code class="code docutils literal notranslate"><span class="pre">max_value</span></code>.</p>
-<p>If <code class="code docutils literal notranslate"><span class="pre">min_value</span></code> and <code class="code docutils literal notranslate"><span class="pre">max_value</span></code> both are set to <em>0</em>, the bar shows
-a busy indicator instead of a percentage of steps.</p>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The progress.</p></li>
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The progress from <code class="code docutils literal notranslate"><span class="pre">min_value</span></code> to <code class="code docutils literal notranslate"><span class="pre">max_value</span></code>.</p></li>
 <li><p><strong>min_value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The starting progress.</p></li>
 <li><p><strong>max_value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The ending progress.</p></li>
 <li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The descriptive text format.
@@ -409,6 +409,8 @@ See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/
 </ul>
 </dd>
 </dl>
+<p>If <code class="code docutils literal notranslate"><span class="pre">min_value</span></code> and <code class="code docutils literal notranslate"><span class="pre">max_value</span></code> both are set to <em>0</em>, the bar shows
+a busy indicator instead of a percentage of steps.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

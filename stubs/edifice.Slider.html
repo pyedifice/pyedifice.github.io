@@ -386,21 +386,15 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">Slider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_value=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_value=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation=&lt;Orientation.Horizontal:</span> <span class="pre">1&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_change=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_mouse_scroll=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#Slider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Slider" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QSlider</span></code>]</p>
 <p>Slider bar widget.</p>
-<ul class="simple">
+<p>A Slider bar allows the user to input a continuous value.</p>
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSlider.html">QSlider</a></p></li>
 </ul>
-<figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/slider.png"><img alt="../_images/slider.png" src="../_images/slider.png" style="width: 300px;" /></a>
-<figcaption>
-<p><span class="caption-text">Horizontal and vertical sliders</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>A Slider bar allows the user to input a continuous value.
-The bar could be displayed either horizontally or vertically.</p>
-<p>The value prop determines the position of the slider.
-When the user changes the position of the slider,
-the on_change callback is called with the new value.</p>
+</div></blockquote>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -417,6 +411,13 @@ not when the value prop changes.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Usage</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/slider.png"><img alt="../_images/slider.png" src="../_images/slider.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Horizontal and vertical sliders</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

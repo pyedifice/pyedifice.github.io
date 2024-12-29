@@ -386,20 +386,15 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">CheckBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/check_box.html#CheckBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.CheckBox" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EdCheckBox</span></code>]</p>
 <p>Checkbox widget.</p>
-<ul class="simple">
+<p>A CheckBox allows the user to select a boolean.</p>
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QCheckBox.html">QCheckBox</a></p></li>
 </ul>
-<figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/checkbox_dropdown.png"><img alt="../_images/checkbox_dropdown.png" src="../_images/checkbox_dropdown.png" style="width: 300px;" /></a>
-<figcaption>
-<p><span class="caption-text">Checkbox on the left.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>A checkbox allows the user to specify some boolean state.</p>
-<p>The <code class="code docutils literal notranslate"><span class="pre">checked</span></code> prop determines the check-state of the widget.
-When the user toggles the check state, the <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> callback is called
-with the requested new check state.</p>
+</div></blockquote>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>, plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -411,6 +406,16 @@ changes.</p></li>
 </ul>
 </dd>
 </dl>
+<p>The <code class="code docutils literal notranslate"><span class="pre">checked</span></code> prop determines the check-state of the widget.
+When the user toggles the check state, the <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> callback is called
+with the requested new check state.</p>
+<p class="rubric">Usage</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/checkbox_dropdown.png"><img alt="../_images/checkbox_dropdown.png" src="../_images/checkbox_dropdown.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Checkbox on the left.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

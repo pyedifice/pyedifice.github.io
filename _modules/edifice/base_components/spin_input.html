@@ -435,16 +435,22 @@
 <span class="k">class</span> <span class="nc">SpinInput</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">EdSpinBox</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Widget for a :code:`int` input value with up/down buttons.</span>
 
-<span class="sd">    Allows the user to choose a value by clicking the up/down buttons or</span>
+<span class="sd">    Allows the user to choose an :code:`int` by clicking the up/down buttons or</span>
 <span class="sd">    pressing up/down on the keyboard to increase/decrease the value currently</span>
 <span class="sd">    displayed. The user can also type the value in manually.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QSpinBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSpinBox.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QSpinBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSpinBox.html&gt;`_</span>
+
+<span class="sd">    .. rubric::</span>
+<span class="sd">        Props</span>
+
+<span class="sd">    All **props** for :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        value:</span>
-<span class="sd">            Value of the text input.</span>
+<span class="sd">        value: Value of the text input.</span>
 <span class="sd">        min_value:</span>
 <span class="sd">            Minimum value of the text input.</span>
 <span class="sd">        max_value:</span>

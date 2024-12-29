@@ -386,26 +386,14 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">Icon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'font-awesome'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'solid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">255)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#Icon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.Icon" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QLabel</span></code>]</p>
 <p>Display an Icon.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Widget
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html">QLabel</a></p></li>
 </ul>
-<figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/icons.png"><img alt="../_images/icons.png" src="../_images/icons.png" style="width: 300px;" /></a>
-<figcaption>
-<p><span class="caption-text">Two icons. Note that you can set the color and rotation.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Icons are central to modern-looking UI design.
-Edifice comes with the Font Awesome (<a class="reference external" href="https://fontawesome.com">https://fontawesome.com</a>) regular and solid
-icon sets, to save you time from looking up your own icon set.
-You can specify an icon simplify using its name (and optionally the sub_collection).</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Icon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;share&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>will create a classic share icon.</p>
-<p>You can browse and search for icons here: <a class="reference external" href="https://fontawesome.com/icons?d=gallery&amp;s=regular,solid">https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</a></p>
+</div></blockquote>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -418,6 +406,25 @@ You can specify an icon simplify using its name (and optionally the sub_collecti
 </ul>
 </dd>
 </dl>
+<p class="rubric">Usage</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/icons.png"><img alt="../_images/icons.png" src="../_images/icons.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Two icons</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Icons are central to modern-looking UI design.
+Edifice comes with the Font Awesome (<a class="reference external" href="https://fontawesome.com">https://fontawesome.com</a>) regular and solid
+icon sets, to save you time from looking up your own icon set.
+You can specify an icon simplify using its name (and optionally the sub_collection).</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Example classic share icon</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Icon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;share&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>You can browse and search for icons here: <a class="reference external" href="https://fontawesome.com/icons?d=gallery&amp;s=regular,solid">https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</a></p>
+<p>For full control of custom icons, use an <a class="reference internal" href="edifice.ImageSvg.html#edifice.ImageSvg" title="edifice.ImageSvg"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageSvg</span></code></a> instead.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

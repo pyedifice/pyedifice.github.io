@@ -386,14 +386,27 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">GridView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_to_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#GridView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.GridView" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>]</p>
 <p>Grid layout widget for rendering children on a 2D rectangular grid.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Layout
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html">QGridLayout</a></p></li>
 </ul>
+</div></blockquote>
 <p>Grid views allow you to precisely control 2D positioning of widgets.
 specifying the exact location of children relative to each other (with proper alignment)
 requires extensive fine tuning of style attributes.
 The GridView allows you to lay out widgets at specified grid indices and size.</p>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> for <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layout</strong> – description of layout as described above</p></li>
+<li><p><strong>key_to_code</strong> – mapping from key to a single character representing that child in the layout string</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Usage</p>
 <p>Children will be laid out according to the layout argument.
 Each child is assigned a character code (by default, the first character of the key;
 this can be changed via the key_to_code prop).
@@ -413,8 +426,9 @@ etc.</p>
 <span class="n">aabc</span>
 </pre></div>
 </div>
-<p>Here is a complete example of using GridView:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">GridView Example</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ed</span><span class="o">.</span><span class="n">GridView</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">        789+</span>
 <span class="s1">        456-</span>
@@ -428,14 +442,7 @@ etc.</p>
     <span class="p">)</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>layout</strong> – description of layout as described above</p></li>
-<li><p><strong>key_to_code</strong> – mapping from key to a single character representing that child in the layout string</p></li>
-</ul>
-</dd>
-</dl>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

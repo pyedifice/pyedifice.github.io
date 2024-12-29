@@ -401,11 +401,29 @@
 <span class="sd">    Requires</span>
 <span class="sd">    `PyQtGraph &lt;https://pyqtgraph.readthedocs.io/en/latest/&gt;`_.</span>
 
-<span class="sd">    It’s important to import **edifice** before importing **pyqtgraph**, so that **pyqtgraph**</span>
-<span class="sd">    `detects the same PyQt6 or PySide6 &lt;https://pyqtgraph.readthedocs.io/en/latest/getting_started/how_to_use.html#pyqt-and-pyside&gt;`_</span>
-<span class="sd">    package used by **edifice**.</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    All **props** from :class:`edifice.QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        plot_fun:</span>
+<span class="sd">            Function which takes a **PyQtGraph**</span>
+<span class="sd">            `PlotItem &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html&gt;`_</span>
+<span class="sd">            and calls</span>
+<span class="sd">            `plot() &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.plot&gt;`_.</span>
+
+<span class="sd">            Edifice will call</span>
+<span class="sd">            `clear() &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.clear&gt;`_</span>
+<span class="sd">            before calling :code:`plot_fun`.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. important::</span>
+<span class="sd">        It’s important to import **edifice** before importing **pyqtgraph**, so that **pyqtgraph**</span>
+<span class="sd">        `detects the same PyQt6 or PySide6 &lt;https://pyqtgraph.readthedocs.io/en/latest/getting_started/how_to_use.html#pyqt-and-pyside&gt;`_</span>
+<span class="sd">        package used by **edifice**.</span>
+
+<span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        import numpy as np</span>
 <span class="sd">        from edifice import View, component</span>
@@ -427,7 +445,8 @@
 <span class="sd">    you can disable mouse interaction with the plot by setting properties</span>
 <span class="sd">    on the `PlotItem &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html&gt;`_.</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Disable mouse interaction</span>
 
 <span class="sd">        def plot_fun(plot_item: pg.PlotItem):</span>
 <span class="sd">            plot_item.setMouseEnabled(x=False, y=False)</span>
@@ -437,23 +456,14 @@
 <span class="sd">    A more complete way to disable mouse interaction is to set the</span>
 <span class="sd">    :code:`PlotWidget` to be transparent for mouse events.</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Disable mouse interaction</span>
 
 <span class="sd">        def plot_fun(plot_item: pg.PlotItem):</span>
 <span class="sd">            cast(</span>
 <span class="sd">                pg.PlotWidget, plot_item.getViewWidget()</span>
 <span class="sd">            ).setAttribute(PySide6.QtCore.Qt.WidgetAttribute.WA_TransparentForMouseEvents)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        plot_fun:</span>
-<span class="sd">            Function which takes a **PyQtGraph**</span>
-<span class="sd">            `PlotItem &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html&gt;`_</span>
-<span class="sd">            and calls</span>
-<span class="sd">            `plot() &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.plot&gt;`_.</span>
-
-<span class="sd">            Edifice will call</span>
-<span class="sd">            `clear() &lt;https://pyqtgraph.readthedocs.io/en/latest/api_reference/graphicsItems/plotitem.html#pyqtgraph.PlotItem.clear&gt;`_</span>
-<span class="sd">            before calling :code:`plot_fun`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PyQtPlot.__init__">

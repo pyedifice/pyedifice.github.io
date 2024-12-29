@@ -410,26 +410,43 @@
 <span class="k">class</span> <span class="nc">RadioButton</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">EdRadioButton</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Radio buttons.</span>
 
-<span class="sd">    * Underlying Qt Widget</span>
-<span class="sd">      `QRadioButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Widget</span>
+<span class="sd">          `QRadioButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html&gt;`_</span>
+
+<span class="sd">    Radio buttons are used to specify a single choice out of many.</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        checked:</span>
+<span class="sd">            Whether or not the RadioButton is checked.</span>
+<span class="sd">        text:</span>
+<span class="sd">            Text for the label of the RadioButton.</span>
+<span class="sd">        on_change:</span>
+<span class="sd">            Event handler for when the checked value changes, but</span>
+<span class="sd">            only when the user checks or unchecks, not when the checked prop</span>
+<span class="sd">            changes.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
 
 <span class="sd">    .. figure:: /image/radio_button.png</span>
 <span class="sd">       :width: 300</span>
 
-<span class="sd">       Three mutually exclusive radio buttons.</span>
-
-<span class="sd">    Radio buttons are used to specify a single choice out of many.</span>
+<span class="sd">       Three RadioButtons</span>
 
 <span class="sd">    Because of the declarative nature of Edifice, we can ignore all of the</span>
 <span class="sd">    Qt mechanisms for radio button “groups” and “exclusivity.”</span>
 <span class="sd">    Just declare each radio button :code:`checked` prop to depend on the state.</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Exclusive RadioButtons with different parents</span>
 
 <span class="sd">        value, value_set = use_state(cast(Literal[&quot;op1&quot;, &quot;op2&quot;], &quot;op1&quot;))</span>
 
 <span class="sd">        with ed.VBoxView():</span>
-<span class="sd">            # Exclusive RadioButtons with different parents</span>
 <span class="sd">            with ed.VBoxView():</span>
 <span class="sd">                ed.RadioButton(</span>
 <span class="sd">                    checked = value == &quot;op1&quot;,</span>
@@ -444,16 +461,6 @@
 <span class="sd">                    text = &quot;Option 2&quot;,</span>
 <span class="sd">                    style = {} if value == &quot;op1&quot; else { &quot;color&quot;: &quot;grey&quot; },</span>
 <span class="sd">                )</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        checked:</span>
-<span class="sd">            Whether or not the RadioButton is checked.</span>
-<span class="sd">        text:</span>
-<span class="sd">            Text for the label of the RadioButton.</span>
-<span class="sd">        on_change:</span>
-<span class="sd">            Event handler for when the checked value changes, but</span>
-<span class="sd">            only when the user checks or unchecks, not when the checked prop</span>
-<span class="sd">            changes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RadioButton.__init__">

@@ -429,13 +429,36 @@
 <span class="k">class</span> <span class="nc">TableGridView</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QWidget</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Table-style grid layout displays its children as aligned rows of columns.</span>
 
-<span class="sd">    * Underlying Qt Layout</span>
-<span class="sd">      `QGridLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html&gt;`_</span>
+<span class="sd">    .. highlights::</span>
+<span class="sd">        - Underlying Qt Layout</span>
+<span class="sd">          `QGridLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html&gt;`_</span>
 
 <span class="sd">    This component has similar behavior to an `HTML</span>
 <span class="sd">    table &lt;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table&gt;`_.</span>
 <span class="sd">    Each column will be the width of its widest child. Each row will be the</span>
 <span class="sd">    height of its tallest child.</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** for :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        row_stretch:</span>
+<span class="sd">            *n*:sup:`th` row stretch size in proportion to the *n*:sup:`th`</span>
+<span class="sd">            :code:`int` in this list.</span>
+<span class="sd">            See `setRowStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setRowStretch&gt;`_</span>
+<span class="sd">        column_stretch:</span>
+<span class="sd">            *n*:sup:`th` column stretch size in proportion to the *n*:sup:`th`</span>
+<span class="sd">            :code:`int` in this list.</span>
+<span class="sd">            See `setColumnStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setColumnStretch&gt;`_</span>
+<span class="sd">        row_minheight:</span>
+<span class="sd">            *n*:sup:`th` row minimum height is the *n*:sup:`th` :code:`int` in this list.</span>
+<span class="sd">            See `setRowMinimumHeight &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setRowMinimumHeight&gt;`_</span>
+<span class="sd">        column_minwidth:</span>
+<span class="sd">            *n*:sup:`th` column minimum width is the *n*:sup:`th` :code:`int` in this list.</span>
+<span class="sd">            See `setColumnMinimumWidth &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setColumnMinimumWidth&gt;`_</span>
+
+<span class="sd">    .. rubric:: Usage</span>
 
 <span class="sd">    The only type of child :class:`Element` allowed in a :class:`TableGridView` is</span>
 <span class="sd">    :class:`TableGridRow`.</span>
@@ -455,22 +478,6 @@
 
 <span class="sd">    If the :class:`TableGridRow` s are added and removed dynamically then</span>
 <span class="sd">    it’s a good idea to :func:`Element.set_key` each row.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        row_stretch:</span>
-<span class="sd">            *n*:sup:`th` row stretch size in proportion to the *n*:sup:`th`</span>
-<span class="sd">            :code:`int` in this list.</span>
-<span class="sd">            See `setRowStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setRowStretch&gt;`_</span>
-<span class="sd">        column_stretch:</span>
-<span class="sd">            *n*:sup:`th` column stretch size in proportion to the *n*:sup:`th`</span>
-<span class="sd">            :code:`int` in this list.</span>
-<span class="sd">            See `setColumnStretch &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setColumnStretch&gt;`_</span>
-<span class="sd">        row_minheight:</span>
-<span class="sd">            *n*:sup:`th` row minimum height is the *n*:sup:`th` :code:`int` in this list.</span>
-<span class="sd">            See `setRowMinimumHeight &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setRowMinimumHeight&gt;`_</span>
-<span class="sd">        column_minwidth:</span>
-<span class="sd">            *n*:sup:`th` column minimum width is the *n*:sup:`th` :code:`int` in this list.</span>
-<span class="sd">            See `setColumnMinimumWidth &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html#PySide6.QtWidgets.QGridLayout.setColumnMinimumWidth&gt;`_</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 

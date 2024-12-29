@@ -386,30 +386,18 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">TableGridView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_minheight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_minwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/table_grid_view.html#TableGridView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.TableGridView" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>]</p>
 <p>Table-style grid layout displays its children as aligned rows of columns.</p>
-<ul class="simple">
+<blockquote class="highlights">
+<div><ul class="simple">
 <li><p>Underlying Qt Layout
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html">QGridLayout</a></p></li>
 </ul>
+</div></blockquote>
 <p>This component has similar behavior to an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">HTML
 table</a>.
 Each column will be the width of its widest child. Each row will be the
 height of its tallest child.</p>
-<p>The only type of child <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> allowed in a <a class="reference internal" href="#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a> is
-<a class="reference internal" href="edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridRow</span></code></a>.
-Each <a class="reference internal" href="edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridRow</span></code></a> establishes a row in the table, and may have
-children of any type of <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">TableGridRow</span><span class="p">():</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 0&quot;</span><span class="p">)</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 1&quot;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">TableGridRow</span><span class="p">():</span>
-        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 1 column 0&quot;</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
-            <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 1 column 1&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>If the <a class="reference internal" href="edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridRow</span></code></a> s are added and removed dynamically then
-it’s a good idea to <a class="reference internal" href="stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> each row.</p>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> for <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -426,6 +414,23 @@ See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/
 </ul>
 </dd>
 </dl>
+<p class="rubric">Usage</p>
+<p>The only type of child <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> allowed in a <a class="reference internal" href="#edifice.TableGridView" title="edifice.TableGridView"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridView</span></code></a> is
+<a class="reference internal" href="edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridRow</span></code></a>.
+Each <a class="reference internal" href="edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridRow</span></code></a> establishes a row in the table, and may have
+children of any type of <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">TableGridRow</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 0&quot;</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 0 column 1&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">TableGridRow</span><span class="p">():</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 1 column 0&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+            <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;row 1 column 1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the <a class="reference internal" href="edifice.TableGridRow.html#edifice.TableGridRow" title="edifice.TableGridRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableGridRow</span></code></a> s are added and removed dynamically then
+it’s a good idea to <a class="reference internal" href="stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> each row.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
