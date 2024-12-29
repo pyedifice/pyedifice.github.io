@@ -401,6 +401,17 @@
 containing the XML string of an SVG file.</p>
 </dd>
 </dl>
+<p class="rubric">Usage</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">henomaru</span> <span class="o">=</span> <span class="n">QByteArray</span><span class="o">.</span><span class="n">fromStdString</span><span class="p">(</span>
+    <span class="s1">&#39;&lt;svg viewBox=&quot;0 0 200 200&quot;&gt;&lt;circle fill=&quot;red&quot; cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;100&quot;/&gt;&lt;/svg&gt;&#39;</span>
+<span class="p">)</span>
+
+<span class="n">ImageSvg</span><span class="p">(</span>
+    <span class="n">src</span><span class="o">=</span><span class="n">henomaru</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

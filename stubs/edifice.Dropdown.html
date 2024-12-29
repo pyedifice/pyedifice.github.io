@@ -414,6 +414,15 @@ when the selection prop changes.</p></li>
 <p><span class="caption-text">Dropdown on the right.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dropselect</span><span class="p">,</span> <span class="n">dropselect_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">selection</span><span class="o">=</span><span class="n">dropselect</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Option 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 3&quot;</span><span class="p">],</span>
+    <span class="n">on_select</span><span class="o">=</span><span class="n">dropselect_set</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

@@ -615,26 +615,32 @@
 <span class="sd">        - Underlying Qt Widget</span>
 <span class="sd">          `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
 
-<span class="sd">    .. figure:: /image/textinput_button.png</span>
-<span class="sd">       :width: 300</span>
-
-<span class="sd">       Button on the right</span>
-
 <span class="sd">    .. rubric:: Props</span>
-
-<span class="sd">    Set the :code:`on_click` **prop** (inherited from :class:`QtWidgetElement`) to</span>
-<span class="sd">    define the click behavior.</span>
 
 <span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        title:</span>
 <span class="sd">            The button text</span>
+
+<span class="sd">    Set the :code:`on_click` **prop** (inherited from :class:`QtWidgetElement`) to</span>
+<span class="sd">    define the click behavior.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        Button(title=&quot;Click me&quot;, on_click=lambda _: print(&quot;Clicked!&quot;))</span>
+
+<span class="sd">    .. figure:: /image/textinput_button.png</span>
+<span class="sd">       :width: 300</span>
+
+<span class="sd">       Button on the right</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Button.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.Button.__init__.html#edifice.Button.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
@@ -642,7 +648,7 @@
 
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
@@ -657,10 +663,9 @@
         <span class="c1"># &gt; size = self.underlying.font().pointSize()</span>
         <span class="c1"># &gt; self._set_size(size * len(self.props.title), size, lambda size: (size * len(self.props.title), size))</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">)))</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
 
@@ -986,6 +991,19 @@
 <span class="sd">            Either a path to an SVG image file, or a</span>
 <span class="sd">            `QByteArray &lt;https://doc.qt.io/qtforpython-6/PySide6/QtCore/QByteArray.html&gt;`_</span>
 <span class="sd">            containing the XML string of an SVG file.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        henomaru = QByteArray.fromStdString(</span>
+<span class="sd">            &#39;&lt;svg viewBox=&quot;0 0 200 200&quot;&gt;&lt;circle fill=&quot;red&quot; cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;100&quot;/&gt;&lt;/svg&gt;&#39;</span>
+<span class="sd">        )</span>
+
+<span class="sd">        ImageSvg(</span>
+<span class="sd">            src=henomaru,</span>
+<span class="sd">            style={&quot;width&quot;: 100, &quot;height&quot;: 100},</span>
+<span class="sd">        )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ImageSvg.__init__">
@@ -1066,6 +1084,15 @@
 <span class="sd">            (not recommended).</span>
 
 <span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        text, text_set = ed.use_state(&quot;&quot;)</span>
+
+<span class="sd">        TextInput(</span>
+<span class="sd">            text=text,</span>
+<span class="sd">            on_change=text_set,</span>
+<span class="sd">        )</span>
 
 <span class="sd">    .. figure:: /image/textinput_button.png</span>
 <span class="sd">       :width: 300</span>
@@ -1274,6 +1301,16 @@
 <span class="sd">       :width: 300</span>
 
 <span class="sd">       Dropdown on the right.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        dropselect, dropselect_set = use_state(0)</span>
+
+<span class="sd">        Dropdown(</span>
+<span class="sd">            selection=dropselect,</span>
+<span class="sd">            options=[&quot;Option 1&quot;, &quot;Option 2&quot;, &quot;Option 3&quot;],</span>
+<span class="sd">            on_select=dropselect_set,</span>
+<span class="sd">        )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Dropdown.__init__">

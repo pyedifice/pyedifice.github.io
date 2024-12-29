@@ -444,7 +444,7 @@
 <span class="sd">        :caption: Example ButtonView</span>
 
 <span class="sd">        with ButtonView(</span>
-<span class="sd">            on_click=handle_click,</span>
+<span class="sd">            on_trigger=lambda _event: print(&quot;Button Triggered&quot;),</span>
 <span class="sd">        ):</span>
 <span class="sd">            Icon(name=&quot;share&quot;)</span>
 <span class="sd">            Label(text=&quot;&lt;i&gt;Share the Content&lt;/i&gt;&quot;)</span>

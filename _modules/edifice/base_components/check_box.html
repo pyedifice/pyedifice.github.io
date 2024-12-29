@@ -441,7 +441,17 @@
 <span class="sd">    .. figure:: /image/checkbox_dropdown.png</span>
 <span class="sd">       :width: 300</span>
 
-<span class="sd">       Checkbox on the left.</span>
+<span class="sd">       CheckBox on the left.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        checked, checked_set = ed.use_state(False)</span>
+
+<span class="sd">        CheckBox(</span>
+<span class="sd">            checked=checked,</span>
+<span class="sd">            text=&quot;Check me&quot;,</span>
+<span class="sd">            on_change=checked_set,</span>
+<span class="sd">        )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CheckBox.__init__">

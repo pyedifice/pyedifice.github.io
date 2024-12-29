@@ -413,9 +413,18 @@ with the requested new check state.</p>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/checkbox_dropdown.png"><img alt="../_images/checkbox_dropdown.png" src="../_images/checkbox_dropdown.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Checkbox on the left.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">CheckBox on the left.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">checked</span><span class="p">,</span> <span class="n">checked_set</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">CheckBox</span><span class="p">(</span>
+    <span class="n">checked</span><span class="o">=</span><span class="n">checked</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Check me&quot;</span><span class="p">,</span>
+    <span class="n">on_change</span><span class="o">=</span><span class="n">checked_set</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
