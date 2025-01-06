@@ -395,26 +395,8 @@ operating system window.</p>
 <p>The children of this <a class="reference internal" href="#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> are the visible Elements of the
 <a class="reference internal" href="edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>. When this <a class="reference internal" href="#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> closes, all of the children
 are unmounted and then the <a class="reference internal" href="edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> stops.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">Example Window with F11 Full Screen Toggle</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">full_screen</span><span class="p">,</span> <span class="n">full_screen_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">handle_key_down</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">PySide6</span><span class="o">.</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="p">()</span> <span class="o">==</span> <span class="n">PySide6</span><span class="o">.</span><span class="n">QtGui</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Key</span><span class="o">.</span><span class="n">Key_F11</span><span class="p">:</span>
-            <span class="n">full_screen_set</span><span class="p">(</span><span class="ow">not</span> <span class="n">full_screen</span><span class="p">)</span>
-
-    <span class="k">with</span> <span class="n">Window</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Full Screen Example&quot;</span><span class="p">,</span>
-        <span class="n">_size_open</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-        <span class="n">full_screen</span><span class="o">=</span><span class="n">full_screen</span><span class="p">,</span>
-        <span class="n">on_key_down</span><span class="o">=</span><span class="n">handle_key_down</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Press F11 to toggle full screen mode&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<p class="rubric">Props</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -452,6 +434,27 @@ opened maximized (does not work on X11, see
 </ul>
 </dd>
 </dl>
+<p class="rubric">Usage</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example Window with F11 Full Screen Toggle</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">full_screen</span><span class="p">,</span> <span class="n">full_screen_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">handle_key_down</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">PySide6</span><span class="o">.</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="p">()</span> <span class="o">==</span> <span class="n">PySide6</span><span class="o">.</span><span class="n">QtGui</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Key</span><span class="o">.</span><span class="n">Key_F11</span><span class="p">:</span>
+            <span class="n">full_screen_set</span><span class="p">(</span><span class="ow">not</span> <span class="n">full_screen</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">Window</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Full Screen Example&quot;</span><span class="p">,</span>
+        <span class="n">_size_open</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+        <span class="n">full_screen</span><span class="o">=</span><span class="n">full_screen</span><span class="p">,</span>
+        <span class="n">on_key_down</span><span class="o">=</span><span class="n">handle_key_down</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Press F11 to toggle full screen mode&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

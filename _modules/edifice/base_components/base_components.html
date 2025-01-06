@@ -1659,11 +1659,18 @@
 <span class="sd">    Content that does not fit into the VBoxView layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`VScrollView&lt;edifice.VScrollView&gt;`.</span>
 
-<span class="sd">    .. rubric::</span>
-<span class="sd">        Props</span>
+<span class="sd">    .. rubric:: Props</span>
 
 <span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
 
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example</span>
+
+<span class="sd">        with VBoxView():</span>
+<span class="sd">            Label(text=&quot;Hello&quot;)</span>
+<span class="sd">            Label(text=&quot;World&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="VBoxView.__init__">
@@ -1741,11 +1748,18 @@
 <span class="sd">    Content that does not fit into the HBoxView layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`HScrollView&lt;edifice.HScrollView&gt;`.</span>
 
-<span class="sd">    .. rubric::</span>
-<span class="sd">        Props</span>
+<span class="sd">    .. rubric:: Props</span>
 
 <span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
 
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example</span>
+
+<span class="sd">        with HBoxView():</span>
+<span class="sd">            Label(text=&quot;Hello&quot;)</span>
+<span class="sd">            Label(text=&quot;World&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="HBoxView.__init__">
@@ -1830,8 +1844,7 @@
 <span class="sd">                style={&quot;top&quot;: 100, &quot;left&quot;: 200},</span>
 <span class="sd">            )</span>
 
-<span class="sd">    .. rubric::</span>
-<span class="sd">        Props</span>
+<span class="sd">    .. rubric:: Props</span>
 
 <span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
 
@@ -1914,24 +1927,9 @@
 <span class="sd">    :class:`App`. When this :class:`Window` closes, all of the children</span>
 <span class="sd">    are unmounted and then the :class:`App` stops.</span>
 
-<span class="sd">    .. code-block:: python</span>
-<span class="sd">        :caption: Example Window with F11 Full Screen Toggle</span>
+<span class="sd">    .. rubric:: Props</span>
 
-<span class="sd">        @component</span>
-<span class="sd">        def Main(self):</span>
-<span class="sd">            full_screen, full_screen_set = use_state(False)</span>
-
-<span class="sd">            def handle_key_down(event: PySide6.QtGui.QKeyEvent):</span>
-<span class="sd">                if event.key() == PySide6.QtGui.Qt.Key.Key_F11:</span>
-<span class="sd">                    full_screen_set(not full_screen)</span>
-
-<span class="sd">            with Window(</span>
-<span class="sd">                title=&quot;Full Screen Example&quot;,</span>
-<span class="sd">                _size_open=(800, 600),</span>
-<span class="sd">                full_screen=full_screen,</span>
-<span class="sd">                on_key_down=handle_key_down,</span>
-<span class="sd">            ):</span>
-<span class="sd">                Label(&quot;Press F11 to toggle full screen mode&quot;)</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        title:</span>
@@ -1975,6 +1973,28 @@
 <span class="sd">            opened maximized (does not work on X11, see</span>
 <span class="sd">            `showMaximized &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.showMaximized&gt;`_</span>
 <span class="sd">            ).</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example Window with F11 Full Screen Toggle</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Main(self):</span>
+<span class="sd">            full_screen, full_screen_set = use_state(False)</span>
+
+<span class="sd">            def handle_key_down(event: PySide6.QtGui.QKeyEvent):</span>
+<span class="sd">                if event.key() == PySide6.QtGui.Qt.Key.Key_F11:</span>
+<span class="sd">                    full_screen_set(not full_screen)</span>
+
+<span class="sd">            with Window(</span>
+<span class="sd">                title=&quot;Full Screen Example&quot;,</span>
+<span class="sd">                _size_open=(800, 600),</span>
+<span class="sd">                full_screen=full_screen,</span>
+<span class="sd">                on_key_down=handle_key_down,</span>
+<span class="sd">            ):</span>
+<span class="sd">                Label(&quot;Press F11 to toggle full screen mode&quot;)</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Window.__init__">
