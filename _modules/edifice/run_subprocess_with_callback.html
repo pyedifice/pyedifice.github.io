@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7d2b32d0" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=67920a36"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/edifice/run_subprocess_with_callback';</script>
+    <link rel="icon" href="../../_static/EdificePyramid.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.10.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial.html">
+    Tutorial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_tools.html">
+    Developer Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../versions.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyedifice/pyedifice" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial.html">
+    Tutorial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_tools.html">
+    Developer Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../versions.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyedifice/pyedifice" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">edifice.run_subprocess_with_callback</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for edifice.run_subprocess_with_callback</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Manager</span>
+<span class="kn">from</span> <span class="nn">multiprocessing.context</span> <span class="kn">import</span> <span class="n">SpawnContext</span>
+
+<span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">queue</span>
+
+<span class="n">_T_subprocess</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_subprocess&quot;</span><span class="p">)</span>
+<span class="n">_P_callback</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P_callback&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">_EndProcess</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">_run_subprocess</span><span class="p">(</span>
+    <span class="n">subprocess</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T_subprocess</span><span class="p">]],</span>
+    <span class="n">qup</span><span class="p">:</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span> <span class="o">|</span> <span class="ne">BaseException</span><span class="p">:</span> <span class="c1"># type of Queue?</span>
+    <span class="n">subloop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">new_event_loop</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span> <span class="o">|</span> <span class="ne">BaseException</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">_run_callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">qup</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">subprocess</span><span class="p">(</span><span class="n">_run_callback</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
+            <span class="k">return</span> <span class="n">e</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">r</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">qup</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">_EndProcess</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">subloop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">work</span><span class="p">())</span>
+
+<div class="viewcode-block" id="run_subprocess_with_callback">
+<a class="viewcode-back" href="../../utilities.html#edifice.utilities.run_subprocess_with_callback">[docs]</a>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">run_subprocess_with_callback</span><span class="p">(</span>
+    <span class="n">subprocess</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T_subprocess</span><span class="p">]],</span>
+    <span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run an async :code:`subprocess` in a</span>
+<span class="sd">    `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_</span>
+<span class="sd">    and return the result.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subprocess:</span>
+<span class="sd">             The async function to run in a</span>
+<span class="sd">            `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_.</span>
+<span class="sd">            The :code:`subprocess` function will run in a sub-process in a new event loop.</span>
+<span class="sd">            This :code:`subprocess` function takes a single argument: a function with the same type</span>
+<span class="sd">            as the :code:`callback` function.</span>
+<span class="sd">            The :code:`subprocess` function must be picklable.</span>
+<span class="sd">        callback:</span>
+<span class="sd">            The :code:`callback` function to pass to the :code:`subprocess` when it starts.</span>
+<span class="sd">            This function will run in the main process event loop.</span>
+<span class="sd">            All of the arguments to the :code:`callback` function must be picklable.</span>
+
+<span class="sd">    While the :code:`subprocess` is running, it may call the supplied :code:`callback` function.</span>
+<span class="sd">    The :code:`callback` function will run in the main event loop of the calling process.</span>
+
+<span class="sd">    If this async :func:`run_subprocess_with_callback` function is cancelled,</span>
+<span class="sd">    the :code:`subprocess` will be terminated by calling</span>
+<span class="sd">    `Process.terminate() &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate&gt;`_.</span>
+
+<span class="sd">    Exceptions raised in the :code:`subprocess` will be re-raised and will cancel :func:`run_subprocess_with_callback`.</span>
+
+<span class="sd">    Exceptions raised in the :code:`callback` will be re-raised and will cancel :func:`run_subprocess_with_callback`.</span>
+
+<span class="sd">    This function is useful for a long-running parallel worker</span>
+<span class="sd">    subprocess for which we want to report progress back to the main GUI event loop.</span>
+<span class="sd">    Like :code:`pytorch` stuff.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example</span>
+
+<span class="sd">        def my_callback(x:int) -&gt; None:</span>
+<span class="sd">            # This function will run in the main process event loop.</span>
+<span class="sd">            print(f&quot;callback {x}&quot;)</span>
+
+<span class="sd">        async def my_subprocess(callback: Callable[[int], None]) -&gt; str:</span>
+<span class="sd">            # This function will run in a sub-process in a new event loop.</span>
+<span class="sd">            callback(1)</span>
+<span class="sd">            await asyncio.sleep(1)</span>
+<span class="sd">            callback(2)</span>
+<span class="sd">            await asyncio.sleep(1)</span>
+<span class="sd">            callback(3)</span>
+<span class="sd">            return &quot;done&quot;</span>
+
+<span class="sd">        async def main() -&gt; None:</span>
+<span class="sd">            y = await run_subprocess_with_callback(my_subprocess, my_callback)</span>
+<span class="sd">            print(f&quot;subprocess returned {y}&quot;)</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        Because “only picklable objects can be executed” by a</span>
+<span class="sd">        `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_,</span>
+<span class="sd">        we cannot pass a local function as the :code:`subprocess`. The best</span>
+<span class="sd">        workaround is to define a :code:`subprocess` module top-level function</span>
+<span class="sd">        which takes all its parameters as arguments, and then use</span>
+<span class="sd">        `functools.partial &lt;https://docs.python.org/3/library/functools.html#functools.partial&gt;`_</span>
+<span class="sd">        to bind local values to the :code:`subprocess` parameters.</span>
+
+<span class="sd">    The :func:`run_subprocess_with_callback` function provides a :code:`callback`</span>
+<span class="sd">    function for signalling back up to the main process, but it does not provide a</span>
+<span class="sd">    build-in way to signal down to the subprocess. You can create and bind</span>
+<span class="sd">    signalling objects to the :code:`subprocess`, for example a</span>
+<span class="sd">    `multiprocessing.synchronize.Event &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.managers.SyncManager.Event&gt;`_.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example of Event signalling from the main process to the subprocess</span>
+
+<span class="sd">        async def my_subprocess(</span>
+<span class="sd">            event: threading.Event,</span>
+<span class="sd">            callback: Callable[[int], None],</span>
+<span class="sd">        ) -&gt; str:</span>
+<span class="sd">            # This function will run in a sub-process in a new event loop.</span>
+<span class="sd">            if event.is_set():</span>
+<span class="sd">                return &quot;early return&quot;</span>
+<span class="sd">            callback(10)</span>
+<span class="sd">            await asyncio.sleep(1)</span>
+<span class="sd">            if event.is_set():</span>
+<span class="sd">                return &quot;early return&quot;</span>
+<span class="sd">            callback(20)</span>
+<span class="sd">            await asyncio.sleep(1)</span>
+<span class="sd">            if event.is_set():</span>
+<span class="sd">                return &quot;early return&quot; # We will return here.</span>
+<span class="sd">            callback(30)</span>
+<span class="sd">            return &quot;done&quot;</span>
+
+<span class="sd">        async def main() -&gt; None:</span>
+<span class="sd">            with multiprocessing.Manager() as manager:</span>
+<span class="sd">                event = manager.Event()</span>
+
+<span class="sd">                def local_callback(x:int) -&gt; None:</span>
+<span class="sd">                    # This function will run in the main process event loop.</span>
+<span class="sd">                    print(f&quot;callback {x}&quot;)</span>
+<span class="sd">                    if x &gt; 10:</span>
+<span class="sd">                        event.set()</span>
+
+<span class="sd">                y = await run_subprocess_with_callback(</span>
+<span class="sd">                    functools.partial(my_subprocess, event),</span>
+<span class="sd">                    local_callback,</span>
+<span class="sd">                )</span>
+<span class="sd">                print(f&quot;subprocess returned {y}&quot;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">with</span> <span class="p">(</span>
+        <span class="n">Manager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">,</span>
+        <span class="c1"># We must have 2 parallel workers. Therefore 2 ProcessPoolExecutors.</span>
+        <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mp_context</span><span class="o">=</span><span class="n">SpawnContext</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor_sub</span><span class="p">,</span>
+        <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mp_context</span><span class="o">=</span><span class="n">SpawnContext</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor_queue</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">qup</span><span class="p">:</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+
+            <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+            <span class="n">subtask</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor_sub</span><span class="p">,</span> <span class="n">_run_subprocess</span><span class="p">,</span> <span class="n">subprocess</span><span class="p">,</span> <span class="n">qup</span><span class="p">)</span>
+
+            <span class="k">async</span> <span class="k">def</span> <span class="nf">get_messages</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">while</span> <span class="nb">type</span><span class="p">(</span><span class="n">i</span> <span class="o">:=</span> <span class="p">(</span><span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor_queue</span><span class="p">,</span> <span class="n">qup</span><span class="o">.</span><span class="n">get</span><span class="p">)))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_EndProcess</span><span class="p">:</span>
+                    <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+
+            <span class="n">get_messages_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">get_messages</span><span class="p">())</span>
+
+            <span class="n">retval</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">subtask</span><span class="p">,</span> <span class="n">get_messages_task</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">retval</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">retval</span>  <span class="c1"># noqa: TRY301</span>
+            <span class="k">return</span> <span class="n">retval</span>  <span class="c1"># noqa: TRY300</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span> <span class="c1"># including asyncio.CancelledError</span>
+            <span class="c1"># We must terminate the process pool workers because the</span>
+            <span class="c1"># loop.run_in_executor() call will not terminate the workers.</span>
+            <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">executor_sub</span><span class="o">.</span><span class="n">_processes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate</span>
+                <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                    <span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+                <span class="n">process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">executor_queue</span><span class="o">.</span><span class="n">_processes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate</span>
+                <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                    <span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+                <span class="n">process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+            <span class="k">raise</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

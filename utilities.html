@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Utility functions &#8212; Edifice 2.9.1 documentation</title>
+    <title>Utility functions &#8212; Edifice 2.10.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=bc52e0b9"></script>
+    <script src="_static/documentation_options.js?v=67920a36"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.9.1 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.9.1 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.10.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.10.0 documentation - Home"/>
   
   
 </a></div>
@@ -469,6 +469,117 @@ and this function will return the user’s choice.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">QPalette</span></code></span></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="edifice.utilities.run_subprocess_with_callback">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.utilities.</span></span><span class="sig-name descname"><span class="pre">run_subprocess_with_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subprocess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/run_subprocess_with_callback.html#run_subprocess_with_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.utilities.run_subprocess_with_callback" title="Link to this definition">#</a></dt>
+<dd><p>Run an async <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> in a
+<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor">ProcessPoolExecutor</a>
+and return the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subprocess</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_callback</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_subprocess</span></code>)]]</span>) – <p>The async function to run in a
+<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor">ProcessPoolExecutor</a>.
+The <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> function will run in a sub-process in a new event loop.
+This <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> function takes a single argument: a function with the same type
+as the <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function.
+The <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> function must be picklable.</p>
+</p></li>
+<li><p><strong>callback</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_callback</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – The <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function to pass to the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> when it starts.
+This function will run in the main process event loop.
+All of the arguments to the <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function must be picklable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_subprocess</span></code>)</span></p>
+</dd>
+</dl>
+<p>While the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> is running, it may call the supplied <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function.
+The <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function will run in the main event loop of the calling process.</p>
+<p>If this async <a class="reference internal" href="#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> function is cancelled,
+the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> will be terminated by calling
+<a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate">Process.terminate()</a>.</p>
+<p>Exceptions raised in the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> will be re-raised and will cancel <a class="reference internal" href="#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>.</p>
+<p>Exceptions raised in the <code class="code docutils literal notranslate"><span class="pre">callback</span></code> will be re-raised and will cancel <a class="reference internal" href="#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>.</p>
+<p>This function is useful for a long-running parallel worker
+subprocess for which we want to report progress back to the main GUI event loop.
+Like <code class="code docutils literal notranslate"><span class="pre">pytorch</span></code> stuff.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_callback</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># This function will run in the main process event loop.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;callback </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># This function will run in a sub-process in a new event loop.</span>
+    <span class="n">callback</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">callback</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">callback</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;done&quot;</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_subprocess_with_callback</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">my_callback</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;subprocess returned </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because “only picklable objects can be executed” by a
+<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor">ProcessPoolExecutor</a>,
+we cannot pass a local function as the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code>. The best
+workaround is to define a <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> module top-level function
+which takes all its parameters as arguments, and then use
+<a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.partial">functools.partial</a>
+to bind local values to the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> parameters.</p>
+</div>
+<p>The <a class="reference internal" href="#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> function provides a <code class="code docutils literal notranslate"><span class="pre">callback</span></code>
+function for signalling back up to the main process, but it does not provide a
+build-in way to signal down to the subprocess. You can create and bind
+signalling objects to the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code>, for example a
+<a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.managers.SyncManager.Event">multiprocessing.synchronize.Event</a>.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Example of Event signalling from the main process to the subprocess</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span>
+    <span class="n">event</span><span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">,</span>
+    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># This function will run in a sub-process in a new event loop.</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;early return&quot;</span>
+    <span class="n">callback</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;early return&quot;</span>
+    <span class="n">callback</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;early return&quot;</span> <span class="c1"># We will return here.</span>
+    <span class="n">callback</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;done&quot;</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">local_callback</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># This function will run in the main process event loop.</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;callback </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+        <span class="n">y</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_subprocess_with_callback</span><span class="p">(</span>
+            <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">event</span><span class="p">),</span>
+            <span class="n">local_callback</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;subprocess returned </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </dd></dl>
 
 <dl class="py function">

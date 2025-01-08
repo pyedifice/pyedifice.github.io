@@ -166,7 +166,7 @@ or
 or
 `PyQt6 <https://pypi.org/project/PyQt6/>`_.
 
-Add an Edifice dependency to `pyproject.toml`:
+Add an Edifice dependency to :code:`pyproject.toml`:
 
 .. code-block:: toml
 
