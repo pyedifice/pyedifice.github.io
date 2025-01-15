@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.11.0 documentation</title>
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.11.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=1647406f"></script>
+    <script src="../../_static/documentation_options.js?v=b23fc476"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.1 documentation - Home"/>
   
   
 </a></div>
@@ -381,43 +381,54 @@
                 <article class="bd-article">
                   
   <h1>Source code for edifice.run_subprocess_with_callback</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="c1"># run_subprocess_with_callback ©2025 pyedifice and James D. Brock</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">multiprocessing.process</span>
+<span class="kn">import</span> <span class="nn">multiprocessing.queues</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">queue</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">typing</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Manager</span>
-<span class="kn">from</span> <span class="nn">multiprocessing.context</span> <span class="kn">import</span> <span class="n">SpawnContext</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">queue</span>
+    <span class="kn">from</span> <span class="nn">multiprocessing.context</span> <span class="kn">import</span> <span class="n">SpawnContext</span>
 
 <span class="n">_T_subprocess</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_subprocess&quot;</span><span class="p">)</span>
 <span class="n">_P_callback</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P_callback&quot;</span><span class="p">)</span>
 
 
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">_EndProcess</span><span class="p">:</span>
-    <span class="k">pass</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span>
 
 
 <span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">_ExceptionWrapper</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrap an exception raised in the subprocess</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ex</span><span class="p">:</span> <span class="ne">BaseException</span>
+    <span class="n">ex_string</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
 
 <span class="k">def</span> <span class="nf">_run_subprocess</span><span class="p">(</span>
     <span class="n">subprocess</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T_subprocess</span><span class="p">]],</span>
-    <span class="n">qup</span><span class="p">:</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span>  <span class="c1"># type of Queue?</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span> <span class="o">|</span> <span class="n">_ExceptionWrapper</span><span class="p">:</span>
+    <span class="n">callback_send</span><span class="p">:</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">queues</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">subloop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">new_event_loop</span><span class="p">()</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span> <span class="o">|</span> <span class="n">_ExceptionWrapper</span><span class="p">:</span>
+    <span class="c1"># async def work() -&gt; _T_subprocess | _ExceptionWrapper:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">_run_callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">callback_send</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+
         <span class="k">try</span><span class="p">:</span>
-
-            <span class="k">def</span> <span class="nf">_run_callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">qup</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
-
             <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">subprocess</span><span class="p">(</span><span class="n">_run_callback</span><span class="p">)</span>
 
             <span class="c1"># It would be nice if the subprocess could be cancelled</span>
@@ -432,11 +443,9 @@
             <span class="c1"># on cancellation.</span>
 
         <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
-            <span class="k">return</span> <span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">callback_send</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">r</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="n">qup</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">_EndProcess</span><span class="p">())</span>
+            <span class="n">callback_send</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">_EndProcess</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">subloop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">work</span><span class="p">())</span>
 
@@ -450,7 +459,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run an</span>
 <span class="sd">    async :code:`subprocess` in a</span>
-<span class="sd">    `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_</span>
+<span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_</span>
 <span class="sd">    and return the result.</span>
 
 <span class="sd">    The advantage of :func:`run_subprocess_with_callback` is that it behaves</span>
@@ -463,7 +472,7 @@
 <span class="sd">    Args:</span>
 <span class="sd">        subprocess:</span>
 <span class="sd">            The async function to run in a</span>
-<span class="sd">            `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_.</span>
+<span class="sd">            `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_.</span>
 <span class="sd">            The :code:`subprocess` function will run in a sub-process in a new event loop.</span>
 <span class="sd">            This :code:`subprocess` function takes a single argument: a function with the same type</span>
 <span class="sd">            as the :code:`callback` function.</span>
@@ -478,7 +487,7 @@
 <span class="sd">    :func:`run_subprocess_with_callback` completes.</span>
 
 <span class="sd">    The :code:`subprocess` will be started with the</span>
-<span class="sd">    `&#39;spawn&#39; start method &lt;https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods&gt;`_,</span>
+<span class="sd">    `&quot;spawn&quot; start method &lt;https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods&gt;`_,</span>
 <span class="sd">    so it will not inherit any file handles from the calling process.</span>
 
 <span class="sd">    While the :code:`subprocess` is running, it may call the supplied :code:`callback` function.</span>
@@ -496,8 +505,16 @@
 <span class="sd">    send it a message as in the below “Example of Queue messaging.”</span>
 
 <span class="sd">    Exceptions raised in the :code:`subprocess` will be re-raised from :func:`run_subprocess_with_callback`.</span>
+<span class="sd">    Because the Exception must be pickled back to the main process, it will</span>
+<span class="sd">    lose its `traceback &lt;https://docs.python.org/3/reference/datamodel.html#traceback-objects&gt;`_.</span>
+<span class="sd">    In Python ≥3.11, the traceback string from the :code:`subprocess` stack will be added</span>
+<span class="sd">    to the Exception `__notes__ &lt;https://docs.python.org/3/library/exceptions.html#BaseException.__notes__&gt;`_.</span>
 
 <span class="sd">    Exceptions raised in the :code:`callback` will be suppressed.</span>
+
+<span class="sd">    The :code:`subprocess` is started as a</span>
+<span class="sd">    `daemon &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.daemon&gt;`_</span>
+<span class="sd">    so it will be terminated if it is still running when the main process exits.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: Example</span>
@@ -526,7 +543,7 @@
 <span class="sd">    .. note::</span>
 
 <span class="sd">        Because “only picklable objects can be executed” by a</span>
-<span class="sd">        `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_,</span>
+<span class="sd">        `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_.</span>
 <span class="sd">        we cannot pass a local function as the :code:`subprocess`. The best</span>
 <span class="sd">        workaround is to define at the module top-level a :code:`subprocess`</span>
 <span class="sd">        function which takes all its parameters as arguments, and then use</span>
@@ -538,93 +555,113 @@
 
 <span class="sd">    The :func:`run_subprocess_with_callback` function provides a :code:`callback`</span>
 <span class="sd">    function for messaging back up to the main process, but it does not provide a</span>
-<span class="sd">    built-in way to message down to the subprocess. To accomplish this we can create</span>
+<span class="sd">    built-in way to message down to the :code:`subprocess`.</span>
+
+<span class="sd">    To message down to the :code:`subprocess` we can create</span>
 <span class="sd">    and pass a messaging object to the :code:`subprocess`, for example a</span>
-<span class="sd">    `multiprocessing.managers.SyncManager.Queue &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.managers.SyncManager.Queue&gt;`_.</span>
+<span class="sd">    `multiprocessing.Queue &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Queue&gt;`_.</span>
+
+<span class="sd">    Because the :code:`subprocess` is started in the</span>
+<span class="sd">    `&quot;spawn&quot; context &lt;https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods&gt;`_,</span>
+<span class="sd">    we must create the :code:`Queue` in the :code:`&quot;spawn&quot;` context.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: Example of Queue messaging from the main process to the subprocess</span>
 
 <span class="sd">        async def my_subprocess(</span>
 <span class="sd">            # This function will run in a subprocess in a new event loop.</span>
-<span class="sd">            queue: queue.Queue[str],</span>
+<span class="sd">            msg_queue: multiprocessing.queues.Queue[str],</span>
 <span class="sd">            callback: typing.Callable[[int], None],</span>
 <span class="sd">        ) -&gt; str:</span>
-<span class="sd">            while (msg := queue.get()) != &quot;finish&quot;:</span>
+<span class="sd">            while (msg := msg_queue.get()) != &quot;finish&quot;:</span>
 <span class="sd">                callback(len(msg))</span>
 <span class="sd">            return &quot;done&quot;</span>
 
 <span class="sd">        async def main() -&gt; None:</span>
-<span class="sd">            with multiprocessing.Manager() as manager:</span>
-<span class="sd">                msg_queue: queue.Queue[str] = manager.Queue()</span>
+<span class="sd">            msg_queue: multiprocessing.queues.Queue[str] = multiprocessing.get_context(&quot;spawn&quot;).Queue()</span>
 
-<span class="sd">                def local_callback(x:int) -&gt; None:</span>
-<span class="sd">                    # This function will run in the main process event loop.</span>
-<span class="sd">                    print(f&quot;callback {x}&quot;)</span>
+<span class="sd">            def local_callback(x:int) -&gt; None:</span>
+<span class="sd">                # This function will run in the main process event loop.</span>
+<span class="sd">                print(f&quot;callback {x}&quot;)</span>
 
-<span class="sd">                async def send_messages() -&gt; None:</span>
-<span class="sd">                    msg_queue.put(&quot;one&quot;)</span>
-<span class="sd">                    msg_queue.put(&quot;finish&quot;)</span>
+<span class="sd">            async def send_messages() -&gt; None:</span>
+<span class="sd">                msg_queue.put(&quot;one&quot;)</span>
+<span class="sd">                msg_queue.put(&quot;finish&quot;)</span>
 
-<span class="sd">                y, _ = await asyncio.gather(</span>
-<span class="sd">                    run_subprocess_with_callback(</span>
-<span class="sd">                        functools.partial(my_subprocess, msg_queue),</span>
-<span class="sd">                        local_callback,</span>
-<span class="sd">                    ),</span>
-<span class="sd">                    send_messages())</span>
-<span class="sd">                )</span>
+<span class="sd">            y, _ = await asyncio.gather(</span>
+<span class="sd">                run_subprocess_with_callback(</span>
+<span class="sd">                    functools.partial(my_subprocess, msg_queue),</span>
+<span class="sd">                    local_callback,</span>
+<span class="sd">                ),</span>
+<span class="sd">                send_messages())</span>
+<span class="sd">            )</span>
 
-<span class="sd">                print(f&quot;my_subprocess returned {y}&quot;)</span>
+<span class="sd">            print(f&quot;my_subprocess returned {y}&quot;)</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        To get proper type hinting on the :code:`Queue`:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            from __future__ import annotations</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">with</span> <span class="p">(</span>
-        <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Manager</span>
-        <span class="c1"># “corresponds to a spawned child process”</span>
-        <span class="n">Manager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">,</span>
-        <span class="c1"># We must have 2 parallel workers. Therefore 2 ProcessPoolExecutors.</span>
-        <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mp_context</span><span class="o">=</span><span class="n">SpawnContext</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor_sub</span><span class="p">,</span>
-        <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mp_context</span><span class="o">=</span><span class="n">SpawnContext</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor_queue</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">qup</span><span class="p">:</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+    <span class="c1"># multiprocessing.Queue can only be used with spawn startmethod</span>
+    <span class="c1"># if we get it from a spawn context.</span>
+    <span class="c1"># https://stackoverflow.com/questions/34847203/queue-objects-should-only-be-shared-between-processes-through-inheritance</span>
+    <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods</span>
+    <span class="c1">#</span>
+    <span class="c1"># “You generally can&#39;t pass a multiprocessing.Queue as argument after a</span>
+    <span class="c1"># Process has already started, you need to pass it already to the constructor</span>
+    <span class="c1"># of the Process object.”</span>
+    <span class="c1"># https://stackoverflow.com/questions/63419229/passing-a-queue-with-concurrent-futures-regardless-of-executor-type#comment112144271_63419229</span>
 
-            <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
-            <span class="n">subtask</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor_sub</span><span class="p">,</span> <span class="n">_run_subprocess</span><span class="p">,</span> <span class="n">subprocess</span><span class="p">,</span> <span class="n">qup</span><span class="p">)</span>
-
-            <span class="k">async</span> <span class="k">def</span> <span class="nf">get_messages</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">while</span> <span class="nb">type</span><span class="p">(</span><span class="n">i</span> <span class="o">:=</span> <span class="p">(</span><span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor_queue</span><span class="p">,</span> <span class="n">qup</span><span class="o">.</span><span class="n">get</span><span class="p">)))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_EndProcess</span><span class="p">:</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
-                    <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: PERF203, S110, E722</span>
-                        <span class="c1"># We have to suppress callback exceptions because</span>
-                        <span class="c1"># asyncio.gather will not cancel the subtask if the</span>
-                        <span class="c1"># callback raises an exception.</span>
-                        <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.gather</span>
-                        <span class="c1"># We cannot use TaskGroup because we require Python 3.10.</span>
-                        <span class="k">pass</span>
-
-            <span class="n">retval</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">subtask</span><span class="p">,</span> <span class="n">get_messages</span><span class="p">())</span>
-            <span class="k">match</span> <span class="n">retval</span><span class="p">:</span>
-                <span class="k">case</span> <span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">ex</span><span class="p">):</span>
-                    <span class="k">raise</span> <span class="n">ex</span>  <span class="c1"># noqa: TRY301</span>
-                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">retval</span>
-            <span class="k">return</span> <span class="n">retval</span>  <span class="c1"># noqa: TRY300</span>
-        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>  <span class="c1"># including asyncio.CancelledError</span>
-            <span class="c1"># We must terminate the process pool workers because cancelling the</span>
-            <span class="c1"># loop.run_in_executor() call will not terminate the workers.</span>
-            <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">executor_sub</span><span class="o">.</span><span class="n">_processes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate</span>
-                <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-                    <span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-                <span class="n">process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">executor_queue</span><span class="o">.</span><span class="n">_processes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate</span>
-                <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-                    <span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-                <span class="n">process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-            <span class="k">raise</span></div>
+    <span class="n">spawncontext</span><span class="p">:</span> <span class="n">SpawnContext</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">get_context</span><span class="p">(</span><span class="s2">&quot;spawn&quot;</span><span class="p">)</span>
+    <span class="n">callback_send</span> <span class="o">=</span> <span class="n">spawncontext</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">spawncontext</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+        <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">target</span><span class="o">=</span><span class="n">_run_subprocess</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">subprocess</span><span class="p">,</span> <span class="n">callback_send</span><span class="p">),</span>
+        <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># We alternate waiting on the queue and waiting on the event loop.</span>
+    <span class="c1"># There is no good way in Python to wait on both at the same time.</span>
+    <span class="c1"># Mostly we wait on the event loop, and poll the queue.</span>
+    <span class="c1"># Because we want to be able to cancel the task.</span>
+    <span class="c1"># Because then the event loop can run.</span>
+    <span class="c1"># Unfortunately this means</span>
+    <span class="c1">#   1. We raise queue.Empty errors all the time internally.</span>
+    <span class="c1">#   2. There is an extra &lt;100ms delay calling the callback.</span>
+    <span class="c1">#   3. There is some extra CPU busy-waiting while the subprocess is running.</span>
+    <span class="n">proc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="n">callback_send</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
+                <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="n">_EndProcess</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="n">r</span>
+                    <span class="k">case</span> <span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">ex_string</span><span class="p">):</span>
+                        <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">_patchlevel</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version_tuple</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">major</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span> <span class="ow">and</span> <span class="n">minor</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> <span class="s2">&quot;15&quot;</span><span class="p">):</span>
+                            <span class="c1"># https://docs.python.org/3/library/exceptions.html#BaseException.add_note</span>
+                            <span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ex_string</span><span class="p">))</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+                        <span class="k">raise</span> <span class="n">ex</span> <span class="c1"># including CancelledError</span>
+                    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="o">**</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+                        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
+                            <span class="k">pass</span>
+            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+        <span class="n">proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+        <span class="k">raise</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
 
 </pre></div>
 
