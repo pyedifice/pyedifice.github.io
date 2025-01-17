@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.11.2 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.11.3 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=85c74e1c"></script>
+    <script src="../../_static/documentation_options.js?v=21bfca05"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.2 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.2 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.3 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.3 documentation - Home"/>
   
   
 </a></div>
@@ -2687,12 +2687,20 @@
             <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
 
             <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># If there is an exception, retrieve the exception and throw it away.</span>
+                    <span class="c1"># Otherwise asyncio complains</span>
+                    <span class="c1"># “Task exception was never retrieved”</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
+                        <span class="n">_</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                    <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
+                        <span class="k">pass</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="c1"># There is another async task waiting in the queue</span>
-                    <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
-                    <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
 
             <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
 
@@ -2719,12 +2727,20 @@
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
 
                 <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># If there is an exception, retrieve the exception and throw it away.</span>
+                        <span class="c1"># Otherwise asyncio complains</span>
+                        <span class="c1"># “Task exception was never retrieved”</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
+                            <span class="n">_</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
+                            <span class="k">pass</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
                     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                         <span class="c1"># There is another async task waiting in the queue</span>
-                        <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
-                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
-                        <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
+                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
 
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
 

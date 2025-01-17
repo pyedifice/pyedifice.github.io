@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 2.11.2 documentation</title>
+    <title>edifice.use_async &#8212; Edifice 2.11.3 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=85c74e1c"></script>
+    <script src="../_static/documentation_options.js?v=21bfca05"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.2 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.2 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.3 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.3 documentation - Home"/>
   
   
 </a></div>
@@ -410,6 +410,7 @@
 with the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> coroutine.</p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be called every time the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change.
 Only one <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be allowed to run at a time.</p>
+<p>Exceptions raised from the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be suppressed.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">use_async to fetch from the network</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
@@ -451,7 +452,8 @@ be started after the old <code class="code docutils literal notranslate"><span c
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook returns a function which can be called to
 cancel the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. In the example above,
 the <code class="code docutils literal notranslate"><span class="pre">_cancel_fetcher()</span></code> function can be called to cancel the fetcher.</p></li>
-<li><p>If the component is unmounted before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
+<li><p>If this <cite>&#64;component&lt;edifice.component&gt;</cite> is unmounted before the
+<code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
 the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled.</p></li>
 </ol>
 <p>Write your async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function in such a way that it

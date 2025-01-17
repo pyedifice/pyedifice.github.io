@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 2.11.2 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 2.11.3 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=85c74e1c"></script>
+    <script src="../../_static/documentation_options.js?v=21bfca05"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.2 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.2 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.3 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.3 documentation - Home"/>
   
   
 </a></div>
@@ -712,6 +712,8 @@
 <span class="sd">    The :code:`fn_coroutine` will be called every time the :code:`dependencies` change.</span>
 <span class="sd">    Only one :code:`fn_coroutine` will be allowed to run at a time.</span>
 
+<span class="sd">    Exceptions raised from the :code:`fn_coroutine` will be suppressed.</span>
+
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_async to fetch from the network</span>
 
@@ -753,7 +755,8 @@
 <span class="sd">    2. The :code:`use_async` Hook returns a function which can be called to</span>
 <span class="sd">       cancel the :code:`fn_coroutine` Task manually. In the example above,</span>
 <span class="sd">       the :code:`_cancel_fetcher()` function can be called to cancel the fetcher.</span>
-<span class="sd">    3. If the component is unmounted before the :code:`fn_coroutine` Task completes, then</span>
+<span class="sd">    3. If this `@component&lt;edifice.component&gt;` is unmounted before the</span>
+<span class="sd">       :code:`fn_coroutine` Task completes, then</span>
 <span class="sd">       the :code:`fn_coroutine` Task will be cancelled.</span>
 
 <span class="sd">    Write your async :code:`fn_coroutine` function in such a way that it</span>
