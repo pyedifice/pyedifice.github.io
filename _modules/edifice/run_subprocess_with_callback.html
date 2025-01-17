@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.11.1 documentation</title>
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.11.2 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=b23fc476"></script>
+    <script src="../../_static/documentation_options.js?v=85c74e1c"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.2 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.2 documentation - Home"/>
   
   
 </a></div>
@@ -381,7 +381,33 @@
                 <article class="bd-article">
                   
   <h1>Source code for edifice.run_subprocess_with_callback</h1><div class="highlight"><pre>
-<span></span><span class="c1"># run_subprocess_with_callback ©2025 pyedifice and James D. Brock</span>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2021 David Ding</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in</span>
+<span class="c1"># all copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+
+<span class="c1"># Edifice run_subprocess_with_callback 2025 by James D. Brock</span>
+<span class="c1">#</span>
+<span class="c1"># This run_subprocess_with_callback module file depends only on the Python</span>
+<span class="c1"># standard library so it can copied and pasted into any project without</span>
+<span class="c1"># modification.</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
@@ -390,7 +416,6 @@
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
 <span class="kn">import</span> <span class="nn">multiprocessing.process</span>
 <span class="kn">import</span> <span class="nn">multiprocessing.queues</span>
-<span class="kn">import</span> <span class="nn">platform</span>
 <span class="kn">import</span> <span class="nn">queue</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">typing</span>
@@ -412,6 +437,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wrap an exception raised in the subprocess</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">ex</span><span class="p">:</span> <span class="ne">BaseException</span>
     <span class="n">ex_string</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
@@ -422,9 +448,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">subloop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">new_event_loop</span><span class="p">()</span>
 
-    <span class="c1"># async def work() -&gt; _T_subprocess | _ExceptionWrapper:</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-
         <span class="k">def</span> <span class="nf">_run_callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_callback</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">callback_send</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
 
@@ -636,32 +660,49 @@
     <span class="c1">#   2. There is an extra &lt;100ms delay calling the callback.</span>
     <span class="c1">#   3. There is some extra CPU busy-waiting while the subprocess is running.</span>
     <span class="n">proc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="n">callback_send</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
-                <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
-                    <span class="k">case</span> <span class="n">_EndProcess</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-                        <span class="k">return</span> <span class="n">r</span>
-                    <span class="k">case</span> <span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">ex_string</span><span class="p">):</span>
-                        <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">_patchlevel</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version_tuple</span><span class="p">()</span>
-                        <span class="k">if</span> <span class="n">major</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span> <span class="ow">and</span> <span class="n">minor</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> <span class="s2">&quot;15&quot;</span><span class="p">):</span>
-                            <span class="c1"># https://docs.python.org/3/library/exceptions.html#BaseException.add_note</span>
-                            <span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ex_string</span><span class="p">))</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
-                        <span class="k">raise</span> <span class="n">ex</span> <span class="c1"># including CancelledError</span>
-                    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="o">**</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
-                        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
-                            <span class="k">pass</span>
-            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
-        <span class="n">proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-        <span class="k">raise</span>
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">callback_send</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
+            <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
+                <span class="k">case</span> <span class="n">_EndProcess</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+                    <span class="c1"># subprocess returned</span>
+                    <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># We know that process end is imminent.</span>
+                    <span class="c1"># https://stackoverflow.com/questions/58866837/python3-multiprocessing-terminate-vs-kill-vs-close/58866932#58866932</span>
+                    <span class="c1"># &gt; “close allows you to ensure the resources are definitely cleaned at a</span>
+                    <span class="c1"># &gt; specific point in time”</span>
+                    <span class="c1"># TODO proc.close()?</span>
+                    <span class="k">return</span> <span class="n">r</span>
+                <span class="k">case</span> <span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">ex_string</span><span class="p">):</span>
+                    <span class="c1"># subprocess raised an exception</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="s2">&quot;add_note&quot;</span><span class="p">):</span>
+                        <span class="c1"># https://docs.python.org/3/library/exceptions.html#BaseException.add_note</span>
+                        <span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ex_string</span><span class="p">))</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+                    <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># We know that process end is imminent.</span>
+                    <span class="c1"># TODO proc.close()?</span>
+                    <span class="k">raise</span> <span class="n">ex</span>  <span class="c1"># including CancelledError</span>
+                <span class="k">case</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+                    <span class="c1"># subprocess called callback</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+                    <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
+                        <span class="c1"># We suppress exceptions in the callback.</span>
+                        <span class="k">pass</span>
+                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unreachable&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># CancelledError can be raised here</span>
+        <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+            <span class="n">proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+            <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate</span>
+            <span class="c1"># Windows</span>
+            <span class="c1"># https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess#remarks</span>
+            <span class="c1"># &gt; “The terminated process cannot exit until all pending I/O has</span>
+            <span class="c1"># &gt; been completed or canceled.”</span>
+            <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+            <span class="c1"># TODO proc.close()?</span>
+            <span class="k">raise</span></div>
 
 </pre></div>
 
