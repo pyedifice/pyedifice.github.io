@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Examples &#8212; Edifice 2.11.3 documentation</title>
+    <title>Examples &#8212; Edifice 2.11.4 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=21bfca05"></script>
+    <script src="_static/documentation_options.js?v=ea365ac8"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.3 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.3 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.4 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.4 documentation - Home"/>
   
   
 </a></div>
@@ -390,8 +390,10 @@
 In this example, we imitate the look of the MacOS <em>Calculator</em> app
 in 100 lines of code (most of which is implementing the calculator state machine).</p>
 <p>The code is available at <a class="reference external" href="https://github.com/pyedifice/pyedifice/tree/master/examples/calculator.py">calculator.py</a>.</p>
+<figure class="align-default">
 <a class="reference internal image-reference" href="_images/example_calculator.png"><img alt="_images/example_calculator.png" src="_images/example_calculator.png" style="width: 300px;" />
 </a>
+</figure>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Run in Python environment</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/calculator.py
@@ -413,26 +415,11 @@ in 100 lines of code (most of which is implementing the calculator state machine
 </section>
 <section id="financial-charting">
 <h2>Financial Charting<a class="headerlink" href="#financial-charting" title="Link to this heading">#</a></h2>
-<p>In this example, we create a reactive charting application with Edifice.
-We allow arbitrary number of plots to be made on the same axis.
-For each plot, the source for the x-axis and y-axis data can be specified by the user.
-The source data could be the date, the close price, or the volume of a stock.
-The data in each axis can also be transformed by an EMA operator,
-which computes a moving average over the past n days (with n adjustable by a slider).
-And of course, everything is reactive — there’s no “plot” button that the user needs to press to render the chart.</p>
-<p>All this is possible in under 200 lines of code and straightforward logic:
-there’s an underlying description of everything that is plotted.
-This description is shown to the user in two ways:
-the “textual” description via dropdowns and input elements,
-and a visual rendering in the form of a graph.
-Users can interact with the textual display and thereby update the plot description.</p>
+<p>In this example, we create a reactive charting application with Edifice
+which fetches stock data from <a class="reference external" href="https://pypi.org/project/yfinance/">Yahoo Finance</a>.</p>
 <p>The code is available at <a class="reference external" href="https://github.com/pyedifice/pyedifice/tree/master/examples/financial_charts.py">financial_charts.py</a>.</p>
 <figure class="align-default">
-<a class="reference internal image-reference" href="_images/example_financial_charting1.png"><img alt="_images/example_financial_charting1.png" src="_images/example_financial_charting1.png" style="width: 600px;" />
-</a>
-</figure>
-<figure class="align-default">
-<a class="reference internal image-reference" href="_images/example_financial_charting2.png"><img alt="_images/example_financial_charting2.png" src="_images/example_financial_charting2.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="_images/example_financial_charting4.png"><img alt="_images/example_financial_charting4.png" src="_images/example_financial_charting4.png" style="width: 600px;" />
 </a>
 </figure>
 <div class="literal-block-wrapper docutils container" id="id5">

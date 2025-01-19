@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.11.3 documentation</title>
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.11.4 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=21bfca05"></script>
+    <script src="../../_static/documentation_options.js?v=ea365ac8"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.3 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.3 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.4 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.4 documentation - Home"/>
   
   
 </a></div>
@@ -403,11 +403,13 @@
 <span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
 <span class="c1"># SOFTWARE.</span>
 
+
 <span class="c1"># Edifice run_subprocess_with_callback 2025 by James D. Brock</span>
 <span class="c1">#</span>
 <span class="c1"># This run_subprocess_with_callback module file depends only on the Python</span>
 <span class="c1"># standard library so it can copied and pasted into any project without</span>
 <span class="c1"># modification.</span>
+
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
@@ -429,6 +431,10 @@
 
 <span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">_EndProcess</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The result returned by the subprocess</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">result</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span>
 
 
@@ -472,6 +478,14 @@
             <span class="n">callback_send</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">_EndProcess</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">subloop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">work</span><span class="p">())</span>
+    <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Queue.join_thread</span>
+    <span class="c1"># &gt; “By default if a process is not the creator of the queue then on</span>
+    <span class="c1"># &gt; exit it will attempt to join the queue&#39;s background thread.”</span>
+    <span class="c1">#</span>
+    <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#pipes-and-queues</span>
+    <span class="c1"># &gt; “if a child process has put items on a queue (and it has not used</span>
+    <span class="c1"># &gt; JoinableQueue.cancel_join_thread), then that process will not</span>
+    <span class="c1"># &gt; terminate until all buffered items have been flushed to the pipe.”</span>
 
 
 <div class="viewcode-block" id="run_subprocess_with_callback">
@@ -662,46 +676,82 @@
     <span class="n">proc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="n">callback_send</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
-            <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
-                <span class="k">case</span> <span class="n">_EndProcess</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-                    <span class="c1"># subprocess returned</span>
-                    <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># We know that process end is imminent.</span>
-                    <span class="c1"># https://stackoverflow.com/questions/58866837/python3-multiprocessing-terminate-vs-kill-vs-close/58866932#58866932</span>
-                    <span class="c1"># &gt; “close allows you to ensure the resources are definitely cleaned at a</span>
-                    <span class="c1"># &gt; specific point in time”</span>
-                    <span class="c1"># TODO proc.close()?</span>
-                    <span class="k">return</span> <span class="n">r</span>
-                <span class="k">case</span> <span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">ex_string</span><span class="p">):</span>
-                    <span class="c1"># subprocess raised an exception</span>
-                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="s2">&quot;add_note&quot;</span><span class="p">):</span>
-                        <span class="c1"># https://docs.python.org/3/library/exceptions.html#BaseException.add_note</span>
-                        <span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ex_string</span><span class="p">))</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
-                    <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># We know that process end is imminent.</span>
-                    <span class="c1"># TODO proc.close()?</span>
-                    <span class="k">raise</span> <span class="n">ex</span>  <span class="c1"># including CancelledError</span>
-                <span class="k">case</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-                    <span class="c1"># subprocess called callback</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
-                    <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
-                        <span class="c1"># We suppress exceptions in the callback.</span>
-                        <span class="k">pass</span>
-                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unreachable&quot;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="c1"># Pull messages out of the queue as fast as we can until</span>
+                <span class="c1"># the queue is empty.</span>
+                <span class="c1"># Then wait on the event loop for 100ms and check the queue</span>
+                <span class="c1"># again.</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="n">callback_send</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
+                <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="n">_EndProcess</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+                        <span class="c1"># subprocess returned</span>
+                        <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># We know that process end is imminent.</span>
+                        <span class="k">return</span> <span class="n">r</span>
+                    <span class="k">case</span> <span class="n">_ExceptionWrapper</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">ex_string</span><span class="p">):</span>
+                        <span class="c1"># subprocess raised an exception</span>
+                        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="s2">&quot;add_note&quot;</span><span class="p">):</span>
+                            <span class="c1"># https://docs.python.org/3/library/exceptions.html#BaseException.add_note</span>
+                            <span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ex_string</span><span class="p">))</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+                        <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># We know that process end is imminent.</span>
+                        <span class="k">raise</span> <span class="n">ex</span>  <span class="c1"># including CancelledError</span>
+                    <span class="k">case</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+                        <span class="c1"># subprocess called callback</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+                        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
+                            <span class="c1"># We suppress exceptions in the callback.</span>
+                            <span class="k">pass</span>
+                    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unreachable&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
             <span class="k">pass</span>
+        <span class="c1"># Can the callback_send queue raise any other kind of exception?</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># CancelledError can be raised here</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># CancelledError can be raised here</span>
         <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
-            <span class="n">proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
             <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate</span>
+            <span class="c1"># &gt; “Warning: If this method is used when the associated process is</span>
+            <span class="c1"># &gt; using a pipe or queue then the pipe or queue is liable to become</span>
+            <span class="c1"># corrupted and may become unusable by other process.”</span>
+            <span class="c1">#</span>
+            <span class="c1"># Really?</span>
+
+            <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#pipes-and-queues</span>
+            <span class="c1"># &gt; “Warning If a process is killed using Process.terminate() while</span>
+            <span class="c1"># &gt; it is trying to use a Queue, then the data in the queue is</span>
+            <span class="c1"># &gt; likely to become corrupted. This may cause any other process to</span>
+            <span class="c1"># get an exception when it tries to use the queue later on.”</span>
+            <span class="c1">#</span>
+            <span class="c1"># What kind of exception?</span>
+
             <span class="c1"># Windows</span>
             <span class="c1"># https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess#remarks</span>
             <span class="c1"># &gt; “The terminated process cannot exit until all pending I/O has</span>
             <span class="c1"># &gt; been completed or canceled.”</span>
+
+            <span class="n">proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+
+            <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#pipes-and-queues</span>
+            <span class="c1"># &gt; ”This means that if you try joining that process you may get a</span>
+            <span class="c1"># &gt; deadlock unless you are sure that all items which have been put</span>
+            <span class="c1"># &gt; on the queue have been consumed.”</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">callback_send</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.join</span>
             <span class="n">proc</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-            <span class="c1"># TODO proc.close()?</span>
+
+            <span class="c1"># proc.close()?</span>
+            <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.close</span>
+            <span class="c1"># https://stackoverflow.com/questions/58866837/python3-multiprocessing-terminate-vs-kill-vs-close/58866932#58866932</span>
+            <span class="c1"># &gt; “close allows you to ensure the resources are definitely cleaned at a</span>
+            <span class="c1"># &gt; specific point in time”</span>
+            <span class="c1"># We don&#39;t need to call close() because we are not worried about</span>
+            <span class="c1"># the OS running out of file descriptors.</span>
+
             <span class="k">raise</span></div>
 
 </pre></div>

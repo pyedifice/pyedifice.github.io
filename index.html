@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice &#8212; Edifice 2.11.3 documentation</title>
+    <title>Edifice &#8212; Edifice 2.11.4 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=21bfca05"></script>
+    <script src="_static/documentation_options.js?v=ea365ac8"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,8 +118,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.3 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.3 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.4 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.4 documentation - Home"/>
   
   
 </a></div>
@@ -472,6 +472,20 @@ a button and a label with the current value of <code class="code docutils litera
 Clicking the button will add 5 to the <code class="code docutils literal notranslate"><span class="pre">number</span></code>.
 If the <code class="code docutils literal notranslate"><span class="pre">number</span></code> is “mid” then another label will reveal that fact.</p>
 </section>
+<section id="put-a-gui-on-useful-python-code">
+<h3>Put a GUI on useful Python code<a class="headerlink" href="#put-a-gui-on-useful-python-code" title="Link to this heading">#</a></h3>
+<p>The whole point of Edifice is that it’s a way to put a GUI on useful Python
+code. If you have a Python script which does a long-running computation,
+Edifice provides an API for running that script while presenting
+a responsive GUI to the user.</p>
+<ol class="arabic simple">
+<li><p>Paste the script into an <code class="code docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span> <span class="pre">worker()</span></code> function.</p></li>
+<li><p>Call
+<a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>
+on that <code class="code docutils literal notranslate"><span class="pre">worker</span></code> function with a <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async</span></code></a>
+Hook.</p></li>
+</ol>
+</section>
 <section id="developer-tools">
 <h3>Developer Tools<a class="headerlink" href="#developer-tools" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -607,6 +621,7 @@ under the more flexible <em>LGPL</em> license.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-edifice">Why Edifice?</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declarative">Declarative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#put-a-gui-on-useful-python-code">Put a GUI on useful Python code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#developer-tools">Developer Tools</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edifice-vs-qt-quick">Edifice vs. Qt Quick</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extendable">Extendable</a></li>
