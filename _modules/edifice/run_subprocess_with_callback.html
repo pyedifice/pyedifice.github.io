@@ -496,7 +496,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run an</span>
-<span class="sd">    async :code:`subprocess` in a</span>
+<span class="sd">    :code:`async def subprocess` function in a</span>
 <span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_</span>
 <span class="sd">    and return the result.</span>
 
@@ -558,7 +558,7 @@
 <span class="sd">        :caption: Example</span>
 
 <span class="sd">        async def my_subprocess(callback: Callable[[int], None]) -&gt; str:</span>
-<span class="sd">            # This function will run in a subprocess in a new event loop.</span>
+<span class="sd">            # This function will run in a new Process in a new event loop.</span>
 <span class="sd">            callback(1)</span>
 <span class="sd">            await asyncio.sleep(1)</span>
 <span class="sd">            callback(2)</span>
@@ -607,7 +607,7 @@
 <span class="sd">        :caption: Example of Queue messaging from the main process to the subprocess</span>
 
 <span class="sd">        async def my_subprocess(</span>
-<span class="sd">            # This function will run in a subprocess in a new event loop.</span>
+<span class="sd">            # This function will run in a new Process in a new event loop.</span>
 <span class="sd">            msg_queue: multiprocessing.queues.Queue[str],</span>
 <span class="sd">            callback: typing.Callable[[int], None],</span>
 <span class="sd">        ) -&gt; str:</span>

@@ -393,7 +393,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fn_coroutine</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">Coroutine</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Async Coroutine function to be run as a Task.</p></li>
+<li><p><strong>fn_coroutine</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-class docutils literal notranslate"><span class="pre">Coroutine</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Function of no arguments which returns an async Coroutine to be run as a Task.</p></li>
 <li><p><strong>dependencies</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – The <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be started when the
 <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> are not <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> to the old <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code>.</p></li>
 </ul>
@@ -425,7 +425,7 @@ Only one <code class="code docutils literal notranslate"><span class="pre">fn_co
         <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
             <span class="n">definition_set</span><span class="p">(</span><span class="s2">&quot;Fetch definition cancelled&quot;</span><span class="p">)</span>
             <span class="k">raise</span>
-        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">defintion_set</span><span class="p">(</span><span class="s2">&quot;Fetch definition failed&quot;</span><span class="p">)</span>
 
     <span class="n">cancel_fetcher</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">fetcher</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
@@ -468,8 +468,10 @@ cancelled because the component is being unmounted, then the
 <h2>Timers<a class="headerlink" href="#timers" title="Link to this heading">#</a></h2>
 <p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook is useful for timers and animation.</p>
 <p>Here is an example which shows how to run a timer in a component. The
-Harmonic Oscillator in <a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> uses this technique:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">is_playing</span><span class="p">,</span> <span class="n">is_playing_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+Harmonic Oscillator in <a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> uses this technique.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">use_async to run a stoppable-startable timer</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">is_playing</span><span class="p">,</span> <span class="n">is_playing_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">play_trigger</span><span class="p">,</span> <span class="n">play_trigger_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">play_tick</span><span class="p">():</span>
@@ -488,6 +490,43 @@ Harmonic Oscillator in <a class="reference internal" href="../examples.html"><sp
     <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">is_playing_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="ow">not</span> <span class="n">p</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</section>
+<section id="worker-process">
+<h2>Worker Process<a class="headerlink" href="#worker-process" title="Link to this heading">#</a></h2>
+<p>We can run an
+<code class="code docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span> <span class="pre">my_subprocess</span></code> function in a worker
+<a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process">Process</a>
+by using <a class="reference internal" href="../utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>.</p>
+<p><a class="reference internal" href="../utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>
+is good for spawing a parallel worker Process from a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>
+because if the <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> is unmounted, then
+<a class="reference internal" href="../utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>
+be cancelled and the Process will be immediately terminated.
+Which is usually what we want.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">use_async with run_subprocess_with_callback</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># This function will run in a new Process in a new event loop.</span>
+    <span class="n">callback</span><span class="p">(</span><span class="s2">&quot;Starting long calculation&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
+    <span class="n">callback</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Finished long calculation with result: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+<span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Calculator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">calculation_progress</span><span class="p">,</span> <span class="n">calculation_progress_set</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">my_callback</span><span class="p">(</span><span class="n">progress</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># This function will run in the main process event loop.</span>
+        <span class="n">calculation_progress_set</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>  <span class="c1"># noqa: RUF005</span>
+
+    <span class="n">ed</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="n">run_subprocess_with_callback</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">my_callback</span><span class="p">))</span>
+
+    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">calculation_progress</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </section>
 </dd></dl>

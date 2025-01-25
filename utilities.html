@@ -475,7 +475,7 @@ and this function will return the user’s choice.</p>
 <dt class="sig sig-object py" id="edifice.utilities.run_subprocess_with_callback">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.utilities.</span></span><span class="sig-name descname"><span class="pre">run_subprocess_with_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subprocess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/run_subprocess_with_callback.html#run_subprocess_with_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.utilities.run_subprocess_with_callback" title="Link to this definition">#</a></dt>
 <dd><p>Run an
-async <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> in a
+<code class="code docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span> <span class="pre">subprocess</span></code> function in a
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process">Process</a>
 and return the result.</p>
 <p>The advantage of <a class="reference internal" href="#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> is that it behaves
@@ -533,7 +533,7 @@ so it will be terminated if it is still running when the main process exits.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="c1"># This function will run in a subprocess in a new event loop.</span>
+    <span class="c1"># This function will run in a new Process in a new event loop.</span>
     <span class="n">callback</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">callback</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -579,7 +579,7 @@ we must create the <code class="code docutils literal notranslate"><span class="
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Example of Queue messaging from the main process to the subprocess</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span>
-    <span class="c1"># This function will run in a subprocess in a new event loop.</span>
+    <span class="c1"># This function will run in a new Process in a new event loop.</span>
     <span class="n">msg_queue</span><span class="p">:</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">queues</span><span class="o">.</span><span class="n">Queue</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>

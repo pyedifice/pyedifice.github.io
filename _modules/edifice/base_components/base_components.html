@@ -590,7 +590,6 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="n">icon_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ICONS</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">collection</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">sub_collection</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.svg&quot;</span><span class="p">))</span>
@@ -664,9 +663,6 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="c1"># TODO _set_size doesn&#39;t work</span>
-        <span class="c1"># &gt; size = self.underlying.font().pointSize()</span>
-        <span class="c1"># &gt; self._set_size(size * len(self.props.title), size, lambda size: (size * len(self.props.title), size))</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span>
@@ -753,12 +749,6 @@
         <span class="n">icon_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ICONS</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">collection</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">sub_collection</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.svg&quot;</span><span class="p">))</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span>
-            <span class="n">size</span><span class="p">,</span>
-            <span class="k">lambda</span> <span class="n">size</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="n">size</span><span class="p">),</span>
-        <span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">render_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
             <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_get_svg_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">)</span>
@@ -837,7 +827,6 @@
 <span class="c1"># &gt;     widget = use_underlying(self, lambda: QtWidgets.QLabel(text))</span>
 <span class="c1"># &gt;     widget.setObjectName(str(id(self)))</span>
 <span class="c1"># &gt;     size = widget.font().pointSize()</span>
-<span class="c1"># &gt;     self._set_size(size * len(text), size, lambda size: (size * len(str(text)), size))</span>
 <span class="c1">#</span>
 <span class="c1"># &gt;     # TODO</span>
 <span class="c1"># &gt;     # If you want the QLabel to fit the text then you must use adjustSize()</span>
@@ -962,11 +951,6 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-        <span class="c1"># TODO None of this code is working.</span>
-        <span class="c1"># &gt; size = self.underlying.font().pointSize()</span>
-        <span class="c1"># &gt; self._set_size(size * len(self.props.text), size, lambda size: (size * len(str(self.props.text)), size))</span>
-        <span class="c1"># https://github.com/pyedifice/pyedifice/issues/41</span>
 
         <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">newprops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;text&quot;</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
@@ -1147,8 +1131,6 @@
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLineEdit</span><span class="p">()</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">font</span><span class="p">()</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="n">size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">textEdited</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handler</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_edit_finish</span><span class="p">)</span>
@@ -1479,12 +1461,6 @@
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orientation</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSlider</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span>
-
-        <span class="c1"># TODO: figure out what&#39;s the right default height and width</span>
-        <span class="c1"># &gt; if self.orientation == QtCore.Qt.Horizontal:</span>
-        <span class="c1"># &gt;     self._set_size(size * len(self.props.text), size)</span>
-        <span class="c1"># &gt; else:</span>
-        <span class="c1"># &gt;     self._set_size(size * len(self.props.text), size)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handle</span><span class="p">)</span>

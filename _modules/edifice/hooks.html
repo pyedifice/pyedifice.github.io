@@ -397,7 +397,7 @@
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtGui</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtGui</span>  <span class="c1"># noqa: TCH002</span>
+    <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtGui</span>  <span class="c1"># noqa: TC002</span>
 
 
 <div class="viewcode-block" id="use_state">
@@ -690,7 +690,7 @@
 <div class="viewcode-block" id="use_async">
 <a class="viewcode-back" href="../../stubs/edifice.use_async.html#edifice.use_async">[docs]</a>
 <span class="k">def</span> <span class="nf">use_async</span><span class="p">(</span>
-    <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
+    <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
     <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">(),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -698,7 +698,7 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        fn_coroutine:</span>
-<span class="sd">            Async Coroutine function to be run as a Task.</span>
+<span class="sd">            Function of no arguments which returns an async Coroutine to be run as a Task.</span>
 <span class="sd">        dependencies:</span>
 <span class="sd">            The :code:`fn_coroutine` Task will be started when the</span>
 <span class="sd">            :code:`dependencies` are not :code:`__eq__` to the old :code:`dependencies`.</span>
@@ -729,7 +729,7 @@
 <span class="sd">                except asyncio.CancelledError:</span>
 <span class="sd">                    definition_set(&quot;Fetch definition cancelled&quot;)</span>
 <span class="sd">                    raise</span>
-<span class="sd">                except BaseException:</span>
+<span class="sd">                except Exception:</span>
 <span class="sd">                    defintion_set(&quot;Fetch definition failed&quot;)</span>
 
 <span class="sd">            cancel_fetcher = use_async(fetcher, word)</span>
@@ -774,7 +774,10 @@
 <span class="sd">    The :code:`use_async` Hook is useful for timers and animation.</span>
 
 <span class="sd">    Here is an example which shows how to run a timer in a component. The</span>
-<span class="sd">    Harmonic Oscillator in :doc:`../examples` uses this technique::</span>
+<span class="sd">    Harmonic Oscillator in :doc:`../examples` uses this technique.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: use_async to run a stoppable-startable timer</span>
 
 <span class="sd">        is_playing, is_playing_set = use_state(False)</span>
 <span class="sd">        play_trigger, play_trigger_set = use_state(False)</span>
@@ -794,6 +797,44 @@
 <span class="sd">            text=&quot;pause&quot; if is_playing else &quot;play&quot;,</span>
 <span class="sd">            on_click=lambda e: is_playing_set(lambda p: not p),</span>
 <span class="sd">        )</span>
+
+<span class="sd">    Worker Process</span>
+<span class="sd">    ==============</span>
+
+<span class="sd">    We can run an</span>
+<span class="sd">    :code:`async def my_subprocess` function in a worker</span>
+<span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_</span>
+<span class="sd">    by using :func:`run_subprocess_with_callback&lt;edifice.utilities.run_subprocess_with_callback&gt;`.</span>
+
+<span class="sd">    :func:`run_subprocess_with_callback&lt;edifice.utilities.run_subprocess_with_callback&gt;`</span>
+<span class="sd">    is good for spawing a parallel worker Process from a :func:`@component&lt;edifice.component&gt;`</span>
+<span class="sd">    because if the :func:`@component&lt;edifice.component&gt;` is unmounted, then</span>
+<span class="sd">    :func:`run_subprocess_with_callback&lt;edifice.utilities.run_subprocess_with_callback&gt;`</span>
+<span class="sd">    be cancelled and the Process will be immediately terminated.</span>
+<span class="sd">    Which is usually what we want.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: use_async with run_subprocess_with_callback</span>
+
+<span class="sd">        async def my_subprocess(callback: Callable[[str], None]) -&gt; None:</span>
+<span class="sd">            # This function will run in a new Process in a new event loop.</span>
+<span class="sd">            callback(&quot;Starting long calculation&quot;)</span>
+<span class="sd">            await asyncio.sleep(100.0)</span>
+<span class="sd">            x = 1 + 2</span>
+<span class="sd">            callback(f&quot;Finished long calculation with result: {x}&quot;))</span>
+
+<span class="sd">        @component</span>
+<span class="sd">        def Calculator(self):</span>
+<span class="sd">            calculation_progress, calculation_progress_set = ed.use_state(&quot;&quot;)</span>
+
+<span class="sd">            def my_callback(progress: str) -&gt; None:</span>
+<span class="sd">                # This function will run in the main process event loop.</span>
+<span class="sd">                calculation_progress_set(progress)  # noqa: RUF005</span>
+
+<span class="sd">            ed.use_async(lambda:run_subprocess_with_callback(my_subprocess, my_callback))</span>
+
+<span class="sd">            Label(text=calculation_progress)</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1261,7 +1302,7 @@
     <span class="n">context_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">initial_state</span><span class="p">:</span> <span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">_T_provide_context</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
-    <span class="n">_T_provide_context</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span><span class="p">],</span> <span class="n">_T_provide_context</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">_T_provide_context</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span><span class="p">],</span> <span class="n">_T_provide_context</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>
 <span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Context state provider Hook for *prop drilling*.</span>

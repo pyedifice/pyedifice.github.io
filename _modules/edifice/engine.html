@@ -670,15 +670,15 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;need_qt_command_reissue&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_callback_queue&quot;</span><span class="p">,</span>
         <span class="s2">&quot;component_to_old_props&quot;</span><span class="p">,</span>
         <span class="s2">&quot;component_tree&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;widget_tree&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;enqueued_deletions&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;trackers&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_callback_queue&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;engine&quot;</span><span class="p">,</span>
         <span class="s2">&quot;current_element&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;engine&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;enqueued_deletions&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;need_qt_command_reissue&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;trackers&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;widget_tree&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">trackers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_Tracker</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stack of _Tracker&quot;&quot;&quot;</span>
@@ -1348,11 +1348,8 @@
                 <span class="s2">&quot;on_resize&quot;</span><span class="p">:</span> <span class="n">on_resize</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_left</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># TODO _size_from_font is unused</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_down</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1395,35 +1392,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_pressed</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_focus_open_needed</span> <span class="o">=</span> <span class="n">_focus_open</span></div>
 
-
-    <span class="k">def</span> <span class="nf">_set_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">size_from_font</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="n">height</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="n">width</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span> <span class="o">=</span> <span class="n">size_from_font</span>
-
-    <span class="k">def</span> <span class="nf">_get_width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">):</span>
-        <span class="c1"># TODO this function is unreferenced</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span>
-        <span class="n">layout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;layout&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">layout</span> <span class="o">==</span> <span class="s2">&quot;row&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_width</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_left</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_width</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_left</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">_get_height</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">children</span><span class="p">):</span>
-        <span class="c1"># TODO this function is unreferenced</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span>
-        <span class="n">layout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;layout&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">layout</span> <span class="o">==</span> <span class="s2">&quot;column&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_height</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_top</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_height</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">_top</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="nf">_mouse_press</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1472,7 +1440,7 @@
     <span class="k">def</span> <span class="nf">_set_mouse_wheel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_wheel</span><span class="p">):</span>
         <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.wheelEvent</span>
         <span class="c1"># “If you reimplement this handler, it is very important that</span>
-        <span class="c1"># you ignore() the event if you do not handle it, so that the widget’s</span>
+        <span class="c1"># you ignore() the event if you do not handle it, so that the widget&#39;s</span>
         <span class="c1"># parent can interpret it.”</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_wheel_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_wheel_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span>
@@ -1740,29 +1708,19 @@
 
         <span class="k">if</span> <span class="s2">&quot;font-size&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
             <span class="n">font_size</span> <span class="o">=</span> <span class="n">_css_to_number</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">])</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size_from_font</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">px&quot;</span> <span class="o">%</span> <span class="n">font_size</span>
+                <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">font_size</span><span class="si">}</span><span class="s2">px&quot;</span>
         <span class="k">if</span> <span class="s2">&quot;width&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">&quot;min-width&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
                 <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;min-width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
             <span class="k">if</span> <span class="s2">&quot;max-width&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
                 <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;max-width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
-        <span class="c1"># else:</span>
-        <span class="c1">#     if &quot;min-width&quot; not in cpstyle:</span>
-        <span class="c1">#         cpstyle[&quot;min-width&quot;] = self._get_width(children)</span>
 
         <span class="k">if</span> <span class="s2">&quot;height&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">&quot;min-height&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
                 <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;min-height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>
             <span class="k">if</span> <span class="s2">&quot;max-height&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
                 <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;max-height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>
-        <span class="c1"># else:</span>
-        <span class="c1">#     if &quot;min-height&quot; not in cpstyle:</span>
-        <span class="c1">#         cpstyle[&quot;min-height&quot;] = self._get_height(children)</span>
 
         <span class="n">set_move</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">move_coords</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -1955,7 +1913,7 @@
 <span class="sd">    A QtWidgetElement and its QtWidgetElement children.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">)</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;children&quot;</span><span class="p">,</span> <span class="s2">&quot;component&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">children</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QtWidgetElement</span><span class="p">]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span> <span class="o">=</span> <span class="n">component</span>
@@ -2070,14 +2028,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;_component_tree&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_widget_tree&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_root&quot;</span><span class="p">,</span>
         <span class="s2">&quot;_app&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_component_tree&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_async&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hook_effect&quot;</span><span class="p">,</span>
         <span class="s2">&quot;_hook_state&quot;</span><span class="p">,</span>
         <span class="s2">&quot;_hook_state_setted&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_hook_effect&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_hook_async&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_root&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_widget_tree&quot;</span><span class="p">,</span>
         <span class="s2">&quot;is_stopped&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -2676,6 +2634,23 @@
         <span class="c1"># After the done_callback is called, the _HookAsync object</span>
         <span class="c1"># should be garbage collected.</span>
 
+        <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">:</span> <span class="n">_HookAsync</span><span class="p">,</span> <span class="n">_task</span><span class="p">:</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
+                    <span class="c1"># If there is an exception, retrieve the exception and throw it away.</span>
+                    <span class="c1"># Otherwise asyncio complains</span>
+                    <span class="c1"># “Task exception was never retrieved”</span>
+                    <span class="n">_r</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
+                    <span class="k">pass</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># There is another async task waiting in the queue</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+
+
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
             <span class="c1"># then this is the first render.</span>
             <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
@@ -2686,23 +2661,7 @@
             <span class="p">)</span>
             <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
 
-            <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="c1"># If there is an exception, retrieve the exception and throw it away.</span>
-                    <span class="c1"># Otherwise asyncio complains</span>
-                    <span class="c1"># “Task exception was never retrieved”</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
-                        <span class="n">_</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-                    <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
-                        <span class="k">pass</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="c1"># There is another async task waiting in the queue</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
-
-            <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
 
             <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
                 <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
@@ -2726,23 +2685,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
 
-                <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="c1"># If there is an exception, retrieve the exception and throw it away.</span>
-                        <span class="c1"># Otherwise asyncio complains</span>
-                        <span class="c1"># “Task exception was never retrieved”</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
-                            <span class="n">_</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-                        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: S110, E722</span>
-                            <span class="k">pass</span>
-                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="c1"># There is another async task waiting in the queue</span>
-                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
-                        <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
-
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
 
             <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
