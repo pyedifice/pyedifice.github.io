@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.11.4 documentation</title>
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.12.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=ea365ac8"></script>
+    <script src="../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.11.4 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.11.4 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.12.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.12.0 documentation - Home"/>
   
   
 </a></div>
@@ -493,6 +493,7 @@
 <span class="k">async</span> <span class="k">def</span> <span class="nf">run_subprocess_with_callback</span><span class="p">(</span>
     <span class="n">subprocess</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T_subprocess</span><span class="p">]],</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+    <span class="n">daemon</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run an</span>
@@ -519,6 +520,11 @@
 <span class="sd">            The :code:`callback` function to pass to the :code:`subprocess` when it starts.</span>
 <span class="sd">            This function will run in the main process event loop.</span>
 <span class="sd">            All of the arguments to the :code:`callback` function must be picklable.</span>
+<span class="sd">        daemon:</span>
+<span class="sd">            Optional argument which will be passed to the Process</span>
+<span class="sd">            `daemon &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.daemon&gt;`_</span>
+<span class="sd">            argument.</span>
+
 
 <span class="sd">    The :code:`subprocess` will be started when :func:`run_subprocess_with_callback`</span>
 <span class="sd">    is entered, and the :code:`subprocess` is guaranteed to be terminated when</span>
@@ -549,10 +555,6 @@
 <span class="sd">    to the Exception `__notes__ &lt;https://docs.python.org/3/library/exceptions.html#BaseException.__notes__&gt;`_.</span>
 
 <span class="sd">    Exceptions raised in the :code:`callback` will be suppressed.</span>
-
-<span class="sd">    The :code:`subprocess` is started as a</span>
-<span class="sd">    `daemon &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.daemon&gt;`_</span>
-<span class="sd">    so it will be terminated if it is still running when the main process exits.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: Example</span>
@@ -662,7 +664,7 @@
         <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">target</span><span class="o">=</span><span class="n">_run_subprocess</span><span class="p">,</span>
         <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">subprocess</span><span class="p">,</span> <span class="n">callback_send</span><span class="p">),</span>
-        <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">daemon</span><span class="o">=</span><span class="n">daemon</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># We alternate waiting on the queue and waiting on the event loop.</span>
     <span class="c1"># There is no good way in Python to wait on both at the same time.</span>
