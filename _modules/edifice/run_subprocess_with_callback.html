@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.12.0 documentation</title>
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.13.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=84389e84"></script>
+    <script src="../../_static/documentation_options.js?v=f5edd4dd"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.12.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.12.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
   
   
 </a></div>
@@ -501,13 +501,6 @@
 <span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_</span>
 <span class="sd">    and return the result.</span>
 
-<span class="sd">    The advantage of :func:`run_subprocess_with_callback` is that it behaves</span>
-<span class="sd">    well and cleans up properly in the event of exceptions and</span>
-<span class="sd">    `cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_.</span>
-<span class="sd">    This function is useful for a long-running parallel worker</span>
-<span class="sd">    subprocess for which we want to report progress back to the main GUI event loop.</span>
-<span class="sd">    Like *pytorch* stuff.</span>
-
 <span class="sd">    Args:</span>
 <span class="sd">        subprocess:</span>
 <span class="sd">            The async function to run in a</span>
@@ -525,36 +518,26 @@
 <span class="sd">            `daemon &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.daemon&gt;`_</span>
 <span class="sd">            argument.</span>
 
+<span class="sd">    The advantage of :func:`run_subprocess_with_callback` over</span>
+<span class="sd">    `run_in_executor &lt;https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_in_executor&gt;`_</span>
+<span class="sd">    `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_</span>
+<span class="sd">    is that :func:`run_subprocess_with_callback` behaves</span>
+<span class="sd">    well and cleans up properly in the event of exceptions and</span>
+<span class="sd">    `cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_.</span>
+<span class="sd">    This function is useful for a long-running parallel worker</span>
+<span class="sd">    subprocess for which we want to report progress back to the main GUI event loop.</span>
+<span class="sd">    Like *PyTorch* stuff.</span>
 
-<span class="sd">    The :code:`subprocess` will be started when :func:`run_subprocess_with_callback`</span>
+<span class="sd">    The :code:`subprocess` will be started when :code:`await` :func:`run_subprocess_with_callback`</span>
 <span class="sd">    is entered, and the :code:`subprocess` is guaranteed to be terminated when</span>
-<span class="sd">    :func:`run_subprocess_with_callback` completes.</span>
-
-<span class="sd">    The :code:`subprocess` will be started with the</span>
-<span class="sd">    `&quot;spawn&quot; start method &lt;https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods&gt;`_,</span>
-<span class="sd">    so it will not inherit any file handles from the calling process.</span>
+<span class="sd">    :code:`await` :func:`run_subprocess_with_callback` completes.</span>
 
 <span class="sd">    While the :code:`subprocess` is running, it may call the supplied :code:`callback` function.</span>
 <span class="sd">    The :code:`callback` function will run in the main event loop of the calling process.</span>
 
-<span class="sd">    If this async :func:`run_subprocess_with_callback` function is</span>
-<span class="sd">    `cancelled &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_,</span>
-<span class="sd">    the :code:`subprocess` will be terminated by calling</span>
-<span class="sd">    `Process.terminate() &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate&gt;`_.</span>
-<span class="sd">    Termination of the :code:`subprocess` will occur even if</span>
-<span class="sd">    the :code:`subprocess` is blocked. Note that</span>
-<span class="sd">    :code:`CancelledError` will not be raised in the :code:`subprocess`,</span>
-<span class="sd">    instead the :code:`subprocess` will be terminated immediately. If you</span>
-<span class="sd">    want to perform sudden cleanup and halt of the :code:`subprocess` then</span>
-<span class="sd">    send it a message as in the below “Example of Queue messaging.”</span>
-
-<span class="sd">    Exceptions raised in the :code:`subprocess` will be re-raised from :func:`run_subprocess_with_callback`.</span>
-<span class="sd">    Because the Exception must be pickled back to the main process, it will</span>
-<span class="sd">    lose its `traceback &lt;https://docs.python.org/3/reference/datamodel.html#traceback-objects&gt;`_.</span>
-<span class="sd">    In Python ≥3.11, the traceback string from the :code:`subprocess` stack will be added</span>
-<span class="sd">    to the Exception `__notes__ &lt;https://docs.python.org/3/library/exceptions.html#BaseException.__notes__&gt;`_.</span>
-
-<span class="sd">    Exceptions raised in the :code:`callback` will be suppressed.</span>
+<span class="sd">    The :code:`subprocess` will be started with the</span>
+<span class="sd">    `&quot;spawn&quot; start method &lt;https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods&gt;`_,</span>
+<span class="sd">    so it will not inherit any file handles from the calling process.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: Example</span>
@@ -580,6 +563,38 @@
 
 <span class="sd">            print(f&quot;my_subprocess returned {y}&quot;)</span>
 
+<span class="sd">    Cancellation, Exceptions, Crashes</span>
+<span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="sd">    If this :code:`async` :func:`run_subprocess_with_callback` function is</span>
+<span class="sd">    `cancelled &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_,</span>
+<span class="sd">    then the :code:`subprocess` will be terminated by calling</span>
+<span class="sd">    `Process.terminate() &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate&gt;`_.</span>
+<span class="sd">    Termination of the :code:`subprocess` will occur even if</span>
+<span class="sd">    the :code:`subprocess` is blocked. Note that</span>
+<span class="sd">    `CancelledError &lt;https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError&gt;`_</span>
+<span class="sd">    will not be raised in the :code:`subprocess`,</span>
+<span class="sd">    instead the :code:`subprocess` will be terminated immediately. If you</span>
+<span class="sd">    want to perform sudden cleanup and halt of the :code:`subprocess` then</span>
+<span class="sd">    send it a message as in the below `Example of Queue messaging.`</span>
+
+<span class="sd">    Exceptions raised in the :code:`subprocess` will be re-raised from :func:`run_subprocess_with_callback`,</span>
+<span class="sd">    including</span>
+<span class="sd">    `CancelledError &lt;https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError&gt;`_.</span>
+<span class="sd">    Because the Exception must be pickled back to the main process, it will</span>
+<span class="sd">    lose its `traceback &lt;https://docs.python.org/3/reference/datamodel.html#traceback-objects&gt;`_.</span>
+<span class="sd">    In Python ≥3.11, the traceback string from the :code:`subprocess` stack will be added</span>
+<span class="sd">    to the Exception `__notes__ &lt;https://docs.python.org/3/library/exceptions.html#BaseException.__notes__&gt;`_.</span>
+
+<span class="sd">    Exceptions raised in the :code:`callback` will be suppressed.</span>
+
+<span class="sd">    If the :code:`subprocess` exits abnormally without returning a value then a</span>
+<span class="sd">    `ProcessError &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.ProcessError&gt;`_</span>
+<span class="sd">    will be raised from :func:`run_subprocess_with_callback`.</span>
+
+<span class="sd">    Pickling the subprocess</span>
+<span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^</span>
+
 <span class="sd">    .. note::</span>
 
 <span class="sd">        Because “only picklable objects can be executed” by a</span>
@@ -592,6 +607,9 @@
 
 <span class="sd">        The :code:`callback` does not have this problem; we can pass a local</span>
 <span class="sd">        function as the :code:`callback`.</span>
+
+<span class="sd">    Messaging to the subprocess</span>
+<span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 
 <span class="sd">    The :func:`run_subprocess_with_callback` function provides a :code:`callback`</span>
 <span class="sd">    function for messaging back up to the main process, but it does not provide a</span>
@@ -628,6 +646,10 @@
 <span class="sd">                msg_queue.put(&quot;one&quot;)</span>
 <span class="sd">                msg_queue.put(&quot;finish&quot;)</span>
 
+<span class="sd">            # In this example we use gather() to run these 2 functions</span>
+<span class="sd">            # concurrently (“at the same time”).</span>
+<span class="sd">            # 1. run_subprocess_with_callback()</span>
+<span class="sd">            # 2. send_messages()</span>
 <span class="sd">            y, _ = await asyncio.gather(</span>
 <span class="sd">                run_subprocess_with_callback(</span>
 <span class="sd">                    functools.partial(my_subprocess, msg_queue),</span>
@@ -708,6 +730,17 @@
         <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="c1"># Can the callback_send queue raise any other kind of exception?</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">proc</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span> <span class="ow">and</span> <span class="n">callback_send</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+            <span class="c1"># Is that extra empty() check necessary and sufficient to avoid a</span>
+            <span class="c1"># race condition when the process returns normally and exits?</span>
+            <span class="c1"># Yes, because</span>
+            <span class="c1"># https://docs.python.org/3/library/multiprocessing.html#pipes-and-queues</span>
+            <span class="c1"># &gt; “if a child process has put items on a queue (and it has not used</span>
+            <span class="c1"># &gt; JoinableQueue.cancel_join_thread), then that process will not</span>
+            <span class="c1"># &gt; terminate until all buffered items have been flushed to the pipe.”</span>
+            <span class="c1">#</span>
+            <span class="c1"># This is a lot of extra system calls, too bad we have to poll like this.</span>
+            <span class="k">raise</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">ProcessError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;subprocess exited with code </span><span class="si">{</span><span class="n">proc</span><span class="o">.</span><span class="n">exitcode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># CancelledError can be raised here</span>
         <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>

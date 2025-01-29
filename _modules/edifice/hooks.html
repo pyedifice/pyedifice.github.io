@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 2.12.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 2.13.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=84389e84"></script>
+    <script src="../../_static/documentation_options.js?v=f5edd4dd"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.12.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.12.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
   
   
 </a></div>
@@ -714,6 +714,9 @@
 
 <span class="sd">    Exceptions raised from the :code:`fn_coroutine` will be suppressed.</span>
 
+<span class="sd">    For general advice about :code:`async` programming in Python see</span>
+<span class="sd">    `Developing with asyncio &lt;https://docs.python.org/3/library/asyncio-dev.html&gt;`_.</span>
+
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_async to fetch from the network</span>
 
@@ -742,31 +745,35 @@
 <span class="sd">    Cancellation</span>
 <span class="sd">    ============</span>
 
-<span class="sd">    The async :code:`fn_coroutine` Task can be cancelled by Edifice. Edifice will call</span>
+<span class="sd">    Edifice will call</span>
 <span class="sd">    `cancel() &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.cancel&gt;`_</span>
-<span class="sd">    on the Task.</span>
-<span class="sd">    See also</span>
-<span class="sd">    `Task Cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_.</span>
+<span class="sd">    on the async :code:`fn_coroutine`</span>
+<span class="sd">    `Task &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task&gt;`_</span>
+<span class="sd">    in three situations:</span>
 
 <span class="sd">    1. If the :code:`dependencies` change before the :code:`fn_coroutine` Task completes, then</span>
-<span class="sd">       the :code:`fn_coroutine` Task will be cancelled and then the new</span>
+<span class="sd">       the :code:`fn_coroutine` Task will be cancelled. Then the new</span>
 <span class="sd">       :code:`fn_coroutine` Task will</span>
 <span class="sd">       be started after the old :code:`fn_coroutine` Task completes.</span>
 <span class="sd">    2. The :code:`use_async` Hook returns a function which can be called to</span>
 <span class="sd">       cancel the :code:`fn_coroutine` Task manually. In the example above,</span>
-<span class="sd">       the :code:`_cancel_fetcher()` function can be called to cancel the fetcher.</span>
-<span class="sd">    3. If this `@component&lt;edifice.component&gt;` is unmounted before the</span>
+<span class="sd">       the :code:`cancel_fetcher()` function can be called to cancel the fetcher.</span>
+<span class="sd">    3. If this :func:`@component &lt;edifice.component&gt;` is unmounted before the</span>
 <span class="sd">       :code:`fn_coroutine` Task completes, then</span>
 <span class="sd">       the :code:`fn_coroutine` Task will be cancelled.</span>
 
 <span class="sd">    Write your async :code:`fn_coroutine` function in such a way that it</span>
-<span class="sd">    cleans itself up after exceptions. If you catch a :code:`CancelledError`</span>
-<span class="sd">    then always re-raise it.</span>
+<span class="sd">    cleans itself up after exceptions. If you catch a</span>
+<span class="sd">    `CancelledError &lt;https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError&gt;`_</span>
+<span class="sd">    in :code:`fn_coroutine` then always re-raise it.</span>
 
 <span class="sd">    You may call a :func:`use_state` setter during</span>
 <span class="sd">    a :code:`CancelledError` exception. If the :code:`fn_coroutine` Task was</span>
 <span class="sd">    cancelled because the component is being unmounted, then the</span>
 <span class="sd">    :func:`use_state` setter will have no effect.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    `Task Cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_.</span>
 
 <span class="sd">    Timers</span>
 <span class="sd">    ======</span>
@@ -810,28 +817,38 @@
 <span class="sd">    is good for spawing a parallel worker Process from a :func:`@component&lt;edifice.component&gt;`</span>
 <span class="sd">    because if the :func:`@component&lt;edifice.component&gt;` is unmounted, then</span>
 <span class="sd">    :func:`run_subprocess_with_callback&lt;edifice.utilities.run_subprocess_with_callback&gt;`</span>
-<span class="sd">    be cancelled and the Process will be immediately terminated.</span>
+<span class="sd">    will be cancelled and the Process will be immediately terminated.</span>
 <span class="sd">    Which is usually what we want.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_async with run_subprocess_with_callback</span>
 
-<span class="sd">        async def my_subprocess(callback: Callable[[str], None]) -&gt; None:</span>
+<span class="sd">        async def my_subprocess(callback: Callable[[str], None]) -&gt; int:</span>
 <span class="sd">            # This function will run in a new Process in a new event loop.</span>
 <span class="sd">            callback(&quot;Starting long calculation&quot;)</span>
 <span class="sd">            await asyncio.sleep(100.0)</span>
 <span class="sd">            x = 1 + 2</span>
-<span class="sd">            callback(f&quot;Finished long calculation with result: {x}&quot;))</span>
+<span class="sd">            callback(f&quot;Finished long calculation&quot;))</span>
+<span class="sd">            return x</span>
 
 <span class="sd">        @component</span>
-<span class="sd">        def Calculator(self):</span>
+<span class="sd">        def LongCalculator(self):</span>
 <span class="sd">            calculation_progress, calculation_progress_set = ed.use_state(&quot;&quot;)</span>
 
 <span class="sd">            def my_callback(progress: str) -&gt; None:</span>
 <span class="sd">                # This function will run in the main process event loop.</span>
-<span class="sd">                calculation_progress_set(progress)  # noqa: RUF005</span>
+<span class="sd">                calculation_progress_set(progress)</span>
 
-<span class="sd">            ed.use_async(lambda:run_subprocess_with_callback(my_subprocess, my_callback))</span>
+<span class="sd">            async def run_my_subprocess() -&gt; None:</span>
+<span class="sd">                try:</span>
+<span class="sd">                    x = await run_subprocess_with_callback(my_subprocess, my_callback)</span>
+<span class="sd">                    calculation_progress_set(f&quot;Result: {x}&quot;)</span>
+<span class="sd">                except asyncio.CancelledError:</span>
+<span class="sd">                    raise</span>
+<span class="sd">                except Exception as e:</span>
+<span class="sd">                    calculation_progress_set(f&quot;Error: {str(e)}&quot;)</span>
+
+<span class="sd">            ed.use_async(run_my_subprocess)</span>
 
 <span class="sd">            Label(text=calculation_progress)</span>
 

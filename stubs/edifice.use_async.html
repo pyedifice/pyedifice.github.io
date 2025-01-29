@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 2.12.0 documentation</title>
+    <title>edifice.use_async &#8212; Edifice 2.13.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=84389e84"></script>
+    <script src="../_static/documentation_options.js?v=f5edd4dd"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.12.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.12.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
   
   
 </a></div>
@@ -411,8 +411,10 @@ with the <code class="code docutils literal notranslate"><span class="pre">fn_co
 <p>The <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be called every time the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change.
 Only one <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be allowed to run at a time.</p>
 <p>Exceptions raised from the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> will be suppressed.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">use_async to fetch from the network</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<p>For general advice about <code class="code docutils literal notranslate"><span class="pre">async</span></code> programming in Python see
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-dev.html">Developing with asyncio</a>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">use_async to fetch from the network</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">WordDefinition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     <span class="n">definition</span><span class="p">,</span> <span class="n">definition_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -439,38 +441,41 @@ Only one <code class="code docutils literal notranslate"><span class="pre">fn_co
 </div>
 <section id="cancellation">
 <h2>Cancellation<a class="headerlink" href="#cancellation" title="Link to this heading">#</a></h2>
-<p>The async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task can be cancelled by Edifice. Edifice will call
+<p>Edifice will call
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.cancel">cancel()</a>
-on the Task.
-See also
-<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#task-cancellation">Task Cancellation</a>.</p>
+on the async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code>
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task">Task</a>
+in three situations:</p>
 <ol class="arabic simple">
 <li><p>If the <code class="code docutils literal notranslate"><span class="pre">dependencies</span></code> change before the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
-the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled and then the new
+the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled. Then the new
 <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will
 be started after the old <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes.</p></li>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook returns a function which can be called to
 cancel the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. In the example above,
-the <code class="code docutils literal notranslate"><span class="pre">_cancel_fetcher()</span></code> function can be called to cancel the fetcher.</p></li>
-<li><p>If this <cite>&#64;component&lt;edifice.component&gt;</cite> is unmounted before the
+the <code class="code docutils literal notranslate"><span class="pre">cancel_fetcher()</span></code> function can be called to cancel the fetcher.</p></li>
+<li><p>If this <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> is unmounted before the
 <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task completes, then
 the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled.</p></li>
 </ol>
 <p>Write your async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function in such a way that it
-cleans itself up after exceptions. If you catch a <code class="code docutils literal notranslate"><span class="pre">CancelledError</span></code>
-then always re-raise it.</p>
+cleans itself up after exceptions. If you catch a
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError">CancelledError</a>
+in <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> then always re-raise it.</p>
 <p>You may call a <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> setter during
 a <code class="code docutils literal notranslate"><span class="pre">CancelledError</span></code> exception. If the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task was
 cancelled because the component is being unmounted, then the
 <a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> setter will have no effect.</p>
+<p>See also
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#task-cancellation">Task Cancellation</a>.</p>
 </section>
 <section id="timers">
 <h2>Timers<a class="headerlink" href="#timers" title="Link to this heading">#</a></h2>
 <p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook is useful for timers and animation.</p>
 <p>Here is an example which shows how to run a timer in a component. The
 Harmonic Oscillator in <a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> uses this technique.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">use_async to run a stoppable-startable timer</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">use_async to run a stoppable-startable timer</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">is_playing</span><span class="p">,</span> <span class="n">is_playing_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">play_trigger</span><span class="p">,</span> <span class="n">play_trigger_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
@@ -503,26 +508,36 @@ by using <a class="reference internal" href="../utilities.html#edifice.utilities
 is good for spawing a parallel worker Process from a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>
 because if the <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> is unmounted, then
 <a class="reference internal" href="../utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>
-be cancelled and the Process will be immediately terminated.
+will be cancelled and the Process will be immediately terminated.
 Which is usually what we want.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">use_async with run_subprocess_with_callback</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">use_async with run_subprocess_with_callback</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="c1"># This function will run in a new Process in a new event loop.</span>
     <span class="n">callback</span><span class="p">(</span><span class="s2">&quot;Starting long calculation&quot;</span><span class="p">)</span>
     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
-    <span class="n">callback</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Finished long calculation with result: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+    <span class="n">callback</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Finished long calculation&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x</span>
 
 <span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Calculator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">LongCalculator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">calculation_progress</span><span class="p">,</span> <span class="n">calculation_progress_set</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">my_callback</span><span class="p">(</span><span class="n">progress</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># This function will run in the main process event loop.</span>
-        <span class="n">calculation_progress_set</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>  <span class="c1"># noqa: RUF005</span>
+        <span class="n">calculation_progress_set</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
 
-    <span class="n">ed</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="n">run_subprocess_with_callback</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">my_callback</span><span class="p">))</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">run_my_subprocess</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_subprocess_with_callback</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">my_callback</span><span class="p">)</span>
+            <span class="n">calculation_progress_set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+            <span class="k">raise</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">calculation_progress_set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">ed</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">run_my_subprocess</span><span class="p">)</span>
 
     <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">calculation_progress</span><span class="p">)</span>
 </pre></div>
