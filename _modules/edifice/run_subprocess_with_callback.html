@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.13.0 documentation</title>
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="../../_static/documentation_options.js?v=7bb62513"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -489,7 +489,7 @@
 
 
 <div class="viewcode-block" id="run_subprocess_with_callback">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.run_subprocess_with_callback">[docs]</a>
+<a class="viewcode-back" href="../../run_subprocess_with_callback.html#edifice.run_subprocess_with_callback">[docs]</a>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">run_subprocess_with_callback</span><span class="p">(</span>
     <span class="n">subprocess</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T_subprocess</span><span class="p">]],</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
@@ -522,8 +522,9 @@
 <span class="sd">    `run_in_executor &lt;https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_in_executor&gt;`_</span>
 <span class="sd">    `ProcessPoolExecutor &lt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor&gt;`_</span>
 <span class="sd">    is that :func:`run_subprocess_with_callback` behaves</span>
-<span class="sd">    well and cleans up properly in the event of exceptions and</span>
-<span class="sd">    `cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_.</span>
+<span class="sd">    well and cleans up properly in the event of</span>
+<span class="sd">    `cancellation &lt;https://docs.python.org/3/library/asyncio-task.html#task-cancellation&gt;`_,</span>
+<span class="sd">    exceptions, and crashes.</span>
 <span class="sd">    This function is useful for a long-running parallel worker</span>
 <span class="sd">    subprocess for which we want to report progress back to the main GUI event loop.</span>
 <span class="sd">    Like *PyTorch* stuff.</span>

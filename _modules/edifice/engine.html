@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.13.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="../../_static/documentation_options.js?v=7bb62513"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -412,7 +412,6 @@
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 
 
-
 <span class="k">def</span> <span class="nf">stylevalue_to_str</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">match</span> <span class="n">v</span><span class="p">:</span>
         <span class="k">case</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="p">():</span>
@@ -420,6 +419,7 @@
             <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="o">.</span><span class="n">NameFormat</span><span class="o">.</span><span class="n">HexArgb</span><span class="p">)</span>
         <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">v</span>
+
 
 <span class="k">def</span> <span class="nf">_dict_to_style</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">stylevalue_to_str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
@@ -1074,7 +1074,7 @@
         <span class="n">_edifice_original</span> <span class="o">=</span> <span class="n">f</span>
 
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
             <span class="n">name_to_val</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">not_ignored</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">varnames</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
@@ -1377,7 +1377,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drag_leave_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_drop_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_pressed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_focus_open_needed</span> <span class="o">=</span> <span class="n">_focus_open</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1385,12 +1388,15 @@
             <span class="k">if</span> <span class="n">cursor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_CURSORS</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unrecognized cursor </span><span class="si">{</span><span class="n">cursor</span><span class="si">}</span><span class="s2">. Cursor must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_CURSORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsBlurEffect</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsDropShadowEffect</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsColorizeEffect</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsOpacityEffect</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">:</span> <span class="n">_T_widget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The underlying QWidget, which may not exist if this Element has not rendered.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_pressed</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_focus_open_needed</span> <span class="o">=</span> <span class="n">_focus_open</span></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
 
 
     <span class="k">def</span> <span class="nf">_mouse_press</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1435,7 +1441,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span><span class="o">.</span><span class="n">wheelEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span><span class="o">.</span><span class="n">wheelEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
 
     <span class="k">def</span> <span class="nf">_set_mouse_wheel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_wheel</span><span class="p">):</span>
         <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.wheelEvent</span>
@@ -1579,6 +1585,57 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span>
 
+    <span class="k">def</span> <span class="nf">_set_blur</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsBlurEffect.html</span>
+        <span class="k">if</span> <span class="n">radius</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsBlurEffect</span><span class="p">()</span>
+                <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_blur</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span><span class="o">.</span><span class="n">setBlurRadius</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span><span class="o">.</span><span class="n">setBlurHints</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsBlurEffect</span><span class="o">.</span><span class="n">BlurHint</span><span class="o">.</span><span class="n">QualityHint</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_colorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">colorizeprops</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsColorizeEffect.html</span>
+        <span class="k">if</span> <span class="n">colorizeprops</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsColorizeEffect</span><span class="p">()</span>
+                <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="n">colorizeprops</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span><span class="o">.</span><span class="n">setStrength</span><span class="p">(</span><span class="n">colorizeprops</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_set_dropshadow</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">shadowprops</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QPointF</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsDropShadowEffect.html</span>
+        <span class="k">if</span> <span class="n">shadowprops</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsDropShadowEffect</span><span class="p">()</span>
+                <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span><span class="o">.</span><span class="n">setBlurRadius</span><span class="p">(</span><span class="n">shadowprops</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="n">shadowprops</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span><span class="o">.</span><span class="n">setOffset</span><span class="p">(</span><span class="n">shadowprops</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_set_opacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsOpacityEffect.html</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsItem.html#PySide6.QtWidgets.QGraphicsItem.setGraphicsEffect</span>
+        <span class="k">if</span> <span class="n">opacity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsOpacityEffect</span><span class="p">()</span>
+                <span class="n">underlying</span><span class="o">.</span><span class="n">setGraphicsEffect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span><span class="o">.</span><span class="n">setOpacity</span><span class="p">(</span><span class="n">opacity</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_gen_styling_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span>
@@ -1662,8 +1719,8 @@
 
         <span class="k">if</span> <span class="s2">&quot;align&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">underlying</span><span class="p">),</span> <span class="s2">&quot;setAlignment&quot;</span><span class="p">):</span>
-            <span class="c1"># QLabels and other things that have a setAlignment method</span>
-            <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.QLabel.setAlignment</span>
+                <span class="c1"># QLabels and other things that have a setAlignment method</span>
+                <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html#PySide6.QtWidgets.QLabel.setAlignment</span>
                 <span class="n">cpstyle_align</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">]</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cpstyle_align</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">cpstyle_align</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
@@ -1685,7 +1742,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Style align wrong type: </span><span class="si">{</span><span class="n">cpstyle_align</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;align&quot;</span><span class="p">)</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span> <span class="c1"># type: ignore  # noqa: PGH003</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">,</span> <span class="n">set_align</span><span class="p">))</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># Set the align property for the style sheet</span>
                 <span class="c1"># TODO This case is probably unreachable?</span>
@@ -1736,6 +1793,43 @@
         <span class="k">if</span> <span class="n">set_move</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">move_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
+        <span class="k">if</span> <span class="s2">&quot;blur&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="n">blur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;blur&quot;</span><span class="p">])</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_blur</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">blur</span><span class="p">))</span>
+            <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_blur</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="s2">&quot;colorize&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="n">colorize</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;colorize&quot;</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">colorize</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">tuple</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">colorize</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">colorize</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">is</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">colorize</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">float</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_colorize</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">colorize</span><span class="p">))</span>
+            <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;colorize&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_colorize</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="s2">&quot;drop-shadow&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="n">dropshadow</span> <span class="o">=</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;drop-shadow&quot;</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">dropshadow</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">tuple</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">dropshadow</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+            <span class="n">blur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dropshadow</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">dropshadow</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">is</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">dropshadow</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="ow">is</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QPointF</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_dropshadow</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="p">(</span><span class="n">blur</span><span class="p">,</span> <span class="n">dropshadow</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dropshadow</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+            <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;drop-shadow&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_dropshadow</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="s2">&quot;opacity&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;opacity&quot;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">float</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_opacity</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;opacity&quot;</span><span class="p">]))</span>
+            <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;opacity&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_opacity</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
         <span class="c1"># CSS style selection is matched by setting underlying.setObjectName(str(id(self)))</span>
         <span class="c1"># In Element initialization.</span>
         <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#PySide6.QtCore.QObject.setObjectName</span>
@@ -1766,7 +1860,7 @@
 
     <span class="k">def</span> <span class="nf">_qt_update_commands_super</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>  <span class="c1"># noqa: ARG002</span>
         <span class="c1"># We must pass all of the widget_trees because some elements</span>
         <span class="c1"># like TableGridView need to know the children of the children.</span>
         <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
@@ -1873,7 +1967,7 @@
         <span class="n">_edifice_original</span> <span class="o">=</span> <span class="n">f</span>
 
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
             <span class="n">name_to_val</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">not_ignored</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">varnames</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
@@ -2634,7 +2728,7 @@
         <span class="c1"># After the done_callback is called, the _HookAsync object</span>
         <span class="c1"># should be garbage collected.</span>
 
-        <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">:</span> <span class="n">_HookAsync</span><span class="p">,</span> <span class="n">_task</span><span class="p">:</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
+        <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">:</span> <span class="n">_HookAsync</span><span class="p">,</span> <span class="n">_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
             <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
@@ -2649,7 +2743,6 @@
                 <span class="c1"># There is another async task waiting in the queue</span>
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
-
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
             <span class="c1"># then this is the first render.</span>

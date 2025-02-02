@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.utilities &#8212; Edifice 2.13.0 documentation</title>
+    <title>edifice.utilities &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="../../_static/documentation_options.js?v=7bb62513"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -385,6 +385,8 @@
 
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">deprecated</span>
+
 <span class="kn">from</span> <span class="nn">.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
@@ -409,8 +411,6 @@
     <span class="s2">&quot;theme_is_light&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
-<div class="viewcode-block" id="palette_dump">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.palette_dump">[docs]</a>
 <span class="k">def</span> <span class="nf">palette_dump</span><span class="p">(</span><span class="n">palette</span><span class="p">:</span> <span class="n">QPalette</span><span class="p">,</span> <span class="n">palette_compare</span><span class="p">:</span> <span class="n">QPalette</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dump the palette to the console.</span>
@@ -453,37 +453,36 @@
     <span class="k">for</span> <span class="n">colorrole</span> <span class="ow">in</span> <span class="n">colorroles</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">colorgroup</span> <span class="ow">in</span> <span class="n">colorgroups</span><span class="p">:</span>
             <span class="n">c</span> <span class="o">=</span> <span class="n">palette</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">colorgroup</span><span class="p">,</span> <span class="n">colorrole</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;palette.setColor(&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QPalette.</span><span class="si">{</span><span class="n">colorgroup</span><span class="si">}</span><span class="s2">, QPalette.</span><span class="si">{</span><span class="n">colorrole</span><span class="si">}</span><span class="s2">, &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QColor.fromRgb</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">getRgb</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;palette.setColor(&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QPalette.</span><span class="si">{</span><span class="n">colorgroup</span><span class="si">}</span><span class="s2">, QPalette.</span><span class="si">{</span><span class="n">colorrole</span><span class="si">}</span><span class="s2">, &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QColor.fromRgb</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">getRgb</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
             <span class="k">if</span> <span class="n">palette_compare</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">c_compare</span> <span class="o">=</span> <span class="n">palette_compare</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">colorgroup</span><span class="p">,</span> <span class="n">colorrole</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">c_compare</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; # CHANGED from </span><span class="si">{</span><span class="n">c_compare</span><span class="o">.</span><span class="n">getRgb</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; # CHANGED from </span><span class="si">{</span><span class="n">c_compare</span><span class="o">.</span><span class="n">getRgb</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201, FURB105</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
-
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: FURB105, T201</span>
 
 
 <div class="viewcode-block" id="theme_is_light">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.theme_is_light">[docs]</a>
+<a class="viewcode-back" href="../../utilities.html#edifice.theme_is_light">[docs]</a>
 <span class="k">def</span> <span class="nf">theme_is_light</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Detect the operating environment theme.</span>
 
 <span class="sd">    True if light theme, false if dark theme.</span>
 
-<span class="sd">    Example::</span>
+<span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        def initializer():</span>
 <span class="sd">            palette = palette_edifice_light() if theme_is_light() else palette_edifice_dark()</span>
 <span class="sd">            cast(QApplication, QApplication.instance()).setPalette(palette)</span>
 <span class="sd">            return palette</span>
 
-<span class="sd">        palette, _ = ed.use_state(initializer)</span>
+<span class="sd">        palette = use_memo(initializer)</span>
 
 <span class="sd">        with Window():</span>
 
@@ -508,7 +507,7 @@
 
 
 <div class="viewcode-block" id="palette_edifice_dark">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.palette_edifice_dark">[docs]</a>
+<a class="viewcode-back" href="../../utilities.html#edifice.palette_edifice_dark">[docs]</a>
 <span class="k">def</span> <span class="nf">palette_edifice_dark</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">QPalette</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Edifice dark theme palette. This is the Qt Linux default dark theme palette, with some adjustments.</span>
@@ -578,7 +577,7 @@
 
 
 <div class="viewcode-block" id="palette_edifice_light">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.palette_edifice_light">[docs]</a>
+<a class="viewcode-back" href="../../utilities.html#edifice.palette_edifice_light">[docs]</a>
 <span class="k">def</span> <span class="nf">palette_edifice_light</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">QPalette</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Edifice light theme palette. This is the Qt Linux default light theme palette, with some adjustments.</span>
@@ -643,8 +642,7 @@
 
 
 
-<div class="viewcode-block" id="alert">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.alert">[docs]</a>
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead use WindowPopView&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">alert</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Displays a message in an alert box.</span>
 
@@ -662,18 +660,16 @@
     <span class="n">buttons</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
-            <span class="n">buttons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msgbox</span><span class="o">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">ButtonRole</span><span class="o">.</span><span class="n">ActionRole</span><span class="p">))</span>
+            <span class="n">buttons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msgbox</span><span class="o">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">ButtonRole</span><span class="o">.</span><span class="n">ActionRole</span><span class="p">))</span>  <span class="c1"># noqa: PERF401</span>
     <span class="n">msgbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
     <span class="n">clicked_button</span> <span class="o">=</span> <span class="n">msgbox</span><span class="o">.</span><span class="n">clickedButton</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">button</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">buttons</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">clicked_button</span> <span class="o">==</span> <span class="n">button</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">i</span>
-    <span class="k">return</span> <span class="kc">None</span></div>
+    <span class="k">return</span> <span class="kc">None</span>
 
 
-
-<div class="viewcode-block" id="file_dialog">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.file_dialog">[docs]</a>
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead use https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QFileDialog.html directly&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">file_dialog</span><span class="p">(</span>
     <span class="n">caption</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -700,12 +696,10 @@
         <span class="n">dialog</span><span class="o">.</span><span class="n">setNameFilters</span><span class="p">(</span><span class="n">file_filter</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="o">.</span><span class="n">DialogCode</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">dialog</span><span class="o">.</span><span class="n">selectedFiles</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="kc">None</span></div>
+    <span class="k">return</span> <span class="kc">None</span>
 
 
-
-<div class="viewcode-block" id="set_trace">
-<a class="viewcode-back" href="../../utilities.html#edifice.utilities.set_trace">[docs]</a>
+<span class="c1"># TODO deprecate? Instead what? https://github.com/microsoft/debugpy ?</span>
 <span class="k">def</span> <span class="nf">set_trace</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set a tracepoint in the Python debugger that works with PyQt.</span>
 
@@ -721,8 +715,7 @@
         <span class="kn">from</span> <span class="nn">PyQt6.QtCore</span> <span class="kn">import</span> <span class="n">pyqtRemoveInputHook</span>
 
         <span class="n">pyqtRemoveInputHook</span><span class="p">()</span>
-    <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></div>
-
+    <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
     <span class="c1"># # set up the debugger</span>
     <span class="c1"># debugger = pdb.Pdb()</span>
     <span class="c1"># debugger.reset()</span>

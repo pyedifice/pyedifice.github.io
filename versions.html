@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 2.13.0 documentation</title>
+    <title>Release Notes &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="_static/documentation_options.js?v=7bb62513"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,8 +118,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -379,27 +379,36 @@
                   
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<section id="v2-14-0">
+<h2>v2.14.0<a class="headerlink" href="#v2-14-0" title="Link to this heading">#</a></h2>
+<p>Released: 2025-02-02</p>
+<ul class="simple">
+<li><p>New <a class="reference internal" href="styling.html#styling"><span class="std std-ref">Styling</span></a> props <a class="reference internal" href="styling.html#graphics-effects"><span class="std std-ref">Graphics Effects</span></a></p></li>
+<li><p><a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> bugfix hang when Exception raised on first render.</p></li>
+<li><p>Deprecated functions <code class="code docutils literal notranslate"><span class="pre">alert</span></code> <code class="code docutils literal notranslate"><span class="pre">file_dialog</span></code> <code class="code docutils literal notranslate"><span class="pre">set_trace</span></code>.</p></li>
+</ul>
+</section>
 <section id="v2-13-0">
 <h2>v2.13.0<a class="headerlink" href="#v2-13-0" title="Link to this heading">#</a></h2>
 <p>Released: 2025-01-29</p>
 <ul class="simple">
 <li><p>If the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> exits abnormally without returning a value then a
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.ProcessError">ProcessError</a>
-will be raised from <a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code></a>.</p></li>
+will be raised from <a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>.</p></li>
 </ul>
 </section>
 <section id="v2-12-0">
 <h2>v2.12.0<a class="headerlink" href="#v2-12-0" title="Link to this heading">#</a></h2>
 <p>Released: 2025-01-27</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code></a> new argument <code class="code docutils literal notranslate"><span class="pre">daemon</span></code>.</p></li>
+<li><p><a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> new argument <code class="code docutils literal notranslate"><span class="pre">daemon</span></code>.</p></li>
 </ul>
 </section>
 <section id="v2-11-4">
 <h2>v2.11.4<a class="headerlink" href="#v2-11-4" title="Link to this heading">#</a></h2>
 <p>Released: 2025-01-19</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code></a> improvements: Handle multiple
+<li><p><a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> improvements: Handle multiple
 callbacks with no delay. Drain the callback_send queue before joining the
 Process.</p></li>
 </ul>
@@ -415,14 +424,14 @@ Process.</p></li>
 <h2>v2.11.2<a class="headerlink" href="#v2-11-2" title="Link to this heading">#</a></h2>
 <p>Released: 2025-01-17</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code></a> don’t <code class="code docutils literal notranslate"><span class="pre">terminate</span></code> on normal return.</p></li>
+<li><p><a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> don’t <code class="code docutils literal notranslate"><span class="pre">terminate</span></code> on normal return.</p></li>
 </ul>
 </section>
 <section id="v2-11-1">
 <h2>v2.11.1<a class="headerlink" href="#v2-11-1" title="Link to this heading">#</a></h2>
 <p>Released: 2025-01-15</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code></a> reduced the number of incidental
+<li><p><a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> reduced the number of incidental
 processes and threads created. Removed <code class="code docutils literal notranslate"><span class="pre">multiprocessing.Manager</span></code> from
 documentation.</p></li>
 </ul>
@@ -431,14 +440,14 @@ documentation.</p></li>
 <h2>v2.11.0<a class="headerlink" href="#v2-11-0" title="Link to this heading">#</a></h2>
 <p>Released: 2025-01-10</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code></a> <code class="code docutils literal notranslate"><span class="pre">callback</span></code> exceptions will be suppressed.</p></li>
+<li><p><a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> <code class="code docutils literal notranslate"><span class="pre">callback</span></code> exceptions will be suppressed.</p></li>
 </ul>
 </section>
 <section id="v2-10-0">
 <h2>v2.10.0<a class="headerlink" href="#v2-10-0" title="Link to this heading">#</a></h2>
 <p>Released: 2025-01-08</p>
 <ul class="simple">
-<li><p>New utility function <a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code></a>.</p></li>
+<li><p>New utility function <code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.run_subprocess_with_callback()</span></code>.</p></li>
 </ul>
 </section>
 <section id="v2-9-1">
@@ -604,8 +613,8 @@ Fix bug children disappeared when re-rendering with no changes.</p></li>
 <p>Released: 2024-09-10</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> new prop <code class="code docutils literal notranslate"><span class="pre">on_open</span></code>.</p></li>
-<li><p>New utility functions <a class="reference internal" href="utilities.html#edifice.utilities.theme_is_light" title="edifice.utilities.theme_is_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.theme_is_light()</span></code></a>,
-<a class="reference internal" href="utilities.html#edifice.utilities.palette_edifice_light" title="edifice.utilities.palette_edifice_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.palette_edifice_light()</span></code></a>, <a class="reference internal" href="utilities.html#edifice.utilities.palette_edifice_dark" title="edifice.utilities.palette_edifice_dark"><code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.palette_edifice_dark()</span></code></a>.</p></li>
+<li><p>New utility functions <code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.theme_is_light()</span></code>,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.palette_edifice_light()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">utilities.palette_edifice_dark()</span></code>.</p></li>
 <li><p>Delete deprecated method <code class="code docutils literal notranslate"><span class="pre">App.set_stylesheet</span></code>.</p></li>
 </ul>
 </section>

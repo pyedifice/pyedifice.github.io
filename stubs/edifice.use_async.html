@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 2.13.0 documentation</title>
+    <title>edifice.use_async &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="../_static/documentation_options.js?v=7bb62513"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -472,28 +472,55 @@ cancelled because the component is being unmounted, then the
 <section id="timers">
 <h2>Timers<a class="headerlink" href="#timers" title="Link to this heading">#</a></h2>
 <p>The <code class="code docutils literal notranslate"><span class="pre">use_async</span></code> Hook is useful for timers and animation.</p>
-<p>Here is an example which shows how to run a timer in a component. The
-Harmonic Oscillator in <a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> uses this technique.</p>
+<p>Here is an example busy-wait UI indicator which is a bit more visually subtle
+than Qt’s barbershop-pole <a class="reference internal" href="edifice.ProgressBar.html#edifice.ProgressBar" title="edifice.ProgressBar"><code class="xref py py-class docutils literal notranslate"><span class="pre">QProgressBar</span></code></a> with
+<code class="code docutils literal notranslate"><span class="pre">minimum=0,</span> <span class="pre">maximum=0</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">use_async to run a stoppable-startable timer</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">is_playing</span><span class="p">,</span> <span class="n">is_playing_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">play_trigger</span><span class="p">,</span> <span class="n">play_trigger_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<div class="code-block-caption"><span class="caption-text">BusyWaitIndicator component</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@ed</span><span class="o">.</span><span class="n">component</span>
+<span class="k">def</span> <span class="nf">BusyWaitIndicator</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">visible</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">QColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Animated busy wait indicator which looks like ⬤⬤⬤⬤⬤</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">play_tick</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">is_playing</span><span class="p">:</span>
-        <span class="c1"># Do the timer effect here</span>
-        <span class="c1"># (timer effect code)</span>
+<span class="sd">    If not visible, will still occupy the same layout space but will be</span>
+<span class="sd">    transparent and animation will not run.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-        <span class="c1"># Then wait for 0.05 seconds and trigger another play_tick.</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
-        <span class="n">play_trigger_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="ow">not</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">color_</span><span class="p">:</span> <span class="n">QColor</span>
+    <span class="n">color_</span> <span class="o">=</span> <span class="n">color</span> <span class="k">if</span> <span class="n">color</span> <span class="k">else</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">palette</span><span class="p">()</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">QPalette</span><span class="o">.</span><span class="n">ColorRole</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">tick</span><span class="p">,</span> <span class="n">tick_set</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">use_async</span><span class="p">(</span><span class="n">play_tick</span><span class="p">,</span> <span class="p">(</span><span class="n">is_playing</span><span class="p">,</span> <span class="n">play_trigger</span><span class="p">))</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">animation</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">visible</span><span class="p">:</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+                <span class="n">tick_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span><span class="p">)</span>
 
-<span class="n">Button</span><span class="p">(</span>
-    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;pause&quot;</span> <span class="k">if</span> <span class="n">is_playing</span> <span class="k">else</span> <span class="s2">&quot;play&quot;</span><span class="p">,</span>
-    <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">is_playing_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="ow">not</span> <span class="n">p</span><span class="p">),</span>
-<span class="p">)</span>
+    <span class="n">ed</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">animation</span><span class="p">,</span> <span class="n">visible</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">HBoxView</span><span class="p">(</span>
+        <span class="n">size_policy</span><span class="o">=</span><span class="n">QSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Fixed</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Fixed</span><span class="p">),</span>
+    <span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="n">ed</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+                <span class="n">text</span><span class="o">=</span><span class="s2">&quot;⬤&quot;</span><span class="p">,</span>
+                <span class="n">style</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">QColor</span><span class="p">(</span>
+                        <span class="n">color_</span><span class="o">.</span><span class="n">red</span><span class="p">(),</span>
+                        <span class="n">color_</span><span class="o">.</span><span class="n">green</span><span class="p">(),</span>
+                        <span class="n">color_</span><span class="o">.</span><span class="n">blue</span><span class="p">(),</span>
+                        <span class="mi">40</span> <span class="o">+</span> <span class="p">(((</span><span class="n">i</span> <span class="o">-</span> <span class="n">tick</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span> <span class="k">if</span> <span class="n">visible</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">}</span>
+                <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">}</span>
+                <span class="k">if</span> <span class="n">size</span>
+                <span class="k">else</span> <span class="p">{},</span>
+            <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -503,11 +530,11 @@ Harmonic Oscillator in <a class="reference internal" href="../examples.html"><sp
 <p>We can run an
 <code class="code docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span> <span class="pre">my_subprocess</span></code> function in a worker
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process">Process</a>
-by using <a class="reference internal" href="../utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>.</p>
-<p><a class="reference internal" href="../utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>
+by using <a class="reference internal" href="../run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>.</p>
+<p><a class="reference internal" href="../run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>
 is good for spawing a parallel worker Process from a <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>
 because if the <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> is unmounted, then
-<a class="reference internal" href="../utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>
+<a class="reference internal" href="../run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>
 will be cancelled and the Process will be immediately terminated.
 Which is usually what we want.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
@@ -537,7 +564,7 @@ Which is usually what we want.</p>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">calculation_progress_set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="n">ed</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">run_my_subprocess</span><span class="p">)</span>
+    <span class="n">use_async</span><span class="p">(</span><span class="n">run_my_subprocess</span><span class="p">)</span>
 
     <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">calculation_progress</span><span class="p">)</span>
 </pre></div>

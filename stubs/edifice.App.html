@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.App &#8212; Edifice 2.13.0 documentation</title>
+    <title>edifice.App &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="../_static/documentation_options.js?v=7bb62513"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -413,15 +413,15 @@ must be a <a class="reference internal" href="edifice.Window.html#edifice.Window
 </ol>
 <p>Instead of calling application initialization code from the
 <code class="code docutils literal notranslate"><span class="pre">__main__</span></code> function, call the initialization code from a
-<a class="reference internal" href="edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> <strong>initializer function</strong> in the root Element
+<a class="reference internal" href="edifice.use_memo.html#edifice.use_memo" title="edifice.use_memo"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_memo()</span></code></a> <strong>initializer function</strong> in the root Element
 because this function will run when the app is started by the Edifice
 Runner.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QFont</span>
-<span class="kn">from</span> <span class="nn">edifice</span> <span class="kn">import</span> <span class="n">App</span><span class="p">,</span> <span class="n">Window</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">use_state</span>
+<span class="kn">import</span> <span class="nn">edifice</span> <span class="k">as</span> <span class="nn">ed</span>
 
-<span class="nd">@component</span>
+<span class="nd">@ed</span><span class="o">.</span><span class="n">component</span>
 <span class="k">def</span> <span class="nf">Main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">initalizer</span><span class="p">():</span>
@@ -430,19 +430,19 @@ Runner.</p>
         <span class="n">qapp</span><span class="o">.</span><span class="n">setApplicationName</span><span class="p">(</span><span class="s2">&quot;My App&quot;</span><span class="p">)</span>
         <span class="n">qapp</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">QFont</span><span class="p">(</span><span class="s2">&quot;Yu Gothic UI&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
         <span class="n">qapp</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;QLabel { font-size: 12pt; }&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">theme_is_light</span><span class="p">():</span>
-            <span class="n">qapp</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette_edifice_light</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">ed</span><span class="o">.</span><span class="n">theme_is_light</span><span class="p">():</span>
+            <span class="n">qapp</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">palette_edifice_light</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">qapp</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette_edifice_dark</span><span class="p">())</span>
+            <span class="n">qapp</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">palette_edifice_dark</span><span class="p">())</span>
 
-    <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">initalizer</span><span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">use_memo</span><span class="p">(</span><span class="n">initalizer</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">Window</span><span class="p">():</span>
+        <span class="n">ed</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">App</span><span class="p">(</span><span class="n">Main</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">ed</span><span class="o">.</span><span class="n">App</span><span class="p">(</span><span class="n">Main</span><span class="p">())</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>For more information about global styles, see <a class="reference internal" href="../styling.html"><span class="doc">Styling</span></a>.</p>

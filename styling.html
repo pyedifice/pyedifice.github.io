@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Styling &#8212; Edifice 2.13.0 documentation</title>
+    <title>Styling &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="_static/documentation_options.js?v=7bb62513"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -388,9 +388,9 @@
   <section id="styling">
 <h1>Styling<a class="headerlink" href="#styling" title="Link to this heading">#</a></h1>
 <p>Edfice supports
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-syntax.html">Qt Widget Style Sheet Syntax</a>.</p>
-<p>The <code class="code docutils literal notranslate"><span class="pre">style</span></code> <strong>prop</strong> of every <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> is
-a dictionary of style properties.</p>
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-syntax.html">Qt Widget Style Sheet Syntax</a>.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">style</span></code> <strong>prop</strong> of every <a class="reference internal" href="base_components.html#module-edifice.base_components"><span class="std std-ref">Base Element</span></a>
+is a dictionary of style properties.</p>
 <p>The keys of the <code class="code docutils literal notranslate"><span class="pre">style</span></code> dictionary are the style name, and the values
 are usually either strings or numbers.</p>
 <p>For example, if you want to make a label with <em>10px</em> margins, with <em>red</em> text
@@ -406,14 +406,14 @@ in a <em>16pt</em> font on a <em>beige</em> <em>semi-transparent</em> background
 </pre></div>
 </div>
 <p>All style properties supported by Qt will also work with Edifice.
-See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.</p>
+See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.</p>
 <p>Note that sometimes Qt styling behaves differently from CSS styling
 (despite similar syntax and naming) and is not supported by all Widgets.</p>
 <p>Currently, the following styles are tested to be supported.</p>
-<section id="widget-styling">
-<h2>Widget Styling<a class="headerlink" href="#widget-styling" title="Link to this heading">#</a></h2>
-<p>Widgets follow the
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-customizing.html#the-box-model">Qt Style Sheet Box Model</a>.</p>
+<section id="content-base-element-styling">
+<h2>Content Base Element Styling<a class="headerlink" href="#content-base-element-styling" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="base_components.html#content-base-elements"><span class="std std-ref">Content Base Elements</span></a> follow the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-customizing.html#the-box-model">Qt Style Sheet Box Model</a>.</p>
 <ul class="simple">
 <li><p><strong>color</strong>: See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>.</p></li>
 <li><p><strong>font-size</strong>: Font size in points.</p></li>
@@ -464,12 +464,12 @@ Or an <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide
 <a class="reference internal" href="stubs/edifice.FixView.html#edifice.FixView" title="edifice.FixView"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixView</span></code></a>.</p></li>
 </ul>
 </section>
-<section id="layout-view-styling">
-<h2>Layout View Styling<a class="headerlink" href="#layout-view-styling" title="Link to this heading">#</a></h2>
-<p>Every Layout Base Element named <code class="code docutils literal notranslate"><span class="pre">View</span></code> has an underlying
+<section id="layout-base-element-styling">
+<h2>Layout Base Element Styling<a class="headerlink" href="#layout-base-element-styling" title="Link to this heading">#</a></h2>
+<p>Every <a class="reference internal" href="base_components.html#layout-base-elements"><span class="std std-ref">Layout Base Element</span></a> has an underlying
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html">QLayout</a>
 and follows slightly different rules than the
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/stylesheet-customizing.html#the-box-model">Qt Style Sheet Box Model</a>.</p>
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-customizing.html#the-box-model">Qt Style Sheet Box Model</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There is no <code class="code docutils literal notranslate"><span class="pre">margin</span></code> style for Layout <code class="code docutils literal notranslate"><span class="pre">View</span></code> Elements.</p>
@@ -521,11 +521,6 @@ Or an <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide
 <a class="reference internal" href="stubs/edifice.FixView.html#edifice.FixView" title="edifice.FixView"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixView</span></code></a>.</p></li>
 </ul>
 </section>
-<section id="size-policy">
-<h2>Size Policy<a class="headerlink" href="#size-policy" title="Link to this heading">#</a></h2>
-<p>The <code class="code docutils literal notranslate"><span class="pre">size_policy</span></code> <strong>prop</strong> of <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> is also
-sometimes useful for controlling the Qt layout behavior.</p>
-</section>
 <section id="color">
 <h2>Color<a class="headerlink" href="#color" title="Link to this heading">#</a></h2>
 <p>There are two ways to specify a style value which takes a single color:</p>
@@ -542,6 +537,45 @@ for example:</p>
 </li>
 <li><p>A <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QColor.html">QColor</a>.</p></li>
 </ul>
+</section>
+<section id="graphics-effects">
+<h2>Graphics Effects<a class="headerlink" href="#graphics-effects" title="Link to this heading">#</a></h2>
+<p>Edifice styles support the four stock <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsEffect.html">QGraphicsEffect</a>
+effects for any <a class="reference internal" href="base_components.html#module-edifice.base_components"><span class="std std-ref">Base Element</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to limitations in the Qt API, only one graphic effect can be applied to
+a <a class="reference internal" href="base_components.html#module-edifice.base_components"><span class="std std-ref">Base Element</span></a> at a time.</p>
+</div>
+<p>Each effect style has a different set of parameters.</p>
+<ul>
+<li><p><strong>blur</strong>: <code class="code docutils literal notranslate"><span class="pre">float</span></code> The blur radius in pixels.</p>
+<p>See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsBlurEffect.html">QGraphicsBlurEffect</a>.</p>
+</li>
+<li><p><strong>drop-shadow</strong>: <code class="code docutils literal notranslate"><span class="pre">tuple[float,</span> <span class="pre">QColor,</span> <span class="pre">QRectF]</span></code></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">float</span></code> The blur radius in pixels.</p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QColor.html">QColor</a> Shadow color.</p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/QRectF.html">QRectF</a> Shadow offset.</p></li>
+</ul>
+<p>See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsDropShadowEffect.html">QGraphicsDropShadowEffect</a>.</p>
+</li>
+<li><p><strong>colorize</strong>: <code class="code docutils literal notranslate"><span class="pre">tuple[QColor,</span> <span class="pre">float]</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QColor.html">QColor</a> Tint color.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">float</span></code> The strength of the colorization.</p></li>
+</ul>
+<p>See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsColorizeEffect.html">QGraphicsColorizeEffect</a>.</p>
+</li>
+<li><p><strong>opacity</strong>: <code class="code docutils literal notranslate"><span class="pre">float</span></code> The opacity of the widget.</p>
+<p>See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGraphicsOpacityEffect.html">QGraphicsOpacityEffect</a>.</p>
+</li>
+</ul>
+</section>
+<section id="size-policy">
+<h2>Size Policy<a class="headerlink" href="#size-policy" title="Link to this heading">#</a></h2>
+<p>The <code class="code docutils literal notranslate"><span class="pre">size_policy</span></code> <strong>prop</strong> of <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> is also
+sometimes useful for controlling the Qt layout behavior.</p>
 </section>
 <section id="style-merging">
 <h2>Style Merging<a class="headerlink" href="#style-merging" title="Link to this heading">#</a></h2>
@@ -563,10 +597,10 @@ font sizes, you can create a common style dict for shared styles…</p>
 </pre></div>
 </div>
 </section>
-<section id="style-advice">
-<h2>Style Advice<a class="headerlink" href="#style-advice" title="Link to this heading">#</a></h2>
+<section id="global-style">
+<h2>Global Style<a class="headerlink" href="#global-style" title="Link to this heading">#</a></h2>
 <p>Set global application styles in a root Element
-<a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state</span></code></a> <strong>initializer function</strong>.
+<a class="reference internal" href="stubs/edifice.use_memo.html#edifice.use_memo" title="edifice.use_memo"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_memo</span></code></a> <strong>initializer function</strong>.
 For more information see <a class="reference internal" href="stubs/edifice.App.html#edifice.App" title="edifice.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html#PySide6.QtWidgets.QApplication.setStyleSheet">QApplication.setStyleSheet</a></p></li>
@@ -574,9 +608,9 @@ For more information see <a class="reference internal" href="stubs/edifice.App.h
 </ul>
 <p>If you think that Qt’s default color palette has weird choices, you can try
 the Edifice color palettes
-<a class="reference internal" href="utilities.html#edifice.utilities.palette_edifice_light" title="edifice.utilities.palette_edifice_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_light</span></code></a> and
-<a class="reference internal" href="utilities.html#edifice.utilities.palette_edifice_dark" title="edifice.utilities.palette_edifice_dark"><code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_dark</span></code></a>.
-See <a class="reference internal" href="utilities.html#edifice.utilities.theme_is_light" title="edifice.utilities.theme_is_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">theme_is_light</span></code></a> for instructions
+<code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_light</span></code> and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_dark</span></code>.
+See <code class="xref py py-func docutils literal notranslate"><span class="pre">theme_is_light</span></code> for instructions
 on how to use them.</p>
 </section>
 </section>
@@ -628,12 +662,13 @@ on how to use them.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#widget-styling">Widget Styling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout-view-styling">Layout View Styling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-policy">Size Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-base-element-styling">Content Base Element Styling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout-base-element-styling">Layout Base Element Styling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#color">Color</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-effects">Graphics Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-policy">Size Policy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-merging">Style Merging</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-advice">Style Advice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-style">Global Style</a></li>
 </ul>
   </nav></div>
 

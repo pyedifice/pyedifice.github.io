@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 2.13.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="../../_static/documentation_options.js?v=7bb62513"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -484,7 +484,7 @@
 
 <span class="sd">    Instead of calling application initialization code from the</span>
 <span class="sd">    :code:`__main__` function, call the initialization code from a</span>
-<span class="sd">    :func:`use_state` **initializer function** in the root Element</span>
+<span class="sd">    :func:`use_memo` **initializer function** in the root Element</span>
 <span class="sd">    because this function will run when the app is started by the Edifice</span>
 <span class="sd">    Runner.</span>
 
@@ -492,9 +492,9 @@
 
 <span class="sd">        from PySide6.QtWidgets import QApplication</span>
 <span class="sd">        from PySide6.QtGui import QFont</span>
-<span class="sd">        from edifice import App, Window, Label, component, use_state</span>
+<span class="sd">        import edifice as ed</span>
 
-<span class="sd">        @component</span>
+<span class="sd">        @ed.component</span>
 <span class="sd">        def Main(self):</span>
 
 <span class="sd">            def initalizer():</span>
@@ -503,19 +503,19 @@
 <span class="sd">                qapp.setApplicationName(&quot;My App&quot;)</span>
 <span class="sd">                qapp.setFont(QFont(&quot;Yu Gothic UI&quot;, 10))</span>
 <span class="sd">                qapp.setStyleSheet(&quot;QLabel { font-size: 12pt; }&quot;)</span>
-<span class="sd">                if theme_is_light():</span>
-<span class="sd">                    qapp.setPalette(palette_edifice_light())</span>
+<span class="sd">                if ed.theme_is_light():</span>
+<span class="sd">                    qapp.setPalette(ed.palette_edifice_light())</span>
 <span class="sd">                else:</span>
-<span class="sd">                    qapp.setPalette(palette_edifice_dark())</span>
+<span class="sd">                    qapp.setPalette(ed.palette_edifice_dark())</span>
 
-<span class="sd">            _, _ = use_state(initalizer)</span>
+<span class="sd">            _ = ed.use_memo(initalizer)</span>
 
-<span class="sd">            with Window():</span>
-<span class="sd">                Label(&quot;Hello, World!&quot;)</span>
+<span class="sd">            with ed.Window():</span>
+<span class="sd">                ed.Label(&quot;Hello, World!&quot;)</span>
 
 
 <span class="sd">        if __name__ == &quot;__main__&quot;:</span>
-<span class="sd">            App(Main()).start()</span>
+<span class="sd">            ed.App(Main()).start()</span>
 
 <span class="sd">    For more information about global styles, see :doc:`Styling&lt;../styling&gt;`.</span>
 
@@ -604,7 +604,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span> <span class="o">=</span> <span class="n">qapplication</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span> <span class="n">Element</span> <span class="o">=</span> <span class="n">root_element</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span> <span class="o">=</span> <span class="n">RenderEngine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span> <span class="o">=</span> <span class="n">RenderEngine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">_RateLimitedLogger</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_render_timing</span> <span class="o">=</span> <span class="n">_TimingAvg</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_first_render</span> <span class="o">=</span> <span class="kc">True</span>
@@ -613,19 +613,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_file_change_rerender_event_type</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QEvent</span><span class="o">.</span><span class="n">registerEventType</span><span class="p">()</span>
 
         <span class="k">class</span> <span class="nc">EventReceiverWidget</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
-            <span class="k">def</span> <span class="nf">event</span><span class="p">(</span><span class="n">_self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_change_rerender_event_type</span><span class="p">:</span>
-                    <span class="n">e</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+            <span class="k">def</span> <span class="nf">event</span><span class="p">(</span><span class="n">_self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_change_rerender_event_type</span><span class="p">:</span>
+                    <span class="n">event</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
                     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
                         <span class="n">file_name</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_queue</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
                         <span class="k">try</span><span class="p">:</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_refresh_by_class</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
-                        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                             <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Encountered exception while reloading&quot;</span><span class="p">)</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
                             <span class="n">etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
                             <span class="n">stack_trace</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">extract_tb</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
-                            <span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+                            <span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>  <span class="c1"># noqa: PTH120</span>
                             <span class="n">user_stack_trace</span> <span class="o">=</span> <span class="p">[</span>
                                 <span class="n">frame</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">stack_trace</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">frame</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
                             <span class="p">]</span>
@@ -633,24 +633,25 @@
                             <span class="n">formatted_trace</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_list</span><span class="p">(</span><span class="n">stack_trace</span><span class="p">)</span>
                             <span class="n">formatted_user_trace</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_list</span><span class="p">(</span><span class="n">user_stack_trace</span><span class="p">)</span>
 
-                            <span class="k">def</span> <span class="nf">should_bold</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+                            <span class="k">def</span> <span class="nf">should_bold</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">module_path</span><span class="p">):</span>
                                 <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">module_path</span><span class="p">):</span>
                                     <span class="k">return</span> <span class="n">line</span>
                                 <span class="k">return</span> <span class="n">BOLD_SEQ</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">RESET_SEQ</span>
 
                             <span class="n">formatted_trace</span> <span class="o">=</span> <span class="p">[</span>
-                                <span class="n">should_bold</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">formatted_trace</span><span class="p">,</span> <span class="n">stack_trace</span><span class="p">)</span>
+                                <span class="n">should_bold</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">module_path</span><span class="p">)</span>
+                                <span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">formatted_trace</span><span class="p">,</span> <span class="n">stack_trace</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                             <span class="p">]</span>
 
-                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Traceback (most recent call last):&quot;</span><span class="p">)</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Traceback (most recent call last):&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
                             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">formatted_trace</span><span class="p">:</span>
-                                <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
 
-                            <span class="nb">print</span><span class="p">((</span><span class="n">COLOR_SEQ</span> <span class="o">%</span> <span class="p">(</span><span class="mi">30</span> <span class="o">+</span> <span class="n">RED</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;Stemming from these renders:&quot;</span> <span class="o">+</span> <span class="n">RESET_SEQ</span><span class="p">)</span>
+                            <span class="nb">print</span><span class="p">((</span><span class="n">COLOR_SEQ</span> <span class="o">%</span> <span class="p">(</span><span class="mi">30</span> <span class="o">+</span> <span class="n">RED</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;Stemming from these renders:&quot;</span> <span class="o">+</span> <span class="n">RESET_SEQ</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
                             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">formatted_user_trace</span><span class="p">:</span>
-                                <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
                             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="n">etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">):</span>
-                                <span class="nb">print</span><span class="p">((</span><span class="n">COLOR_SEQ</span> <span class="o">%</span> <span class="p">(</span><span class="mi">30</span> <span class="o">+</span> <span class="n">RED</span><span class="p">))</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">RESET_SEQ</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                                <span class="nb">print</span><span class="p">((</span><span class="n">COLOR_SEQ</span> <span class="o">%</span> <span class="p">(</span><span class="mi">30</span> <span class="o">+</span> <span class="n">RED</span><span class="p">))</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">RESET_SEQ</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># noqa: T201</span>
 
                             <span class="k">continue</span>
 
@@ -658,7 +659,7 @@
                         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_response_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
                         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rerendering Elements in </span><span class="si">%s</span><span class="s2"> due to source change&quot;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
                     <span class="k">return</span> <span class="kc">True</span>
-                <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_event_receiver</span> <span class="o">=</span> <span class="n">EventReceiverWidget</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_class_rerender_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
@@ -716,7 +717,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span>
             <span class="nb">hasattr</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="s2">&quot;__edifice_inspector_element&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">components</span>
         <span class="p">):</span>
-            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">,</span> <span class="s2">&quot;force_refresh&quot;</span><span class="p">)()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="o">.</span><span class="n">force_refresh</span><span class="p">()</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_rerendering</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rerender_wanted</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rerender_called_soon</span><span class="p">:</span>
@@ -755,11 +756,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">])</span>
         <span class="n">exportlist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span><span class="o">.</span><span class="n">_widget_tree</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exportlist</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">ExportList</span><span class="p">):</span>
-            <span class="n">widgets</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">exportlist</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">):</span>
-                    <span class="n">widgets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">widgets</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">underlying</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">exportlist</span><span class="o">.</span><span class="n">children</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">QtWidgetElement</span><span class="p">)]</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;The root element of the App for export_widgets() must be an ExportList&quot;</span><span class="p">)</span></div>
 
 
@@ -804,6 +801,8 @@
         <span class="n">asyncio</span><span class="o">.</span><span class="n">set_event_loop</span><span class="p">(</span><span class="n">loop</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">loop</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+
         <span class="k">async</span> <span class="k">def</span> <span class="nf">first_render</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">])</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector</span><span class="p">:</span>
@@ -821,15 +820,12 @@
                         <span class="p">)</span>
                     <span class="p">),</span>
                 <span class="p">)</span>
-                <span class="n">icon_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">&quot;inspector/icon.png&quot;</span><span class="p">)</span>
-                <span class="n">component</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Element Inspector&quot;</span><span class="p">,</span> <span class="n">on_close</span><span class="o">=</span><span class="n">cleanup</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon_path</span><span class="p">)(</span>
+                <span class="n">component</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Element Inspector&quot;</span><span class="p">,</span> <span class="n">on_close</span><span class="o">=</span><span class="n">cleanup</span><span class="p">)(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_inspector_component</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">component</span><span class="p">])</span>
 
-        <span class="n">t</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">first_render</span><span class="p">())</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">first_render</span><span class="p">())</span>
 
         <span class="k">async</span> <span class="k">def</span> <span class="nf">app_run</span><span class="p">():</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
@@ -846,7 +842,7 @@
                 <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 
         <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">app_run</span><span class="p">())</span>
-        <span class="k">del</span> <span class="n">t</span>
+
         <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 

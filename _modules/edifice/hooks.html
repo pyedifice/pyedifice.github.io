@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 2.13.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="../../_static/documentation_options.js?v=7bb62513"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -780,30 +780,57 @@
 
 <span class="sd">    The :code:`use_async` Hook is useful for timers and animation.</span>
 
-<span class="sd">    Here is an example which shows how to run a timer in a component. The</span>
-<span class="sd">    Harmonic Oscillator in :doc:`../examples` uses this technique.</span>
+<span class="sd">    Here is an example busy-wait UI indicator which is a bit more visually subtle</span>
+<span class="sd">    than Qt’s barbershop-pole :class:`QProgressBar&lt;edifice.ProgressBar&gt;` with</span>
+<span class="sd">    :code:`minimum=0, maximum=0`.</span>
 
 <span class="sd">    .. code-block:: python</span>
-<span class="sd">        :caption: use_async to run a stoppable-startable timer</span>
+<span class="sd">        :caption: BusyWaitIndicator component</span>
 
-<span class="sd">        is_playing, is_playing_set = use_state(False)</span>
-<span class="sd">        play_trigger, play_trigger_set = use_state(False)</span>
+<span class="sd">        @ed.component</span>
+<span class="sd">        def BusyWaitIndicator(</span>
+<span class="sd">            self,</span>
+<span class="sd">            visible: bool = True,</span>
+<span class="sd">            size: int | None = None,</span>
+<span class="sd">            color: QColor | None = None,</span>
+<span class="sd">        ):</span>
+<span class="sd">            \&quot;\&quot;\&quot;</span>
+<span class="sd">            Animated busy wait indicator which looks like ⬤⬤⬤⬤⬤</span>
 
-<span class="sd">        async def play_tick():</span>
-<span class="sd">            if is_playing:</span>
-<span class="sd">                # Do the timer effect here</span>
-<span class="sd">                # (timer effect code)</span>
+<span class="sd">            If not visible, will still occupy the same layout space but will be</span>
+<span class="sd">            transparent and animation will not run.</span>
+<span class="sd">            \&quot;\&quot;\&quot;</span>
 
-<span class="sd">                # Then wait for 0.05 seconds and trigger another play_tick.</span>
-<span class="sd">                await asyncio.sleep(0.05)</span>
-<span class="sd">                play_trigger_set(lambda p: not p)</span>
+<span class="sd">            color_: QColor</span>
+<span class="sd">            color_ = color if color else QApplication.palette().color(QPalette.ColorRole.Text)</span>
+<span class="sd">            tick, tick_set = ed.use_state(0)</span>
 
-<span class="sd">        use_async(play_tick, (is_playing, play_trigger))</span>
+<span class="sd">            async def animation():</span>
+<span class="sd">                if visible:</span>
+<span class="sd">                    while True:</span>
+<span class="sd">                        await asyncio.sleep(0.2)</span>
+<span class="sd">                        tick_set(lambda t: (t + 1) % 5)</span>
 
-<span class="sd">        Button(</span>
-<span class="sd">            text=&quot;pause&quot; if is_playing else &quot;play&quot;,</span>
-<span class="sd">            on_click=lambda e: is_playing_set(lambda p: not p),</span>
-<span class="sd">        )</span>
+<span class="sd">            ed.use_async(animation, visible)</span>
+
+<span class="sd">            with ed.HBoxView(</span>
+<span class="sd">                size_policy=QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed),</span>
+<span class="sd">            ):</span>
+<span class="sd">                for i in range(0, 5):</span>
+<span class="sd">                    ed.Label(</span>
+<span class="sd">                        text=&quot;⬤&quot;,</span>
+<span class="sd">                        style={</span>
+<span class="sd">                            &quot;color&quot;: QColor(</span>
+<span class="sd">                                color_.red(),</span>
+<span class="sd">                                color_.green(),</span>
+<span class="sd">                                color_.blue(),</span>
+<span class="sd">                                40 + (((i - tick) % 5) * 20) if visible else 0,</span>
+<span class="sd">                            ),</span>
+<span class="sd">                        }</span>
+<span class="sd">                        | {&quot;font-size&quot;: size}</span>
+<span class="sd">                        if size</span>
+<span class="sd">                        else {},</span>
+<span class="sd">                    )</span>
 
 <span class="sd">    Worker Process</span>
 <span class="sd">    ==============</span>
@@ -811,12 +838,12 @@
 <span class="sd">    We can run an</span>
 <span class="sd">    :code:`async def my_subprocess` function in a worker</span>
 <span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_</span>
-<span class="sd">    by using :func:`run_subprocess_with_callback&lt;edifice.utilities.run_subprocess_with_callback&gt;`.</span>
+<span class="sd">    by using :func:`run_subprocess_with_callback`.</span>
 
-<span class="sd">    :func:`run_subprocess_with_callback&lt;edifice.utilities.run_subprocess_with_callback&gt;`</span>
+<span class="sd">    :func:`run_subprocess_with_callback`</span>
 <span class="sd">    is good for spawing a parallel worker Process from a :func:`@component&lt;edifice.component&gt;`</span>
 <span class="sd">    because if the :func:`@component&lt;edifice.component&gt;` is unmounted, then</span>
-<span class="sd">    :func:`run_subprocess_with_callback&lt;edifice.utilities.run_subprocess_with_callback&gt;`</span>
+<span class="sd">    :func:`run_subprocess_with_callback`</span>
 <span class="sd">    will be cancelled and the Process will be immediately terminated.</span>
 <span class="sd">    Which is usually what we want.</span>
 
@@ -848,7 +875,7 @@
 <span class="sd">                except Exception as e:</span>
 <span class="sd">                    calculation_progress_set(f&quot;Error: {str(e)}&quot;)</span>
 
-<span class="sd">            ed.use_async(run_my_subprocess)</span>
+<span class="sd">            use_async(run_my_subprocess)</span>
 
 <span class="sd">            Label(text=calculation_progress)</span>
 

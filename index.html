@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice &#8212; Edifice 2.13.0 documentation</title>
+    <title>Edifice &#8212; Edifice 2.14.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=f5edd4dd"></script>
+    <script src="_static/documentation_options.js?v=7bb62513"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,8 +118,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.13.0 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.13.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
   
   
 </a></div>
@@ -425,6 +425,7 @@ see <a class="reference internal" href="edifice.html"><span class="doc">Edifice 
 <li class="toctree-l2"><a class="reference internal" href="styling.html">Styling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extra.html">Extra Elements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">Utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_subprocess_with_callback.html">run_subprocess_with_callback</a></li>
 </ul>
 </li>
 </ul>
@@ -480,10 +481,10 @@ Edifice provides an API for running that script while presenting
 a responsive GUI to the user.</p>
 <ol class="arabic simple">
 <li><p>Paste the script into an <code class="code docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span> <span class="pre">worker()</span></code> function.</p></li>
-<li><p>Call
-<a class="reference internal" href="utilities.html#edifice.utilities.run_subprocess_with_callback" title="edifice.utilities.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback</span></code></a>
-on that <code class="code docutils literal notranslate"><span class="pre">worker</span></code> function with a <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async</span></code></a>
-Hook.</p></li>
+<li><p>Call <a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>
+on that <code class="code docutils literal notranslate"><span class="pre">worker</span></code> function with a <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>
+Hook. Replace the <code class="code docutils literal notranslate"><span class="pre">print</span></code> statements with calls to
+<code class="code docutils literal notranslate"><span class="pre">callback</span></code>.</p></li>
 </ol>
 </section>
 <section id="developer-tools">
@@ -498,7 +499,7 @@ Hook.</p></li>
 <h3>Edifice vs. Qt Quick<a class="headerlink" href="#edifice-vs-qt-quick" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtQuick/">Qt Quick</a> is Qt’s declarative GUI framework for Qt.</p>
 <p>Qt Quick programs are written in Python + the
-special <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qmlapplications.html">QML</a> language + JavaScript.</p>
+special <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtdoc-qmlapplications.html">QML</a> language + JavaScript.</p>
 <p>Edifice programs are written in Python.</p>
 <p>Because Edifice programs are only Python, binding to the
 UI is much more straightforward.
