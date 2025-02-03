@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.app &#8212; Edifice 2.14.0 documentation</title>
+    <title>edifice.app &#8212; Edifice 2.14.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=7bb62513"></script>
+    <script src="../../_static/documentation_options.js?v=dfcea10a"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.1 documentation - Home"/>
   
   
 </a></div>
@@ -803,7 +803,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">first_render</span><span class="p">():</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">app_run</span><span class="p">():</span>
+            <span class="c1"># first render</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">])</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inspector</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running inspector&quot;</span><span class="p">)</span>
@@ -825,9 +826,7 @@
                 <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_request_rerender</span><span class="p">([</span><span class="n">component</span><span class="p">])</span>
 
-        <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">first_render</span><span class="p">())</span>
-
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">app_run</span><span class="p">():</span>
+            <span class="c1"># subsequent renders</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_close_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
             <span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_engine</span>
             <span class="n">engine</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
