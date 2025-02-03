@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.14.1 documentation</title>
+    <title>edifice.engine &#8212; Edifice 2.14.2 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=dfcea10a"></script>
+    <script src="../../_static/documentation_options.js?v=e8362b60"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
   
   
 </a></div>
@@ -2745,7 +2745,7 @@
                     <span class="c1"># But then users would start defensively try-ing</span>
                     <span class="c1"># every use_async function and would forget to re-raise</span>
                     <span class="c1"># CancelledError. Which would be worse.</span>
-                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
+                <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">):</span>
                         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Non-CancelledError exception raised in use_async&quot;</span><span class="p">)</span>
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
