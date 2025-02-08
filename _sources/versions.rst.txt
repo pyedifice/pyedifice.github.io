@@ -7,6 +7,56 @@
 Release Notes
 =============
 
+v3.0.0
+------
+Released: 2025-02-08
+
+- Bugfix for unmounting :ref:`Graphics Effects`.
+- Deprecated :class:`IconButton`. Instead use :class:`ButtonView`.
+- Deprecated :class:`Icon`. Instead use :class:`ImageSvg`.
+- Introduced internal type :code:`PropsDiff` which improves speed by reducing
+  the number of Qt mutation commands issued.
+
+**Breaking Changes**
+
+- :code:`PropsDict` type is now an alias for :code:`dict[str, Any]`.
+
+  **Migration Guide:**
+
+  If you have a user subclass of :class:`QtWidgetElement` then you will need to
+  re-write the :code:`_qt_update_commands()` method.
+
+- :class:`ContextMenuType` changed from :code:`Mapping` to :code:`tuple`.
+- :class:`CustomWidget` deleted function :code:`paint`, added :func:`CustomWidget.update`.
+- :class:`Label` prop :code:`word_wrap` now defaults to :code:`False`, as it does in Qt.
+
+  **Migration Guide:**
+
+  1. If a :class:`Label` has no :code:`word_wrap` prop, then add prop :code:`word_wrap=True`.
+  2. If a :class:`Label` has prop :code:`word_wrap=False`, then delete the :code:`word_wrap` prop.
+
+- :ref:`Base Elements` event handlers no longer accept an :code:`async` coroutine function.
+
+  We decided this because it is almost always a bug to start a new coroutine Task
+  from an event handler, because the :func:`@component<component>` may unmount
+  while the event handler Task is still running.
+
+  Instead use :func:`use_async_call` to asynchronously
+  handle an event. Then the coroutine Task will be cancelled if the
+  :func:`@component<component>` unmounts.
+
+  If you are sure that you want to “fire-and-forget” a coroutine in response to an event,
+  then use any of the usual methods from
+  `asyncio Coroutines and Tasks. <https://docs.python.org/3/library/asyncio-task.html>`_
+  such as
+  `create_task <https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task>`_.
+
+
+  **Migration Guide:**
+
+  *Pyright* will show errors for :code:`async` event handlers.
+
+
 v2.14.2
 -------
 Released: 2025-02-03

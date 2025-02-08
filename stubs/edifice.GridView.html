@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.GridView &#8212; Edifice 2.14.2 documentation</title>
+    <title>edifice.GridView &#8212; Edifice 3.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=e8362b60"></script>
+    <script src="../_static/documentation_options.js?v=acc74ff5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -397,17 +397,15 @@
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html">QGridLayout</a></p></li>
 </ul>
 </div></blockquote>
-<p>Grid views allow you to precisely control 2D positioning of widgets.
-specifying the exact location of children relative to each other (with proper alignment)
-requires extensive fine tuning of style attributes.
-The GridView allows you to lay out widgets at specified grid indices and size.</p>
+<p>Grid Layout Element.</p>
 <p class="rubric">Props</p>
 <p>All <strong>props</strong> for <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>layout</strong> – description of layout as described above</p></li>
-<li><p><strong>key_to_code</strong> – mapping from key to a single character representing that child in the layout string</p></li>
+<li><p><strong>layout</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Declaration of layout as described below.</p></li>
+<li><p><strong>key_to_code</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – Optional Mapping from Element key to a single character representing that child in
+the layout string.</p></li>
 </ul>
 </dd>
 </dl>

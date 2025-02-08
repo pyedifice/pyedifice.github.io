@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.Window &#8212; Edifice 2.14.2 documentation</title>
+    <title>edifice.Window &#8212; Edifice 3.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=e8362b60"></script>
+    <script src="../_static/documentation_options.js?v=acc74ff5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -405,7 +405,7 @@ are unmounted and then the <a class="reference internal" href="edifice.App.html#
 <p>See caveats in <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.windowIcon">windowIcon</a>.
 This prop is not supported on all platforms.</p>
 </p></li>
-<li><p><strong>menu</strong> – The window’s menu bar. In some GUI settings, for example Mac OS,
+<li><p><strong>menu</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], ContextMenuType]], <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]]], <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]]</span>) – The window’s menu bar. In some GUI settings, for example Mac OS,
 this menu will appear seperately from the window.</p></li>
 <li><p><strong>_on_open</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QApplication</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – <p>This argument is not a <strong>prop</strong> and will not cause re-render when changed.</p>
 <p>Event handler for when this window is opening. This event handler
@@ -414,12 +414,12 @@ function will be called exactly once, before the children are mounted.</p>
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html">QApplication</a>
 object.</p>
 </p></li>
-<li><p><strong>on_close</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QCloseEvent</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – <p>Event handler for when this window is closing. This event handler
+<li><p><strong>on_close</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QCloseEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – <p>Event handler for when this window is closing. This event handler
 will fire before the children are unmounted.</p>
 <p>The event handler function will be passed a
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html">QCloseEvent</a>.</p>
 </p></li>
-<li><p><strong>on_window_state_change</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>]], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – <p>Event handler for when the window state changes.</p>
+<li><p><strong>on_window_state_change</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – <p>Event handler for when the window state changes.</p>
 <p>This event handler will be passed the old window state and the
 new window state.</p>
 </p></li>

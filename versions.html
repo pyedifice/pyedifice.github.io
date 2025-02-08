@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 2.14.2 documentation</title>
+    <title>Release Notes &#8212; Edifice 3.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=e8362b60"></script>
+    <script src="_static/documentation_options.js?v=acc74ff5"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,8 +118,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -379,6 +379,49 @@
                   
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<section id="v3-0-0">
+<h2>v3.0.0<a class="headerlink" href="#v3-0-0" title="Link to this heading">#</a></h2>
+<p>Released: 2025-02-08</p>
+<ul class="simple">
+<li><p>Bugfix for unmounting <a class="reference internal" href="styling.html#graphics-effects"><span class="std std-ref">Graphics Effects</span></a>.</p></li>
+<li><p>Deprecated <a class="reference internal" href="stubs/edifice.IconButton.html#edifice.IconButton" title="edifice.IconButton"><code class="xref py py-class docutils literal notranslate"><span class="pre">IconButton</span></code></a>. Instead use <a class="reference internal" href="stubs/edifice.ButtonView.html#edifice.ButtonView" title="edifice.ButtonView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ButtonView</span></code></a>.</p></li>
+<li><p>Deprecated <a class="reference internal" href="stubs/edifice.Icon.html#edifice.Icon" title="edifice.Icon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Icon</span></code></a>. Instead use <a class="reference internal" href="stubs/edifice.ImageSvg.html#edifice.ImageSvg" title="edifice.ImageSvg"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageSvg</span></code></a>.</p></li>
+<li><p>Introduced internal type <code class="code docutils literal notranslate"><span class="pre">PropsDiff</span></code> which improves speed by reducing
+the number of Qt mutation commands issued.</p></li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PropsDict</span></code> type is now an alias for <code class="code docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">Any]</span></code>.</p>
+<p><strong>Migration Guide:</strong></p>
+<p>If you have a user subclass of <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> then you will need to
+re-write the <code class="code docutils literal notranslate"><span class="pre">_qt_update_commands()</span></code> method.</p>
+</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextMenuType</span></code> changed from <code class="code docutils literal notranslate"><span class="pre">Mapping</span></code> to <code class="code docutils literal notranslate"><span class="pre">tuple</span></code>.</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.CustomWidget.html#edifice.CustomWidget" title="edifice.CustomWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomWidget</span></code></a> deleted function <code class="code docutils literal notranslate"><span class="pre">paint</span></code>, added <a class="reference internal" href="stubs/stubs/edifice.CustomWidget.update.html#edifice.CustomWidget.update" title="edifice.CustomWidget.update"><code class="xref py py-func docutils literal notranslate"><span class="pre">CustomWidget.update()</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a> prop <code class="code docutils literal notranslate"><span class="pre">word_wrap</span></code> now defaults to <code class="code docutils literal notranslate"><span class="pre">False</span></code>, as it does in Qt.</p>
+<p><strong>Migration Guide:</strong></p>
+<ol class="arabic simple">
+<li><p>If a <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a> has no <code class="code docutils literal notranslate"><span class="pre">word_wrap</span></code> prop, then add prop <code class="code docutils literal notranslate"><span class="pre">word_wrap=True</span></code>.</p></li>
+<li><p>If a <a class="reference internal" href="stubs/edifice.Label.html#edifice.Label" title="edifice.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></a> has prop <code class="code docutils literal notranslate"><span class="pre">word_wrap=False</span></code>, then delete the <code class="code docutils literal notranslate"><span class="pre">word_wrap</span></code> prop.</p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="base_components.html#module-edifice.base_components"><span class="std std-ref">Base Elements</span></a> event handlers no longer accept an <code class="code docutils literal notranslate"><span class="pre">async</span></code> coroutine function.</p>
+<p>We decided this because it is almost always a bug to start a new coroutine Task
+from an event handler, because the <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> may unmount
+while the event handler Task is still running.</p>
+<p>Instead use <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call()</span></code></a> to asynchronously
+handle an event. Then the coroutine Task will be cancelled if the
+<a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> unmounts.</p>
+<p>If you are sure that you want to “fire-and-forget” a coroutine in response to an event,
+then use any of the usual methods from
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html">asyncio Coroutines and Tasks.</a>
+such as
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task">create_task</a>.</p>
+<p><strong>Migration Guide:</strong></p>
+<p><em>Pyright</em> will show errors for <code class="code docutils literal notranslate"><span class="pre">async</span></code> event handlers.</p>
+</li>
+</ul>
+</section>
 <section id="v2-14-2">
 <h2>v2.14.2<a class="headerlink" href="#v2-14-2" title="Link to this heading">#</a></h2>
 <p>Released: 2025-02-03</p>

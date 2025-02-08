@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.CustomWidget &#8212; Edifice 2.14.2 documentation</title>
+    <title>edifice.CustomWidget &#8212; Edifice 3.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=e8362b60"></script>
+    <script src="../_static/documentation_options.js?v=acc74ff5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -388,52 +388,63 @@
 <h1>edifice.CustomWidget<a class="headerlink" href="#edifice-customwidget" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.CustomWidget">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">CustomWidget</span></span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#CustomWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.CustomWidget" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">CustomWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#CustomWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.CustomWidget" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.engine.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">_T_customwidget</span></code>]</p>
 <p>Custom widgets that you can define.</p>
 <p>Not all widgets are currently supported by Edifice.
 You can create your own base Qt Widget element
 by inheriting from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> directly, or more simply
 by overriding <a class="reference internal" href="#edifice.CustomWidget" title="edifice.CustomWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomWidget</span></code></a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyWidgetElement</span><span class="p">(</span><span class="n">CustomWidget</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyWidgetElement</span><span class="p">(</span><span class="n">CustomWidget</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">FooWidget</span><span class="p">]):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">create_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># This function should return the new widget</span>
         <span class="c1"># (with parent set to None; Edifice will handle parenting)</span>
         <span class="k">return</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">FooWidget</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">newprops</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">FooWidget</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">):</span>
         <span class="c1"># This function should update the widget</span>
-        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
-                <span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">])</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span>
-                <span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">newprops</span><span class="p">[</span><span class="n">prop</span><span class="p">])</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">_propold</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">propnew</span><span class="p">)</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">_propold</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">propnew</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The two methods to override are <code class="code docutils literal notranslate"><span class="pre">create_widget</span></code>,
+<p>The two methods to override are <a class="reference internal" href="stubs/edifice.CustomWidget.create_widget.html#edifice.CustomWidget.create_widget" title="edifice.CustomWidget.create_widget"><code class="xref py py-func docutils literal notranslate"><span class="pre">CustomWidget.create_widget()</span></code></a>,
 which should return the Qt widget,
-and <code class="code docutils literal notranslate"><span class="pre">paint</span></code>,
-which takes the current widget and new props,
-and should update the widget according to the new props.
-The created widget inherits all the properties of Qt widgets,
+and <a class="reference internal" href="stubs/edifice.CustomWidget.update.html#edifice.CustomWidget.update" title="edifice.CustomWidget.update"><code class="xref py py-func docutils literal notranslate"><span class="pre">CustomWidget.update()</span></code></a>,
+which takes the current widget and <strong>props</strong> diff,
+and should update the widget according to the new <strong>props</strong>.
+The custom widget inherits from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>,
 allowing the user to, for example, set the style.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.__init__.html#edifice.CustomWidget.__init__" title="edifice.CustomWidget.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.__init__.html#edifice.CustomWidget.__init__" title="edifice.CustomWidget.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.create_widget.html#edifice.CustomWidget.create_widget" title="edifice.CustomWidget.create_widget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_widget</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Create the widget on first render.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.paint.html#edifice.CustomWidget.paint" title="edifice.CustomWidget.paint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">paint</span></code></a>(widget, newprops)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.register_ref.html#edifice.CustomWidget.register_ref" title="edifice.CustomWidget.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.register_ref.html#edifice.CustomWidget.register_ref" title="edifice.CustomWidget.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>
 <td><p>Registers provided <a class="reference internal" href="edifice.Reference.html#edifice.Reference" title="edifice.Reference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reference</span></code></a> to this Element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.set_key.html#edifice.CustomWidget.set_key" title="edifice.CustomWidget.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.set_key.html#edifice.CustomWidget.set_key" title="edifice.CustomWidget.set_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_key</span></code></a>(key)</p></td>
 <td><p>Set the key of an <a class="reference internal" href="edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.update.html#edifice.CustomWidget.update" title="edifice.CustomWidget.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(widget, diff_props)</p></td>
+<td><p>Update the widget based on the diff_props.</p></td>
 </tr>
 </tbody>
 </table>
@@ -453,6 +464,23 @@ allowing the user to, for example, set the style.</p>
 </tbody>
 </table>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="edifice.CustomWidget.create_widget">
+<span class="sig-name descname"><span class="pre">create_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#CustomWidget.create_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.CustomWidget.create_widget" title="Link to this definition">#</a></dt>
+<dd><p>Create the widget on first render.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">_T_customwidget</span></code>, bound= <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="edifice.CustomWidget.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff_props</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#CustomWidget.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.CustomWidget.update" title="Link to this definition">#</a></dt>
+<dd><p>Update the widget based on the diff_props.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>

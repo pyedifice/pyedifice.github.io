@@ -21,9 +21,9 @@ edifice.CustomWidget
    
       ~CustomWidget.__init__
       ~CustomWidget.create_widget
-      ~CustomWidget.paint
       ~CustomWidget.register_ref
       ~CustomWidget.set_key
+      ~CustomWidget.update
    
    
 

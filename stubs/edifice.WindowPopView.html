@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.WindowPopView &#8212; Edifice 2.14.2 documentation</title>
+    <title>edifice.WindowPopView &#8212; Edifice 3.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=e8362b60"></script>
+    <script src="../_static/documentation_options.js?v=acc74ff5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -404,7 +404,7 @@ in its parent’s layout.</p>
 <p>See caveats in <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.windowIcon">windowIcon</a>.
 This prop is not supported on all platforms.</p>
 </p></li>
-<li><p><strong>on_close</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QCloseEvent</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – <p>When the user tries to close this window, the window will not close.
+<li><p><strong>on_close</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">QCloseEvent</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – <p>When the user tries to close this window, the window will not close.
 Instead, this event handler will be called.</p>
 <p>The only way to close a <a class="reference internal" href="#edifice.WindowPopView" title="edifice.WindowPopView"><code class="xref py py-class docutils literal notranslate"><span class="pre">WindowPopView</span></code></a> is to remove it from
 its parent’s layout. This event handler should set some state which causes the
@@ -413,7 +413,7 @@ See the example below.</p>
 <p>The event handler function will be passed a
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QCloseEvent.html">QCloseEvent</a>.</p>
 </p></li>
-<li><p><strong>on_window_state_change</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>]], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]]]</span>) – <p>Event handler for when the window state changes.</p>
+<li><p><strong>on_window_state_change</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'Normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Maximized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Minimized'</span></code>, <code class="docutils literal notranslate"><span class="pre">'FullScreen'</span></code>]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – <p>Event handler for when the window state changes.</p>
 <p>This event handler will be passed the old window state and the
 new window state.</p>
 </p></li>

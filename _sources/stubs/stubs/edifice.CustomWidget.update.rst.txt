@@ -1,0 +1,6 @@
+edifice.CustomWidget.update
+===========================
+
+.. currentmodule:: edifice
+
+.. automethod:: CustomWidget.update

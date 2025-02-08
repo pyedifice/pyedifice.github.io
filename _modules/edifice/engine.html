@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 2.14.2 documentation</title>
+    <title>edifice.engine &#8212; Edifice 3.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=e8362b60"></script>
+    <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -390,7 +390,7 @@
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Iterable</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">dedent</span>
@@ -425,22 +425,45 @@
     <span class="k">return</span> <span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">stylevalue_to_str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
 
 
-<span class="c1"># TODO</span>
-<span class="c1"># https://stackoverflow.com/questions/37278647/fire-and-forget-python-async-await/37345564#37345564</span>
-<span class="c1"># “Replace asyncio.ensure_future with asyncio.create_task everywhere if you&#39;re</span>
-<span class="c1"># using Python &gt;= 3.7 It&#39;s a newer, nicer way to spawn tasks.”</span>
+<span class="n">PropsDiff</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The difference between two PropsDict.</span>
+
+<span class="sd">The keys will be the union of the keys of old and new.</span>
+
+<span class="sd">Will not contain a key for values which are __eq__ in old and new.</span>
+
+<span class="sd">The values will be a tuple of the values of old and new:</span>
+
+<span class="sd">    If the key was not in old:</span>
+<span class="sd">        (None, new[key])</span>
+<span class="sd">    If the key was not in new:</span>
+<span class="sd">        (old[key], None)</span>
+<span class="sd">    If the key was in both old and new:</span>
+<span class="sd">        (old[key], new[key])</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">_ensure_future</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
-    <span class="c1"># Ensures future if fn is a coroutine, otherwise don&#39;t modify fn</span>
-    <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">props_diff</span><span class="p">(</span><span class="n">old</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">new</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">PropsDiff</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the difference between two PropsDicts, except for &quot;children&quot;.</span>
 
-        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="k">return</span> <span class="n">wrapper</span>
-    <span class="k">return</span> <span class="n">fn</span>
+<span class="sd">    Will never return a value of (None, None).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">old</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">new</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old</span><span class="p">:</span>
+                <span class="n">newval</span> <span class="o">=</span> <span class="n">new</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">newval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">diff</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">newval</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new</span><span class="p">:</span>
+                <span class="n">oldval</span> <span class="o">=</span> <span class="n">old</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">oldval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">diff</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">oldval</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">old</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="n">new</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                <span class="n">diff</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">old</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">new</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">diff</span>
 
 
 <span class="k">class</span> <span class="nc">CommandType</span><span class="p">:</span>
@@ -486,82 +509,10 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 
-<span class="k">class</span> <span class="nc">PropsDict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An immutable dictionary for storing props.</span>
-
-<span class="sd">    Props may be accessed either by indexing</span>
-
-<span class="sd">        props[&quot;myprop&quot;]</span>
-
-<span class="sd">    or by attribute</span>
-
-<span class="sd">        props.myprop</span>
-
-<span class="sd">    By convention, all PropsDict methods will start with :code:`_` to</span>
-<span class="sd">    not conflict with keys.</span>
-
-<span class="sd">    .. document private functions</span>
-<span class="sd">    .. autoproperty:: _keys</span>
-<span class="sd">    .. autoproperty:: _items</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_d&quot;</span><span class="p">,)</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_d&quot;</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">NoReturn</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Props are immutable&quot;</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the keys of the props dict as a list.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">_items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the (key, value) of the props dict as a list.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets item by key.</span>
-
-<span class="sd">        Equivalent to dictionary.get(key, default)</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            key: key to the PropsDict</span>
-<span class="sd">            default: returned value if key is not found in props</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            The corresponding value if key is in PropsDict, the default</span>
-<span class="sd">            value otherwise.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_d</span>
-
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; not in props&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;PropsDict(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;PropsDict(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">NoReturn</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Props are immutable&quot;</span><span class="p">)</span>
+<span class="n">PropsDict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">dict for storing immutable props.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="Reference">
@@ -693,7 +644,7 @@
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">PropsDict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">component_tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -714,12 +665,31 @@
     <span class="k">def</span> <span class="nf">mark_props_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">component</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">props</span>
-        <span class="n">component</span><span class="o">.</span><span class="n">_props</span> <span class="o">=</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_d</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_props</span> <span class="o">=</span> <span class="n">newprops</span>
 
-    <span class="k">def</span> <span class="nf">get_old_props</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_old_props</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PropsDict</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_to_old_props</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">PropsDict</span><span class="p">({})</span>
+
+        <span class="c1"># If we don&#39;t have old props then this component has never rendered.</span>
+        <span class="c1"># So return the default props</span>
+
+        <span class="c1"># We accumulate all of the default props of each type up to QtWidgetElement</span>
+        <span class="n">default_props</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">thistype</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">thistype</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+            <span class="n">default_props</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span> <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">thistype</span> <span class="o">==</span> <span class="n">QtWidgetElement</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">thistype</span> <span class="o">=</span> <span class="n">thistype</span><span class="o">.</span><span class="vm">__bases__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">default_props</span>
 
     <span class="k">def</span> <span class="nf">mark_qt_rerender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">,</span> <span class="n">need_rerender</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">need_qt_command_reissue</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">need_rerender</span>
@@ -775,7 +745,7 @@
 <a class="viewcode-back" href="../../stubs/stubs/edifice.Element.__init__.html#edifice.Element.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_edifice_internal_references&quot;</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="p">:</span> <span class="n">PropsDict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[]}</span>
         <span class="c1"># Ensure we only construct this element once</span>
         <span class="k">assert</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_initialized&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">True</span>
@@ -816,6 +786,9 @@
 <span class="sd">        Args:</span>
 <span class="sd">            props: a dictionary representing the props to register.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO we have to decide if _register_props means</span>
+        <span class="c1"># &quot;the default prop values&quot; or &quot;the first passed props values&quot;.</span>
+        <span class="c1"># Now it means &quot;first&quot;. It should mean &quot;default&quot;.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Element.set_key">
@@ -882,7 +855,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">props</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PropsDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The props of this Element.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">PropsDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_props</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_props</span>
 
     <span class="k">def</span> <span class="nf">_should_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines if the Element should rerender upon receiving new props and state.</span>
@@ -900,14 +873,14 @@
 <span class="sd">            Whether or not the Element should be rerendered.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># TODO if an Element has children, then _should_update will always</span>
-        <span class="c1"># return True, because the children will always be different, because</span>
-        <span class="c1"># _recycle_children hasn&#39;t been called yet. Is that correct behavior?</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">newprops</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># TODO if an Element has children, then _should_update will always</span>
+            <span class="c1"># return True, because the children will always be different, because</span>
+            <span class="c1"># _recycle_children hasn&#39;t been called yet. Is that correct behavior?</span>
 
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">newprops</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">:</span>
                 <span class="c1"># If the prop is in the old props, then we check if it&#39;s changed.</span>
-                <span class="n">v2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                <span class="n">v2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">v2</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
                     <span class="k">return</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
@@ -933,10 +906,10 @@
         <span class="n">classname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s&gt;&quot;</span>
-            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
+            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
             <span class="sa">f</span><span class="s2">&quot;&lt;/</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">,</span>
             <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">classname</span><span class="si">}</span><span class="s2"> id=0x%x %s /&gt;&quot;</span>
-            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
+            <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="s2">&quot;children&quot;</span><span class="p">)),</span>
         <span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1083,7 +1056,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">name_to_val</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">_render_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_d</span>
+            <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
             <span class="k">if</span> <span class="s2">&quot;children&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">varnames</span><span class="p">:</span>
@@ -1106,22 +1079,24 @@
     <span class="k">pass</span>
 
 
-<span class="n">ContextMenuType</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="s2">&quot;ContextMenuType&quot;</span><span class="p">]]</span>
+<span class="n">ContextMenuType</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">],</span> <span class="s2">&quot;ContextMenuType&quot;</span><span class="p">]],</span> <span class="o">...</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">ContextMenuType</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_create_qmenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">ContextMenuType</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenu</span><span class="p">:</span>
     <span class="n">widget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMenu</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">menu</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">menu</span><span class="p">:</span>
+        <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">widget</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">tuple</span><span class="p">:</span>
             <span class="n">sub_menu</span> <span class="o">=</span> <span class="n">_create_qmenu</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
             <span class="n">widget</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="n">sub_menu</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">widget</span><span class="o">.</span><span class="n">addSeparator</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">widget</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="c1"># TODO separator</span>
+        <span class="c1"># &gt; elif value is None:</span>
+        <span class="c1"># &gt;     widget.addSeparator()</span>
     <span class="k">return</span> <span class="n">widget</span>
 
 
@@ -1175,13 +1150,26 @@
 <span class="sd">            :code:`&quot;ns-resize&quot;`, :code:`&quot;nesw-resize&quot;`, :code:`&quot;nwse-resize&quot;`,</span>
 <span class="sd">            :code:`&quot;not-allowed&quot;`, :code:`&quot;forbidden&quot;`</span>
 <span class="sd">        context_menu:</span>
-<span class="sd">            The context menu to display when the user right clicks on the widget.</span>
-<span class="sd">            Expressed as a dict mapping the name of the context menu entry to either a function</span>
-<span class="sd">            (which will be called when this entry is clicked) or to another sub context menu.</span>
-<span class="sd">            For example, :code:`{&quot;Copy&quot;: copy_fun, &quot;Share&quot;: {&quot;Twitter&quot;: twitter_share_fun, &quot;Facebook&quot;: facebook_share_fun}}`</span>
+<span class="sd">            Context menu to display when the user right-clicks on the widget.</span>
+<span class="sd">            Declared as pairs of the context menu label to either a function</span>
+<span class="sd">            (which will be called when this entry is clicked) or a sub context menu.</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                context_menu=(</span>
+<span class="sd">                    (&quot;Action 1&quot;, lambda: None),</span>
+<span class="sd">                    (&quot;Action 2&quot;, lambda: None),</span>
+<span class="sd">                    (&quot;Submenu&quot;, (</span>
+<span class="sd">                        (&quot;Action 3&quot;, lambda: None),</span>
+<span class="sd">                        (&quot;Action 4&quot;, lambda: None)</span>
+<span class="sd">                    )),</span>
+<span class="sd">                ),</span>
+
 <span class="sd">        css_class:</span>
 <span class="sd">            A string or a list of strings, which will be stored in the :code:`css_class` property of the Qt Widget.</span>
-<span class="sd">            This can be used in an application stylesheet, like:</span>
+<span class="sd">            This class can be styled with the application stylesheet, like:</span>
+
+<span class="sd">            .. code-block:: css</span>
 
 <span class="sd">                QLabel[css_class=&quot;heading&quot;] { font-size: 18px; }</span>
 
@@ -1261,7 +1249,10 @@
 <span class="sd">            * `QDropEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QDropEvent.html&gt;`_</span>
 <span class="sd">              when the drop happens.</span>
 
-<span class="sd">            The handler function should handle all cases. Example::</span>
+<span class="sd">            The handler function should handle all four event types.</span>
+
+<span class="sd">            .. code-block:: python</span>
+<span class="sd">                :caption: Example of handling drop events</span>
 
 <span class="sd">                dropped_files, dropped_files_set = use_state(cast(list[str], []))</span>
 <span class="sd">                proposed_files, proposed_files_set = use_state(cast(list[str], []))</span>
@@ -1301,28 +1292,28 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">style</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tool_tip</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">cursor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cursor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">context_menu</span><span class="p">:</span> <span class="n">ContextMenuType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">css_class</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">css_class</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">size_policy</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">focus_policy</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">FocusPolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">_focus_open</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_click</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_key_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_key_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_enter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_leave</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_mouse_wheel</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWheelEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">_focus_open</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">on_click</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_key_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_key_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_down</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_up</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_enter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_leave</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_move</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMouseEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_mouse_wheel</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWheelEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_drop</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
             <span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QDragEnterEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragMoveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDragLeaveEvent</span> <span class="o">|</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDropEvent</span><span class="p">],</span>
             <span class="kc">None</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">tp</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_resize</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
@@ -1380,13 +1371,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_mouse_pressed</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_focus_open_needed</span> <span class="o">=</span> <span class="n">_focus_open</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_focus_open_needed</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_focus_open</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="n">cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">cursor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_CURSORS</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unrecognized cursor </span><span class="si">{</span><span class="n">cursor</span><span class="si">}</span><span class="s2">. Cursor must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_CURSORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsBlurEffect</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGraphicsDropShadowEffect</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1427,7 +1414,7 @@
     <span class="k">def</span> <span class="nf">_set_on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_click</span><span class="p">):</span>
         <span class="c1"># FIXME: Should this not use `underlying`?</span>
         <span class="k">if</span> <span class="n">on_click</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_click</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span> <span class="o">=</span> <span class="n">on_click</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_click</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_press_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1452,13 +1439,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_wheel_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">wheelEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_mouse_wheel</span>
         <span class="k">if</span> <span class="n">on_mouse_wheel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_wheel</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="o">=</span> <span class="n">on_mouse_wheel</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_wheel</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_handle_key_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span><span class="p">)(</span><span class="n">event</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_down</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_down</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_down</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
@@ -1474,7 +1461,7 @@
 
     <span class="k">def</span> <span class="nf">_handle_key_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QKeyEvent</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_up</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">_ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_key_up</span><span class="p">)(</span><span class="n">event</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_key_up</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_up</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_on_key_up</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
@@ -1487,7 +1474,7 @@
 
     <span class="k">def</span> <span class="nf">_set_on_mouse_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_down</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">on_mouse_down</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_down</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="o">=</span> <span class="n">on_mouse_down</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_down</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_press_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1496,7 +1483,7 @@
 
     <span class="k">def</span> <span class="nf">_set_on_mouse_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">on_mouse_up</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">on_mouse_up</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_up</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="n">on_mouse_up</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_up</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_release_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1507,7 +1494,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_enter_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_enter_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">enterEvent</span>
         <span class="k">if</span> <span class="n">on_mouse_enter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_enter</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_enter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_enter</span> <span class="o">=</span> <span class="n">on_mouse_enter</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">enterEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_enter</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_enter</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1517,7 +1504,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_leave_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_leave_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">leaveEvent</span>
         <span class="k">if</span> <span class="n">on_mouse_leave</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_leave</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_leave</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_leave</span> <span class="o">=</span> <span class="n">on_mouse_leave</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">leaveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_leave</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">leaveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_leave_event</span>
@@ -1527,7 +1514,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_mouse_move_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">mouseMoveEvent</span>
         <span class="k">if</span> <span class="n">on_mouse_move</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_mouse_move</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span> <span class="o">=</span> <span class="n">on_mouse_move</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">mouseMoveEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_mouse_move</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">setMouseTracking</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1579,7 +1566,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_default_resize_event</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span>
 
         <span class="k">if</span> <span class="n">on_resize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span> <span class="o">=</span> <span class="n">_ensure_future</span><span class="p">(</span><span class="n">on_resize</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span> <span class="o">=</span> <span class="n">on_resize</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resizeEvent</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_resize</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1640,12 +1627,14 @@
 
     <span class="k">def</span> <span class="nf">_gen_styling_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span>
+        <span class="n">styleold</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span>
+        <span class="n">stylenew</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span>
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
         <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="c1"># shallow copy the style because we will be modifying it</span>
-        <span class="n">cpstyle</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="c1"># cpstyle is what will be converted into a stylesheet for this widget.</span>
+        <span class="n">cpstyle</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">stylenew</span><span class="p">)</span>
 
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -1799,7 +1788,7 @@
             <span class="n">blur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;blur&quot;</span><span class="p">])</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_blur</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">blur</span><span class="p">))</span>
             <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blur</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="s2">&quot;blur&quot;</span> <span class="ow">in</span> <span class="n">styleold</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_blur</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="s2">&quot;colorize&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
@@ -1810,7 +1799,7 @@
             <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">colorize</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">float</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_colorize</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">colorize</span><span class="p">))</span>
             <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;colorize&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colorize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="s2">&quot;colorize&quot;</span> <span class="ow">in</span> <span class="n">styleold</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_colorize</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="s2">&quot;drop-shadow&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
@@ -1822,14 +1811,14 @@
             <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">dropshadow</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="ow">is</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QPointF</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_dropshadow</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="p">(</span><span class="n">blur</span><span class="p">,</span> <span class="n">dropshadow</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dropshadow</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
             <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;drop-shadow&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dropshadow</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="s2">&quot;drop-shadow&quot;</span> <span class="ow">in</span> <span class="n">styleold</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_dropshadow</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="s2">&quot;opacity&quot;</span> <span class="ow">in</span> <span class="n">cpstyle</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;opacity&quot;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">float</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_opacity</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">cpstyle</span><span class="p">[</span><span class="s2">&quot;opacity&quot;</span><span class="p">]))</span>
             <span class="n">cpstyle</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;opacity&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="s2">&quot;opacity&quot;</span> <span class="ow">in</span> <span class="n">styleold</span><span class="p">:</span>
             <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_opacity</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 
         <span class="c1"># CSS style selection is matched by setting underlying.setObjectName(str(id(self)))</span>
@@ -1839,24 +1828,31 @@
         <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">,</span> <span class="n">css_string</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
 
-    <span class="k">def</span> <span class="nf">_set_context_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_context_menu</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
+        <span class="n">propold</span><span class="p">:</span> <span class="n">ContextMenuType</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">propnew</span><span class="p">:</span> <span class="n">ContextMenuType</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">propold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">underlying</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">DefaultContextMenu</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">_show_context_menu</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">context_menu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">menu</span> <span class="o">=</span> <span class="n">_create_qmenu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">context_menu</span><span class="p">,</span> <span class="n">underlying</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">propnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">_show_context_menu</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+                <span class="n">menu</span> <span class="o">=</span> <span class="n">_create_qmenu</span><span class="p">(</span><span class="n">propnew</span><span class="p">,</span> <span class="n">underlying</span><span class="p">)</span>
                 <span class="n">pos</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">mapToGlobal</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
                 <span class="n">menu</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
                 <span class="n">menu</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-        <span class="n">underlying</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">_show_context_menu</span><span class="p">)</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">_show_context_menu</span><span class="p">)</span>
+            <span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">CustomContextMenu</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
+        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
@@ -1865,81 +1861,117 @@
         <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>  <span class="c1"># noqa: ARG002</span>
         <span class="c1"># We must pass all of the widget_trees because some elements</span>
         <span class="c1"># like TableGridView need to know the children of the children.</span>
-        <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
+        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
         <span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span>
         <span class="n">underlying_layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
+        <span class="c1"># multiple props influence the cursor so we diff the cursor globally</span>
+        <span class="n">cursor_old</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">cursor_new</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">newprops</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;style&quot;</span><span class="p">:</span>
-                <span class="n">style</span> <span class="o">=</span> <span class="n">newprops</span><span class="o">.</span><span class="n">style</span> <span class="ow">or</span> <span class="p">{}</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gen_styling_commands</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">underlying_layout</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;size_policy&quot;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">size_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">size_policy</span><span class="p">))</span>
-                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;style&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propold</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gen_styling_commands</span><span class="p">(</span><span class="n">propold</span> <span class="ow">or</span> <span class="p">{},</span> <span class="n">propnew</span> <span class="ow">or</span> <span class="p">{},</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">underlying_layout</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;size_policy&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span> <span class="k">if</span> <span class="n">propnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">propnew</span><span class="p">)</span> <span class="ow">is</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="o">=</span> <span class="n">underlying</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_size_policy</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;focus_policy&quot;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">focus_policy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setFocusPolicy</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">focus_policy</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;enabled&quot;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">enabled</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_click&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_click</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_click</span><span class="p">))</span>
-                <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_click</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="o">.</span><span class="n">PointingHandCursor</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_key_down&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_key_down</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_key_down</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_key_up&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_key_up</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_key_up</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_down&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_down</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_down</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_up&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_up</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_up</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_enter&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_enter</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_enter</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_leave&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_leave</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_leave</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_move&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_move</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_move</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_mouse_wheel&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_mouse_wheel</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_mouse_wheel</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_drop&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_drop</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_drop</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;on_resize&quot;</span><span class="p">:</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_resize</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">on_resize</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;tool_tip&quot;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">newprops</span><span class="o">.</span><span class="n">tool_tip</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setToolTip</span><span class="p">,</span> <span class="n">newprops</span><span class="o">.</span><span class="n">tool_tip</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;css_class&quot;</span><span class="p">:</span>
-                <span class="n">css_class</span> <span class="o">=</span> <span class="n">newprops</span><span class="o">.</span><span class="n">css_class</span>
-                <span class="k">if</span> <span class="n">css_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">css_class</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setProperty</span><span class="p">,</span> <span class="s2">&quot;css_class&quot;</span><span class="p">,</span> <span class="n">css_class</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;focus_policy&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span> <span class="k">if</span> <span class="n">propnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">propnew</span><span class="p">)</span> <span class="ow">is</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">FocusPolicy</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setFocusPolicy</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+                <span class="c1"># TODO else</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;enabled&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_click&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propold</span><span class="p">,</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">cursor_old</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="o">.</span><span class="n">PointingHandCursor</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_click</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+            <span class="k">case</span> <span class="kc">None</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">cursor_new</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="o">.</span><span class="n">PointingHandCursor</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_click</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">cursor_old</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="o">.</span><span class="n">PointingHandCursor</span>
+                <span class="n">cursor_new</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="o">.</span><span class="n">PointingHandCursor</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_click</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_key_down&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_key_down</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_key_up&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_key_up</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_mouse_down&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_down</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_mouse_up&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_up</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_mouse_enter&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_enter</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_mouse_leave&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_leave</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_mouse_move&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_mouse_move</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_mouse_wheel&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_mouse_wheel</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_drop&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_drop</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_resize&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_on_resize</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tool_tip&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="nb">str</span><span class="p">()</span> <span class="k">as</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setToolTip</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setToolTip</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;css_class&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setProperty</span><span class="p">,</span> <span class="s2">&quot;css_class&quot;</span><span class="p">,</span> <span class="n">propnew</span> <span class="ow">or</span> <span class="p">[]))</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
                     <span class="p">[</span>
                         <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">unpolish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">),</span>
                         <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">polish</span><span class="p">,</span> <span class="n">underlying</span><span class="p">),</span>
                     <span class="p">],</span>
                 <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;cursor&quot;</span><span class="p">:</span>
-                <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;default&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">on_click</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;pointer&quot;</span><span class="p">)</span>
-                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="n">cursor</span><span class="p">]))</span>
-            <span class="k">elif</span> <span class="n">prop</span> <span class="o">==</span> <span class="s2">&quot;context_menu&quot;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_menu_connected</span><span class="p">:</span>
-                    <span class="n">underlying</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">context_menu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">CustomContextMenu</span><span class="p">),</span>
-                    <span class="p">)</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_context_menu</span><span class="p">,</span> <span class="n">underlying</span><span class="p">))</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ContextMenuPolicy</span><span class="o">.</span><span class="n">DefaultContextMenu</span><span class="p">),</span>
-                    <span class="p">)</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;context_menu&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propold</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_context_menu</span><span class="p">,</span> <span class="n">underlying</span><span class="p">,</span> <span class="n">propold</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="c1"># Cursor prop comes last because the cursor prop should override other cursors.</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cursor&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propold</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="k">match</span> <span class="n">propold</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="nb">str</span><span class="p">():</span>
+                        <span class="n">cursor_old</span> <span class="o">=</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="n">propold</span><span class="p">]</span>
+                    <span class="k">case</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="p">():</span>
+                        <span class="n">cursor_old</span> <span class="o">=</span> <span class="n">propold</span>
+                <span class="k">match</span> <span class="n">propnew</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="nb">str</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="n">propnew</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_CURSORS</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s2">&quot;Unrecognized cursor </span><span class="si">{</span><span class="n">propnew</span><span class="si">}</span><span class="s2">. Cursor must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_CURSORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                            <span class="p">)</span>
+                        <span class="n">cursor_new</span> <span class="o">=</span> <span class="n">_CURSORS</span><span class="p">[</span><span class="n">propnew</span><span class="p">]</span>
+                    <span class="k">case</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CursorShape</span><span class="p">():</span>
+                        <span class="n">cursor_new</span> <span class="o">=</span> <span class="n">propnew</span>
+        <span class="k">if</span> <span class="n">cursor_new</span> <span class="o">!=</span> <span class="n">cursor_old</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cursor_new</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">setCursor</span><span class="p">,</span> <span class="n">cursor_new</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">underlying</span><span class="o">.</span><span class="n">unsetCursor</span><span class="p">))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_focus_open_needed</span><span class="p">:</span>
             <span class="c1"># Only do this on first render</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_focus_open_needed</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1973,29 +2005,30 @@
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
             <span class="n">name_to_val</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">not_ignored</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">varnames</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
-            <span class="c1"># kwards prefixed with _ are excluded from props</span>
+            <span class="c1"># kwargs prefixed with _ are excluded from props</span>
             <span class="n">name_to_val</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">name_to_val</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-            <span class="n">newprops</span><span class="p">:</span> <span class="n">PropsDict</span><span class="p">,</span>
+            <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
-            <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_d</span>
+            <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-            <span class="n">newkeys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">newprops</span><span class="o">.</span><span class="n">_d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="n">newkeys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">diff_props</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
             <span class="k">def</span> <span class="nf">super_commands</span><span class="p">(</span><span class="n">underlying</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">layout</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLayout</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
                 <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ComponentElement</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span>
                     <span class="n">widget_trees</span><span class="p">,</span>
-                    <span class="n">newprops</span><span class="p">,</span>
+                    <span class="n">diff_props</span><span class="p">,</span>
                     <span class="n">underlying</span><span class="p">,</span>
                     <span class="n">layout</span><span class="p">,</span>
                 <span class="p">)</span>
 
             <span class="n">me</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">qtT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">newkeys</span><span class="p">,</span> <span class="n">super_commands</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+            <span class="c1"># TODO Pyright cannot typecheck this, I don&#39;t even know if it&#39;s correct</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">newkeys</span><span class="p">,</span> <span class="n">super_commands</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: PGH003</span>
 
         <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span>
@@ -2467,9 +2500,9 @@
         <span class="c1"># Figure out which children can be re-used</span>
         <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recycle_children</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
 
-        <span class="n">props_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span><span class="p">)</span>
+        <span class="n">props_dict</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">props_dict</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
-        <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">PropsDict</span><span class="p">(</span><span class="n">props_dict</span><span class="p">))</span>
+        <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">props_dict</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">_render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">render_context</span><span class="p">:</span> <span class="n">_RenderContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_WidgetTree</span><span class="p">:</span>
@@ -2482,8 +2515,7 @@
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">component</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2"> is not correctly initialized. &quot;</span>
-                <span class="s2">&quot;Did you remember to call super().__init__() in the constructor? &quot;</span>
-                <span class="s2">&quot;(alternatively, the register_props decorator will also correctly initialize the component)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Did you remember to call super().__init__() in the constructor? &quot;</span><span class="p">,</span>
             <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
         <span class="n">component</span><span class="o">.</span><span class="n">_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app</span>
 
@@ -2526,7 +2558,7 @@
         <span class="n">old_rendering</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Element</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">elements_match</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_component</span><span class="p">):</span>
-            <span class="c1"># TODO Why do we set the key of the widget_tree to be a #component</span>
+            <span class="c1"># TODO Why do we set the key of the widget_tree to be a @component</span>
             <span class="c1"># Element here? This is not used anywhere. This widget_tree[component]</span>
             <span class="c1"># insertion should not happen. widget_tree key should be a QtWidgetElement.</span>
             <span class="c1"># See _widget_tree.</span>
@@ -2539,7 +2571,7 @@
             <span class="k">if</span> <span class="n">old_rendering</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">render_context</span><span class="o">.</span><span class="n">enqueued_deletions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">old_rendering</span><span class="p">)</span>
             <span class="n">render_context</span><span class="o">.</span><span class="n">component_tree</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sub_component</span><span class="p">]</span>
-            <span class="c1"># TODO Why do we set the key of the widget_tree to be a #component</span>
+            <span class="c1"># TODO Why do we set the key of the widget_tree to be a @component</span>
             <span class="c1"># Element here? This is not used anywhere. This widget_tree[component]</span>
             <span class="c1"># insertion should not happen. widget_tree key should be a QtWidgetElement.</span>
             <span class="c1"># See _widget_tree.</span>
@@ -2564,12 +2596,12 @@
             <span class="k">return</span> <span class="n">commands</span>
 
         <span class="n">old_props</span> <span class="o">=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">get_old_props</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-        <span class="n">new_props</span> <span class="o">=</span> <span class="n">PropsDict</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_items</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_props</span> <span class="ow">or</span> <span class="n">old_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">v</span><span class="p">})</span>
+        <span class="n">diff_props</span> <span class="o">=</span> <span class="n">props_diff</span><span class="p">(</span><span class="n">old_props</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">props</span><span class="p">)</span>
 
         <span class="c1"># Call user provided render function and retrieve old results</span>
         <span class="n">prev_element</span> <span class="o">=</span> <span class="n">render_context</span><span class="o">.</span><span class="n">current_element</span>
         <span class="n">render_context</span><span class="o">.</span><span class="n">current_element</span> <span class="o">=</span> <span class="n">element</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">,</span> <span class="n">new_props</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">render_context</span><span class="o">.</span><span class="n">widget_tree</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">))</span>
         <span class="n">render_context</span><span class="o">.</span><span class="n">current_element</span> <span class="o">=</span> <span class="n">prev_element</span>
         <span class="k">return</span> <span class="n">commands</span>
 
@@ -2745,9 +2777,10 @@
                     <span class="c1"># But then users would start defensively try-ing</span>
                     <span class="c1"># every use_async function and would forget to re-raise</span>
                     <span class="c1"># CancelledError. Which would be worse.</span>
-                <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">):</span>
-                        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Non-CancelledError exception raised in use_async&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Non-CancelledError exception raised in use_async&quot;</span><span class="p">)</span>
                 <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="c1"># There is another async task waiting in the queue</span>

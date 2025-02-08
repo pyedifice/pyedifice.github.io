@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Base Elements &#8212; Edifice 2.14.2 documentation</title>
+    <title>Base Elements &#8212; Edifice 3.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=e8362b60"></script>
+    <script src="_static/documentation_options.js?v=acc74ff5"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 2.14.2 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 2.14.2 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -538,21 +538,24 @@ and indent the element’s children:</p>
 <section id="events">
 <h2>Events<a class="headerlink" href="#events" title="Link to this heading">#</a></h2>
 <p>Each user interaction with a Base Element generates events, and you can specify
-how to handle the event by providing a callback function.</p>
-<p>These callbacks are passed into the Base Element as <strong>props</strong>, for example
+how to handle the event by providing a handler function.</p>
+<p>These handlers are passed into the Base Element as <strong>props</strong>, for example
 the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> <strong>prop</strong> of <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>,
 or the <code class="code docutils literal notranslate"><span class="pre">on_change</span></code> <strong>prop</strong> for checkboxes, radio buttons, sliders,
 and text input.
-When the event occurs the callback function will be called with an argument
+When the event occurs the handler function will be called with an argument
 describing the event.</p>
-<p>Usually, what you want to do in an event handler callback is to update some
+<p>Usually, what you want to do in an event handler is to update some
 state with a <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> <strong>setter function</strong>.</p>
-<p>These callbacks run in the same thread as the main application.
-This is handy, as you don’t have to worry about locking and race conditions.
-However, a lengthy operation will block the application from interacting with the user,
+<section id="async-event-handlers">
+<h3>Async Event Handlers<a class="headerlink" href="#async-event-handlers" title="Link to this heading">#</a></h3>
+<p>These event handlers run in the main event loop.
+A lengthy operation will block the application from interacting with the user,
 which is generally a bad user experience.</p>
-<p>Consider this code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<p>Consider this code.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Blocking Event Handler</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MyComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="n">results</span><span class="p">,</span> <span class="n">set_results</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -567,44 +570,16 @@ which is generally a bad user experience.</p>
             <span class="n">Label</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>When the Fetch button is clicked, the event handler will call a lengthy <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function,
-blocking the application from further progress.
-In the mean time, if the user clicks the increment button, nothing will happen until the fetch is complete.</p>
-<p>For such cases, you can use an async callback function.</p>
-<p>To allow the rest of the application to run while the fetch is happening, you can define
-the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> handler as a coroutine:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">MyComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">set_results</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="n">loading</span><span class="p">,</span> <span class="n">set_loading</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_click</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="n">QMouseEvent</span><span class="p">):</span>
-        <span class="n">set_loading</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_from_network</span><span class="p">()</span>
-        <span class="n">set_results</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-        <span class="n">set_loading</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
-        <span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Fetch&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="n">on_click</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">loading</span><span class="p">:</span>
-            <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Loading&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">results</span><span class="p">:</span>
-            <span class="n">Label</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-</pre></div>
 </div>
-<p>While the <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function is running, control is returned to the event loop,
-allowing the application to continue handling button clicks.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In some cases you may have a bug from a race condition where the async
-event handler completes after the Element has been unmounted.</p>
-<p>For such cases use <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call</span></code></a>.</p>
-</div>
+<p>When the Fetch button is clicked, the event handler will call a <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function,
+blocking the application for an unbounded length of time.
+If the user clicks the increment button while waiting for the fetch then nothing will happen.</p>
 <p>Use the <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call</span></code></a> Hook for an asynchronous event handler
 which will cancel automatically when <code class="code docutils literal notranslate"><span class="pre">MyComponent</span></code> is unmounted, or
-when the Fetch button is pressed again:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+when the Fetch button is pressed again.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Async Event Handler</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MyComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="n">results</span><span class="p">,</span> <span class="n">set_results</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -621,11 +596,13 @@ when the Fetch button is pressed again:</p>
     <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
         <span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Fetch&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="n">on_click_handler</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">loading</span><span class="p">:</span>
-            <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Loading&quot;</span><span class="p">)</span>
+            <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Fetching...&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">results</span><span class="p">:</span>
             <span class="n">Label</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</section>
 </section>
 <section id="custom-base-elements">
 <span id="custom-widget"></span><h2>Custom Base Elements<a class="headerlink" href="#custom-base-elements" title="Link to this heading">#</a></h2>
@@ -634,7 +611,7 @@ Edifice provides <a class="reference internal" href="stubs/edifice.CustomWidget.
 QtWidgets to an Edifice Element.</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.html#edifice.CustomWidget" title="edifice.CustomWidget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomWidget</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.CustomWidget.html#edifice.CustomWidget" title="edifice.CustomWidget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomWidget</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Custom widgets that you can define.</p></td>
 </tr>
 </tbody>
@@ -693,7 +670,10 @@ QtWidgets to an Edifice Element.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-base-elements">Root Base Elements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout-base-elements">Layout Base Elements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-base-elements">Content Base Elements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#events">Events</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#events">Events</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-event-handlers">Async Event Handlers</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-base-elements">Custom Base Elements</a></li>
 </ul>
   </nav></div>
