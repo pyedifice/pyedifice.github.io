@@ -409,58 +409,60 @@ in a <em>16pt</em> font on a <em>beige</em> <em>semi-transparent</em> background
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-reference.html#list-of-properties">Qt Stylesheet Reference List of Properties</a>.</p>
 <p>Note that sometimes Qt styling behaves differently from CSS styling
 (despite similar syntax and naming) and is not supported by all Widgets.</p>
-<p>Currently, the following styles are tested to be supported.</p>
 <section id="content-base-element-styling">
 <h2>Content Base Element Styling<a class="headerlink" href="#content-base-element-styling" title="Link to this heading">#</a></h2>
 <p><a class="reference internal" href="base_components.html#content-base-elements"><span class="std std-ref">Content Base Elements</span></a> follow the
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-customizing.html#the-box-model">Qt Style Sheet Box Model</a>.</p>
+<p>The following style
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-reference.html#list-of-properties">properties</a>
+are tested to be supported.</p>
 <ul class="simple">
-<li><p><strong>color</strong>: See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>.</p></li>
-<li><p><strong>font-size</strong>: Font size in points.</p></li>
-<li><p><strong>font-weight</strong>: A number indicating how bold the font should be.</p></li>
-<li><p><strong>font-family</strong>: Font family name.</p></li>
-<li><p><strong>font-style</strong>: Font style, i.e. <code class="code docutils literal notranslate"><span class="pre">&quot;italic&quot;</span></code>.</p></li>
-<li><p><strong>background-color</strong>: See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>.</p></li>
-<li><p><strong>margin</strong>: Exterior margin in pixels.</p>
+<li><p><strong>color</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">QColor</span></code> (See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>) Text color.</p></li>
+<li><p><strong>font-size</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Font size.</p></li>
+<li><p><strong>font-weight</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Font weight.</p></li>
+<li><p><strong>font-family</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> Font family name.</p></li>
+<li><p><strong>font-style</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> Font style, i.e. <code class="code docutils literal notranslate"><span class="pre">&quot;italic&quot;</span></code>.</p></li>
+<li><p><strong>background-color</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">QColor</span></code> (See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>) Background color.</p></li>
+<li><p><strong>margin</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Exterior margin in pixels.</p>
 <ul>
-<li><p><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong>: Exterior margin in pixels.</p></li>
+<li><p><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Exterior margin in pixels.</p></li>
 </ul>
 </li>
-<li><p><strong>padding</strong>: Interior padding in pixels.</p>
+<li><p><strong>padding</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Interior padding in pixels.</p>
 <ul>
-<li><p><strong>padding-left</strong>, <strong>padding-right</strong>, <strong>padding-top</strong>, <strong>padding-bottom</strong>: Interior padding in pixels.</p></li>
+<li><p><strong>padding-left</strong>, <strong>padding-right</strong>, <strong>padding-top</strong>, <strong>padding-bottom</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Interior padding in pixels.</p></li>
 </ul>
 </li>
-<li><p><strong>border</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p>
+<li><p><strong>border</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p>
 <ul>
-<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
-<li><p><strong>border-width</strong>: Border width in pixels.</p>
+<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>border-width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border width in pixels.</p>
 <ul>
-<li><p><strong>border-left-width</strong>, <strong>border-right-width</strong>, <strong>border-top-width</strong>, <strong>border-bottom-width</strong>: Border width in pixels.</p></li>
+<li><p><strong>border-left-width</strong>, <strong>border-right-width</strong>, <strong>border-top-width</strong>, <strong>border-bottom-width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border width in pixels.</p></li>
 </ul>
 </li>
-<li><p><strong>border-style</strong>: Border style.</p>
+<li><p><strong>border-style</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> Border style.</p>
 <ul>
-<li><p><strong>border-left-style</strong>, <strong>border-right-style</strong>, <strong>border-top-style</strong>, <strong>border-bottom-style</strong>: Border style.</p></li>
+<li><p><strong>border-left-style</strong>, <strong>border-right-style</strong>, <strong>border-top-style</strong>, <strong>border-bottom-style</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> Border style.</p></li>
 </ul>
 </li>
-<li><p><strong>border-color</strong>: Border color. See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>.</p>
+<li><p><strong>border-color</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">QColor</span></code> (See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>) Border color.</p>
 <ul>
-<li><p><strong>border-left-color</strong>, <strong>border-right-color</strong>, <strong>border-top-color</strong>, <strong>border-bottom-color</strong>: Border color.</p></li>
+<li><p><strong>border-left-color</strong>, <strong>border-right-color</strong>, <strong>border-top-color</strong>, <strong>border-bottom-color</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">QColor</span></code> (See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>) Border color.</p></li>
 </ul>
 </li>
-<li><p><strong>border-radius</strong>: Border corner radius in pixels.</p>
+<li><p><strong>border-radius</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border corner radius in pixels.</p>
 <ul>
-<li><p><strong>border-top-left-radius</strong>, <strong>border-top-right-radius</strong>, <strong>border-bottom-right-radius</strong>, <strong>border-bottom-left-radius</strong>: Border corner radius in pixels.</p></li>
+<li><p><strong>border-top-left-radius</strong>, <strong>border-top-right-radius</strong>, <strong>border-bottom-right-radius</strong>, <strong>border-bottom-left-radius</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border corner radius in pixels.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><strong>height</strong>, <strong>width</strong>: Height/width in pixels.</p></li>
-<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: Min/max height/width in pixels.</p></li>
+<li><p><strong>height</strong>, <strong>width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Height/width in pixels.</p></li>
+<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Min/max height/width in pixels.</p></li>
 <li><p><strong>align</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">AlignmentFlag</span></code> One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.
 Or an <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.AlignmentFlag">AlignmentFlag</a>.</p></li>
-<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): Position offset in pixels from a
+<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Position offset in pixels from a
 <a class="reference internal" href="stubs/edifice.FixView.html#edifice.FixView" title="edifice.FixView"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixView</span></code></a>.</p></li>
 </ul>
 </section>
@@ -480,44 +482,46 @@ and follows slightly different rules than the
 if you want a <em>2px</em> border around the <code class="code docutils literal notranslate"><span class="pre">View</span></code> then you should also
 set at least <em>2px</em> of padding so that the content does not obscure the border.</p>
 </div>
+<p>The following style
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-stylesheet-reference.html#list-of-properties">properties</a>
+are tested to be supported.</p>
 <ul class="simple">
-<li><p><strong>background-color</strong>: See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>.</p></li>
-<li><p><strong>padding</strong>: Interior padding in pixels.</p>
+<li><p><strong>background-color</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">QColor</span></code> (See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>) Background color.</p></li>
+<li><p><strong>padding</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Interior padding in pixels.</p>
 <ul>
-<li><p><strong>padding-left</strong>, <strong>padding-right</strong>, <strong>padding-top</strong>, <strong>padding-bottom</strong>: Interior padding in pixels.</p></li>
+<li><p><strong>padding-left</strong>, <strong>padding-right</strong>, <strong>padding-top</strong>, <strong>padding-bottom</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Interior padding in pixels.</p></li>
 </ul>
 </li>
-<li><p><strong>border</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p>
+<li><p><strong>border</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p>
 <ul>
-<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
-<li><p><strong>border-width</strong>: Border width in pixels.</p>
+<li><p><strong>border-left</strong>, <strong>border-right</strong>, <strong>border-top</strong>, <strong>border-bottom</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> For example <code class="code docutils literal notranslate"><span class="pre">&quot;1px</span> <span class="pre">solid</span> <span class="pre">red&quot;</span></code></p></li>
+<li><p><strong>border-width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border width in pixels.</p>
 <ul>
-<li><p><strong>border-left-width</strong>, <strong>border-right-width</strong>, <strong>border-top-width</strong>, <strong>border-bottom-width</strong>: Border width in pixels.</p></li>
+<li><p><strong>border-left-width</strong>, <strong>border-right-width</strong>, <strong>border-top-width</strong>, <strong>border-bottom-width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border width in pixels.</p></li>
 </ul>
 </li>
-<li><p><strong>border-style</strong>: Border style.</p>
+<li><p><strong>border-style</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> Border style.</p>
 <ul>
-<li><p><strong>border-left-style</strong>, <strong>border-right-style</strong>, <strong>border-top-style</strong>, <strong>border-bottom-style</strong>: Border style.</p></li>
+<li><p><strong>border-left-style</strong>, <strong>border-right-style</strong>, <strong>border-top-style</strong>, <strong>border-bottom-style</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span></code> Border style.</p></li>
 </ul>
 </li>
-<li><p><strong>border-color</strong>: Border color. See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>.</p>
+<li><p><strong>border-color</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">QColor</span></code> (See <a class="reference internal" href="#color"><span class="std std-ref">Color</span></a>) Border color.</p>
 <ul>
-<li><p><strong>border-left-color</strong>, <strong>border-right-color</strong>, <strong>border-top-color</strong>, <strong>border-bottom-color</strong>: Border color.</p></li>
+<li><p><strong>border-left-color</strong>, <strong>border-right-color</strong>, <strong>border-top-color</strong>, <strong>border-bottom-color</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">QColor</span></code> Border color.</p></li>
 </ul>
 </li>
-<li><p><strong>border-radius</strong>: Border corner radius in pixels.</p>
+<li><p><strong>border-radius</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border corner radius in pixels.</p>
 <ul>
-<li><p><strong>border-top-left-radius</strong>, <strong>border-top-right-radius</strong>, <strong>border-bottom-right-radius</strong>, <strong>border-bottom-left-radius</strong>: Border corner radius in pixels.</p></li>
+<li><p><strong>border-top-left-radius</strong>, <strong>border-top-right-radius</strong>, <strong>border-bottom-right-radius</strong>, <strong>border-bottom-left-radius</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Border corner radius in pixels.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><strong>height</strong>, <strong>width</strong>: Height/width in pixels.</p></li>
-<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: Min/max height/width in pixels.</p></li>
-<li><p><strong>align</strong>: One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.</p></li>
+<li><p><strong>height</strong>, <strong>width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Height/width in pixels.</p></li>
+<li><p><strong>min-height</strong>, <strong>max-height</strong>, <strong>min-width</strong>, <strong>max-width</strong>: <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Min/max height/width in pixels.</p></li>
 <li><p><strong>align</strong>: <code class="code docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">AlignmentFlag</span></code> One of <code class="code docutils literal notranslate"><span class="pre">&quot;left</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;justify&quot;</span></code>.
 Or an <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.AlignmentFlag">AlignmentFlag</a>.</p></li>
-<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): Position offset in pixels from a
+<li><p><strong>top</strong>, <strong>left</strong> (but not bottom, right): <code class="code docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span></code> Position offset in pixels from a
 <a class="reference internal" href="stubs/edifice.FixView.html#edifice.FixView" title="edifice.FixView"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixView</span></code></a>.</p></li>
 </ul>
 </section>
@@ -529,7 +533,7 @@ Or an <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/QColor.html#PySide6.QtGui.QColor.fromString">QColor.fromString</a>,
 for example:</p>
 <ul>
-<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;rgba(red,</span> <span class="pre">green,</span> <span class="pre">blue,</span> <span class="pre">alpha)&quot;</span></code> decimal range <em>0—255</em></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;rgba(red,</span> <span class="pre">green,</span> <span class="pre">blue,</span> <span class="pre">alpha)&quot;</span></code> decimal range <em>0–255</em></p></li>
 <li><p>Named colors like <code class="code docutils literal notranslate"><span class="pre">&quot;red&quot;</span></code></p></li>
 <li><p>Hexadecimal <code class="code docutils literal notranslate"><span class="pre">&quot;#rrggbb&quot;</span></code></p></li>
 <li><p>Hexadecimal <code class="code docutils literal notranslate"><span class="pre">&quot;#aarrggbb&quot;</span></code></p></li>
@@ -608,9 +612,9 @@ For more information see <a class="reference internal" href="stubs/edifice.App.h
 </ul>
 <p>If you think that Qt’s default color palette has weird choices, you can try
 the Edifice color palettes
-<code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_light</span></code> and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_dark</span></code>.
-See <code class="xref py py-func docutils literal notranslate"><span class="pre">theme_is_light</span></code> for instructions
+<a class="reference internal" href="utilities.html#edifice.palette_edifice_light" title="edifice.palette_edifice_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_light</span></code></a> and
+<a class="reference internal" href="utilities.html#edifice.palette_edifice_dark" title="edifice.palette_edifice_dark"><code class="xref py py-func docutils literal notranslate"><span class="pre">palette_edifice_dark</span></code></a>.
+See <a class="reference internal" href="utilities.html#edifice.theme_is_light" title="edifice.theme_is_light"><code class="xref py py-func docutils literal notranslate"><span class="pre">theme_is_light</span></code></a> for instructions
 on how to use them.</p>
 </section>
 </section>
