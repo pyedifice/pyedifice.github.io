@@ -452,8 +452,12 @@
 <span class="sd">        with ButtonView(</span>
 <span class="sd">            on_trigger=lambda _event: print(&quot;Button Triggered&quot;),</span>
 <span class="sd">        ):</span>
-<span class="sd">            Icon(name=&quot;share&quot;)</span>
+<span class="sd">            ImageSvg(</span>
+<span class="sd">                src=str(importlib.resources.files(edifice) / &quot;icons/font-awesome/solid/share.svg&quot;),</span>
+<span class="sd">                style={&quot;width&quot;: 18, &quot;height&quot;: 18 },</span>
+<span class="sd">            )</span>
 <span class="sd">            Label(text=&quot;&lt;i&gt;Share the Content&lt;/i&gt;&quot;)</span>
+
 
 <span class="sd">    .. figure:: /image/button_view.png</span>
 

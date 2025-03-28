@@ -407,23 +407,46 @@ containing the XML string of an SVG file.</p>
 </dd>
 </dl>
 <p class="rubric">Usage</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example SVG image constant</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">henomaru</span> <span class="o">=</span> <span class="n">QByteArray</span><span class="o">.</span><span class="n">fromStdString</span><span class="p">(</span>
     <span class="s1">&#39;&lt;svg viewBox=&quot;0 0 200 200&quot;&gt;&lt;circle fill=&quot;red&quot; cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;100&quot;/&gt;&lt;/svg&gt;&#39;</span>
 <span class="p">)</span>
-
-<span class="n">ImageSvg</span><span class="p">(</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Example ImageSvg</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ImageSvg</span><span class="p">(</span>
     <span class="n">src</span><span class="o">=</span><span class="n">henomaru</span><span class="p">,</span>
     <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Use the <a class="reference internal" href="#edifice.ImageSvg" title="edifice.ImageSvg"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageSvg</span></code></a> Element to render icons.</p>
-<p>Find icons on websites like Font Awesome: <a class="reference external" href="https://fontawesome.com/">https://fontawesome.com/</a></p>
+</div>
+<p>We can use the <a class="reference internal" href="#edifice.ImageSvg" title="edifice.ImageSvg"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageSvg</span></code></a> Element to render SVG icons.</p>
+<p>Find SVG icons on websites like Font Awesome: <a class="reference external" href="https://fontawesome.com/">https://fontawesome.com/</a></p>
 <p>The recommended method is to copy the icon’s SVG code and paste it into
+a constant
 <code class="code docutils literal notranslate"><span class="pre">QByteArray.fromStdString()</span></code> as in the example above. Then
 pass the <code class="code docutils literal notranslate"><span class="pre">QByteArray</span></code> to the <code class="code docutils literal notranslate"><span class="pre">src</span></code> prop.</p>
 <p>Or you can download an icon <code class="code docutils literal notranslate"><span class="pre">.svg</span></code> file
 and render the icon by setting the <code class="code docutils literal notranslate"><span class="pre">src</span></code> prop to the path of the file.</p>
+<p>There is also a copy of some Font Awesome icons
+<a class="reference external" href="https://github.com/pyedifice/pyedifice/tree/master/src/edifice/icons/font-awesome">in the Edifice package</a>,
+for convenience.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Example Font Awesome Share Icon</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ImageSvg</span><span class="p">(</span>
+    <span class="n">src</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">edifice</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;icons/font-awesome/solid/share.svg&quot;</span><span class="p">),</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">18</span> <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<figure class="align-default">
+<img alt="../_images/button_view.png" src="../_images/button_view.png" />
+</figure>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>

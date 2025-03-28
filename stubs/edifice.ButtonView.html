@@ -417,7 +417,10 @@ or
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ButtonView</span><span class="p">(</span>
     <span class="n">on_trigger</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_event</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Button Triggered&quot;</span><span class="p">),</span>
 <span class="p">):</span>
-    <span class="n">Icon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;share&quot;</span><span class="p">)</span>
+    <span class="n">ImageSvg</span><span class="p">(</span>
+        <span class="n">src</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">edifice</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;icons/font-awesome/solid/share.svg&quot;</span><span class="p">),</span>
+        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">18</span> <span class="p">},</span>
+    <span class="p">)</span>
     <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;i&gt;Share the Content&lt;/i&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>

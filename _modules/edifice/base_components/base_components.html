@@ -1023,26 +1023,45 @@
 <span class="sd">    .. rubric:: Usage</span>
 
 <span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example SVG image constant</span>
 
 <span class="sd">        henomaru = QByteArray.fromStdString(</span>
 <span class="sd">            &#39;&lt;svg viewBox=&quot;0 0 200 200&quot;&gt;&lt;circle fill=&quot;red&quot; cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;100&quot;/&gt;&lt;/svg&gt;&#39;</span>
 <span class="sd">        )</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example ImageSvg</span>
 
 <span class="sd">        ImageSvg(</span>
 <span class="sd">            src=henomaru,</span>
 <span class="sd">            style={&quot;width&quot;: 100, &quot;height&quot;: 100},</span>
 <span class="sd">        )</span>
 
-<span class="sd">    Use the :class:`ImageSvg` Element to render icons.</span>
+<span class="sd">    We can use the :class:`ImageSvg` Element to render SVG icons.</span>
 
-<span class="sd">    Find icons on websites like Font Awesome: https://fontawesome.com/</span>
+<span class="sd">    Find SVG icons on websites like Font Awesome: https://fontawesome.com/</span>
 
 <span class="sd">    The recommended method is to copy the icon’s SVG code and paste it into</span>
+<span class="sd">    a constant</span>
 <span class="sd">    :code:`QByteArray.fromStdString()` as in the example above. Then</span>
 <span class="sd">    pass the :code:`QByteArray` to the :code:`src` prop.</span>
 
 <span class="sd">    Or you can download an icon :code:`.svg` file</span>
 <span class="sd">    and render the icon by setting the :code:`src` prop to the path of the file.</span>
+
+<span class="sd">    There is also a copy of some Font Awesome icons</span>
+<span class="sd">    `in the Edifice package &lt;https://github.com/pyedifice/pyedifice/tree/master/src/edifice/icons/font-awesome&gt;`_,</span>
+<span class="sd">    for convenience.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example Font Awesome Share Icon</span>
+
+<span class="sd">        ImageSvg(</span>
+<span class="sd">            src=str(importlib.resources.files(edifice) / &quot;icons/font-awesome/solid/share.svg&quot;),</span>
+<span class="sd">            style={&quot;width&quot;: 18, &quot;height&quot;: 18 },</span>
+<span class="sd">        )</span>
+
+<span class="sd">    .. figure:: /image/button_view.png</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ImageSvg.__init__">
