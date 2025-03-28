@@ -914,24 +914,25 @@
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        Label(</span>
+<span class="sd">            word_wrap=True,</span>
+<span class="sd">            link_open=True,</span>
 <span class="sd">            text=&#39;&#39;&#39;</span>
-<span class="sd">                &lt;h1&gt;QLabel&lt;/h1&gt;</span>
+<span class="sd">                &lt;h1&gt;&lt;a href=&quot;https://doc.qt.io/qt-6/qlabel.html&quot;&gt;QLabel&lt;/a&gt;&lt;/h1&gt;</span>
 
-<span class="sd">                &lt;p style=&#39;line-height:1.5;&#39;&gt;</span>
-<span class="sd">                &lt;code&gt;QLabel&lt;/code&gt; is used for displaying text or an image.</span>
-<span class="sd">                No user interaction functionality is provided.The visual appearance of the</span>
+<span class="sd">                &lt;p style=&quot;line-height:1.5&quot;&gt;</span>
+<span class="sd">                &lt;code&gt;QLabel&lt;/code&gt; is used for &lt;b&gt;displaying text&lt;/b&gt; or an image.</span>
+<span class="sd">                No user interaction functionality is provided. The visual appearance of the</span>
 <span class="sd">                label can be configured in various ways, and it can be used for specifying</span>
 <span class="sd">                a focus mnemonic key for another widget.</span>
 <span class="sd">                &lt;/p&gt;</span>
 <span class="sd">                &#39;&#39;&#39;,</span>
 <span class="sd">        )</span>
 
+<span class="sd">    .. figure:: /image/label.png</span>
+
 <span class="sd">    .. note::</span>
 <span class="sd">        The combination of rich text and :code:`word_wrap` can sometimes cause</span>
-<span class="sd">        `Qt Layout Issues &lt;https://doc.qt.io/qtforpython-6/overviews/layout.html#layout-issues&gt;`_.</span>
-
-<span class="sd">    .. figure:: /image/label.png</span>
-<span class="sd">       :width: 500</span>
+<span class="sd">        `Qt Layout Issues &lt;https://doc.qt.io/qt-6/layout.html#layout-issues&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Label.__init__">
