@@ -530,8 +530,13 @@ we must create the <code class="code docutils literal notranslate"><span class="
 
     <span class="c1"># In this example we use gather() to run these 2 functions</span>
     <span class="c1"># concurrently (“at the same time”).</span>
+    <span class="c1">#</span>
     <span class="c1"># 1. run_subprocess_with_callback()</span>
     <span class="c1"># 2. send_messages()</span>
+    <span class="c1">#</span>
+    <span class="c1"># In your code you will probably instead want to send_messages()</span>
+    <span class="c1"># in reaction to some event.</span>
+    <span class="c1">#</span>
     <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
         <span class="n">run_subprocess_with_callback</span><span class="p">(</span>
             <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">msg_queue</span><span class="p">),</span>

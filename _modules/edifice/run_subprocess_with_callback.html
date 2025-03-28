@@ -649,8 +649,13 @@
 
 <span class="sd">            # In this example we use gather() to run these 2 functions</span>
 <span class="sd">            # concurrently (“at the same time”).</span>
+<span class="sd">            #</span>
 <span class="sd">            # 1. run_subprocess_with_callback()</span>
 <span class="sd">            # 2. send_messages()</span>
+<span class="sd">            #</span>
+<span class="sd">            # In your code you will probably instead want to send_messages()</span>
+<span class="sd">            # in reaction to some event.</span>
+<span class="sd">            #</span>
 <span class="sd">            y, _ = await asyncio.gather(</span>
 <span class="sd">                run_subprocess_with_callback(</span>
 <span class="sd">                    functools.partial(my_subprocess, msg_queue),</span>

@@ -422,7 +422,9 @@
 <span class="sd">        - Underlying Qt Widget</span>
 <span class="sd">          `QRadioButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html&gt;`_</span>
 
-<span class="sd">    Radio buttons are used to specify a single choice out of many.</span>
+<span class="sd">    Radio buttons are used to select a single choice out of many.</span>
+
+<span class="sd">    .. figure:: /image/radio_button.png</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -440,11 +442,6 @@
 
 <span class="sd">    .. rubric:: Usage</span>
 
-<span class="sd">    .. figure:: /image/radio_button.png</span>
-<span class="sd">       :width: 300</span>
-
-<span class="sd">       Three RadioButtons</span>
-
 <span class="sd">    Because of the declarative nature of Edifice, we can ignore all of the</span>
 <span class="sd">    Qt mechanisms for radio button “groups” and “exclusivity.”</span>
 <span class="sd">    Just declare each radio button :code:`checked` prop to depend on the state.</span>
@@ -454,16 +451,16 @@
 
 <span class="sd">        value, value_set = use_state(cast(Literal[&quot;op1&quot;, &quot;op2&quot;], &quot;op1&quot;))</span>
 
-<span class="sd">        with ed.VBoxView():</span>
-<span class="sd">            with ed.VBoxView():</span>
-<span class="sd">                ed.RadioButton(</span>
+<span class="sd">        with VBoxView():</span>
+<span class="sd">            with VBoxView():</span>
+<span class="sd">                RadioButton(</span>
 <span class="sd">                    checked = value == &quot;op1&quot;,</span>
 <span class="sd">                    on_change = lambda checked: value_set(&quot;op1&quot;) if checked else None,</span>
 <span class="sd">                    text = &quot;Option 1&quot;,</span>
 <span class="sd">                    style = {} if value == &quot;op1&quot; else { &quot;color&quot;: &quot;grey&quot; },</span>
 <span class="sd">                )</span>
-<span class="sd">            with ed.VBoxView():</span>
-<span class="sd">                ed.RadioButton(</span>
+<span class="sd">            with VBoxView():</span>
+<span class="sd">                RadioButton(</span>
 <span class="sd">                    checked = value == &quot;op2&quot;,</span>
 <span class="sd">                    on_change = lambda checked: value_set(&quot;op2&quot;) if checked else None,</span>
 <span class="sd">                    text = &quot;Option 2&quot;,</span>

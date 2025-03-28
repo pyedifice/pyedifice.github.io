@@ -397,7 +397,10 @@
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QRadioButton.html">QRadioButton</a></p></li>
 </ul>
 </div></blockquote>
-<p>Radio buttons are used to specify a single choice out of many.</p>
+<p>Radio buttons are used to select a single choice out of many.</p>
+<figure class="align-default">
+<img alt="../_images/radio_button.png" src="../_images/radio_button.png" />
+</figure>
 <p class="rubric">Props</p>
 <p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
 <dl class="field-list simple">
@@ -412,30 +415,23 @@ changes.</p></li>
 </dd>
 </dl>
 <p class="rubric">Usage</p>
-<figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/radio_button.png"><img alt="../_images/radio_button.png" src="../_images/radio_button.png" style="width: 300px;" />
-</a>
-<figcaption>
-<p><span class="caption-text">Three RadioButtons</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
 <p>Because of the declarative nature of Edifice, we can ignore all of the
 Qt mechanisms for radio button “groups” and “exclusivity.”
 Just declare each radio button <code class="code docutils literal notranslate"><span class="pre">checked</span></code> prop to depend on the state.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Exclusive RadioButtons with different parents</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Exclusive RadioButtons with different parents</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span><span class="p">,</span> <span class="n">value_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;op1&quot;</span><span class="p">,</span> <span class="s2">&quot;op2&quot;</span><span class="p">],</span> <span class="s2">&quot;op1&quot;</span><span class="p">))</span>
 
-<span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">VBoxView</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">VBoxView</span><span class="p">():</span>
-        <span class="n">ed</span><span class="o">.</span><span class="n">RadioButton</span><span class="p">(</span>
+<span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+        <span class="n">RadioButton</span><span class="p">(</span>
             <span class="n">checked</span> <span class="o">=</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op1&quot;</span><span class="p">,</span>
             <span class="n">on_change</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">checked</span><span class="p">:</span> <span class="n">value_set</span><span class="p">(</span><span class="s2">&quot;op1&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">checked</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Option 1&quot;</span><span class="p">,</span>
             <span class="n">style</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op1&quot;</span> <span class="k">else</span> <span class="p">{</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;grey&quot;</span> <span class="p">},</span>
         <span class="p">)</span>
-    <span class="k">with</span> <span class="n">ed</span><span class="o">.</span><span class="n">VBoxView</span><span class="p">():</span>
-        <span class="n">ed</span><span class="o">.</span><span class="n">RadioButton</span><span class="p">(</span>
+    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+        <span class="n">RadioButton</span><span class="p">(</span>
             <span class="n">checked</span> <span class="o">=</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;op2&quot;</span><span class="p">,</span>
             <span class="n">on_change</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">checked</span><span class="p">:</span> <span class="n">value_set</span><span class="p">(</span><span class="s2">&quot;op2&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">checked</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span>
