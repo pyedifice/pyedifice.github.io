@@ -385,6 +385,10 @@
   <section id="developer-tools">
 <h1>Developer Tools<a class="headerlink" href="#developer-tools" title="Link to this heading">#</a></h1>
 <p>The Edifice Runner provides some useful tools for developing Edifice applications.</p>
+<p>To use the Edifice Runner, you must install the <code class="code docutils literal notranslate"><span class="pre">watchdog</span></code> package.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>watchdog
+</pre></div>
+</div>
 <section id="dynamic-hot-reload">
 <h2>Dynamic hot-reload<a class="headerlink" href="#dynamic-hot-reload" title="Link to this heading">#</a></h2>
 <figure class="align-default">
@@ -455,11 +459,11 @@ often fail and then you will need to restart the application.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">edifice</span> <span class="o">--</span><span class="n">inspect</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span> <span class="n">RootElement</span>
 </pre></div>
 </div>
-<p>The Element Inspector, like the Inspect Elements tool of web browsers
-or the React inspector tool,
-allows you to inspect the internal state of your components.
+<p>The Element Inspector allows you to inspect the running state of the application.
 It displays the entire Element Tree, as well as the props and state of
-every component.</p>
+every component.
+It is like the Inspect Elements tool of web browsers
+or the React inspector tool.</p>
 </section>
 </section>
 
