@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 3.0.0 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 3.1.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="../../_static/documentation_options.js?v=dd1205ac"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.1.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.1.0 documentation - Home"/>
   
   
 </a></div>
@@ -911,6 +911,13 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Deprecated alias for :func:`use_memo`.</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        Deprecated</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The memoized **value** from calling :code:`fn`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">use_memo</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
 
@@ -1346,10 +1353,11 @@
     <span class="n">context_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">initial_state</span><span class="p">:</span> <span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">_T_provide_context</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
-    <span class="n">_T_provide_context</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span><span class="p">],</span> <span class="n">_T_provide_context</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>
+    <span class="n">_T_provide_context</span><span class="p">,</span>
+    <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_provide_context</span><span class="p">],</span> <span class="n">_T_provide_context</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>
 <span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Context state provider Hook for *prop drilling*.</span>
+<span class="sd">    Context shared state provider.</span>
 
 <span class="sd">    Provides similar features to React `useContext &lt;https://react.dev/reference/react/useContext&gt;`_.</span>
 
@@ -1366,7 +1374,7 @@
 
 <span class="sd">    Use this Hook to transmit state without passing the state down through</span>
 <span class="sd">    the **props** to a child :func:`@component&lt;edifice.component&gt;` using</span>
-<span class="sd">    :func:`use_context`.</span>
+<span class="sd">    :func:`use_context` or :func:`use_context_select`.</span>
 
 <span class="sd">    :func:`provide_context` is called with a :code:`context_key` and an **initial value**.</span>
 <span class="sd">    It returns a **state value** and a **setter function**. The **initial value**,</span>
@@ -1399,6 +1407,22 @@
 <span class="sd">                Label(text=str(x))</span>
 <span class="sd">                ContextChild()</span>
 <span class="sd">                ContextChild()</span>
+
+
+<span class="sd">    Editorial Comments</span>
+<span class="sd">    ^^^^^^^^^^^^^^^^^^</span>
+
+<span class="sd">        `The primary purpose for using Context is to avoid “prop drilling” &lt;https://blog.isquaredsoftware.com/2021/01/context-redux-differences/#purpose-and-use-cases-for-context&gt;`_.</span>
+
+<span class="sd">    Prop drilling is when you pass a **prop** down through many</span>
+<span class="sd">    levels of components to get the **prop** to a child component. This sounds</span>
+<span class="sd">    arduous but most of the time prop drilling is what you should do.</span>
+<span class="sd">    Prop drilling makes your program easier to understand and maintain</span>
+<span class="sd">    because it makes the dependencies between components explicit.</span>
+
+<span class="sd">    :func:`provide_context` and :func:`use_context` should be used rarely</span>
+<span class="sd">    or never.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">local_state</span><span class="p">,</span> <span class="n">local_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
@@ -1431,6 +1455,7 @@
 
 
 <span class="n">_T_use_context</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_use_context&quot;</span><span class="p">)</span>
+<span class="n">_T_use_context_select</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_use_context_select&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="use_context">
@@ -1440,7 +1465,7 @@
     <span class="n">value_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_T_use_context</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">_T_use_context</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_context</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_context</span><span class="p">],</span> <span class="n">_T_use_context</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Context state consumer Hook for *prop drilling*.</span>
+<span class="sd">    Context shared state consumer.</span>
 
 <span class="sd">    Provides similar features to React `useContext &lt;https://react.dev/reference/react/useContext&gt;`_.</span>
 
@@ -1475,7 +1500,7 @@
 
     <span class="n">local_state</span><span class="p">,</span> <span class="n">local_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">context_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">local_setter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="p">:</span>
         <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">local_setter</span><span class="p">)</span>
         <span class="c1"># call the local setter so that it gets the value if the context_key</span>
         <span class="c1"># changed.</span>
@@ -1489,6 +1514,78 @@
     <span class="n">use_effect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">cleanup</span><span class="p">,</span> <span class="n">context_key</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">local_state</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">stable_setter</span></div>
+
+
+
+<div class="viewcode-block" id="use_context_select">
+<a class="viewcode-back" href="../../stubs/edifice.use_context_select.html#edifice.use_context_select">[docs]</a>
+<span class="k">def</span> <span class="nf">use_context_select</span><span class="p">(</span>
+    <span class="n">context_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">selector</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_context</span><span class="p">],</span> <span class="n">_T_use_context_select</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_use_context_select</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Context shared state consumer for selected read-only shared state.</span>
+
+<span class="sd">    Use this Hook to consume state transmitted by the :func:`provide_context` with</span>
+<span class="sd">    the same :code:`context_key`.</span>
+
+<span class="sd">    Like :func:`use_context`, but selects only part of the</span>
+<span class="sd">    :func:`provide_context` shared state, and cannot update the shared state.</span>
+
+<span class="sd">    Provides similar features to React Redux</span>
+<span class="sd">    `useSelector &lt;https://react-redux.js.org/api/hooks#useselector&gt;`_.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        context_key:</span>
+<span class="sd">            Identifier for a shared context.</span>
+<span class="sd">        selector:</span>
+<span class="sd">            A pure function which takes the shared context value and returns a</span>
+<span class="sd">            selected part of the shared context value.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A **state value** which is the selected part of the current shared</span>
+<span class="sd">        context **state value** for the given :code:`context_key`.</span>
+
+<span class="sd">    :func:`use_context_select` is called with a :code:`context_key` and a :code:`selector`</span>
+<span class="sd">    function.  It returns a **state value**.</span>
+
+<span class="sd">    A :func:`@component&lt;component&gt;` which uses :func:`use_context_select` will</span>
+<span class="sd">    only re-render when the *selected* part of the context **state value**</span>
+<span class="sd">    is not :code:`__eq__` to the previous *selected* part.</span>
+
+<span class="sd">    The :code:`selector` function passed into</span>
+<span class="sd">    :func:`use_context_select` for the first render of the</span>
+<span class="sd">    :func:`@component&lt;component&gt;` will be the one used for the lifetime</span>
+<span class="sd">    of the :func:`@component&lt;component&gt;`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_edifice_provide_context</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;use_context_select context_key &#39;</span><span class="si">{</span><span class="n">context_key</span><span class="si">}</span><span class="s2">&#39; has no provide_context.&quot;</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span>
+
+    <span class="n">local_state</span><span class="p">,</span> <span class="n">local_setter</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">selector</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">local_setter_select_construct</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_T_use_context</span><span class="p">],</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="n">new</span><span class="p">:</span> <span class="n">_T_use_context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">local_setter</span><span class="p">(</span><span class="n">selector</span><span class="p">(</span><span class="n">new</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">setter</span>
+
+    <span class="c1"># local_setter_select must be a stable function reference</span>
+    <span class="n">local_setter_select</span> <span class="o">=</span> <span class="n">use_memo</span><span class="p">(</span><span class="n">local_setter_select_construct</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">local_setter_select</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">setters</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">local_setter_select</span><span class="p">)</span>
+        <span class="c1"># call the local setter so that it gets the value if the context_key</span>
+        <span class="c1"># changed.</span>
+        <span class="k">if</span> <span class="n">local_state</span> <span class="o">!=</span> <span class="n">selector</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">local_setter_select</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
+        <span class="c1"># We want the cleanup function bound to the context_key before it changed</span>
+        <span class="n">_edifice_provide_context</span><span class="p">[</span><span class="n">context_key</span><span class="p">]</span><span class="o">.</span><span class="n">setters</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">local_setter_select</span><span class="p">)</span>
+
+    <span class="n">use_effect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">cleanup</span><span class="p">,</span> <span class="n">context_key</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">local_state</span></div>
 
 </pre></div>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.provide_context &#8212; Edifice 3.0.0 documentation</title>
+    <title>edifice.provide_context &#8212; Edifice 3.1.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="../_static/documentation_options.js?v=dd1205ac"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.0.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.0.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.1.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.1.0 documentation - Home"/>
   
   
 </a></div>
@@ -389,7 +389,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="edifice.provide_context">
 <span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">provide_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#provide_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.provide_context" title="Link to this definition">#</a></dt>
-<dd><p>Context state provider Hook for <em>prop drilling</em>.</p>
+<dd><p>Context shared state provider.</p>
 <p>Provides similar features to React <a class="reference external" href="https://react.dev/reference/react/useContext">useContext</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -412,7 +412,7 @@
 </dl>
 <p>Use this Hook to transmit state without passing the state down through
 the <strong>props</strong> to a child <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> using
-<a class="reference internal" href="edifice.use_context.html#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a>.</p>
+<a class="reference internal" href="edifice.use_context.html#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a> or <a class="reference internal" href="edifice.use_context_select.html#edifice.use_context_select" title="edifice.use_context_select"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context_select()</span></code></a>.</p>
 <p><a class="reference internal" href="#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a> is called with a <code class="code docutils literal notranslate"><span class="pre">context_key</span></code> and an <strong>initial value</strong>.
 It returns a <strong>state value</strong> and a <strong>setter function</strong>. The <strong>initial value</strong>,
 <strong>state value</strong> and <strong>setter function</strong> behave exactly like the
@@ -443,6 +443,19 @@ same <code class="code docutils literal notranslate"><span class="pre">context_k
 </pre></div>
 </div>
 </div>
+<section id="editorial-comments">
+<h2>Editorial Comments<a class="headerlink" href="#editorial-comments" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.isquaredsoftware.com/2021/01/context-redux-differences/#purpose-and-use-cases-for-context">The primary purpose for using Context is to avoid “prop drilling”</a>.</p>
+</div></blockquote>
+<p>Prop drilling is when you pass a <strong>prop</strong> down through many
+levels of components to get the <strong>prop</strong> to a child component. This sounds
+arduous but most of the time prop drilling is what you should do.
+Prop drilling makes your program easier to understand and maintain
+because it makes the dependencies between components explicit.</p>
+<p><a class="reference internal" href="#edifice.provide_context" title="edifice.provide_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">provide_context()</span></code></a> and <a class="reference internal" href="edifice.use_context.html#edifice.use_context" title="edifice.use_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context()</span></code></a> should be used rarely
+or never.</p>
+</section>
 </dd></dl>
 
 </section>
