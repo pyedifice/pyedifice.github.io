@@ -1,0 +1,6 @@
+edifice.GroupBoxView.set\_key
+=============================
+
+.. currentmodule:: edifice
+
+.. automethod:: GroupBoxView.set_key

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 3.1.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 3.2.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=dd1205ac"></script>
+    <script src="../../../_static/documentation_options.js?v=4f6ddb47"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.1.0 documentation - Home"/>
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.1.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.0 documentation - Home"/>
   
   
 </a></div>
@@ -461,44 +461,6 @@
     <span class="k">return</span> <span class="n">pixmap</span>
 
 
-<span class="k">class</span> <span class="nc">GroupBox</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">]):</span>
-    <span class="c1"># TODO GroupBox is busted. Should inherit from _LinearView.</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Underlying</span>
-<span class="sd">    `QGroupBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGroupBox.html&gt;`_</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GroupBox expects exactly 1 child, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">child_underlying</span> <span class="o">=</span> <span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">underlying</span>
-        <span class="k">assert</span> <span class="n">child_underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">child_underlying</span><span class="o">.</span><span class="n">setParent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">))</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setTitle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]))</span>
-        <span class="k">return</span> <span class="n">commands</span>
-
 
 <div class="viewcode-block" id="Icon">
 <a class="viewcode-back" href="../../../stubs/edifice.Icon.html#edifice.Icon">[docs]</a>
@@ -511,8 +473,8 @@
 <span class="sd">        Instead use :class:`ImageSvg`.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -630,8 +592,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic button widget.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -697,8 +659,8 @@
 <span class="sd">        Instead use :class:`ButtonView`.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -889,8 +851,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Text display widget.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -1008,8 +970,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render an SVG image.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QSvgWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtSvgWidgets/QSvgWidget.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QSvgWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtSvgWidgets/QSvgWidget.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -1103,8 +1065,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;One line text input widget.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QLineEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QLineEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLineEdit.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -1247,8 +1209,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiline text input widget.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QTextEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTextEdit.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QTextEdit &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTextEdit.html&gt;`_</span>
 
 <span class="sd">    Accepts only plain text, not “rich text.”</span>
 
@@ -1334,8 +1296,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Dropdown selection widget.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QComboBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QComboBox.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QComboBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QComboBox.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -1457,8 +1419,8 @@
 <span class="sd">    A Slider bar allows the user to input a continuous value.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QSlider &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSlider.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QSlider &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QSlider.html&gt;`_</span>
 
 <span class="sd">    .. rubric:: Props</span>
 
@@ -1694,8 +1656,8 @@
 
 <span class="sd">    .. highlights::</span>
 
-<span class="sd">        - Underlying Qt Layout</span>
-<span class="sd">          `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Widget `QWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
 
 <span class="sd">    Content that does not fit into the VBoxView layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`VScrollView&lt;edifice.VScrollView&gt;`.</span>
@@ -1787,8 +1749,8 @@
 
 <span class="sd">    .. highlights::</span>
 
-<span class="sd">        - Underlying Qt Layout</span>
-<span class="sd">          `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Widget `QWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
 
 <span class="sd">    Content that does not fit into the HBoxView layout will be clipped.</span>
 <span class="sd">    To allow scrolling in case of overflow, use :class:`HScrollView&lt;edifice.HScrollView&gt;`.</span>
@@ -2498,10 +2460,9 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable vertical column layout.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
-<span class="sd">        - Underlying Qt Layout</span>
-<span class="sd">          `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout `QVBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/scroll_view.png</span>
 <span class="sd">       :width: 500</span>
@@ -2572,10 +2533,9 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable horizontal row layout widget.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
-<span class="sd">        - Underlying Qt Layout</span>
-<span class="sd">          `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout `QHBoxLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/scroll_view.png</span>
 <span class="sd">       :width: 500</span>
@@ -2647,8 +2607,7 @@
 
 <span class="sd">    .. highlights::</span>
 
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Widget `QScrollArea &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html&gt;`_</span>
 
 <span class="sd">    .. figure:: /image/scroll_view.png</span>
 <span class="sd">       :width: 500</span>
@@ -2801,8 +2760,9 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Grid layout widget for rendering children on a 2D rectangular grid.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Layout</span>
-<span class="sd">          `QGridLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout `QGridLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGridLayout.html&gt;`_</span>
 
 <span class="sd">    Grid Layout Element.</span>
 
@@ -2918,8 +2878,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Layout widget with multiple tabs.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QTabWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTabWidget.html&gt;`_</span>
+
+<span class="sd">        - Underlying Qt Widget `QTabWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QTabWidget.html&gt;`_</span>
 
 <span class="sd">    Each child of a :class:`TabView` will be the content of one tab.</span>
 
@@ -3170,8 +3130,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Progress bar widget.</span>
 
 <span class="sd">    .. highlights::</span>
-<span class="sd">        - Underlying Qt Widget</span>
-<span class="sd">          `QProgressBar &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QProgressBar.html&gt;`_.</span>
+
+<span class="sd">        - Underlying Qt Widget `QProgressBar &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QProgressBar.html&gt;`_.</span>
 
 <span class="sd">    A progress bar is used to give the user an indication of the progress of an operation.</span>
 
@@ -3254,6 +3214,241 @@
             <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">setValue</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
+
+
+<div class="viewcode-block" id="GroupBoxView">
+<a class="viewcode-back" href="../../../stubs/edifice.GroupBoxView.html#edifice.GroupBoxView">[docs]</a>
+<span class="k">class</span> <span class="nc">GroupBoxView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Group Box layout element with title.</span>
+
+<span class="sd">    .. highlights::</span>
+
+<span class="sd">        - Underlying Qt Widget `QWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout `QGroupBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGroupBox.html&gt;`_</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        title:</span>
+<span class="sd">            The group box title text</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example</span>
+
+<span class="sd">        with GroupBoxView(</span>
+<span class="sd">            title = &quot;My Group Box&quot;,</span>
+<span class="sd">        ):</span>
+<span class="sd">            Label(text=&quot;Hello&quot;)</span>
+<span class="sd">            Label(text=&quot;World&quot;)</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        The :class:`GroupBoxView` is limited by the underlying Qt Layout</span>
+<span class="sd">        `QGroupBox &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QGroupBox.html&gt;`_</span>
+<span class="sd">        because the title is just a :code:`str`.</span>
+
+<span class="sd">        There is a better Edifice-based :code:`GroupBoxTitleView` component</span>
+<span class="sd">        example in</span>
+<span class="sd">        `pyedifice/examples/groupbox.py &lt;https://github.com/pyedifice/pyedifice/tree/master/examples/groupbox.py&gt;`_</span>
+<span class="sd">        which allows you to set the title to any Edifice element tree.</span>
+
+<span class="sd">    .. figure:: /image/groupbox.png</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="GroupBoxView.__init__">
+<a class="viewcode-back" href="../../../stubs/stubs/edifice.GroupBoxView.__init__.html#edifice.GroupBoxView.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#detailed-description</span>
+        <span class="c1"># “The parent takes ownership of the object; i.e., it will automatically delete its children in its destructor.”</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">child_node</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_delete_child takeAt failed </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: G004</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># noqa: PLR5501</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">child_node</span><span class="o">.</span><span class="n">widget</span><span class="p">())</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_delete_child widget is None </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: G004</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">w</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_soft_delete_child takeAt failed </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: G004</span>
+
+    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">insertWidget</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">commands</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">pass</span>
+                <span class="c1"># TODO QGroupBox should have an unsetTitle method but it doesn&#39;t.</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setTitle</span><span class="p">,</span> <span class="n">propnew</span><span class="p">))</span>
+        <span class="c1"># Should we run the child commands after the View commands?</span>
+        <span class="c1"># No because children must be able to delete themselves before parent</span>
+        <span class="c1"># deletes them.</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#detailed-description</span>
+        <span class="c1"># “The parent takes ownership of the object; i.e., it will automatically delete its children in its destructor.”</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_recompute_children</span><span class="p">(</span><span class="n">children</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_qt_stateless_commands</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">commands</span>
+
+    <span class="k">def</span> <span class="nf">_qt_stateless_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
+        <span class="c1"># This stateless render command is used to test rendering</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="StackedView">
+<a class="viewcode-back" href="../../../stubs/edifice.StackedView.html#edifice.StackedView">[docs]</a>
+<span class="k">class</span> <span class="nc">StackedView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stacked layout.</span>
+
+<span class="sd">    .. highlights::</span>
+
+<span class="sd">        - Underlying Qt Widget `QWidget &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html&gt;`_</span>
+<span class="sd">        - Underlying Qt Layout `QStackedLayout &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QStackedLayout.html&gt;`_</span>
+
+<span class="sd">    .. rubric:: Props</span>
+
+<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
+
+<span class="sd">    .. rubric:: Usage</span>
+
+<span class="sd">    Children of the :class:`StackedView` will be stacked on top of each other.</span>
+<span class="sd">    The first child will be on the top, the last child on the bottom.</span>
+<span class="sd">    The top (first) child will occlude the bottom children.</span>
+
+<span class="sd">    If the top child has visual transparency then the bottom children</span>
+<span class="sd">    will be visible through the top child.</span>
+
+<span class="sd">    If the top child has mouse event transparency then the bottom children</span>
+<span class="sd">    will be clickable.</span>
+
+<span class="sd">    In the following example, the Label will be rendered on top of the CheckBox.</span>
+<span class="sd">    The Checkbox will be partly visible in places where the Label is transparent.</span>
+<span class="sd">    The CheckBox, not the Label, will be clickable because the Label is</span>
+<span class="sd">    transparent to mouse events.</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        :caption: Example with clickable bottom CheckBox</span>
+
+<span class="sd">        from PySide6.QtCore import Qt</span>
+
+<span class="sd">        label_ref: ed.Reference[ed.Label] = ed.use_ref()</span>
+
+<span class="sd">        def label_command():</span>
+<span class="sd">            label = label_ref()</span>
+<span class="sd">            if label and label.underlying:</span>
+<span class="sd">                label.underlying.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents, True)</span>
+
+<span class="sd">        ed.use_effect(label_command, ())</span>
+
+<span class="sd">        with StackedView():</span>
+<span class="sd">            Label(text=&quot;Top Label&quot;).register_ref(label_ref)</span>
+<span class="sd">            CheckBox(text=&quot;Bottom Checkbox&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="StackedView.__init__">
+<a class="viewcode-back" href="../../../stubs/stubs/edifice.StackedView.__init__.html#edifice.StackedView.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+            <span class="p">},</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#detailed-description</span>
+        <span class="c1"># “The parent takes ownership of the object; i.e., it will automatically delete its children in its destructor.”</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">child_node</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_delete_child takeAt failed </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: G004</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># noqa: PLR5501</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">:=</span> <span class="n">child_node</span><span class="o">.</span><span class="n">widget</span><span class="p">())</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_delete_child widget is None </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: G004</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">w</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_soft_delete_child takeAt failed </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># noqa: G004</span>
+
+    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">insertWidget</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QStackedLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setStackingMode</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QStackedLayout</span><span class="o">.</span><span class="n">StackingMode</span><span class="o">.</span><span class="n">StackAll</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">commands</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
+        <span class="c1"># Should we run the child commands after the View commands?</span>
+        <span class="c1"># No because children must be able to delete themselves before parent</span>
+        <span class="c1"># deletes them.</span>
+        <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#detailed-description</span>
+        <span class="c1"># “The parent takes ownership of the object; i.e., it will automatically delete its children in its destructor.”</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_recompute_children</span><span class="p">(</span><span class="n">children</span><span class="p">))</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_qt_stateless_commands</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">commands</span>
+
+    <span class="k">def</span> <span class="nf">_qt_stateless_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]:</span>
+        <span class="c1"># This stateless render command is used to test rendering</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span></div>
 
 </pre></div>
 

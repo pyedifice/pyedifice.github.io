@@ -1,0 +1,38 @@
+﻿.. Taken from
+.. https://github.com/sphinx-doc/sphinx/blob/13da5d7b2fda0da58137534e8fcdb0da9c88e55f/sphinx/ext/autosummary/templates/autosummary/class.rst
+
+edifice.StackedView
+===================
+
+.. currentmodule:: edifice
+
+.. autoclass:: StackedView
+   :members:
+   :show-inheritance:
+
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree: stubs
+   
+      ~StackedView.__init__
+      ~StackedView.register_ref
+      ~StackedView.set_key
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StackedView.children
+      ~StackedView.props
+      ~StackedView.underlying
+   
+   

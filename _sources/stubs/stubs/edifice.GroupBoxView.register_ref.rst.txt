@@ -1,0 +1,6 @@
+edifice.GroupBoxView.register\_ref
+==================================
+
+.. currentmodule:: edifice
+
+.. automethod:: GroupBoxView.register_ref

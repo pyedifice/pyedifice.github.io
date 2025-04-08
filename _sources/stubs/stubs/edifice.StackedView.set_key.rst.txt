@@ -1,0 +1,6 @@
+edifice.StackedView.set\_key
+============================
+
+.. currentmodule:: edifice
+
+.. automethod:: StackedView.set_key

@@ -1,0 +1,6 @@
+edifice.GroupBoxView.\_\_init\_\_
+=================================
+
+.. currentmodule:: edifice
+
+.. automethod:: GroupBoxView.__init__

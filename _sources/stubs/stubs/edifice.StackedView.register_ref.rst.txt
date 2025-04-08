@@ -1,0 +1,6 @@
+edifice.StackedView.register\_ref
+=================================
+
+.. currentmodule:: edifice
+
+.. automethod:: StackedView.register_ref

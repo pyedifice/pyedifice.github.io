@@ -1,0 +1,6 @@
+edifice.StackedView.\_\_init\_\_
+================================
+
+.. currentmodule:: edifice
+
+.. automethod:: StackedView.__init__
