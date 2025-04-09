@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 3.2.0 documentation</title>
+    <title>edifice.engine &#8212; Edifice 3.2.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=4f6ddb47"></script>
+    <script src="../../_static/documentation_options.js?v=eb155f5e"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.1 documentation - Home"/>
   
   
 </a></div>
@@ -764,7 +764,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;use_effect hook index for current render.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;use_async hook index for current render.&quot;&quot;&quot;</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;use_async hook index for current render.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state_unrendered</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Element has some unrendered state change so needs a re-render&quot;&quot;&quot;</span></div>
 
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
@@ -2395,7 +2397,7 @@
         <span class="k">if</span> <span class="p">(</span>
             <span class="n">component</span><span class="o">.</span><span class="n">_should_update</span><span class="p">(</span><span class="n">newprops</span><span class="p">)</span>
             <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">_edifice_internal_references</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-            <span class="ow">or</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span>
+            <span class="ow">or</span> <span class="n">component</span><span class="o">.</span><span class="n">_state_unrendered</span>
         <span class="p">):</span>
             <span class="n">render_context</span><span class="o">.</span><span class="n">mark_props_change</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">newprops</span><span class="p">)</span>
             <span class="n">rerendered_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">render_context</span><span class="p">)</span>
@@ -2529,6 +2531,7 @@
 
         <span class="c1"># Record that we are rendering this component with current use_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state_setted</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+        <span class="n">component</span><span class="o">.</span><span class="n">_state_unrendered</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># Call user provided render function and retrieve old results</span>
         <span class="k">with</span> <span class="n">Container</span><span class="p">()</span> <span class="k">as</span> <span class="n">container</span><span class="p">:</span>
@@ -2626,6 +2629,7 @@
                         <span class="n">hook</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">updater</span>
                 <span class="k">if</span> <span class="n">state0</span> <span class="o">!=</span> <span class="n">hook</span><span class="o">.</span><span class="n">state</span><span class="p">:</span>
                     <span class="c1"># State changed so we need to re-render this component.</span>
+                    <span class="n">element</span><span class="o">.</span><span class="n">_state_unrendered</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="k">if</span> <span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">components_</span><span class="p">:</span>
                         <span class="n">components_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
                 <span class="n">hook</span><span class="o">.</span><span class="n">updaters</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
