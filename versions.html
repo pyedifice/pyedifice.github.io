@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 3.2.1 documentation</title>
+    <title>Release Notes &#8212; Edifice 3.2.2 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=eb155f5e"></script>
+    <script src="_static/documentation_options.js?v=dcedd534"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,8 +118,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.1 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.1 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.2 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.2 documentation - Home"/>
   
   
 </a></div>
@@ -379,11 +379,19 @@
                   
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<section id="v3-2-2">
+<h2>v3.2.2<a class="headerlink" href="#v3-2-2" title="Link to this heading">#</a></h2>
+<p>Released: 2025-04-10</p>
+<ul class="simple">
+<li><p>Bugfix: Inspector spinning refresh loop introduced in v3.2.1.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">logging.getLogger(&quot;Edifice&quot;)</span></code> mean time resets after each log print.</p></li>
+</ul>
+</section>
 <section id="v3-2-1">
 <h2>v3.2.1<a class="headerlink" href="#v3-2-1" title="Link to this heading">#</a></h2>
 <p>Released: 2025-04-10</p>
 <ul class="simple">
-<li><p>Bugfix: <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> and <a class="reference internal" href="stubs/edifice.use_context_select.html#edifice.use_context_select" title="edifice.use_context_select"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context_select()</span></code></a>: When the state
+<li><p>Bugfix <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>, <a class="reference internal" href="stubs/edifice.use_context_select.html#edifice.use_context_select" title="edifice.use_context_select"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_context_select()</span></code></a>: when the state
 setter is called with the same state it should not cause re-render.</p></li>
 </ul>
 </section>
