@@ -415,6 +415,85 @@
 </table>
 </div>
 </section>
+<section id="edifice-programming-style">
+<h2>Edifice Programming Style<a class="headerlink" href="#edifice-programming-style" title="Link to this heading">#</a></h2>
+<p>Edifice favors a very opinionated “asynchronous” “declarative” “reactive”
+style of Python and Qt which will be familiar to React users or
+<a class="reference external" href="https://docs.python.org/3/howto/functional.html">Functional Programming</a>
+enthusiasts.</p>
+<section id="asynchronous">
+<h3>Asynchronous<a class="headerlink" href="#asynchronous" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html">asyncio eventloop</a>
+is how Edifice programs structure control flow. Your Edifice
+application should never (rarely) create a
+<a class="reference external" href="https://docs.python.org/3/library/threading.html#threading.Thread">Thread</a>
+or
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/QThread.html">QThread</a>
+because there is no clean way to cancel or kill a Thread. Instead use
+the <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> or <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call()</span></code></a> Hooks for asynchronous concurrency.</p>
+<p>If you’re using a library which requires you to call a brief “blocking” function
+then use
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_in_executor">run_in_executor</a>
+with a
+<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor">ThreadPoolExecutor</a>.</p>
+<p>If you’re using a library which requires you to call a long-running “blocking” function
+then use <a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>.</p>
+</section>
+<section id="declarative">
+<h3>Declarative<a class="headerlink" href="#declarative" title="Link to this heading">#</a></h3>
+<p>There is a lot of imperative and object-oriented Qt API which is meaningless
+or unnecessary in Edifice. In a normal Edifice application you will never (rarely)
+“inherit” from a class or override a “virtual” method.</p>
+<p>You never “delete” or “remove” a widget in Edifice, instead you just conditionally
+declare it. When the condition is no longer true the widget will be removed.</p>
+<p><a class="reference external" href="https://doc.qt.io/qtforpython-6/api/qtwidgets/qwidget.html">QWidgets</a>
+are stateful objects but Edifice is designed to provide a
+<em>stateless</em> API for QWidgets. Each <a class="reference internal" href="base_components.html"><span class="doc">Base Element</span></a> wraps
+a QWidget and presents it as a pure stateless function which depends only on
+its <strong>props</strong>.</p>
+<p>In Edifice there are no <code class="code docutils literal notranslate"><span class="pre">QAbstractItemModel</span></code> interfaces
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/overviews/qtwidgets-model-view-programming.html#models">“used by views and delegates to access data”</a>
+because in Edifice the data is passed as <strong>props</strong> and no other way.</p>
+<p>For more information see <a class="reference internal" href="#declaring-element-trees"><span class="std std-ref">Declaring Element Trees</span></a>.</p>
+</section>
+<section id="reactive">
+<h3>Reactive<a class="headerlink" href="#reactive" title="Link to this heading">#</a></h3>
+<p>For handling <a class="reference internal" href="base_components.html#events"><span class="std std-ref">Events</span></a>, pass a event-handling function as a <strong>prop</strong>.</p>
+<p>Do not use Signal and Slots.
+The
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/tutorials/basictutorial/signals_and_slots.html">Signals and Slots</a>
+tutorial explains that
+“Due to the nature of Qt, QObjects require a way to communicate” but
+due to the nature of Edifice, QObjects are forbidden to communicate
+because they are stateless and therefore have nothing to say.</p>
+<p>Application state is managed with <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> Hooks.</p>
+<p>Application side-effects triggered by state changes are performed by
+<a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> and <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> Hooks.</p>
+<p>For more more information about Edifice reactivity see
+<a class="reference internal" href="#model-view-update"><span class="std std-ref">Model-View-Update</span></a>.</p>
+</section>
+</section>
+<section id="rules-of-edifice">
+<h2>Rules of Edifice<a class="headerlink" href="#rules-of-edifice" title="Link to this heading">#</a></h2>
+<p>Are the same as the <a class="reference external" href="https://react.dev/reference/rules">Rules of React</a>.</p>
+<p><strong>Components and Hooks must be pure</strong></p>
+<p>Purity in Components and Hooks is a key rule of Edifice that makes your app
+predictable, easy to debug, and allows Edifice to automatically optimize your code.</p>
+<ul class="simple">
+<li><p><strong>Components must be idempotent</strong> – Edifice components are assumed to always
+return the same output with respect to their inputs – props, state, and context.</p></li>
+<li><p><strong>Side effects must run outside of render</strong> – Side effects should not run in
+render.</p></li>
+<li><p><strong>Props and state are immutable</strong> – A component’s props and state are
+immutable snapshots with respect to a single render. Never mutate them directly.</p></li>
+<li><p><strong>Return values and arguments to Hooks are immutable</strong> – Once values are
+passed to a Hook, you should not modify them. Like props in an Element,
+values become immutable when passed to a Hook.</p></li>
+<li><p><strong>Values are immutable after being passed to an Element</strong> – Don’t mutate
+values after they’ve been used in an Element. Move the mutation before the
+Element is created.</p></li>
+</ul>
+</section>
 <section id="declaring-element-trees">
 <h2>Declaring Element Trees<a class="headerlink" href="#declaring-element-trees" title="Link to this heading">#</a></h2>
 <p>An edifice application is created by rendering a <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> with an
@@ -424,23 +503,23 @@ starting with a single root <a class="reference internal" href="stubs/edifice.co
 <p>An Element may be either a
 <a class="reference internal" href="base_components.html"><span class="doc">Base Element</span></a>
 or a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element.</p>
-<p>A <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element is a function which renders an
-<a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree.</p>
-<p>Elements have both internal state and external properties.
-The external properties, <strong>props</strong>, are passed as arguments to the Element:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
-<span class="k">def</span> <span class="nf">Foo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="c1"># a, b, c are the props</span>
+<p>A <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element is a render function decorated by
+<code class="code docutils literal notranslate"><span class="pre">&#64;component</span></code> which renders an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">Foo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="nb">float</span><span class="p">):</span> <span class="c1"># a, b, c are the props</span>
 </pre></div>
 </div>
+<p>The properties of an Element, the <strong>props</strong>, are passed as arguments to
+the Element:</p>
 <p>The <strong>props</strong> are owned by the external caller and must not be modified by
-this <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element.</p>
-<p>Render a <code class="code docutils literal notranslate"><span class="pre">Foo</span></code> with props <code class="code docutils literal notranslate"><span class="pre">a=1,</span> <span class="pre">b=2,</span> <span class="pre">c=3</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+the Element.</p>
+<p>Render a <code class="code docutils literal notranslate"><span class="pre">Foo</span></code> with props:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The internal <strong>state</strong> belongs to the Element.
-In a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element, the internal state is managed by <a class="reference internal" href="hooks.html"><span class="doc">Hooks</span></a>.</p>
-<p>Changes in <strong>state</strong> or <strong>props</strong> will automatically trigger a re-render.</p>
+<p>A <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element can have internal <strong>state</strong> managed
+by the <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> Hook.</p>
+<p>Changes in <strong>props</strong> or <strong>state</strong> will automatically trigger a re-render.</p>
 <p>Declaring an Element tree in a <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> Element render function looks
 like this.
 To declare an Element to be the parent of some other
@@ -474,8 +553,28 @@ child Elements in the tree, use the parent as a
 </pre></div>
 </div>
 <p>You describe your entire application as a single root Element,
-which has child Elements representing different parts of your application.
-Each Element is responsible for managing its own state.</p>
+which has child Elements representing different parts of your application.</p>
+<section id="dynamic-rendering">
+<h3>Dynamic Rendering<a class="headerlink" href="#dynamic-rendering" title="Link to this heading">#</a></h3>
+<p>For dynamism, use conditions and loops in your rendering declaration.
+The conditions and loops can depend on <strong>props</strong> or <strong>state</strong>. For example,
+this <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> will render input fields only while
+the <strong>props</strong> indicate that they are wanted.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MyApp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">want_username</span><span class="p">:</span><span class="nb">bool</span><span class="p">,</span> <span class="n">want_email</span><span class="p">:</span><span class="nb">bool</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>
+        <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">want_username</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">HBoxView</span><span class="p">():</span>
+                    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Username: &quot;</span><span class="p">)</span>
+                    <span class="n">TextInput</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">want_email</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">HBoxView</span><span class="p">():</span>
+                    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Email: &quot;</span><span class="p">)</span>
+                    <span class="n">TextInput</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="model-view-update">
 <h2>Model-View-Update<a class="headerlink" href="#model-view-update" title="Link to this heading">#</a></h2>
@@ -520,9 +619,8 @@ change (Update) to the <strong>state</strong> (Model), the render function (View
 called and it renders the entire <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree of Qt Widgets from scratch.</p>
 <p>That sounds expensive and slow, and it would be if it weren’t for
 the diffing algorithm.</p>
-</section>
 <section id="the-diffing-algorithm">
-<h2>The diffing algorithm<a class="headerlink" href="#the-diffing-algorithm" title="Link to this heading">#</a></h2>
+<h3>The diffing algorithm<a class="headerlink" href="#the-diffing-algorithm" title="Link to this heading">#</a></h3>
 <p>When Elements are rendered,
 the Element tree is then compared against the result
 of the previous render. The two Element trees are diffed
@@ -559,6 +657,7 @@ child Elements are identical based on the order of the children.</p>
 it is recommended to <a class="reference internal" href="stubs/stubs/edifice.Element.set_key.html#edifice.Element.set_key" title="edifice.Element.set_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">Element.set_key()</span></code></a> on the children
 to tell the diffing algorithm which child Elements are identical so that it
 doesn’t have to guess.</p>
+</section>
 </section>
 <section id="substitutional-eq-relation">
 <h2>Substitutional <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation<a class="headerlink" href="#substitutional-eq-relation" title="Link to this heading">#</a></h2>
@@ -634,33 +733,6 @@ Also we need an <a class="reference internal" href="stubs/edifice.component.html
 be able to use Hooks such as <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a>, because those are bound to
 an <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>.</p>
 </section>
-<section id="rules-of-edifice">
-<h2>Rules of Edifice<a class="headerlink" href="#rules-of-edifice" title="Link to this heading">#</a></h2>
-<p>Are the same as the <a class="reference external" href="https://react.dev/reference/rules">Rules of React</a>.</p>
-<p><strong>Components and Hooks must be pure</strong></p>
-<p>Purity in Components and Hooks is a key rule of Edifice that makes your app
-predictable, easy to debug, and allows Edifice to automatically optimize your code.</p>
-<ul class="simple">
-<li><p><strong>Components must be idempotent</strong> – Edifice components are assumed to always
-return the same output with respect to their inputs – props, state, and context.</p></li>
-<li><p><strong>Side effects must run outside of render</strong> – Side effects should not run in
-render.</p></li>
-<li><p><strong>Props and state are immutable</strong> – A component’s props and state are
-immutable snapshots with respect to a single render. Never mutate them directly.</p></li>
-<li><p><strong>Return values and arguments to Hooks are immutable</strong> – Once values are
-passed to a Hook, you should not modify them. Like props in an Element,
-values become immutable when passed to a Hook.</p></li>
-<li><p><strong>Values are immutable after being passed to an Element</strong> – Don’t mutate
-values after they’ve been used in an Element. Move the mutation before the
-Element is created.</p></li>
-</ul>
-</section>
-<section id="functional-programming">
-<h2>Functional Programming<a class="headerlink" href="#functional-programming" title="Link to this heading">#</a></h2>
-<p>Edifice works best when you follow the principles of functional programming.
-For advice, see the
-<a class="reference external" href="https://docs.python.org/3/howto/functional.html">Python Functional Programming HOWTO</a>.</p>
-</section>
 </section>
 
 
@@ -713,14 +785,24 @@ For advice, see the
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-overview">Class overview</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-element-trees">Declaring Element Trees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edifice-programming-style">Edifice Programming Style</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asynchronous">Asynchronous</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declarative">Declarative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reactive">Reactive</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-of-edifice">Rules of Edifice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-element-trees">Declaring Element Trees</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-rendering">Dynamic Rendering</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-view-update">Model-View-Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffing-algorithm">The diffing algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffing-algorithm">The diffing algorithm</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitutional-eq-relation">Substitutional <code class="code docutils literal notranslate"><span class="pre">__eq__</span></code> relation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-initialization-is-a-render-side-effect">Element initialization is a render side-effect</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-of-edifice">Rules of Edifice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-programming">Functional Programming</a></li>
 </ul>
   </nav></div>
 

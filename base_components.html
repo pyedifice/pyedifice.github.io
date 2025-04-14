@@ -389,12 +389,14 @@
 <span id="base-elements"></span><h1>Base Elements<a class="headerlink" href="#module-edifice.base_components" title="Link to this heading">#</a></h1>
 <p>Base Elements are the building blocks for an Edifice application.</p>
 <p>Each Base Element manages an underlying
-<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html">QWidget</a>.</p>
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html">QWidget</a>.
+Base Elements are stateless, meaning they do not have any internal state.
+Instead all of their state is passed in as <strong>props</strong>.</p>
 <p>All Base Elements in this module inherit from <a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>
-and its props.
+and its <strong>props</strong>.
 This means that all Base Elements can be made to respond to clicks by passing
-a handler function to the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> prop. All Base Elements are
-stylable using the <code class="code docutils literal notranslate"><span class="pre">style</span></code> prop, see <a class="reference internal" href="styling.html"><span class="doc">Styling</span></a>.</p>
+a handler function to the <code class="code docutils literal notranslate"><span class="pre">on_click</span></code> <strong>prop</strong>. All Base Elements are
+stylable using the <code class="code docutils literal notranslate"><span class="pre">style</span></code> <strong>prop</strong>, see <a class="reference internal" href="styling.html"><span class="doc">Styling</span></a>.</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>([style, tool_tip, cursor, ...])</p></td>

@@ -571,6 +571,18 @@ Which is usually what we want.</p>
 </div>
 </div>
 </section>
+<section id="yielding-to-qt">
+<h2>Yielding to Qt<a class="headerlink" href="#yielding-to-qt" title="Link to this heading">#</a></h2>
+<p>Python <code class="code docutils literal notranslate"><span class="pre">async</span></code> coroutines are a form of
+<a class="reference external" href="https://en.wikipedia.org/wiki/Cooperative_multitasking">cooperative multitasking</a>.
+During an <code class="code docutils literal notranslate"><span class="pre">async</span></code> function, Qt will get a chance to render the UI
+and process events every time there is an <code class="code docutils literal notranslate"><span class="pre">await</span></code>. Sometimes you may want
+to deliberately yield to the Qt event loop to allow it to render and process
+events. The way to do that is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </dd></dl>
 
 </section>
