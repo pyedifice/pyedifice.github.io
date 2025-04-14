@@ -444,8 +444,9 @@ then use <a class="reference internal" href="run_subprocess_with_callback.html#e
 <p>There is a lot of imperative and object-oriented Qt API which is meaningless
 or unnecessary in Edifice. In a normal Edifice application you will never (rarely)
 “inherit” from a class or override a “virtual” method.</p>
-<p>You never “delete” or “remove” a widget in Edifice, instead you just conditionally
-declare it. When the condition is no longer true the widget will be removed.</p>
+<p>You never “add” or “remove” a widget in Edifice, instead you conditionally
+render it. When the condition is no longer true the widget will be removed,
+see <a class="reference internal" href="#dynamic-rendering"><span class="std std-ref">Dynamic Rendering</span></a>.</p>
 <p><a class="reference external" href="https://doc.qt.io/qtforpython-6/api/qtwidgets/qwidget.html">QWidgets</a>
 are stateful objects but Edifice is designed to provide a
 <em>stateless</em> API for QWidgets. Each <a class="reference internal" href="base_components.html"><span class="doc">Base Element</span></a> wraps
@@ -459,18 +460,15 @@ because in Edifice the data is passed as <strong>props</strong> and no other way
 <section id="reactive">
 <h3>Reactive<a class="headerlink" href="#reactive" title="Link to this heading">#</a></h3>
 <p>For handling <a class="reference internal" href="base_components.html#events"><span class="std std-ref">Events</span></a>, pass a event-handling function as a <strong>prop</strong>.</p>
-<p>Do not use Signal and Slots.
-The
+<p>Never (rarely) use Signals and Slots. The
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/tutorials/basictutorial/signals_and_slots.html">Signals and Slots</a>
 tutorial explains that
 “Due to the nature of Qt, QObjects require a way to communicate” but
-due to the nature of Edifice, QObjects are forbidden to communicate
-because they are stateless and therefore have nothing to say.</p>
+due to the nature of Edifice, QObjects are mostly forbidden to communicate
+because it would violate the <em>one-way information flow</em> of <a class="reference internal" href="#model-view-update"><span class="std std-ref">Model-View-Update</span></a>.</p>
 <p>Application state is managed with <a class="reference internal" href="stubs/edifice.use_state.html#edifice.use_state" title="edifice.use_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_state()</span></code></a> Hooks.</p>
 <p>Application side-effects triggered by state changes are performed by
 <a class="reference internal" href="stubs/edifice.use_effect.html#edifice.use_effect" title="edifice.use_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_effect()</span></code></a> and <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> Hooks.</p>
-<p>For more more information about Edifice reactivity see
-<a class="reference internal" href="#model-view-update"><span class="std std-ref">Model-View-Update</span></a>.</p>
 </section>
 </section>
 <section id="rules-of-edifice">
@@ -556,7 +554,8 @@ child Elements in the tree, use the parent as a
 which has child Elements representing different parts of your application.</p>
 <section id="dynamic-rendering">
 <h3>Dynamic Rendering<a class="headerlink" href="#dynamic-rendering" title="Link to this heading">#</a></h3>
-<p>For dynamism, use conditions and loops in your rendering declaration.
+<p>For dynamism, use conditions and loops in your <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>
+render function.
 The conditions and loops can depend on <strong>props</strong> or <strong>state</strong>. For example,
 this <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> will render input fields only while
 the <strong>props</strong> indicate that they are wanted.</p>
