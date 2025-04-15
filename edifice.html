@@ -688,9 +688,13 @@ have a <em>substitutional</em> <code class="code docutils literal notranslate"><
 for a Python class. The <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> constructor function also has
 the side-effect of inserting itself to the rendered <a class="reference internal" href="stubs/edifice.Element.html#edifice.Element" title="edifice.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> tree,
 as a child of the <code class="code docutils literal notranslate"><span class="pre">with</span></code> context layout Element.</p>
-<p>We like this style of declaring Element trees in Python code because it forces
-the indentation structure of the Python code to reflect the structure of the
-Element tree.</p>
+<p>We like this style of declaring Element trees in Python code because</p>
+<ol class="arabic simple">
+<li><p>The indentation structure of the Python code reflects the
+structure of the Element tree.</p></li>
+<li><p>We can use Python control flow statements <code class="code docutils literal notranslate"><span class="pre">if</span></code> <code class="code docutils literal notranslate"><span class="pre">for</span></code>
+<code class="code docutils literal notranslate"><span class="pre">match</span></code> to dynamically render Elements.</p></li>
+</ol>
 <p>Because Element initialization is a render side-effect,
 we have to be careful about binding Elements to variables
 and passing them around. They will insert themselves in the tree at the time

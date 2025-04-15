@@ -580,8 +580,7 @@ which is generally a bad user experience.</p>
 </div>
 </div>
 <p>When the Fetch button is clicked, the event handler will call a <code class="code docutils literal notranslate"><span class="pre">fetch_from_network</span></code> function,
-blocking the application for an unbounded length of time.
-If the user clicks the increment button while waiting for the fetch then nothing will happen.</p>
+blocking the application for an unbounded length of time.</p>
 <p>Use the <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call</span></code></a> Hook for an asynchronous event handler
 which will cancel automatically when <code class="code docutils literal notranslate"><span class="pre">MyComponent</span></code> is unmounted, or
 when the Fetch button is pressed again.</p>
