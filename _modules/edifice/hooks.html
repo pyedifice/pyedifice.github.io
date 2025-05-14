@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 3.2.3 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 4.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=7895512d"></script>
+    <script src="../../_static/documentation_options.js?v=3304f9e4"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.3 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.3 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -835,8 +835,8 @@
 <span class="sd">    Worker Process</span>
 <span class="sd">    --------------</span>
 
-<span class="sd">    We can run an</span>
-<span class="sd">    :code:`async def my_subprocess` function in a worker</span>
+<span class="sd">    We can run a</span>
+<span class="sd">    :code:`def my_subprocess` function in a worker</span>
 <span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_</span>
 <span class="sd">    by using :func:`run_subprocess_with_callback`.</span>
 
@@ -850,8 +850,8 @@
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_async with run_subprocess_with_callback</span>
 
-<span class="sd">        async def my_subprocess(callback: Callable[[str], None]) -&gt; int:</span>
-<span class="sd">            # This function will run in a new Process in a new event loop.</span>
+<span class="sd">        def my_subprocess(callback: Callable[[str], None]) -&gt; int:</span>
+<span class="sd">            # This function will run in a new Process.</span>
 <span class="sd">            callback(&quot;Starting long calculation&quot;)</span>
 <span class="sd">            await asyncio.sleep(100.0)</span>
 <span class="sd">            x = 1 + 2</span>

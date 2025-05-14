@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Edifice Core &#8212; Edifice 3.2.3 documentation</title>
+    <title>Edifice Core &#8212; Edifice 4.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=7895512d"></script>
+    <script src="_static/documentation_options.js?v=3304f9e4"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.3 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.3 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -425,24 +425,24 @@ enthusiasts.</p>
 <h3>Asynchronous<a class="headerlink" href="#asynchronous" title="Link to this heading">#</a></h3>
 <p>The <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html">asyncio eventloop</a>
 is how Edifice programs structure control flow. Your Edifice
-application should never (rarely) create a
+application should never (or rarely) create a
 <a class="reference external" href="https://docs.python.org/3/library/threading.html#threading.Thread">Thread</a>
 or
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtCore/QThread.html">QThread</a>
 because there is no clean way to cancel or kill a Thread. Instead use
 the <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a> or <a class="reference internal" href="stubs/edifice.use_async_call.html#edifice.use_async_call" title="edifice.use_async_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async_call()</span></code></a> Hooks for asynchronous concurrency.</p>
-<p>If you’re using a library which requires you to call a brief “blocking” function
-then use
+<p>If you’re using a library which requires you to call an I/O-bound “blocking” function
+then call it with
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_in_executor">run_in_executor</a>
 with a
 <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor">ThreadPoolExecutor</a>.</p>
-<p>If you’re using a library which requires you to call a long-running “blocking” function
-then use <a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>.</p>
+<p>If you’re using a library which requires you to call a CPU-bound “blocking” function
+then call it with <a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>.</p>
 </section>
 <section id="declarative">
 <h3>Declarative<a class="headerlink" href="#declarative" title="Link to this heading">#</a></h3>
 <p>There is a lot of imperative and object-oriented Qt API which is meaningless
-or unnecessary in Edifice. In a normal Edifice application you will never (rarely)
+or unnecessary in Edifice. In a normal Edifice application you will never (or rarely)
 “inherit” from a class or override a “virtual” method.</p>
 <p>You never “add” or “remove” a widget in Edifice, instead you conditionally
 render it. When the condition is no longer true the widget will be removed,
@@ -460,7 +460,7 @@ because in Edifice the data is passed as <strong>props</strong> and no other way
 <section id="reactive">
 <h3>Reactive<a class="headerlink" href="#reactive" title="Link to this heading">#</a></h3>
 <p>For handling <a class="reference internal" href="base_components.html#events"><span class="std std-ref">Events</span></a>, pass a event-handling function as a <strong>prop</strong>.</p>
-<p>Never (rarely) use Signals and Slots. The
+<p>Never (or rarely) use Signals and Slots. The
 <a class="reference external" href="https://doc.qt.io/qtforpython-6/tutorials/basictutorial/signals_and_slots.html">Signals and Slots</a>
 tutorial explains that
 “Due to the nature of Qt, QObjects require a way to communicate” but

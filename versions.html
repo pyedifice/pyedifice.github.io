@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Edifice 3.2.3 documentation</title>
+    <title>Release Notes &#8212; Edifice 4.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=7895512d"></script>
+    <script src="_static/documentation_options.js?v=3304f9e4"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,8 +118,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 3.2.3 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 3.2.3 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -379,6 +379,35 @@
                   
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<section id="v4-0-0">
+<h2>v4.0.0<a class="headerlink" href="#v4-0-0" title="Link to this heading">#</a></h2>
+<p>Released: 2025-05-14</p>
+<p><strong>Breaking Changes</strong></p>
+<ul>
+<li><p><a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> takes a normal function instead of an
+<code class="code docutils literal notranslate"><span class="pre">async</span></code> coroutine for the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> argument.</p>
+<p>If you want the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> to be an <code class="code docutils literal notranslate"><span class="pre">async</span></code> function then
+make a new event loop and use that as the event loop for the Process.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example async subprocess function</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">callback</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;done&quot;</span>
+
+    <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">new_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">work</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Migration Guide:</strong></p>
+<p>Unfortunately Pyright will not error on this change. You must check each
+<a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> call site and make sure that the
+<code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> argument is a normal function, not an <code class="code docutils literal notranslate"><span class="pre">async</span></code> function.</p>
+</li>
+</ul>
+</section>
 <section id="v3-2-3">
 <h2>v3.2.3<a class="headerlink" href="#v3-2-3" title="Link to this heading">#</a></h2>
 <p>Released: 2025-04-19</p>
@@ -670,16 +699,16 @@ Fix bug children disappeared when re-rendering with no changes.</p></li>
 <li><p>New Hook <a class="reference internal" href="stubs/edifice.use_stop.html#edifice.use_stop" title="edifice.use_stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_stop()</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="stubs/edifice.Window.html#edifice.Window" title="edifice.Window"><code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></a> <a class="reference internal" href="stubs/edifice.WindowPopView.html#edifice.WindowPopView" title="edifice.WindowPopView"><code class="xref py py-class docutils literal notranslate"><span class="pre">WindowPopView</span></code></a> new arg <code class="code docutils literal notranslate"><span class="pre">_size_open</span></code>.</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">Old TableGridView API</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Old TableGridView API</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">()</span> <span class="k">as</span> <span class="n">tgv</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">tgv</span><span class="o">.</span><span class="n">row</span><span class="p">():</span>
         <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">New TableGridView API</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">New TableGridView API</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TableGridView</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">TableGridRow</span><span class="p">():</span>
         <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
