@@ -462,10 +462,13 @@ and Edifice modifies the existing widget tree to reflect the new state.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">number</span><span class="p">,</span> <span class="n">set_number</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
-    <span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Add 5&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="n">set_number</span><span class="p">(</span><span class="n">number</span><span class="o">+</span><span class="mi">5</span><span class="p">))</span>
-    <span class="n">Label</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
+    <span class="n">Button</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Add 5&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="n">set_number</span><span class="p">(</span><span class="n">number</span><span class="o">+</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="ow">and</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
-        <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Number is mid&quot;</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Number is mid&quot;</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 <p>The GUI displays
@@ -480,7 +483,7 @@ code. If you have a Python script which does a long-running computation,
 Edifice provides an API for running that script while presenting
 a responsive GUI to the user.</p>
 <ol class="arabic simple">
-<li><p>Paste the script into an <code class="code docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span> <span class="pre">worker()</span></code> function.</p></li>
+<li><p>Paste the script into an <code class="code docutils literal notranslate"><span class="pre">worker()</span></code> function.</p></li>
 <li><p>Call <a class="reference internal" href="run_subprocess_with_callback.html#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a>
 on that <code class="code docutils literal notranslate"><span class="pre">worker</span></code> function with a <a class="reference internal" href="stubs/edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>
 Hook. Replace the <code class="code docutils literal notranslate"><span class="pre">print</span></code> statements with calls to
