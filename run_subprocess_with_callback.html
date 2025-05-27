@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>run_subprocess_with_callback &#8212; Edifice 4.0.0 documentation</title>
+    <title>run_subprocess_with_callback &#8212; Edifice 4.0.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=3304f9e4"></script>
+    <script src="_static/documentation_options.js?v=977c7dfd"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.0 documentation - Home"/>
-    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.0 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.1 documentation - Home"/>
+    <img src="_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.1 documentation - Home"/>
   
   
 </a></div>
@@ -387,7 +387,7 @@
 <dt class="sig sig-object py" id="edifice.run_subprocess_with_callback">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">run_subprocess_with_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subprocess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">daemon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/edifice/run_subprocess_with_callback.html#run_subprocess_with_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.run_subprocess_with_callback" title="Link to this definition">#</a></dt>
 <dd><p>Run a
-<code class="code docutils literal notranslate"><span class="pre">def</span> <span class="pre">subprocess</span></code> function in a
+<code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> function in a
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process">Process</a>
 and return the result.</p>
 <dl class="field-list simple">
@@ -400,7 +400,9 @@ as the <code class="code docutils literal notranslate"><span class="pre">callbac
 The <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> function must be picklable.</p>
 </p></li>
 <li><p><strong>callback</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_callback</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – The <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function to pass to the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> when it starts.
-This function will run in the main process event loop.
+The <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> may call the <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function
+at any time.
+The <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function will run in the main process event loop.
 All of the arguments to the <code class="code docutils literal notranslate"><span class="pre">callback</span></code> function must be picklable.</p></li>
 <li><p><strong>daemon</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – Optional argument which will be passed to the Process
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.daemon">daemon</a>
@@ -448,8 +450,8 @@ so it will not inherit any file handles from the calling process.</p>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_subprocess_with_callback</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">my_callback</span><span class="p">)</span>
 
-    <span class="c1"># If this main() function is cancelled while awaiting the</span>
-    <span class="c1"># subprocess then the subprocess will be terminated.</span>
+    <span class="c1"># If this main() function is cancelled while awaiting</span>
+    <span class="c1"># run_subprocess_with_callback then the subprocess will be terminated.</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;my_subprocess returned </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -542,7 +544,7 @@ we must create the <code class="code docutils literal notranslate"><span class="
             <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">my_subprocess</span><span class="p">,</span> <span class="n">msg_queue</span><span class="p">),</span>
             <span class="n">local_callback</span><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">send_messages</span><span class="p">())</span>
+        <span class="n">send_messages</span><span class="p">(),</span>
     <span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;my_subprocess returned </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>

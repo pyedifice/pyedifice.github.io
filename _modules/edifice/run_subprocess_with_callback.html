@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.run_subprocess_with_callback &#8212; Edifice 4.0.0 documentation</title>
+    <title>edifice.run_subprocess_with_callback &#8212; Edifice 4.0.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=3304f9e4"></script>
+    <script src="../../_static/documentation_options.js?v=977c7dfd"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.0 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.1 documentation - Home"/>
   
   
 </a></div>
@@ -481,7 +481,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T_subprocess</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run a</span>
-<span class="sd">    :code:`def subprocess` function in a</span>
+<span class="sd">    :code:`subprocess` function in a</span>
 <span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_</span>
 <span class="sd">    and return the result.</span>
 
@@ -494,7 +494,9 @@
 <span class="sd">            The :code:`subprocess` function must be picklable.</span>
 <span class="sd">        callback:</span>
 <span class="sd">            The :code:`callback` function to pass to the :code:`subprocess` when it starts.</span>
-<span class="sd">            This function will run in the main process event loop.</span>
+<span class="sd">            The :code:`subprocess` may call the :code:`callback` function</span>
+<span class="sd">            at any time.</span>
+<span class="sd">            The :code:`callback` function will run in the main process event loop.</span>
 <span class="sd">            All of the arguments to the :code:`callback` function must be picklable.</span>
 <span class="sd">        daemon:</span>
 <span class="sd">            Optional argument which will be passed to the Process</span>
@@ -543,8 +545,8 @@
 <span class="sd">        async def main() -&gt; None:</span>
 <span class="sd">            y = await run_subprocess_with_callback(my_subprocess, my_callback)</span>
 
-<span class="sd">            # If this main() function is cancelled while awaiting the</span>
-<span class="sd">            # subprocess then the subprocess will be terminated.</span>
+<span class="sd">            # If this main() function is cancelled while awaiting</span>
+<span class="sd">            # run_subprocess_with_callback then the subprocess will be terminated.</span>
 
 <span class="sd">            print(f&quot;my_subprocess returned {y}&quot;)</span>
 
@@ -645,7 +647,7 @@
 <span class="sd">                    functools.partial(my_subprocess, msg_queue),</span>
 <span class="sd">                    local_callback,</span>
 <span class="sd">                ),</span>
-<span class="sd">                send_messages())</span>
+<span class="sd">                send_messages(),</span>
 <span class="sd">            )</span>
 
 <span class="sd">            print(f&quot;my_subprocess returned {y}&quot;)</span>

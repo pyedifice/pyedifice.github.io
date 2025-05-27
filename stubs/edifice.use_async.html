@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async &#8212; Edifice 4.0.0 documentation</title>
+    <title>edifice.use_async &#8212; Edifice 4.0.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3304f9e4"></script>
+    <script src="../_static/documentation_options.js?v=977c7dfd"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.0.1 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.0.1 documentation - Home"/>
   
   
 </a></div>
@@ -542,7 +542,7 @@ Which is usually what we want.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="c1"># This function will run in a new Process.</span>
     <span class="n">callback</span><span class="p">(</span><span class="s2">&quot;Starting long calculation&quot;</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
     <span class="n">callback</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Finished long calculation&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">x</span>
@@ -578,7 +578,7 @@ Which is usually what we want.</p>
 During an <code class="code docutils literal notranslate"><span class="pre">async</span></code> function, Qt will get a chance to render the UI
 and process events every time there is an <code class="code docutils literal notranslate"><span class="pre">await</span></code>. Sometimes you may want
 to deliberately yield to the Qt event loop to allow it to render and process
-events. The way to do that is:</p>
+events. The way to do that is <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep">asyncio.sleep(0)</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
