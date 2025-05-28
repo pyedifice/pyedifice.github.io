@@ -582,18 +582,18 @@
 <span class="sd">    Pickling the subprocess</span>
 <span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^</span>
 
-<span class="sd">    .. note::</span>
+<span class="sd">    Because “only picklable objects can be executed” by a</span>
+<span class="sd">    `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_.</span>
+<span class="sd">    we cannot pass a local function with local variable bindings</span>
+<span class="sd">    as the :code:`subprocess`. The best workaround is to define at the module</span>
+<span class="sd">    top-level a :code:`subprocess` function which takes all its parameters as</span>
+<span class="sd">    arguments, and then use</span>
+<span class="sd">    `functools.partial &lt;https://docs.python.org/3/library/functools.html#functools.partial&gt;`_</span>
+<span class="sd">    to bind local values to the :code:`subprocess` parameters.</span>
+<span class="sd">    See below `Example of Queue messaging.`</span>
 
-<span class="sd">        Because “only picklable objects can be executed” by a</span>
-<span class="sd">        `Process &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process&gt;`_.</span>
-<span class="sd">        we cannot pass a local function as the :code:`subprocess`. The best</span>
-<span class="sd">        workaround is to define at the module top-level a :code:`subprocess`</span>
-<span class="sd">        function which takes all its parameters as arguments, and then use</span>
-<span class="sd">        `functools.partial &lt;https://docs.python.org/3/library/functools.html#functools.partial&gt;`_</span>
-<span class="sd">        to bind local values to the :code:`subprocess` parameters.</span>
-
-<span class="sd">        The :code:`callback` does not have this problem; we can pass a local</span>
-<span class="sd">        function as the :code:`callback`.</span>
+<span class="sd">    The :code:`callback` does not have this problem; we can pass a local</span>
+<span class="sd">    function as the :code:`callback`.</span>
 
 <span class="sd">    Messaging to the subprocess</span>
 <span class="sd">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
@@ -684,6 +684,16 @@
 <span class="sd">    `CancelledError &lt;https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError&gt;`_</span>
 <span class="sd">    which will be propagated and re-raised from</span>
 <span class="sd">    :func:`run_subprocess_with_callback` in the usual way.</span>
+
+<span class="sd">    PyInstaller</span>
+<span class="sd">    ^^^^^^^^^^^</span>
+
+<span class="sd">    If you build a distribution with `PyInstaller &lt;https://pyinstaller.org/&gt;`_</span>
+<span class="sd">    then you should call</span>
+<span class="sd">    `multiprocessing.freeze_support() &lt;https://docs.python.org/3/library/multiprocessing.html#multiprocessing.freeze_support&gt;`_</span>
+<span class="sd">    to divert the spawn Process</span>
+<span class="sd">    `before the __main__ imports &lt;https://pyinstaller.org/en/stable/common-issues-and-pitfalls.html#when-to-call-multiprocessing-freeze-support&gt;`_</span>
+<span class="sd">    so that the spawn Process starts up faster.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 

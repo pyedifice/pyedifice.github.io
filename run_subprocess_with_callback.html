@@ -432,8 +432,8 @@ The <code class="code docutils literal notranslate"><span class="pre">callback</
 <p>The <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> will be started with the
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods">“spawn” start method</a>,
 so it will not inherit any file handles from the calling process.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="c1"># This function will run in a new Process.</span>
     <span class="n">callback</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -484,18 +484,17 @@ will be raised from <a class="reference internal" href="#edifice.run_subprocess_
 </section>
 <section id="pickling-the-subprocess">
 <h2>Pickling the subprocess<a class="headerlink" href="#pickling-the-subprocess" title="Link to this heading">#</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
 <p>Because “only picklable objects can be executed” by a
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process">Process</a>.
-we cannot pass a local function as the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code>. The best
-workaround is to define at the module top-level a <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code>
-function which takes all its parameters as arguments, and then use
+we cannot pass a local function with local variable bindings
+as the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code>. The best workaround is to define at the module
+top-level a <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> function which takes all its parameters as
+arguments, and then use
 <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.partial">functools.partial</a>
-to bind local values to the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> parameters.</p>
+to bind local values to the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> parameters.
+See below <cite>Example of Queue messaging.</cite></p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">callback</span></code> does not have this problem; we can pass a local
 function as the <code class="code docutils literal notranslate"><span class="pre">callback</span></code>.</p>
-</div>
 </section>
 <section id="messaging-to-the-subprocess">
 <h2>Messaging to the subprocess<a class="headerlink" href="#messaging-to-the-subprocess" title="Link to this heading">#</a></h2>
@@ -508,8 +507,8 @@ and pass a messaging object to the <code class="code docutils literal notranslat
 <p>Because the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> is started in the
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods">“spawn” context</a>,
 we must create the <code class="code docutils literal notranslate"><span class="pre">Queue</span></code> in the <code class="code docutils literal notranslate"><span class="pre">&quot;spawn&quot;</span></code> context.</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">Example of Queue messaging from the main process to the subprocess</span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Example of Queue messaging from the main process to the subprocess</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span>
     <span class="c1"># This function will run in a new Process.</span>
     <span class="n">msg_queue</span><span class="p">:</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">queues</span><span class="o">.</span><span class="n">Queue</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
@@ -564,8 +563,8 @@ we must create the <code class="code docutils literal notranslate"><span class="
 <p>If you want the <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code> to run an <code class="code docutils literal notranslate"><span class="pre">async</span></code> function then
 make a new event loop and use that as the event loop in the
 <code class="code docutils literal notranslate"><span class="pre">subprocess</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">Example async subprocess function</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Example async subprocess function</span><a class="headerlink" href="#id8" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_subprocess</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="c1"># This function will run in a new Process.</span>
 
@@ -582,6 +581,15 @@ make a new event loop and use that as the event loop in the
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError">CancelledError</a>
 which will be propagated and re-raised from
 <a class="reference internal" href="#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> in the usual way.</p>
+</section>
+<section id="pyinstaller">
+<h2>PyInstaller<a class="headerlink" href="#pyinstaller" title="Link to this heading">#</a></h2>
+<p>If you build a distribution with <a class="reference external" href="https://pyinstaller.org/">PyInstaller</a>
+then you should call
+<a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.freeze_support">multiprocessing.freeze_support()</a>
+to divert the spawn Process
+<a class="reference external" href="https://pyinstaller.org/en/stable/common-issues-and-pitfalls.html#when-to-call-multiprocessing-freeze-support">before the __main__ imports</a>
+so that the spawn Process starts up faster.</p>
 </section>
 </dd></dl>
 
