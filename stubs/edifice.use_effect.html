@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_effect &#8212; Edifice 4.1.0 documentation</title>
+    <title>edifice.use_effect &#8212; Edifice 4.2.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=42d1b3bd"></script>
+    <script src="../_static/documentation_options.js?v=d0ae6d56"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.1.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.1.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.2.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.2.0 documentation - Home"/>
   
   
 </a></div>
@@ -444,6 +444,50 @@ a <a class="reference internal" href="edifice.use_state.html#edifice.use_state" 
         <span class="k">return</span> <span class="n">cleanup_handler</span>
 
     <span class="n">use_effect</span><span class="p">(</span><span class="n">setup_handler</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>You can use <code class="code docutils literal notranslate"><span class="pre">use_effect</span></code> to attach <code class="code docutils literal notranslate"><span class="pre">QWidget</span></code> event handlers that
+are not supported by Edifice. For example, Edifice supports the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.resizeEvent">resizeEvent</a>
+with the <code class="code docutils literal notranslate"><span class="pre">on_resize</span></code> <strong>prop</strong> for all
+<a class="reference internal" href="../base_components.html"><span class="doc">Base Elements</span></a>, but if it didn’t, then
+you could assign a custom <cite>on_resize_handler</cite> function this way.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">use_effect to attach and remove a QWidget event handler</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
+<span class="k">def</span> <span class="nf">MyComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="n">ref_textinput</span><span class="p">:</span> <span class="n">Reference</span><span class="p">[</span><span class="n">TextInput</span><span class="p">]</span> <span class="o">=</span> <span class="n">use_ref</span><span class="p">()</span>
+    <span class="n">textinput_size</span><span class="p">,</span> <span class="n">textinput_size_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">setup_resize_handler</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">textinput</span> <span class="o">=</span> <span class="n">ref_textinput</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">textinput</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">textinput</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">def</span> <span class="nf">on_resize_handler</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QResizeEvent</span><span class="p">):</span>
+            <span class="n">textinput_size_set</span><span class="p">((</span><span class="n">event</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">width</span><span class="p">(),</span> <span class="n">event</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">height</span><span class="p">()))</span>
+
+        <span class="c1"># The resizeEvent method “can be reimplemented in a subclass to</span>
+        <span class="c1"># receive widget resize events.” Or we can just assign to the</span>
+        <span class="c1"># method because this is Python.</span>
+        <span class="n">textinput</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span> <span class="o">=</span> <span class="n">on_resize_handler</span>
+
+        <span class="k">def</span> <span class="nf">cleanup_resize_handler</span><span class="p">():</span>
+            <span class="c1"># Restore the original resizeEvent method.</span>
+            <span class="n">textinput</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">resizeEvent</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">(</span>
+                <span class="nb">type</span><span class="p">(</span><span class="n">textinput</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span><span class="o">.</span><span class="n">resizeEvent</span><span class="p">,</span> <span class="n">textinput</span><span class="o">.</span><span class="n">underlying</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cleanup_resize_handler</span>
+
+    <span class="n">use_effect</span><span class="p">(</span><span class="n">setup_resize_handler</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">VBoxView</span><span class="p">():</span>
+        <span class="n">TextInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Type here&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">register_ref</span><span class="p">(</span><span class="n">ref_textinput</span><span class="p">)</span>
+        <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;TextInput size: </span><span class="si">{</span><span class="n">ref_textinput</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

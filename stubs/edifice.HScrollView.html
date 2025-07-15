@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.HScrollView &#8212; Edifice 4.1.0 documentation</title>
+    <title>edifice.HScrollView &#8212; Edifice 4.2.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=42d1b3bd"></script>
+    <script src="../_static/documentation_options.js?v=d0ae6d56"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.1.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.1.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.2.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.2.0 documentation - Home"/>
   
   
 </a></div>
@@ -388,9 +388,9 @@
 <h1>edifice.HScrollView<a class="headerlink" href="#edifice-hscrollview" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.HScrollView">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">HScrollView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#HScrollView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.HScrollView" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_LinearView</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QScrollArea</span></code>]</p>
-<p>Scrollable horizontal row layout widget.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">HScrollView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on_scroll_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_scroll_horizontal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_range_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_range_horizontal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#HScrollView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.HScrollView" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_ScrollView</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QHBoxLayout</span></code>]</p>
+<p>Scrollable vertical column layout.</p>
 <blockquote class="highlights">
 <div><ul class="simple">
 <li><p>Underlying Qt Widget <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QScrollArea.html">QScrollArea</a></p></li>
@@ -406,11 +406,26 @@
 </figure>
 <p>Overflows in both the <em>x</em> and <em>y</em> direction will cause a scrollbar to show.</p>
 <p class="rubric">Props</p>
-<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a>.</p>
+<p>All <strong>props</strong> from <a class="reference internal" href="edifice.QtWidgetElement.html#edifice.QtWidgetElement" title="edifice.QtWidgetElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QtWidgetElement</span></code></a> plus:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>on_scroll_vertical</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Event handler for when the vertical scrollbar position changes.
+See <cite>QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;</cite>.</p></li>
+<li><p><strong>on_scroll_horizontal</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Event handler for when the horizontal scrollbar position changes.
+See <cite>QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;</cite>.</p></li>
+<li><p><strong>on_range_vertical</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Event handler for when the vertical scrollbar range changes.
+See <cite>QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;</cite>.</p></li>
+<li><p><strong>on_range_horizontal</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Event handler for when the horizontal scrollbar range changes.
+See <cite>QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;</cite>.
+The event handler function will be passed the new range as a tuple of</p></li>
+</ul>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.HScrollView.__init__.html#edifice.HScrollView.__init__" title="edifice.HScrollView.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(**kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="stubs/edifice.HScrollView.__init__.html#edifice.HScrollView.__init__" title="edifice.HScrollView.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([on_scroll_vertical, ...])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="stubs/edifice.HScrollView.register_ref.html#edifice.HScrollView.register_ref" title="edifice.HScrollView.register_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_ref</span></code></a>(reference)</p></td>

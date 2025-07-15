@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 4.1.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 4.2.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
+    <script src="../../../_static/documentation_options.js?v=d0ae6d56"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.1.0 documentation - Home"/>
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.1.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.2.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.2.0 documentation - Home"/>
   
   
 </a></div>
@@ -419,6 +419,8 @@
 
 <span class="n">RGBAType</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
 
+<span class="n">_T_boxlayout</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_boxlayout&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QBoxLayout</span><span class="p">)</span>
+
 
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_get_image</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">:</span>
@@ -459,7 +461,6 @@
         <span class="n">new_w</span><span class="p">,</span> <span class="n">new_h</span> <span class="o">=</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">width</span><span class="p">(),</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
         <span class="n">pixmap</span> <span class="o">=</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">copy</span><span class="p">((</span><span class="n">new_w</span> <span class="o">-</span> <span class="n">w</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">new_h</span> <span class="o">-</span> <span class="n">h</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pixmap</span>
-
 
 
 <div class="viewcode-block" id="Icon">
@@ -2448,9 +2449,103 @@
 
 
 
+<span class="k">class</span> <span class="nc">_ScrollView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Generic</span><span class="p">[</span><span class="n">_T_boxlayout</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable view parameterized by layout.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">on_scroll_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;on_scroll_vertical&quot;</span><span class="p">:</span> <span class="n">on_scroll_vertical</span><span class="p">,</span>
+                <span class="s2">&quot;on_scroll_horizontal&quot;</span><span class="p">:</span> <span class="n">on_scroll_horizontal</span><span class="p">,</span>
+                <span class="s2">&quot;on_range_vertical&quot;</span><span class="p">:</span> <span class="n">on_range_vertical</span><span class="p">,</span>
+                <span class="s2">&quot;on_range_horizontal&quot;</span><span class="p">:</span> <span class="n">on_range_horizontal</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">:</span> <span class="n">_T_boxlayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">child_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">child_node</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">child_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">insertWidget</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWidgetResizable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
+        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">commands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recompute_children</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_scroll_vertical&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_scroll_horizontal&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_range_vertical&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_range_horizontal&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">commands</span>
+
+
 <div class="viewcode-block" id="VScrollView">
 <a class="viewcode-back" href="../../../stubs/edifice.VScrollView.html#edifice.VScrollView">[docs]</a>
-<span class="k">class</span> <span class="nc">VScrollView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">]):</span>
+<span class="k">class</span> <span class="nc">VScrollView</span><span class="p">(</span><span class="n">_ScrollView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable vertical column layout.</span>
 
 <span class="sd">    .. highlights::</span>
@@ -2468,61 +2563,52 @@
 <span class="sd">    .. rubric::</span>
 <span class="sd">        Props</span>
 
-<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        on_scroll_vertical:</span>
+<span class="sd">            Event handler for when the vertical scrollbar position changes.</span>
+<span class="sd">            See `QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;`.</span>
+<span class="sd">        on_scroll_horizontal:</span>
+<span class="sd">            Event handler for when the horizontal scrollbar position changes.</span>
+<span class="sd">            See `QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;`.</span>
+<span class="sd">        on_range_vertical:</span>
+<span class="sd">            Event handler for when the vertical scrollbar range changes.</span>
+<span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`.</span>
+<span class="sd">        on_range_horizontal:</span>
+<span class="sd">            Event handler for when the horizontal scrollbar range changes.</span>
+<span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="VScrollView.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.VScrollView.__init__.html#edifice.VScrollView.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">on_scroll_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">on_scroll_vertical</span><span class="o">=</span><span class="n">on_scroll_vertical</span><span class="p">,</span>
+            <span class="n">on_scroll_horizontal</span><span class="o">=</span><span class="n">on_scroll_horizontal</span><span class="p">,</span>
+            <span class="n">on_range_vertical</span><span class="o">=</span><span class="n">on_range_vertical</span><span class="p">,</span>
+            <span class="n">on_range_horizontal</span><span class="o">=</span><span class="n">on_range_horizontal</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
-
-    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">child_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">child_node</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">child_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">insertWidget</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWidgetResizable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="n">commands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recompute_children</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">),</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">commands</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span></div>
 
 
 
 <div class="viewcode-block" id="HScrollView">
 <a class="viewcode-back" href="../../../stubs/edifice.HScrollView.html#edifice.HScrollView">[docs]</a>
-<span class="k">class</span> <span class="nc">HScrollView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable horizontal row layout widget.</span>
+<span class="k">class</span> <span class="nc">HScrollView</span><span class="p">(</span><span class="n">_ScrollView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scrollable vertical column layout.</span>
 
 <span class="sd">    .. highlights::</span>
 
@@ -2539,54 +2625,46 @@
 <span class="sd">    .. rubric::</span>
 <span class="sd">        Props</span>
 
-<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        on_scroll_vertical:</span>
+<span class="sd">            Event handler for when the vertical scrollbar position changes.</span>
+<span class="sd">            See `QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;`.</span>
+<span class="sd">        on_scroll_horizontal:</span>
+<span class="sd">            Event handler for when the horizontal scrollbar position changes.</span>
+<span class="sd">            See `QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;`.</span>
+<span class="sd">        on_range_vertical:</span>
+<span class="sd">            Event handler for when the vertical scrollbar range changes.</span>
+<span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`.</span>
+<span class="sd">        on_range_horizontal:</span>
+<span class="sd">            Event handler for when the horizontal scrollbar range changes.</span>
+<span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`.</span>
+<span class="sd">            The event handler function will be passed the new range as a tuple of</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="HScrollView.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.HScrollView.__init__.html#edifice.HScrollView.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">on_scroll_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">on_scroll_vertical</span><span class="o">=</span><span class="n">on_scroll_vertical</span><span class="p">,</span>
+            <span class="n">on_scroll_horizontal</span><span class="o">=</span><span class="n">on_scroll_horizontal</span><span class="p">,</span>
+            <span class="n">on_range_vertical</span><span class="o">=</span><span class="n">on_range_vertical</span><span class="p">,</span>
+            <span class="n">on_range_horizontal</span><span class="o">=</span><span class="n">on_range_horizontal</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
-
-    <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">child_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">child_node</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_soft_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">takeAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">child_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">_add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">insertWidget</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">child_component</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QScrollArea</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWidgetResizable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">children</span> <span class="o">=</span> <span class="n">_get_widget_children</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="n">commands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recompute_children</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
-        <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">),</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">commands</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span></div>
 
 
 
@@ -2620,13 +2698,40 @@
 <span class="sd">    .. rubric::</span>
 <span class="sd">        Props</span>
 
-<span class="sd">    All **props** from :class:`QtWidgetElement`.</span>
+<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        on_scroll_vertical:</span>
+<span class="sd">            Event handler for when the vertical scrollbar position changes.</span>
+<span class="sd">            See `QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;`.</span>
+<span class="sd">        on_scroll_horizontal:</span>
+<span class="sd">            Event handler for when the horizontal scrollbar position changes.</span>
+<span class="sd">            See `QScrollBar.valueChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.valueChanged&gt;`.</span>
+<span class="sd">        on_range_vertical:</span>
+<span class="sd">            Event handler for when the vertical scrollbar range changes.</span>
+<span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`.</span>
+<span class="sd">        on_range_horizontal:</span>
+<span class="sd">            Event handler for when the horizontal scrollbar range changes.</span>
+<span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="FixScrollView.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.FixScrollView.__init__.html#edifice.FixScrollView.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">on_scroll_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">on_scroll_vertical</span><span class="o">=</span><span class="n">on_scroll_vertical</span><span class="p">,</span>
+            <span class="n">on_scroll_horizontal</span><span class="o">=</span><span class="n">on_scroll_horizontal</span><span class="p">,</span>
+            <span class="n">on_range_vertical</span><span class="o">=</span><span class="n">on_range_vertical</span><span class="p">,</span>
+            <span class="n">on_range_horizontal</span><span class="o">=</span><span class="n">on_range_horizontal</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
@@ -2664,6 +2769,36 @@
         <span class="n">commands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">),</span>
         <span class="p">)</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_scroll_vertical&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_scroll_horizontal&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_range_vertical&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_range_horizontal&quot;</span><span class="p">):</span>
+            <span class="k">case</span> <span class="n">propsold</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">propsold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">disconnect</span><span class="p">,</span> <span class="n">propsold</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
@@ -2807,7 +2942,7 @@
 <span class="sd">                ed.Button(&quot;0&quot;).set_key(&quot;0&quot;),                              ed.Button(&quot;.&quot;).set_key(&quot;.&quot;), ed.Button(&quot;*&quot;).set_key(&quot;/&quot;),</span>
 <span class="sd">            )</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
 
 <div class="viewcode-block" id="GridView.__init__">
 <a class="viewcode-back" href="../../../stubs/stubs/edifice.GridView.__init__.html#edifice.GridView.__init__">[docs]</a>
@@ -3084,12 +3219,12 @@
 <span class="c1"># &gt;                 if newprops[prop] is not None:</span>
 <span class="c1"># &gt;                     commands.append(CommandType(widget.setVerticalHeaderLabels, list(map(str, newprops[prop]))))</span>
 <span class="c1"># &gt;                 else:</span>
-<span class="c1"># &gt;                     commands.append(CommandType(widget.setVerticalHeaderLabels, list(map(str, range(newprops.rows)))))</span>
+<span class="c1"># &gt;                     commands.append(CommandType(widget.setVerticalHeaderLabels, list(map(str, range(newprops.rows)))))  # noqa: E501</span>
 <span class="c1"># &gt;             elif prop == &quot;column_headers&quot;:</span>
 <span class="c1"># &gt;                 if newprops[prop] is not None:</span>
 <span class="c1"># &gt;                     commands.append(CommandType(widget.setHorizontalHeaderLabels, list(map(str, newprops[prop]))))</span>
 <span class="c1"># &gt;                 else:</span>
-<span class="c1"># &gt;                     commands.append(CommandType(widget.setHorizontalHeaderLabels, list(map(str, range(newprops.columns)))))</span>
+<span class="c1"># &gt;                     commands.append(CommandType(widget.setHorizontalHeaderLabels, list(map(str, range(newprops.columns)))))  # noqa: E501</span>
 <span class="c1">#</span>
 <span class="c1"># &gt;         new_children = set()</span>
 <span class="c1"># &gt;         for child in children:</span>
@@ -3206,6 +3341,7 @@
         <span class="k">return</span> <span class="n">commands</span></div>
 
 
+
 <div class="viewcode-block" id="GroupBoxView">
 <a class="viewcode-back" href="../../../stubs/edifice.GroupBoxView.html#edifice.GroupBoxView">[docs]</a>
 <span class="k">class</span> <span class="nc">GroupBoxView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGroupBox</span><span class="p">]):</span>
@@ -3258,6 +3394,7 @@
                 <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">)</span></div>
+
 
     <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
         <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#detailed-description</span>
@@ -3320,7 +3457,6 @@
 
 
 
-
 <div class="viewcode-block" id="StackedView">
 <a class="viewcode-back" href="../../../stubs/edifice.StackedView.html#edifice.StackedView">[docs]</a>
 <span class="k">class</span> <span class="nc">StackedView</span><span class="p">(</span><span class="n">_LinearView</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]):</span>
@@ -3376,9 +3512,9 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
-            <span class="p">{</span>
-            <span class="p">},</span>
+            <span class="p">{},</span>
         <span class="p">)</span></div>
+
 
     <span class="k">def</span> <span class="nf">_delete_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">old_child</span><span class="p">:</span> <span class="n">QtWidgetElement</span><span class="p">):</span>  <span class="c1"># noqa: ARG002</span>
         <span class="c1"># https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#detailed-description</span>
