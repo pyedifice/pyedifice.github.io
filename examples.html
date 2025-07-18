@@ -627,7 +627,7 @@ common challenge of implementing an undo/redo functionality for a GUI applicatio
 </div></blockquote>
 <p><a class="reference external" href="https://github.com/pyedifice/pyedifice/tree/master/examples/7guis/7guis_06_circle_drawer.py">7guis_06_circle_drawer.py</a></p>
 <div class="literal-block-wrapper docutils container" id="id31">
-<div class="code-block-caption"><span class="caption-text">Run in Python environment (requires <a class="reference external" href="https://pypi.org/project/pyqtgraph/">pyqtgraph</a>)</span><a class="headerlink" href="#id31" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">Run in Python environment</span><a class="headerlink" href="#id31" title="Link to this code">#</a></div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/7guis/7guis_06_circle_drawer.py
 </pre></div>
 </div>
@@ -647,14 +647,6 @@ particular approach also scales to a somewhat bigger application. The two primar
 intelligent propagation of changes and widget customization.</p>
 </div></blockquote>
 <p><a class="reference external" href="https://github.com/pyedifice/pyedifice/tree/master/examples/7guis/7guis_07_cells.py">7guis_07_cells.py</a></p>
-<p>This is only a partial implementation of <strong>Cells</strong>. The basic GUI works but the formula language evaluation is not
-fully implemented yet.</p>
-<p>The spreadsheet is <em>10×10</em> instead of <em>100×100</em>.</p>
-<p>Formulas which are working:</p>
-<ul class="simple">
-<li><p><cite>=2</cite> evaluates to <cite>2</cite></p></li>
-<li><p><cite>=B2</cite> evaluates to the value of cell <cite>B2</cite>, recursively.</p></li>
-</ul>
 <div class="literal-block-wrapper docutils container" id="id33">
 <div class="code-block-caption"><span class="caption-text">Run in Python environment</span><a class="headerlink" href="#id33" title="Link to this code">#</a></div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/7guis/7guis_07_cells.py
@@ -667,6 +659,61 @@ fully implemented yet.</p>
 </pre></div>
 </div>
 </div>
+<p>This is a modified implementation of <strong>Cells</strong>.</p>
+<p>The spreadsheet is <em>10×10</em> instead of <em>100×100</em>.</p>
+<p>We can use the
+<a class="reference external" href="https://doc.qt.io/qtforpython-6.5/overviews/richtext-html-subset.html">Qt supported HTML subset</a>
+to markup text in the cells.</p>
+<section id="cells-formulas">
+<h3>Cells Formulas<a class="headerlink" href="#cells-formulas" title="Link to this heading">#</a></h3>
+<p>I didn’t feel like implementing the whole
+<a class="reference external" href="https://www.artima.com/pins1ed/the-scells-spreadsheet.html#33.3">SCells spreadsheet formula language</a>
+so instead the spreadsheet formula language is Python.</p>
+<p>If a cell begins with an equals sign <code class="code docutils literal notranslate"><span class="pre">=</span></code> then it is parsed as a formula expression.
+The formula expression following <code class="code docutils literal notranslate"><span class="pre">=</span></code> will be passed to Python
+<a class="reference external" href="https://docs.python.org/3/library/functions.html#eval">eval</a>
+with one variable in scope: <code class="code docutils literal notranslate"><span class="pre">sheet</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id35">
+<div class="code-block-caption"><span class="caption-text">sheet variable type</span><a class="headerlink" href="#id35" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sheet</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>The formula expression can use the <code class="code docutils literal notranslate"><span class="pre">sheet</span></code> variable to access the other cells
+in the spreadsheet.
+The <code class="code docutils literal notranslate"><span class="pre">sheet</span></code> variable is the spreadsheet as a tuple of tuples.
+It is column-major order, and the indices are <em>0</em>-based.
+The formula expression must evaluate to <code class="code docutils literal notranslate"><span class="pre">int</span></code>, <code class="code docutils literal notranslate"><span class="pre">float</span></code>, or <code class="code docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p>Python
+<a class="reference external" href="https://docs.python.org/3.13/tutorial/datastructures.html#list-comprehensions">filtered list comprehensions</a>
+are good for writing formulas. The
+<a class="reference external" href="https://docs.python.org/3.13/library/stdtypes.html#common-sequence-operations">Common Sequence Operations</a>
+also supply a lot of the features of a spreadsheet formula language.</p>
+<div class="literal-block-wrapper docutils container" id="id36">
+<div class="code-block-caption"><span class="caption-text">Example formula: Copy the value from column 5, row 6</span><a class="headerlink" href="#id36" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="n">sheet</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id37">
+<div class="code-block-caption"><span class="caption-text">Example formula: Sum all numbers in column 0</span><a class="headerlink" href="#id37" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sheet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id38">
+<div class="code-block-caption"><span class="caption-text">Example formula: Join all strings in row 0</span><a class="headerlink" href="#id38" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">sheet</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id39">
+<div class="code-block-caption"><span class="caption-text">Example formula: Find the maximum of all numbers in the range of rows <em>0 to 4</em> in columns <em>0 to 4</em></span><a class="headerlink" href="#id39" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sheet</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -731,7 +778,10 @@ fully implemented yet.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timer">Timer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crud">CRUD</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circle-drawer">Circle Drawer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cells">Cells</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cells">Cells</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cells-formulas">Cells Formulas</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
