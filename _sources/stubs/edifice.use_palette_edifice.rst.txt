@@ -1,0 +1,6 @@
+﻿edifice.use\_palette\_edifice
+=============================
+
+.. currentmodule:: edifice
+
+.. autofunction:: use_palette_edifice
