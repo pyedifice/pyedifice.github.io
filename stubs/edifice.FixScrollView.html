@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.FixScrollView &#8212; Edifice 4.3.0 documentation</title>
+    <title>edifice.FixScrollView &#8212; Edifice 4.4.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=a17b270f"></script>
+    <script src="../_static/documentation_options.js?v=2f20d6c1"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.3.0 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.3.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.4.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.4.0 documentation - Home"/>
   
   
 </a></div>
@@ -388,7 +388,7 @@
 <h1>edifice.FixScrollView<a class="headerlink" href="#edifice-fixscrollview" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="edifice.FixScrollView">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">FixScrollView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on_scroll_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_scroll_horizontal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_range_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_range_horizontal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#FixScrollView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.FixScrollView" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">FixScrollView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on_scroll_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_scroll_horizontal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_range_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_range_horizontal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrollbar_policy_horizontal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ScrollBarPolicy.ScrollBarAsNeeded</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrollbar_policy_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ScrollBarPolicy.ScrollBarAsNeeded</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/base_components/base_components.html#FixScrollView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.FixScrollView" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_LinearView</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QScrollArea</span></code>]</p>
 <p>Scrollable layout widget for child widgets with fixed position.</p>
 <blockquote class="highlights">
@@ -430,6 +430,10 @@ See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/
 <li><p><strong>on_range_horizontal</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – <p>Event handler for when the horizontal scrollbar range changes.
 See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged">QScrollBar.rangeChanged</a>.</p>
 </p></li>
+<li><p><strong>scrollbar_policy_horizontal</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollBarPolicy</span></code></span>) – The policy for the horizontal scrollbar.
+See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setHorizontalScrollBarPolicy">QAbstractScrollArea.setHorizontalScrollBarPolicy</a>.</p></li>
+<li><p><strong>scrollbar_policy_vertical</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollBarPolicy</span></code></span>) – The policy for the vertical scrollbar.
+See <a class="reference external" href="https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setVerticalScrollBarPolicy">QAbstractScrollArea.setVerticalScrollBarPolicy</a>.</p></li>
 </ul>
 </dd>
 </dl>

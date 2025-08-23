@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 4.3.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 4.4.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=a17b270f"></script>
+    <script src="../../../_static/documentation_options.js?v=2f20d6c1"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.3.0 documentation - Home"/>
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.3.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.4.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.4.0 documentation - Home"/>
   
   
 </a></div>
@@ -2458,6 +2458,8 @@
         <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_horizontal</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_vertical</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2467,6 +2469,8 @@
                 <span class="s2">&quot;on_scroll_horizontal&quot;</span><span class="p">:</span> <span class="n">on_scroll_horizontal</span><span class="p">,</span>
                 <span class="s2">&quot;on_range_vertical&quot;</span><span class="p">:</span> <span class="n">on_range_vertical</span><span class="p">,</span>
                 <span class="s2">&quot;on_range_horizontal&quot;</span><span class="p">:</span> <span class="n">on_range_horizontal</span><span class="p">,</span>
+                <span class="s2">&quot;scrollbar_policy_horizontal&quot;</span><span class="p">:</span> <span class="n">scrollbar_policy_horizontal</span><span class="p">,</span>
+                <span class="s2">&quot;scrollbar_policy_vertical&quot;</span><span class="p">:</span> <span class="n">scrollbar_policy_vertical</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying_layout</span><span class="p">:</span> <span class="n">_T_boxlayout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2540,6 +2544,12 @@
                     <span class="p">)</span>
                 <span class="k">if</span> <span class="n">propsnew</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">rangeChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;scrollbar_policy_horizontal&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setHorizontalScrollBarPolicy</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
+        <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;scrollbar_policy_vertical&quot;</span><span class="p">):</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setVerticalScrollBarPolicy</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">commands</span>
 
 
@@ -2578,6 +2588,12 @@
 <span class="sd">        on_range_horizontal:</span>
 <span class="sd">            Event handler for when the horizontal scrollbar range changes.</span>
 <span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`_.</span>
+<span class="sd">        scrollbar_policy_horizontal:</span>
+<span class="sd">            The policy for the horizontal scrollbar.</span>
+<span class="sd">            See `QAbstractScrollArea.setHorizontalScrollBarPolicy &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setHorizontalScrollBarPolicy&gt;`_.</span>
+<span class="sd">        scrollbar_policy_vertical:</span>
+<span class="sd">            The policy for the vertical scrollbar.</span>
+<span class="sd">            See `QAbstractScrollArea.setVerticalScrollBarPolicy &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setVerticalScrollBarPolicy&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="VScrollView.__init__">
@@ -2588,6 +2604,8 @@
         <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_horizontal</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_vertical</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2595,6 +2613,8 @@
             <span class="n">on_scroll_horizontal</span><span class="o">=</span><span class="n">on_scroll_horizontal</span><span class="p">,</span>
             <span class="n">on_range_vertical</span><span class="o">=</span><span class="n">on_range_vertical</span><span class="p">,</span>
             <span class="n">on_range_horizontal</span><span class="o">=</span><span class="n">on_range_horizontal</span><span class="p">,</span>
+            <span class="n">scrollbar_policy_horizontal</span><span class="o">=</span><span class="n">scrollbar_policy_horizontal</span><span class="p">,</span>
+            <span class="n">scrollbar_policy_vertical</span><span class="o">=</span><span class="n">scrollbar_policy_vertical</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
@@ -2641,6 +2661,13 @@
 <span class="sd">            Event handler for when the horizontal scrollbar range changes.</span>
 <span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`_.</span>
 <span class="sd">            The event handler function will be passed the new range as a tuple of</span>
+<span class="sd">        scrollbar_policy_horizontal:</span>
+<span class="sd">            The policy for the horizontal scrollbar.</span>
+<span class="sd">            See `QAbstractScrollArea.setHorizontalScrollBarPolicy &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setHorizontalScrollBarPolicy&gt;`_.</span>
+<span class="sd">        scrollbar_policy_vertical:</span>
+<span class="sd">            The policy for the vertical scrollbar.</span>
+<span class="sd">            See `QAbstractScrollArea.setVerticalScrollBarPolicy &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setVerticalScrollBarPolicy&gt;`_.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="HScrollView.__init__">
@@ -2651,6 +2678,8 @@
         <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_horizontal</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_vertical</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2658,6 +2687,8 @@
             <span class="n">on_scroll_horizontal</span><span class="o">=</span><span class="n">on_scroll_horizontal</span><span class="p">,</span>
             <span class="n">on_range_vertical</span><span class="o">=</span><span class="n">on_range_vertical</span><span class="p">,</span>
             <span class="n">on_range_horizontal</span><span class="o">=</span><span class="n">on_range_horizontal</span><span class="p">,</span>
+            <span class="n">scrollbar_policy_horizontal</span><span class="o">=</span><span class="n">scrollbar_policy_horizontal</span><span class="p">,</span>
+            <span class="n">scrollbar_policy_vertical</span><span class="o">=</span><span class="n">scrollbar_policy_vertical</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
@@ -2713,6 +2744,12 @@
 <span class="sd">        on_range_horizontal:</span>
 <span class="sd">            Event handler for when the horizontal scrollbar range changes.</span>
 <span class="sd">            See `QScrollBar.rangeChanged &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractSlider.html#PySide6.QtWidgets.QAbstractSlider.rangeChanged&gt;`_.</span>
+<span class="sd">        scrollbar_policy_horizontal:</span>
+<span class="sd">            The policy for the horizontal scrollbar.</span>
+<span class="sd">            See `QAbstractScrollArea.setHorizontalScrollBarPolicy &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setHorizontalScrollBarPolicy&gt;`_.</span>
+<span class="sd">        scrollbar_policy_vertical:</span>
+<span class="sd">            The policy for the vertical scrollbar.</span>
+<span class="sd">            See `QAbstractScrollArea.setVerticalScrollBarPolicy &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea.setVerticalScrollBarPolicy&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="FixScrollView.__init__">
@@ -2723,6 +2760,8 @@
         <span class="n">on_scroll_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_vertical</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">on_range_horizontal</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_horizontal</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
+        <span class="n">scrollbar_policy_vertical</span><span class="p">:</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ScrollBarPolicy</span><span class="o">.</span><span class="n">ScrollBarAsNeeded</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2730,6 +2769,8 @@
             <span class="n">on_scroll_horizontal</span><span class="o">=</span><span class="n">on_scroll_horizontal</span><span class="p">,</span>
             <span class="n">on_range_vertical</span><span class="o">=</span><span class="n">on_range_vertical</span><span class="p">,</span>
             <span class="n">on_range_horizontal</span><span class="o">=</span><span class="n">on_range_horizontal</span><span class="p">,</span>
+            <span class="n">scrollbar_policy_horizontal</span><span class="o">=</span><span class="n">scrollbar_policy_horizontal</span><span class="p">,</span>
+            <span class="n">scrollbar_policy_vertical</span><span class="o">=</span><span class="n">scrollbar_policy_vertical</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
