@@ -591,6 +591,12 @@ to divert the spawn Process
 <a class="reference external" href="https://pyinstaller.org/en/stable/common-issues-and-pitfalls.html#when-to-call-multiprocessing-freeze-support">before the __main__ imports</a>
 so that the spawn Process starts up faster.</p>
 </section>
+<section id="independence">
+<h2>Independence<a class="headerlink" href="#independence" title="Link to this heading">#</a></h2>
+<p>This <a class="reference internal" href="#edifice.run_subprocess_with_callback" title="edifice.run_subprocess_with_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_subprocess_with_callback()</span></code></a> module depends only on the
+Python standard library so this module file can be copied and pasted into
+another project without depending on the Edifice package.</p>
+</section>
 </dd></dl>
 
 </section>

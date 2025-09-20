@@ -554,11 +554,16 @@ child Elements in the tree, use the parent as a
 which has child Elements representing different parts of your application.</p>
 <section id="dynamic-rendering">
 <h3>Dynamic Rendering<a class="headerlink" href="#dynamic-rendering" title="Link to this heading">#</a></h3>
-<p>For dynamism, use conditions and loops in your <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>
-render function.
-The conditions and loops can depend on <strong>props</strong> or <strong>state</strong>. For example,
+<p>For dynamism, use Python control flow
+statements <code class="code docutils literal notranslate"><span class="pre">if</span></code> <code class="code docutils literal notranslate"><span class="pre">for</span></code> <code class="code docutils literal notranslate"><span class="pre">match</span></code> in
+your <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> render function.
+The control flow statements can depend on <strong>props</strong> or <strong>state</strong>. For example,
 this <a class="reference internal" href="stubs/edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> will render input fields only while
 the <strong>props</strong> indicate that they are wanted.</p>
+<ul class="simple">
+<li><p>When the <code class="code docutils literal notranslate"><span class="pre">want_username</span></code> <strong>prop</strong> becomes <code class="code docutils literal notranslate"><span class="pre">True</span></code> then the entire username subtree will be added.</p></li>
+<li><p>When the <code class="code docutils literal notranslate"><span class="pre">want_username</span></code> <strong>prop</strong> becomes <code class="code docutils literal notranslate"><span class="pre">False</span></code> then the entire username subtree will be removed.</p></li>
+</ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@component</span>
 <span class="k">def</span> <span class="nf">MyApp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">want_username</span><span class="p">:</span><span class="nb">bool</span><span class="p">,</span> <span class="n">want_email</span><span class="p">:</span><span class="nb">bool</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">Window</span><span class="p">():</span>

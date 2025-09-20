@@ -406,9 +406,9 @@
 
 <span class="c1"># Edifice run_subprocess_with_callback 2025 by James D. Brock</span>
 <span class="c1">#</span>
-<span class="c1"># This run_subprocess_with_callback module file depends only on the Python</span>
-<span class="c1"># standard library so it can copied and pasted into any project without</span>
-<span class="c1"># modification.</span>
+<span class="c1"># This run_subprocess_with_callback module depends only on the</span>
+<span class="c1"># Python standard library so this module file can be copied and pasted into</span>
+<span class="c1"># another project without depending on the Edifice package.</span>
 
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
@@ -695,6 +695,12 @@
 <span class="sd">    `before the __main__ imports &lt;https://pyinstaller.org/en/stable/common-issues-and-pitfalls.html#when-to-call-multiprocessing-freeze-support&gt;`_</span>
 <span class="sd">    so that the spawn Process starts up faster.</span>
 
+<span class="sd">    Independence</span>
+<span class="sd">    ^^^^^^^^^^^^</span>
+
+<span class="sd">    This :func:`run_subprocess_with_callback` module depends only on the</span>
+<span class="sd">    Python standard library so this module file can be copied and pasted into</span>
+<span class="sd">    another project without depending on the Edifice package.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 
