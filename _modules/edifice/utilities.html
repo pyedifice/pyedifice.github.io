@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.utilities &#8212; Edifice 4.4.1 documentation</title>
+    <title>edifice.utilities &#8212; Edifice 5.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=8b5852d8"></script>
+    <script src="../../_static/documentation_options.js?v=ce74c6a2"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.4.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.4.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 5.0.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 5.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -385,24 +385,18 @@
 
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">deprecated</span>
-
 <span class="kn">from</span> <span class="nn">.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 
 <span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">==</span> <span class="s2">&quot;PyQt6&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tp</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
     <span class="kn">from</span> <span class="nn">PyQt6.QtGui</span> <span class="kn">import</span> <span class="n">QColor</span><span class="p">,</span> <span class="n">QPalette</span>
     <span class="kn">from</span> <span class="nn">PyQt6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
     <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QColor</span><span class="p">,</span> <span class="n">QPalette</span>
     <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
 
 <span class="kn">from</span> <span class="nn">.run_subprocess_with_callback</span> <span class="kn">import</span> <span class="n">run_subprocess_with_callback</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;alert&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;file_dialog&quot;</span><span class="p">,</span>
     <span class="s2">&quot;palette_dump&quot;</span><span class="p">,</span>
     <span class="s2">&quot;palette_edifice_dark&quot;</span><span class="p">,</span>
     <span class="s2">&quot;palette_edifice_light&quot;</span><span class="p">,</span>
@@ -640,67 +634,6 @@
     <span class="n">palette</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="n">QPalette</span><span class="o">.</span><span class="n">ColorGroup</span><span class="o">.</span><span class="n">Inactive</span><span class="p">,</span> <span class="n">QPalette</span><span class="o">.</span><span class="n">ColorRole</span><span class="o">.</span><span class="n">Accent</span><span class="p">,</span> <span class="n">QColor</span><span class="o">.</span><span class="n">fromRgb</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">palette</span></div>
 
-
-
-<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead use WindowPopView&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">alert</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">    .. warning:: Deprecated</span>
-
-<span class="sd">    Displays a message in an alert box.</span>
-
-<span class="sd">    If choices is specified, the alert box contain a list of buttons showing each of the choices,</span>
-<span class="sd">    and this function will return the user&#39;s choice.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        message: message to display</span>
-<span class="sd">        choices: optional list of choice texts, which will be displayed as buttons.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        Index of chosen option.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">msgbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
-    <span class="n">msgbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-    <span class="n">buttons</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
-            <span class="n">buttons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msgbox</span><span class="o">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">ButtonRole</span><span class="o">.</span><span class="n">ActionRole</span><span class="p">))</span>  <span class="c1"># noqa: PERF401</span>
-    <span class="n">msgbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
-    <span class="n">clicked_button</span> <span class="o">=</span> <span class="n">msgbox</span><span class="o">.</span><span class="n">clickedButton</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">button</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">buttons</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">clicked_button</span> <span class="o">==</span> <span class="n">button</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">i</span>
-    <span class="k">return</span> <span class="kc">None</span>
-
-
-<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead use https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QFileDialog.html directly&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">file_dialog</span><span class="p">(</span>
-    <span class="n">caption</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">file_filter</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Displays a file choice dialog.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        caption: the file dialog&#39;s caption</span>
-<span class="sd">        directory: starting directory for the file dialog</span>
-<span class="sd">        file_filter:</span>
-<span class="sd">            Sequence of allowed file extensions. For example::</span>
-
-<span class="sd">                &quot;*.cpp *.cc *.C *.c++&quot;</span>
-<span class="sd">                &quot;C++ files (*.cpp *.cc *.C *.c++)&quot;</span>
-
-<span class="sd">            are both valid ways of specifying a file filter.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        Path of chosen file</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dialog</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QFileDialog</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">caption</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
-    <span class="n">dialog</span><span class="o">.</span><span class="n">setFileMode</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QFileDialog</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">AnyFile</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">file_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">dialog</span><span class="o">.</span><span class="n">setNameFilters</span><span class="p">(</span><span class="n">file_filter</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="o">.</span><span class="n">DialogCode</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">dialog</span><span class="o">.</span><span class="n">selectedFiles</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="kc">None</span>
 
 
 <span class="c1"># TODO deprecate? Instead what? https://github.com/microsoft/debugpy ?</span>

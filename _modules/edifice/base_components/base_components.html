@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 4.4.1 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 5.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=8b5852d8"></script>
+    <script src="../../../_static/documentation_options.js?v=ce74c6a2"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.4.1 documentation - Home"/>
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.4.1 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 5.0.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 5.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -389,8 +389,6 @@
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
 
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">deprecated</span>
-
 <span class="kn">import</span> <span class="nn">edifice.icons</span>
 <span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">_CURSORS</span><span class="p">,</span>
@@ -463,130 +461,6 @@
     <span class="k">return</span> <span class="n">pixmap</span>
 
 
-<div class="viewcode-block" id="Icon">
-<a class="viewcode-back" href="../../../stubs/edifice.Icon.html#edifice.Icon">[docs]</a>
-<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead use ImageSvg&quot;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Icon</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an Icon.</span>
-
-<span class="sd">    .. warning:: Deprecated</span>
-
-<span class="sd">        Instead use :class:`ImageSvg`.</span>
-
-<span class="sd">    .. highlights::</span>
-
-<span class="sd">        - Underlying Qt Widget `QLabel &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html&gt;`_</span>
-
-<span class="sd">    .. rubric:: Props</span>
-
-<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        name:</span>
-<span class="sd">            name of the icon. Search for the name on https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
-<span class="sd">        size:</span>
-<span class="sd">            size of the icon.</span>
-<span class="sd">        collection:</span>
-<span class="sd">            the icon package. Currently only font-awesome is supported.</span>
-<span class="sd">        sub_collection:</span>
-<span class="sd">            for font awesome, either solid or regular</span>
-<span class="sd">        color:</span>
-<span class="sd">            the RGBA value for the icon color</span>
-<span class="sd">        rotation:</span>
-<span class="sd">            an angle (in degrees) for the icon rotation</span>
-
-<span class="sd">    .. rubric:: Usage</span>
-
-<span class="sd">    .. figure:: /image/icons.png</span>
-<span class="sd">       :width: 300</span>
-
-<span class="sd">       Two icons</span>
-
-<span class="sd">    Icons are central to modern-looking UI design.</span>
-<span class="sd">    Edifice comes with the Font Awesome (https://fontawesome.com) regular and solid</span>
-<span class="sd">    icon sets, to save you time from looking up your own icon set.</span>
-<span class="sd">    You can specify an icon simplify using its name (and optionally the sub_collection).</span>
-
-<span class="sd">    .. code-block:: python</span>
-<span class="sd">        :caption: Example classic share icon</span>
-
-<span class="sd">        Icon(name=&quot;share&quot;)</span>
-
-<span class="sd">    You can browse and search for icons here: https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
-
-<span class="sd">    For full control of custom icons, use an :class:`ImageSvg` instead.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="Icon.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.Icon.__init__.html#edifice.Icon.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="n">collection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;font-awesome&quot;</span><span class="p">,</span>
-        <span class="n">sub_collection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;solid&quot;</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="n">RGBAType</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
-        <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
-                <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
-                <span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="n">collection</span><span class="p">,</span>
-                <span class="s2">&quot;sub_collection&quot;</span><span class="p">:</span> <span class="n">sub_collection</span><span class="p">,</span>
-                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
-                <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="n">rotation</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-
-    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
-
-    <span class="k">def</span> <span class="nf">_render_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_get_svg_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">)</span>
-        <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
-
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands_super</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-        <span class="n">icon_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ICONS</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;collection&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;sub_collection&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.svg&quot;</span><span class="p">))</span>
-
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;size&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;collection&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;sub_collection&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-        <span class="p">):</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">CommandType</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_render_image</span><span class="p">,</span>
-                    <span class="n">icon_path</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">],</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">],</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;rotation&quot;</span><span class="p">],</span>
-                <span class="p">),</span>
-            <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">commands</span></div>
-
-
-
 <div class="viewcode-block" id="Button">
 <a class="viewcode-back" href="../../../stubs/edifice.Button.html#edifice.Button">[docs]</a>
 <span class="k">class</span> <span class="nc">Button</span><span class="p">(</span><span class="n">QtWidgetElement</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">]):</span>
@@ -644,111 +518,6 @@
         <span class="k">match</span> <span class="n">diff_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">):</span>
             <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">:</span>
                 <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CommandType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setText</span><span class="p">,</span> <span class="n">propsnew</span><span class="p">))</span>
-
-        <span class="k">return</span> <span class="n">commands</span></div>
-
-
-
-<div class="viewcode-block" id="IconButton">
-<a class="viewcode-back" href="../../../stubs/edifice.IconButton.html#edifice.IconButton">[docs]</a>
-<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead use ButtonView&quot;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">IconButton</span><span class="p">(</span><span class="n">Button</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an Icon Button.</span>
-
-<span class="sd">    .. warning:: Deprecated</span>
-
-<span class="sd">        Instead use :class:`ButtonView`.</span>
-
-<span class="sd">    .. highlights::</span>
-
-<span class="sd">        - Underlying Qt Widget `QPushButton &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QPushButton.html&gt;`_</span>
-
-<span class="sd">    .. rubric:: Props</span>
-
-<span class="sd">    All **props** from :class:`QtWidgetElement` plus:</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        name: name of the icon. Search for icon names on https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
-<span class="sd">        size: size of the icon.</span>
-<span class="sd">        collection: the icon package. Currently only font-awesome is supported.</span>
-<span class="sd">        sub_collection: for font awesome, either solid or regular</span>
-<span class="sd">        color: the RGBA value for the icon color</span>
-<span class="sd">        rotation: an angle (in degrees) for the icon rotation</span>
-
-<span class="sd">    .. rubric:: Usage</span>
-
-<span class="sd">    .. figure:: /image/icons.png</span>
-<span class="sd">       :width: 300</span>
-
-<span class="sd">       Icon button on the very right.</span>
-
-<span class="sd">    Icons are fairly central to modern-looking UI design;</span>
-<span class="sd">    this Element allows you to put an icon in a button.</span>
-<span class="sd">    Edifice comes with the Font Awesome (https://fontawesome.com) regular and solid</span>
-<span class="sd">    icon sets, to save you time from looking up your own icon set.</span>
-<span class="sd">    You can specify an icon simplify using its name (and optionally the sub_collection).</span>
-
-<span class="sd">    You can browse and search for icons here: https://fontawesome.com/icons?d=gallery&amp;s=regular,solid</span>
-
-<span class="sd">    .. code-block:: python</span>
-<span class="sd">        :caption: Example share icon button</span>
-
-<span class="sd">        IconButton(name=&quot;share&quot;, on_click: lambda _: share())</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="IconButton.__init__">
-<a class="viewcode-back" href="../../../stubs/stubs/edifice.IconButton.__init__.html#edifice.IconButton.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="n">collection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;font-awesome&quot;</span><span class="p">,</span>
-        <span class="n">sub_collection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;solid&quot;</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
-        <span class="n">rotation</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
-                <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
-                <span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="n">collection</span><span class="p">,</span>
-                <span class="s2">&quot;sub_collection&quot;</span><span class="p">:</span> <span class="n">sub_collection</span><span class="p">,</span>
-                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
-                <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="n">rotation</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_props</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-
-    <span class="k">def</span> <span class="nf">_qt_update_commands</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">widget_trees</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="n">_WidgetTree</span><span class="p">],</span>
-        <span class="n">diff_props</span><span class="p">:</span> <span class="n">PropsDiff</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="n">commands</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_qt_update_commands</span><span class="p">(</span><span class="n">widget_trees</span><span class="p">,</span> <span class="n">diff_props</span><span class="p">)</span>
-        <span class="n">icon_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ICONS</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;collection&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;sub_collection&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.svg&quot;</span><span class="p">))</span>
-
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-        <span class="k">def</span> <span class="nf">render_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
-            <span class="n">pixmap</span> <span class="o">=</span> <span class="n">_get_svg_image</span><span class="p">(</span><span class="n">icon_path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">)</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="n">widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="p">)</span>
-            <span class="n">widget</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="n">pixmap</span><span class="p">))</span>
-
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;size&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;collection&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;sub_collection&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-            <span class="ow">or</span> <span class="s2">&quot;rotation&quot;</span> <span class="ow">in</span> <span class="n">diff_props</span>
-        <span class="p">):</span>
-            <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">CommandType</span><span class="p">(</span><span class="n">render_image</span><span class="p">,</span> <span class="n">icon_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;rotation&quot;</span><span class="p">]),</span>
-            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">commands</span></div>
 

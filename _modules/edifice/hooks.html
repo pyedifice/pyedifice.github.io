@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.hooks &#8212; Edifice 4.4.1 documentation</title>
+    <title>edifice.hooks &#8212; Edifice 5.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=8b5852d8"></script>
+    <script src="../../_static/documentation_options.js?v=ce74c6a2"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.4.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.4.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 5.0.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 5.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -384,14 +384,11 @@
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
-<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">get_event_loop</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">cast</span>
 
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">deprecated</span>
-
-<span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="n">Reference</span><span class="p">,</span> <span class="n">_T_use_state</span><span class="p">,</span> <span class="n">get_render_context_maybe</span>
+<span class="kn">from</span> <span class="nn">edifice.engine</span> <span class="kn">import</span> <span class="n">Reference</span><span class="p">,</span> <span class="n">_P_async</span><span class="p">,</span> <span class="n">_T_use_state</span><span class="p">,</span> <span class="n">get_render_context_maybe</span>
 <span class="kn">from</span> <span class="nn">edifice.qt</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
 <span class="kn">from</span> <span class="nn">edifice.utilities</span> <span class="kn">import</span> <span class="n">palette_edifice_dark</span><span class="p">,</span> <span class="n">palette_edifice_light</span><span class="p">,</span> <span class="n">theme_is_light</span>
 
@@ -737,6 +734,7 @@
 <span class="k">def</span> <span class="nf">use_async</span><span class="p">(</span>
     <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
     <span class="n">dependencies</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">(),</span>
+    <span class="n">max_concurrent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Asynchronous side-effect Hook inside a :func:`@component&lt;edifice.component&gt;` function.</span>
@@ -747,12 +745,20 @@
 <span class="sd">        dependencies:</span>
 <span class="sd">            The :code:`fn_coroutine` Task will be started when the</span>
 <span class="sd">            :code:`dependencies` are not :code:`__eq__` to the old :code:`dependencies`.</span>
+<span class="sd">        max_concurrent:</span>
+<span class="sd">            Maximum number of concurrent :code:`fn_coroutine` Tasks to allow</span>
+<span class="sd">            to run at the same time. If this limit is exceeded, then the oldest</span>
+<span class="sd">            :code:`fn_coroutine` Task will be cancelled to make room for the new</span>
+<span class="sd">            Task. Default is :code:`1`. Set to :code:`None` to allow unlimited</span>
+<span class="sd">            concurrency.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        A function which can be called to cancel the :code:`fn_coroutine` Task manually.</span>
 
 <span class="sd">    Will create a new</span>
 <span class="sd">    `Task &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task&gt;`_</span>
 <span class="sd">    with the :code:`fn_coroutine` coroutine.</span>
+<span class="sd">    This Task will be bound to the</span>
+<span class="sd">    lifecycle of this :func:`@component&lt;edifice.component&gt;`.</span>
 
 <span class="sd">    The :code:`fn_coroutine` will be called every time the :code:`dependencies` change.</span>
 <span class="sd">    Only one :code:`fn_coroutine` will be allowed to run at a time.</span>
@@ -797,15 +803,15 @@
 <span class="sd">    in three situations:</span>
 
 <span class="sd">    1. If the :code:`dependencies` change before the :code:`fn_coroutine` Task completes, then</span>
-<span class="sd">       the :code:`fn_coroutine` Task will be cancelled. Then the new</span>
-<span class="sd">       :code:`fn_coroutine` Task will</span>
-<span class="sd">       be started after the old :code:`fn_coroutine` Task completes.</span>
+<span class="sd">       the :code:`fn_coroutine` Task will be cancelled if the</span>
+<span class="sd">       :code:`max_concurrent` limit is exceeded so that the new</span>
+<span class="sd">       :code:`fn_coroutine` Task can start.</span>
 <span class="sd">    2. The :code:`use_async` Hook returns a function which can be called to</span>
-<span class="sd">       cancel the :code:`fn_coroutine` Task manually. In the example above,</span>
+<span class="sd">       cancel the :code:`fn_coroutine` Tasks manually. In the example above,</span>
 <span class="sd">       the :code:`cancel_fetcher()` function can be called to cancel the fetcher.</span>
 <span class="sd">    3. If this :func:`@component &lt;edifice.component&gt;` is unmounted before the</span>
-<span class="sd">       :code:`fn_coroutine` Task completes, then</span>
-<span class="sd">       the :code:`fn_coroutine` Task will be cancelled.</span>
+<span class="sd">       :code:`fn_coroutine` Tasks complete, then</span>
+<span class="sd">       the :code:`fn_coroutine` Tasks will be cancelled.</span>
 
 <span class="sd">    Write your async :code:`fn_coroutine` function in such a way that it</span>
 <span class="sd">    cleans itself up after exceptions. If you catch a</span>
@@ -942,7 +948,7 @@
     <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_async used outside component&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">current_element</span><span class="p">,</span> <span class="n">fn_coroutine</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">use_async</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">current_element</span><span class="p">,</span> <span class="n">fn_coroutine</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">max_concurrent</span><span class="o">=</span><span class="n">max_concurrent</span><span class="p">)</span></div>
 
 
 
@@ -958,43 +964,11 @@
 
 
 
-<span class="n">_P_callback</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P_callback&quot;</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="use_callback">
-<a class="viewcode-back" href="../../stubs/edifice.use_callback.html#edifice.use_callback">[docs]</a>
-<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Instead use use_memo&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">use_callback</span><span class="p">(</span>
-    <span class="n">fn</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
-    <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_callback</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Deprecated alias for :func:`use_memo`.</span>
-
-<span class="sd">    .. warning::</span>
-
-<span class="sd">        Deprecated</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        The memoized **value** from calling :code:`fn`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">use_memo</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span></div>
-
-
-
-<span class="n">_P_async</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P_async&quot;</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">_AsyncCommand</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">_P_async</span><span class="p">]):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
-
-
 <div class="viewcode-block" id="use_async_call">
 <a class="viewcode-back" href="../../stubs/edifice.use_async_call.html#edifice.use_async_call">[docs]</a>
 <span class="k">def</span> <span class="nf">use_async_call</span><span class="p">(</span>
-    <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]],</span>
+    <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
+    <span class="n">max_concurrent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Hook to call an async function from a non-async context.</span>
@@ -1002,13 +976,24 @@
 <span class="sd">    Args:</span>
 <span class="sd">        fn_coroutine:</span>
 <span class="sd">            Async Coroutine function to be run as a Task.</span>
+<span class="sd">        max_concurrent:</span>
+<span class="sd">            Maximum number of concurrent :code:`fn_coroutine` Tasks allowed</span>
+<span class="sd">            to run at the same time. If this limit is exceeded, then the oldest</span>
+<span class="sd">            :code:`fn_coroutine` Task will be cancelled to make room for the new</span>
+<span class="sd">            Task. Default is :code:`1`. Set to :code:`None` to allow unlimited</span>
+<span class="sd">            concurrency.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        A tuple pair of non-async functions.</span>
 <span class="sd">            1. A non-async function with the same argument signature as the</span>
 <span class="sd">               :code:`fn_coroutine`.</span>
 <span class="sd">            2. A non-async cancellation function which can be called to cancel</span>
-<span class="sd">               the :code:`fn_coroutine` Task manually.</span>
+<span class="sd">               all of the :code:`fn_coroutine` Tasks manually.</span>
 
+<span class="sd">    Will create a new</span>
+<span class="sd">    `Task &lt;https://docs.python.org/3/library/asyncio-task.html#asyncio.Task&gt;`_</span>
+<span class="sd">    with the :code:`fn_coroutine` coroutine.</span>
+<span class="sd">    This Task will be bound to the</span>
+<span class="sd">    lifecycle of this :func:`@component&lt;edifice.component&gt;`.</span>
 <span class="sd">    The async :code:`fn_coroutine` function can have any argument</span>
 <span class="sd">    signature, but it must return :code:`None`. The return value is discarded.</span>
 
@@ -1017,12 +1002,10 @@
 
 <span class="sd">    1. A non-async function with the same argument signature as the</span>
 <span class="sd">       :code:`fn_coroutine`. When called, this non-async function will start a</span>
-<span class="sd">       new Task an the main Edifice thread event loop as a :func:`use_async`</span>
-<span class="sd">       Hook which calls :code:`fn_coroutine`. This non-async function is</span>
-<span class="sd">       safe to call from any thread.</span>
+<span class="sd">       new Task an the main Edifice thread event loop</span>
+<span class="sd">       which calls :code:`fn_coroutine`.</span>
 <span class="sd">    2. A non-async cancellation function which can be called to cancel</span>
-<span class="sd">       the :code:`fn_coroutine` Task manually. This cancellation function is</span>
-<span class="sd">       safe to call from any thread.</span>
+<span class="sd">       the :code:`fn_coroutine` Task manually.</span>
 
 <span class="sd">    .. code-block:: python</span>
 <span class="sd">        :caption: use_async_call to delay print</span>
@@ -1033,41 +1016,29 @@
 
 <span class="sd">        delay_print, cancel_print = use_async_call(delay_print_async)</span>
 
-<span class="sd">        delay_print(&quot;Hello World&quot;)</span>
+<span class="sd">        Button(</span>
+<span class="sd">            text=&quot;Print Hello World after 1 second&quot;,</span>
+<span class="sd">            on_click=lambda _: delay_print(&quot;Hello World&quot;)</span>
+<span class="sd">        )</span>
+<span class="sd">        Button(</span>
+<span class="sd">            text=&quot;Cancel print&quot;,</span>
+<span class="sd">            on_click=lambda _: cancel_print()</span>
+<span class="sd">        )</span>
 
-<span class="sd">    Some time later, if we want to manually cancel the delayed print:</span>
-
-<span class="sd">    .. code-block:: python</span>
-<span class="sd">        :caption: cancel the delayed print</span>
-
-<span class="sd">        cancel_print()</span>
 
 <span class="sd">    This Hook is similar to :code:`useAsyncCallback` from</span>
 <span class="sd">    https://www.npmjs.com/package/react-async-hook</span>
 
 <span class="sd">    This Hook is similar to</span>
 <span class="sd">    `create_task() &lt;https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.create_task&gt;`_ ,</span>
-<span class="sd">    but because it uses</span>
-<span class="sd">    :func:`use_async`, it will cancel the Task</span>
-<span class="sd">    when this :func:`@component&lt;edifice.component&gt;` is unmounted, or when the function is called again.</span>
+<span class="sd">    but it will cancel the Task</span>
+<span class="sd">    when this :func:`@component&lt;edifice.component&gt;` is unmounted, or when the</span>
+<span class="sd">    concurrency limit is exceeded.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">triggered</span><span class="p">,</span> <span class="n">triggered_set</span> <span class="o">=</span> <span class="n">use_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">_AsyncCommand</span><span class="p">[</span><span class="n">_P_async</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-    <span class="n">loop</span> <span class="o">=</span> <span class="n">get_event_loop</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">loop</span><span class="o">.</span><span class="n">call_soon_threadsafe</span><span class="p">(</span><span class="n">triggered_set</span><span class="p">,</span> <span class="n">_AsyncCommand</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">triggered</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">await</span> <span class="n">fn_coroutine</span><span class="p">(</span><span class="o">*</span><span class="n">triggered</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">triggered</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="n">cancel</span> <span class="o">=</span> <span class="n">use_async</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">triggered</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">cancel_threadsafe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">loop</span><span class="o">.</span><span class="n">call_soon_threadsafe</span><span class="p">(</span><span class="n">cancel</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">callback</span><span class="p">,</span> <span class="n">cancel_threadsafe</span></div>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">get_render_context_maybe</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">context</span><span class="o">.</span><span class="n">current_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;use_async used outside component&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">use_async_call</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">current_element</span><span class="p">,</span> <span class="n">fn_coroutine</span><span class="p">,</span> <span class="n">max_concurrent</span><span class="o">=</span><span class="n">max_concurrent</span><span class="p">)</span></div>
 
 
 
@@ -1647,6 +1618,7 @@
     <span class="k">return</span> <span class="n">local_state</span></div>
 
 
+
 <div class="viewcode-block" id="use_palette_edifice">
 <a class="viewcode-back" href="../../stubs/edifice.use_palette_edifice.html#edifice.use_palette_edifice">[docs]</a>
 <span class="k">def</span> <span class="nf">use_palette_edifice</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPalette</span><span class="p">:</span>
@@ -1657,6 +1629,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        `QPalette &lt;https://doc.qt.io/qtforpython/PySide6/QtGui/QPalette.html&gt;`_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">initializer</span><span class="p">():</span>
         <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_edifice_light</span><span class="p">()</span> <span class="k">if</span> <span class="n">theme_is_light</span><span class="p">()</span> <span class="k">else</span> <span class="n">palette_edifice_dark</span><span class="p">()</span>
         <span class="n">tp</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">())</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette</span><span class="p">)</span>

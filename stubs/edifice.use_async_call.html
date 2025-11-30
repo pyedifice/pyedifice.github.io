@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>edifice.use_async_call &#8212; Edifice 4.4.1 documentation</title>
+    <title>edifice.use_async_call &#8212; Edifice 5.0.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=8b5852d8"></script>
+    <script src="../_static/documentation_options.js?v=ce74c6a2"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -49,8 +49,8 @@
     <link rel="icon" href="../_static/EdificePyramid.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="edifice.use_memo" href="edifice.use_memo.html" />
-    <link rel="prev" title="edifice.use_effect_final" href="edifice.use_effect_final.html" />
+    <link rel="next" title="edifice.use_ref" href="edifice.use_ref.html" />
+    <link rel="prev" title="edifice.use_async" href="edifice.use_async.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.4.1 documentation - Home"/>
-    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.4.1 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 5.0.0 documentation - Home"/>
+    <img src="../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 5.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -388,11 +388,18 @@
 <h1>edifice.use_async_call<a class="headerlink" href="#edifice-use-async-call" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="edifice.use_async_call">
-<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async_call" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">edifice.</span></span><span class="sig-name descname"><span class="pre">use_async_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_coroutine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_concurrent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edifice/hooks.html#use_async_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edifice.use_async_call" title="Link to this definition">#</a></dt>
 <dd><p>Hook to call an async function from a non-async context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fn_coroutine</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">Awaitable</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Async Coroutine function to be run as a Task.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_coroutine</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">Coroutine</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span>) – Async Coroutine function to be run as a Task.</p></li>
+<li><p><strong>max_concurrent</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Maximum number of concurrent <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Tasks allowed
+to run at the same time. If this limit is exceeded, then the oldest
+<code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task will be cancelled to make room for the new
+Task. Default is <code class="code docutils literal notranslate"><span class="pre">1</span></code>. Set to <code class="code docutils literal notranslate"><span class="pre">None</span></code> to allow unlimited
+concurrency.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code>(<code class="docutils literal notranslate"><span class="pre">_P_async</span></code>)], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</span></p>
@@ -403,26 +410,29 @@
 <li><p>A non-async function with the same argument signature as the
 <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code>.</p></li>
 <li><p>A non-async cancellation function which can be called to cancel
-the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually.</p></li>
+all of the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Tasks manually.</p></li>
 </ol>
 </dd>
 </dl>
 </p>
 </dd>
 </dl>
-<p>The async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function can have any argument
+<p>Will create a new
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task">Task</a>
+with the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> coroutine.
+This Task will be bound to the
+lifecycle of this <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a>.
+The async <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> function can have any argument
 signature, but it must return <code class="code docutils literal notranslate"><span class="pre">None</span></code>. The return value is discarded.</p>
 <p>The Hook takes an async function <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> and returns a tuple
 pair of non-async functions.</p>
 <ol class="arabic simple">
 <li><p>A non-async function with the same argument signature as the
 <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code>. When called, this non-async function will start a
-new Task an the main Edifice thread event loop as a <a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>
-Hook which calls <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code>. This non-async function is
-safe to call from any thread.</p></li>
+new Task an the main Edifice thread event loop
+which calls <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code>.</p></li>
 <li><p>A non-async cancellation function which can be called to cancel
-the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually. This cancellation function is
-safe to call from any thread.</p></li>
+the <code class="code docutils literal notranslate"><span class="pre">fn_coroutine</span></code> Task manually.</p></li>
 </ol>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">use_async_call to delay print</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
@@ -432,14 +442,14 @@ safe to call from any thread.</p></li>
 
 <span class="n">delay_print</span><span class="p">,</span> <span class="n">cancel_print</span> <span class="o">=</span> <span class="n">use_async_call</span><span class="p">(</span><span class="n">delay_print_async</span><span class="p">)</span>
 
-<span class="n">delay_print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>Some time later, if we want to manually cancel the delayed print:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">cancel the delayed print</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cancel_print</span><span class="p">()</span>
+<span class="n">Button</span><span class="p">(</span>
+    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Print Hello World after 1 second&quot;</span><span class="p">,</span>
+    <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">delay_print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">Button</span><span class="p">(</span>
+    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Cancel print&quot;</span><span class="p">,</span>
+    <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">cancel_print</span><span class="p">()</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -447,9 +457,9 @@ safe to call from any thread.</p></li>
 <a class="reference external" href="https://www.npmjs.com/package/react-async-hook">https://www.npmjs.com/package/react-async-hook</a></p>
 <p>This Hook is similar to
 <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.create_task">create_task()</a> ,
-but because it uses
-<a class="reference internal" href="edifice.use_async.html#edifice.use_async" title="edifice.use_async"><code class="xref py py-func docutils literal notranslate"><span class="pre">use_async()</span></code></a>, it will cancel the Task
-when this <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> is unmounted, or when the function is called again.</p>
+but it will cancel the Task
+when this <a class="reference internal" href="edifice.component.html#edifice.component" title="edifice.component"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;component</span></code></a> is unmounted, or when the
+concurrency limit is exceeded.</p>
 </dd></dl>
 
 </section>
@@ -465,20 +475,20 @@ when this <a class="reference internal" href="edifice.component.html#edifice.com
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="edifice.use_effect_final.html"
+       href="edifice.use_async.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">edifice.use_effect_final</p>
+        <p class="prev-next-title">edifice.use_async</p>
       </div>
     </a>
     <a class="right-next"
-       href="edifice.use_memo.html"
+       href="edifice.use_ref.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">edifice.use_memo</p>
+        <p class="prev-next-title">edifice.use_ref</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

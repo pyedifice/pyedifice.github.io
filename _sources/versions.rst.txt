@@ -7,6 +7,53 @@
 Release Notes
 =============
 
+v5.0.0
+------
+Released: 2025-11-30
+
+.. rubric:: New Features
+
+The Hooks :func:`use_async` and :func:`use_async_call` now have an optional
+:code:`max_concurrent` argument which can allow more than one async call to run
+concurrently. The :code:`max_concurrent` argument
+defaults to :code:`1`, which is the same behavior as before.
+
+.. rubric:: Migration Guide
+
+Because the :code:`max_concurrent` argument
+defaults to :code:`1`, which is the same behavior as before, most user code
+will not be affected by this change.
+
+**Breaking Change** The :func:`use_async_call` Hook is no longer thread-safe.
+If you were relying on
+the thread-safety of :func:`use_async_call` then you should wrap it in a
+`asyncio.call_soon_threadsafe <https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.call_soon_threadsafe>`_
+function.
+
+.. code-block:: python
+    :caption: call_soon_threadsafe with use_async_call
+
+    import asyncio
+
+    main_loop = asyncio.get_event_loop()
+
+    async def my_function_async(arg: str):
+        print(arg)
+
+    my_function, my_function_cancel = use_async_call(my_function_async)
+
+    def thread_safe_my_function(arg: str):
+        """This function can be passed to another thread and called by that thread."""
+        main_loop.call_soon_threadsafe(my_function, arg)
+
+**Breaking Change** :func:`use_async` and :func:`use_async_call` no longer
+suppress exceptions other than :code:`CancelledError`.
+Unhandled exceptions in async functions will raise into the event loop
+as they normally would.
+
+**Breaking Change** Deleted deprecated functions :code:`use_callback`
+:code:`Icon` :code:`IconButton` :code:`alert` :code:`file_dialog`.
+
 v4.4.1
 ------
 Released: 2025-10-14
@@ -117,8 +164,8 @@ v3.0.0
 Released: 2025-02-08
 
 - Bugfix for unmounting :ref:`Graphics Effects`.
-- Deprecated :class:`IconButton`. Instead use :class:`ButtonView`.
-- Deprecated :class:`Icon`. Instead use :class:`ImageSvg`.
+- Deprecated :code:`IconButton`. Instead use :class:`ButtonView`.
+- Deprecated :code:`Icon`. Instead use :class:`ImageSvg`.
 - Introduced internal type :code:`PropsDiff` which improves speed by reducing
   the number of Qt mutation commands issued.
 
@@ -262,7 +309,7 @@ Released: 2024-12-28
 - :ref:`Styling` :code:`style` prop :code:`"align"` can take an
   `AlignmentFlag <https://doc.qt.io/qtforpython-6/PySide6/QtCore/Qt.html#PySide6.QtCore.Qt.AlignmentFlag>`_.
 - :ref:`Styling` :code:`style` prop colors can take a `QColor <https://doc.qt.io/qtforpython-6/PySide6/QtGui/QColor.html>`_.
-- Deprecate Hook :func:`use_callback` in favor of :func:`use_memo`.
+- Deprecate Hook :code:`use_callback` in favor of :func:`use_memo`.
 
 
 v2.8.1
@@ -315,7 +362,7 @@ v2.5.0
 ------
 Released: 2024-10-10
 
-* New Hook :func:`use_callback`.
+* New Hook :code:`use_callback`.
 * Hook :func:`use_state` **setter function** will be stable across renders.
 
 

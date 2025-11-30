@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.engine &#8212; Edifice 4.4.1 documentation</title>
+    <title>edifice.engine &#8212; Edifice 5.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=8b5852d8"></script>
+    <script src="../../_static/documentation_options.js?v=ce74c6a2"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 4.4.1 documentation - Home"/>
-    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 4.4.1 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 5.0.0 documentation - Home"/>
+    <img src="../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 5.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -409,6 +409,8 @@
 <span class="n">_T_Element</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_Element&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;Element&quot;</span><span class="p">)</span>
 <span class="n">_T_widget</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T_widget&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">)</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Edifice&quot;</span><span class="p">)</span>
+<span class="n">_P_async</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P_async&quot;</span><span class="p">)</span>
+
 
 <span class="n">P</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 
@@ -808,7 +810,8 @@
 <span class="sd">        of Keys** are the same as the</span>
 <span class="sd">        `React Rules of Keys &lt;https://react.dev/learn/rendering-lists#rules-of-keys&gt;`_.</span>
 
-<span class="sd">        - **Keys must be unique among siblings.** However, it’s okay to use the same keys for Elements of different parents.</span>
+<span class="sd">        - **Keys must be unique among siblings.** However, it’s okay to use the</span>
+<span class="sd">          same keys for Elements of different parents.</span>
 <span class="sd">        - **Keys must not change** or that defeats their purpose! Don’t generate them while rendering.</span>
 
 <span class="sd">        Returns the Element to allow for chaining.</span>
@@ -1288,8 +1291,11 @@
 <span class="sd">            as argument.</span>
 <span class="sd">        on_focus:</span>
 <span class="sd">            Callback for</span>
-<span class="sd">            `focusOutEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.focusOutEvent&gt;`_ and</span>
-<span class="sd">            `focusInEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.focusInEvent&gt;`_.</span>
+<span class="sd">            `focusOutEvent</span>
+<span class="sd">            &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.focusOutEvent&gt;`_</span>
+<span class="sd">            and</span>
+<span class="sd">            `focusInEvent</span>
+<span class="sd">            &lt;https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.focusInEvent&gt;`_.</span>
 <span class="sd">            Takes a</span>
 <span class="sd">            `QFocusEvent &lt;https://doc.qt.io/qtforpython-6/PySide6/QtGui/QFocusEvent.html&gt;`_</span>
 <span class="sd">            as argument.</span>
@@ -2164,18 +2170,38 @@
 
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">_HookAsync</span><span class="p">:</span>
-    <span class="n">task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The currently executing async effect task.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]]</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The queue of waiting async effect tasks. Max length 1.</span>
+<span class="sd">    The currently executing async effect tasks.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The dependencies of use_async().</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tasks_cancelled</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The set of tasks for which cancel() has been called.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cancel all running tasks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="p">:</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">concurrency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the number of currently running, uncancelled tasks.</span>
+
+<span class="sd">        This may not really capture what we want to know. If a task</span>
+<span class="sd">        has been cancelled then it is not yet done, and so</span>
+<span class="sd">        the task will not make any more progress but it has not</span>
+<span class="sd">        yet released its resources.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">elements_match</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -2252,9 +2278,8 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
-                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">_delete_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
@@ -2278,22 +2303,23 @@
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_effect</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
         <span class="c1"># Clean up use_async for the component</span>
         <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]:</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="c1"># If there are some running tasks, wait until they are</span>
-                    <span class="c1"># done and then delete this HookAsync object.</span>
-                    <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
-                        <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">):</span>
-                                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
-
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">):</span>
                 <span class="c1"># If there are no running tasks, then we can delete this</span>
                 <span class="c1"># HookAsync object immediately.</span>
                 <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># If there are some running tasks, wait until they are</span>
+                        <span class="c1"># done and then delete this HookAsync object.</span>
+                        <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">_future_object</span><span class="p">):</span>
+                            <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_hook_async_done</span><span class="p">(</span><span class="n">component</span><span class="p">):</span>
+                                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+
+                        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+                            <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">done_callback</span><span class="p">)</span>
+                            <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
         <span class="c1"># Clean up use_state for the component</span>
         <span class="k">if</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">:</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_state</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
@@ -2791,6 +2817,7 @@
         <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
         <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
         <span class="n">dependencies</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
+        <span class="n">max_concurrent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]:</span>
         <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
         <span class="n">h_index</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">_hook_async_index</span>
@@ -2799,89 +2826,123 @@
         <span class="c1"># When the done_callback is called,</span>
         <span class="c1"># this component might have already unmounted. In that case</span>
         <span class="c1"># this done_callback will still be holding a reference to the</span>
-        <span class="c1"># _HookAsync, and the _HookAsync.queue will be cleared.</span>
+        <span class="c1"># _HookAsync.</span>
         <span class="c1"># After the done_callback is called, the _HookAsync object</span>
         <span class="c1"># should be garbage collected.</span>
 
         <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">:</span> <span class="n">_HookAsync</span><span class="p">,</span> <span class="n">_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
-            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
-                    <span class="c1"># If there is an exception, retrieve the exception and throw it away.</span>
-                    <span class="c1"># Otherwise asyncio complains</span>
-                    <span class="c1"># “Task exception was never retrieved”</span>
-                    <span class="n">_r</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-                    <span class="c1"># TODO Maybe we should re-raise every exception</span>
-                    <span class="c1"># except asyncio.CancelledError? Then if the user</span>
-                    <span class="c1"># raises to use_async then the loop crashes.</span>
-                    <span class="c1"># Maybe that is better.</span>
-                    <span class="c1"># But then users would start defensively try-ing</span>
-                    <span class="c1"># every use_async function and would forget to re-raise</span>
-                    <span class="c1"># CancelledError. Which would be worse.</span>
-                <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
-                    <span class="k">pass</span>
-                <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Non-CancelledError exception raised in use_async&quot;</span><span class="p">)</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="c1"># There is another async task waiting in the queue</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)())</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">hook</span><span class="o">=</span><span class="n">hook</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">_task</span><span class="p">)</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">_task</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
+                <span class="c1"># If there is an exception, retrieve the exception and throw it away.</span>
+                <span class="c1"># Otherwise asyncio complains</span>
+                <span class="c1"># “Task exception was never retrieved”</span>
+                <span class="n">_r</span> <span class="o">=</span> <span class="n">_task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="c1"># Re-raise every exception except asyncio.CancelledError</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
             <span class="c1"># then this is the first render.</span>
             <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
             <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookAsync</span><span class="p">(</span>
-                <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
+                <span class="n">tasks</span><span class="o">=</span><span class="p">[</span><span class="n">task</span><span class="p">],</span>
                 <span class="n">dependencies</span><span class="o">=</span><span class="n">dependencies</span><span class="p">,</span>
-                <span class="n">queue</span><span class="o">=</span><span class="p">[],</span>
+                <span class="n">tasks_cancelled</span><span class="o">=</span><span class="nb">set</span><span class="p">(),</span>
             <span class="p">)</span>
             <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
 
             <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
 
-            <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
-                <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-
-            <span class="k">return</span> <span class="n">cancel</span>
+            <span class="k">return</span> <span class="n">hook</span><span class="o">.</span><span class="n">cancel</span>
 
         <span class="k">if</span> <span class="n">dependencies</span> <span class="o">!=</span> <span class="p">(</span><span class="n">hook</span> <span class="o">:=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">])</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span>
             <span class="c1"># then this is not the first render and deps changed</span>
             <span class="n">hook</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span>
-            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="c1"># There&#39;s already an old async effect in flight, so enqueue</span>
-                <span class="c1"># the new async effect and cancel the old async effect.</span>
-                <span class="c1"># We also want to cancel all of the other async effects</span>
-                <span class="c1"># in the queue, so the queue should have max len 1.</span>
-                <span class="c1"># Maybe queue should be type Optional instead of list? That</span>
-                <span class="c1"># would be weird though.</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">)</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
 
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
+            <span class="n">task_surplus</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">concurrency</span><span class="p">()</span> <span class="o">-</span> <span class="n">max_concurrent</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">max_concurrent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="c1"># task_surplus &gt; 0 means we have too many tasks running so we must</span>
+            <span class="c1"># cancel some to start a new task.</span>
+            <span class="c1"># Cancel the oldest uncancelled tasks.</span>
+            <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">task_surplus</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hook</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="p">:</span>
+                    <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+                    <span class="n">task_surplus</span> <span class="o">-=</span> <span class="mi">1</span>
 
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">hook</span><span class="o">=</span><span class="n">hook</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">())</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">hook</span><span class="o">=</span><span class="n">hook</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
 
-            <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-
-            <span class="k">return</span> <span class="n">cancel</span>
+            <span class="k">return</span> <span class="n">hook</span><span class="o">.</span><span class="n">cancel</span>
 
         <span class="c1"># not first render, dependencies did not change</span>
         <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">hook</span><span class="o">.</span><span class="n">cancel</span>
 
-        <span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">hook</span><span class="o">.</span><span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">hook</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">use_async_call</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span>
+        <span class="n">fn_coroutine</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Coroutine</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
+        <span class="n">max_concurrent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P_async</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]]:</span>
+        <span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hook_async</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+        <span class="n">h_index</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">_hook_async_index</span>
+        <span class="n">element</span><span class="o">.</span><span class="n">_hook_async_index</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">return</span> <span class="n">cancel</span>
+        <span class="c1"># We can use the _HookAsync type for both use_async and use_async_call.</span>
+
+        <span class="c1"># When the done_callback is called,</span>
+        <span class="c1"># this component might have already unmounted. In that case</span>
+        <span class="c1"># this done_callback will still be holding a reference to the</span>
+        <span class="c1"># _HookAsync.</span>
+        <span class="c1"># After the done_callback is called, the _HookAsync object</span>
+        <span class="c1"># should be garbage collected.</span>
+
+        <span class="k">def</span> <span class="nf">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">:</span> <span class="n">_HookAsync</span><span class="p">,</span> <span class="n">_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]):</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">_task</span><span class="p">)</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">_task</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.result</span>
+                <span class="c1"># Otherwise asyncio complains</span>
+                <span class="c1"># “Task exception was never retrieved”</span>
+                <span class="n">_r</span> <span class="o">=</span> <span class="n">_task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h_index</span><span class="p">:</span>
+            <span class="c1"># then this is the first render.</span>
+            <span class="n">hook</span> <span class="o">=</span> <span class="n">_HookAsync</span><span class="p">(</span>
+                <span class="n">tasks</span><span class="o">=</span><span class="p">[],</span>
+                <span class="n">dependencies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">tasks_cancelled</span><span class="o">=</span><span class="nb">set</span><span class="p">(),</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">hooks</span><span class="p">)</span> <span class="o">==</span> <span class="n">h_index</span>
+            <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+
+        <span class="n">hook</span> <span class="o">=</span> <span class="n">hooks</span><span class="p">[</span><span class="n">h_index</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P_async</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">task_surplus</span> <span class="o">=</span> <span class="n">hook</span><span class="o">.</span><span class="n">concurrency</span><span class="p">()</span> <span class="o">-</span> <span class="n">max_concurrent</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">max_concurrent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="c1"># task_surplus &gt; 0 means we have too many tasks running so we must</span>
+            <span class="c1"># cancel some to start a new task.</span>
+            <span class="c1"># Cancel the oldest uncancelled tasks.</span>
+            <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">task_surplus</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hook</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="p">:</span>
+                    <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                    <span class="n">hook</span><span class="o">.</span><span class="n">tasks_cancelled</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+                    <span class="n">task_surplus</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">fn_coroutine</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">hook</span><span class="o">=</span><span class="n">hook</span><span class="p">:</span> <span class="n">done_callback</span><span class="p">(</span><span class="n">hook</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">hook</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">callback</span><span class="p">,</span> <span class="n">hook</span><span class="o">.</span><span class="n">cancel</span>
 </pre></div>
 
                 </article>
