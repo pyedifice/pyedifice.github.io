@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>edifice.base_components.base_components &#8212; Edifice 5.0.0 documentation</title>
+    <title>edifice.base_components.base_components &#8212; Edifice 5.0.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=ce74c6a2"></script>
+    <script src="../../../_static/documentation_options.js?v=6a0c42bb"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 5.0.0 documentation - Home"/>
-    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 5.0.0 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-light" alt="Edifice 5.0.1 documentation - Home"/>
+    <img src="../../../_static/EdificePyramid.svg" class="logo__image only-dark pst-js-only" alt="Edifice 5.0.1 documentation - Home"/>
   
   
 </a></div>
@@ -1256,6 +1256,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_change_handle</span><span class="p">)</span>
+        <span class="c1"># The QSlider seems to have the same issue as the QSpinInput for which the default maximum is 99.</span>
+        <span class="c1"># So we need to do this in order for default Slider to reach 100. However, I could not find if the 99 maximum is</span>
+        <span class="c1"># stated in the Qt documentation.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underlying</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_on_change_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
